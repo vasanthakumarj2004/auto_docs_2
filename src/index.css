@@ -645,4 +645,48 @@ input:focus-visible {
 .stagger-4 { transition-delay: 160ms; }
 .stagger-5 { transition-delay: 200ms; }
 
+/* Endless Smooth Logo Marquee (Raft-style) */
+@keyframes marqueeSlide {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeSlide 26s linear infinite;
+  will-change: transform;
+}
+
+.marquee-container:hover .animate-marquee-track,
+.marquee-container:focus-within .animate-marquee-track {
+  animation-play-state: paused;
+}
+
+.mask-marquee-edges {
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-track {
+    animation: none !important;
+    width: auto !important;
+    flex-wrap: wrap !important;
+  }
+  .marquee-duplicate {
+    display: none !important;
+  }
+  .reveal-init {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+
 
