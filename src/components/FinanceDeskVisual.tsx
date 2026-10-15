@@ -1,5 +1,6 @@
 import React from 'react';
 import { CircleAlert } from 'lucide-react';
+import { CountUp } from './CountUp';
 
 export const FinanceDeskVisual: React.FC<{ isCentered?: boolean }> = ({ isCentered = false }) => {
   const bills = [
@@ -42,13 +43,13 @@ export const FinanceDeskVisual: React.FC<{ isCentered?: boolean }> = ({ isCenter
 
           <div className="mt-5 flex gap-4 border-b border-slate-100 text-[10px] font-bold">
             <span className="border-b-2 border-brand-blue pb-2 text-brand-blue">
-              All bills <b className="ml-1 rounded-full bg-blue-50 px-1.5 py-0.5 text-[8px]">24</b>
+              All bills <b className="ml-1 rounded-full bg-blue-50 px-1.5 py-0.5 text-[8px]"><CountUp end={24} /></b>
             </span>
             <span className="pb-2 text-slate-400">
-              Needs review <b className="ml-1 font-normal">1</b>
+              Needs review <b className="ml-1 font-normal"><CountUp end={1} /></b>
             </span>
             <span className="pb-2 text-slate-400">
-              Posted <b className="ml-1 font-normal">23</b>
+              Posted <b className="ml-1 font-normal"><CountUp end={23} /></b>
             </span>
           </div>
 

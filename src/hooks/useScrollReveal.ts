@@ -20,6 +20,8 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>({
 
     if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       setIsVisible(true);
+      element.classList.add('reveal-visible');
+      element.querySelectorAll('.reveal-init').forEach((child) => child.classList.add('reveal-visible'));
       return;
     }
 
@@ -27,11 +29,19 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>({
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+          element.classList.add('reveal-visible');
+          element.querySelectorAll('.reveal-init').forEach((child) => {
+            child.classList.add('reveal-visible');
+          });
           if (triggerOnce) {
             observer.unobserve(element);
           }
         } else if (!triggerOnce) {
           setIsVisible(false);
+          element.classList.remove('reveal-visible');
+          element.querySelectorAll('.reveal-init').forEach((child) => {
+            child.classList.remove('reveal-visible');
+          });
         }
       },
       { threshold, rootMargin }

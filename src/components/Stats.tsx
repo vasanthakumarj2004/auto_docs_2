@@ -1,21 +1,28 @@
 import React from 'react';
+import { CountUp } from './CountUp';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export const Stats: React.FC = () => {
+  const { ref: statsRowRef } = useScrollReveal<HTMLDivElement>({ threshold: 0.1 });
+
   return (
     <section className="border-b border-slate-200/80 bg-white py-12">
       <div className="site-shell space-y-10">
         {/* Proof Stat Row from Image */}
-        <div className="grid divide-y divide-slate-200 rounded-xl border border-slate-200 bg-[#fcfdff] p-6 shadow-xs sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-          <div className="px-4 py-3 first:pl-0">
+        <div
+          ref={statsRowRef}
+          className="grid divide-y divide-slate-200 rounded-xl border border-slate-200 bg-[#fcfdff] p-6 shadow-xs sm:grid-cols-3 sm:divide-x sm:divide-y-0"
+        >
+          <div className="reveal-init stagger-1 px-4 py-3 first:pl-0">
             <div className="text-2xl font-extrabold tracking-[-0.04em] text-slate-950 font-mono">
-              2 hrs → 2 min
+              <CountUp end={2} /> hrs → <CountUp end={2} /> min
             </div>
             <div className="mt-1 text-xs text-slate-500 font-medium">
               FTL logistics: email to CargoWise
             </div>
           </div>
 
-          <div className="px-4 py-3 sm:pl-6">
+          <div className="reveal-init stagger-2 px-4 py-3 sm:pl-6">
             <div className="text-2xl font-extrabold tracking-[-0.04em] text-slate-950 font-mono">
               Days → hours
             </div>
@@ -24,7 +31,7 @@ export const Stats: React.FC = () => {
             </div>
           </div>
 
-          <div className="px-4 py-3 sm:pl-6">
+          <div className="reveal-init stagger-3 px-4 py-3 sm:pl-6">
             <div className="text-2xl font-extrabold tracking-[-0.04em] text-slate-950 font-mono">
               In daily use
             </div>

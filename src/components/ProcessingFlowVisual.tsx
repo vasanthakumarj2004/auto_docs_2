@@ -1,4 +1,5 @@
 import React from 'react';
+import { CountUp } from './CountUp';
 import { 
   FileText, 
   ArrowRight, 
@@ -140,7 +141,7 @@ export const ProcessingFlowVisual: React.FC<ProcessingFlowVisualProps> = ({ isCe
                   Step 02
                 </span>
                 <span className="flex items-center gap-1 rounded bg-brand-blue text-white px-1.5 py-0.5 text-[8px] font-bold shadow-2xs">
-                  <Sparkles size={8} /> 99.8% Match
+                  <Sparkles size={8} /> <CountUp end={99.8} decimals={1} suffix="%" /> Match
                 </span>
               </div>
 
@@ -276,9 +277,9 @@ export const ProcessingFlowVisual: React.FC<ProcessingFlowVisualProps> = ({ isCe
               <span className="font-medium text-slate-700">Direct ERP & Tally Prime Sync</span>
             </div>
             <div className="flex items-center gap-2.5 font-mono text-[9px]">
-              <span className="text-slate-500">Avg speed: <strong className="text-slate-800">4.2s</strong></span>
+              <span className="text-slate-500">Avg speed: <strong className="text-slate-800"><CountUp end={4.2} decimals={1} suffix="s" /></strong></span>
               <span className="text-slate-300">|</span>
-              <span className="text-slate-500">Accuracy: <strong className="text-emerald-700">99.8%</strong></span>
+              <span className="text-slate-500">Accuracy: <strong className="text-emerald-700"><CountUp end={99.8} decimals={1} suffix="%" /></strong></span>
             </div>
           </div>
         </div>
