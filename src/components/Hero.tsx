@@ -1,12 +1,26 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Play, ArrowRight } from 'lucide-react';
+import { Play, ArrowRight, Pause } from 'lucide-react';
 import { FinanceDeskVisual } from './FinanceDeskVisual';
+import { useHeroAutoScroll } from '../hooks/useHeroAutoScroll';
 
 export const Hero: React.FC = () => {
   const [centeredBlock, setCenteredBlock] = useState<number | null>(0);
   const block1Ref = useRef<HTMLDivElement>(null);
   const block2Ref = useRef<HTMLDivElement>(null);
   const block3Ref = useRef<HTMLDivElement>(null);
+
+  const {
+    currentStep,
+    isAutoScrolling,
+    isCancelled,
+    stopAutoScroll,
+    jumpToStep,
+  } = useHeroAutoScroll({
+    blockRefs: [block1Ref, block2Ref, block3Ref],
+    initialDelay: 2000,
+    moveDuration: 1200,
+    pauseDuration: 2500,
+  });
 
   useEffect(() => {
     const blocks = [block1Ref.current, block2Ref.current, block3Ref.current];
@@ -31,6 +45,8 @@ export const Hero: React.FC = () => {
     blocks.forEach((b) => b && observer.observe(b));
     return () => observer.disconnect();
   }, []);
+
+  const activeBlockIndex = isAutoScrolling ? currentStep : (centeredBlock ?? currentStep);
 
   return (
     <section className="relative border-b border-slate-200/80 hero-section pt-8 pb-14 lg:py-0">
@@ -82,12 +98,54 @@ export const Hero: React.FC = () => {
             <div className="absolute inset-0 bg-[radial-gradient(rgba(11,19,48,0.06)_1px,transparent_1px)] [background-size:20px_20px] [mask-image:radial-gradient(ellipse_at_center,black_45%,transparent_75%)]" />
           </div>
 
+          {/* Hero Auto-Scroll Tour Controller & Progress Indicators (Desktop only) */}
+          <div className="sticky top-[80px] z-30 mb-2 hidden justify-end lg:flex pointer-events-auto">
+            <div className="inline-flex items-center gap-3 rounded-full border border-slate-200/90 bg-white/95 px-3.5 py-1.5 shadow-sm backdrop-blur-md">
+              <div className="flex items-center gap-1.5" role="tablist" aria-label="Hero feature blocks">
+                {[0, 1, 2].map((idx) => {
+                  const isActive = activeBlockIndex === idx;
+                  return (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => jumpToStep(idx)}
+                      className={`h-2 rounded-full transition-all cursor-pointer ${
+                        isActive
+                          ? 'w-6 bg-brand-blue'
+                          : 'w-2 bg-slate-200 hover:bg-slate-300'
+                      }`}
+                      aria-label={`Jump to block ${idx + 1}`}
+                      aria-selected={isActive}
+                      role="tab"
+                    />
+                  );
+                })}
+              </div>
+
+              {isAutoScrolling && !isCancelled && (
+                <div className="flex items-center gap-1.5 border-l border-slate-200 pl-2.5">
+                  <span className="flex h-1.5 w-1.5 rounded-full bg-brand-blue animate-ping" />
+                  <span className="text-[10px] font-semibold text-slate-500 font-mono">Auto</span>
+                  <button
+                    type="button"
+                    onClick={stopAutoScroll}
+                    className="ml-1 flex h-5 w-5 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition-colors hover:bg-slate-200 hover:text-slate-900 cursor-pointer"
+                    aria-label="Pause auto-scroll"
+                    title="Pause auto-scroll"
+                  >
+                    <Pause size={10} />
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+
           {/* Block 1: Automated Processing Flow card */}
           <div
             ref={block1Ref}
             className="hero-perspective lg:min-h-[80vh] lg:flex lg:flex-col lg:justify-center py-6 lg:py-12"
           >
-            <div className={`card-stack-3d w-full ${centeredBlock === 0 ? 'is-centered' : ''}`}>
+            <div className={`card-stack-3d w-full ${activeBlockIndex === 0 ? 'is-centered' : ''}`}>
               {/* 2 Faint Ghost Cards Behind */}
               <div className="ghost-card-1" aria-hidden="true" />
               <div className="ghost-card-2" aria-hidden="true" />
@@ -145,7 +203,7 @@ export const Hero: React.FC = () => {
             ref={block2Ref}
             className="hero-perspective lg:min-h-[80vh] lg:flex lg:flex-col lg:justify-center py-6 lg:py-12"
           >
-            <FinanceDeskVisual isCentered={centeredBlock === 1} />
+            <FinanceDeskVisual isCentered={activeBlockIndex === 1} />
           </div>
 
           {/* Block 3: Video card */}
@@ -153,7 +211,7 @@ export const Hero: React.FC = () => {
             ref={block3Ref}
             className="hero-perspective lg:min-h-[80vh] lg:flex lg:flex-col lg:justify-center py-6 lg:py-12"
           >
-            <div className={`card-stack-3d w-full ${centeredBlock === 2 ? 'is-centered' : ''}`}>
+            <div className={`card-stack-3d w-full ${activeBlockIndex === 2 ? 'is-centered' : ''}`}>
               {/* 2 Faint Ghost Cards Behind Dark Card */}
               <div className="ghost-card-dark-1" aria-hidden="true" />
               <div className="ghost-card-dark-2" aria-hidden="true" />
