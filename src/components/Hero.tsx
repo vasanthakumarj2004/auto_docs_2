@@ -1,107 +1,114 @@
-import React, { useState } from 'react';
-import { Check, ArrowRight, Sparkles } from 'lucide-react';
-import { personas } from '../data/featuresData';
+import React from 'react';
+import { Play, ArrowRight, ArrowDown, FileText, CheckCircle2, ShieldCheck } from 'lucide-react';
 import { FinanceDeskVisual } from './FinanceDeskVisual';
-import { ShipmentVisual } from './ShipmentVisual';
 
 export const Hero: React.FC = () => {
-  const [selectedPersona, setSelectedPersona] = useState<'forwarders' | 'finance' | 'brokers'>('forwarders');
-  const activeData = personas[selectedPersona];
-
   return (
-    <section id="top" className="hero-section border-b border-slate-200/80 pt-8 pb-16 lg:py-20">
-      <div className="site-shell">
-        {/* Persona Selector Pill Navigation (Inspired by Wove.com) */}
-        <div className="flex justify-center mb-8">
-          <div className="inline-flex flex-wrap items-center justify-center gap-1 rounded-full border border-slate-200 bg-white/80 p-1 shadow-sm backdrop-blur-md">
-            {(['forwarders', 'finance', 'brokers'] as const).map((key) => {
-              const persona = personas[key];
-              const isActive = selectedPersona === key;
-              return (
-                <button
-                  key={key}
-                  onClick={() => setSelectedPersona(key)}
-                  className={`rounded-full px-4 py-1.5 text-xs font-bold transition-all ${
-                    isActive
-                      ? 'bg-slate-900 text-white shadow-sm'
-                      : 'text-slate-600 hover:text-slate-950 hover:bg-slate-50'
-                  }`}
-                >
-                  {persona.title}
-                </button>
-              );
-            })}
+    <section className="hero-section border-b border-slate-200/80 pt-12 pb-16 lg:py-20">
+      <div className="site-shell grid items-center gap-12 lg:grid-cols-12">
+        {/* Left Column: Tag, Headline, Subtext, Buttons from image */}
+        <div className="lg:col-span-6">
+          <div className="eyebrow mb-6">
+            For businesses that run on Tally, an ERP, or CargoWise
+          </div>
+
+          <h1 className="max-w-[650px] text-4xl font-extrabold leading-[1.08] tracking-[-0.055em] text-slate-950 sm:text-6xl">
+            Grow the business,
+            <br />
+            not the data-entry desk.
+          </h1>
+
+          <p className="mt-6 max-w-xl text-[15px] leading-7 text-slate-600">
+            Bills read, checked, paid and posted to Tally. Emails become CargoWise jobs. Your team handles exceptions, not typing.
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            <a href="#finance" className="button-primary">
+              Run a finance desk
+            </a>
+            <a href="#logistics" className="button-teal">
+              Run the logistics desk
+            </a>
+          </div>
+
+          <div className="mt-9 flex flex-wrap items-center gap-6 text-[12px] font-semibold text-slate-500">
+            <span className="flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-emerald-500" />
+              Built around your approvals
+            </span>
+            <span className="flex items-center gap-2">
+              <span className="h-2 w-2 rounded-full bg-emerald-500" />
+              No rip-and-replace
+            </span>
           </div>
         </div>
 
-        {/* Hero Grid */}
-        <div className="grid items-center gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-6">
-            <div className="eyebrow mb-6">
-              <Sparkles size={12} className="text-blue-600" />
-              <span>{activeData.badge}</span>
+        {/* Right Column: Flow Card & Labeled Video Slot */}
+        <div className="lg:col-span-6 space-y-6">
+          {/* Flow Card: Incoming bill -> Reading / GST-check / Matching -> Posted to Tally */}
+          <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+              <span className="text-[11px] font-extrabold text-slate-900 flex items-center gap-2">
+                <span className="brand-mark h-4 w-4 rounded text-[8px]">D</span>
+                Automated Processing Flow
+              </span>
+              <span className="rounded bg-emerald-50 px-2 py-0.5 text-[9px] font-bold text-emerald-700 border border-emerald-100">
+                Live Pipeline
+              </span>
             </div>
 
-            <h1 className="max-w-[650px] text-4xl font-extrabold leading-[1.08] tracking-[-0.055em] text-slate-950 sm:text-6xl transition-all duration-300">
-              {activeData.headline}
-            </h1>
+            <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-2.5 items-center text-center">
+              {/* Node 1 */}
+              <div className="rounded-lg border border-slate-200 bg-slate-50/70 p-3">
+                <span className="text-[9px] font-bold uppercase text-slate-400 block">Step 01</span>
+                <span className="text-xs font-bold text-slate-800 mt-1 block">Incoming bill</span>
+                <span className="text-[9px] text-slate-500 block mt-0.5">Email / PDF / Scan</span>
+              </div>
 
-            <p className="mt-6 max-w-xl text-[15px] leading-7 text-slate-600 transition-all duration-300">
-              {activeData.subheadline}
-            </p>
+              {/* Arrow */}
+              <div className="hidden md:flex justify-center text-brand-blue">
+                <ArrowRight size={16} />
+              </div>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#demo" className="button-primary text-xs">
-                {activeData.primaryCta} <ArrowRight size={14} />
-              </a>
-              <a
-                href={selectedPersona === 'forwarders' ? '#logistics' : '#finance'}
-                className="button-secondary text-xs"
-              >
-                {activeData.secondaryCta}
-              </a>
-            </div>
+              {/* Node 2 */}
+              <div className="rounded-lg border border-blue-200 bg-brand-lavender/50 p-3">
+                <span className="text-[9px] font-bold uppercase text-brand-blue block">Step 02</span>
+                <span className="text-xs font-bold text-slate-900 mt-1 block">Reading / GST-check / Matching</span>
+                <span className="text-[9px] text-brand-blue font-semibold block mt-0.5">Zero manual keying</span>
+              </div>
 
-            {/* Persona Bullet Points */}
-            <div className="mt-9 space-y-2.5">
-              {activeData.bulletPoints.map((point, index) => (
-                <div key={index} className="flex items-center gap-2.5 text-xs font-medium text-slate-600">
-                  <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-emerald-600 border border-emerald-200">
-                    <Check size={11} strokeWidth={3} />
-                  </span>
-                  <span>{point}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+              {/* Arrow */}
+              <div className="hidden md:flex justify-center text-emerald-600">
+                <ArrowRight size={16} />
+              </div>
 
-          {/* Interactive Live Card corresponding to Persona */}
-          <div className="lg:col-span-6">
-            <div className="relative">
-              <div className="absolute -inset-1.5 rounded-2xl bg-gradient-to-r from-blue-500/10 via-teal-500/10 to-indigo-500/10 blur-xl opacity-70" />
-              <div className="relative">
-                {selectedPersona === 'forwarders' ? (
-                  <ShipmentVisual />
-                ) : (
-                  <FinanceDeskVisual />
-                )}
+              {/* Node 3 */}
+              <div className="rounded-lg border border-emerald-200 bg-emerald-50/60 p-3">
+                <span className="text-[9px] font-bold uppercase text-emerald-700 block">Step 03</span>
+                <span className="text-xs font-bold text-slate-900 mt-1 block">Posted to Tally</span>
+                <span className="text-[9px] text-emerald-700 font-semibold block mt-0.5">Voucher auto-created</span>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Dynamic Persona Metric Row */}
-        <div className="mt-14 grid grid-cols-1 divide-y divide-slate-200 rounded-2xl border border-slate-200 bg-white/90 p-4 shadow-sm backdrop-blur sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-          {activeData.metrics.map((metric, i) => (
-            <div key={i} className="px-5 py-3 first:pl-3">
-              <div className="text-2xl font-extrabold tracking-tight text-slate-950 font-mono">
-                {metric.value}
-              </div>
-              <div className="mt-1 text-xs text-slate-500 font-medium">
-                {metric.label}
-              </div>
+          {/* Interactive Live Finance Desk Preview from image */}
+          <FinanceDeskVisual />
+
+          {/* Labeled Video Slot (16:9) */}
+          <div className="relative aspect-video w-full rounded-xl border border-dashed border-slate-300 bg-slate-950/95 overflow-hidden flex flex-col items-center justify-center p-6 text-center text-white shadow-md group cursor-pointer">
+            <div className="absolute inset-0 bg-radial from-brand-blue/20 to-transparent pointer-events-none" />
+            <div className="relative flex h-14 w-14 items-center justify-center rounded-full bg-brand-blue text-white shadow-lg transition-transform group-hover:scale-110">
+              <Play size={22} className="ml-1 fill-white" />
             </div>
-          ))}
+            <div className="relative mt-4">
+              <span className="text-xs font-bold tracking-wide uppercase text-blue-300 block">
+                [ Video Slot: Product Walkthrough (2 min) ]
+              </span>
+              <p className="mt-1 text-xs text-slate-300 max-w-sm">
+                Watch vendor invoices read, validated for GST, and posted to Tally Prime in real time.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
