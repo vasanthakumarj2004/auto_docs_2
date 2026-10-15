@@ -1,8 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Play, ArrowRight } from 'lucide-react';
 import { FinanceDeskVisual } from './FinanceDeskVisual';
 
 export const Hero: React.FC = () => {
+  const [centeredBlock, setCenteredBlock] = useState<number | null>(0);
+  const block1Ref = useRef<HTMLDivElement>(null);
+  const block2Ref = useRef<HTMLDivElement>(null);
+  const block3Ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const blocks = [block1Ref.current, block2Ref.current, block3Ref.current];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = blocks.indexOf(entry.target as HTMLDivElement);
+            if (index !== -1) {
+              setCenteredBlock(index);
+            }
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: '-20% 0px -20% 0px',
+        threshold: 0.25,
+      }
+    );
+
+    blocks.forEach((b) => b && observer.observe(b));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section className="relative border-b border-slate-200/80 hero-section pt-8 pb-14 lg:py-0">
       <div className="site-shell grid items-start gap-8 lg:gap-12 lg:grid-cols-12">
@@ -46,74 +75,103 @@ export const Hero: React.FC = () => {
         </div>
 
         {/* Right Column: Scrolls normally with stacked blocks, each about 80vh tall and vertically centered */}
-        <div className="lg:col-span-6 space-y-8 lg:space-y-0">
+        <div className="relative lg:col-span-6 space-y-8 lg:space-y-0">
+          {/* Subtle Ambient Radial Glow & Dotted Matrix Behind Right Column Stack */}
+          <div className="pointer-events-none absolute inset-0 -inset-x-8 overflow-hidden opacity-60" aria-hidden="true">
+            <div className="absolute top-1/4 right-0 h-[480px] w-[480px] rounded-full bg-[radial-gradient(circle,rgba(232,234,251,0.85)_0%,rgba(225,243,238,0.4)_40%,transparent_70%)] blur-3xl" />
+            <div className="absolute inset-0 bg-[radial-gradient(rgba(11,19,48,0.06)_1px,transparent_1px)] [background-size:20px_20px] [mask-image:radial-gradient(ellipse_at_center,black_45%,transparent_75%)]" />
+          </div>
+
           {/* Block 1: Automated Processing Flow card */}
-          <div className="lg:min-h-[80vh] lg:flex lg:flex-col lg:justify-center py-6 lg:py-12">
-            <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all hover:border-slate-300">
-              <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                <span className="text-[11px] font-extrabold text-slate-900 flex items-center gap-2">
-                  <span className="brand-mark h-4 w-4 rounded text-[8px]">D</span>
-                  Automated Processing Flow
-                </span>
-                <span className="rounded bg-emerald-50 px-2 py-0.5 text-[9px] font-bold text-emerald-700 border border-emerald-100">
-                  Live Pipeline
-                </span>
-              </div>
+          <div
+            ref={block1Ref}
+            className="hero-perspective lg:min-h-[80vh] lg:flex lg:flex-col lg:justify-center py-6 lg:py-12"
+          >
+            <div className={`card-stack-3d w-full ${centeredBlock === 0 ? 'is-centered' : ''}`}>
+              {/* 2 Faint Ghost Cards Behind */}
+              <div className="ghost-card-1" aria-hidden="true" />
+              <div className="ghost-card-2" aria-hidden="true" />
 
-              <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-2.5 items-center text-center">
-                {/* Step 01 */}
-                <div className="rounded-lg border border-slate-200 bg-slate-50/70 p-3">
-                  <span className="text-[9px] font-bold uppercase text-slate-400 block font-mono">Step 01</span>
-                  <span className="text-xs font-bold text-slate-800 mt-1 block">Incoming bill</span>
-                  <span className="text-[9px] text-slate-500 block mt-0.5">Email / PDF / Scan</span>
+              {/* Main 3D Card */}
+              <div className="main-card-3d p-5">
+                <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                  <span className="text-[11px] font-extrabold text-slate-900 flex items-center gap-2">
+                    <span className="brand-mark h-4 w-4 rounded text-[8px]">D</span>
+                    Automated Processing Flow
+                  </span>
+                  <span className="floating-badge-1 rounded bg-emerald-50 px-2 py-0.5 text-[9px] font-bold text-emerald-700 border border-emerald-100 shadow-2xs">
+                    Live Pipeline
+                  </span>
                 </div>
 
-                {/* Arrow */}
-                <div className="hidden md:flex justify-center text-brand-blue">
-                  <ArrowRight size={16} />
-                </div>
+                <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-2.5 items-center text-center">
+                  {/* Step 01 */}
+                  <div className="rounded-lg border border-slate-200 bg-slate-50/70 p-3 shadow-2xs">
+                    <span className="text-[9px] font-bold uppercase text-slate-400 block font-mono">Step 01</span>
+                    <span className="text-xs font-bold text-slate-800 mt-1 block">Incoming bill</span>
+                    <span className="text-[9px] text-slate-500 block mt-0.5">Email / PDF / Scan</span>
+                  </div>
 
-                {/* Step 02 */}
-                <div className="rounded-lg border border-blue-200 bg-brand-lavender/50 p-3">
-                  <span className="text-[9px] font-bold uppercase text-brand-blue block font-mono">Step 02</span>
-                  <span className="text-xs font-bold text-slate-900 mt-1 block">Reading / GST-check / Matching</span>
-                  <span className="text-[9px] text-brand-blue font-semibold block mt-0.5">Zero manual keying</span>
-                </div>
+                  {/* Arrow */}
+                  <div className="hidden md:flex justify-center text-brand-blue">
+                    <ArrowRight size={16} />
+                  </div>
 
-                {/* Arrow */}
-                <div className="hidden md:flex justify-center text-emerald-600">
-                  <ArrowRight size={16} />
-                </div>
+                  {/* Step 02 */}
+                  <div className="floating-badge-2 rounded-lg border border-blue-200 bg-brand-lavender/50 p-3 shadow-xs">
+                    <span className="text-[9px] font-bold uppercase text-brand-blue block font-mono">Step 02</span>
+                    <span className="text-xs font-bold text-slate-900 mt-1 block">Reading / GST-check / Matching</span>
+                    <span className="text-[9px] text-brand-blue font-semibold block mt-0.5">Zero manual keying</span>
+                  </div>
 
-                {/* Step 03 */}
-                <div className="rounded-lg border border-emerald-200 bg-emerald-50/60 p-3">
-                  <span className="text-[9px] font-bold uppercase text-emerald-700 block font-mono">Step 03</span>
-                  <span className="text-xs font-bold text-slate-900 mt-1 block">Posted to Tally</span>
-                  <span className="text-[9px] text-emerald-700 font-semibold block mt-0.5">Voucher auto-created</span>
+                  {/* Arrow */}
+                  <div className="hidden md:flex justify-center text-emerald-600">
+                    <ArrowRight size={16} />
+                  </div>
+
+                  {/* Step 03 */}
+                  <div className="floating-badge-1 rounded-lg border border-emerald-200 bg-emerald-50/60 p-3 shadow-xs">
+                    <span className="text-[9px] font-bold uppercase text-emerald-700 block font-mono">Step 03</span>
+                    <span className="text-xs font-bold text-slate-900 mt-1 block">Posted to Tally</span>
+                    <span className="text-[9px] text-emerald-700 font-semibold block mt-0.5">Voucher auto-created</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Block 2: Vendor bills table card */}
-          <div className="lg:min-h-[80vh] lg:flex lg:flex-col lg:justify-center py-6 lg:py-12">
-            <FinanceDeskVisual />
+          <div
+            ref={block2Ref}
+            className="hero-perspective lg:min-h-[80vh] lg:flex lg:flex-col lg:justify-center py-6 lg:py-12"
+          >
+            <FinanceDeskVisual isCentered={centeredBlock === 1} />
           </div>
 
           {/* Block 3: Video card */}
-          <div className="lg:min-h-[80vh] lg:flex lg:flex-col lg:justify-center py-6 lg:py-12">
-            <div className="relative aspect-video w-full rounded-xl border border-dashed border-slate-300 bg-slate-950/95 overflow-hidden flex flex-col items-center justify-center p-6 text-center text-white shadow-md group cursor-pointer transition-all hover:border-brand-blue">
-              <div className="absolute inset-0 bg-radial from-brand-blue/20 to-transparent pointer-events-none" />
-              <div className="relative flex h-14 w-14 items-center justify-center rounded-full bg-brand-blue text-white shadow-lg transition-transform group-hover:scale-110">
-                <Play size={22} className="ml-1 fill-white" />
-              </div>
-              <div className="relative mt-4">
-                <span className="text-xs font-bold tracking-wide uppercase text-blue-300 block font-mono">
-                  [ Video Slot: Product Walkthrough (2 min) ]
-                </span>
-                <p className="mt-1 text-xs text-slate-300 max-w-sm">
-                  Watch vendor invoices read, validated for GST, and posted to Tally Prime in real time.
-                </p>
+          <div
+            ref={block3Ref}
+            className="hero-perspective lg:min-h-[80vh] lg:flex lg:flex-col lg:justify-center py-6 lg:py-12"
+          >
+            <div className={`card-stack-3d w-full ${centeredBlock === 2 ? 'is-centered' : ''}`}>
+              {/* 2 Faint Ghost Cards Behind Dark Card */}
+              <div className="ghost-card-dark-1" aria-hidden="true" />
+              <div className="ghost-card-dark-2" aria-hidden="true" />
+
+              {/* Main 3D Video Card */}
+              <div className="main-card-3d-dark relative aspect-video w-full overflow-hidden flex flex-col items-center justify-center p-6 text-center text-white group cursor-pointer transition-all hover:border-brand-blue">
+                <div className="absolute inset-0 bg-radial from-brand-blue/20 to-transparent pointer-events-none" />
+                <div className="floating-badge-1 relative flex h-14 w-14 items-center justify-center rounded-full bg-brand-blue text-white shadow-xl transition-transform group-hover:scale-110">
+                  <Play size={22} className="ml-1 fill-white" />
+                </div>
+                <div className="relative mt-4">
+                  <span className="floating-badge-2 text-xs font-bold tracking-wide uppercase text-blue-300 block font-mono">
+                    [ Video Slot: Product Walkthrough (2 min) ]
+                  </span>
+                  <p className="mt-1 text-xs text-slate-300 max-w-sm">
+                    Watch vendor invoices read, validated for GST, and posted to Tally Prime in real time.
+                  </p>
+                </div>
               </div>
             </div>
           </div>

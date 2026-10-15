@@ -257,3 +257,239 @@ button, input, textarea, select {
   border-color: #2f3de0;
   box-shadow: 0 0 0 3px rgba(47, 61, 224, 0.15);
 }
+
+/* ==========================================================================
+   Hero Right-Column 3D Layered Card Stack & Realistic Lighting
+   ========================================================================== */
+
+.hero-perspective {
+  perspective: 1400px;
+}
+
+/* 3D Stack Group: Rotates the entire stack as a cohesive physical document deck */
+.card-stack-3d {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 1024px) {
+  .card-stack-3d {
+    transform: rotateX(6deg) rotateY(-10deg) rotateZ(1deg);
+  }
+
+  .card-stack-3d:hover {
+    transform: rotateX(2deg) rotateY(-3deg) rotateZ(0deg) translateY(-6px);
+  }
+
+  .card-stack-3d.is-centered {
+    transform: rotateX(3deg) rotateY(-5deg) rotateZ(0.5deg);
+  }
+
+  .card-stack-3d.is-centered:hover {
+    transform: rotateX(1deg) rotateY(-2deg) rotateZ(0deg) translateY(-6px);
+  }
+
+  /* Ghost Card 1 (Bottom of deck, 12px offset, -24px depth) */
+  .ghost-card-1 {
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #e8eafb 0%, #f1f3fd 100%);
+    border: 1px solid rgba(203, 213, 225, 0.7);
+    transform: translate3d(12px, 12px, -24px) scale(0.98);
+    opacity: 0.7;
+    pointer-events: none;
+    z-index: 1;
+    box-shadow: 0 10px 25px -10px rgba(11, 19, 48, 0.15);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  }
+
+  /* Ghost Card 2 (Middle of deck, 6px offset, -12px depth) */
+  .ghost-card-2 {
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ffffff 0%, #e8eafb 100%);
+    border: 1px solid rgba(203, 213, 225, 0.85);
+    transform: translate3d(6px, 6px, -12px) scale(0.99);
+    opacity: 0.85;
+    pointer-events: none;
+    z-index: 2;
+    box-shadow: 0 15px 35px -15px rgba(11, 19, 48, 0.18);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  }
+
+  /* Dark ghost cards for video card */
+  .ghost-card-dark-1 {
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    background: #060b1b;
+    border: 1px solid #1e293b;
+    transform: translate3d(12px, 12px, -24px) scale(0.98);
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 1;
+    box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.4);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  }
+
+  .ghost-card-dark-2 {
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    background: #0b1330;
+    border: 1px solid #334155;
+    transform: translate3d(6px, 6px, -12px) scale(0.99);
+    opacity: 0.85;
+    pointer-events: none;
+    z-index: 2;
+    box-shadow: 0 15px 35px -15px rgba(0, 0, 0, 0.5);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+  }
+
+  .card-stack-3d:hover .ghost-card-1 {
+    transform: translate3d(16px, 16px, -30px) scale(0.975);
+    opacity: 0.8;
+  }
+  .card-stack-3d:hover .ghost-card-2 {
+    transform: translate3d(8px, 8px, -15px) scale(0.985);
+    opacity: 0.95;
+  }
+
+  .card-stack-3d:hover .ghost-card-dark-1 {
+    transform: translate3d(16px, 16px, -30px) scale(0.975);
+    opacity: 0.7;
+  }
+  .card-stack-3d:hover .ghost-card-dark-2 {
+    transform: translate3d(8px, 8px, -15px) scale(0.985);
+    opacity: 0.95;
+  }
+}
+
+/* Main Top Card with realistic multi-layer shadow and inner border highlight */
+.main-card-3d {
+  position: relative;
+  border-radius: 12px;
+  transform: translate3d(0, 0, 0);
+  transform-style: preserve-3d;
+  z-index: 10;
+  background-color: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  box-shadow: 
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.9),
+    0 30px 60px -20px rgba(11, 19, 48, 0.22),
+    0 8px 20px rgba(11, 19, 48, 0.08);
+  transition: box-shadow 0.4s ease-out;
+}
+
+.main-card-3d-dark {
+  position: relative;
+  border-radius: 12px;
+  transform: translate3d(0, 0, 0);
+  transform-style: preserve-3d;
+  z-index: 10;
+  background-color: #020617;
+  border: 1px solid rgba(51, 65, 85, 0.8);
+  box-shadow: 
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.15),
+    0 30px 60px -20px rgba(11, 19, 48, 0.5),
+    0 8px 20px rgba(11, 19, 48, 0.2);
+  transition: box-shadow 0.4s ease-out;
+}
+
+.card-stack-3d:hover .main-card-3d {
+  box-shadow: 
+    inset 0 1px 1px 0 rgba(255, 255, 255, 1),
+    0 40px 80px -20px rgba(11, 19, 48, 0.28),
+    0 12px 28px rgba(11, 19, 48, 0.1);
+}
+
+.card-stack-3d:hover .main-card-3d-dark {
+  box-shadow: 
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.25),
+    0 40px 80px -20px rgba(11, 19, 48, 0.6),
+    0 12px 28px rgba(11, 19, 48, 0.25);
+}
+
+@media (max-width: 1023px) {
+  .card-stack-3d {
+    transform: none;
+  }
+  .ghost-card-1,
+  .ghost-card-dark-1 {
+    display: none;
+  }
+  .ghost-card-2,
+  .ghost-card-dark-2 {
+    transform: translate(4px, 4px) scale(0.995);
+    opacity: 0.6;
+  }
+  .main-card-3d,
+  .main-card-3d-dark {
+    box-shadow: 0 12px 28px -8px rgba(11, 19, 48, 0.12);
+  }
+}
+
+/* Floating 3D Chips at Depth */
+@keyframes floatBadge1 {
+  0%, 100% {
+    transform: translateZ(24px) translateY(0px);
+  }
+  50% {
+    transform: translateZ(24px) translateY(-5px);
+  }
+}
+
+@keyframes floatBadge2 {
+  0%, 100% {
+    transform: translateZ(20px) translateY(0px);
+  }
+  50% {
+    transform: translateZ(20px) translateY(5px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .floating-badge-1 {
+    transform: translateZ(24px);
+    box-shadow: 0 6px 14px -3px rgba(11, 19, 48, 0.15);
+    animation: floatBadge1 4s ease-in-out infinite;
+  }
+
+  .floating-badge-2 {
+    transform: translateZ(20px);
+    box-shadow: 0 6px 14px -3px rgba(11, 19, 48, 0.12);
+    animation: floatBadge2 4.5s ease-in-out infinite 0.5s;
+  }
+
+  .card-stack-3d:hover .floating-badge-1 {
+    transform: translateZ(32px) translateY(-2px);
+  }
+  .card-stack-3d:hover .floating-badge-2 {
+    transform: translateZ(26px) translateY(2px);
+  }
+}
+
+/* Respect Prefers Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .card-stack-3d,
+  .card-stack-3d.is-centered,
+  .card-stack-3d:hover {
+    transform: none !important;
+    transition: none !important;
+  }
+  .ghost-card-1,
+  .ghost-card-2,
+  .ghost-card-dark-1,
+  .ghost-card-dark-2 {
+    display: none !important;
+    transform: none !important;
+  }
+  .floating-badge-1,
+  .floating-badge-2 {
+    animation: none !important;
+    transform: none !important;
+  }
+}
