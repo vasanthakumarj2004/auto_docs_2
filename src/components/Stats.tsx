@@ -1,26 +1,62 @@
 import React from 'react';
 
-interface StatProps {
-  value: string;
-  label: string;
-}
-
-const StatItem: React.FC<StatProps> = ({ value, label }) => {
-  return (
-    <div className="px-0 py-4 first:pl-0 md:px-6 md:py-3">
-      <div className="text-xl font-extrabold tracking-[-0.04em] text-slate-950">{value}</div>
-      <div className="mt-1 text-[10px] text-slate-500">{label}</div>
-    </div>
-  );
-};
-
 export const Stats: React.FC = () => {
   return (
-    <section className="border-b border-slate-200 bg-white">
-      <div className="site-shell grid divide-y divide-slate-200 py-3 md:grid-cols-3 md:divide-x md:divide-y-0">
-        <StatItem value="2 hrs → 2 min" label="FTL logistics: email to CargoWise" />
-        <StatItem value="Days → hours" label="Rejections & re-fetches: purchase and spares" />
-        <StatItem value="In daily use" label="Job billing: assets and purchase bills" />
+    <section className="border-b border-slate-200/80 bg-white py-12">
+      <div className="site-shell space-y-10">
+        {/* Proof Stat Row from Image */}
+        <div className="grid divide-y divide-slate-200 rounded-xl border border-slate-200 bg-[#fcfdff] p-6 shadow-xs sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+          <div className="px-4 py-3 first:pl-0">
+            <div className="text-2xl font-extrabold tracking-[-0.04em] text-slate-950 font-mono">
+              2 hrs → 2 min
+            </div>
+            <div className="mt-1 text-xs text-slate-500 font-medium">
+              FTL logistics: email to CargoWise
+            </div>
+          </div>
+
+          <div className="px-4 py-3 sm:pl-6">
+            <div className="text-2xl font-extrabold tracking-[-0.04em] text-slate-950 font-mono">
+              Days → hours
+            </div>
+            <div className="mt-1 text-xs text-slate-500 font-medium">
+              Rejections & re-fetches: purchase and spares
+            </div>
+          </div>
+
+          <div className="px-4 py-3 sm:pl-6">
+            <div className="text-2xl font-extrabold tracking-[-0.04em] text-slate-950 font-mono">
+              In daily use
+            </div>
+            <div className="mt-1 text-xs text-slate-500 font-medium">
+              Job billing: assets and purchase bills
+            </div>
+          </div>
+        </div>
+
+        {/* Labeled Logo Slot from Image */}
+        <div>
+          <div className="flex flex-col justify-between gap-2 text-[11px] sm:flex-row sm:items-center">
+            <span className="font-bold text-slate-800 tracking-tight">
+              Trusted by teams that run on Tally and CargoWise
+            </span>
+            <span className="text-[10px] text-slate-400">
+              Customer logos pending permission
+            </span>
+          </div>
+
+          <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+            {Array.from({ length: 6 }, (_, i) => (
+              <div
+                key={i}
+                className="flex items-center justify-center gap-2 rounded-lg border border-slate-200/90 bg-slate-50 px-3 py-3 text-[11px] font-semibold text-slate-400"
+              >
+                <span className="h-3 w-3 rounded bg-slate-300/80" />
+                Customer logo
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
