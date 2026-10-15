@@ -686,7 +686,35 @@ input:focus-visible {
     transform: none !important;
     transition: none !important;
   }
+  .animate-beam-glow {
+    animation: none !important;
+    display: none !important;
+  }
 }
+
+/* Stepper Connecting Beam Animation */
+@keyframes beamTravel {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  80% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(300%);
+    opacity: 0;
+  }
+}
+
+.animate-beam-glow {
+  animation: beamTravel 3.6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform;
+}
+
 
 
 
