@@ -34,7 +34,7 @@ export const App: React.FC = () => {
   // If on /calculator route, render CalculatorPage with shared Header and Footer
   if (currentPath === '/calculator') {
     return (
-      <div className="min-h-screen overflow-x-hidden bg-white text-slate-800">
+      <div className="min-h-screen overflow-x-clip bg-white text-slate-800">
         <Header />
         <CalculatorPage />
         <Footer />
@@ -44,7 +44,7 @@ export const App: React.FC = () => {
 
   // Otherwise render Homepage with exact 11 sections in order
   return (
-    <div className="min-h-screen overflow-x-hidden bg-white text-slate-800">
+    <div className="min-h-screen overflow-x-clip bg-white text-slate-800">
       {/* 1. Sticky navbar */}
       <Header />
 
