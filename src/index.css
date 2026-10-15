@@ -715,6 +715,66 @@ input:focus-visible {
   will-change: transform;
 }
 
+/* Raft-Style Spotlight & Ambient Glow */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    380px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    rgba(47, 61, 224, 0.08),
+    transparent 70%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 1;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+.spotlight-card-dark {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    440px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    rgba(232, 103, 28, 0.16),
+    rgba(47, 61, 224, 0.18),
+    transparent 70%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  z-index: 1;
+}
+
+.spotlight-card-dark:hover::before {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spotlight-card::before,
+  .spotlight-card-dark::before {
+    display: none !important;
+  }
+}
+
+
 
 
 

@@ -1,12 +1,15 @@
 import React, { useState, useMemo } from 'react';
 import { ArrowRight, Pencil } from 'lucide-react';
 import { useRouter } from '../lib/router';
+import { SpotlightCard } from './SpotlightCard';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export const CalculatorBar: React.FC = () => {
   const [documents, setDocuments] = useState<number>(1200);
   const [minutes, setMinutes] = useState<number>(5);
   const [staffCost, setStaffCost] = useState<number>(40000);
   const { navigate } = useRouter();
+  const { ref: sectionRef } = useScrollReveal<HTMLElement>({ threshold: 0.1 });
 
   const totals = useMemo(() => {
     const hours = Math.round((documents * minutes) / 60);
@@ -15,10 +18,10 @@ export const CalculatorBar: React.FC = () => {
   }, [documents, minutes, staffCost]);
 
   return (
-    <section id="calculator" className="border-b border-slate-200/80 bg-white py-14 sm:py-20 scroll-mt-16">
+    <section ref={sectionRef} id="calculator" className="border-b border-slate-200/80 bg-white py-14 sm:py-20 scroll-mt-16">
       <div className="site-shell space-y-6">
-        {/* Dark Navy Calculator Bar from Image */}
-        <div className="dark-banner">
+        {/* Dark Navy Calculator Bar from Image with Raft-style metallic ambient glow */}
+        <SpotlightCard dark className="dark-banner transition-all duration-300 hover:shadow-xl">
           <div>
             <h2 className="text-xl font-extrabold tracking-tight text-white sm:text-2xl">
               What is retyping costing you?
@@ -38,10 +41,10 @@ export const CalculatorBar: React.FC = () => {
               Book a demo
             </a>
           </div>
-        </div>
+        </SpotlightCard>
 
         {/* The cost of doing it by hand Box from Image */}
-        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8">
+        <SpotlightCard className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:p-8 transition-all duration-300 hover:shadow-md">
           <div className="flex flex-col justify-between gap-3 border-b border-slate-100 pb-5 sm:flex-row sm:items-center">
             <h3 className="text-base font-extrabold text-slate-950">
               The cost of doing it by hand
@@ -134,7 +137,7 @@ export const CalculatorBar: React.FC = () => {
               </button>
             </div>
           </div>
-        </div>
+        </SpotlightCard>
       </div>
     </section>
   );

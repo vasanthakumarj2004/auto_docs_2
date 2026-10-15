@@ -1,9 +1,13 @@
 import React from 'react';
 import { Clock, AlertTriangle, EyeOff } from 'lucide-react';
+import { SpotlightCard } from './SpotlightCard';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export const TheProblem: React.FC = () => {
+  const { ref: sectionRef } = useScrollReveal<HTMLElement>({ threshold: 0.1 });
+
   return (
-    <section id="problem" className="border-b border-slate-200/80 bg-[#f8f9fc] py-16 sm:py-24">
+    <section ref={sectionRef} id="problem" className="border-b border-slate-200/80 bg-[#f8f9fc] py-16 sm:py-24">
       <div className="site-shell">
         <div className="mx-auto max-w-3xl text-center">
           <div className="eyebrow mb-4">
@@ -19,7 +23,10 @@ export const TheProblem: React.FC = () => {
 
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {/* Card 1 */}
-          <div className="rounded-xl border border-slate-200/90 bg-white p-7 shadow-xs">
+          <SpotlightCard
+            tabIndex={0}
+            className="reveal-init stagger-1 rounded-xl border border-slate-200/90 bg-white p-7 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-slate-300 focus-visible:outline-2 focus-visible:outline-brand-blue"
+          >
             <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-orange-50 text-brand-orange border border-orange-100 mb-5">
               <Clock size={22} />
             </div>
@@ -27,10 +34,13 @@ export const TheProblem: React.FC = () => {
             <p className="text-xs leading-relaxed text-slate-600">
               Operations and finance staff spend 30–60 minutes per batch re-keying line items, vendor details, and container specs by hand.
             </p>
-          </div>
+          </SpotlightCard>
 
           {/* Card 2 */}
-          <div className="rounded-xl border border-slate-200/90 bg-white p-7 shadow-xs">
+          <SpotlightCard
+            tabIndex={0}
+            className="reveal-init stagger-2 rounded-xl border border-slate-200/90 bg-white p-7 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-slate-300 focus-visible:outline-2 focus-visible:outline-brand-blue"
+          >
             <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-rose-50 text-rose-600 border border-rose-100 mb-5">
               <AlertTriangle size={22} />
             </div>
@@ -38,10 +48,13 @@ export const TheProblem: React.FC = () => {
             <p className="text-xs leading-relaxed text-slate-600">
               Manual typos lead to GST mismatches, rejected ledger postings, and discrepancies across Bills of Lading and commercial invoices.
             </p>
-          </div>
+          </SpotlightCard>
 
           {/* Card 3 */}
-          <div className="rounded-xl border border-slate-200/90 bg-white p-7 shadow-xs">
+          <SpotlightCard
+            tabIndex={0}
+            className="reveal-init stagger-3 rounded-xl border border-slate-200/90 bg-white p-7 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-slate-300 focus-visible:outline-2 focus-visible:outline-brand-blue"
+          >
             <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-slate-100 text-brand-navy border border-slate-200 mb-5">
               <EyeOff size={22} />
             </div>
@@ -49,7 +62,7 @@ export const TheProblem: React.FC = () => {
             <p className="text-xs leading-relaxed text-slate-600">
               Critical documents live trapped in shared Outlook and Gmail inboxes with no real-time audit trail or automated exception routing.
             </p>
-          </div>
+          </SpotlightCard>
         </div>
       </div>
     </section>
