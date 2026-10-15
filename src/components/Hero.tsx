@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Play, Pause } from 'lucide-react';
+import { Play } from 'lucide-react';
 import { FinanceDeskVisual } from './FinanceDeskVisual';
 import { ProcessingFlowVisual } from './ProcessingFlowVisual';
 import { useHeroAutoScroll } from '../hooks/useHeroAutoScroll';
@@ -12,13 +12,7 @@ export const Hero: React.FC = () => {
   const block2Ref = useRef<HTMLDivElement>(null);
   const block3Ref = useRef<HTMLDivElement>(null);
 
-  const {
-    currentStep,
-    isAutoScrolling,
-    isCancelled,
-    stopAutoScroll,
-    jumpToStep,
-  } = useHeroAutoScroll({
+  const { currentStep, isAutoScrolling } = useHeroAutoScroll({
     blockRefs: [block1Ref, block2Ref, block3Ref],
     initialDelay: 2000,
     moveDuration: 1200,
@@ -107,60 +101,18 @@ export const Hero: React.FC = () => {
           </div>
         </div>
 
-        {/* Right Column: Scrolls normally with stacked blocks, each about 80vh tall and vertically centered */}
-        <div className="relative lg:col-span-6 space-y-8 lg:space-y-0">
+        {/* Right Column: Scrolls normally with stacked blocks, each about 80-85vh tall and vertically centered */}
+        <div className="relative lg:col-span-6 space-y-8 lg:space-y-0 lg:pb-36">
           {/* Subtle Ambient Radial Glow & Dotted Matrix Behind Right Column Stack */}
           <div className="pointer-events-none absolute inset-0 -inset-x-8 overflow-hidden opacity-60" aria-hidden="true">
             <div className="absolute top-1/4 right-0 h-[480px] w-[480px] rounded-full bg-[radial-gradient(circle,rgba(232,234,251,0.85)_0%,rgba(225,243,238,0.4)_40%,transparent_70%)] blur-3xl" />
             <div className="absolute inset-0 bg-[radial-gradient(rgba(11,19,48,0.06)_1px,transparent_1px)] [background-size:20px_20px] [mask-image:radial-gradient(ellipse_at_center,black_45%,transparent_75%)]" />
           </div>
 
-          {/* Hero Auto-Scroll Tour Controller & Progress Indicators (Desktop only) */}
-          <div className="sticky top-[80px] z-30 mb-2 hidden justify-end lg:flex pointer-events-auto">
-            <div className="inline-flex items-center gap-3 rounded-full border border-slate-200/90 bg-white/95 px-3.5 py-1.5 shadow-sm backdrop-blur-md">
-              <div className="flex items-center gap-1.5" role="tablist" aria-label="Hero feature blocks">
-                {[0, 1, 2].map((idx) => {
-                  const isActive = activeBlockIndex === idx;
-                  return (
-                    <button
-                      key={idx}
-                      type="button"
-                      onClick={() => jumpToStep(idx)}
-                      className={`h-2 rounded-full transition-all cursor-pointer ${
-                        isActive
-                          ? 'w-6 bg-brand-blue'
-                          : 'w-2 bg-slate-200 hover:bg-slate-300'
-                      }`}
-                      aria-label={`Jump to block ${idx + 1}`}
-                      aria-selected={isActive}
-                      role="tab"
-                    />
-                  );
-                })}
-              </div>
-
-              {isAutoScrolling && !isCancelled && (
-                <div className="flex items-center gap-1.5 border-l border-slate-200 pl-2.5">
-                  <span className="flex h-1.5 w-1.5 rounded-full bg-brand-blue animate-ping" />
-                  <span className="text-[10px] font-semibold text-slate-500 font-mono">Auto</span>
-                  <button
-                    type="button"
-                    onClick={stopAutoScroll}
-                    className="ml-1 flex h-5 w-5 items-center justify-center rounded-full bg-slate-100 text-slate-600 transition-colors hover:bg-slate-200 hover:text-slate-900 cursor-pointer"
-                    aria-label="Pause auto-scroll"
-                    title="Pause auto-scroll"
-                  >
-                    <Pause size={10} />
-                  </button>
-                </div>
-              )}
-            </div>
-          </div>
-
           {/* Block 1: Automated Processing Flow card */}
           <div
             ref={block1Ref}
-            className="hero-perspective lg:min-h-[80vh] lg:flex lg:flex-col lg:justify-center py-6 lg:py-12"
+            className="hero-perspective lg:min-h-[85vh] lg:flex lg:flex-col lg:justify-center py-6 lg:py-12"
           >
             <ProcessingFlowVisual isCentered={activeBlockIndex === 0} />
           </div>
@@ -168,7 +120,7 @@ export const Hero: React.FC = () => {
           {/* Block 2: Vendor bills table card */}
           <div
             ref={block2Ref}
-            className="hero-perspective lg:min-h-[80vh] lg:flex lg:flex-col lg:justify-center py-6 lg:py-12"
+            className="hero-perspective lg:min-h-[85vh] lg:flex lg:flex-col lg:justify-center py-6 lg:py-12"
           >
             <FinanceDeskVisual isCentered={activeBlockIndex === 1} />
           </div>
@@ -176,7 +128,7 @@ export const Hero: React.FC = () => {
           {/* Block 3: Video card */}
           <div
             ref={block3Ref}
-            className="hero-perspective lg:min-h-[80vh] lg:flex lg:flex-col lg:justify-center py-6 lg:py-12"
+            className="hero-perspective lg:min-h-[85vh] lg:flex lg:flex-col lg:justify-center py-6 lg:py-12"
           >
             <div className={`card-stack-3d w-full ${activeBlockIndex === 2 ? 'is-centered' : ''}`}>
               {/* 2 Faint Ghost Cards Behind Dark Card */}

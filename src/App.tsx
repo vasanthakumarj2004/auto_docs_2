@@ -36,7 +36,7 @@ export const App: React.FC = () => {
   // If on /logistics or /logistics-trade route, render LogisticsPage
   if (currentPath === '/logistics' || currentPath === '/logistics-trade') {
     return (
-      <div className="min-h-screen overflow-x-clip bg-white text-slate-800">
+      <div className="min-h-screen max-w-full overflow-x-clip lg:overflow-visible bg-white text-slate-800">
         <Header />
         <LogisticsPage />
         <Footer />
@@ -47,7 +47,7 @@ export const App: React.FC = () => {
   // If on /finance or /accounts-payable route, render FinancePage
   if (currentPath === '/finance' || currentPath === '/accounts-payable') {
     return (
-      <div className="min-h-screen overflow-x-clip bg-white text-slate-800">
+      <div className="min-h-screen max-w-full overflow-x-clip lg:overflow-visible bg-white text-slate-800">
         <Header />
         <FinancePage />
         <Footer />
@@ -58,7 +58,7 @@ export const App: React.FC = () => {
   // If on /calculator route, render CalculatorPage with shared Header and Footer
   if (currentPath === '/calculator') {
     return (
-      <div className="min-h-screen overflow-x-clip bg-white text-slate-800">
+      <div className="min-h-screen max-w-full overflow-x-clip lg:overflow-visible bg-white text-slate-800">
         <Header />
         <CalculatorPage />
         <Footer />
@@ -69,7 +69,7 @@ export const App: React.FC = () => {
   // Placeholder routes
   if (currentPath === '/free-trial') {
     return (
-      <div className="min-h-screen overflow-x-clip bg-white text-slate-800">
+      <div className="min-h-screen max-w-full overflow-x-clip lg:overflow-visible bg-white text-slate-800">
         <Header />
         <div className="py-24 text-center site-shell">
           <span className="font-mono text-xs uppercase tracking-wider text-brand-blue font-bold">Early Access</span>
@@ -89,7 +89,7 @@ export const App: React.FC = () => {
 
   if (currentPath === '/customers/rajadurai') {
     return (
-      <div className="min-h-screen overflow-x-clip bg-white text-slate-800">
+      <div className="min-h-screen max-w-full overflow-x-clip lg:overflow-visible bg-white text-slate-800">
         <Header />
         <div className="py-24 text-center site-shell">
           <span className="font-mono text-xs uppercase tracking-wider text-emerald-700 font-bold">Customer Case Study</span>
@@ -109,7 +109,7 @@ export const App: React.FC = () => {
 
   if (currentPath === '/customers/ft-logistics') {
     return (
-      <div className="min-h-screen overflow-x-clip bg-white text-slate-800">
+      <div className="min-h-screen max-w-full overflow-x-clip lg:overflow-visible bg-white text-slate-800">
         <Header />
         <div className="py-24 text-center site-shell">
           <span className="font-mono text-xs uppercase tracking-wider text-teal-700 font-bold">Customer Case Study</span>
@@ -129,7 +129,7 @@ export const App: React.FC = () => {
 
   // Otherwise render Homepage with exact 11 sections in order
   return (
-    <div className="min-h-screen overflow-x-clip bg-white text-slate-800">
+    <div className="min-h-screen max-w-full overflow-x-clip lg:overflow-visible bg-white text-slate-800">
       {/* 1. Sticky navbar */}
       <Header />
 
