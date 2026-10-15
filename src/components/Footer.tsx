@@ -10,7 +10,7 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer id="resources" className="border-t border-gray-800 bg-gray-900 text-white pt-16 pb-8">
+    <footer id="resources" className="border-t border-gray-850 bg-gradient-to-b from-gray-900 via-gray-900 to-[#070b18] text-white pt-16 pb-8">
       <div className="site-shell">
         <div className="grid gap-10 border-b border-gray-800 pb-12 sm:grid-cols-2 md:grid-cols-6">
           {/* Brand Info */}
@@ -18,13 +18,13 @@ export const Footer: React.FC = () => {
             <a
               href="/"
               onClick={(e) => handleLink(e, '/')}
-              className="flex items-center"
+              className="inline-flex items-center group outline-none"
               aria-label="Docsynecx home"
             >
               <img
                 src="/Docsynecx-Logo-footer.svg"
                 alt="Docsynecx"
-                className="h-10 sm:h-11 w-auto object-contain transition-opacity hover:opacity-90"
+                className="h-10 sm:h-11 w-auto object-contain transition-all duration-300 group-hover:scale-[1.02] group-hover:opacity-95"
               />
             </a>
             <p className="mt-4 max-w-xs text-xs leading-5 text-gray-400">
@@ -39,21 +39,21 @@ export const Footer: React.FC = () => {
               <a
                 href="/finance"
                 onClick={(e) => handleLink(e, '/finance')}
-                className="transition-colors hover:text-white"
+                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-blue-400"
               >
                 Finance desk
               </a>
               <a
                 href="/logistics"
                 onClick={(e) => handleLink(e, '/logistics')}
-                className="transition-colors hover:text-white"
+                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-blue-400"
               >
                 Shipment desk
               </a>
               <a
                 href="#how-it-works"
                 onClick={(e) => handleLink(e, '#how-it-works')}
-                className="transition-colors hover:text-white"
+                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-blue-400"
               >
                 How it works
               </a>
@@ -64,9 +64,9 @@ export const Footer: React.FC = () => {
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-white">Integrations</h4>
             <div className="mt-3 flex flex-col gap-2.5 text-xs text-gray-400">
-              <span className="transition-colors hover:text-white cursor-pointer">Tally</span>
-              <span className="transition-colors hover:text-white cursor-pointer">Zoho Books</span>
-              <span className="transition-colors hover:text-white cursor-pointer">CargoWise</span>
+              <span className="transition-all duration-200 hover:text-white hover:translate-x-0.5 cursor-pointer">Tally</span>
+              <span className="transition-all duration-200 hover:text-white hover:translate-x-0.5 cursor-pointer">Zoho Books</span>
+              <span className="transition-all duration-200 hover:text-white hover:translate-x-0.5 cursor-pointer">CargoWise</span>
             </div>
           </div>
 
@@ -74,9 +74,9 @@ export const Footer: React.FC = () => {
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-white">Solutions</h4>
             <div className="mt-3 flex flex-col gap-2.5 text-xs text-gray-400">
-              <span className="transition-colors hover:text-white cursor-pointer">Accounts payable</span>
-              <span className="transition-colors hover:text-white cursor-pointer">Freight operations</span>
-              <span className="transition-colors hover:text-white cursor-pointer">Document checks</span>
+              <span className="transition-all duration-200 hover:text-white hover:translate-x-0.5 cursor-pointer">Accounts payable</span>
+              <span className="transition-all duration-200 hover:text-white hover:translate-x-0.5 cursor-pointer">Freight operations</span>
+              <span className="transition-all duration-200 hover:text-white hover:translate-x-0.5 cursor-pointer">Document checks</span>
             </div>
           </div>
 
@@ -87,15 +87,15 @@ export const Footer: React.FC = () => {
               <a
                 href="/calculator"
                 onClick={(e) => handleLink(e, '/calculator')}
-                className="transition-colors hover:text-blue-300 font-semibold text-blue-400"
+                className="transition-all duration-200 hover:text-blue-300 hover:translate-x-0.5 font-semibold text-blue-400 focus-visible:outline-1 focus-visible:outline-blue-400"
               >
                 Free calculator
               </a>
-              <span className="transition-colors hover:text-white cursor-pointer">Trade insights</span>
+              <span className="transition-all duration-200 hover:text-white hover:translate-x-0.5 cursor-pointer">Trade insights</span>
               <a
                 href="#faq"
                 onClick={(e) => handleLink(e, '#faq')}
-                className="transition-colors hover:text-white"
+                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-blue-400"
               >
                 Help centre
               </a>
@@ -106,21 +106,21 @@ export const Footer: React.FC = () => {
               <a
                 href="/"
                 onClick={(e) => handleLink(e, '/')}
-                className="transition-colors hover:text-white"
+                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-blue-400"
               >
                 About us
               </a>
               <a
                 href="#demo"
                 onClick={(e) => handleLink(e, '#demo')}
-                className="transition-colors hover:text-white"
+                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-blue-400"
               >
                 Contact
               </a>
               <a
                 href="#demo"
                 onClick={(e) => handleLink(e, '#demo')}
-                className="transition-colors hover:text-white"
+                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-blue-400"
               >
                 Book a demo
               </a>

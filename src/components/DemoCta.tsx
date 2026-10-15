@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useRouter } from '../lib/router';
+import { SpotlightCard } from './SpotlightCard';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 
 export const DemoCta: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +13,7 @@ export const DemoCta: React.FC = () => {
   });
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const { navigate } = useRouter();
+  const { ref: sectionRef } = useScrollReveal<HTMLElement>({ threshold: 0.1 });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,32 +43,41 @@ export const DemoCta: React.FC = () => {
   };
 
   return (
-    <section className="cta-section" id="demo">
-      <div className="site-shell text-center">
-        <h2 className="text-3xl font-extrabold tracking-[-0.045em] text-slate-950 sm:text-5xl">
+    <section ref={sectionRef} className="cta-section relative overflow-hidden" id="demo">
+      {/* Raft-style subtle ambient glow behind CTA */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-60" aria-hidden="true">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(47,61,224,0.1)_0%,rgba(232,103,28,0.06)_40%,transparent_70%)] blur-3xl" />
+      </div>
+
+      <div className="site-shell relative z-10 text-center">
+        <h2 className="reveal-init stagger-1 text-3xl font-extrabold tracking-[-0.045em] text-slate-950 sm:text-5xl">
           Stop retyping. Start growing.
         </h2>
-        <p className="mx-auto mt-4 max-w-lg text-sm leading-6 text-slate-600">
+        <p className="reveal-init stagger-2 mx-auto mt-4 max-w-lg text-sm leading-6 text-slate-600">
           A cleaner finance desk. A faster shipment desk. More room for what’s next.
         </p>
 
-        <div className="mt-7 flex flex-wrap justify-center gap-3">
-          <a href="#demo-form" className="button-primary">
+        <div className="reveal-init stagger-3 mt-7 flex flex-wrap justify-center gap-3">
+          <a
+            href="#demo-form"
+            className="button-primary transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md active:translate-y-0"
+          >
             Book a demo
           </a>
           <button
             onClick={() => navigate('/calculator')}
-            className="button-secondary"
+            className="button-secondary transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm active:translate-y-0"
           >
             Try the free calculator
           </button>
         </div>
 
-        <form
-          id="demo-form"
-          onSubmit={handleSubmit}
-          className="mx-auto mt-10 grid max-w-3xl gap-3 rounded-2xl border border-blue-100 bg-white p-5 text-left shadow-xs sm:grid-cols-2 sm:p-7"
-        >
+        <SpotlightCard className="reveal-init stagger-4 mx-auto mt-10 max-w-3xl rounded-2xl border border-blue-100/90 bg-white shadow-xs transition-all duration-300 hover:shadow-lg hover:border-blue-200">
+          <form
+            id="demo-form"
+            onSubmit={handleSubmit}
+            className="grid gap-3 p-5 text-left sm:grid-cols-2 sm:p-7"
+          >
           <div>
             <label className="form-label" htmlFor="demo-email">
               Work email
@@ -135,7 +147,8 @@ export const DemoCta: React.FC = () => {
             </button>
           </div>
         </form>
-      </div>
-    </section>
+      </SpotlightCard>
+    </div>
+  </section>
   );
 };
