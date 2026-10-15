@@ -112,9 +112,15 @@ export const Hero: React.FC = () => {
                   e.preventDefault();
                   navigate('/finance');
                 }}
-                className="button-primary cursor-pointer"
+                className="btn-arrow btn-arrow-blue cursor-pointer"
               >
-                Run a finance desk
+                <span className="btn-arrow-label">Run a finance desk</span>
+                <span className="btn-arrow-chip" aria-hidden="true">
+                  <svg className="btn-arrow-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="3" y1="8" x2="13" y2="8" />
+                    <polyline points="9 4 13 8 9 12" />
+                  </svg>
+                </span>
               </a>
               <a
                 href="/logistics"
@@ -122,9 +128,15 @@ export const Hero: React.FC = () => {
                   e.preventDefault();
                   navigate('/logistics');
                 }}
-                className="button-teal cursor-pointer"
+                className="btn-arrow btn-arrow-teal cursor-pointer"
               >
-                Run the logistics desk
+                <span className="btn-arrow-label">Run the logistics desk</span>
+                <span className="btn-arrow-chip" aria-hidden="true">
+                  <svg className="btn-arrow-icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="3" y1="8" x2="13" y2="8" />
+                    <polyline points="9 4 13 8 9 12" />
+                  </svg>
+                </span>
               </a>
             </div>
 
