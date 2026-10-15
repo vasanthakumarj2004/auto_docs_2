@@ -1,5 +1,5 @@
 import React from 'react';
-import { Play, ArrowRight, ArrowDown, FileText, CheckCircle2, ShieldCheck } from 'lucide-react';
+import { Play, ArrowRight } from 'lucide-react';
 import { FinanceDeskVisual } from './FinanceDeskVisual';
 
 export const Hero: React.FC = () => {

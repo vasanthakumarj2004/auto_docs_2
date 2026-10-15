@@ -1,15 +1,20 @@
 import React from 'react';
+import { useRouter } from './lib/router';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { Stats } from './components/Stats';
+import { TheProblem } from './components/TheProblem';
+import { HowItWorks } from './components/HowItWorks';
 import { FeatureSection } from './components/FeatureSection';
 import { BillReviewVisual } from './components/BillReviewVisual';
 import { ShipmentVisual } from './components/ShipmentVisual';
-import { Calculator } from './components/Calculator';
-import { Customers } from './components/Customers';
+import { CalculatorBar } from './components/CalculatorBar';
+import { WhyDocsynecx } from './components/WhyDocsynecx';
+import { FaqSection } from './components/FaqSection';
 import { DemoCta } from './components/DemoCta';
 import { Newsletter } from './components/Newsletter';
 import { Footer } from './components/Footer';
+import { CalculatorPage } from './pages/CalculatorPage';
 
 const financeSteps: [string, string, string][] = [
   ['01', 'Read and GST-check every bill', 'Capture line items and validate GST details before posting.'],
@@ -24,15 +29,42 @@ const logisticsSteps: [string, string, string][] = [
 ];
 
 export const App: React.FC = () => {
+  const { currentPath } = useRouter();
+
+  // If on /calculator route, render CalculatorPage with shared Header and Footer
+  if (currentPath === '/calculator') {
+    return (
+      <div className="min-h-screen overflow-x-hidden bg-white text-slate-800">
+        <Header />
+        <CalculatorPage />
+        <Footer />
+      </div>
+    );
+  }
+
+  // Otherwise render Homepage with exact 11 sections in order
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#fcfdff] text-slate-800">
+    <div className="min-h-screen overflow-x-hidden bg-white text-slate-800">
+      {/* 1. Sticky navbar */}
       <Header />
+
       <main id="top">
+        {/* 2. Hero (two columns): tag, headline, subtext, buttons; flow card and video slot */}
         <Hero />
+
+        {/* 3. Proof stat row and logo slot from the image */}
         <Stats />
+
+        {/* 4. The problem: 3 short cards */}
+        <TheProblem />
+
+        {/* 5. How it works: 5-step stepper */}
+        <HowItWorks />
+
+        {/* 6. Finance desk and Shipment desk cards from the image */}
         <FeatureSection
           id="finance"
-          label="Finance desk"
+          label="FINANCE DESK"
           title="Every bill read, checked and posted."
           copy="From a vendor PDF to your books, keep every check in one flow. Your finance team stays in control of approvals and exceptions."
           steps={financeSteps}
@@ -40,18 +72,29 @@ export const App: React.FC = () => {
         />
         <FeatureSection
           id="logistics"
-          label="Shipment desk"
+          label="SHIPMENT DESK"
           title="Customer emails become CargoWise jobs."
           copy="Give your operations team a job to review, not an inbox to retype. Shipment details move together, with checks built in."
           steps={logisticsSteps}
           visual={<ShipmentVisual />}
           reverse={true}
         />
-        <Calculator />
-        <Customers />
+
+        {/* 7. Dark navy calculator bar linking to /calculator */}
+        <CalculatorBar />
+
+        {/* 8. Why Docsynecx: 2 feature cards */}
+        <WhyDocsynecx />
+
+        {/* 9. FAQ accordion */}
+        <FaqSection />
+
+        {/* 10. Final CTA band */}
         <DemoCta />
         <Newsletter />
       </main>
+
+      {/* 11. Multi-column footer */}
       <Footer />
     </div>
   );

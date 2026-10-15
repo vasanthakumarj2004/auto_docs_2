@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { ArrowLeft, Clock, TrendingUp, AlertCircle, ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Clock, TrendingUp, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useRouter } from '../lib/router';
 import { supabase } from '../lib/supabase';
 
