@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Play } from 'lucide-react';
+import { Play, Pause } from 'lucide-react';
 import { FinanceDeskVisual } from './FinanceDeskVisual';
 import { ProcessingFlowVisual } from './ProcessingFlowVisual';
 import { useHeroAutoScroll } from '../hooks/useHeroAutoScroll';
@@ -18,6 +18,41 @@ export const Hero: React.FC = () => {
     moveDuration: 1200,
     pauseDuration: 2500,
   });
+
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoCardRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const el = videoCardRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting && isPlaying) {
+          setIsPlaying(false);
+          if (videoRef.current) {
+            videoRef.current.pause();
+          }
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [isPlaying]);
+
+  const togglePlay = () => {
+    const next = !isPlaying;
+    setIsPlaying(next);
+    if (videoRef.current) {
+      if (next) {
+        videoRef.current.play().catch(() => {});
+      } else {
+        videoRef.current.pause();
+      }
+    }
+  };
 
   useEffect(() => {
     const blocks = [block1Ref.current, block2Ref.current, block3Ref.current];
@@ -141,18 +176,75 @@ export const Hero: React.FC = () => {
               <div className="ghost-card-dark-2" aria-hidden="true" />
 
               {/* Main 3D Video Card */}
-              <div className="main-card-3d-dark relative aspect-video w-full overflow-hidden flex flex-col items-center justify-center p-6 text-center text-white group cursor-pointer transition-all hover:border-brand-blue">
+              <div
+                ref={videoCardRef}
+                tabIndex={0}
+                role="button"
+                aria-label={isPlaying ? 'Pause product walkthrough video' : 'Play product walkthrough video'}
+                onClick={togglePlay}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    togglePlay();
+                  }
+                }}
+                className="main-card-3d-dark relative aspect-video w-full overflow-hidden flex flex-col items-center justify-center p-6 text-center text-white group cursor-pointer transition-all hover:border-brand-blue focus-visible:outline-2 focus-visible:outline-brand-blue"
+              >
+                {/* Looping video slot with playsInline, muted, preload */}
+                <video
+                  ref={videoRef}
+                  playsInline
+                  muted
+                  loop
+                  preload="metadata"
+                  className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 pointer-events-none ${
+                    isPlaying ? 'opacity-40' : 'opacity-0'
+                  }`}
+                />
+
                 <div className="absolute inset-0 bg-radial from-brand-blue/20 to-transparent pointer-events-none" />
-                <div className="floating-badge-1 relative flex h-14 w-14 items-center justify-center rounded-full bg-brand-blue text-white shadow-xl transition-transform group-hover:scale-110">
-                  <Play size={22} className="ml-1 fill-white" />
+
+                {/* Animated ambient pulse waves when active */}
+                {isPlaying && (
+                  <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+                    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(47,61,224,0.25)_0%,transparent_70%)] animate-pulse" />
+                  </div>
+                )}
+
+                <div className="floating-badge-1 relative flex h-14 w-14 items-center justify-center rounded-full bg-brand-blue text-white shadow-xl transition-all duration-300 group-hover:scale-110 group-hover:bg-brand-blue-hover">
+                  {isPlaying ? (
+                    <Pause size={22} className="fill-white" />
+                  ) : (
+                    <Play size={22} className="ml-1 fill-white" />
+                  )}
+                  {isPlaying && (
+                    <span className="absolute -inset-1 rounded-full border border-blue-400 animate-ping opacity-60" />
+                  )}
                 </div>
+
                 <div className="relative mt-4">
                   <span className="floating-badge-2 text-xs font-bold tracking-wide uppercase text-blue-300 block font-mono">
                     [ Video Slot: Product Walkthrough (2 min) ]
                   </span>
                   <p className="mt-1 text-xs text-slate-300 max-w-sm">
-                    Watch vendor invoices read, validated for GST, and posted to Tally Prime in real time.
+                    {isPlaying
+                      ? 'Live demo walkthrough active. Click or press space to pause.'
+                      : 'Watch vendor invoices read, validated for GST, and posted to Tally Prime in real time.'}
                   </p>
+                </div>
+
+                {/* Bottom Video Progress Scrubber Bar */}
+                <div className="absolute bottom-0 inset-x-0 bg-slate-900/85 px-4 py-2 flex items-center justify-between text-[9px] font-mono text-slate-400 border-t border-slate-800/80">
+                  <span className="flex items-center gap-1.5">
+                    <span className={`h-1.5 w-1.5 rounded-full ${isPlaying ? 'bg-emerald-400 animate-pulse' : 'bg-slate-500'}`} />
+                    {isPlaying ? 'PLAYING' : 'READY'}
+                  </span>
+                  <div className="mx-3 flex-1 h-1 bg-slate-800 rounded-full overflow-hidden relative">
+                    <div
+                      className={`h-full bg-brand-blue transition-all duration-300 ${isPlaying ? 'w-2/5 animate-pulse' : 'w-0'}`}
+                    />
+                  </div>
+                  <span>{isPlaying ? '0:24 / 2:00' : '0:00 / 2:00'}</span>
                 </div>
               </div>
             </div>
