@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FileText, ChevronDown, Menu, X } from 'lucide-react';
+import { ChevronDown, Menu, X } from 'lucide-react';
 import { useRouter } from '../lib/router';
 
 export const Header: React.FC = () => {
@@ -23,15 +23,14 @@ export const Header: React.FC = () => {
             e.preventDefault();
             handleLinkClick('/');
           }}
-          className="group flex items-center gap-2.5"
+          className="group flex items-center"
           aria-label="Docsynecx home"
         >
-          <span className="brand-mark">
-            <FileText size={16} strokeWidth={2.6} />
-          </span>
-          <span className="text-[17px] font-extrabold tracking-[-0.04em] text-slate-950 transition-colors group-hover:text-brand-blue">
-            Docsynecx
-          </span>
+          <img
+            src="/Docsynecx-Logo.svg"
+            alt="Docsynecx"
+            className="h-9 sm:h-10 w-auto object-contain transition-opacity group-hover:opacity-90"
+          />
         </a>
 
         {/* Desktop Nav */}
