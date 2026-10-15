@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Play, ArrowRight, Pause } from 'lucide-react';
+import { Play, Pause } from 'lucide-react';
 import { FinanceDeskVisual } from './FinanceDeskVisual';
+import { ProcessingFlowVisual } from './ProcessingFlowVisual';
 import { useHeroAutoScroll } from '../hooks/useHeroAutoScroll';
 
 export const Hero: React.FC = () => {
@@ -145,57 +146,7 @@ export const Hero: React.FC = () => {
             ref={block1Ref}
             className="hero-perspective lg:min-h-[80vh] lg:flex lg:flex-col lg:justify-center py-6 lg:py-12"
           >
-            <div className={`card-stack-3d w-full ${activeBlockIndex === 0 ? 'is-centered' : ''}`}>
-              {/* 2 Faint Ghost Cards Behind */}
-              <div className="ghost-card-1" aria-hidden="true" />
-              <div className="ghost-card-2" aria-hidden="true" />
-
-              {/* Main 3D Card */}
-              <div className="main-card-3d p-5">
-                <div className="flex items-center justify-between border-b border-slate-100 pb-3">
-                  <span className="text-[11px] font-extrabold text-slate-900 flex items-center gap-2">
-                    <span className="brand-mark h-4 w-4 rounded text-[8px]">D</span>
-                    Automated Processing Flow
-                  </span>
-                  <span className="floating-badge-1 rounded bg-emerald-50 px-2 py-0.5 text-[9px] font-bold text-emerald-700 border border-emerald-100 shadow-2xs">
-                    Live Pipeline
-                  </span>
-                </div>
-
-                <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-2.5 items-center text-center">
-                  {/* Step 01 */}
-                  <div className="rounded-lg border border-slate-200 bg-slate-50/70 p-3 shadow-2xs">
-                    <span className="text-[9px] font-bold uppercase text-slate-400 block font-mono">Step 01</span>
-                    <span className="text-xs font-bold text-slate-800 mt-1 block">Incoming bill</span>
-                    <span className="text-[9px] text-slate-500 block mt-0.5">Email / PDF / Scan</span>
-                  </div>
-
-                  {/* Arrow */}
-                  <div className="hidden md:flex justify-center text-brand-blue">
-                    <ArrowRight size={16} />
-                  </div>
-
-                  {/* Step 02 */}
-                  <div className="floating-badge-2 rounded-lg border border-blue-200 bg-brand-lavender/50 p-3 shadow-xs">
-                    <span className="text-[9px] font-bold uppercase text-brand-blue block font-mono">Step 02</span>
-                    <span className="text-xs font-bold text-slate-900 mt-1 block">Reading / GST-check / Matching</span>
-                    <span className="text-[9px] text-brand-blue font-semibold block mt-0.5">Zero manual keying</span>
-                  </div>
-
-                  {/* Arrow */}
-                  <div className="hidden md:flex justify-center text-emerald-600">
-                    <ArrowRight size={16} />
-                  </div>
-
-                  {/* Step 03 */}
-                  <div className="floating-badge-1 rounded-lg border border-emerald-200 bg-emerald-50/60 p-3 shadow-xs">
-                    <span className="text-[9px] font-bold uppercase text-emerald-700 block font-mono">Step 03</span>
-                    <span className="text-xs font-bold text-slate-900 mt-1 block">Posted to Tally</span>
-                    <span className="text-[9px] text-emerald-700 font-semibold block mt-0.5">Voucher auto-created</span>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <ProcessingFlowVisual isCentered={activeBlockIndex === 0} />
           </div>
 
           {/* Block 2: Vendor bills table card */}
