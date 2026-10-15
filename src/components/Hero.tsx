@@ -82,7 +82,14 @@ export const Hero: React.FC = () => {
               >
                 Run a finance desk
               </a>
-              <a href="#logistics" className="button-teal">
+              <a
+                href="/logistics"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate('/logistics');
+                }}
+                className="button-teal cursor-pointer"
+              >
                 Run the logistics desk
               </a>
             </div>

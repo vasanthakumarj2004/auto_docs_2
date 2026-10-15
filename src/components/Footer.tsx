@@ -44,8 +44,8 @@ export const Footer: React.FC = () => {
                 Finance desk
               </a>
               <a
-                href="#logistics"
-                onClick={(e) => handleLink(e, '#logistics')}
+                href="/logistics"
+                onClick={(e) => handleLink(e, '/logistics')}
                 className="transition-colors hover:text-white"
               >
                 Shipment desk

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronDown, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useRouter } from '../lib/router';
 
 export const Header: React.FC = () => {
@@ -7,6 +7,7 @@ export const Header: React.FC = () => {
   const [resourcesOpen, setResourcesOpen] = useState(false);
   const { currentPath, navigate } = useRouter();
   const isFinanceActive = currentPath === '/finance' || currentPath === '/accounts-payable';
+  const isLogisticsActive = currentPath === '/logistics' || currentPath === '/logistics-trade';
 
   const handleLinkClick = (href: string) => {
     setMobileMenuOpen(false);
@@ -42,23 +43,27 @@ export const Header: React.FC = () => {
               e.preventDefault();
               handleLinkClick('/finance');
             }}
-            className={`flex items-center gap-1 text-[13px] font-semibold transition-colors ${
+            className={`text-[13px] font-semibold transition-colors ${
               isFinanceActive
                 ? 'text-brand-blue font-bold'
                 : 'text-slate-600 hover:text-slate-950'
             }`}
           >
-            Finance <ChevronDown size={12} className={isFinanceActive ? 'text-brand-blue' : 'text-slate-400'} />
+            Finance
           </a>
           <a
-            href="#logistics"
+            href="/logistics"
             onClick={(e) => {
               e.preventDefault();
-              handleLinkClick('#logistics');
+              handleLinkClick('/logistics');
             }}
-            className="flex items-center gap-1 text-[13px] font-semibold text-slate-600 transition-colors hover:text-slate-950"
+            className={`text-[13px] font-semibold transition-colors ${
+              isLogisticsActive
+                ? 'text-brand-teal font-bold'
+                : 'text-slate-600 hover:text-slate-950'
+            }`}
           >
-            Logistics <ChevronDown size={12} className="text-slate-400" />
+            Logistics
           </a>
           <a
             href="#problem"
@@ -86,10 +91,10 @@ export const Header: React.FC = () => {
             <button
               type="button"
               onClick={() => setResourcesOpen((prev) => !prev)}
-              className="flex items-center gap-1 text-[13px] font-semibold text-slate-600 transition-colors hover:text-slate-950"
+              className="text-[13px] font-semibold text-slate-600 transition-colors hover:text-slate-950"
               aria-expanded={resourcesOpen}
             >
-              Resources <ChevronDown size={12} className="text-slate-400" />
+              Resources
             </button>
             {resourcesOpen && (
               <div className="absolute left-0 top-full mt-2 w-48 rounded-xl border border-slate-200 bg-white p-2 shadow-lg z-50">
@@ -191,12 +196,14 @@ export const Header: React.FC = () => {
               Finance Desk
             </a>
             <a
-              href="#logistics"
+              href="/logistics"
               onClick={(e) => {
                 e.preventDefault();
-                handleLinkClick('#logistics');
+                handleLinkClick('/logistics');
               }}
-              className="text-sm font-semibold text-slate-700"
+              className={`text-sm font-semibold ${
+                isLogisticsActive ? 'text-brand-teal font-bold' : 'text-slate-700'
+              }`}
             >
               Logistics Desk
             </a>

@@ -16,6 +16,7 @@ import { Newsletter } from './components/Newsletter';
 import { Footer } from './components/Footer';
 import { CalculatorPage } from './pages/CalculatorPage';
 import { FinancePage } from './pages/FinancePage';
+import { LogisticsPage } from './pages/LogisticsPage';
 
 const financeSteps: [string, string, string][] = [
   ['01', 'Read and GST-check every bill', 'Capture line items and validate GST details before posting.'],
@@ -31,6 +32,17 @@ const logisticsSteps: [string, string, string][] = [
 
 export const App: React.FC = () => {
   const { currentPath } = useRouter();
+
+  // If on /logistics or /logistics-trade route, render LogisticsPage
+  if (currentPath === '/logistics' || currentPath === '/logistics-trade') {
+    return (
+      <div className="min-h-screen overflow-x-clip bg-white text-slate-800">
+        <Header />
+        <LogisticsPage />
+        <Footer />
+      </div>
+    );
+  }
 
   // If on /finance or /accounts-payable route, render FinancePage
   if (currentPath === '/finance' || currentPath === '/accounts-payable') {
@@ -88,6 +100,26 @@ export const App: React.FC = () => {
           <div className="mt-6 flex justify-center gap-3">
             <button onClick={() => window.location.href = '/#demo'} className="button-primary cursor-pointer">Book a walkthrough</button>
             <button onClick={() => window.location.href = '/finance'} className="button-secondary cursor-pointer">Back to Finance</button>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (currentPath === '/customers/ft-logistics') {
+    return (
+      <div className="min-h-screen overflow-x-clip bg-white text-slate-800">
+        <Header />
+        <div className="py-24 text-center site-shell">
+          <span className="font-mono text-xs uppercase tracking-wider text-teal-700 font-bold">Customer Case Study</span>
+          <h1 className="mt-3 text-3xl font-extrabold text-slate-950 sm:text-4xl">FT Logistics</h1>
+          <p className="mt-3 text-sm text-slate-600 max-w-lg mx-auto">
+            How FT Logistics slashed shipment email-to-CargoWise job posting time from 2 hours to 2 minutes with Docsynecx.
+          </p>
+          <div className="mt-6 flex justify-center gap-3">
+            <button onClick={() => window.location.href = '/#demo'} className="button-teal cursor-pointer">Book a demo</button>
+            <button onClick={() => window.location.href = '/logistics'} className="button-secondary cursor-pointer">Back to Logistics</button>
           </div>
         </div>
         <Footer />
