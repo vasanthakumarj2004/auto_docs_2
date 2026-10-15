@@ -5,7 +5,8 @@ import { useRouter } from '../lib/router';
 export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [resourcesOpen, setResourcesOpen] = useState(false);
-  const { navigate } = useRouter();
+  const { currentPath, navigate } = useRouter();
+  const isFinanceActive = currentPath === '/finance' || currentPath === '/accounts-payable';
 
   const handleLinkClick = (href: string) => {
     setMobileMenuOpen(false);
@@ -36,14 +37,18 @@ export const Header: React.FC = () => {
         {/* Desktop Nav */}
         <nav className="hidden items-center gap-7 md:flex" aria-label="Main navigation">
           <a
-            href="#finance"
+            href="/finance"
             onClick={(e) => {
               e.preventDefault();
-              handleLinkClick('#finance');
+              handleLinkClick('/finance');
             }}
-            className="flex items-center gap-1 text-[13px] font-semibold text-slate-600 transition-colors hover:text-slate-950"
+            className={`flex items-center gap-1 text-[13px] font-semibold transition-colors ${
+              isFinanceActive
+                ? 'text-brand-blue font-bold'
+                : 'text-slate-600 hover:text-slate-950'
+            }`}
           >
-            Finance <ChevronDown size={12} className="text-slate-400" />
+            Finance <ChevronDown size={12} className={isFinanceActive ? 'text-brand-blue' : 'text-slate-400'} />
           </a>
           <a
             href="#logistics"
@@ -174,12 +179,14 @@ export const Header: React.FC = () => {
         <nav className="border-t border-slate-100 bg-white px-5 py-4 md:hidden" aria-label="Mobile navigation">
           <div className="flex flex-col gap-3.5">
             <a
-              href="#finance"
+              href="/finance"
               onClick={(e) => {
                 e.preventDefault();
-                handleLinkClick('#finance');
+                handleLinkClick('/finance');
               }}
-              className="text-sm font-semibold text-slate-700"
+              className={`text-sm font-semibold ${
+                isFinanceActive ? 'text-brand-blue font-bold' : 'text-slate-700'
+              }`}
             >
               Finance Desk
             </a>

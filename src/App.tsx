@@ -15,6 +15,7 @@ import { DemoCta } from './components/DemoCta';
 import { Newsletter } from './components/Newsletter';
 import { Footer } from './components/Footer';
 import { CalculatorPage } from './pages/CalculatorPage';
+import { FinancePage } from './pages/FinancePage';
 
 const financeSteps: [string, string, string][] = [
   ['01', 'Read and GST-check every bill', 'Capture line items and validate GST details before posting.'],
@@ -31,12 +32,64 @@ const logisticsSteps: [string, string, string][] = [
 export const App: React.FC = () => {
   const { currentPath } = useRouter();
 
+  // If on /finance or /accounts-payable route, render FinancePage
+  if (currentPath === '/finance' || currentPath === '/accounts-payable') {
+    return (
+      <div className="min-h-screen overflow-x-clip bg-white text-slate-800">
+        <Header />
+        <FinancePage />
+        <Footer />
+      </div>
+    );
+  }
+
   // If on /calculator route, render CalculatorPage with shared Header and Footer
   if (currentPath === '/calculator') {
     return (
       <div className="min-h-screen overflow-x-clip bg-white text-slate-800">
         <Header />
         <CalculatorPage />
+        <Footer />
+      </div>
+    );
+  }
+
+  // Placeholder routes
+  if (currentPath === '/free-trial') {
+    return (
+      <div className="min-h-screen overflow-x-clip bg-white text-slate-800">
+        <Header />
+        <div className="py-24 text-center site-shell">
+          <span className="font-mono text-xs uppercase tracking-wider text-brand-blue font-bold">Early Access</span>
+          <h1 className="mt-3 text-3xl font-extrabold text-slate-950 sm:text-4xl">Free Trial Registration</h1>
+          <p className="mt-3 text-sm text-slate-600 max-w-md mx-auto">
+            Free trial registrations are being onboarded in batches alongside our banking partner rollout.
+          </p>
+          <div className="mt-6 flex justify-center gap-3">
+            <button onClick={() => window.location.href = '/#demo'} className="button-primary cursor-pointer">Book a demo for instant access</button>
+            <button onClick={() => window.location.href = '/finance'} className="button-secondary cursor-pointer">Back to Finance</button>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (currentPath === '/customers/rajadurai') {
+    return (
+      <div className="min-h-screen overflow-x-clip bg-white text-slate-800">
+        <Header />
+        <div className="py-24 text-center site-shell">
+          <span className="font-mono text-xs uppercase tracking-wider text-emerald-700 font-bold">Customer Case Study</span>
+          <h1 className="mt-3 text-3xl font-extrabold text-slate-950 sm:text-4xl">Rajadurai E-Vehicles</h1>
+          <p className="mt-3 text-sm text-slate-600 max-w-lg mx-auto">
+            Case study: How Rajadurai E-Vehicles condensed purchase, spares and service ledger entries from days to hours with Docsynecx.
+          </p>
+          <div className="mt-6 flex justify-center gap-3">
+            <button onClick={() => window.location.href = '/#demo'} className="button-primary cursor-pointer">Book a walkthrough</button>
+            <button onClick={() => window.location.href = '/finance'} className="button-secondary cursor-pointer">Back to Finance</button>
+          </div>
+        </div>
         <Footer />
       </div>
     );

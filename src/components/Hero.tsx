@@ -3,8 +3,10 @@ import { Play, Pause } from 'lucide-react';
 import { FinanceDeskVisual } from './FinanceDeskVisual';
 import { ProcessingFlowVisual } from './ProcessingFlowVisual';
 import { useHeroAutoScroll } from '../hooks/useHeroAutoScroll';
+import { useRouter } from '../lib/router';
 
 export const Hero: React.FC = () => {
+  const { navigate } = useRouter();
   const [centeredBlock, setCenteredBlock] = useState<number | null>(0);
   const block1Ref = useRef<HTMLDivElement>(null);
   const block2Ref = useRef<HTMLDivElement>(null);
@@ -70,7 +72,14 @@ export const Hero: React.FC = () => {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#finance" className="button-primary">
+              <a
+                href="/finance"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate('/finance');
+                }}
+                className="button-primary cursor-pointer"
+              >
                 Run a finance desk
               </a>
               <a href="#logistics" className="button-teal">

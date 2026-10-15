@@ -37,8 +37,8 @@ export const Footer: React.FC = () => {
             <h4 className="text-xs font-bold uppercase tracking-wider text-white">Platform</h4>
             <div className="mt-3 flex flex-col gap-2.5 text-xs text-gray-400">
               <a
-                href="#finance"
-                onClick={(e) => handleLink(e, '#finance')}
+                href="/finance"
+                onClick={(e) => handleLink(e, '/finance')}
                 className="transition-colors hover:text-white"
               >
                 Finance desk
