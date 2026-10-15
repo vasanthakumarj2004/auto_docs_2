@@ -483,13 +483,117 @@ button, input, textarea, select {
   .ghost-card-1,
   .ghost-card-2,
   .ghost-card-dark-1,
-  .ghost-card-dark-2 {
+  .ghost-card-dark-2,
+  .card-3d-ghost {
     display: none !important;
     transform: none !important;
   }
   .floating-badge-1,
-  .floating-badge-2 {
+  .floating-badge-2,
+  .animate-check-draw,
+  .pulse-step-amber,
+  .pulse-step-blue {
     animation: none !important;
     transform: none !important;
   }
+  .card-3d-layered:hover {
+    transform: none !important;
+  }
 }
+
+/* ==========================================================================
+   Shared Polish Pass Utilities (/finance & /logistics)
+   ========================================================================== */
+
+/* Faint ambient dotted background grid */
+.bg-dot-matrix {
+  background-image: radial-gradient(rgba(148, 163, 184, 0.32) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* 3D Stack / Layered Card Depth with ghost cards */
+.card-3d-layered {
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.card-3d-layered:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 32px -8px rgba(15, 23, 42, 0.1), 0 4px 12px -2px rgba(15, 23, 42, 0.05);
+}
+
+.card-3d-ghost {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.card-3d-ghost-1 {
+  transform: translate(6px, 6px);
+  background: rgba(241, 245, 249, 0.7);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  opacity: 0.8;
+}
+
+.card-3d-ghost-2 {
+  transform: translate(12px, 12px);
+  background: rgba(248, 250, 252, 0.5);
+  border: 1px solid rgba(226, 232, 240, 0.5);
+  opacity: 0.5;
+}
+
+/* Soft animated pulses for highlighted flow steps */
+@keyframes softAmberStepPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 16px -2px rgba(234, 88, 12, 0.15);
+  }
+  50% {
+    transform: scale(1.015);
+    box-shadow: 0 8px 24px -2px rgba(234, 88, 12, 0.25);
+  }
+}
+
+@keyframes softBlueStepPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 4px 16px -2px rgba(47, 61, 224, 0.12);
+  }
+  50% {
+    transform: scale(1.015);
+    box-shadow: 0 8px 24px -2px rgba(47, 61, 224, 0.22);
+  }
+}
+
+.pulse-step-amber {
+  animation: softAmberStepPulse 3.5s ease-in-out infinite;
+}
+
+.pulse-step-blue {
+  animation: softBlueStepPulse 3.5s ease-in-out infinite;
+}
+
+/* Checkmark Path Drawing Animation */
+@keyframes checkDraw {
+  0% {
+    stroke-dashoffset: 24;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+.animate-check-draw {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: checkDraw 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
