@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { Sparkles, ArrowRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import { useRouter } from '../lib/router';
 
 export const DemoCta: React.FC = () => {
   const [formData, setFormData] = useState({
     email: '',
     company: '',
-    deskType: 'Freight Forwarding & CargoWise',
-    volume: '1,000 - 5,000 docs/month',
     message: '',
   });
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const { navigate } = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,7 +21,7 @@ export const DemoCta: React.FC = () => {
         submission_type: 'demo',
         email: formData.email.trim(),
         company: formData.company.trim() || null,
-        message: `Desk: ${formData.deskType} | Volume: ${formData.volume} | Note: ${formData.message.trim() || 'N/A'}`,
+        message: formData.message.trim() || null,
       });
 
       if (error) {
@@ -29,45 +29,46 @@ export const DemoCta: React.FC = () => {
         setStatus('error');
       } else {
         setStatus('success');
-        setFormData({
-          email: '',
-          company: '',
-          deskType: 'Freight Forwarding & CargoWise',
-          volume: '1,000 - 5,000 docs/month',
-          message: '',
-        });
+        setFormData({ email: '', company: '', message: '' });
       }
     } catch (err) {
       console.error('Submission exception:', err);
       // Fallback
       setStatus('success');
+      setFormData({ email: '', company: '', message: '' });
     }
   };
 
   return (
     <section className="cta-section" id="demo">
       <div className="site-shell text-center">
-        <div className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50/80 px-3 py-1 text-xs font-bold text-blue-700 mb-4">
-          <Sparkles size={13} />
-          <span>Tailored Enterprise Demonstration</span>
-        </div>
-
         <h2 className="text-3xl font-extrabold tracking-[-0.045em] text-slate-950 sm:text-5xl">
           Stop retyping. Start growing.
         </h2>
-        <p className="mx-auto mt-4 max-w-xl text-sm leading-6 text-slate-600">
-          Book a 20-minute tailored walkthrough. We will run your actual sample vendor bills, BLs, or booking pre-alerts
-          live through Docsynecx.
+        <p className="mx-auto mt-4 max-w-lg text-sm leading-6 text-slate-600">
+          A cleaner finance desk. A faster shipment desk. More room for what’s next.
         </p>
+
+        <div className="mt-7 flex flex-wrap justify-center gap-3">
+          <a href="#demo-form" className="button-primary">
+            Book a demo
+          </a>
+          <button
+            onClick={() => navigate('/calculator')}
+            className="button-secondary"
+          >
+            Try the free calculator
+          </button>
+        </div>
 
         <form
           id="demo-form"
           onSubmit={handleSubmit}
-          className="mx-auto mt-10 grid max-w-3xl gap-4 rounded-2xl border border-blue-100 bg-white p-6 text-left shadow-lg sm:grid-cols-2 sm:p-8"
+          className="mx-auto mt-10 grid max-w-3xl gap-3 rounded-2xl border border-blue-100 bg-white p-5 text-left shadow-xs sm:grid-cols-2 sm:p-7"
         >
           <div>
             <label className="form-label" htmlFor="demo-email">
-              Work email *
+              Work email
             </label>
             <input
               id="demo-email"
@@ -76,62 +77,27 @@ export const DemoCta: React.FC = () => {
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               className="form-input"
-              placeholder="operator@company.com"
+              placeholder="you@company.com"
             />
           </div>
 
           <div>
             <label className="form-label" htmlFor="demo-company">
-              Company name *
+              Company
             </label>
             <input
               id="demo-company"
-              required
               type="text"
               value={formData.company}
               onChange={(e) => setFormData({ ...formData, company: e.target.value })}
               className="form-input"
-              placeholder="e.g. Apex Global Logistics"
+              placeholder="Your company"
             />
-          </div>
-
-          <div>
-            <label className="form-label" htmlFor="demo-desk">
-              Primary Workflow Focus
-            </label>
-            <select
-              id="demo-desk"
-              value={formData.deskType}
-              onChange={(e) => setFormData({ ...formData, deskType: e.target.value })}
-              className="form-input bg-white"
-            >
-              <option value="Freight Forwarding & CargoWise">Freight Forwarding & CargoWise</option>
-              <option value="Finance & Tally / ERP AP">Finance & Tally / ERP Accounts Payable</option>
-              <option value="Customs Entry & Brokerage">Customs Entry & Brokerage</option>
-              <option value="Both Logistics & Finance">Both Logistics & Finance Desks</option>
-            </select>
-          </div>
-
-          <div>
-            <label className="form-label" htmlFor="demo-volume">
-              Estimated Monthly Documents
-            </label>
-            <select
-              id="demo-volume"
-              value={formData.volume}
-              onChange={(e) => setFormData({ ...formData, volume: e.target.value })}
-              className="form-input bg-white"
-            >
-              <option value="Under 500 docs/month">Under 500 docs / month</option>
-              <option value="500 - 2,000 docs/month">500 - 2,000 docs / month</option>
-              <option value="2,000 - 10,000 docs/month">2,000 - 10,000 docs / month</option>
-              <option value="10,000+ docs/month">10,000+ docs / month</option>
-            </select>
           </div>
 
           <div className="sm:col-span-2">
             <label className="form-label" htmlFor="demo-message">
-              Specific bottlenecks or systems to integrate (optional)
+              What would you like to improve?
             </label>
             <textarea
               id="demo-message"
@@ -139,32 +105,33 @@ export const DemoCta: React.FC = () => {
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               className="form-input resize-none"
-              placeholder="e.g. Ingesting pre-alerts into CargoWise eAdaptor, cross-checking BL weights..."
+              placeholder="Bills, shipment emails, or both?"
             />
           </div>
 
-          <div className="flex flex-col justify-between gap-4 sm:col-span-2 sm:flex-row sm:items-center pt-2">
-            <div className="text-xs">
-              {status === 'success' ? (
-                <span className="flex items-center gap-1.5 text-emerald-600 font-bold">
-                  <CheckCircle2 size={15} /> Thanks — our solutions team will be in touch within 2 hours.
-                </span>
-              ) : status === 'error' ? (
-                <span className="text-rose-600 font-bold">Something went wrong. Please try again.</span>
-              ) : (
-                <span className="text-slate-500 flex items-center gap-1.5">
-                  <ShieldCheck size={14} className="text-slate-400" />
-                  No commitment required · Confidential NDA on request
-                </span>
-              )}
-            </div>
+          <div className="flex flex-col justify-between gap-3 sm:col-span-2 sm:flex-row sm:items-center pt-2">
+            <p
+              className={`text-xs ${
+                status === 'error'
+                  ? 'text-rose-600 font-bold'
+                  : status === 'success'
+                  ? 'text-emerald-600 font-bold'
+                  : 'text-slate-500'
+              }`}
+            >
+              {status === 'success'
+                ? 'Thanks — we’ll be in touch shortly.'
+                : status === 'error'
+                ? 'Something went wrong. Please try again.'
+                : 'No pressure, just a useful conversation.'}
+            </p>
 
             <button
               type="submit"
               disabled={status === 'submitting'}
-              className="button-primary disabled:cursor-wait disabled:opacity-60 text-xs px-6 py-3"
+              className="button-primary disabled:cursor-wait disabled:opacity-60 text-xs px-5 py-2.5"
             >
-              {status === 'submitting' ? 'Preparing demo…' : 'Schedule walkthrough'} <ArrowRight size={14} />
+              {status === 'submitting' ? 'Sending…' : 'Request a demo'} <ArrowRight size={14} />
             </button>
           </div>
         </form>
