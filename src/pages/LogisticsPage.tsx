@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { 
   ArrowRight, 
   Sparkles
@@ -7,9 +7,12 @@ import { useRouter } from '../lib/router';
 import { StickyCtaBar } from '../components/StickyCtaBar';
 import { MetricTransition } from '../components/MetricTransition';
 import { AnimatedCheckmark } from '../components/AnimatedCheckmark';
+import { FlowConnector } from '../components/FlowConnector';
 
 export const LogisticsPage: React.FC = () => {
   const { navigate } = useRouter();
+  const stepperRef = useRef<HTMLElement>(null);
+  const [activeStep, setActiveStep] = useState<number>(0);
 
   // Manage SEO Document Title and Meta Description
   useEffect(() => {
@@ -33,6 +36,38 @@ export const LogisticsPage: React.FC = () => {
         metaDescription.setAttribute('content', originalDescription);
       }
     };
+  }, []);
+
+  // Sequence workflow stepper on scroll-in
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setActiveStep(5);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          let step = 1;
+          setActiveStep(1);
+          const interval = setInterval(() => {
+            step += 1;
+            setActiveStep(step);
+            if (step >= 5) {
+              clearInterval(interval);
+            }
+          }, 450);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.25 }
+    );
+
+    if (stepperRef.current) {
+      observer.observe(stepperRef.current);
+    }
+
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -98,9 +133,9 @@ export const LogisticsPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Right Column: FT LOGISTICS Hero Stat Card (3D Layered Elevation) */}
+            {/* Right Column: FT LOGISTICS Hero Proof Card (Wove-Style 3D Layered Card) */}
             <div className="lg:col-span-5">
-              <div className="card-3d-layered relative group/ft rounded-2xl border border-teal-800/60 bg-[#0B4A3F] p-8 sm:p-9 text-white shadow-xl min-h-[220px]">
+              <div className="card-3d-layered relative group/ft rounded-2xl border border-teal-800/60 border-l-4 border-l-teal-400 bg-[#0B4A3F] p-8 sm:p-9 text-white shadow-xl min-h-[220px]">
                 <div className="card-3d-ghost card-3d-ghost-1 bg-teal-900/40 border-teal-800/40" aria-hidden="true" />
                 <div className="card-3d-ghost card-3d-ghost-2 bg-teal-950/20 border-teal-800/20" aria-hidden="true" />
 
@@ -112,7 +147,10 @@ export const LogisticsPage: React.FC = () => {
                   <span className="font-mono text-xs font-bold uppercase tracking-wider text-teal-200">
                     FT LOGISTICS
                   </span>
-                  <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <div className="flex items-center gap-1.5 rounded bg-teal-900/80 px-2 py-0.5 border border-teal-700/60 text-[10px] font-mono text-teal-200">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span>VERIFIED OUTCOME</span>
+                  </div>
                 </div>
 
                 {/* Big Hero Metric Transition */}
@@ -149,7 +187,7 @@ export const LogisticsPage: React.FC = () => {
       </section>
 
       {/* =========================================================================
-          SECTION 2: BEFORE / AFTER (TODAY vs WITH DOCSYNECX)
+          SECTION 2: BEFORE / AFTER (TODAY vs WITH DOCSYNECX - Mint Card)
           ========================================================================= */}
       <section className="border-b border-slate-200/80 bg-white py-16 sm:py-24">
         <div className="site-shell">
@@ -158,7 +196,7 @@ export const LogisticsPage: React.FC = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 items-stretch">
               
-              {/* Left Column: TODAY */}
+              {/* Left Column: TODAY (Manual friction) */}
               <div className="flex flex-col justify-between p-2 sm:p-3">
                 <div>
                   <span className="font-mono text-xs font-bold uppercase tracking-wider text-amber-600 block mb-5">
@@ -174,17 +212,17 @@ export const LogisticsPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Right Column: WITH DOCSYNECX (Soft Teal Container & Animated Checks) */}
-              <div className="flex flex-col justify-between rounded-xl border border-teal-200/90 border-t-2 border-t-teal-600 bg-teal-50/45 p-6 sm:p-7 shadow-2xs">
+              {/* Right Column: WITH DOCSYNECX (Tinted Mint Card with Animated Checks) */}
+              <div className="flex flex-col justify-between rounded-xl border border-teal-300/80 border-t-2 border-t-teal-600 bg-[#e1f3ee]/50 p-6 sm:p-7 shadow-2xs">
                 <div>
-                  <span className="font-mono text-xs font-bold uppercase tracking-wider text-teal-800 block mb-5">
+                  <span className="font-mono text-xs font-bold uppercase tracking-wider text-teal-900 block mb-5">
                     WITH DOCSYNECX
                   </span>
 
                   <div className="space-y-4">
                     <div className="flex items-center gap-3 text-sm font-semibold text-slate-800">
                       <AnimatedCheckmark
-                        badgeClassName="bg-emerald-100/90 text-emerald-800 border border-emerald-300/80"
+                        badgeClassName="bg-emerald-100 text-emerald-800 border border-emerald-300"
                         delayMs={100}
                       />
                       <span>Documents collected from email</span>
@@ -192,7 +230,7 @@ export const LogisticsPage: React.FC = () => {
 
                     <div className="flex items-center gap-3 text-sm font-semibold text-slate-800">
                       <AnimatedCheckmark
-                        badgeClassName="bg-emerald-100/90 text-emerald-800 border border-emerald-300/80"
+                        badgeClassName="bg-emerald-100 text-emerald-800 border border-emerald-300"
                         delayMs={200}
                       />
                       <span>Key fields read and matched</span>
@@ -200,7 +238,7 @@ export const LogisticsPage: React.FC = () => {
 
                     <div className="flex items-center gap-3 text-sm font-semibold text-slate-800">
                       <AnimatedCheckmark
-                        badgeClassName="bg-emerald-100/90 text-emerald-800 border border-emerald-300/80"
+                        badgeClassName="bg-emerald-100 text-emerald-800 border border-emerald-300"
                         delayMs={300}
                       />
                       <span>Job created or updated in CargoWise</span>
@@ -208,7 +246,7 @@ export const LogisticsPage: React.FC = () => {
 
                     <div className="flex items-center gap-3 text-sm font-semibold text-slate-800">
                       <AnimatedCheckmark
-                        badgeClassName="bg-emerald-100/90 text-emerald-800 border border-emerald-300/80"
+                        badgeClassName="bg-emerald-100 text-emerald-800 border border-emerald-300"
                         delayMs={400}
                       />
                       <span>Team works only the flagged cases</span>
@@ -223,23 +261,28 @@ export const LogisticsPage: React.FC = () => {
       </section>
 
       {/* =========================================================================
-          SECTION 3: "START WITH ONE WORKFLOW" (5 module cards in a row)
+          SECTION 3: "START WITH ONE WORKFLOW" (Numbered Stepper with Flow Connectors)
           ========================================================================= */}
-      <section className="border-b border-slate-200/80 bg-[#fdfdfd] py-16 sm:py-24">
+      <section ref={stepperRef} className="border-b border-[#ede8de] bg-[#F8F6F1] py-16 sm:py-24">
         <div className="site-shell">
           {/* Section Label */}
           <div className="text-left mb-8 sm:mb-10">
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-slate-400">
+            <span className="font-mono text-xs font-bold uppercase tracking-widest text-slate-500">
               START WITH ONE WORKFLOW
             </span>
           </div>
 
-          {/* 5 Module Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          {/* 5 Module Stepper Cards with Sequential Animated Connectors */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr_auto_1fr] items-center gap-2 sm:gap-2 lg:gap-3">
             
-            {/* Card 1 */}
-            <div className="flex flex-col justify-between rounded-xl border border-slate-200 border-t-2 border-t-teal-600/70 bg-white p-5 shadow-2xs transition-all duration-300 hover:shadow-md hover:border-slate-300 hover:-translate-y-1 min-h-[148px]">
+            {/* Step 1: Email → CargoWise job */}
+            <div className={`flex flex-col justify-between rounded-xl border bg-white p-5 transition-all duration-300 hover:shadow-md hover:-translate-y-1 min-h-[160px] ${
+              activeStep >= 1 ? 'border-teal-300/80 border-t-2 border-t-teal-600 shadow-xs' : 'border-slate-200/90 shadow-2xs opacity-85'
+            }`}>
               <div>
+                <span className="font-mono text-[11px] font-bold text-teal-700 bg-teal-50 border border-teal-200 rounded px-1.5 py-0.5 inline-block mb-3">
+                  01
+                </span>
                 <h3 className="text-sm font-extrabold text-slate-900 leading-snug">
                   Email → CargoWise job
                 </h3>
@@ -249,9 +292,17 @@ export const LogisticsPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Card 2 */}
-            <div className="flex flex-col justify-between rounded-xl border border-slate-200 border-t-2 border-t-teal-600/70 bg-white p-5 shadow-2xs transition-all duration-300 hover:shadow-md hover:border-slate-300 hover:-translate-y-1 min-h-[148px]">
+            {/* Connector 1 */}
+            <FlowConnector stepIndex={1} activeStep={activeStep} />
+
+            {/* Step 2: BL & packing list check */}
+            <div className={`flex flex-col justify-between rounded-xl border bg-white p-5 transition-all duration-300 hover:shadow-md hover:-translate-y-1 min-h-[160px] ${
+              activeStep >= 2 ? 'border-teal-300/80 border-t-2 border-t-teal-600 shadow-xs' : 'border-slate-200/90 shadow-2xs opacity-85'
+            }`}>
               <div>
+                <span className="font-mono text-[11px] font-bold text-teal-700 bg-teal-50 border border-teal-200 rounded px-1.5 py-0.5 inline-block mb-3">
+                  02
+                </span>
                 <h3 className="text-sm font-extrabold text-slate-900 leading-snug">
                   BL & packing list check
                 </h3>
@@ -261,9 +312,17 @@ export const LogisticsPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Card 3 */}
-            <div className="flex flex-col justify-between rounded-xl border border-slate-200 border-t-2 border-t-teal-600/70 bg-white p-5 shadow-2xs transition-all duration-300 hover:shadow-md hover:border-slate-300 hover:-translate-y-1 min-h-[148px]">
+            {/* Connector 2 */}
+            <FlowConnector stepIndex={2} activeStep={activeStep} />
+
+            {/* Step 3: Customs entry */}
+            <div className={`flex flex-col justify-between rounded-xl border bg-white p-5 transition-all duration-300 hover:shadow-md hover:-translate-y-1 min-h-[160px] ${
+              activeStep >= 3 ? 'border-teal-300/80 border-t-2 border-t-teal-600 shadow-xs' : 'border-slate-200/90 shadow-2xs opacity-85'
+            }`}>
               <div>
+                <span className="font-mono text-[11px] font-bold text-teal-700 bg-teal-50 border border-teal-200 rounded px-1.5 py-0.5 inline-block mb-3">
+                  03
+                </span>
                 <h3 className="text-sm font-extrabold text-slate-900 leading-snug">
                   Customs entry
                 </h3>
@@ -273,9 +332,17 @@ export const LogisticsPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Card 4 */}
-            <div className="flex flex-col justify-between rounded-xl border border-slate-200 border-t-2 border-t-teal-600/70 bg-white p-5 shadow-2xs transition-all duration-300 hover:shadow-md hover:border-slate-300 hover:-translate-y-1 min-h-[148px]">
+            {/* Connector 3 */}
+            <FlowConnector stepIndex={3} activeStep={activeStep} />
+
+            {/* Step 4: Freight AP check */}
+            <div className={`flex flex-col justify-between rounded-xl border bg-white p-5 transition-all duration-300 hover:shadow-md hover:-translate-y-1 min-h-[160px] ${
+              activeStep >= 4 ? 'border-teal-300/80 border-t-2 border-t-teal-600 shadow-xs' : 'border-slate-200/90 shadow-2xs opacity-85'
+            }`}>
               <div>
+                <span className="font-mono text-[11px] font-bold text-teal-700 bg-teal-50 border border-teal-200 rounded px-1.5 py-0.5 inline-block mb-3">
+                  04
+                </span>
                 <h3 className="text-sm font-extrabold text-slate-900 leading-snug">
                   Freight AP check
                 </h3>
@@ -285,9 +352,17 @@ export const LogisticsPage: React.FC = () => {
               </div>
             </div>
 
-            {/* Card 5: Quote to booking (warm peach / coming soon highlight) */}
-            <div className="flex flex-col justify-between rounded-xl border border-orange-200/90 border-t-2 border-t-orange-400 bg-[#fef9f3] p-5 shadow-2xs transition-all duration-300 hover:shadow-md hover:border-orange-300 hover:-translate-y-1 min-h-[148px]">
+            {/* Connector 4 */}
+            <FlowConnector stepIndex={4} activeStep={activeStep} />
+
+            {/* Step 5: Quote to booking (warm peach / coming soon highlight) */}
+            <div className={`flex flex-col justify-between rounded-xl border border-orange-200/90 border-t-2 border-t-orange-400 bg-[#fef9f3] p-5 transition-all duration-300 hover:shadow-md hover:border-orange-300 hover:-translate-y-1 min-h-[160px] ${
+              activeStep >= 5 ? 'shadow-xs' : 'shadow-2xs opacity-85'
+            }`}>
               <div>
+                <span className="font-mono text-[11px] font-bold text-orange-700 bg-orange-100/70 border border-orange-200 rounded px-1.5 py-0.5 inline-block mb-3">
+                  05
+                </span>
                 <h3 className="text-sm font-extrabold text-slate-900 leading-snug">
                   Quote to booking
                 </h3>
@@ -308,31 +383,45 @@ export const LogisticsPage: React.FC = () => {
         <div className="site-shell">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             
-            {/* Card 1: POSTS INTO */}
+            {/* Card 1: POSTS INTO (with slim bordered chip) */}
             <div className="flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-6 shadow-2xs transition-all duration-200 hover:border-slate-300 hover:shadow-xs">
               <div>
                 <span className="font-mono text-xs font-bold uppercase tracking-wider text-slate-400 block mb-3">
                   POSTS INTO
                 </span>
-                <p className="text-sm font-semibold text-slate-900 leading-relaxed">
-                  <strong className="font-extrabold">CargoWise One</strong> through native APIs · other TMS on request
-                </p>
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="inline-flex items-center rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-bold text-slate-800 font-mono shadow-2xs">
+                    CargoWise One
+                  </span>
+                  <span className="text-xs text-slate-600 font-medium">
+                    through native APIs · other TMS on request
+                  </span>
+                </div>
               </div>
             </div>
 
-            {/* Card 2: FOR */}
+            {/* Card 2: FOR (with slim bordered chips) */}
             <div className="flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-6 shadow-2xs transition-all duration-200 hover:border-slate-300 hover:shadow-xs">
               <div>
                 <span className="font-mono text-xs font-bold uppercase tracking-wider text-slate-400 block mb-3">
                   FOR
                 </span>
-                <p className="text-sm font-semibold text-slate-900 leading-relaxed">
-                  Forwarders in India · Middle East <span className="text-xs text-slate-500 font-normal">(Phase 2)</span>
-                </p>
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="text-xs font-semibold text-slate-900">
+                    Forwarders in
+                  </span>
+                  <span className="inline-flex items-center rounded-md border border-slate-200 bg-slate-50 px-2 py-0.5 text-xs font-bold text-slate-800 font-mono shadow-2xs">
+                    India
+                  </span>
+                  <span className="text-slate-400">·</span>
+                  <span className="inline-flex items-center rounded-md border border-slate-200 bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-700 font-mono shadow-2xs">
+                    Middle East <span className="text-[10px] text-slate-400 ml-1">(Phase 2)</span>
+                  </span>
+                </div>
               </div>
             </div>
 
-            {/* Card 3: Retyping Audit (Dark Navy Soft CTA) */}
+            {/* Card 3: Retyping Audit (Dark Navy Closing Card) */}
             <div 
               onClick={() => navigate('/#demo')}
               className="group cursor-pointer flex flex-col justify-between rounded-xl border border-slate-800 bg-[#0b1330] p-6 text-white shadow-md transition-all duration-300 hover:shadow-xl hover:border-teal-500/60 hover:-translate-y-0.5"

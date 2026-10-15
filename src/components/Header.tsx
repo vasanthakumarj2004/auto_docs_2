@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { useRouter } from '../lib/router';
 
 export const Header: React.FC = () => {
@@ -17,33 +17,35 @@ export const Header: React.FC = () => {
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200/90 bg-white/95 backdrop-blur-md">
-      <div className="site-shell flex h-[68px] items-center justify-between">
+      <div className="site-shell flex h-[68px] items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr]">
         {/* Brand Logo */}
-        <a
-          href="/"
-          onClick={(e) => {
-            e.preventDefault();
-            handleLinkClick('/');
-          }}
-          className="group flex items-center"
-          aria-label="Docsynecx home"
-        >
-          <img
-            src="/Docsynecx-Logo.svg"
-            alt="Docsynecx"
-            className="h-9 sm:h-10 w-auto object-contain transition-opacity group-hover:opacity-90"
-          />
-        </a>
+        <div className="flex items-center justify-start">
+          <a
+            href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              handleLinkClick('/');
+            }}
+            className="group inline-flex items-center"
+            aria-label="Docsynecx home"
+          >
+            <img
+              src="/Docsynecx-Logo.svg"
+              alt="Docsynecx"
+              className="h-9 sm:h-10 w-auto object-contain transition-opacity group-hover:opacity-90"
+            />
+          </a>
+        </div>
 
-        {/* Desktop Nav */}
-        <nav className="hidden items-center gap-7 md:flex" aria-label="Main navigation">
+        {/* Desktop Nav - Centered */}
+        <nav className="hidden items-center justify-center gap-6 lg:gap-7 md:flex" aria-label="Main navigation">
           <a
             href="/finance"
             onClick={(e) => {
               e.preventDefault();
               handleLinkClick('/finance');
             }}
-            className={`text-[13px] font-semibold transition-colors ${
+            className={`inline-flex items-center py-1 text-[13px] font-semibold transition-colors ${
               isFinanceActive
                 ? 'text-brand-blue font-bold'
                 : 'text-slate-600 hover:text-slate-950'
@@ -57,7 +59,7 @@ export const Header: React.FC = () => {
               e.preventDefault();
               handleLinkClick('/logistics');
             }}
-            className={`text-[13px] font-semibold transition-colors ${
+            className={`inline-flex items-center py-1 text-[13px] font-semibold transition-colors ${
               isLogisticsActive
                 ? 'text-brand-teal font-bold'
                 : 'text-slate-600 hover:text-slate-950'
@@ -71,7 +73,7 @@ export const Header: React.FC = () => {
               e.preventDefault();
               handleLinkClick('#problem');
             }}
-            className="text-[13px] font-semibold text-slate-600 transition-colors hover:text-slate-950"
+            className="inline-flex items-center py-1 text-[13px] font-semibold text-slate-600 transition-colors hover:text-slate-950"
           >
             Industries
           </a>
@@ -81,23 +83,29 @@ export const Header: React.FC = () => {
               e.preventDefault();
               handleLinkClick('#customers');
             }}
-            className="text-[13px] font-semibold text-slate-600 transition-colors hover:text-slate-950"
+            className="inline-flex items-center py-1 text-[13px] font-semibold text-slate-600 transition-colors hover:text-slate-950"
           >
             Customers
           </a>
 
           {/* Resources Dropdown */}
-          <div className="relative">
+          <div className="relative inline-flex items-center">
             <button
               type="button"
               onClick={() => setResourcesOpen((prev) => !prev)}
-              className="text-[13px] font-semibold text-slate-600 transition-colors hover:text-slate-950"
+              className="inline-flex items-center gap-1 py-1 text-[13px] font-semibold text-slate-600 transition-colors hover:text-slate-950 focus:outline-none cursor-pointer"
               aria-expanded={resourcesOpen}
             >
-              Resources
+              <span>Resources</span>
+              <ChevronDown
+                size={12}
+                className={`transition-transform duration-200 ${
+                  resourcesOpen ? 'rotate-180 text-brand-blue' : 'text-slate-400'
+                }`}
+              />
             </button>
             {resourcesOpen && (
-              <div className="absolute left-0 top-full mt-2 w-48 rounded-xl border border-slate-200 bg-white p-2 shadow-lg z-50">
+              <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-48 rounded-xl border border-slate-200 bg-white p-2 shadow-lg z-50">
                 <a
                   href="/calculator"
                   onClick={(e) => {
@@ -138,24 +146,24 @@ export const Header: React.FC = () => {
               e.preventDefault();
               handleLinkClick('/calculator');
             }}
-            className="text-[13px] font-semibold text-slate-600 transition-colors hover:text-slate-950"
+            className="inline-flex items-center py-1 text-[13px] font-semibold text-slate-600 transition-colors hover:text-slate-950"
           >
             Pricing
           </a>
         </nav>
 
         {/* Right CTA cluster */}
-        <div className="hidden items-center gap-4 sm:flex">
+        <div className="hidden items-center justify-end gap-5 md:flex">
           <a
             href="/calculator"
             onClick={(e) => {
               e.preventDefault();
               handleLinkClick('/calculator');
             }}
-            className="flex items-center gap-2 text-[12px] font-bold text-slate-700 transition-colors hover:text-brand-blue"
+            className="inline-flex items-center gap-2 text-[12px] font-bold text-slate-700 transition-colors hover:text-brand-blue"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-orange" />
-            Free calculator
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-orange shrink-0" />
+            <span>Free calculator</span>
           </a>
           <a
             href="#demo"
@@ -170,13 +178,15 @@ export const Header: React.FC = () => {
         </div>
 
         {/* Mobile toggle */}
-        <button
-          className="rounded-lg p-2 text-slate-700 md:hidden hover:bg-slate-100"
-          onClick={() => setMobileMenuOpen((prev) => !prev)}
-          aria-label={mobileMenuOpen ? 'Close navigation' : 'Open navigation'}
-        >
-          {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        <div className="flex items-center justify-end md:hidden">
+          <button
+            className="rounded-lg p-2 text-slate-700 hover:bg-slate-100 cursor-pointer"
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
+            aria-label={mobileMenuOpen ? 'Close navigation' : 'Open navigation'}
+          >
+            {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Drawer */}
