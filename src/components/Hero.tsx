@@ -81,32 +81,27 @@ export const Hero: React.FC = () => {
 
   const activeBlockIndex = isAutoScrolling ? currentStep : (centeredBlock ?? currentStep);
 
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   return (
     <section className="relative border-b border-slate-200/80 hero-section pt-8 pb-14 lg:py-0">
       <div className="site-shell grid items-start gap-8 lg:gap-12 lg:grid-cols-12">
         {/* Left Column: Vertically centered in visible area under sticky navbar, and STICKY */}
         <div className="lg:col-span-6 lg:sticky lg:top-[68px] lg:h-[calc(100vh-68px)] lg:flex lg:flex-col lg:justify-center z-10">
           <div className="max-w-[560px]">
-            <div className={`eyebrow mb-6 transition-all duration-500 ease-out ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}>
+            <div className="eyebrow mb-6">
               For businesses that run on Tally, an ERP, or CargoWise
             </div>
 
-            <h1 className={`text-4xl font-extrabold leading-[1.08] tracking-[-0.055em] text-slate-950 sm:text-5xl lg:text-6xl transition-all duration-500 ease-out delay-75 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}>
+            <h1 className="text-4xl font-extrabold leading-[1.08] tracking-[-0.055em] text-slate-950 sm:text-5xl lg:text-6xl">
               Grow the business,
               <br />
               not the data-entry desk.
             </h1>
 
-            <p className={`mt-6 text-[15px] leading-7 text-slate-600 transition-all duration-500 ease-out delay-150 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}>
+            <p className="mt-6 text-[15px] leading-7 text-slate-600">
               Bills read, checked, paid and posted to Tally. Emails become CargoWise jobs. Your team handles exceptions, not typing.
             </p>
 
-            <div className={`mt-8 flex flex-wrap gap-3 transition-all duration-500 ease-out delay-200 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}>
+            <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href="/finance"
                 onClick={(e) => {
@@ -141,7 +136,7 @@ export const Hero: React.FC = () => {
               </a>
             </div>
 
-            <div className={`mt-9 flex flex-wrap items-center gap-6 text-[12px] font-semibold text-slate-500 transition-all duration-500 ease-out delay-300 ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'}`}>
+            <div className="mt-9 flex flex-wrap items-center gap-6 text-[12px] font-semibold text-slate-500">
               <span className="flex items-center gap-2">
                 <span className="h-2 w-2 rounded-full bg-emerald-500" />
                 Built around your approvals

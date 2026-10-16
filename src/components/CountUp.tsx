@@ -20,7 +20,8 @@ export const CountUp: React.FC<CountUpProps> = ({
   suffix = '',
   className = '',
 }) => {
-  const [value, setValue] = useState<number>(start);
+  // Initialize with end so SSR and SSG static HTML pre-renders the real numbers!
+  const [value, setValue] = useState<number>(end);
   const elementRef = useRef<HTMLSpanElement>(null);
   const hasAnimatedRef = useRef<boolean>(false);
 
@@ -42,6 +43,7 @@ export const CountUp: React.FC<CountUpProps> = ({
           hasAnimatedRef.current = true;
           observer.disconnect();
 
+          setValue(start);
           let startTime: number | null = null;
           const step = (timestamp: number) => {
             if (!startTime) startTime = timestamp;
