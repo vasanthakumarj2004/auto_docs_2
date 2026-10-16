@@ -21,8 +21,33 @@ export const Hero: React.FC = () => {
   });
 
   const [isPlaying, setIsPlaying] = useState(false);
+  const [scrubProgress, setScrubProgress] = useState(0);
   const videoCardRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Scroll scrub calculation when desktop
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setScrubProgress(45);
+      return;
+    }
+
+    const handleScroll = () => {
+      const el = block3Ref.current;
+      if (!el || isPlaying) return;
+      const rect = el.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      const start = windowHeight;
+      const end = -rect.height;
+      const current = rect.top;
+      const progress = Math.max(0, Math.min(100, Math.round(((start - current) / (start - end)) * 100)));
+      setScrubProgress(progress);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isPlaying]);
 
   useEffect(() => {
     const el = videoCardRef.current;
@@ -146,6 +171,18 @@ export const Hero: React.FC = () => {
                 No rip-and-replace
               </span>
             </div>
+
+            {/* Live Pipeline Status Ticker (Institutional proof of live automation) */}
+            <div className="mt-7 flex items-center gap-2.5 rounded-lg border border-slate-200/90 bg-slate-50/80 px-3.5 py-2 text-[11px] font-mono text-slate-700 shadow-2xs">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+              </span>
+              <span className="font-bold text-slate-900 uppercase tracking-wider text-[10px]">PIPELINE:</span>
+              <span className="tabular-nums text-slate-600 truncate">
+                GSTIN 29AAACH7409R1ZZ verified · ₹1,42,800 · 0 manual keystrokes
+              </span>
+            </div>
           </div>
         </div>
 
@@ -232,27 +269,50 @@ export const Hero: React.FC = () => {
 
                 <div className="relative mt-4">
                   <span className="floating-badge-2 text-xs font-bold tracking-wide uppercase text-blue-300 block font-mono">
-                    [ Video Slot: Product Walkthrough (2 min) ]
+                    {isPlaying
+                      ? '[ Live Demo Walkthrough (2 min) ]'
+                      : scrubProgress < 33
+                      ? '[ STAGE 1: INTAKE & OCR (SCRUBBED) ]'
+                      : scrubProgress < 66
+                      ? '[ STAGE 2: GST & DUPLICATE HOLD ]'
+                      : '[ STAGE 3: POSTED TO TALLY PRIME ]'}
                   </span>
                   <p className="mt-1 text-xs text-slate-300 max-w-sm">
                     {isPlaying
-                      ? 'Live demo walkthrough active. Click or press space to pause.'
-                      : 'Watch vendor invoices read, validated for GST, and posted to Tally Prime in real time.'}
+                      ? 'Live demo active. Click or press space to pause.'
+                      : scrubProgress < 33
+                      ? 'Scroll down to scrub: Invoices ingested from email or PDF scan.'
+                      : scrubProgress < 66
+                      ? 'Scroll down to scrub: 18% IGST checked, duplicate voucher held.'
+                      : 'Scroll down to scrub: Purchase & payment vouchers auto-created in Tally Prime.'}
                   </p>
                 </div>
 
                 {/* Bottom Video Progress Scrubber Bar */}
                 <div className="absolute bottom-0 inset-x-0 bg-slate-900/85 px-4 py-2 flex items-center justify-between text-[9px] font-mono text-slate-400 border-t border-slate-800/80">
                   <span className="flex items-center gap-1.5">
-                    <span className={`h-1.5 w-1.5 rounded-full ${isPlaying ? 'bg-emerald-400 animate-pulse' : 'bg-slate-500'}`} />
-                    {isPlaying ? 'PLAYING' : 'READY'}
+                    <span
+                      className={`h-1.5 w-1.5 rounded-full ${
+                        isPlaying ? 'bg-emerald-400 animate-pulse' : scrubProgress > 0 ? 'bg-blue-400' : 'bg-slate-500'
+                      }`}
+                    />
+                    {isPlaying ? 'PLAYING' : scrubProgress > 0 ? `SCRUBBED ${scrubProgress}%` : 'READY'}
                   </span>
                   <div className="mx-3 flex-1 h-1 bg-slate-800 rounded-full overflow-hidden relative">
                     <div
-                      className={`h-full bg-brand-blue transition-all duration-300 ${isPlaying ? 'w-2/5 animate-pulse' : 'w-0'}`}
+                      className="h-full bg-brand-blue transition-all duration-150"
+                      style={{
+                        width: isPlaying ? '40%' : `${scrubProgress}%`,
+                      }}
                     />
                   </div>
-                  <span>{isPlaying ? '0:24 / 2:00' : '0:00 / 2:00'}</span>
+                  <span className="tabular-nums">
+                    {isPlaying
+                      ? '0:24 / 2:00'
+                      : `${Math.floor((scrubProgress * 1.2) / 60)}:${String(
+                          Math.floor((scrubProgress * 1.2) % 60)
+                        ).padStart(2, '0')} / 2:00`}
+                  </span>
                 </div>
               </div>
             </div>
