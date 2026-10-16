@@ -195,7 +195,7 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
         id="resources-mega-dropdown"
         role="menu"
         aria-labelledby="resources-menu-trigger"
-        className={`absolute left-1/2 -translate-x-1/2 top-full pt-2.5 z-50 w-[720px] transition-all duration-200 ease-out ${
+        className={`absolute left-1/2 -translate-x-1/2 top-full pt-2.5 z-[60] w-[720px] transition-all duration-200 ease-out ${
           isOpen
             ? 'opacity-100 translate-y-0 pointer-events-auto visible'
             : 'opacity-0 -translate-y-2 pointer-events-none invisible'
@@ -205,10 +205,10 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
         <div className="absolute -top-3 left-0 right-0 h-4 pointer-events-auto" aria-hidden="true" />
 
         {/* The Card Surface */}
-        <div className="overflow-hidden rounded-2xl border border-slate-200/90 bg-white/98 shadow-[0_20px_48px_-10px_rgba(11,19,48,0.16),0_6px_20px_-4px_rgba(11,19,48,0.06)] backdrop-blur-md">
+        <div className="overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-[0_20px_48px_-10px_rgba(11,19,48,0.18),0_6px_20px_-4px_rgba(11,19,48,0.08)]">
           <div className="flex divide-x divide-slate-100">
             {/* Left Columns: Products & Tools */}
-            <div className="flex-1 p-5">
+            <div className="flex-1 p-5 bg-white">
               <div className="grid grid-cols-2 gap-x-5 gap-y-4">
                 {/* Column 1: Products */}
                 <div>
