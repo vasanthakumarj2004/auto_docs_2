@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { useRouter } from '../lib/router';
+import { NavDropdown } from './NavDropdown';
 
 export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [resourcesOpen, setResourcesOpen] = useState(false);
+  const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
   const { currentPath, navigate } = useRouter();
   const isFinanceActive = currentPath === '/finance' || currentPath === '/accounts-payable';
   const isLogisticsActive = currentPath === '/logistics' || currentPath === '/logistics-trade';
 
   const handleLinkClick = (href: string) => {
     setMobileMenuOpen(false);
-    setResourcesOpen(false);
+    setMobileResourcesOpen(false);
     navigate(href);
   };
 
@@ -89,56 +90,7 @@ export const Header: React.FC = () => {
           </a>
 
           {/* Resources Dropdown */}
-          <div className="relative inline-flex items-center">
-            <button
-              type="button"
-              onClick={() => setResourcesOpen((prev) => !prev)}
-              className="inline-flex items-center gap-1 py-1 text-[13px] font-semibold text-slate-600 transition-colors hover:text-slate-950 focus:outline-none cursor-pointer"
-              aria-expanded={resourcesOpen}
-            >
-              <span>Resources</span>
-              <ChevronDown
-                size={12}
-                className={`transition-transform duration-200 ${
-                  resourcesOpen ? 'rotate-180 text-brand-blue' : 'text-slate-400'
-                }`}
-              />
-            </button>
-            {resourcesOpen && (
-              <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-48 rounded-xl border border-slate-200 bg-white p-2 shadow-lg z-50">
-                <a
-                  href="/calculator"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLinkClick('/calculator');
-                  }}
-                  className="block rounded-lg px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-blue"
-                >
-                  Free ROI Calculator
-                </a>
-                <a
-                  href="#how-it-works"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLinkClick('#how-it-works');
-                  }}
-                  className="block rounded-lg px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-blue"
-                >
-                  How It Works
-                </a>
-                <a
-                  href="#faq"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleLinkClick('#faq');
-                  }}
-                  className="block rounded-lg px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 hover:text-brand-blue"
-                >
-                  FAQ & Support
-                </a>
-              </div>
-            )}
-          </div>
+          <NavDropdown onNavigate={handleLinkClick} currentPath={currentPath} />
 
           <a
             href="/calculator"
@@ -257,6 +209,81 @@ export const Header: React.FC = () => {
             >
               Customers
             </a>
+
+            {/* Mobile Resources Accordion */}
+            <div className="border-y border-slate-100 py-1">
+              <button
+                type="button"
+                onClick={() => setMobileResourcesOpen((prev) => !prev)}
+                className="flex w-full items-center justify-between py-2 text-sm font-semibold text-slate-700"
+                aria-expanded={mobileResourcesOpen}
+              >
+                <span>Resources & Products</span>
+                <ChevronDown
+                  size={15}
+                  className={`transition-transform duration-200 ${
+                    mobileResourcesOpen ? 'rotate-180 text-brand-blue' : 'text-slate-400'
+                  }`}
+                />
+              </button>
+              {mobileResourcesOpen && (
+                <div className="flex flex-col gap-2 pb-2 pl-2 pt-1 border-l-2 border-brand-blue/30 ml-1">
+                  <a
+                    href="/finance"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleLinkClick('/finance');
+                    }}
+                    className="text-xs font-semibold text-slate-600 hover:text-brand-blue flex items-center justify-between pr-2"
+                  >
+                    <span>Invoice Automation (Tally / ERP)</span>
+                    <span className="text-[9px] font-bold text-brand-blue bg-blue-50 px-1.5 py-0.5 rounded">NEW</span>
+                  </a>
+                  <a
+                    href="/logistics"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleLinkClick('/logistics');
+                    }}
+                    className="text-xs font-semibold text-slate-600 hover:text-brand-teal"
+                  >
+                    Logistics & Supply Chain (CargoWise)
+                  </a>
+                  <a
+                    href="#how-it-works"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleLinkClick('#how-it-works');
+                    }}
+                    className="text-xs font-semibold text-slate-600 hover:text-brand-blue"
+                  >
+                    Workflows & Approvals
+                  </a>
+                  <a
+                    href="/calculator"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleLinkClick('/calculator');
+                    }}
+                    className="text-xs font-semibold text-slate-600 hover:text-brand-orange flex items-center justify-between pr-2"
+                  >
+                    <span>Free ROI Calculator</span>
+                    <span className="text-[9px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">LIVE</span>
+                  </a>
+                  <a
+                    href="#faq"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleLinkClick('#faq');
+                    }}
+                    className="text-xs font-semibold text-slate-600 hover:text-brand-blue"
+                  >
+                    FAQ & Help Center
+                  </a>
+                </div>
+              )}
+            </div>
+
             <a
               href="#faq"
               onClick={(e) => {
