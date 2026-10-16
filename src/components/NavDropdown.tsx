@@ -30,9 +30,18 @@ interface NavDropdownProps {
 
 export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPath }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isPinned, setIsPinned] = useState(false);
+  const isOpenRef = useRef(false);
+  const isPinnedRef = useRef(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Sync refs with state
+  useEffect(() => {
+    isOpenRef.current = isOpen;
+    isPinnedRef.current = isPinned;
+  }, [isOpen, isPinned]);
 
   // Clear pending close/open timers on unmount
   useEffect(() => {
@@ -50,7 +59,10 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
         triggerRef.current &&
         !triggerRef.current.contains(event.target as Node)
       ) {
+        isOpenRef.current = false;
+        isPinnedRef.current = false;
         setIsOpen(false);
+        setIsPinned(false);
       }
     };
     if (isOpen) {
@@ -62,8 +74,11 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
   // Close on Escape key press
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && isOpen) {
+      if (event.key === 'Escape' && isOpenRef.current) {
+        isOpenRef.current = false;
+        isPinnedRef.current = false;
         setIsOpen(false);
+        setIsPinned(false);
         triggerRef.current?.focus();
       }
     };
@@ -71,24 +86,49 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen]);
 
-  // Hover intent handlers with debouncing to prevent flicker
+  // Hover intent handlers with generous debouncing and pinning support
   const handleMouseEnter = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => {
+      isOpenRef.current = true;
       setIsOpen(true);
-    }, 60); // 60ms hover intent
+    }, 50); // 50ms responsive hover intent
   };
 
   const handleMouseLeave = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    if (isPinnedRef.current) return; // Stay pinned if user clicked trigger to open
     timeoutRef.current = setTimeout(() => {
+      if (!isPinnedRef.current) {
+        isOpenRef.current = false;
+        setIsOpen(false);
+      }
+    }, 300); // 300ms generous cushion so panel never disappears mid-travel
+  };
+
+  const handleTriggerClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    if (isOpenRef.current && isPinnedRef.current) {
+      isOpenRef.current = false;
+      isPinnedRef.current = false;
       setIsOpen(false);
-    }, 140); // 140ms hover bridge cushion
+      setIsPinned(false);
+    } else {
+      isOpenRef.current = true;
+      isPinnedRef.current = true;
+      setIsOpen(true);
+      setIsPinned(true);
+    }
   };
 
   const handleLinkClick = (href: string, e: React.MouseEvent) => {
     e.preventDefault();
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    isOpenRef.current = false;
+    isPinnedRef.current = false;
     setIsOpen(false);
+    setIsPinned(false);
     onNavigate(href);
   };
 
@@ -165,11 +205,12 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
       <button
         ref={triggerRef}
         type="button"
-        onClick={() => setIsOpen((prev) => !prev)}
+        onClick={handleTriggerClick}
         onKeyDown={(e) => {
-          if (e.key === 'ArrowDown' && !isOpen) {
+          if ((e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') && !isOpen) {
             e.preventDefault();
             setIsOpen(true);
+            setIsPinned(true);
           }
         }}
         className={`inline-flex items-center gap-1.5 py-1 text-[13px] font-semibold transition-colors focus:outline-none cursor-pointer rounded-md ${
@@ -196,14 +237,26 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
         id="resources-mega-dropdown"
         role="menu"
         aria-labelledby="resources-menu-trigger"
-        className={`absolute left-1/2 -translate-x-1/2 top-full pt-2.5 z-[60] w-[720px] transition-all duration-200 ease-out ${
+        onMouseEnter={() => {
+          if (timeoutRef.current) clearTimeout(timeoutRef.current);
+          setIsOpen(true);
+        }}
+        onMouseLeave={handleMouseLeave}
+        className={`absolute left-1/2 -translate-x-1/2 top-full pt-2.5 z-[60] w-[720px] max-w-[calc(100vw-2rem)] transition-all duration-200 ease-out ${
           isOpen
             ? 'opacity-100 translate-y-0 pointer-events-auto visible'
             : 'opacity-0 -translate-y-2 pointer-events-none invisible'
         }`}
       >
-        {/* Anti-flicker invisible hover bridge */}
-        <div className="absolute -top-3 left-0 right-0 h-4 pointer-events-auto" aria-hidden="true" />
+        {/* Anti-flicker invisible hover bridge: seals gap between button and panel */}
+        <div
+          className="absolute -top-5 -left-10 -right-10 h-7 pointer-events-auto"
+          aria-hidden="true"
+          onMouseEnter={() => {
+            if (timeoutRef.current) clearTimeout(timeoutRef.current);
+            setIsOpen(true);
+          }}
+        />
 
         {/* The Card Surface */}
         <div className="overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-[0_20px_48px_-10px_rgba(11,19,48,0.18),0_6px_20px_-4px_rgba(11,19,48,0.08)]">
