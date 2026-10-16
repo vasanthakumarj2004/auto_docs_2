@@ -26,7 +26,7 @@ export const TheProblem: React.FC = () => {
           {/* Card 1 */}
           <SpotlightCard
             tabIndex={0}
-            className="reveal-init stagger-1 rounded-xl border border-slate-200/90 bg-white p-7 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-slate-300 focus-visible:outline-2 focus-visible:outline-brand-blue"
+            className="rounded-xl border border-slate-200/90 bg-white p-7 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-slate-300 focus-visible:outline-2 focus-visible:outline-brand-blue"
           >
             <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-orange-50 text-brand-orange border border-orange-100 mb-5">
               <Clock size={22} />
@@ -40,7 +40,7 @@ export const TheProblem: React.FC = () => {
           {/* Card 2 */}
           <SpotlightCard
             tabIndex={0}
-            className="reveal-init stagger-2 rounded-xl border border-slate-200/90 bg-white p-7 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-slate-300 focus-visible:outline-2 focus-visible:outline-brand-blue"
+            className="rounded-xl border border-slate-200/90 bg-white p-7 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-slate-300 focus-visible:outline-2 focus-visible:outline-brand-blue"
           >
             <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-rose-50 text-rose-600 border border-rose-100 mb-5">
               <AlertTriangle size={22} />
@@ -54,7 +54,7 @@ export const TheProblem: React.FC = () => {
           {/* Card 3 */}
           <SpotlightCard
             tabIndex={0}
-            className="reveal-init stagger-3 rounded-xl border border-slate-200/90 bg-white p-7 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-slate-300 focus-visible:outline-2 focus-visible:outline-brand-blue"
+            className="rounded-xl border border-slate-200/90 bg-white p-7 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-md hover:border-slate-300 focus-visible:outline-2 focus-visible:outline-brand-blue"
           >
             <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-slate-100 text-brand-navy border border-slate-200 mb-5">
               <EyeOff size={22} />

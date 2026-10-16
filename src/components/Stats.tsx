@@ -14,7 +14,7 @@ export const Stats: React.FC = () => {
           ref={statsRowRef}
           className="grid divide-y divide-slate-200 rounded-xl border border-slate-200 bg-[#fcfdff] p-6 shadow-xs sm:grid-cols-3 sm:divide-x sm:divide-y-0"
         >
-          <div className="reveal-init stagger-1 px-4 py-3 first:pl-0">
+          <div className="px-4 py-3 first:pl-0">
             <div className="text-2xl font-extrabold tracking-[-0.04em] text-slate-950 font-mono">
               <CountUp end={2} /> hrs → <CountUp end={2} /> min
             </div>
@@ -23,7 +23,7 @@ export const Stats: React.FC = () => {
             </div>
           </div>
 
-          <div className="reveal-init stagger-2 px-4 py-3 sm:pl-6">
+          <div className="px-4 py-3 sm:pl-6">
             <div className="text-2xl font-extrabold tracking-[-0.04em] text-slate-950 font-mono">
               Days → hours
             </div>
@@ -32,7 +32,7 @@ export const Stats: React.FC = () => {
             </div>
           </div>
 
-          <div className="reveal-init stagger-3 px-4 py-3 sm:pl-6">
+          <div className="px-4 py-3 sm:pl-6">
             <div className="text-2xl font-extrabold tracking-[-0.04em] text-slate-950 font-mono">
               In daily use
             </div>

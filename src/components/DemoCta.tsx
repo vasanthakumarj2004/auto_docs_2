@@ -51,14 +51,14 @@ export const DemoCta: React.FC = () => {
       </div>
 
       <div className="site-shell relative z-10 text-center">
-        <h2 className="reveal-init stagger-1 text-3xl font-extrabold tracking-[-0.045em] text-slate-950 sm:text-5xl">
+        <h2 className="text-3xl font-extrabold tracking-[-0.045em] text-slate-950 sm:text-5xl">
           Stop retyping. Start growing.
         </h2>
-        <p className="reveal-init stagger-2 mx-auto mt-4 max-w-lg text-sm leading-6 text-slate-600">
+        <p className="mx-auto mt-4 max-w-lg text-sm leading-6 text-slate-600">
           A cleaner finance desk. A faster shipment desk. More room for what’s next.
         </p>
 
-        <div className="reveal-init stagger-3 mt-7 flex flex-wrap justify-center gap-3">
+        <div className="mt-7 flex flex-wrap justify-center gap-3">
           <a
             href="#demo-form"
             className="button-primary transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md active:translate-y-0"
@@ -73,7 +73,7 @@ export const DemoCta: React.FC = () => {
           </button>
         </div>
 
-        <SpotlightCard className="reveal-init stagger-4 mx-auto mt-10 max-w-3xl rounded-2xl border border-blue-100/90 bg-white shadow-xs transition-all duration-300 hover:shadow-lg hover:border-blue-200">
+        <SpotlightCard className="mx-auto mt-10 max-w-3xl rounded-2xl border border-blue-100/90 bg-white shadow-xs transition-all duration-300 hover:shadow-lg hover:border-blue-200">
           <form
             id="demo-form"
             onSubmit={handleSubmit}

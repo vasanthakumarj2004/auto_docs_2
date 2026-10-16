@@ -72,7 +72,7 @@ export const HowItWorks: React.FC = () => {
                 onMouseEnter={() => setActiveStep(index)}
                 onFocus={() => setActiveStep(index)}
                 tabIndex={0}
-                className={`reveal-init stagger-${index + 1} relative z-10 flex flex-col items-center text-center cursor-pointer group outline-none`}
+                className="relative z-10 flex flex-col items-center text-center cursor-pointer group outline-none"
               >
                 <div
                   className={`flex h-24 w-24 flex-col items-center justify-center rounded-2xl bg-brand-navy text-white shadow-md mb-4 border transition-all duration-300 ${
@@ -104,7 +104,7 @@ export const HowItWorks: React.FC = () => {
               <div
                 key={item.step}
                 onClick={() => setActiveStep(index)}
-                className={`reveal-init stagger-${index + 1} flex items-start gap-4 p-4 rounded-xl border transition-all duration-200 ${
+                className={`flex items-start gap-4 p-4 rounded-xl border transition-all duration-200 ${
                   isActive
                     ? 'border-brand-blue bg-blue-50/40 shadow-xs'
                     : 'border-slate-200/80 bg-slate-50/60'

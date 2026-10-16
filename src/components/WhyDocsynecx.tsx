@@ -26,7 +26,7 @@ export const WhyDocsynecx: React.FC = () => {
           {/* Card 1 */}
           <SpotlightCard
             tabIndex={0}
-            className="reveal-init stagger-1 group rounded-xl border border-slate-200/90 bg-[#f8f9fc] p-8 shadow-xs transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_16px_32px_-8px_rgba(11,19,48,0.1),0_4px_12px_-2px_rgba(11,19,48,0.04)] hover:border-brand-blue/30 hover:bg-white focus-visible:outline-2 focus-visible:outline-brand-blue"
+            className="group rounded-xl border border-slate-200/90 bg-[#f8f9fc] p-8 shadow-xs transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_16px_32px_-8px_rgba(11,19,48,0.1),0_4px_12px_-2px_rgba(11,19,48,0.04)] hover:border-brand-blue/30 hover:bg-white focus-visible:outline-2 focus-visible:outline-brand-blue"
           >
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-navy text-white shadow-sm mb-6 transition-all duration-300 group-hover:scale-105 group-hover:bg-brand-blue">
               <Database size={22} className="text-white" />
@@ -42,7 +42,7 @@ export const WhyDocsynecx: React.FC = () => {
           {/* Card 2 */}
           <SpotlightCard
             tabIndex={0}
-            className="reveal-init stagger-2 group rounded-xl border border-slate-200/90 bg-[#f8f9fc] p-8 shadow-xs transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_16px_32px_-8px_rgba(11,19,48,0.1),0_4px_12px_-2px_rgba(11,19,48,0.04)] hover:border-brand-blue/30 hover:bg-white focus-visible:outline-2 focus-visible:outline-brand-blue"
+            className="group rounded-xl border border-slate-200/90 bg-[#f8f9fc] p-8 shadow-xs transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_16px_32px_-8px_rgba(11,19,48,0.1),0_4px_12px_-2px_rgba(11,19,48,0.04)] hover:border-brand-blue/30 hover:bg-white focus-visible:outline-2 focus-visible:outline-brand-blue"
           >
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-navy text-white shadow-sm mb-6 transition-all duration-300 group-hover:scale-105 group-hover:bg-brand-blue">
               <Brain size={22} className="text-white" />

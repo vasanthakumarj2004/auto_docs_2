@@ -629,8 +629,8 @@ input:focus-visible {
 
 /* Viewport Scroll-Triggered Reveal Classes */
 .reveal-init {
-  opacity: 0;
-  transform: translateY(16px);
+  opacity: 1;
+  transform: none;
   transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
