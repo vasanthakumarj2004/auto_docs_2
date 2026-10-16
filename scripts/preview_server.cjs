@@ -26,8 +26,12 @@ const server = http.createServer((req, res) => {
 
   let filePath = path.join(OUT_DIR, reqPath);
 
-  // If path has no extension and exists as directory/index.html
-  if (!fs.existsSync(filePath)) {
+  // If path exists as directory or needs .html / index.html extension
+  if (fs.existsSync(filePath)) {
+    if (fs.statSync(filePath).isDirectory()) {
+      filePath = path.join(filePath, 'index.html');
+    }
+  } else {
     if (fs.existsSync(filePath + '.html')) {
       filePath = filePath + '.html';
     } else if (fs.existsSync(path.join(filePath, 'index.html'))) {
