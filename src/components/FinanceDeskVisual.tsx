@@ -6,12 +6,25 @@ import { CountUp } from './CountUp';
 export const FinanceDeskVisual: React.FC<{ isCentered?: boolean }> = ({ isCentered = false }) => {
   const [activeTab, setActiveTab] = React.useState<'all' | 'needs-review' | 'posted'>('all');
   const [isCrossfading, setIsCrossfading] = React.useState(false);
+  const [selectedBillNo, setSelectedBillNo] = React.useState<string | null>('INV-0021');
+  const [activePopover, setActivePopover] = React.useState<string | null>(null);
 
-  const allBills = [
-    ['INV-2018', 'Alpha Components', 'Posted to Tally'],
-    ['BILL-3081', 'Shivraj Traders', 'Posted to Tally'],
-    ['INV-0021', 'Prime Components', 'Duplicate hold'],
-    ['BILL-2082', 'Jaxon Industrial', 'Posted to Tally'],
+  const tabs: Array<{ id: 'all' | 'needs-review' | 'posted'; label: string; count: number }> = [
+    { id: 'all', label: 'All bills', count: 24 },
+    { id: 'needs-review', label: 'Needs review', count: 1 },
+    { id: 'posted', label: 'Posted', count: 23 },
+  ];
+
+  const allBills: Array<{
+    no: string;
+    vendor: string;
+    status: 'Posted to Tally' | 'Duplicate hold';
+    detail: string;
+  }> = [
+    { no: 'INV-2018', vendor: 'Alpha Components', status: 'Posted to Tally', detail: 'Line items & GST matched. Synced into Tally ledger.' },
+    { no: 'BILL-3081', vendor: 'Shivraj Traders', status: 'Posted to Tally', detail: 'Line items & GST matched. Synced into Tally ledger.' },
+    { no: 'INV-0021', vendor: 'Prime Components', status: 'Duplicate hold', detail: 'Duplicate hold: Same invoice number detected. Payment blocked.' },
+    { no: 'BILL-2082', vendor: 'Jaxon Industrial', status: 'Posted to Tally', detail: 'Line items & GST matched. Synced into Tally ledger.' },
   ];
 
   const handleTabChange = (tab: 'all' | 'needs-review' | 'posted') => {
@@ -20,12 +33,24 @@ export const FinanceDeskVisual: React.FC<{ isCentered?: boolean }> = ({ isCenter
     setTimeout(() => {
       setActiveTab(tab);
       setIsCrossfading(false);
-    }, 120);
+    }, 140);
   };
 
-  const filteredBills = allBills.filter(([, , status]) => {
-    if (activeTab === 'needs-review') return status === 'Duplicate hold';
-    if (activeTab === 'posted') return status === 'Posted to Tally';
+  const handleKeyDownTab = (e: React.KeyboardEvent, index: number) => {
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      const next = (index + 1) % tabs.length;
+      handleTabChange(tabs[next].id);
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      const prev = (index - 1 + tabs.length) % tabs.length;
+      handleTabChange(tabs[prev].id);
+    }
+  };
+
+  const filteredBills = allBills.filter((bill) => {
+    if (activeTab === 'needs-review') return bill.status === 'Duplicate hold';
+    if (activeTab === 'posted') return bill.status === 'Posted to Tally';
     return true;
   });
 
@@ -60,48 +85,52 @@ export const FinanceDeskVisual: React.FC<{ isCentered?: boolean }> = ({ isCenter
             </span>
           </div>
 
+          {/* Interactive WAI-ARIA Accessible Tablist */}
           <div className="mt-5 flex gap-4 border-b border-slate-100 text-[10px] font-bold" role="tablist" aria-label="Bill categories">
-            <button
-              role="tab"
-              aria-selected={activeTab === 'all'}
-              onClick={() => handleTabChange('all')}
-              className={`pb-2 transition-all relative cursor-pointer outline-none ${
-                activeTab === 'all'
-                  ? 'border-b-2 border-brand-blue text-brand-blue font-bold'
-                  : 'text-slate-400 hover:text-slate-600'
-              }`}
-            >
-              All bills <b className={`ml-1 rounded-full px-1.5 py-0.5 text-[8px] transition-colors ${activeTab === 'all' ? 'bg-blue-50 text-brand-blue' : 'bg-slate-100 text-slate-500'}`}><CountUp end={24} /></b>
-            </button>
+            {tabs.map((tab, idx) => {
+              const isActive = activeTab === tab.id;
+              const badgeColor =
+                tab.id === 'needs-review'
+                  ? isActive ? 'bg-amber-100 text-amber-700 font-bold' : 'bg-slate-100 text-slate-500'
+                  : tab.id === 'posted'
+                  ? isActive ? 'bg-emerald-100 text-emerald-700 font-bold' : 'bg-slate-100 text-slate-500'
+                  : isActive ? 'bg-blue-100 text-brand-blue font-bold' : 'bg-slate-100 text-slate-500';
 
-            <button
-              role="tab"
-              aria-selected={activeTab === 'needs-review'}
-              onClick={() => handleTabChange('needs-review')}
-              className={`pb-2 transition-all relative cursor-pointer outline-none ${
-                activeTab === 'needs-review'
-                  ? 'border-b-2 border-amber-500 text-amber-600 font-bold'
-                  : 'text-slate-400 hover:text-slate-600'
-              }`}
-            >
-              Needs review <b className={`ml-1 rounded-full px-1.5 py-0.5 text-[8px] transition-colors ${activeTab === 'needs-review' ? 'bg-amber-50 text-amber-600' : 'bg-slate-100 text-slate-500'}`}><CountUp end={1} /></b>
-            </button>
+              const activeIndicator =
+                tab.id === 'needs-review' ? 'border-b-2 border-amber-500 text-amber-600' :
+                tab.id === 'posted' ? 'border-b-2 border-emerald-600 text-emerald-600' :
+                'border-b-2 border-brand-blue text-brand-blue';
 
-            <button
-              role="tab"
-              aria-selected={activeTab === 'posted'}
-              onClick={() => handleTabChange('posted')}
-              className={`pb-2 transition-all relative cursor-pointer outline-none ${
-                activeTab === 'posted'
-                  ? 'border-b-2 border-emerald-600 text-emerald-600 font-bold'
-                  : 'text-slate-400 hover:text-slate-600'
-              }`}
-            >
-              Posted <b className={`ml-1 rounded-full px-1.5 py-0.5 text-[8px] transition-colors ${activeTab === 'posted' ? 'bg-emerald-50 text-emerald-600' : 'bg-slate-100 text-slate-500'}`}><CountUp end={23} /></b>
-            </button>
+              return (
+                <button
+                  key={tab.id}
+                  id={`tab-${tab.id}`}
+                  role="tab"
+                  aria-selected={isActive}
+                  aria-controls={`panel-${tab.id}`}
+                  tabIndex={isActive ? 0 : -1}
+                  onClick={() => handleTabChange(tab.id)}
+                  onKeyDown={(e) => handleKeyDownTab(e, idx)}
+                  className={`pb-2 transition-all relative cursor-pointer outline-none focus-visible:ring-1 focus-visible:ring-brand-blue rounded-t ${
+                    isActive ? `${activeIndicator} font-bold` : 'text-slate-400 hover:text-slate-600'
+                  }`}
+                >
+                  {tab.label}{' '}
+                  <b className={`ml-1 rounded-full px-1.5 py-0.5 text-[8px] transition-colors ${badgeColor}`}>
+                    <CountUp end={tab.count} />
+                  </b>
+                </button>
+              );
+            })}
           </div>
 
-          <div className="mt-2 overflow-x-auto min-h-[160px]">
+          {/* Tab Panel with Interactive Rows */}
+          <div
+            id={`panel-${activeTab}`}
+            role="tabpanel"
+            aria-labelledby={`tab-${activeTab}`}
+            className="mt-2 overflow-x-auto min-h-[160px]"
+          >
             <table className="w-full min-w-[420px] text-left text-[9px]">
               <thead>
                 <tr className="border-b border-slate-100 uppercase tracking-wider text-slate-400">
@@ -111,30 +140,79 @@ export const FinanceDeskVisual: React.FC<{ isCentered?: boolean }> = ({ isCenter
                   <th className="text-right font-bold">Status</th>
                 </tr>
               </thead>
-              <tbody className={`transition-all duration-150 ease-out ${isCrossfading ? 'opacity-0 translate-y-1' : 'opacity-100 translate-y-0'}`}>
-                {filteredBills.map(([billNo, vendor, status]) => (
-                  <tr key={billNo} className="border-b border-slate-50 transition-colors hover:bg-slate-50/60">
-                    <td className="py-2.5 font-mono font-bold text-slate-800">{billNo}</td>
-                    <td className="text-slate-600 font-medium">{vendor}</td>
-                    <td>
-                      <span className="inline-flex items-center gap-1.5 text-emerald-700 font-semibold rounded bg-emerald-50 px-2 py-0.5 border border-emerald-100 shadow-2xs">
-                        <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                        Verified
-                      </span>
-                    </td>
-                    <td className="text-right">
-                      <span
-                        className={`inline-block rounded border px-2 py-0.5 text-[8.5px] font-bold shadow-2xs ${
-                          status === 'Duplicate hold'
-                            ? 'floating-badge-2 border-amber-200 bg-amber-50 text-amber-700'
-                            : 'floating-badge-1 border-emerald-200 bg-emerald-50 text-emerald-700'
-                        }`}
-                      >
-                        {status}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
+              <tbody
+                className={`transition-all duration-150 ease-out ${
+                  isCrossfading ? 'opacity-0 translate-y-1' : 'opacity-100 translate-y-0'
+                }`}
+              >
+                {filteredBills.map((bill) => {
+                  const isSelected = selectedBillNo === bill.no;
+                  const isHold = bill.status === 'Duplicate hold';
+                  const isPopoverVisible = activePopover === bill.no;
+
+                  return (
+                    <tr
+                      key={bill.no}
+                      onClick={() => setSelectedBillNo(bill.no)}
+                      className={`border-b border-slate-50 transition-all cursor-pointer ${
+                        isSelected
+                          ? 'bg-blue-50/40 text-slate-900 font-semibold shadow-2xs'
+                          : 'hover:bg-slate-50/60 text-slate-700'
+                      }`}
+                    >
+                      <td className="py-2.5 font-mono font-bold text-slate-800">
+                        <span className="flex items-center gap-1.5">
+                          {isSelected && <span className="h-1.5 w-1.5 rounded-full bg-brand-blue shrink-0" />}
+                          {bill.no}
+                        </span>
+                      </td>
+                      <td className="text-slate-600 font-medium">{bill.vendor}</td>
+                      <td>
+                        <span className="inline-flex items-center gap-1.5 text-emerald-700 font-semibold rounded bg-emerald-50 px-2 py-0.5 border border-emerald-100 shadow-2xs">
+                          <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                          Verified
+                        </span>
+                      </td>
+                      <td className="text-right relative">
+                        <div
+                          className="inline-block relative"
+                          onMouseEnter={() => setActivePopover(bill.no)}
+                          onMouseLeave={() => setActivePopover(null)}
+                          onFocus={() => setActivePopover(bill.no)}
+                          onBlur={() => setActivePopover(null)}
+                        >
+                          <button
+                            type="button"
+                            tabIndex={0}
+                            aria-label={`Status for ${bill.no}: ${bill.status}`}
+                            className={`inline-block rounded border px-2 py-0.5 text-[8.5px] font-bold shadow-2xs transition-transform duration-150 hover:scale-[1.03] focus-visible:outline-1 focus-visible:outline-brand-blue ${
+                              isHold
+                                ? 'floating-badge-2 border-amber-200 bg-amber-50 text-amber-700 hover:border-amber-300'
+                                : 'floating-badge-1 border-emerald-200 bg-emerald-50 text-emerald-700 hover:border-emerald-300'
+                            }`}
+                          >
+                            {bill.status}
+                          </button>
+
+                          {/* Detail popover on hover/focus */}
+                          {isPopoverVisible && (
+                            <div
+                              role="tooltip"
+                              className="absolute right-0 bottom-full mb-1.5 z-30 w-52 rounded-lg border border-slate-200 bg-slate-900 px-2.5 py-1.5 text-[8.5px] font-normal leading-snug text-slate-200 shadow-lg animate-fadeIn"
+                            >
+                              <div className="font-bold text-white mb-0.5 flex items-center gap-1">
+                                <span className={`h-1.5 w-1.5 rounded-full ${isHold ? 'bg-amber-400' : 'bg-emerald-400'}`} />
+                                {bill.status}
+                              </div>
+                              {bill.detail}
+                              <div className="absolute right-4 top-full h-0 w-0 border-x-4 border-x-transparent border-t-4 border-t-slate-900" />
+                            </div>
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
