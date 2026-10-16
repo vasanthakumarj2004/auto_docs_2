@@ -49,8 +49,8 @@ export const CountUp: React.FC<CountUpProps> = ({
             if (!startTime) startTime = timestamp;
             const elapsed = timestamp - startTime;
             const progress = Math.min(elapsed / duration, 1);
-            // Raft-style cubic ease-out: 1 - (1 - t)^3
-            const easeOut = 1 - Math.pow(1 - progress, 3);
+            // Mercury-style quartic ease-out approximating cubic-bezier(0.16, 1, 0.3, 1)
+            const easeOut = 1 - Math.pow(1 - progress, 4);
             const current = start + (end - start) * easeOut;
 
             setValue(current);
@@ -83,7 +83,7 @@ export const CountUp: React.FC<CountUpProps> = ({
     suffix;
 
   return (
-    <span ref={elementRef} className={className}>
+    <span ref={elementRef} className={`tabular-nums ${className}`}>
       {formatted}
     </span>
   );
