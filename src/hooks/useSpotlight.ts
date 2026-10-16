@@ -1,3 +1,4 @@
+'use client';
 import { useCallback, useRef } from 'react';
 
 export function useSpotlight<T extends HTMLElement = HTMLDivElement>() {

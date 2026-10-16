@@ -1,4 +1,7 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+'use client';
+
+import React, { createContext, useContext } from 'react';
+import { usePathname, useRouter as useNextRouter } from 'next/navigation';
 
 interface RouterContextType {
   currentPath: string;
@@ -6,30 +9,18 @@ interface RouterContextType {
 }
 
 const RouterContext = createContext<RouterContextType>({
-  currentPath: window.location.pathname,
+  currentPath: '/',
   navigate: () => {},
 });
 
 export const RouterProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [currentPath, setCurrentPath] = useState(window.location.pathname);
-
-  useEffect(() => {
-    const handlePopState = () => {
-      setCurrentPath(window.location.pathname);
-    };
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
-  }, []);
+  const pathname = usePathname() || '/';
+  const nextRouter = useNextRouter();
 
   const navigate = (to: string) => {
     if (to.startsWith('#')) {
-      if (window.location.pathname !== '/') {
-        window.history.pushState({}, '', '/' + to);
-        setCurrentPath('/');
-        setTimeout(() => {
-          const el = document.getElementById(to.slice(1));
-          if (el) el.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
+      if (pathname !== '/') {
+        nextRouter.push('/' + to);
       } else {
         const el = document.getElementById(to.slice(1));
         if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -37,13 +28,14 @@ export const RouterProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       return;
     }
 
-    window.history.pushState({}, '', to);
-    setCurrentPath(to);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    nextRouter.push(to);
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   return (
-    <RouterContext.Provider value={{ currentPath, navigate }}>
+    <RouterContext.Provider value={{ currentPath: pathname, navigate }}>
       {children}
     </RouterContext.Provider>
   );

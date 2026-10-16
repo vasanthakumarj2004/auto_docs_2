@@ -1,3 +1,4 @@
+'use client';
 import React, { useState } from 'react';
 import { Database, Check, ArrowRight, Zap, RefreshCw } from 'lucide-react';
 import { integrationsData } from '../data/featuresData';

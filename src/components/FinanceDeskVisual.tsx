@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { CircleAlert } from 'lucide-react';
 import { CountUp } from './CountUp';

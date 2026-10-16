@@ -1,3 +1,4 @@
+'use client';
 import React, { useState, useMemo } from 'react';
 import { ArrowRight, Calculator as CalcIcon, TrendingUp, Clock, AlertCircle } from 'lucide-react';
 

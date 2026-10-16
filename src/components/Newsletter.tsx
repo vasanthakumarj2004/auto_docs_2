@@ -1,3 +1,4 @@
+'use client';
 import React, { useState } from 'react';
 import { Mail } from 'lucide-react';
 import { supabase } from '../lib/supabase';

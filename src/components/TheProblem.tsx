@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { Clock, AlertTriangle, EyeOff } from 'lucide-react';
 import { SpotlightCard } from './SpotlightCard';

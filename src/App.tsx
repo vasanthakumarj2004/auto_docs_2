@@ -14,9 +14,9 @@ import { FaqSection } from './components/FaqSection';
 import { DemoCta } from './components/DemoCta';
 import { Newsletter } from './components/Newsletter';
 import { Footer } from './components/Footer';
-import { CalculatorPage } from './pages/CalculatorPage';
-import { FinancePage } from './pages/FinancePage';
-import { LogisticsPage } from './pages/LogisticsPage';
+import { CalculatorPage } from './views/CalculatorPage';
+import { FinancePage } from './views/FinancePage';
+import { LogisticsPage } from './views/LogisticsPage';
 
 const financeSteps: [string, string, string][] = [
   ['01', 'Read and GST-check every bill', 'Capture line items and validate GST details before posting.'],

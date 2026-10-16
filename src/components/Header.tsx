@@ -1,3 +1,4 @@
+'use client';
 import React, { useState } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { useRouter } from '../lib/router';

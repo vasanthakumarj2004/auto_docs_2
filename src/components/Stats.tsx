@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { CountUp } from './CountUp';
 import { useScrollReveal } from '../hooks/useScrollReveal';

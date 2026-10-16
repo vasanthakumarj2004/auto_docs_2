@@ -1,3 +1,4 @@
+'use client';
 import React, { useState } from 'react';
 import { Sliders, CheckCircle2, AlertTriangle, ArrowRight, Layers, FileCode, Check } from 'lucide-react';
 import { interactiveRules, InteractiveRule } from '../data/featuresData';

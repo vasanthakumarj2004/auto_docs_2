@@ -1,3 +1,4 @@
+'use client';
 import React, { useState } from 'react';
 import { Mail, Search, FileCheck2, Database, CheckCircle2 } from 'lucide-react';
 import { useScrollReveal } from '../hooks/useScrollReveal';

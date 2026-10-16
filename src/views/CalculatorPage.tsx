@@ -1,3 +1,4 @@
+'use client';
 import React, { useState, useMemo } from 'react';
 import { ArrowLeft, Clock, TrendingUp, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useRouter } from '../lib/router';
