@@ -131,7 +131,7 @@ export const Stepper: React.FC<StepperProps> = ({
                 </div>
 
                 {index < steps.length - 1 && (
-                  <FlowConnector stepIndex={stepNum} activeStep={activeStep} />
+                  <FlowConnector stepIndex={stepNum} activeStep={activeStep} theme={theme} />
                 )}
               </React.Fragment>
             );
