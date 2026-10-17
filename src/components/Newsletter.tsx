@@ -47,6 +47,7 @@ export const Newsletter: React.FC = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              suppressHydrationWarning
               className="form-input pl-9"
               placeholder="Your work email"
             />
@@ -54,6 +55,7 @@ export const Newsletter: React.FC = () => {
           <button
             type="submit"
             disabled={status === 'submitting'}
+            suppressHydrationWarning
             className="button-primary whitespace-nowrap disabled:opacity-60"
           >
             {status === 'success' ? 'Subscribed' : status === 'submitting' ? 'Sending…' : 'Subscribe'}

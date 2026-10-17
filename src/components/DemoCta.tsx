@@ -67,6 +67,7 @@ export const DemoCta: React.FC = () => {
           </a>
           <button
             onClick={() => navigate('/calculator')}
+            suppressHydrationWarning
             className="button-secondary transition-all duration-200 hover:-translate-y-0.5 hover:shadow-sm active:translate-y-0"
           >
             Try the free calculator
@@ -89,6 +90,7 @@ export const DemoCta: React.FC = () => {
               type="email"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+              suppressHydrationWarning
               className="form-input"
               placeholder="you@company.com"
             />
@@ -103,6 +105,7 @@ export const DemoCta: React.FC = () => {
               type="text"
               value={formData.company}
               onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+              suppressHydrationWarning
               className="form-input"
               placeholder="Your company"
             />
@@ -117,6 +120,7 @@ export const DemoCta: React.FC = () => {
               rows={2}
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+              suppressHydrationWarning
               className="form-input resize-none"
               placeholder="Bills, shipment emails, or both?"
             />
@@ -142,6 +146,7 @@ export const DemoCta: React.FC = () => {
             <button
               type="submit"
               disabled={status === 'submitting'}
+              suppressHydrationWarning
               className="button-primary disabled:cursor-wait disabled:opacity-60 text-xs px-5 py-2.5"
             >
               {status === 'submitting' ? 'Sending…' : 'Request a demo'} <ArrowRight size={14} />

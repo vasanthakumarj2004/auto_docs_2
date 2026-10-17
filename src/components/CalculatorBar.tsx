@@ -34,6 +34,7 @@ export const CalculatorBar: React.FC = () => {
           <div className="flex flex-wrap gap-2.5">
             <button
               onClick={() => navigate('/calculator')}
+              suppressHydrationWarning
               className="button-orange text-xs"
             >
               See my number
@@ -67,6 +68,7 @@ export const CalculatorBar: React.FC = () => {
                       min="1"
                       value={documents}
                       onChange={(e) => setDocuments(Math.max(0, Number(e.target.value)))}
+                      suppressHydrationWarning
                       className="w-full border-0 bg-transparent p-0 font-extrabold text-slate-950 outline-none text-base"
                     />
                     <Pencil size={12} className="text-slate-400 shrink-0" />
@@ -83,6 +85,7 @@ export const CalculatorBar: React.FC = () => {
                       min="1"
                       value={minutes}
                       onChange={(e) => setMinutes(Math.max(0, Number(e.target.value)))}
+                      suppressHydrationWarning
                       className="w-full border-0 bg-transparent p-0 font-extrabold text-slate-950 outline-none text-base"
                     />
                     <Pencil size={12} className="text-slate-400 shrink-0" />
@@ -101,6 +104,7 @@ export const CalculatorBar: React.FC = () => {
                         min="1"
                         value={staffCost}
                         onChange={(e) => setStaffCost(Math.max(0, Number(e.target.value)))}
+                        suppressHydrationWarning
                         className="w-full border-0 bg-transparent p-0 font-extrabold text-slate-950 outline-none text-base"
                       />
                     </div>
@@ -112,8 +116,8 @@ export const CalculatorBar: React.FC = () => {
 
               <p className="mt-5 text-[10px] leading-5 text-slate-400">
                 Assumes 160 working hours per person/month (₹{Math.round(staffCost / 160)}/hour).{' '}
-                {documents.toLocaleString()} x {minutes} = {totals.hours.toLocaleString()} hours.{' '}
-                {totals.hours.toLocaleString()} x ₹{Math.round(staffCost / 160)} = ₹{totals.cost.toLocaleString('en-IN')} in staff time.
+                {documents.toLocaleString('en-IN')} x {minutes} = {totals.hours.toLocaleString('en-IN')} hours.{' '}
+                {totals.hours.toLocaleString('en-IN')} x ₹{Math.round(staffCost / 160)} = ₹{totals.cost.toLocaleString('en-IN')} in staff time.
               </p>
             </div>
 
@@ -123,7 +127,7 @@ export const CalculatorBar: React.FC = () => {
                 Time & cost lost to retyping / month
               </span>
               <div className="mt-2 text-3xl font-extrabold tracking-[-0.04em] text-brand-blue flex items-baseline">
-                <span>{totals.hours.toLocaleString()} hrs</span>
+                <span>{totals.hours.toLocaleString('en-IN')} hrs</span>
                 <span className="mx-2 font-normal text-slate-300">/</span>
                 <span className="text-slate-950">₹{totals.cost.toLocaleString('en-IN')}</span>
               </div>
@@ -132,6 +136,7 @@ export const CalculatorBar: React.FC = () => {
               </p>
               <button
                 onClick={() => navigate('/calculator')}
+                suppressHydrationWarning
                 className="mt-6 flex items-center text-[11px] font-bold text-brand-blue hover:text-brand-blue-hover transition-colors"
               >
                 Get the full breakdown <ArrowRight size={13} className="ml-1" />

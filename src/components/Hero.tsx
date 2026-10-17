@@ -196,6 +196,7 @@ export const Hero: React.FC = () => {
                     togglePlay();
                   }
                 }}
+                suppressHydrationWarning
                 className="main-card-3d-dark relative aspect-video w-full overflow-hidden flex flex-col items-center justify-center p-6 text-center text-white group cursor-pointer transition-all hover:border-brand-blue focus-visible:outline-2 focus-visible:outline-brand-blue"
               >
                 {/* Looping video slot with playsInline, muted, preload */}

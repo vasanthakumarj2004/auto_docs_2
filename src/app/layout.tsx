@@ -107,7 +107,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -126,7 +126,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-screen bg-white text-slate-800 antialiased font-sans">
+      <body className="min-h-screen bg-white text-slate-800 antialiased font-sans" suppressHydrationWarning>
         <RouterProvider>{children}</RouterProvider>
       </body>
     </html>

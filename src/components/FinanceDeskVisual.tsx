@@ -65,6 +65,7 @@ export const FinanceDeskVisual: React.FC<{ isCentered?: boolean }> = ({ isCenter
               role="tab"
               aria-selected={activeTab === 'all'}
               onClick={() => handleTabChange('all')}
+              suppressHydrationWarning
               className={`pb-2 transition-all relative cursor-pointer outline-none ${
                 activeTab === 'all'
                   ? 'border-b-2 border-brand-blue text-brand-blue font-bold'
@@ -78,6 +79,7 @@ export const FinanceDeskVisual: React.FC<{ isCentered?: boolean }> = ({ isCenter
               role="tab"
               aria-selected={activeTab === 'needs-review'}
               onClick={() => handleTabChange('needs-review')}
+              suppressHydrationWarning
               className={`pb-2 transition-all relative cursor-pointer outline-none ${
                 activeTab === 'needs-review'
                   ? 'border-b-2 border-amber-500 text-amber-600 font-bold'
@@ -91,6 +93,7 @@ export const FinanceDeskVisual: React.FC<{ isCentered?: boolean }> = ({ isCenter
               role="tab"
               aria-selected={activeTab === 'posted'}
               onClick={() => handleTabChange('posted')}
+              suppressHydrationWarning
               className={`pb-2 transition-all relative cursor-pointer outline-none ${
                 activeTab === 'posted'
                   ? 'border-b-2 border-emerald-600 text-emerald-600 font-bold'
