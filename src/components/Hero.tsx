@@ -149,7 +149,7 @@ export const Hero: React.FC = () => {
                   e.preventDefault();
                   navigate('/logistics');
                 }}
-                className="btn-arrow btn-arrow-teal cursor-pointer"
+                className="btn-arrow btn-arrow-website cursor-pointer"
               >
                 <span className="btn-arrow-label">Run the logistics desk</span>
                 <span className="btn-arrow-chip" aria-hidden="true">

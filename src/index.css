@@ -838,6 +838,7 @@ input:focus-visible {
   --btn-bg-hover: #2430be;
   --btn-shadow: 0 4px 12px rgba(47, 61, 224, 0.22);
   --btn-ring: #2f3de0;
+  --btn-chip-bg: rgba(255, 255, 255, 0.18);
 
   position: relative;
   display: inline-flex;
@@ -851,6 +852,7 @@ input:focus-visible {
   color: #ffffff;
   background-color: var(--btn-bg);
   box-shadow: var(--btn-shadow);
+  border: 1px solid transparent;
   overflow: hidden;
   cursor: pointer;
   white-space: nowrap;
@@ -858,7 +860,8 @@ input:focus-visible {
   text-decoration: none;
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
               background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
 }
 
@@ -867,6 +870,8 @@ input:focus-visible {
   --btn-bg-hover: #2430be;
   --btn-shadow: 0 4px 12px rgba(47, 61, 224, 0.22);
   --btn-ring: #2f3de0;
+  --btn-chip-bg: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
 }
 
 .btn-arrow-teal {
@@ -874,6 +879,18 @@ input:focus-visible {
   --btn-bg-hover: #0c6f55;
   --btn-shadow: 0 4px 12px rgba(15, 138, 106, 0.2);
   --btn-ring: #0f8a6a;
+  --btn-chip-bg: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+.btn-arrow-website {
+  --btn-bg: #ffffff;
+  --btn-bg-hover: #f8fafc;
+  --btn-shadow: 0 1px 3px rgba(11, 19, 48, 0.05);
+  --btn-ring: #2f3de0;
+  --btn-chip-bg: rgba(11, 19, 48, 0.05);
+  color: #0b1330;
+  border-color: #e2e8f0;
 }
 
 /* Translucent chip background expanding via GPU-accelerated clip-path */
@@ -882,7 +899,7 @@ input:focus-visible {
   position: absolute;
   inset: 3px;
   border-radius: 6px;
-  background-color: rgba(255, 255, 255, 0.18);
+  background-color: var(--btn-chip-bg, rgba(255, 255, 255, 0.18));
   clip-path: inset(0 0 0 calc(100% - 32px) round 6px);
   transition: clip-path 380ms cubic-bezier(0.16, 1, 0.3, 1),
               background-color 250ms ease;
@@ -907,7 +924,7 @@ input:focus-visible {
 .btn-arrow-icon {
   width: 14px;
   height: 14px;
-  color: #ffffff;
+  color: currentColor;
   stroke-width: 2.25;
   transition: transform 380ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
@@ -928,6 +945,10 @@ input:focus-visible {
     transform: translateY(-1px);
     box-shadow: 0 6px 16px rgba(11, 19, 48, 0.25);
   }
+  .btn-arrow-website:hover {
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 14px rgba(11, 19, 48, 0.08);
+  }
   .btn-arrow:hover::before {
     clip-path: inset(0 0 0 0 round 6px);
   }
@@ -943,6 +964,9 @@ input:focus-visible {
 .btn-arrow:active {
   transform: scale(0.98) translateY(0);
   box-shadow: 0 2px 6px rgba(11, 19, 48, 0.18);
+}
+.btn-arrow-website:active {
+  box-shadow: 0 1px 3px rgba(11, 19, 48, 0.08);
 }
 
 /* Accessible Focus-Visible */
