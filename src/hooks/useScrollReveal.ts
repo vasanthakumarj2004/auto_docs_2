@@ -26,14 +26,21 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>({
       return;
     }
 
-    // If already in viewport on mount, reveal immediately
+    // If element is already in viewport on mount, reveal immediately; if below fold on desktop, mark pending
     if (typeof window !== 'undefined') {
       const rect = element.getBoundingClientRect();
       if (rect.top < window.innerHeight && rect.bottom > 0) {
         setIsVisible(true);
+        element.classList.remove('reveal-pending');
         element.classList.add('reveal-visible');
-        element.querySelectorAll('.reveal-init').forEach((child) => child.classList.add('reveal-visible'));
+        element.querySelectorAll('.reveal-init').forEach((child) => {
+          child.classList.remove('reveal-pending');
+          child.classList.add('reveal-visible');
+        });
         if (triggerOnce) return;
+      } else if (window.innerWidth >= 1024) {
+        element.classList.add('reveal-pending');
+        element.querySelectorAll('.reveal-init').forEach((child) => child.classList.add('reveal-pending'));
       }
     }
 
@@ -41,8 +48,10 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>({
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+          element.classList.remove('reveal-pending');
           element.classList.add('reveal-visible');
           element.querySelectorAll('.reveal-init').forEach((child) => {
+            child.classList.remove('reveal-pending');
             child.classList.add('reveal-visible');
           });
           if (triggerOnce) {

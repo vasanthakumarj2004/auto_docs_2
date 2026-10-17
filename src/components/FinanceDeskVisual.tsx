@@ -19,6 +19,12 @@ export const FinanceDeskVisual: React.FC<{ isCentered?: boolean }> = ({ isCenter
   const [isCrossfading, setIsCrossfading] = useState(false);
   const [selectedBill, setSelectedBill] = useState<BillItem | null>(null);
 
+  const tabs: Array<{ id: 'all' | 'needs-review' | 'posted'; label: string; count: number }> = [
+    { id: 'all', label: 'All bills', count: 24 },
+    { id: 'needs-review', label: 'Needs review', count: 1 },
+    { id: 'posted', label: 'Posted', count: 23 },
+  ];
+
   const bills: BillItem[] = [
     {
       id: 'INV-2018',
@@ -71,6 +77,18 @@ export const FinanceDeskVisual: React.FC<{ isCentered?: boolean }> = ({ isCenter
     }, 140);
   };
 
+  const handleKeyDownTab = (e: React.KeyboardEvent, index: number) => {
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      const next = (index + 1) % tabs.length;
+      handleTabChange(tabs[next].id);
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      const prev = (index - 1 + tabs.length) % tabs.length;
+      handleTabChange(tabs[prev].id);
+    }
+  };
+
   const filteredBills = bills.filter((b) => {
     if (activeTab === 'needs-review') return b.status === 'Duplicate hold';
     if (activeTab === 'posted') return b.status === 'Posted to Tally';
@@ -109,69 +127,52 @@ export const FinanceDeskVisual: React.FC<{ isCentered?: boolean }> = ({ isCenter
             </span>
           </div>
 
-          {/* Accessible Tabs with Tabular Counters */}
-          <div
-            className="mt-4 flex gap-4 border-b border-slate-100 text-[10px] font-bold"
-            role="tablist"
-            aria-label="Vendor bill categories"
-          >
-            <button
-              role="tab"
-              aria-selected={activeTab === 'all'}
-              onClick={() => handleTabChange('all')}
-              className={`pb-2 transition-all relative cursor-pointer outline-none ${
-                activeTab === 'all'
-                  ? 'border-b-2 border-brand-blue text-brand-blue font-bold'
-                  : 'text-slate-400 hover:text-slate-600'
-              }`}
-            >
-              All bills{' '}
-              <b className={`ml-1 rounded-full px-1.5 py-0.2 text-[8px] font-mono tabular-nums transition-colors ${
-                activeTab === 'all' ? 'bg-blue-50 text-brand-blue' : 'bg-slate-100 text-slate-500'
-              }`}>
-                <CountUp end={24} />
-              </b>
-            </button>
+          {/* Interactive WAI-ARIA Accessible Tablist */}
+          <div className="mt-4 flex gap-4 border-b border-slate-100 text-[10px] font-bold" role="tablist" aria-label="Vendor bill categories">
+            {tabs.map((tab, idx) => {
+              const isActive = activeTab === tab.id;
+              const badgeColor =
+                tab.id === 'needs-review'
+                  ? isActive ? 'bg-amber-100 text-amber-700 font-bold' : 'bg-slate-100 text-slate-500'
+                  : tab.id === 'posted'
+                  ? isActive ? 'bg-emerald-100 text-emerald-700 font-bold' : 'bg-slate-100 text-slate-500'
+                  : isActive ? 'bg-blue-100 text-brand-blue font-bold' : 'bg-slate-100 text-slate-500';
 
-            <button
-              role="tab"
-              aria-selected={activeTab === 'needs-review'}
-              onClick={() => handleTabChange('needs-review')}
-              className={`pb-2 transition-all relative cursor-pointer outline-none ${
-                activeTab === 'needs-review'
-                  ? 'border-b-2 border-amber-500 text-amber-700 font-bold'
-                  : 'text-slate-400 hover:text-slate-600'
-              }`}
-            >
-              Needs review{' '}
-              <b className={`ml-1 rounded-full px-1.5 py-0.2 text-[8px] font-mono tabular-nums transition-colors ${
-                activeTab === 'needs-review' ? 'bg-amber-100 text-amber-800' : 'bg-slate-100 text-slate-500'
-              }`}>
-                <CountUp end={1} />
-              </b>
-            </button>
+              const activeIndicator =
+                tab.id === 'needs-review' ? 'border-b-2 border-amber-500 text-amber-600' :
+                tab.id === 'posted' ? 'border-b-2 border-emerald-600 text-emerald-600' :
+                'border-b-2 border-brand-blue text-brand-blue';
 
-            <button
-              role="tab"
-              aria-selected={activeTab === 'posted'}
-              onClick={() => handleTabChange('posted')}
-              className={`pb-2 transition-all relative cursor-pointer outline-none ${
-                activeTab === 'posted'
-                  ? 'border-b-2 border-emerald-600 text-emerald-700 font-bold'
-                  : 'text-slate-400 hover:text-slate-600'
-              }`}
-            >
-              Posted{' '}
-              <b className={`ml-1 rounded-full px-1.5 py-0.2 text-[8px] font-mono tabular-nums transition-colors ${
-                activeTab === 'posted' ? 'bg-emerald-50 text-emerald-700' : 'bg-slate-100 text-slate-500'
-              }`}>
-                <CountUp end={23} />
-              </b>
-            </button>
+              return (
+                <button
+                  key={tab.id}
+                  id={`tab-${tab.id}`}
+                  role="tab"
+                  aria-selected={isActive}
+                  aria-controls={`panel-${tab.id}`}
+                  tabIndex={isActive ? 0 : -1}
+                  onClick={() => handleTabChange(tab.id)}
+                  onKeyDown={(e) => handleKeyDownTab(e, idx)}
+                  className={`pb-2 transition-all relative cursor-pointer outline-none focus-visible:ring-1 focus-visible:ring-brand-blue rounded-t ${
+                    isActive ? `${activeIndicator} font-bold` : 'text-slate-400 hover:text-slate-600'
+                  }`}
+                >
+                  {tab.label}{' '}
+                  <b className={`ml-1 rounded-full px-1.5 py-0.5 text-[8px] font-mono tabular-nums transition-colors ${badgeColor}`}>
+                    <CountUp end={tab.count} />
+                  </b>
+                </button>
+              );
+            })}
           </div>
 
-          {/* Interactive Data Table with Realistic Indian Mock Data */}
-          <div className="mt-2 overflow-x-auto min-h-[160px]">
+          {/* Tab Panel with Interactive Rows */}
+          <div
+            id={`panel-${activeTab}`}
+            role="tabpanel"
+            aria-labelledby={`tab-${activeTab}`}
+            className="mt-2 overflow-x-auto min-h-[160px]"
+          >
             <table className="w-full min-w-[460px] text-left text-[9px]">
               <thead>
                 <tr className="border-b border-slate-100 uppercase tracking-wider text-slate-400 font-mono">
@@ -223,7 +224,6 @@ export const FinanceDeskVisual: React.FC<{ isCentered?: boolean }> = ({ isCenter
                   </tr>
                 ))}
               </tbody>
-            </table>
           </div>
 
           {/* Interactive Row Detail Popover (Audit Explanation) */}

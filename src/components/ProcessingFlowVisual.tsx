@@ -16,8 +16,55 @@ interface ProcessingFlowVisualProps {
 }
 
 export const ProcessingFlowVisual: React.FC<ProcessingFlowVisualProps> = ({ isCentered = false }) => {
+  const [activeStep, setActiveStep] = React.useState<0 | 1 | 2>(0);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const isVisibleRef = React.useRef<boolean>(false);
+
+  React.useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+
+    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return;
+    }
+
+    let intervalId: NodeJS.Timeout | null = null;
+
+    const startLoop = () => {
+      if (intervalId) return;
+      intervalId = setInterval(() => {
+        setActiveStep((prev) => ((prev + 1) % 3) as 0 | 1 | 2);
+      }, 2600);
+    };
+
+    const stopLoop = () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisibleRef.current = entry.isIntersecting;
+        if (entry.isIntersecting) {
+          startLoop();
+        } else {
+          stopLoop();
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      stopLoop();
+    };
+  }, []);
+
   return (
-    <div className={`card-stack-3d w-full ${isCentered ? 'is-centered' : ''}`}>
+    <div ref={containerRef} className={`card-stack-3d w-full ${isCentered ? 'is-centered' : ''}`}>
       {/* 2 Faint Ghost Cards Behind for 3D Layered Depth */}
       <div className="ghost-card-1" aria-hidden="true" />
       <div className="ghost-card-2" aria-hidden="true" />
@@ -44,7 +91,13 @@ export const ProcessingFlowVisual: React.FC<ProcessingFlowVisualProps> = ({ isCe
           <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_1fr_auto_1fr] items-center gap-2 sm:gap-2.5">
             
             {/* ================= STEP 01: 3D INCOMING BILL BOX ================= */}
-            <div className="relative group/step1 flex flex-col rounded-xl border border-slate-200/90 bg-gradient-to-b from-white via-slate-50/50 to-slate-100/60 p-3 shadow-xs transition-all duration-300 hover:shadow-md hover:border-blue-300">
+            <div
+              className={`relative group/step1 flex flex-col rounded-xl border p-3 shadow-xs transition-all duration-300 ${
+                activeStep === 0
+                  ? 'border-blue-300 bg-gradient-to-b from-blue-50/60 via-white to-slate-50 shadow-md ring-2 ring-blue-400/25'
+                  : 'border-slate-200/90 bg-gradient-to-b from-white via-slate-50/50 to-slate-100/60 hover:shadow-md hover:border-blue-300'
+              }`}
+            >
               {/* Step Header */}
               <div className="flex items-center justify-between mb-1.5">
                 <span className="text-[9px] font-bold uppercase text-slate-400 font-mono tracking-wider">
@@ -127,14 +180,33 @@ export const ProcessingFlowVisual: React.FC<ProcessingFlowVisualProps> = ({ isCe
             </div>
 
             {/* Connecting Arrow 1 */}
-            <div className="hidden md:flex flex-col items-center justify-center text-brand-blue/80 px-0.5">
-              <div className="h-0.5 w-3 bg-gradient-to-r from-blue-300 to-brand-blue rounded-full mb-1" />
-              <ArrowRight size={14} className="text-brand-blue animate-pulse" />
-              <span className="text-[7px] font-bold text-brand-blue font-mono mt-0.5 uppercase tracking-tighter">OCR</span>
+            <div className="hidden md:flex flex-col items-center justify-center text-brand-blue/80 px-0.5 relative">
+              <div className="h-0.5 w-3 bg-gradient-to-r from-blue-300 to-brand-blue rounded-full mb-1 relative overflow-hidden">
+                {activeStep === 0 && (
+                  <span className="absolute inset-0 bg-white/70 animate-pulse" />
+                )}
+              </div>
+              <ArrowRight
+                size={14}
+                className={`transition-all duration-300 ${
+                  activeStep === 0 ? 'text-brand-blue scale-110 drop-shadow-sm' : 'text-slate-300'
+                }`}
+              />
+              <span className={`text-[7px] font-bold font-mono mt-0.5 uppercase tracking-tighter transition-colors ${
+                activeStep === 0 ? 'text-brand-blue' : 'text-slate-400'
+              }`}>
+                OCR
+              </span>
             </div>
 
             {/* ================= STEP 02: 3D READING / GST-CHECK BOX ================= */}
-            <div className="relative group/step2 flex flex-col rounded-xl border border-blue-200 bg-gradient-to-b from-brand-lavender/30 via-white to-blue-50/40 p-3 shadow-xs transition-all duration-300 hover:shadow-md hover:border-brand-blue">
+            <div
+              className={`relative group/step2 flex flex-col rounded-xl border p-3 shadow-xs transition-all duration-300 ${
+                activeStep === 1
+                  ? 'border-brand-blue bg-gradient-to-b from-brand-lavender/50 via-white to-blue-50/50 shadow-md ring-2 ring-brand-blue/30'
+                  : 'border-blue-200 bg-gradient-to-b from-brand-lavender/30 via-white to-blue-50/40 hover:shadow-md hover:border-brand-blue'
+              }`}
+            >
               {/* Step Header */}
               <div className="flex items-center justify-between mb-1.5">
                 <span className="text-[9px] font-bold uppercase text-brand-blue font-mono tracking-wider">
@@ -165,7 +237,7 @@ export const ProcessingFlowVisual: React.FC<ProcessingFlowVisualProps> = ({ isCe
                   {/* Subtle Laser Scan Beam Indicator */}
                   <div className="flex items-center justify-between border-b border-blue-100 pb-1">
                     <span className="flex items-center gap-1 font-mono text-[8.5px] font-bold text-brand-blue">
-                      <ScanLine size={10} className="text-brand-blue" />
+                      <ScanLine size={10} className={`${activeStep === 1 ? 'text-brand-blue animate-pulse' : 'text-slate-400'}`} />
                       AI Extractor
                     </span>
                     <span className="inline-flex items-center gap-0.5 rounded bg-emerald-50 px-1 py-0.2 text-[7.5px] font-bold text-emerald-700 border border-emerald-200">
@@ -198,14 +270,33 @@ export const ProcessingFlowVisual: React.FC<ProcessingFlowVisualProps> = ({ isCe
             </div>
 
             {/* Connecting Arrow 2 */}
-            <div className="hidden md:flex flex-col items-center justify-center text-emerald-600 px-0.5">
-              <div className="h-0.5 w-3 bg-gradient-to-r from-emerald-300 to-emerald-600 rounded-full mb-1" />
-              <ArrowRight size={14} className="text-emerald-600 animate-pulse" />
-              <span className="text-[7px] font-bold text-emerald-700 font-mono mt-0.5 uppercase tracking-tighter">SYNC</span>
+            <div className="hidden md:flex flex-col items-center justify-center text-emerald-600 px-0.5 relative">
+              <div className="h-0.5 w-3 bg-gradient-to-r from-emerald-300 to-emerald-600 rounded-full mb-1 relative overflow-hidden">
+                {activeStep === 1 && (
+                  <span className="absolute inset-0 bg-white/70 animate-pulse" />
+                )}
+              </div>
+              <ArrowRight
+                size={14}
+                className={`transition-all duration-300 ${
+                  activeStep === 1 ? 'text-emerald-600 scale-110 drop-shadow-sm' : 'text-slate-300'
+                }`}
+              />
+              <span className={`text-[7px] font-bold font-mono mt-0.5 uppercase tracking-tighter transition-colors ${
+                activeStep === 1 ? 'text-emerald-700' : 'text-slate-400'
+              }`}>
+                SYNC
+              </span>
             </div>
 
             {/* ================= STEP 03: 3D POSTED TO TALLY BOX ================= */}
-            <div className="relative group/step3 flex flex-col rounded-xl border border-emerald-200 bg-gradient-to-b from-emerald-50/40 via-white to-teal-50/30 p-3 shadow-xs transition-all duration-300 hover:shadow-md hover:border-emerald-500">
+            <div
+              className={`relative group/step3 flex flex-col rounded-xl border p-3 shadow-xs transition-all duration-300 ${
+                activeStep === 2
+                  ? 'border-emerald-500 bg-gradient-to-b from-emerald-50/70 via-white to-teal-50/40 shadow-md ring-2 ring-emerald-500/30'
+                  : 'border-emerald-200 bg-gradient-to-b from-emerald-50/40 via-white to-teal-50/30 hover:shadow-md hover:border-emerald-500'
+              }`}
+            >
               {/* Step Header */}
               <div className="flex items-center justify-between mb-1.5">
                 <span className="text-[9px] font-bold uppercase text-emerald-700 font-mono tracking-wider">
