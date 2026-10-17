@@ -1,0 +1,43 @@
+import type { Metadata } from 'next';
+import React from 'react';
+import Link from 'next/link';
+import { Header } from '@/src/components/Header';
+import { Footer } from '@/src/components/Footer';
+
+export const metadata: Metadata = {
+  title: 'Customer Case Study: FT Logistics | Docsynecx',
+  description:
+    'How FT Logistics slashed shipment email-to-CargoWise job posting time from 2 hours to 2 minutes with Docsynecx automated document processing.',
+  alternates: {
+    canonical: 'https://docsynecx.com/customers/ft-logistics/',
+  },
+};
+
+export default function FtLogisticsCaseStudyPage() {
+  return (
+    <div className="min-h-screen max-w-full overflow-x-clip lg:overflow-visible bg-white text-slate-800">
+      <Header />
+      <div className="py-24 text-center site-shell">
+        <span className="font-mono text-xs uppercase tracking-wider text-teal-700 font-bold">
+          Customer Case Study
+        </span>
+        <h1 className="mt-3 text-3xl font-extrabold text-slate-950 sm:text-4xl">
+          FT Logistics
+        </h1>
+        <p className="mt-3 text-sm text-slate-600 max-w-lg mx-auto">
+          How FT Logistics slashed shipment email-to-CargoWise job posting time
+          from 2 hours to 2 minutes with Docsynecx.
+        </p>
+        <div className="mt-6 flex justify-center gap-3">
+          <Link href="/#demo" className="button-teal cursor-pointer">
+            Book a demo
+          </Link>
+          <Link href="/logistics" className="button-secondary cursor-pointer">
+            Back to Logistics
+          </Link>
+        </div>
+      </div>
+      <Footer />
+    </div>
+  );
+}

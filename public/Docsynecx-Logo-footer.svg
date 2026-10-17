@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 80" width="340" height="80" fill="none">
+  <defs>
+    <!-- Brand Blue to Electric Indigo Gradient -->
+    <linearGradient id="primaryGradFooter" x1="12" y1="12" x2="68" y2="68" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#1D4ED8"/>
+    </linearGradient>
+
+    <!-- Cyan to Emerald Gradient for Logistics/Sync -->
+    <linearGradient id="tealGradFooter" x1="20" y1="60" x2="68" y2="20" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="100%" stop-color="#38BDF8"/>
+    </linearGradient>
+
+    <!-- Accent Fold Gradient -->
+    <linearGradient id="foldGradFooter" x1="46" y1="14" x2="60" y2="28" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#93C5FD"/>
+      <stop offset="100%" stop-color="#3B82F6"/>
+    </linearGradient>
+
+    <!-- Wordmark Synecx Gradient for Dark Backgrounds -->
+    <linearGradient id="textGradFooter" x1="160" y1="20" x2="280" y2="50" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#60A5FA"/>
+      <stop offset="100%" stop-color="#38BDF8"/>
+    </linearGradient>
+
+    <!-- Soft Ambient Glow for Dark Background -->
+    <filter id="markGlowFooter" x="6" y="8" width="68" height="68" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#38BDF8" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Modern Icon Mark (Folded Smart Document + Interlocking Synex/Sync Loops) -->
+  <g filter="url(#markGlowFooter)">
+    <!-- Base Document Shell with Folded Top-Right Corner -->
+    <path d="M 20 16 C 16.686 16, 14 18.686, 14 22 L 14 58 C 14 61.314, 16.686 64, 20 64 L 54 64 C 57.314 64, 60 61.314, 60 58 L 60 28 L 48 16 Z"
+          fill="url(#primaryGradFooter)"/>
+
+    <!-- Document Fold Corner -->
+    <path d="M 48 16 L 48 25 C 48 26.657, 49.343 28, 51 28 L 60 28 Z"
+          fill="url(#foldGradFooter)" opacity="0.95"/>
+
+    <!-- First Dynamic Synex Ribbon (Finance stream) -->
+    <path d="M 22 46 C 22 36, 32 30, 42 34 C 47 36, 49 41, 51 46 C 52 48.5, 54 50, 56.5 50 C 58.5 50, 60 48.5, 60 46"
+          stroke="url(#tealGradFooter)" stroke-width="3.5" stroke-linecap="round"/>
+
+    <!-- Second Dynamic Synex Ribbon (Logistics & Auto-post stream) -->
+    <path d="M 20 34 C 23 34, 25 35.5, 26 38 C 28 43, 33 48, 41 48 C 47 48, 52 43, 52 38"
+          stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="32" stroke-dashoffset="0"/>
+
+    <!-- Synex Nexus Spark Nodes -->
+    <circle cx="36" cy="41" r="3" fill="#FFFFFF"/>
+    <circle cx="36" cy="41" r="1.5" fill="#10B981"/>
+  </g>
+
+  <!-- Typography: DOCSYNECX for Dark Background -->
+  <g>
+    <!-- "Doc" in Crisp Pure White -->
+    <text x="76" y="47"
+          font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif"
+          font-size="33"
+          font-weight="900"
+          letter-spacing="-0.035em"
+          fill="#FFFFFF">Doc</text>
+
+    <!-- "synecx" in Radiant Blue to Sky Cyan Gradient -->
+    <text x="144" y="47"
+          font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif"
+          font-size="33"
+          font-weight="900"
+          letter-spacing="-0.035em"
+          fill="url(#textGradFooter)">synecx</text>
+
+    <!-- Subtitle: DOCUMENT AI & WORKFLOWS -->
+    <text x="77" y="63"
+          font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif"
+          font-size="8.5"
+          font-weight="700"
+          letter-spacing="0.22em"
+          fill="#94A3B8">DOCUMENT AI &amp; WORKFLOWS</text>
+
+    <!-- Micro Tech Node Accents -->
+    <circle cx="270" cy="30" r="3" fill="#38BDF8"/>
+    <circle cx="270" cy="30" r="1.5" fill="#FFFFFF"/>
+  </g>
+</svg>
