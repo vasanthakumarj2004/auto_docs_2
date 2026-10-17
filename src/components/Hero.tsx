@@ -21,104 +21,8 @@ export const Hero: React.FC = () => {
   });
 
   const [isPlaying, setIsPlaying] = useState(false);
-  const [scrubProgress, setScrubProgress] = useState<number>(0);
-  const [isScrubActive, setIsScrubActive] = useState<boolean>(false);
   const videoCardRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const lastTargetTimeRef = useRef<number>(0);
-  const rafIdRef = useRef<number | null>(null);
-
-  // Mobile touch warmup for media decoder (Mercury strategy)
-  useEffect(() => {
-    let unlocked = false;
-    const handleTouchWarmup = async () => {
-      const vid = videoRef.current;
-      if (vid && !unlocked) {
-        try {
-          await vid.play();
-          vid.pause();
-          vid.currentTime = 0;
-          unlocked = true;
-        } catch {
-          // Autoplay policy fallback
-        }
-      }
-    };
-    window.addEventListener('touchstart', handleTouchWarmup, { once: true, passive: true });
-    return () => window.removeEventListener('touchstart', handleTouchWarmup);
-  }, []);
-
-  // Desktop Scroll-Scrubbing tied to Block 3 scroll position
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReducedMotion) return;
-
-    const handleScroll = () => {
-      // Keep mobile (width < 1024) using normal tap-to-play without scroll hijacking
-      if (window.innerWidth < 1024 || isPlaying) return;
-      const el = block3Ref.current;
-      if (!el) return;
-
-      const rect = el.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const startY = vh * 0.92;
-      const endY = vh * 0.18;
-      const progress = Math.max(0, Math.min(1, (startY - rect.top) / (startY - endY)));
-
-      if (progress > 0 && progress < 1) {
-        setIsScrubActive(true);
-      } else {
-        setIsScrubActive(false);
-      }
-
-      setScrubProgress(progress);
-
-      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
-      rafIdRef.current = requestAnimationFrame(() => {
-        const vid = videoRef.current;
-        if (!vid) return;
-        const totalDuration = vid.duration && !isNaN(vid.duration) ? vid.duration : 120;
-        const targetTime = progress * totalDuration;
-
-        // Mercury deltaThreshold guard (prevents decoder stutter on tiny scroll deltas)
-        if (Math.abs(vid.currentTime - targetTime) >= 0.04) {
-          vid.currentTime = targetTime;
-          lastTargetTimeRef.current = targetTime;
-        }
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
-    };
-  }, [isPlaying]);
-
-  // Scroll scrub calculation when desktop
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setScrubProgress(45);
-      return;
-    }
-
-    const handleScroll = () => {
-      const el = block3Ref.current;
-      if (!el || isPlaying) return;
-      const rect = el.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      const start = windowHeight;
-      const end = -rect.height;
-      const current = rect.top;
-      const progress = Math.max(0, Math.min(100, Math.round(((start - current) / (start - end)) * 100)));
-      setScrubProgress(progress);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [isPlaying]);
 
   useEffect(() => {
     const el = videoCardRef.current;
@@ -126,14 +30,11 @@ export const Hero: React.FC = () => {
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!entry.isIntersecting) {
-          if (isPlaying) {
-            setIsPlaying(false);
-            if (videoRef.current) {
-              videoRef.current.pause();
-            }
+        if (!entry.isIntersecting && isPlaying) {
+          setIsPlaying(false);
+          if (videoRef.current) {
+            videoRef.current.pause();
           }
-          setIsScrubActive(false);
         }
       },
       { threshold: 0.1 }
@@ -223,7 +124,7 @@ export const Hero: React.FC = () => {
                   e.preventDefault();
                   navigate('/logistics');
                 }}
-                className="btn-arrow btn-arrow-website cursor-pointer"
+                className="btn-arrow btn-arrow-teal cursor-pointer"
               >
                 <span className="btn-arrow-label">Run the logistics desk</span>
                 <span className="btn-arrow-chip" aria-hidden="true">
@@ -243,18 +144,6 @@ export const Hero: React.FC = () => {
               <span className="flex items-center gap-2">
                 <span className="h-2 w-2 rounded-full bg-emerald-500" />
                 No rip-and-replace
-              </span>
-            </div>
-
-            {/* Live Pipeline Status Ticker (Institutional proof of live automation) */}
-            <div className="mt-7 flex items-center gap-2.5 rounded-lg border border-slate-200/90 bg-slate-50/80 px-3.5 py-2 text-[11px] font-mono text-slate-700 shadow-2xs">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-              </span>
-              <span className="font-bold text-slate-900 uppercase tracking-wider text-[10px]">PIPELINE:</span>
-              <span className="tabular-nums text-slate-600 truncate">
-                GSTIN 29AAACH7409R1ZZ verified · ₹1,42,800 · 0 manual keystrokes
               </span>
             </div>
           </div>
@@ -309,44 +198,28 @@ export const Hero: React.FC = () => {
                 }}
                 className="main-card-3d-dark relative aspect-video w-full overflow-hidden flex flex-col items-center justify-center p-6 text-center text-white group cursor-pointer transition-all hover:border-brand-blue focus-visible:outline-2 focus-visible:outline-brand-blue"
               >
-                {/* Visual Start-Frame Poster (Rendered when video is idle or reduced-motion) */}
-                <div
-                  className={`pointer-events-none absolute inset-0 z-0 bg-gradient-to-br from-slate-900 via-[#0d1636] to-slate-950 transition-opacity duration-300 ${
-                    isPlaying ? 'opacity-20' : 'opacity-100'
-                  }`}
-                  aria-hidden="true"
-                >
-                  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(47,61,224,0.18)_0%,transparent_75%)]" />
-                  <div className="absolute inset-0 opacity-15 bg-[radial-gradient(rgba(255,255,255,0.12)_1px,transparent_1px)] [background-size:16px_16px]" />
-                </div>
-
-                {/* Looping video slot with Mercury-style feathered gradient mask */}
+                {/* Looping video slot with playsInline, muted, preload */}
                 <video
                   ref={videoRef}
                   playsInline
                   muted
                   loop
                   preload="metadata"
-                  style={{
-                    maskImage: 'linear-gradient(transparent 0%, black 8%, black 92%, transparent 100%), linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)',
-                    maskComposite: 'intersect',
-                    WebkitMaskComposite: 'source-in',
-                  }}
-                  className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 pointer-events-none motion-reduce:hidden ${
-                    isPlaying || isScrubActive ? 'opacity-40' : 'opacity-15'
+                  className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 pointer-events-none ${
+                    isPlaying ? 'opacity-40' : 'opacity-0'
                   }`}
                 />
 
                 <div className="absolute inset-0 bg-radial from-brand-blue/20 to-transparent pointer-events-none" />
 
                 {/* Animated ambient pulse waves when active */}
-                {(isPlaying || isScrubActive) && (
+                {isPlaying && (
                   <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
                     <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(47,61,224,0.25)_0%,transparent_70%)] animate-pulse" />
                   </div>
                 )}
 
-                <div className="floating-badge-1 relative z-10 flex h-14 w-14 items-center justify-center rounded-full bg-brand-blue text-white shadow-xl transition-all duration-300 group-hover:scale-110 group-hover:bg-brand-blue-hover">
+                <div className="floating-badge-1 relative flex h-14 w-14 items-center justify-center rounded-full bg-brand-blue text-white shadow-xl transition-all duration-300 group-hover:scale-110 group-hover:bg-brand-blue-hover">
                   {isPlaying ? (
                     <Pause size={22} className="fill-white" />
                   ) : (
@@ -357,52 +230,29 @@ export const Hero: React.FC = () => {
                   )}
                 </div>
 
-                <div className="relative z-10 mt-4">
+                <div className="relative mt-4">
                   <span className="floating-badge-2 text-xs font-bold tracking-wide uppercase text-blue-300 block font-mono">
-                    {isPlaying
-                      ? '[ Live Demo Walkthrough (2 min) ]'
-                      : scrubProgress < 33
-                      ? '[ STAGE 1: INTAKE & OCR (SCRUBBED) ]'
-                      : scrubProgress < 66
-                      ? '[ STAGE 2: GST & DUPLICATE HOLD ]'
-                      : '[ STAGE 3: POSTED TO TALLY PRIME ]'}
+                    [ Video Slot: Product Walkthrough (2 min) ]
                   </span>
                   <p className="mt-1 text-xs text-slate-300 max-w-sm">
                     {isPlaying
-                      ? 'Live demo active. Click or press space to pause.'
-                      : scrubProgress < 33
-                      ? 'Scroll down to scrub: Invoices ingested from email or PDF scan.'
-                      : scrubProgress < 66
-                      ? 'Scroll down to scrub: 18% IGST checked, duplicate voucher held.'
-                      : 'Scroll down to scrub: Purchase & payment vouchers auto-created in Tally Prime.'}
+                      ? 'Live demo walkthrough active. Click or press space to pause.'
+                      : 'Watch vendor invoices read, validated for GST, and posted to Tally Prime in real time.'}
                   </p>
                 </div>
 
-                {/* Bottom Video Progress Scrubber Bar tied to scroll scrub or playback */}
-                <div className="absolute bottom-0 inset-x-0 z-10 bg-slate-900/85 px-4 py-2 flex items-center justify-between text-[9px] font-mono text-slate-400 border-t border-slate-800/80">
+                {/* Bottom Video Progress Scrubber Bar */}
+                <div className="absolute bottom-0 inset-x-0 bg-slate-900/85 px-4 py-2 flex items-center justify-between text-[9px] font-mono text-slate-400 border-t border-slate-800/80">
                   <span className="flex items-center gap-1.5">
-                    <span
-                      className={`h-1.5 w-1.5 rounded-full ${
-                        isPlaying ? 'bg-emerald-400 animate-pulse' : scrubProgress > 0 ? 'bg-blue-400' : 'bg-slate-500'
-                      }`}
-                    />
-                    {isPlaying ? 'PLAYING' : scrubProgress > 0 ? `SCRUBBED ${scrubProgress}%` : 'READY'}
+                    <span className={`h-1.5 w-1.5 rounded-full ${isPlaying ? 'bg-emerald-400 animate-pulse' : 'bg-slate-500'}`} />
+                    {isPlaying ? 'PLAYING' : 'READY'}
                   </span>
                   <div className="mx-3 flex-1 h-1 bg-slate-800 rounded-full overflow-hidden relative">
                     <div
-                      className="h-full bg-brand-blue transition-all duration-150"
-                      style={{
-                        width: isPlaying ? '40%' : `${scrubProgress}%`,
-                      }}
+                      className={`h-full bg-brand-blue transition-all duration-300 ${isPlaying ? 'w-2/5 animate-pulse' : 'w-0'}`}
                     />
                   </div>
-                  <span className="tabular-nums">
-                    {isPlaying
-                      ? '0:24 / 2:00'
-                      : `${Math.floor((scrubProgress * 1.2) / 60)}:${String(
-                          Math.floor((scrubProgress * 1.2) % 60)
-                        ).padStart(2, '0')} / 2:00`}
-                  </span>
+                  <span>{isPlaying ? '0:24 / 2:00' : '0:00 / 2:00'}</span>
                 </div>
               </div>
             </div>

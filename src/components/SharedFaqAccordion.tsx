@@ -73,25 +73,20 @@ export const SharedFaqAccordion: React.FC<SharedFaqAccordionProps> = ({
               </span>
             </button>
 
-            <div
-              id={answerId}
-              role="region"
-              aria-labelledby={buttonId}
-              className="grid transition-all duration-200 ease-out"
-              style={{
-                gridTemplateRows: isOpen ? '1fr' : '0fr',
-              }}
-            >
-              <div className="overflow-hidden">
-                <div className="px-4 pb-4 pt-1">
-                  <div
-                    className={`border-l-2 pl-3 text-xs sm:text-[13px] leading-relaxed text-slate-600 ${borderActive}`}
-                  >
-                    {item.answer}
-                  </div>
+            {isOpen && item.answer && (
+              <div
+                id={answerId}
+                role="region"
+                aria-labelledby={buttonId}
+                className="px-4 pb-4 pt-1"
+              >
+                <div
+                  className={`border-l-2 pl-3 text-xs sm:text-[13px] leading-relaxed text-slate-600 ${borderActive}`}
+                >
+                  {item.answer}
                 </div>
               </div>
-            </div>
+            )}
           </div>
         );
       })}

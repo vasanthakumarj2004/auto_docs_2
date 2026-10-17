@@ -10,61 +10,6 @@
   background: #ffffff;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-
-  /* Motion Tokens */
-  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-out: cubic-bezier(0, 0, 0.2, 1);
-  --duration-micro: 140ms;
-  --duration-fast: 200ms;
-  --duration-normal: 300ms;
-  --duration-smooth: 450ms;
-  --duration-slow: 600ms;
-  --stagger-delay: 50ms;
-
-  /* Z-Index Scale */
-  --z-deep: -1;
-  --z-normal: 1;
-  --z-ghost-2: 5;
-  --z-ghost-1: 10;
-  --z-content: 20;
-  --z-dropdown: 40;
-  --z-sticky-nav: 50;
-  --z-sticky-cta: 60;
-  --z-modal: 100;
-
-  /* Calibrated Brand & Functional Color Tokens (100% WCAG AA compliant) */
-  --color-brand-blue: #2f3de0;
-  --color-brand-blue-hover: #2430be;
-  --color-brand-navy: #0b1330;
-  --color-brand-navy-light: #141e42;
-  --color-brand-cream: #f8f6f1;
-  --color-brand-lavender: #e8eafb;
-  --color-brand-mint: #e1f3ee;
-
-  /* Desk Accents */
-  --color-finance-accent: #b84805;       /* 5.08:1 on white (AA pass) */
-  --color-finance-accent-hover: #9a3c04;
-  --color-finance-surface: #fff7ed;
-  --color-finance-border: #fed7aa;
-
-  --color-logistics-teal: #0b7056;       /* 5.35:1 on white (AA pass) */
-  --color-logistics-teal-hover: #085441;
-  --color-logistics-surface: #e1f3ee;
-  --color-logistics-border: #99f6e4;
-
-  --color-success-green: #157a42;        /* 4.82:1 on white (AA pass) */
-  --color-success-surface: #f0fdf4;
-  --color-success-border: #bbf7d0;
-
-  /* Text & Ink Tokens */
-  --color-ink-primary: #020617;          /* 19.5:1 on white */
-  --color-ink-body: #1e293b;             /* 14.1:1 on white */
-  --color-ink-muted: #475569;            /* 7.58:1 on white */
-  --color-ink-caption: #475569;          /* Passes 7.02:1 on cream */
-
-  /* Tinted Navy Shadow */
-  --shadow-navy-tint: 0 10px 25px -10px rgba(11, 19, 48, 0.08), 0 2px 6px rgba(11, 19, 48, 0.03);
-  --shadow-navy-lift: 0 16px 36px -12px rgba(11, 19, 48, 0.12), 0 4px 10px rgba(11, 19, 48, 0.04);
 }
 
 html {
@@ -212,17 +157,6 @@ button, input, textarea, select {
 .button-secondary:hover {
   background: #f8fafc;
   border-color: #cbd5e1;
-}
-
-/* Tactile Press States (Mercury motion pattern) */
-.button-primary:active,
-.button-teal:active,
-.button-orange:active,
-.button-dark:active,
-.button-secondary:active {
-  transform: translateY(1px) scale(0.985);
-  box-shadow: 0 1px 3px rgba(11, 19, 48, 0.12);
-  transition-duration: 80ms;
 }
 
 /* Cards with 8-12px radius, soft 1px borders, minimal shadow */
@@ -697,14 +631,7 @@ input:focus-visible {
 .reveal-init {
   opacity: 1;
   transform: none;
-  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@media (min-width: 1024px) {
-  .reveal-init.reveal-pending {
-    opacity: 0;
-    transform: translateY(12px);
-  }
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .reveal-visible {
@@ -856,7 +783,6 @@ input:focus-visible {
   --btn-bg-hover: #2430be;
   --btn-shadow: 0 4px 12px rgba(47, 61, 224, 0.22);
   --btn-ring: #2f3de0;
-  --btn-chip-bg: rgba(255, 255, 255, 0.18);
 
   position: relative;
   display: inline-flex;
@@ -870,7 +796,6 @@ input:focus-visible {
   color: #ffffff;
   background-color: var(--btn-bg);
   box-shadow: var(--btn-shadow);
-  border: 1px solid transparent;
   overflow: hidden;
   cursor: pointer;
   white-space: nowrap;
@@ -878,8 +803,7 @@ input:focus-visible {
   text-decoration: none;
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
               background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
-              border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+              box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
 }
 
@@ -888,8 +812,6 @@ input:focus-visible {
   --btn-bg-hover: #2430be;
   --btn-shadow: 0 4px 12px rgba(47, 61, 224, 0.22);
   --btn-ring: #2f3de0;
-  --btn-chip-bg: rgba(255, 255, 255, 0.18);
-  color: #ffffff;
 }
 
 .btn-arrow-teal {
@@ -897,18 +819,6 @@ input:focus-visible {
   --btn-bg-hover: #0c6f55;
   --btn-shadow: 0 4px 12px rgba(15, 138, 106, 0.2);
   --btn-ring: #0f8a6a;
-  --btn-chip-bg: rgba(255, 255, 255, 0.18);
-  color: #ffffff;
-}
-
-.btn-arrow-website {
-  --btn-bg: #ffffff;
-  --btn-bg-hover: #f8fafc;
-  --btn-shadow: 0 1px 3px rgba(11, 19, 48, 0.05);
-  --btn-ring: #2f3de0;
-  --btn-chip-bg: rgba(11, 19, 48, 0.05);
-  color: #0b1330;
-  border-color: #e2e8f0;
 }
 
 /* Translucent chip background expanding via GPU-accelerated clip-path */
@@ -917,7 +827,7 @@ input:focus-visible {
   position: absolute;
   inset: 3px;
   border-radius: 6px;
-  background-color: var(--btn-chip-bg, rgba(255, 255, 255, 0.18));
+  background-color: rgba(255, 255, 255, 0.18);
   clip-path: inset(0 0 0 calc(100% - 32px) round 6px);
   transition: clip-path 380ms cubic-bezier(0.16, 1, 0.3, 1),
               background-color 250ms ease;
@@ -942,7 +852,7 @@ input:focus-visible {
 .btn-arrow-icon {
   width: 14px;
   height: 14px;
-  color: currentColor;
+  color: #ffffff;
   stroke-width: 2.25;
   transition: transform 380ms cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
@@ -963,10 +873,6 @@ input:focus-visible {
     transform: translateY(-1px);
     box-shadow: 0 6px 16px rgba(11, 19, 48, 0.25);
   }
-  .btn-arrow-website:hover {
-    border-color: #cbd5e1;
-    box-shadow: 0 4px 14px rgba(11, 19, 48, 0.08);
-  }
   .btn-arrow:hover::before {
     clip-path: inset(0 0 0 0 round 6px);
   }
@@ -982,9 +888,6 @@ input:focus-visible {
 .btn-arrow:active {
   transform: scale(0.98) translateY(0);
   box-shadow: 0 2px 6px rgba(11, 19, 48, 0.18);
-}
-.btn-arrow-website:active {
-  box-shadow: 0 1px 3px rgba(11, 19, 48, 0.08);
 }
 
 /* Accessible Focus-Visible */

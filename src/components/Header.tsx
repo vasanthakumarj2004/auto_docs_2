@@ -18,8 +18,8 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200/90 bg-white/95 backdrop-blur-md">
-      <div className="site-shell flex h-[68px] items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr]">
+    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur-md transition-all">
+      <div className="site-shell flex h-16 items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr]">
         {/* Brand Logo */}
         <div className="flex items-center justify-start">
           <a
@@ -34,23 +34,23 @@ export const Header: React.FC = () => {
             <img
               src="/Docsynecx-Logo.svg"
               alt="Docsynecx"
-              className="h-9 sm:h-10 w-auto object-contain transition-opacity group-hover:opacity-90"
+              className="h-8 sm:h-9 w-auto object-contain transition-opacity group-hover:opacity-90"
             />
           </a>
         </div>
 
         {/* Desktop Nav - Centered */}
-        <nav className="hidden items-center justify-center gap-6 lg:gap-7 md:flex" aria-label="Main navigation">
+        <nav className="hidden items-center justify-center gap-6 lg:gap-8 md:flex" aria-label="Main navigation">
           <a
             href="/finance"
             onClick={(e) => {
               e.preventDefault();
               handleLinkClick('/finance');
             }}
-            className={`inline-flex items-center py-1 text-[13px] font-semibold transition-colors ${
+            className={`inline-flex items-center py-1 text-[13px] font-medium transition-colors duration-150 ${
               isFinanceActive
-                ? 'text-brand-blue font-bold'
-                : 'text-slate-600 hover:text-slate-950'
+                ? 'text-brand-blue font-semibold'
+                : 'text-slate-600 hover:text-brand-blue'
             }`}
           >
             Finance
@@ -61,10 +61,10 @@ export const Header: React.FC = () => {
               e.preventDefault();
               handleLinkClick('/logistics');
             }}
-            className={`inline-flex items-center py-1 text-[13px] font-semibold transition-colors ${
+            className={`inline-flex items-center py-1 text-[13px] font-medium transition-colors duration-150 ${
               isLogisticsActive
-                ? 'text-brand-teal font-bold'
-                : 'text-slate-600 hover:text-slate-950'
+                ? 'text-brand-teal font-semibold'
+                : 'text-slate-600 hover:text-brand-teal'
             }`}
           >
             Logistics
@@ -75,7 +75,7 @@ export const Header: React.FC = () => {
               e.preventDefault();
               handleLinkClick('#problem');
             }}
-            className="inline-flex items-center py-1 text-[13px] font-semibold text-slate-600 transition-colors hover:text-slate-950"
+            className="inline-flex items-center py-1 text-[13px] font-medium text-slate-600 transition-colors duration-150 hover:text-brand-blue"
           >
             Industries
           </a>
@@ -85,7 +85,7 @@ export const Header: React.FC = () => {
               e.preventDefault();
               handleLinkClick('#customers');
             }}
-            className="inline-flex items-center py-1 text-[13px] font-semibold text-slate-600 transition-colors hover:text-slate-950"
+            className="inline-flex items-center py-1 text-[13px] font-medium text-slate-600 transition-colors duration-150 hover:text-brand-blue"
           >
             Customers
           </a>
@@ -99,7 +99,11 @@ export const Header: React.FC = () => {
               e.preventDefault();
               handleLinkClick('/calculator');
             }}
-            className="inline-flex items-center py-1 text-[13px] font-semibold text-slate-600 transition-colors hover:text-slate-950"
+            className={`inline-flex items-center py-1 text-[13px] font-medium transition-colors duration-150 ${
+              currentPath === '/calculator'
+                ? 'text-brand-orange font-semibold'
+                : 'text-slate-600 hover:text-brand-orange'
+            }`}
           >
             Pricing
           </a>
@@ -113,9 +117,9 @@ export const Header: React.FC = () => {
               e.preventDefault();
               handleLinkClick('/calculator');
             }}
-            className="inline-flex items-center gap-2 text-[12px] font-bold text-slate-700 transition-colors hover:text-brand-blue"
+            className="group inline-flex items-center gap-2 text-[12.5px] font-medium text-slate-600 transition-colors hover:text-brand-orange"
           >
-            <span className="h-1.5 w-1.5 rounded-full bg-brand-orange shrink-0" />
+            <span className="h-1.5 w-1.5 rounded-full bg-brand-orange transition-transform duration-150 group-hover:scale-125" />
             <span>Free calculator</span>
           </a>
           <a
@@ -124,7 +128,7 @@ export const Header: React.FC = () => {
               e.preventDefault();
               handleLinkClick('#demo');
             }}
-            className="button-primary px-4 py-2 text-[12px]"
+            className="inline-flex items-center justify-center rounded-lg bg-brand-blue px-3.5 py-1.5 text-[12.5px] font-semibold text-white shadow-sm transition-all duration-150 hover:bg-brand-blue-hover hover:shadow active:scale-[0.98]"
           >
             Book a demo
           </a>
@@ -152,8 +156,8 @@ export const Header: React.FC = () => {
                 e.preventDefault();
                 handleLinkClick('/finance');
               }}
-              className={`text-sm font-semibold ${
-                isFinanceActive ? 'text-brand-blue font-bold' : 'text-slate-700'
+              className={`text-sm font-medium transition-colors ${
+                isFinanceActive ? 'text-brand-blue font-semibold' : 'text-slate-700 hover:text-brand-blue'
               }`}
             >
               Finance Desk
@@ -164,8 +168,8 @@ export const Header: React.FC = () => {
                 e.preventDefault();
                 handleLinkClick('/logistics');
               }}
-              className={`text-sm font-semibold ${
-                isLogisticsActive ? 'text-brand-teal font-bold' : 'text-slate-700'
+              className={`text-sm font-medium transition-colors ${
+                isLogisticsActive ? 'text-brand-teal font-semibold' : 'text-slate-700 hover:text-brand-teal'
               }`}
             >
               Logistics Desk
@@ -176,7 +180,7 @@ export const Header: React.FC = () => {
                 e.preventDefault();
                 handleLinkClick('#problem');
               }}
-              className="text-sm font-semibold text-slate-700"
+              className="text-sm font-medium text-slate-700 transition-colors hover:text-brand-blue"
             >
               The Problem
             </a>
@@ -186,7 +190,7 @@ export const Header: React.FC = () => {
                 e.preventDefault();
                 handleLinkClick('#how-it-works');
               }}
-              className="text-sm font-semibold text-slate-700"
+              className="text-sm font-medium text-slate-700 transition-colors hover:text-brand-blue"
             >
               How it works
             </a>
@@ -196,7 +200,7 @@ export const Header: React.FC = () => {
                 e.preventDefault();
                 handleLinkClick('#why-docsynecx');
               }}
-              className="text-sm font-semibold text-slate-700"
+              className="text-sm font-medium text-slate-700 transition-colors hover:text-brand-blue"
             >
               Why Docsynecx
             </a>
@@ -206,7 +210,7 @@ export const Header: React.FC = () => {
                 e.preventDefault();
                 handleLinkClick('#customers');
               }}
-              className="text-sm font-semibold text-slate-700"
+              className="text-sm font-medium text-slate-700 transition-colors hover:text-brand-blue"
             >
               Customers
             </a>
@@ -216,7 +220,7 @@ export const Header: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setMobileResourcesOpen((prev) => !prev)}
-                className="flex w-full items-center justify-between py-2 text-sm font-semibold text-slate-700"
+                className="flex w-full items-center justify-between py-2 text-sm font-medium text-slate-700 hover:text-brand-blue transition-colors"
                 aria-expanded={mobileResourcesOpen}
               >
                 <span>Resources & Products</span>
@@ -235,7 +239,7 @@ export const Header: React.FC = () => {
                       e.preventDefault();
                       handleLinkClick('/finance');
                     }}
-                    className="text-xs font-semibold text-slate-600 hover:text-brand-blue flex items-center justify-between pr-2"
+                    className="text-xs font-medium text-slate-600 hover:text-brand-blue flex items-center justify-between pr-2 transition-colors"
                   >
                     <span>Invoice Automation (Tally / ERP)</span>
                     <span className="text-[9px] font-bold text-brand-blue bg-blue-50 px-1.5 py-0.5 rounded">NEW</span>
@@ -246,9 +250,9 @@ export const Header: React.FC = () => {
                       e.preventDefault();
                       handleLinkClick('/logistics');
                     }}
-                    className="text-xs font-semibold text-slate-600 hover:text-brand-teal"
+                    className="text-xs font-medium text-slate-600 hover:text-brand-teal flex items-center justify-between pr-2 transition-colors"
                   >
-                    Logistics & Supply Chain (CargoWise)
+                    <span>Logistics & Supply Chain (CargoWise)</span>
                   </a>
                   <a
                     href="#how-it-works"
@@ -256,7 +260,7 @@ export const Header: React.FC = () => {
                       e.preventDefault();
                       handleLinkClick('#how-it-works');
                     }}
-                    className="text-xs font-semibold text-slate-600 hover:text-brand-blue"
+                    className="text-xs font-medium text-slate-600 hover:text-brand-blue transition-colors"
                   >
                     Workflows & Approvals
                   </a>
@@ -266,7 +270,7 @@ export const Header: React.FC = () => {
                       e.preventDefault();
                       handleLinkClick('/calculator');
                     }}
-                    className="text-xs font-semibold text-slate-600 hover:text-brand-orange flex items-center justify-between pr-2"
+                    className="text-xs font-medium text-slate-600 hover:text-brand-orange flex items-center justify-between pr-2 transition-colors"
                   >
                     <span>Free ROI Calculator</span>
                     <span className="text-[9px] font-bold text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded">LIVE</span>
@@ -277,7 +281,7 @@ export const Header: React.FC = () => {
                       e.preventDefault();
                       handleLinkClick('#faq');
                     }}
-                    className="text-xs font-semibold text-slate-600 hover:text-brand-blue"
+                    className="text-xs font-medium text-slate-600 hover:text-brand-blue transition-colors"
                   >
                     FAQ & Help Center
                   </a>
@@ -291,7 +295,7 @@ export const Header: React.FC = () => {
                 e.preventDefault();
                 handleLinkClick('#faq');
               }}
-              className="text-sm font-semibold text-slate-700"
+              className="text-sm font-medium text-slate-700 transition-colors hover:text-brand-blue"
             >
               FAQ
             </a>
@@ -301,10 +305,10 @@ export const Header: React.FC = () => {
                 e.preventDefault();
                 handleLinkClick('/calculator');
               }}
-              className="flex items-center gap-2 text-sm font-bold text-brand-orange pt-1"
+              className="group flex items-center gap-2 text-sm font-medium text-slate-700 transition-colors hover:text-brand-orange pt-1"
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-brand-orange" />
-              Free calculator
+              <span className="h-1.5 w-1.5 rounded-full bg-brand-orange transition-transform group-hover:scale-125" />
+              <span>Free calculator</span>
             </a>
             <a
               href="#demo"
@@ -312,7 +316,7 @@ export const Header: React.FC = () => {
                 e.preventDefault();
                 handleLinkClick('#demo');
               }}
-              className="button-primary mt-2 w-fit px-5 py-2.5 text-xs"
+              className="inline-flex items-center justify-center rounded-lg bg-brand-blue mt-2 w-fit px-5 py-2 text-xs font-semibold text-white shadow-sm transition-all hover:bg-brand-blue-hover active:scale-[0.98]"
             >
               Book a demo
             </a>

@@ -1,24 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80" fill="none">
   <defs>
-    <linearGradient id="icon-doc-blue" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#2f3de0"/>
-      <stop offset="100%" stop-color="#4f46e5"/>
+    <linearGradient id="iconPrimaryGrad" x1="12" y1="12" x2="68" y2="68" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2F3DE0"/>
+      <stop offset="100%" stop-color="#19228C"/>
     </linearGradient>
-    <linearGradient id="icon-flow-cyan" x1="12" y1="6" x2="42" y2="36" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#38bdf8"/>
-      <stop offset="100%" stop-color="#0b7056"/>
+    <linearGradient id="iconTealGrad" x1="20" y1="60" x2="68" y2="20" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#00D294"/>
+      <stop offset="100%" stop-color="#00B4D8"/>
+    </linearGradient>
+    <linearGradient id="iconFoldGrad" x1="46" y1="14" x2="60" y2="28" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#60A5FA"/>
+      <stop offset="100%" stop-color="#2563EB"/>
     </linearGradient>
   </defs>
 
-  <g transform="translate(4, 5)">
-    <!-- Base Document Layer -->
-    <rect x="0" y="2" width="28" height="34" rx="7" fill="url(#icon-doc-blue)"/>
-    <!-- Folded Corner Detail -->
-    <path d="M18 2L28 12H21C19.3431 12 18 10.6569 18 9V2Z" fill="#ffffff" opacity="0.25"/>
-    <!-- Foreground Automated Flow Layer -->
-    <rect x="10" y="8" width="26" height="28" rx="6" fill="url(#icon-flow-cyan)" opacity="0.95"/>
-    <!-- Central Autonomous Sync Aperture -->
-    <circle cx="23" cy="22" r="4.5" fill="#ffffff"/>
-    <path d="M21.5 20L25 22L21.5 24" stroke="#2f3de0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Modern Icon Mark (Folded Smart Document + Interlocking Synex/Sync Loops) -->
+  <g>
+    <!-- Base Document Shell with Folded Top-Right Corner -->
+    <path d="M 20 16 C 16.686 16, 14 18.686, 14 22 L 14 58 C 14 61.314, 16.686 64, 20 64 L 54 64 C 57.314 64, 60 61.314, 60 58 L 60 28 L 48 16 Z"
+          fill="url(#iconPrimaryGrad)"/>
+
+    <!-- Document Fold Corner -->
+    <path d="M 48 16 L 48 25 C 48 26.657, 49.343 28, 51 28 L 60 28 Z"
+          fill="url(#iconFoldGrad)" opacity="0.9"/>
+
+    <!-- First Dynamic Synex Ribbon (Finance stream) -->
+    <path d="M 22 46 C 22 36, 32 30, 42 34 C 47 36, 49 41, 51 46 C 52 48.5, 54 50, 56.5 50 C 58.5 50, 60 48.5, 60 46"
+          stroke="url(#iconTealGrad)" stroke-width="3.5" stroke-linecap="round"/>
+
+    <!-- Second Dynamic Synex Ribbon (Logistics & Auto-post stream) -->
+    <path d="M 20 34 C 23 34, 25 35.5, 26 38 C 28 43, 33 48, 41 48 C 47 48, 52 43, 52 38"
+          stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="32" stroke-dashoffset="0"/>
+
+    <!-- Synex Nexus Spark Nodes -->
+    <circle cx="36" cy="41" r="3" fill="#FFFFFF"/>
+    <circle cx="36" cy="41" r="1.5" fill="#00D294"/>
   </g>
 </svg>
