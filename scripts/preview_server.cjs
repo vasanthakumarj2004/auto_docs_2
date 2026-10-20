@@ -13,6 +13,10 @@ const MIME_TYPES = {
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
   '.svg': 'image/svg+xml',
+  '.webp': 'image/webp',
+  '.vtt': 'text/vtt; charset=utf-8',
+  '.webm': 'video/webm',
+  '.mp4': 'video/mp4',
   '.ico': 'image/x-icon',
   '.txt': 'text/plain; charset=utf-8',
   '.xml': 'application/xml; charset=utf-8',
@@ -51,12 +55,12 @@ const server = http.createServer((req, res) => {
       res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
       fs.createReadStream(notFoundPath).pipe(res);
     } else {
-      res.writeHead(404, { 'Content-Type': 'text/plain' });
+      res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
       res.end('404 Not Found');
     }
   }
 });
 
 server.listen(PORT, () => {
-  console.log(`SSG Static Server running at http://localhost:${PORT}/`);
+  console.log(`Static preview server running at http://localhost:${PORT}`);
 });
