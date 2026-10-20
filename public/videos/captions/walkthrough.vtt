@@ -1,0 +1,28 @@
+WEBVTT - Docsynecx 2-Minute Product Walkthrough Captions
+
+00:00:00.000 --> 00:00:05.000
+Docsynecx automates document workflows for finance and freight forwarding teams.
+
+00:00:05.500 --> 00:00:15.000
+Chapter 1: Multi-Channel Intake. Bills and booking emails are ingested automatically from shared inboxes, vendor portals, and scan folders.
+
+00:00:15.500 --> 00:00:29.500
+Incoming PDFs, scans, and attachments are separated and routed without manual template setup.
+
+00:00:30.000 --> 00:00:42.000
+Chapter 2: AI Field Extraction. Vision models extract vendor names, GSTIN, invoice dates, and table line items with 99.8% accuracy.
+
+00:00:42.500 --> 00:00:59.500
+All tax breakdowns, HSN and SAC codes, and line-item math are calculated and cross-checked automatically.
+
+00:01:00.000 --> 00:01:12.000
+Chapter 3: Pre-Posting Guardrails. Every vendor bill is validated against the government GST 2B portal and existing purchase orders.
+
+00:01:12.500 --> 00:01:29.500
+Historical ledger duplicate checks prevent duplicate payouts before any payment reaches your approval desk.
+
+00:01:30.000 --> 00:01:45.000
+Chapter 4: Zero-Touch Posting. Verified vouchers post directly into Tally Prime via native XML server integrations, leaving your books completely unchanged.
+
+00:01:45.500 --> 00:02:00.000
+Your team handles exceptions, not typing. Grow the business, not the data-entry desk.
