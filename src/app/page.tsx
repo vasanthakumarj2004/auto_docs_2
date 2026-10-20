@@ -157,7 +157,7 @@ export default function HomePage() {
             title="Every bill read, checked and posted."
             copy="From a vendor PDF to your books, keep every check in one flow. Your finance team stays in control of approvals and exceptions."
             steps={financeSteps}
-            visual={<BillReviewVisual />}
+            visualType="finance"
           />
           <FeatureSection
             id="logistics"
@@ -165,7 +165,7 @@ export default function HomePage() {
             title="Customer emails become CargoWise jobs."
             copy="Give your operations team a job to review, not an inbox to retype. Shipment details move together, with checks built in."
             steps={logisticsSteps}
-            visual={<ShipmentVisual />}
+            visualType="logistics"
             reverse={true}
           />
 

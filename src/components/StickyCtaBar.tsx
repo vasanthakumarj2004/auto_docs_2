@@ -66,9 +66,9 @@ export const StickyCtaBar: React.FC<StickyCtaBarProps> = ({
           <div className="hidden sm:flex items-center gap-3 min-w-0">
             {badge && (
               <span
-                className={`inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider font-mono shrink-0 ${badgeStyle}`}
+                className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider font-mono shrink-0 ${badgeStyle}`}
               >
-                <Sparkles size={10} />
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 {badge}
               </span>
             )}

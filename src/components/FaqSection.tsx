@@ -37,7 +37,7 @@ export const FaqSection: React.FC = () => {
 
   return (
     <section id="faq" className="border-b border-slate-200/80 bg-[#f8f9fc] py-16 sm:py-24 scroll-mt-16">
-      <div className="site-shell max-w-[760px]">
+      <div className="site-shell max-w-[780px]">
         <div className="text-center mb-12">
           <div className="eyebrow mb-4">
             Answers & Clarifications
@@ -54,11 +54,11 @@ export const FaqSection: React.FC = () => {
           {faqs.map((faq, index) => (
             <details
               key={index}
-              className="group rounded-xl border border-slate-200/90 bg-white shadow-xs transition-all"
+              className="group rounded-2xl border border-slate-200/90 bg-white/95 backdrop-blur-sm shadow-[0_1px_2px_rgba(15,23,42,0.04)] open:border-blue-500/40 open:bg-blue-50/10 open:shadow-[0_4px_16px_-4px_rgba(37,99,235,0.08)] transition-all duration-300"
             >
-              <summary className="flex cursor-pointer list-none items-center justify-between px-6 py-5 text-[15px] font-bold text-slate-950 [&::-webkit-details-marker]:hidden">
-                <span>{faq.question}</span>
-                <span className="ml-4 shrink-0 text-xl font-light text-slate-400 transition-transform duration-200 group-open:rotate-45 leading-none">
+              <summary className="flex cursor-pointer list-none items-center justify-between px-6 py-5 text-[15px] font-bold text-slate-950 [&::-webkit-details-marker]:hidden select-none">
+                <span className="pr-4">{faq.question}</span>
+                <span className="ml-4 shrink-0 text-xl font-light text-slate-400 group-hover:text-slate-600 group-open:text-brand-blue group-open:rotate-45 transition-transform duration-300 leading-none select-none text-center inline-block w-5">
                   +
                 </span>
               </summary>

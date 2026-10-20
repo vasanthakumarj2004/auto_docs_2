@@ -2,7 +2,10 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { 
   ArrowRight, 
-  Sparkles
+  Sparkles,
+  ShieldCheck,
+  FileCheck2,
+  Database
 } from 'lucide-react';
 import { useRouter } from '../lib/router';
 import { StickyCtaBar } from '../components/StickyCtaBar';
@@ -14,6 +17,7 @@ export const LogisticsPage: React.FC = () => {
   const { navigate } = useRouter();
   const stepperRef = useRef<HTMLElement>(null);
   const [activeStep, setActiveStep] = useState<number>(0);
+  const [hoveredRow, setHoveredRow] = useState<number | null>(null);
 
   // Manage SEO Document Title and Meta Description
   useEffect(() => {
@@ -74,7 +78,7 @@ export const LogisticsPage: React.FC = () => {
   return (
     <div className="bg-white text-slate-800">
       {/* =========================================================================
-          SECTION 1: HERO (Two columns on desktop, ambient dot matrix & glow)
+          TIER 1: HERO SECTION (2-Column Split Hero with FT Logistics Outcome Card & Telemetry)
           ========================================================================= */}
       <section className="relative overflow-hidden border-b border-slate-200/80 bg-[#fdfdfd] pt-16 pb-20 sm:pt-24 sm:pb-28">
         {/* Subtle Ambient Radial Glow & Dot Matrix */}
@@ -85,11 +89,11 @@ export const LogisticsPage: React.FC = () => {
 
         <div className="site-shell relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            
             {/* Left Column: Eyebrow, Headline, Subtext, Buttons */}
             <div className="lg:col-span-7 text-left">
-              {/* Tag: FOR FREIGHT FORWARDERS ON CARGOWISE */}
+              {/* Tag: FOR FREIGHT FORWARDERS ON CARGOWISE with live status dot */}
               <div className="inline-flex items-center gap-1.5 rounded-full border border-teal-200/90 bg-teal-50/90 px-3.5 py-1 text-[11px] font-bold uppercase tracking-wider text-teal-800 shadow-2xs font-mono">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
                 <Sparkles size={11} className="text-teal-600" />
                 <span>FOR FREIGHT FORWARDERS ON CARGOWISE</span>
               </div>
@@ -127,16 +131,17 @@ export const LogisticsPage: React.FC = () => {
                       navigate('/#demo');
                     }
                   }}
-                  className="rounded-lg border border-slate-300 bg-white px-5 py-3 text-xs sm:text-sm font-bold text-slate-800 transition-all duration-200 hover:border-slate-400 hover:bg-slate-50 hover:-translate-y-0.5 cursor-pointer shadow-2xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-400"
+                  className="group rounded-lg border border-slate-300 bg-white px-5 py-3 text-xs sm:text-sm font-bold text-slate-800 transition-all duration-200 hover:border-slate-400 hover:bg-slate-50 hover:-translate-y-0.5 cursor-pointer shadow-2xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-400 inline-flex items-center gap-1.5"
                 >
-                  Send us a week of emails →
+                  <span>Send us a week of emails</span>
+                  <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" />
                 </button>
               </div>
             </div>
 
-            {/* Right Column: FT LOGISTICS Hero Proof Card (Wove-Style 3D Layered Card) */}
+            {/* Right Column: FT LOGISTICS Hero Proof Card + Shipsy/Wove Live Telemetry */}
             <div className="lg:col-span-5">
-              <div className="card-3d-layered relative group/ft rounded-2xl border border-teal-800/60 border-l-4 border-l-teal-400 bg-[#0B4A3F] p-8 sm:p-9 text-white shadow-xl min-h-[220px]">
+              <div className="card-3d-layered relative group/ft rounded-2xl border border-teal-800/60 border-l-4 border-l-teal-400 bg-gradient-to-br from-[#064E3B] via-[#065F46] to-[#042F2E] p-7 sm:p-8 text-white shadow-xl min-h-[220px]">
                 <div className="card-3d-ghost card-3d-ghost-1 bg-teal-900/40 border-teal-800/40" aria-hidden="true" />
                 <div className="card-3d-ghost card-3d-ghost-2 bg-teal-950/20 border-teal-800/20" aria-hidden="true" />
 
@@ -148,9 +153,9 @@ export const LogisticsPage: React.FC = () => {
                   <span className="font-mono text-xs font-bold uppercase tracking-wider text-teal-200">
                     FT LOGISTICS
                   </span>
-                  <div className="flex items-center gap-1.5 rounded bg-teal-900/80 px-2 py-0.5 border border-teal-700/60 text-[10px] font-mono text-teal-200">
+                  <div className="flex items-center gap-1.5 rounded bg-teal-900/80 px-2.5 py-0.5 border border-teal-700/60 text-[10px] font-mono text-teal-200 shadow-2xs">
                     <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                    <span>VERIFIED OUTCOME</span>
+                    <span>✓ VERIFIED OUTCOME</span>
                   </div>
                 </div>
 
@@ -167,102 +172,375 @@ export const LogisticsPage: React.FC = () => {
                   </p>
                 </div>
 
+                {/* Shipsy/Wove-Style Embedded Telemetry Console Inside Card */}
+                <div className="relative z-10 my-5 rounded-xl bg-black/30 border border-white/10 p-3.5 backdrop-blur-sm">
+                  {/* Top Status Row: Packet Tag & Circular SVG Gauge */}
+                  <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
+                    <div className="flex items-center gap-2 font-mono text-[9px]">
+                      <span className="text-teal-200 font-bold uppercase tracking-wide">
+                        PACKET: BL + PL + INV
+                      </span>
+                      <span className="rounded bg-emerald-500/20 border border-emerald-400/40 px-1.5 py-0.2 text-[8px] font-bold text-emerald-300">
+                        Suspicious → Verified
+                      </span>
+                    </div>
+
+                    {/* Circular SVG Confidence Gauge */}
+                    <div className="flex items-center gap-1.5 font-mono text-[9px] text-emerald-200 shrink-0">
+                      <svg className="h-4 w-4 -rotate-90" viewBox="0 0 36 36" aria-hidden="true">
+                        <path
+                          className="text-white/10"
+                          stroke="currentColor"
+                          strokeWidth="3.5"
+                          fill="none"
+                          d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                        />
+                        <path
+                          className="text-emerald-400"
+                          stroke="currentColor"
+                          strokeDasharray="99.8, 100"
+                          strokeWidth="3.5"
+                          strokeLinecap="round"
+                          fill="none"
+                          d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                        />
+                      </svg>
+                      <span className="font-bold">99.8%</span>
+                    </div>
+                  </div>
+
+                  {/* 3-Node Pulsing Horizontal Pipeline */}
+                  <div className="mt-2.5 grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr_auto_1fr] items-center gap-1.5 font-mono text-[9.5px]">
+                    <div className="rounded-lg bg-teal-950/70 border border-teal-700/60 p-2 text-left">
+                      <div className="font-bold text-white flex items-center gap-1">
+                        <span>1. Email &amp; PDF Split</span>
+                        <span className="text-emerald-400 font-bold">✓</span>
+                      </div>
+                      <div className="text-[8px] text-teal-200/80 truncate">BL · PL · Invoice</div>
+                    </div>
+
+                    {/* Animated Pulsing Connector 1 */}
+                    <div className="hidden sm:flex items-center justify-center px-1" aria-hidden="true">
+                      <div className="relative flex items-center">
+                        <div className="h-0.5 w-5 bg-emerald-500/40" />
+                        <span className="absolute -top-1 left-1/2 -translate-x-1/2 h-2 w-2 rounded-full bg-emerald-400 animate-ping opacity-75" />
+                        <span className="absolute -top-0.5 left-1/2 -translate-x-1/2 h-1.5 w-1.5 rounded-full bg-emerald-300" />
+                      </div>
+                    </div>
+
+                    <div className="rounded-lg bg-teal-950/70 border border-teal-700/60 p-2 text-left">
+                      <div className="font-bold text-white flex items-center gap-1">
+                        <span>2. Cross-Check</span>
+                        <span className="text-emerald-400 font-bold">✓</span>
+                      </div>
+                      <div className="text-[8px] text-teal-200/80 truncate">Ports · Weight · Marks</div>
+                    </div>
+
+                    {/* Animated Pulsing Connector 2 */}
+                    <div className="hidden sm:flex items-center justify-center px-1" aria-hidden="true">
+                      <div className="relative flex items-center">
+                        <div className="h-0.5 w-5 bg-emerald-500/40" />
+                        <span className="absolute -top-1 left-1/2 -translate-x-1/2 h-2 w-2 rounded-full bg-emerald-400 animate-ping opacity-75" />
+                        <span className="absolute -top-0.5 left-1/2 -translate-x-1/2 h-1.5 w-1.5 rounded-full bg-emerald-300" />
+                      </div>
+                    </div>
+
+                    <div className="rounded-lg bg-teal-950/70 border border-teal-700/60 p-2 text-left">
+                      <div className="font-bold text-white flex items-center gap-1">
+                        <span>3. CW1 Job #S00038421</span>
+                        <span className="text-emerald-400 font-bold">✓</span>
+                      </div>
+                      <div className="text-[8px] text-teal-200/80 truncate">Posted via eAdaptor</div>
+                    </div>
+                  </div>
+                </div>
+
                 {/* Card Link */}
-                <div className="relative z-10 mt-8 pt-4 border-t border-teal-700/60">
+                <div className="relative z-10 pt-3 border-t border-teal-700/60 flex items-center justify-between">
                   <a
                     href="/customers/ft-logistics"
                     onClick={(e) => {
                       e.preventDefault();
                       navigate('/customers/ft-logistics');
                     }}
-                    className="inline-flex items-center gap-1 text-xs font-bold text-teal-200 transition-colors hover:text-white cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-teal-300 rounded"
+                    className="group/link inline-flex items-center gap-1 text-xs font-bold text-teal-200 transition-colors hover:text-white cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-teal-300 rounded"
                   >
-                    Read the story →
+                    <span>Read the story</span>
+                    <ArrowRight size={13} className="transition-transform duration-200 group-hover/link:translate-x-1" />
                   </a>
+                  <span className="font-mono text-[9px] text-teal-300/80">eAdaptor Certified</span>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
 
       {/* =========================================================================
-          SECTION 2: BEFORE / AFTER (TODAY vs WITH DOCSYNECX - Mint Card)
+          TIER 2: DUAL-COLUMN WORKFLOW BENTO FRAME (TODAY vs WITH DOCSYNECX)
           ========================================================================= */}
       <section className="border-b border-slate-200/80 bg-white py-16 sm:py-24">
         <div className="site-shell">
-          <div className="card-3d-layered rounded-2xl border border-slate-200 bg-white p-7 sm:p-9 shadow-xs">
-            <div className="card-3d-ghost card-3d-ghost-1" aria-hidden="true" />
+          {/* Large Outer Rounded Bento Frame mirroring Tier 2 of /finance */}
+          <div className="relative rounded-3xl border border-slate-200/90 bg-white p-6 md:p-10 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_36px_-6px_rgba(15,23,42,0.06),inset_0_1px_0_0_rgba(255,255,255,0.9)] overflow-hidden">
+            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:16px_16px] opacity-40" aria-hidden="true" />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 items-stretch">
-              
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 items-stretch relative z-10">
               {/* Left Column: TODAY (Manual friction) */}
-              <div className="flex flex-col justify-between p-2 sm:p-3">
+              <div className="flex flex-col justify-between p-2 sm:p-4 rounded-2xl border border-slate-200/80 bg-white/95">
                 <div>
-                  <span className="font-mono text-xs font-bold uppercase tracking-wider text-amber-600 block mb-5">
-                    TODAY
-                  </span>
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="font-mono text-xs font-bold uppercase tracking-wider text-amber-600 block">
+                      TODAY
+                    </span>
+                    <span className="font-mono text-[9px] rounded-md bg-amber-50 border border-amber-200 text-amber-800 px-2 py-0.5 font-bold">
+                      MANUAL BOTTLENECK
+                    </span>
+                  </div>
 
-                  <div className="space-y-4 text-sm font-medium text-slate-700">
-                    <p className="leading-snug">Open each email, find the BL</p>
-                    <p className="leading-snug">Re-key shipper, consignee, ports</p>
-                    <p className="leading-snug">Cross-check packing list by eye</p>
-                    <p className="leading-snug">Create the job field by field</p>
+                  <div className="space-y-3.5">
+                    {/* Row 1 */}
+                    <div
+                      onMouseEnter={() => setHoveredRow(0)}
+                      onMouseLeave={() => setHoveredRow(null)}
+                      className={`flex items-center justify-between gap-3 p-2 rounded-xl transition-all ${
+                        hoveredRow === 0 ? 'bg-amber-50/70 border border-amber-200 shadow-2xs' : 'border border-transparent'
+                      }`}
+                    >
+                      <p className="text-sm font-medium text-slate-700 leading-snug">
+                        Open each email, find the BL
+                      </p>
+                      <span className="hidden sm:inline-flex rounded border border-amber-200/80 bg-amber-50 px-2 py-0.5 font-mono text-[10px] text-amber-700 font-bold shrink-0">
+                        15–25 min / shipment
+                      </span>
+                    </div>
+
+                    {/* Row 2 */}
+                    <div
+                      onMouseEnter={() => setHoveredRow(1)}
+                      onMouseLeave={() => setHoveredRow(null)}
+                      className={`flex items-center justify-between gap-3 p-2 rounded-xl transition-all ${
+                        hoveredRow === 1 ? 'bg-rose-50/70 border border-rose-200 shadow-2xs' : 'border border-transparent'
+                      }`}
+                    >
+                      <p className="text-sm font-medium text-slate-700 leading-snug">
+                        Re-key shipper, consignee, ports
+                      </p>
+                      <span className="hidden sm:inline-flex rounded border border-rose-200/80 bg-rose-50 px-2 py-0.5 font-mono text-[10px] text-rose-700 font-bold shrink-0">
+                        High typo risk ↗
+                      </span>
+                    </div>
+
+                    {/* Row 3 */}
+                    <div
+                      onMouseEnter={() => setHoveredRow(2)}
+                      onMouseLeave={() => setHoveredRow(null)}
+                      className={`flex items-center justify-between gap-3 p-2 rounded-xl transition-all ${
+                        hoveredRow === 2 ? 'bg-amber-50/70 border border-amber-200 shadow-2xs' : 'border border-transparent'
+                      }`}
+                    >
+                      <p className="text-sm font-medium text-slate-700 leading-snug">
+                        Cross-check packing list by eye
+                      </p>
+                      <span className="hidden sm:inline-flex rounded border border-amber-200/80 bg-amber-50 px-2 py-0.5 font-mono text-[10px] text-amber-700 font-bold shrink-0">
+                        Weight / Container mismatch
+                      </span>
+                    </div>
+
+                    {/* Row 4 */}
+                    <div
+                      onMouseEnter={() => setHoveredRow(3)}
+                      onMouseLeave={() => setHoveredRow(null)}
+                      className={`flex items-center justify-between gap-3 p-2 rounded-xl transition-all ${
+                        hoveredRow === 3 ? 'bg-rose-50/70 border border-rose-200 shadow-2xs' : 'border border-transparent'
+                      }`}
+                    >
+                      <p className="text-sm font-medium text-slate-700 leading-snug">
+                        Create the job field by field
+                      </p>
+                      <span className="hidden sm:inline-flex rounded border border-rose-200/80 bg-rose-50 px-2 py-0.5 font-mono text-[10px] text-rose-700 font-bold shrink-0">
+                        120+ manual keystrokes
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Compact Diagnostic Strip */}
+                <div className="mt-5 rounded-xl bg-slate-50 border border-slate-200/80 p-3 shadow-2xs">
+                  <div className="flex items-center justify-between text-[9px] font-mono text-slate-400 uppercase tracking-wider mb-1 font-bold">
+                    <span>Operational Cost Analysis</span>
+                    <span className="text-amber-700 font-bold font-mono">Unmitigated Exposure</span>
+                  </div>
+                  <div className="flex items-center gap-1.5 font-mono text-[10px] text-slate-700 font-medium">
+                    <span className="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" />
+                    <span>Manual Bottleneck: 2 hrs avg. cycle time · Delayed pre-alerts &amp; demurrage risk</span>
                   </div>
                 </div>
               </div>
 
-              {/* Right Column: WITH DOCSYNECX (Tinted Mint Card with Animated Checks) */}
-              <div className="flex flex-col justify-between rounded-xl border border-teal-300/80 border-t-2 border-t-teal-600 bg-[#e1f3ee]/50 p-6 sm:p-7 shadow-2xs">
+              {/* Right Column: WITH DOCSYNECX (Tinted Emerald Card with Animated Checks & Outcome Metrics) */}
+              <div className="flex flex-col justify-between rounded-2xl border-2 border-emerald-500/80 bg-emerald-50/25 p-6 sm:p-7 shadow-xs relative overflow-hidden">
                 <div>
-                  <span className="font-mono text-xs font-bold uppercase tracking-wider text-teal-900 block mb-5">
-                    WITH DOCSYNECX
-                  </span>
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="font-mono text-xs font-bold uppercase tracking-wider text-teal-900 block">
+                      WITH DOCSYNECX
+                    </span>
+                    <span className="font-mono text-[9px] rounded-md bg-emerald-100 border border-emerald-300 text-emerald-800 px-2 py-0.5 font-bold">
+                      AUTONOMOUS TELEMETRY
+                    </span>
+                  </div>
 
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3 text-sm font-semibold text-slate-800">
-                      <AnimatedCheckmark
-                        badgeClassName="bg-emerald-100 text-emerald-800 border border-emerald-300"
-                        delayMs={100}
-                      />
-                      <span>Documents collected from email</span>
+                  <div className="space-y-3.5">
+                    {/* Row 1 */}
+                    <div
+                      onMouseEnter={() => setHoveredRow(0)}
+                      onMouseLeave={() => setHoveredRow(null)}
+                      className={`flex items-center justify-between gap-3 p-2 rounded-xl transition-all ${
+                        hoveredRow === 0 ? 'bg-emerald-100/60 border border-emerald-300 shadow-2xs' : 'border border-transparent'
+                      }`}
+                    >
+                      <div className="flex items-center gap-3 text-sm font-semibold text-slate-800">
+                        <AnimatedCheckmark
+                          badgeClassName="bg-emerald-100 text-emerald-800 border border-emerald-300"
+                          delayMs={100}
+                        />
+                        <span>Documents collected from email</span>
+                      </div>
+                      <span className="hidden sm:inline-flex rounded border border-emerald-200/90 bg-emerald-100/80 px-2 py-0.5 font-mono text-[10px] text-emerald-800 font-bold shrink-0">
+                        Auto-split PDFs
+                      </span>
                     </div>
 
-                    <div className="flex items-center gap-3 text-sm font-semibold text-slate-800">
-                      <AnimatedCheckmark
-                        badgeClassName="bg-emerald-100 text-emerald-800 border border-emerald-300"
-                        delayMs={200}
-                      />
-                      <span>Key fields read and matched</span>
+                    {/* Row 2 */}
+                    <div
+                      onMouseEnter={() => setHoveredRow(1)}
+                      onMouseLeave={() => setHoveredRow(null)}
+                      className={`flex items-center justify-between gap-3 p-2 rounded-xl transition-all ${
+                        hoveredRow === 1 ? 'bg-emerald-100/60 border border-emerald-300 shadow-2xs' : 'border border-transparent'
+                      }`}
+                    >
+                      <div className="flex items-center gap-3 text-sm font-semibold text-slate-800">
+                        <AnimatedCheckmark
+                          badgeClassName="bg-emerald-100 text-emerald-800 border border-emerald-300"
+                          delayMs={200}
+                        />
+                        <span>Key fields read and matched</span>
+                      </div>
+                      <span className="hidden sm:inline-flex rounded border border-emerald-200/90 bg-emerald-100/80 px-2 py-0.5 font-mono text-[10px] text-emerald-800 font-bold shrink-0">
+                        BL ↔ PL ↔ Inv Checked
+                      </span>
                     </div>
 
-                    <div className="flex items-center gap-3 text-sm font-semibold text-slate-800">
-                      <AnimatedCheckmark
-                        badgeClassName="bg-emerald-100 text-emerald-800 border border-emerald-300"
-                        delayMs={300}
-                      />
-                      <span>Job created or updated in CargoWise</span>
+                    {/* Row 3 */}
+                    <div
+                      onMouseEnter={() => setHoveredRow(2)}
+                      onMouseLeave={() => setHoveredRow(null)}
+                      className={`flex items-center justify-between gap-3 p-2 rounded-xl transition-all ${
+                        hoveredRow === 2 ? 'bg-emerald-100/60 border border-emerald-300 shadow-2xs' : 'border border-transparent'
+                      }`}
+                    >
+                      <div className="flex items-center gap-3 text-sm font-semibold text-slate-800">
+                        <AnimatedCheckmark
+                          badgeClassName="bg-emerald-100 text-emerald-800 border border-emerald-300"
+                          delayMs={300}
+                        />
+                        <span>Job created or updated in CargoWise</span>
+                      </div>
+                      <span className="hidden sm:inline-flex rounded border border-emerald-200/90 bg-emerald-100/80 px-2 py-0.5 font-mono text-[10px] text-emerald-800 font-bold shrink-0">
+                        &lt; 2 min via eAdaptor
+                      </span>
                     </div>
 
-                    <div className="flex items-center gap-3 text-sm font-semibold text-slate-800">
-                      <AnimatedCheckmark
-                        badgeClassName="bg-emerald-100 text-emerald-800 border border-emerald-300"
-                        delayMs={400}
-                      />
-                      <span>Team works only the flagged cases</span>
+                    {/* Row 4 */}
+                    <div
+                      onMouseEnter={() => setHoveredRow(3)}
+                      onMouseLeave={() => setHoveredRow(null)}
+                      className={`flex items-center justify-between gap-3 p-2 rounded-xl transition-all ${
+                        hoveredRow === 3 ? 'bg-emerald-100/60 border border-emerald-300 shadow-2xs' : 'border border-transparent'
+                      }`}
+                    >
+                      <div className="flex items-center gap-3 text-sm font-semibold text-slate-800">
+                        <AnimatedCheckmark
+                          badgeClassName="bg-emerald-100 text-emerald-800 border border-emerald-300"
+                          delayMs={400}
+                        />
+                        <span>Team works only the flagged cases</span>
+                      </div>
+                      <span className="hidden sm:inline-flex rounded border border-emerald-200/90 bg-emerald-100/80 px-2 py-0.5 font-mono text-[10px] text-emerald-800 font-bold shrink-0">
+                        ~98% less manual keying
+                      </span>
                     </div>
                   </div>
                 </div>
+
+                {/* Compact Live Verification Strip */}
+                <div className="mt-5 rounded-xl bg-white/90 border border-emerald-200/90 p-3 shadow-xs">
+                  <div className="flex items-center justify-between text-[9px] font-mono text-emerald-700 uppercase tracking-wider mb-1 font-bold">
+                    <span>Autonomous Job Dispatch</span>
+                    <span className="text-emerald-800 font-bold font-mono flex items-center gap-1">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      Live eAdaptor Link
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap items-center justify-between gap-1.5 font-mono text-[10px]">
+                    <span className="font-bold text-slate-900">INMAA → SGSIN</span>
+                    <span className="text-slate-300">·</span>
+                    <span className="text-slate-700 font-medium">1x40&apos; HC</span>
+                    <span className="text-slate-300">·</span>
+                    <span className="font-semibold text-slate-800">18,400 kg</span>
+                    <span className="rounded bg-emerald-100 border border-emerald-200 px-1.5 py-0.5 text-[9px] font-bold text-emerald-800">
+                      ✓ 3 Docs Cross-Checked &amp; Posted to CW1
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Cross-Stage Capability Strip Inside Bottom of Tier 2 (Shipsy Architecture Pattern) */}
+            <div className="mt-8 pt-6 border-t border-dashed border-slate-200/90 relative z-10">
+              <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                <span>RUNS ACROSS EVERY SHIPMENT PACKET</span>
               </div>
 
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-[10px]">
+                <div className="rounded-xl border border-slate-200/80 bg-slate-50/80 p-3">
+                  <div className="flex items-center gap-1.5 font-bold text-slate-900 mb-1">
+                    <FileCheck2 size={13} className="text-emerald-600" />
+                    <span>DOCUMENT AI ENGINE</span>
+                  </div>
+                  <p className="text-[9px] text-slate-500 leading-relaxed font-sans">
+                    Multi-page BL · Packing List · Commercial Invoice · Arrival Notice
+                  </p>
+                </div>
+
+                <div className="rounded-xl border border-slate-200/80 bg-slate-50/80 p-3">
+                  <div className="flex items-center gap-1.5 font-bold text-slate-900 mb-1">
+                    <ShieldCheck size={13} className="text-emerald-600" />
+                    <span>DISCREPANCY GUARD</span>
+                  </div>
+                  <p className="text-[9px] text-slate-500 leading-relaxed font-sans">
+                    Shipper/Consignee · Gross Weight · Container &amp; Seal # · HS Codes
+                  </p>
+                </div>
+
+                <div className="rounded-xl border border-slate-200/80 bg-slate-50/80 p-3">
+                  <div className="flex items-center gap-1.5 font-bold text-slate-900 mb-1">
+                    <Database size={13} className="text-emerald-600" />
+                    <span>CARGOWISE SYNC</span>
+                  </div>
+                  <p className="text-[9px] text-slate-500 leading-relaxed font-sans">
+                    Native XML / eAdaptor · Consol &amp; Shipment Creation · Audit Trail
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* =========================================================================
-          SECTION 3: "START WITH ONE WORKFLOW" (Numbered Stepper with Flow Connectors)
+          SECTION: "START WITH ONE WORKFLOW" (Numbered Stepper with Flow Connectors)
           ========================================================================= */}
       <section ref={stepperRef} className="border-b border-[#ede8de] bg-[#F8F6F1] py-16 sm:py-24">
         <div className="site-shell">
@@ -275,11 +553,12 @@ export const LogisticsPage: React.FC = () => {
 
           {/* 5 Module Stepper Cards with Sequential Animated Connectors */}
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr_auto_1fr] items-center gap-2 sm:gap-2 lg:gap-3">
-            
             {/* Step 1: Email → CargoWise job */}
-            <div className={`flex flex-col justify-between rounded-xl border bg-white p-5 transition-all duration-300 hover:shadow-md hover:-translate-y-1 min-h-[160px] ${
-              activeStep >= 1 ? 'border-teal-300/80 border-t-2 border-t-teal-600 shadow-xs' : 'border-slate-200/90 shadow-2xs opacity-85'
-            }`}>
+            <div
+              className={`flex flex-col justify-between rounded-xl border bg-white p-5 transition-all duration-300 hover:shadow-md hover:-translate-y-1 min-h-[160px] ${
+                activeStep >= 1 ? 'border-teal-300/80 border-t-2 border-t-teal-600 shadow-xs' : 'border-slate-200/90 shadow-2xs opacity-85'
+              }`}
+            >
               <div>
                 <span className="font-mono text-[11px] font-bold text-teal-700 bg-teal-50 border border-teal-200 rounded px-1.5 py-0.5 inline-block mb-3">
                   01
@@ -297,9 +576,11 @@ export const LogisticsPage: React.FC = () => {
             <FlowConnector stepIndex={1} activeStep={activeStep} />
 
             {/* Step 2: BL & packing list check */}
-            <div className={`flex flex-col justify-between rounded-xl border bg-white p-5 transition-all duration-300 hover:shadow-md hover:-translate-y-1 min-h-[160px] ${
-              activeStep >= 2 ? 'border-teal-300/80 border-t-2 border-t-teal-600 shadow-xs' : 'border-slate-200/90 shadow-2xs opacity-85'
-            }`}>
+            <div
+              className={`flex flex-col justify-between rounded-xl border bg-white p-5 transition-all duration-300 hover:shadow-md hover:-translate-y-1 min-h-[160px] ${
+                activeStep >= 2 ? 'border-teal-300/80 border-t-2 border-t-teal-600 shadow-xs' : 'border-slate-200/90 shadow-2xs opacity-85'
+              }`}
+            >
               <div>
                 <span className="font-mono text-[11px] font-bold text-teal-700 bg-teal-50 border border-teal-200 rounded px-1.5 py-0.5 inline-block mb-3">
                   02
@@ -317,9 +598,11 @@ export const LogisticsPage: React.FC = () => {
             <FlowConnector stepIndex={2} activeStep={activeStep} />
 
             {/* Step 3: Customs entry */}
-            <div className={`flex flex-col justify-between rounded-xl border bg-white p-5 transition-all duration-300 hover:shadow-md hover:-translate-y-1 min-h-[160px] ${
-              activeStep >= 3 ? 'border-teal-300/80 border-t-2 border-t-teal-600 shadow-xs' : 'border-slate-200/90 shadow-2xs opacity-85'
-            }`}>
+            <div
+              className={`flex flex-col justify-between rounded-xl border bg-white p-5 transition-all duration-300 hover:shadow-md hover:-translate-y-1 min-h-[160px] ${
+                activeStep >= 3 ? 'border-teal-300/80 border-t-2 border-t-teal-600 shadow-xs' : 'border-slate-200/90 shadow-2xs opacity-85'
+              }`}
+            >
               <div>
                 <span className="font-mono text-[11px] font-bold text-teal-700 bg-teal-50 border border-teal-200 rounded px-1.5 py-0.5 inline-block mb-3">
                   03
@@ -337,9 +620,11 @@ export const LogisticsPage: React.FC = () => {
             <FlowConnector stepIndex={3} activeStep={activeStep} />
 
             {/* Step 4: Freight AP check */}
-            <div className={`flex flex-col justify-between rounded-xl border bg-white p-5 transition-all duration-300 hover:shadow-md hover:-translate-y-1 min-h-[160px] ${
-              activeStep >= 4 ? 'border-teal-300/80 border-t-2 border-t-teal-600 shadow-xs' : 'border-slate-200/90 shadow-2xs opacity-85'
-            }`}>
+            <div
+              className={`flex flex-col justify-between rounded-xl border bg-white p-5 transition-all duration-300 hover:shadow-md hover:-translate-y-1 min-h-[160px] ${
+                activeStep >= 4 ? 'border-teal-300/80 border-t-2 border-t-teal-600 shadow-xs' : 'border-slate-200/90 shadow-2xs opacity-85'
+              }`}
+            >
               <div>
                 <span className="font-mono text-[11px] font-bold text-teal-700 bg-teal-50 border border-teal-200 rounded px-1.5 py-0.5 inline-block mb-3">
                   04
@@ -356,10 +641,12 @@ export const LogisticsPage: React.FC = () => {
             {/* Connector 4 */}
             <FlowConnector stepIndex={4} activeStep={activeStep} />
 
-            {/* Step 5: Quote to booking (warm peach / coming soon highlight) */}
-            <div className={`flex flex-col justify-between rounded-xl border border-orange-200/90 border-t-2 border-t-orange-400 bg-[#fef9f3] p-5 transition-all duration-300 hover:shadow-md hover:border-orange-300 hover:-translate-y-1 min-h-[160px] ${
-              activeStep >= 5 ? 'shadow-xs' : 'shadow-2xs opacity-85'
-            }`}>
+            {/* Step 5: Quote to booking */}
+            <div
+              className={`flex flex-col justify-between rounded-xl border border-orange-200/90 border-t-2 border-t-orange-400 bg-[#fef9f3] p-5 transition-all duration-300 hover:shadow-md hover:border-orange-300 hover:-translate-y-1 min-h-[160px] ${
+                activeStep >= 5 ? 'shadow-xs' : 'shadow-2xs opacity-85'
+              }`}
+            >
               <div>
                 <span className="font-mono text-[11px] font-bold text-orange-700 bg-orange-100/70 border border-orange-200 rounded px-1.5 py-0.5 inline-block mb-3">
                   05
@@ -372,20 +659,18 @@ export const LogisticsPage: React.FC = () => {
                 </p>
               </div>
             </div>
-
           </div>
         </div>
       </section>
 
       {/* =========================================================================
-          SECTION 4: BOTTOM INFO CARDS & SOFT CTA (Retyping Audit)
+          TIER 3: BOTTOM 3-CARD BENTO GRID & STICKY CONVERSION DOCK
           ========================================================================= */}
       <section id="retyping-audit" className="bg-white py-16 sm:py-24 scroll-mt-20">
         <div className="site-shell">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-            
-            {/* Card 1: POSTS INTO (with slim bordered chip) */}
-            <div className="flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-6 shadow-2xs transition-all duration-200 hover:border-slate-300 hover:shadow-xs">
+            {/* Card 1: POSTS INTO CargoWise One + Native Integration Telemetry Strip */}
+            <div className="flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white/95 backdrop-blur-sm p-6 sm:p-7 shadow-xs transition-all duration-200 hover:border-slate-300 hover:shadow-md">
               <div>
                 <span className="font-mono text-xs font-bold uppercase tracking-wider text-slate-400 block mb-3">
                   POSTS INTO
@@ -399,10 +684,28 @@ export const LogisticsPage: React.FC = () => {
                   </span>
                 </div>
               </div>
+
+              {/* Native Integration Telemetry Strip */}
+              <div className="mt-5 pt-4 border-t border-slate-100">
+                <div className="flex flex-wrap gap-1.5 font-mono text-[9px]">
+                  <span className="rounded bg-slate-100 border border-slate-200 px-2 py-0.5 text-slate-700 font-semibold">
+                    [ eAdaptor XML ]
+                  </span>
+                  <span className="rounded bg-slate-100 border border-slate-200 px-2 py-0.5 text-slate-700 font-semibold">
+                    [ Forwarding Shipments ]
+                  </span>
+                  <span className="rounded bg-slate-100 border border-slate-200 px-2 py-0.5 text-slate-700 font-semibold">
+                    [ Customs &amp; AP ]
+                  </span>
+                  <span className="rounded bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-emerald-800 font-bold">
+                    [ Zero Screen-Scraping ]
+                  </span>
+                </div>
+              </div>
             </div>
 
-            {/* Card 2: FOR (with slim bordered chips) */}
-            <div className="flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-6 shadow-2xs transition-all duration-200 hover:border-slate-300 hover:shadow-xs">
+            {/* Card 2: FOR Forwarders in India · Middle East (Phase 2) + Trade Lane & Mode Strip */}
+            <div className="flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white/95 backdrop-blur-sm p-6 sm:p-7 shadow-xs transition-all duration-200 hover:border-slate-300 hover:shadow-md">
               <div>
                 <span className="font-mono text-xs font-bold uppercase tracking-wider text-slate-400 block mb-3">
                   FOR
@@ -420,31 +723,56 @@ export const LogisticsPage: React.FC = () => {
                   </span>
                 </div>
               </div>
+
+              {/* Trade Lane & Mode Strip */}
+              <div className="mt-5 pt-4 border-t border-slate-100">
+                <div className="flex flex-wrap gap-1.5 font-mono text-[9px]">
+                  <span className="rounded bg-slate-100 border border-slate-200 px-2 py-0.5 text-slate-700 font-semibold">
+                    [ Ocean FCL / LCL ]
+                  </span>
+                  <span className="rounded bg-slate-100 border border-slate-200 px-2 py-0.5 text-slate-700 font-semibold">
+                    [ Air Freight ]
+                  </span>
+                  <span className="rounded bg-slate-100 border border-slate-200 px-2 py-0.5 text-slate-700 font-semibold">
+                    [ CHA &amp; Customs ]
+                  </span>
+                  <span className="rounded bg-slate-100 border border-slate-200 px-2 py-0.5 text-slate-700 font-semibold">
+                    [ Multi-Branch Desks ]
+                  </span>
+                </div>
+              </div>
             </div>
 
-            {/* Card 3: Retyping Audit (Dark Navy Closing Card) */}
+            {/* Card 3: Retyping Audit (High-Craft Dark Navy #0B1120 Closing Card) */}
             <div 
               onClick={() => navigate('/#demo')}
-              className="group cursor-pointer flex flex-col justify-between rounded-xl border border-slate-800 bg-[#0b1330] p-6 text-white shadow-md transition-all duration-300 hover:shadow-xl hover:border-teal-500/60 hover:-translate-y-0.5"
+              className="group cursor-pointer relative flex flex-col justify-between rounded-2xl border border-white/10 bg-[#0B1120] p-6 sm:p-7 text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:border-teal-400/60 hover:-translate-y-0.5 overflow-hidden"
             >
-              <div>
+              {/* Radial Top Blue/Emerald Ambient Glow */}
+              <div className="pointer-events-none absolute inset-0 bg-radial from-teal-500/15 via-blue-500/5 to-transparent rounded-2xl" />
+
+              <div className="relative z-10">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-sm font-extrabold text-white tracking-wide">
+                  <h3 className="text-base font-extrabold text-white tracking-wide">
                     Retyping Audit
                   </h3>
-                  <ArrowRight size={14} className="text-teal-400 transition-transform duration-200 group-hover:translate-x-1" />
+                  <ArrowRight size={15} className="text-teal-400 transition-transform duration-200 group-hover:translate-x-1" />
                 </div>
                 <p className="mt-2 text-xs leading-relaxed text-slate-300 font-medium">
                   one week of shipment emails → your hours report
                 </p>
+
+                {/* Report Preview Pill */}
+                <div className="mt-4 inline-flex items-center rounded-md border border-teal-500/30 bg-teal-950/60 px-2.5 py-1 font-mono text-[9px] text-teal-200 font-medium tracking-tight">
+                  Deliverable: Exact Time-Wasted &amp; Exception Rate Breakdown
+                </div>
               </div>
 
-              <div className="mt-5 pt-3 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-teal-300 font-semibold">
-                <span>Request report</span>
-                <span>Free 24h turnaround →</span>
+              <div className="relative z-10 mt-6 pt-3.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-teal-300 font-semibold">
+                <span className="group-hover:text-white transition-colors">Request report</span>
+                <span className="group-hover:translate-x-0.5 transition-transform">Free 24h turnaround →</span>
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -454,7 +782,7 @@ export const LogisticsPage: React.FC = () => {
           ========================================================================= */}
       <StickyCtaBar
         theme="teal"
-        badge="LOGISTICS DOOR"
+        badge="LOGISTICS DESK"
         title="Shipment emails in. CargoWise jobs out."
         subtext="Your documentation desk handles the exceptions — not the typing."
         buttonText="Book a demo"

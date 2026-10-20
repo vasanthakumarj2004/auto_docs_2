@@ -45,9 +45,9 @@ export const DemoCta: React.FC = () => {
 
   return (
     <section ref={sectionRef} className="cta-section relative overflow-hidden" id="demo">
-      {/* Raft-style subtle ambient glow behind CTA */}
+      {/* Subtle ambient radial blue glow behind CTA */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-60" aria-hidden="true">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[520px] w-[520px] rounded-full bg-[radial-gradient(circle,rgba(47,61,224,0.1)_0%,rgba(232,103,28,0.06)_40%,transparent_70%)] blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[560px] w-[560px] rounded-full bg-[radial-gradient(circle,rgba(47,61,224,0.12)_0%,rgba(16,185,129,0.05)_40%,transparent_70%)] blur-3xl" />
       </div>
 
       <div className="site-shell relative z-10 text-center">
@@ -74,87 +74,99 @@ export const DemoCta: React.FC = () => {
           </button>
         </div>
 
-        <SpotlightCard className="mx-auto mt-10 max-w-3xl rounded-2xl border border-blue-100/90 bg-white shadow-xs transition-all duration-300 hover:shadow-lg hover:border-blue-200">
+        {/* High-Craft Bento Surface with Specular Top Border Glow */}
+        <SpotlightCard className="relative mx-auto mt-10 max-w-3xl rounded-2xl border border-slate-200/90 bg-white/95 backdrop-blur-sm shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_36px_-6px_rgba(15,23,42,0.08),inset_0_1px_0_0_rgba(255,255,255,0.9)] hover:border-blue-300/80 transition-all duration-300 overflow-hidden">
+          {/* Top specular glow border */}
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-500/60 to-transparent" aria-hidden="true" />
+
           <form
             id="demo-form"
             onSubmit={handleSubmit}
-            className="grid gap-3 p-5 text-left sm:grid-cols-2 sm:p-7"
+            className="grid gap-3.5 p-5 text-left sm:grid-cols-2 sm:p-8"
           >
-          <div>
-            <label className="form-label" htmlFor="demo-email">
-              Work email
-            </label>
-            <input
-              id="demo-email"
-              required
-              type="email"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              suppressHydrationWarning
-              className="form-input"
-              placeholder="you@company.com"
-            />
-          </div>
+            <div>
+              <label className="form-label" htmlFor="demo-email">
+                Work email
+              </label>
+              <input
+                id="demo-email"
+                required
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                suppressHydrationWarning
+                className="form-input transition-all duration-200 focus:ring-2 focus:ring-blue-500/20 focus:border-brand-blue"
+                placeholder="you@company.com"
+              />
+            </div>
 
-          <div>
-            <label className="form-label" htmlFor="demo-company">
-              Company
-            </label>
-            <input
-              id="demo-company"
-              type="text"
-              value={formData.company}
-              onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-              suppressHydrationWarning
-              className="form-input"
-              placeholder="Your company"
-            />
-          </div>
+            <div>
+              <label className="form-label" htmlFor="demo-company">
+                Company
+              </label>
+              <input
+                id="demo-company"
+                type="text"
+                value={formData.company}
+                onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                suppressHydrationWarning
+                className="form-input transition-all duration-200 focus:ring-2 focus:ring-blue-500/20 focus:border-brand-blue"
+                placeholder="Your company"
+              />
+            </div>
 
-          <div className="sm:col-span-2">
-            <label className="form-label" htmlFor="demo-message">
-              What would you like to improve?
-            </label>
-            <textarea
-              id="demo-message"
-              rows={2}
-              value={formData.message}
-              onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              suppressHydrationWarning
-              className="form-input resize-none"
-              placeholder="Bills, shipment emails, or both?"
-            />
-          </div>
+            <div className="sm:col-span-2">
+              <label className="form-label" htmlFor="demo-message">
+                What would you like to improve?
+              </label>
+              <textarea
+                id="demo-message"
+                rows={2}
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                suppressHydrationWarning
+                className="form-input resize-none transition-all duration-200 focus:ring-2 focus:ring-blue-500/20 focus:border-brand-blue"
+                placeholder="Bills, shipment emails, or both?"
+              />
+            </div>
 
-          <div className="flex flex-col justify-between gap-3 sm:col-span-2 sm:flex-row sm:items-center pt-2">
-            <p
-              className={`text-xs ${
-                status === 'error'
-                  ? 'text-rose-600 font-bold'
-                  : status === 'success'
-                  ? 'text-emerald-600 font-bold'
-                  : 'text-slate-500'
-              }`}
-            >
-              {status === 'success'
-                ? 'Thanks — we’ll be in touch shortly.'
-                : status === 'error'
-                ? 'Something went wrong. Please try again.'
-                : 'No pressure, just a useful conversation.'}
-            </p>
+            <div className="flex flex-col justify-between gap-3 sm:col-span-2 sm:flex-row sm:items-center pt-2">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                <p
+                  className={`text-xs ${
+                    status === 'error'
+                      ? 'text-rose-600 font-bold'
+                      : status === 'success'
+                      ? 'text-emerald-600 font-bold'
+                      : 'text-slate-500'
+                  }`}
+                >
+                  {status === 'success'
+                    ? 'Thanks — we’ll be in touch shortly.'
+                    : status === 'error'
+                    ? 'Something went wrong. Please try again.'
+                    : 'No pressure, just a useful conversation.'}
+                </p>
 
-            <button
-              type="submit"
-              disabled={status === 'submitting'}
-              suppressHydrationWarning
-              className="button-primary disabled:cursor-wait disabled:opacity-60 text-xs px-5 py-2.5"
-            >
-              {status === 'submitting' ? 'Sending…' : 'Request a demo'} <ArrowRight size={14} />
-            </button>
-          </div>
-        </form>
-      </SpotlightCard>
-    </div>
-  </section>
+                {status === 'idle' && (
+                  <span className="inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[9.5px] font-mono font-bold text-emerald-700 shadow-2xs w-fit">
+                    ⚡ 15-min live walkthrough with your own sample PDFs
+                  </span>
+                )}
+              </div>
+
+              <button
+                type="submit"
+                disabled={status === 'submitting'}
+                suppressHydrationWarning
+                className="button-primary disabled:cursor-wait disabled:opacity-60 text-xs px-5 py-2.5 shrink-0"
+              >
+                {status === 'submitting' ? 'Sending…' : 'Request a demo'} <ArrowRight size={14} />
+              </button>
+            </div>
+          </form>
+        </SpotlightCard>
+      </div>
+    </section>
   );
 };

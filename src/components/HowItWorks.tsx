@@ -13,30 +13,35 @@ export const HowItWorks: React.FC = () => {
       title: 'Document comes in',
       desc: 'Via email, PDF, or customer upload — Docsynecx ingests it automatically.',
       icon: Mail,
+      artifact: 'PDF · Scan · Pre-Alert Email',
     },
     {
       step: '02',
       title: 'Details extracted',
       desc: 'Docsynecx extracts line items, party ledgers, GSTIN, and shipment specs.',
       icon: Search,
+      artifact: 'Line Items · GSTIN · Container #',
     },
     {
       step: '03',
       title: 'Cross-checked & matched',
       desc: 'Reconciles BL vs Packing List, checks GST portal, and verifies PO matching.',
       icon: FileCheck2,
+      artifact: 'GST Portal · 3-Way PO · BL vs PL',
     },
     {
       step: '04',
       title: 'Pushed to system',
       desc: 'Voucher or job is built and pushed directly into Tally or CargoWise.',
       icon: Database,
+      artifact: 'Tally XML · CargoWise eAdaptor',
     },
     {
       step: '05',
       title: 'Review exceptions only',
       desc: 'Your team reviews only flagged discrepancies — clean records post automatically.',
       icon: CheckCircle2,
+      artifact: 'Exception Queue · Audit Log',
     },
   ];
 
@@ -55,12 +60,17 @@ export const HowItWorks: React.FC = () => {
           </p>
         </div>
 
-        {/* Desktop 5-Step Stepper with connecting line */}
-        <div className="relative mt-16 hidden md:grid md:grid-cols-5 gap-6">
-          {/* Horizontal Connecting Line with Raft-style beam pulse */}
-          <div className="absolute top-[48px] left-[10%] right-[10%] h-[2px] overflow-hidden rounded-full bg-slate-200 z-0">
-            <div className="h-full w-full bg-gradient-to-r from-brand-blue/35 via-brand-teal/40 to-emerald-500/35" />
-            <div className="animate-beam-glow absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-brand-blue to-transparent" />
+        {/* Desktop 5-Step Stepper with Continuous SVG Pipeline Track */}
+        <div className="relative mt-16 hidden md:grid md:grid-cols-5 gap-5">
+          {/* Continuous Horizontal SVG Pipeline Track with Animated Glowing Data Packet */}
+          <div className="absolute top-[48px] left-[8%] right-[8%] h-[12px] overflow-visible z-0 pointer-events-none">
+            <svg width="100%" height="12" viewBox="0 0 1000 12" preserveAspectRatio="none" className="overflow-visible" aria-hidden="true">
+              <line x1="0" y1="6" x2="1000" y2="6" stroke="#e2e8f0" strokeWidth="2" strokeDasharray="4 4" />
+              <line x1="0" y1="6" x2="1000" y2="6" stroke="#2563eb" strokeWidth="2" strokeOpacity="0.35" />
+              <circle r="4.5" fill="#2563eb">
+                <animateMotion path="M 0,6 L 1000,6" dur="4.5s" repeatCount="indefinite" />
+              </circle>
+            </svg>
           </div>
 
           {steps.map((item, index) => {
@@ -71,25 +81,39 @@ export const HowItWorks: React.FC = () => {
                 key={item.step}
                 onMouseEnter={() => setActiveStep(index)}
                 onFocus={() => setActiveStep(index)}
+                onClick={() => setActiveStep(index)}
                 tabIndex={0}
                 className="relative z-10 flex flex-col items-center text-center cursor-pointer group outline-none"
               >
+                {/* Step Icon Capsule */}
                 <div
                   className={`flex h-24 w-24 flex-col items-center justify-center rounded-2xl bg-brand-navy text-white shadow-md mb-4 border transition-all duration-300 ${
                     isActive
-                      ? 'border-brand-blue -translate-y-2 shadow-[0_12px_28px_-6px_rgba(47,61,224,0.35)] ring-2 ring-brand-blue/40'
+                      ? 'border-brand-blue -translate-y-2 shadow-[0_16px_32px_-8px_rgba(37,99,235,0.35)] ring-2 ring-brand-blue/40 bg-gradient-to-b from-[#0B1120] to-[#1e293b]'
                       : 'border-slate-800 hover:-translate-y-1 hover:border-slate-700'
                   }`}
                 >
                   <span className="text-[10px] font-extrabold tracking-wider text-brand-orange mb-1 font-mono">
                     STEP {item.step}
                   </span>
-                  <Icon size={26} className={`transition-colors duration-200 ${isActive ? 'text-white' : 'text-slate-200'}`} />
+                  <Icon size={24} className={`transition-colors duration-200 ${isActive ? 'text-white' : 'text-slate-300'}`} />
                 </div>
-                <h3 className={`text-sm font-bold mb-1.5 transition-colors duration-200 ${isActive ? 'text-brand-blue' : 'text-slate-950'}`}>
+
+                <h3 className={`text-sm font-bold mb-1.5 transition-colors duration-200 ${isActive ? 'text-brand-blue font-extrabold' : 'text-slate-950'}`}>
                   {item.title}
                 </h3>
-                <p className="text-xs leading-relaxed text-slate-500 max-w-[190px]">{item.desc}</p>
+                <p className="text-xs leading-relaxed text-slate-500 max-w-[200px]">{item.desc}</p>
+
+                {/* Monospace System Artifact Pill */}
+                <div
+                  className={`mt-3.5 inline-flex items-center rounded-md px-2 py-1 font-mono text-[9px] tracking-tight transition-all duration-200 ${
+                    isActive
+                      ? 'border border-blue-200 bg-blue-50/90 text-brand-blue font-bold shadow-2xs'
+                      : 'border border-slate-200/80 bg-slate-50/70 text-slate-500 font-medium'
+                  }`}
+                >
+                  {item.artifact}
+                </div>
               </div>
             );
           })}
@@ -104,21 +128,28 @@ export const HowItWorks: React.FC = () => {
               <div
                 key={item.step}
                 onClick={() => setActiveStep(index)}
-                className={`flex items-start gap-4 p-4 rounded-xl border transition-all duration-200 ${
+                className={`flex flex-col gap-2 p-4 rounded-xl border transition-all duration-200 ${
                   isActive
-                    ? 'border-brand-blue bg-blue-50/40 shadow-xs'
+                    ? 'border-brand-blue bg-blue-50/40 shadow-xs ring-1 ring-brand-blue/30'
                     : 'border-slate-200/80 bg-slate-50/60'
                 }`}
               >
-                <div className="flex h-14 w-14 shrink-0 flex-col items-center justify-center rounded-xl bg-brand-navy text-white shadow-sm">
-                  <span className="text-[9px] font-extrabold text-brand-orange font-mono">{item.step}</span>
-                  <Icon size={18} className="text-white mt-0.5" />
+                <div className="flex items-start gap-3.5">
+                  <div className="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-xl bg-brand-navy text-white shadow-sm">
+                    <span className="text-[9px] font-extrabold text-brand-orange font-mono">{item.step}</span>
+                    <Icon size={16} className="text-white mt-0.5" />
+                  </div>
+                  <div>
+                    <h3 className={`text-sm font-bold mb-0.5 ${isActive ? 'text-brand-blue' : 'text-slate-950'}`}>
+                      {item.title}
+                    </h3>
+                    <p className="text-xs leading-5 text-slate-600">{item.desc}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className={`text-sm font-bold mb-1 ${isActive ? 'text-brand-blue' : 'text-slate-950'}`}>
-                    {item.title}
-                  </h3>
-                  <p className="text-xs leading-relaxed text-slate-600">{item.desc}</p>
+
+                {/* Mobile Artifact Pill */}
+                <div className="mt-1 self-start font-mono text-[9px] rounded-md px-2 py-0.5 border border-slate-200 bg-white text-slate-600 font-medium">
+                  {item.artifact}
                 </div>
               </div>
             );

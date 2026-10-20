@@ -1,60 +1,143 @@
+'use client';
 import React from 'react';
-import { Receipt, Check, ArrowRight } from 'lucide-react';
+import { Receipt, Check, ArrowRight, ShieldCheck, Sparkles } from 'lucide-react';
 
-export const BillReviewVisual: React.FC = () => {
+interface BillReviewVisualProps {
+  activeStep?: number;
+}
+
+export const BillReviewVisual: React.FC<BillReviewVisualProps> = ({ activeStep = 0 }) => {
   return (
-    <div className="feature-card">
+    <div className="w-full flex flex-col justify-between h-full gap-4">
+      {/* Sub-Header */}
       <div className="flex items-center justify-between border-b border-slate-100 pb-3">
         <div className="flex items-center gap-2 text-xs font-extrabold text-slate-800">
-          <span className="brand-mark h-4 w-4 rounded">
-            <Receipt size={10} />
+          <span className="brand-mark h-5 w-5 rounded text-[9px] flex items-center justify-center font-bold">
+            <Receipt size={11} />
           </span>
-          Bill review
+          <span>Bill review</span>
+          <span className="text-slate-400 font-mono text-[11px] font-normal">
+            (Prime Components · ₹74,095)
+          </span>
         </div>
-        <span className="rounded border border-emerald-200 bg-emerald-50 px-2 py-1 text-[9px] font-bold text-emerald-700">
-          Ready to post
+        <span className="text-[10px] font-mono text-slate-400 font-medium">
+          INV #829 · FY 2024-25
         </span>
       </div>
 
-      <div className="grid gap-4 py-4 sm:grid-cols-2">
-        <div className="rounded-lg border border-slate-100 bg-slate-50 p-3">
-          <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Tax invoice</span>
-          <p className="mt-2 text-[11px] font-bold text-slate-800">Prime Components</p>
-          <p className="mt-1 text-[9px] text-slate-500">INV-0018 · 16 Oct 2024</p>
-          <div className="mt-4 flex justify-between border-t border-slate-200 pt-2 text-[9px] text-slate-600">
-            <span>Maintenance parts</span>
-            <span>₹16,606</span>
+      {/* Main Split Body */}
+      <div className="grid gap-4 sm:grid-cols-2 flex-1">
+        {/* Left Extraction Panel (Spotlighted on Step 01) */}
+        <div
+          className={`relative rounded-xl border p-3.5 transition-all duration-300 flex flex-col justify-between ${
+            activeStep === 0
+              ? 'border-blue-400 bg-blue-50/30 ring-2 ring-blue-500/25 shadow-xs'
+              : 'border-slate-200/80 bg-slate-50/60'
+          }`}
+        >
+          {/* Step 01 Floating Badge */}
+          {activeStep === 0 && (
+            <div className="absolute -top-2.5 right-3 inline-flex items-center gap-1 rounded bg-blue-600 px-2 py-0.5 text-[8.5px] font-mono font-bold text-white shadow-xs">
+              <Sparkles size={8.5} />
+              AI Field Confidence: 99.9%
+            </div>
+          )}
+
+          <div>
+            <div className="flex items-center justify-between">
+              <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400 font-mono">
+                Tax invoice
+              </span>
+              <span className="text-[8.5px] font-mono font-semibold text-slate-500">
+                GSTIN: 33AABCP1234A1Z5
+              </span>
+            </div>
+            <p className="mt-2 text-xs font-bold text-slate-900">Prime Components</p>
+            <p className="mt-0.5 text-[9.5px] text-slate-500 font-mono">4 line items · 18% GST</p>
+
+            <div className="mt-3 flex justify-between border-t border-slate-200/80 pt-2 text-[9.5px] text-slate-600">
+              <span>Machined parts · 420 units</span>
+              <span className="font-mono font-semibold text-slate-900">₹62,792</span>
+            </div>
           </div>
-          <div className="mt-2 flex justify-between text-[11px] font-extrabold text-slate-950">
+
+          <div className="mt-3 flex justify-between border-t border-slate-200 pt-2 text-xs font-extrabold text-slate-950 font-mono">
             <span>Total</span>
-            <span>₹19,595</span>
+            <span className="text-brand-blue font-bold">₹74,095</span>
           </div>
         </div>
 
-        <div>
-          <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400">Checked before it moves</span>
-          <div className="mt-3 space-y-2 text-[10px] text-slate-700">
-            <p>
-              <Check size={12} className="mr-1 inline text-emerald-500" />
-              GST & line items totals verified
-            </p>
-            <p>
-              <Check size={12} className="mr-1 inline text-emerald-500" />
-              No duplicate bill found
-            </p>
-            <p>
-              <Check size={12} className="mr-1 inline text-emerald-500" />
-              Approval recorded
-            </p>
+        {/* Right Verification Checklist (Spotlighted on Step 02 & Step 03) */}
+        <div
+          className={`rounded-xl border p-3.5 transition-all duration-300 flex flex-col justify-between ${
+            activeStep === 1
+              ? 'border-blue-400 bg-blue-50/25 ring-2 ring-blue-500/20 shadow-xs'
+              : activeStep === 2
+              ? 'border-amber-400 bg-amber-50/25 ring-2 ring-amber-500/20 shadow-xs'
+              : 'border-slate-200/80 bg-white'
+          }`}
+        >
+          <div>
+            <div className="flex items-center justify-between">
+              <span className="text-[9px] font-bold uppercase tracking-wider text-slate-400 font-mono">
+                Checked before it moves
+              </span>
+              {activeStep === 1 && (
+                <span className="inline-flex items-center gap-1 rounded bg-blue-50 border border-blue-200 px-1.5 py-0.5 text-[8px] font-mono font-bold text-blue-700">
+                  <ShieldCheck size={9} />
+                  XML Sync Active
+                </span>
+              )}
+            </div>
+
+            <div className="mt-3 space-y-2 text-[10px] text-slate-700">
+              <p className="flex items-center gap-1.5 font-medium">
+                <Check size={12} className="text-emerald-500 shrink-0" />
+                GST & line items totals verified
+              </p>
+
+              {/* Step 03 Spotlight Zone */}
+              <div
+                className={`rounded-lg p-1.5 transition-all ${
+                  activeStep === 2
+                    ? 'bg-amber-100/70 border border-amber-300'
+                    : ''
+                }`}
+              >
+                <p className="flex items-center gap-1.5 font-medium text-slate-900">
+                  <Check size={12} className="text-emerald-500 shrink-0" />
+                  No duplicate bill found
+                </p>
+                {activeStep === 2 && (
+                  <div className="mt-1 font-mono text-[8.5px] text-amber-800 font-semibold pl-4">
+                    Scanned 1,420 historical vouchers · Repeated Invoice #INV-1104 held automatically
+                  </div>
+                )}
+              </div>
+
+              <p className="flex items-center gap-1.5 font-medium">
+                <Check size={12} className="text-emerald-500 shrink-0" />
+                Approval recorded
+              </p>
+            </div>
           </div>
-          <div className="mt-4 flex items-center justify-center gap-1 rounded border border-blue-100 bg-blue-50 py-2 text-[9px] font-bold text-blue-700">
+
+          {/* Action Pill */}
+          <div
+            className={`mt-4 flex items-center justify-center gap-1.5 rounded-lg py-2 text-[9.5px] font-bold font-mono transition-all ${
+              activeStep === 1
+                ? 'bg-brand-blue text-white shadow-sm ring-1 ring-blue-600'
+                : 'border border-blue-100 bg-blue-50 text-blue-700'
+            }`}
+          >
             <ArrowRight size={12} />
-            Posted to Tally: voucher 4101
+            Posted to Tally: voucher #829
           </div>
         </div>
       </div>
 
-      <div className="border-t border-slate-100 pt-3 text-center text-[9px] text-slate-400">
+      {/* Footer Info */}
+      <div className="border-t border-slate-100 pt-2 text-center text-[9.5px] text-slate-400">
         Illustrative workflow · your approvals rules, your books
       </div>
     </div>

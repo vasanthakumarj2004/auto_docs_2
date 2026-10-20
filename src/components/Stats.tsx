@@ -7,42 +7,76 @@ export const Stats: React.FC = () => {
   const { ref: statsRowRef } = useScrollReveal<HTMLDivElement>({ threshold: 0.1 });
 
   return (
-    <section className="border-b border-slate-200/80 bg-white py-12">
-      <div className="site-shell space-y-10">
-        {/* Proof Stat Row from Image */}
+    <section className="border-b border-slate-200/80 bg-white py-14">
+      <div className="site-shell space-y-12">
+        {/* Architectural Bento Metrics Container */}
         <div
           ref={statsRowRef}
-          className="grid divide-y divide-slate-200 rounded-xl border border-slate-200 bg-[#fcfdff] p-6 shadow-xs sm:grid-cols-3 sm:divide-x sm:divide-y-0"
+          className="rounded-2xl border border-slate-200/90 bg-white/95 backdrop-blur-sm shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_-4px_rgba(15,23,42,0.06),inset_0_1px_0_0_rgba(255,255,255,0.9)] p-6 sm:p-8 divide-y md:divide-y-0 md:divide-x divide-slate-200/80 grid md:grid-cols-3 gap-6 md:gap-0"
         >
-          <div className="px-4 py-3 first:pl-0">
-            <div className="text-2xl font-extrabold tracking-[-0.04em] text-slate-950 font-mono">
-              <CountUp end={2} /> hrs → <CountUp end={2} /> min
+          {/* Cell 1 */}
+          <div className="md:px-6 md:first:pl-0 flex flex-col justify-between">
+            <div className="flex items-center justify-between gap-2 mb-3">
+              <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-slate-400">
+                Processing Velocity
+              </span>
+              <span className="font-mono text-[10px] tracking-tight rounded-md px-2 py-0.5 border bg-emerald-50 text-emerald-700 border-emerald-200 font-bold shadow-2xs">
+                -98.3% CYCLE TIME
+              </span>
             </div>
-            <div className="mt-1 text-xs text-slate-500 font-medium">
-              FTL logistics: email to CargoWise
+            <div>
+              <div className="text-3xl font-extrabold tracking-[-0.04em] text-slate-950 font-mono">
+                <CountUp end={2} /> hrs → <CountUp end={2} /> min
+              </div>
+              <div className="mt-1.5 text-xs text-slate-500 font-medium">
+                FTL logistics: email to CargoWise
+              </div>
             </div>
           </div>
 
-          <div className="px-4 py-3 sm:pl-6">
-            <div className="text-2xl font-extrabold tracking-[-0.04em] text-slate-950 font-mono">
-              Days → hours
+          {/* Cell 2 */}
+          <div className="pt-6 md:pt-0 md:px-6 flex flex-col justify-between">
+            <div className="flex items-center justify-between gap-2 mb-3">
+              <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-slate-400">
+                Turnaround Rate
+              </span>
+              <span className="font-mono text-[10px] tracking-tight rounded-md px-2 py-0.5 border bg-blue-50 text-blue-700 border-blue-200 font-bold shadow-2xs">
+                10x FASTER POSTING
+              </span>
             </div>
-            <div className="mt-1 text-xs text-slate-500 font-medium">
-              Rejections & re-fetches: purchase and spares
+            <div>
+              <div className="text-3xl font-extrabold tracking-[-0.04em] text-slate-950 font-mono">
+                Days → hours
+              </div>
+              <div className="mt-1.5 text-xs text-slate-500 font-medium">
+                Rejections & re-fetches: purchase and spares
+              </div>
             </div>
           </div>
 
-          <div className="px-4 py-3 sm:pl-6">
-            <div className="text-2xl font-extrabold tracking-[-0.04em] text-slate-950 font-mono">
-              In daily use
+          {/* Cell 3 */}
+          <div className="pt-6 md:pt-0 md:px-6 flex flex-col justify-between">
+            <div className="flex items-center justify-between gap-2 mb-3">
+              <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-slate-400">
+                System Reliability
+              </span>
+              <span className="font-mono text-[10px] tracking-tight rounded-md px-2 py-0.5 border bg-emerald-50 text-emerald-700 border-emerald-200 font-bold shadow-2xs inline-flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                99.8% FIELD ACCURACY
+              </span>
             </div>
-            <div className="mt-1 text-xs text-slate-500 font-medium">
-              Job billing: assets and purchase bills
+            <div>
+              <div className="text-3xl font-extrabold tracking-[-0.04em] text-slate-950 font-mono">
+                In daily use
+              </div>
+              <div className="mt-1.5 text-xs text-slate-500 font-medium">
+                Job billing: assets and purchase bills
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Labeled Logo Slot from Image */}
+        {/* Labeled Logo Slot with Enterprise Double-Bordered Capsules */}
         <div id="customers">
           <div className="flex flex-col justify-between gap-2 text-[11px] sm:flex-row sm:items-center">
             <span className="font-bold text-slate-800 tracking-tight">
@@ -54,33 +88,47 @@ export const Stats: React.FC = () => {
           </div>
 
           <div
-            className="marquee-container mask-marquee-edges mt-4 overflow-hidden py-1"
+            className="marquee-container mask-marquee-edges mt-4 overflow-hidden py-2"
             aria-label="Trusted customer logos"
           >
-            <div className="animate-marquee-track flex gap-3 sm:gap-4 pr-3 sm:pr-4">
+            <div className="animate-marquee-track flex gap-4 pr-4">
               {/* Primary logo set */}
-              <div className="flex shrink-0 gap-3 sm:gap-4">
+              <div className="flex shrink-0 gap-4">
                 {Array.from({ length: 6 }, (_, i) => (
                   <div
                     key={`logo-primary-${i}`}
                     tabIndex={0}
-                    className="flex shrink-0 min-w-[150px] sm:min-w-[170px] items-center justify-center gap-2 rounded-lg border border-slate-200/90 bg-slate-50 px-4 py-3 text-[11px] font-semibold text-slate-400 transition-all duration-200 hover:border-slate-300 hover:bg-white hover:text-slate-600 hover:shadow-xs focus-visible:border-brand-blue"
+                    className="group relative flex shrink-0 min-w-[170px] sm:min-w-[190px] items-center justify-between rounded-xl border border-slate-200/90 bg-gradient-to-b from-white via-slate-50/50 to-slate-100/50 p-1 shadow-xs transition-all duration-300 hover:border-blue-300 hover:shadow-sm focus-visible:border-brand-blue"
                   >
-                    <span className="h-3 w-3 rounded bg-slate-300/80" />
-                    Customer logo
+                    <div className="flex w-full items-center justify-between rounded-lg border border-slate-100/90 bg-white px-3.5 py-2.5 text-[11px] font-semibold text-slate-700 transition-colors group-hover:text-slate-950">
+                      <span className="flex items-center gap-2">
+                        <span className="h-3.5 w-3.5 rounded bg-slate-200/90 transition-colors group-hover:bg-brand-blue" />
+                        Customer logo
+                      </span>
+                      <span className="font-mono text-[9px] font-bold text-slate-400 uppercase tracking-tighter">
+                        Verified
+                      </span>
+                    </div>
                   </div>
                 ))}
               </div>
 
               {/* Seamless clone set for infinite loop (hidden on reduced motion) */}
-              <div className="marquee-duplicate flex shrink-0 gap-3 sm:gap-4" aria-hidden="true">
+              <div className="marquee-duplicate flex shrink-0 gap-4" aria-hidden="true">
                 {Array.from({ length: 6 }, (_, i) => (
                   <div
                     key={`logo-clone-${i}`}
-                    className="flex shrink-0 min-w-[150px] sm:min-w-[170px] items-center justify-center gap-2 rounded-lg border border-slate-200/90 bg-slate-50 px-4 py-3 text-[11px] font-semibold text-slate-400 transition-all duration-200 hover:border-slate-300 hover:bg-white hover:text-slate-600 hover:shadow-xs"
+                    className="group relative flex shrink-0 min-w-[170px] sm:min-w-[190px] items-center justify-between rounded-xl border border-slate-200/90 bg-gradient-to-b from-white via-slate-50/50 to-slate-100/50 p-1 shadow-xs transition-all duration-300 hover:border-blue-300 hover:shadow-sm"
                   >
-                    <span className="h-3 w-3 rounded bg-slate-300/80" />
-                    Customer logo
+                    <div className="flex w-full items-center justify-between rounded-lg border border-slate-100/90 bg-white px-3.5 py-2.5 text-[11px] font-semibold text-slate-700 transition-colors group-hover:text-slate-950">
+                      <span className="flex items-center gap-2">
+                        <span className="h-3.5 w-3.5 rounded bg-slate-200/90 transition-colors group-hover:bg-brand-blue" />
+                        Customer logo
+                      </span>
+                      <span className="font-mono text-[9px] font-bold text-slate-400 uppercase tracking-tighter">
+                        Verified
+                      </span>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -91,4 +139,3 @@ export const Stats: React.FC = () => {
     </section>
   );
 };
-

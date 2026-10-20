@@ -126,11 +126,16 @@ export const ProcessingFlowVisual: React.FC<ProcessingFlowVisualProps> = ({ isCe
               </div>
             </div>
 
-            {/* Connecting Arrow 1 */}
-            <div className="hidden md:flex flex-col items-center justify-center text-brand-blue/80 px-0.5">
-              <div className="h-0.5 w-3 bg-gradient-to-r from-blue-300 to-brand-blue rounded-full mb-1" />
-              <ArrowRight size={14} className="text-brand-blue animate-pulse" />
-              <span className="text-[7px] font-bold text-brand-blue font-mono mt-0.5 uppercase tracking-tighter">OCR</span>
+            {/* Connecting Arrow 1 with Animated SVG Data Pulse */}
+            <div className="hidden md:flex flex-col items-center justify-center px-1">
+              <svg width="42" height="18" viewBox="0 0 42 18" className="overflow-visible" aria-hidden="true">
+                <line x1="2" y1="9" x2="34" y2="9" stroke="#93c5fd" strokeWidth="2" strokeDasharray="3 3" />
+                <polygon points="34,5 42,9 34,13" fill="#2563eb" />
+                <circle r="3" fill="#2563eb">
+                  <animateMotion path="M 2,9 L 34,9" dur="1.8s" repeatCount="indefinite" />
+                </circle>
+              </svg>
+              <span className="text-[7.5px] font-bold text-brand-blue font-mono mt-0.5 uppercase tracking-tighter">OCR·PARSE</span>
             </div>
 
             {/* ================= STEP 02: 3D READING / GST-CHECK BOX ================= */}
@@ -197,11 +202,16 @@ export const ProcessingFlowVisual: React.FC<ProcessingFlowVisualProps> = ({ isCe
               </div>
             </div>
 
-            {/* Connecting Arrow 2 */}
-            <div className="hidden md:flex flex-col items-center justify-center text-emerald-600 px-0.5">
-              <div className="h-0.5 w-3 bg-gradient-to-r from-emerald-300 to-emerald-600 rounded-full mb-1" />
-              <ArrowRight size={14} className="text-emerald-600 animate-pulse" />
-              <span className="text-[7px] font-bold text-emerald-700 font-mono mt-0.5 uppercase tracking-tighter">SYNC</span>
+            {/* Connecting Arrow 2 with Animated SVG Data Pulse */}
+            <div className="hidden md:flex flex-col items-center justify-center px-1">
+              <svg width="42" height="18" viewBox="0 0 42 18" className="overflow-visible" aria-hidden="true">
+                <line x1="2" y1="9" x2="34" y2="9" stroke="#6ee7b7" strokeWidth="2" strokeDasharray="3 3" />
+                <polygon points="34,5 42,9 34,13" fill="#10b981" />
+                <circle r="3" fill="#10b981">
+                  <animateMotion path="M 2,9 L 34,9" dur="1.8s" repeatCount="indefinite" />
+                </circle>
+              </svg>
+              <span className="text-[7.5px] font-bold text-emerald-700 font-mono mt-0.5 uppercase tracking-tighter">POST·XML</span>
             </div>
 
             {/* ================= STEP 03: 3D POSTED TO TALLY BOX ================= */}

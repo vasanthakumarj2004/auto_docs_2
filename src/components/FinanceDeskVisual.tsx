@@ -8,10 +8,10 @@ export const FinanceDeskVisual: React.FC<{ isCentered?: boolean }> = ({ isCenter
   const [isCrossfading, setIsCrossfading] = React.useState(false);
 
   const allBills = [
-    ['INV-2018', 'Alpha Components', 'Posted to Tally'],
-    ['BILL-3081', 'Shivraj Traders', 'Posted to Tally'],
-    ['INV-0021', 'Prime Components', 'Duplicate hold'],
-    ['BILL-2082', 'Jaxon Industrial', 'Posted to Tally'],
+    ['INV-4821', 'Alpha Components', 'Posted to Tally'],
+    ['INV-0892', 'Shivraj Traders', 'Posted to Tally'],
+    ['INV-3847', 'Prime Components', 'Duplicate hold'],
+    ['INV-1104', 'Jaxon Industrial', 'Posted to Tally'],
   ];
 
   const handleTabChange = (tab: 'all' | 'needs-review' | 'posted') => {
@@ -60,48 +60,57 @@ export const FinanceDeskVisual: React.FC<{ isCentered?: boolean }> = ({ isCenter
             </span>
           </div>
 
-          <div className="mt-5 flex gap-4 border-b border-slate-100 text-[10px] font-bold" role="tablist" aria-label="Bill categories">
-            <button
-              role="tab"
-              aria-selected={activeTab === 'all'}
-              onClick={() => handleTabChange('all')}
-              suppressHydrationWarning
-              className={`pb-2 transition-all relative cursor-pointer outline-none ${
-                activeTab === 'all'
-                  ? 'border-b-2 border-brand-blue text-brand-blue font-bold'
-                  : 'text-slate-400 hover:text-slate-600'
-              }`}
-            >
-              All bills <b className={`ml-1 rounded-full px-1.5 py-0.5 text-[8px] transition-colors ${activeTab === 'all' ? 'bg-blue-50 text-brand-blue' : 'bg-slate-100 text-slate-500'}`}><CountUp end={24} /></b>
-            </button>
+          <div className="mt-5 flex items-center justify-between gap-3 border-b border-slate-100 pb-2">
+            <div className="flex gap-4 text-[10px] font-bold" role="tablist" aria-label="Bill categories">
+              <button
+                role="tab"
+                aria-selected={activeTab === 'all'}
+                onClick={() => handleTabChange('all')}
+                suppressHydrationWarning
+                className={`pb-1 transition-all relative cursor-pointer outline-none ${
+                  activeTab === 'all'
+                    ? 'border-b-2 border-brand-blue text-brand-blue font-bold'
+                    : 'text-slate-400 hover:text-slate-600'
+                }`}
+              >
+                All bills <b className={`ml-1 rounded-full px-1.5 py-0.5 text-[8px] transition-colors ${activeTab === 'all' ? 'bg-blue-50 text-brand-blue' : 'bg-slate-100 text-slate-500'}`}><CountUp end={24} /></b>
+              </button>
 
-            <button
-              role="tab"
-              aria-selected={activeTab === 'needs-review'}
-              onClick={() => handleTabChange('needs-review')}
-              suppressHydrationWarning
-              className={`pb-2 transition-all relative cursor-pointer outline-none ${
-                activeTab === 'needs-review'
-                  ? 'border-b-2 border-amber-500 text-amber-600 font-bold'
-                  : 'text-slate-400 hover:text-slate-600'
-              }`}
-            >
-              Needs review <b className={`ml-1 rounded-full px-1.5 py-0.5 text-[8px] transition-colors ${activeTab === 'needs-review' ? 'bg-amber-50 text-amber-600' : 'bg-slate-100 text-slate-500'}`}><CountUp end={1} /></b>
-            </button>
+              <button
+                role="tab"
+                aria-selected={activeTab === 'needs-review'}
+                onClick={() => handleTabChange('needs-review')}
+                suppressHydrationWarning
+                className={`pb-1 transition-all relative cursor-pointer outline-none ${
+                  activeTab === 'needs-review'
+                    ? 'border-b-2 border-amber-500 text-amber-600 font-bold'
+                    : 'text-slate-400 hover:text-slate-600'
+                }`}
+              >
+                Needs review <b className={`ml-1 rounded-full px-1.5 py-0.5 text-[8px] transition-colors ${activeTab === 'needs-review' ? 'bg-amber-50 text-amber-600' : 'bg-slate-100 text-slate-500'}`}><CountUp end={2} /></b>
+              </button>
 
-            <button
-              role="tab"
-              aria-selected={activeTab === 'posted'}
-              onClick={() => handleTabChange('posted')}
-              suppressHydrationWarning
-              className={`pb-2 transition-all relative cursor-pointer outline-none ${
-                activeTab === 'posted'
-                  ? 'border-b-2 border-emerald-600 text-emerald-600 font-bold'
-                  : 'text-slate-400 hover:text-slate-600'
-              }`}
-            >
-              Posted <b className={`ml-1 rounded-full px-1.5 py-0.5 text-[8px] transition-colors ${activeTab === 'posted' ? 'bg-emerald-50 text-emerald-600' : 'bg-slate-100 text-slate-500'}`}><CountUp end={23} /></b>
-            </button>
+              <button
+                role="tab"
+                aria-selected={activeTab === 'posted'}
+                onClick={() => handleTabChange('posted')}
+                suppressHydrationWarning
+                className={`pb-1 transition-all relative cursor-pointer outline-none ${
+                  activeTab === 'posted'
+                    ? 'border-b-2 border-emerald-600 text-emerald-600 font-bold'
+                    : 'text-slate-400 hover:text-slate-600'
+                }`}
+              >
+                Posted <b className={`ml-1 rounded-full px-1.5 py-0.5 text-[8px] transition-colors ${activeTab === 'posted' ? 'bg-emerald-50 text-emerald-600' : 'bg-slate-100 text-slate-500'}`}><CountUp end={22} /></b>
+              </button>
+            </div>
+
+            {/* Elevated dark floating alert pill */}
+            <div className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-[#0B1120] text-white px-2.5 py-0.5 shadow-md border border-slate-700/80 text-[8.5px] font-mono shrink-0">
+              <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
+              <span className="text-amber-300 font-semibold">Duplicate hold</span>
+              <span className="text-slate-400">· not paid twice</span>
+            </div>
           </div>
 
           <div className="mt-2 overflow-x-auto min-h-[160px]">
