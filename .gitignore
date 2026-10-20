@@ -24,3 +24,7 @@ out
 *.njsproj
 *.sln
 *.sw?
+
+# Generated video render frames
+tools/hero-video/frames/
+reference_sites_report.json
