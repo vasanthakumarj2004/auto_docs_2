@@ -3,6 +3,7 @@ import React from 'react';
 import { Play } from 'lucide-react';
 import { useRouter } from '../lib/router';
 import { HeroProductPanel } from './hero/HeroProductPanel';
+import { HeroBackgroundVideo } from './hero/HeroBackgroundVideo';
 import { VideoModal } from './video/VideoModal';
 import { LoopVideo } from './video/LoopVideo';
 import { videosConfig } from '../content/videos';
@@ -11,12 +12,15 @@ export const Hero: React.FC = () => {
   const { navigate } = useRouter();
 
   return (
-    <section className="relative border-b border-slate-200/80 hero-section pt-8 pb-14 lg:py-0 overflow-hidden">
+    <section className="relative border-b border-slate-200/80 hero-section pt-8 pb-14 lg:py-0 overflow-hidden group/hero">
       {/* Soft Ambient Radial Blue Glow behind Hero Container */}
       <div className="pointer-events-none absolute inset-0 -top-24 flex items-center justify-center overflow-hidden" aria-hidden="true">
         <div className="h-[640px] w-[960px] rounded-full bg-[radial-gradient(ellipse_at_center,rgba(37,99,235,0.09)_0%,rgba(16,185,129,0.04)_45%,transparent_70%)] blur-3xl" />
         <div className="absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:24px_24px] opacity-40 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_75%)]" />
       </div>
+
+      {/* Hero Ambient Background Video (Pure-code generated, multiply blend) */}
+      <HeroBackgroundVideo />
 
       <div className="site-shell relative z-10 grid items-start gap-8 lg:gap-12 lg:grid-cols-12">
         {/* Left Column: Vertically centered in visible area under sticky navbar, and STICKY */}
