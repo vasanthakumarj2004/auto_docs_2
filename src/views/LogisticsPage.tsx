@@ -12,6 +12,9 @@ import { StickyCtaBar } from '../components/StickyCtaBar';
 import { MetricTransition } from '../components/MetricTransition';
 import { AnimatedCheckmark } from '../components/AnimatedCheckmark';
 import { FlowConnector } from '../components/FlowConnector';
+import { LoopVideo } from '../components/video/LoopVideo';
+import { VideoSlot } from '../components/video/VideoSlot';
+import { videosConfig } from '../content/videos';
 
 export const LogisticsPage: React.FC = () => {
   const { navigate } = useRouter();
@@ -170,6 +173,15 @@ export const LogisticsPage: React.FC = () => {
                   <p className="mt-3 text-xs sm:text-sm font-medium text-teal-100">
                     email-to-CargoWise posting
                   </p>
+                </div>
+
+                {/* Product Visual Ambient Loop */}
+                <div className="relative z-10 my-4 overflow-hidden rounded-xl border border-teal-500/30 bg-black/40 shadow-inner">
+                  <LoopVideo
+                    config={videosConfig['logistics-desk-loop']}
+                    aspectRatio="16/9"
+                    className="w-full"
+                  />
                 </div>
 
                 {/* Shipsy/Wove-Style Embedded Telemetry Console Inside Card */}

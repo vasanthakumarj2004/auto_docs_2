@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import React from 'react';
 import '@/src/index.css';
 import { RouterProvider } from '@/src/lib/router';
+import { VideoProvider } from '@/src/components/video/VideoContext';
 
 export const viewport: Viewport = {
   themeColor: '#2f3de0',
@@ -76,10 +77,13 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: '/logo-icon.svg',
-    shortcut: '/logo-icon.svg',
-    apple: '/logo-icon.svg',
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
   },
+  manifest: '/site.webmanifest',
 };
 
 const organizationSchema = {
@@ -127,7 +131,9 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-white text-slate-800 antialiased font-sans" suppressHydrationWarning>
-        <RouterProvider>{children}</RouterProvider>
+        <RouterProvider>
+          <VideoProvider>{children}</VideoProvider>
+        </RouterProvider>
       </body>
     </html>
   );

@@ -16,6 +16,9 @@ import { StickyCtaBar } from '../components/StickyCtaBar';
 import { MetricTransition } from '../components/MetricTransition';
 import { AnimatedCheckmark } from '../components/AnimatedCheckmark';
 import { FlowConnector } from '../components/FlowConnector';
+import { LoopVideo } from '../components/video/LoopVideo';
+import { VideoSlot } from '../components/video/VideoSlot';
+import { videosConfig } from '../content/videos';
 
 // Config constant for bank partners label as required by spec
 export const BANK_PARTNERS_LABEL = 'via your bank';
@@ -204,6 +207,15 @@ export const FinancePage: React.FC = () => {
                   <p className="mt-3 text-xs sm:text-sm font-medium text-emerald-100">
                     purchase, spares & service entry into TallyPrime
                   </p>
+                </div>
+
+                {/* Product Visual Ambient Loop */}
+                <div className="relative z-10 my-4 overflow-hidden rounded-xl border border-emerald-500/30 bg-black/40 shadow-inner">
+                  <LoopVideo
+                    config={videosConfig['finance-desk-loop']}
+                    aspectRatio="16/9"
+                    className="w-full"
+                  />
                 </div>
 
                 {/* Docked Interactive Telemetry Strip (Shipsy/Wove Style) */}
@@ -628,6 +640,16 @@ export const FinancePage: React.FC = () => {
                     <div className="text-base font-extrabold text-slate-900">3 Categories</div>
                     <div className="text-[9px] text-slate-500 font-medium mt-0.5">Purchase · Spares · Service</div>
                   </div>
+                </div>
+
+                {/* Customer Case Study Video Slot */}
+                <div className="mt-4">
+                  <VideoSlot
+                    config={videosConfig['customer-story-rajadurai']}
+                    mode="coming-soon"
+                    badgeText="Customer video coming soon"
+                    aspectRatio="16/9"
+                  />
                 </div>
               </div>
 

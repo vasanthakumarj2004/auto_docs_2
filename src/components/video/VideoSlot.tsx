@@ -7,26 +7,33 @@ interface VideoSlotProps {
   config?: VideoConfig;
   title?: string;
   label?: string;
-  aspectRatio?: '16:9' | '4:3' | '1.3:1' | 'auto';
+  badgeText?: string;
+  aspectRatio?: '16:9' | '16/9' | '4:3' | '4/3' | '1.3:1' | '1:1' | 'auto';
   className?: string;
   badgeType?: 'soon' | 'demo';
+  mode?: 'soon' | 'demo' | 'coming-soon' | string;
 }
 
 export const VideoSlot: React.FC<VideoSlotProps> = ({
   config,
   title,
   label,
+  badgeText,
   aspectRatio = '16:9',
   className = '',
   badgeType = 'soon',
+  mode,
 }) => {
   const displayTitle = title || config?.title || 'Production Video';
-  const displayLabel = label || config?.placeholderText || (badgeType === 'soon' ? 'Customer video coming soon' : 'Illustrative demo');
+  const effectiveBadgeType = mode === 'demo' ? 'demo' : badgeType;
+  const displayLabel = badgeText || label || config?.placeholderText || (effectiveBadgeType === 'soon' ? 'Customer video coming soon' : 'Illustrative demo');
   const ratioClass =
-    aspectRatio === '16:9'
+    aspectRatio === '16:9' || aspectRatio === '16/9'
       ? 'aspect-video'
-      : aspectRatio === '4:3'
+      : aspectRatio === '4:3' || aspectRatio === '4/3'
       ? 'aspect-[4/3]'
+      : aspectRatio === '1:1'
+      ? 'aspect-square'
       : aspectRatio === '1.3:1'
       ? 'aspect-[1.3/1]'
       : 'min-h-[220px]';

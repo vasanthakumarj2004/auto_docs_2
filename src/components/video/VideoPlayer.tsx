@@ -15,11 +15,12 @@ import { VideoConfig, VideoChapter } from '@/src/content/videos';
 import { useVideoSystem } from './VideoContext';
 import { VideoTranscript } from './VideoTranscript';
 
-interface VideoPlayerProps {
+export interface VideoPlayerProps {
   config: VideoConfig;
   className?: string;
   autoPlayMuted?: boolean;
   showTranscript?: boolean;
+  onFallbackToStoryboard?: () => void;
 }
 
 export const VideoPlayer: React.FC<VideoPlayerProps> = ({
@@ -27,6 +28,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
   className = '',
   autoPlayMuted = false,
   showTranscript = false,
+  onFallbackToStoryboard,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -36,6 +38,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
 
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [hasStarted, setHasStarted] = useState<boolean>(false);
+  const [hasError, setHasError] = useState<boolean>(false);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [duration, setDuration] = useState<number>(config.durationSec || 120);
   const [isMuted, setIsMuted] = useState<boolean>(autoPlayMuted);
@@ -293,6 +296,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
           preload="none"
           onTimeUpdate={handleTimeUpdate}
           onLoadedMetadata={handleLoadedMetadata}
+          onError={() => setHasError(true)}
           onEnded={() => {
             setIsPlaying(false);
             registerPause(config.id);
@@ -300,8 +304,8 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
           }}
           className="h-full w-full object-cover"
         >
-          {config.sources?.webm && <source src={config.sources.webm} type="video/webm" />}
-          {config.sources?.mp4 && <source src={config.sources.mp4} type="video/mp4" />}
+          {config.sources?.webm && <source src={config.sources.webm} type="video/webm" onError={() => setHasError(true)} />}
+          {config.sources?.mp4 && <source src={config.sources.mp4} type="video/mp4" onError={() => setHasError(true)} />}
           {config.captionsVtt && (
             <track
               kind="subtitles"
@@ -312,6 +316,31 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
             />
           )}
         </video>
+
+        {/* Missing or Pending Footage Fallback Overlay */}
+        {hasError && (
+          <div className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-slate-950/90 p-6 text-center backdrop-blur-xs">
+            <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-blue-400 mb-1">
+              Illustrative Demo Mode
+            </span>
+            <p className="text-sm font-bold text-white mb-2">
+              Production recording pending release
+            </p>
+            <p className="text-xs text-slate-400 max-w-sm mb-4">
+              Explore the fully interactive 4-step walkthrough simulator.
+            </p>
+            {onFallbackToStoryboard && (
+              <button
+                type="button"
+                onClick={onFallbackToStoryboard}
+                className="inline-flex items-center gap-1.5 rounded-lg bg-blue-600 px-3.5 py-2 font-mono text-xs font-bold text-white hover:bg-blue-500 transition-colors cursor-pointer shadow-md"
+              >
+                <span>Launch Interactive Storyboard</span>
+                <span>→</span>
+              </button>
+            )}
+          </div>
+        )}
 
         {/* Initial Large Play Button Overlay */}
         {!hasStarted && (

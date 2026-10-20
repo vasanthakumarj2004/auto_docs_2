@@ -8,12 +8,12 @@ interface LoopVideoProps {
   config?: VideoConfig;
   srcMp4?: string;
   srcWebm?: string;
-  poster: string;
+  poster?: string;
   posterWidth?: number;
   posterHeight?: number;
   ariaLabel?: string;
   isDecorative?: boolean;
-  aspectRatio?: '16:9' | '4:3' | '1.3:1' | 'auto';
+  aspectRatio?: '16:9' | '16/9' | '4:3' | '4/3' | '1.3:1' | '1:1' | 'auto';
   className?: string;
 }
 
@@ -32,10 +32,10 @@ export const LoopVideo: React.FC<LoopVideoProps> = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const videoId = config?.id || `loop-${poster}`;
+  const videoId = config?.id || `loop-${poster || 'video'}`;
   const effectiveMp4 = srcMp4 || config?.sources?.mp4;
   const effectiveWebm = srcWebm || config?.sources?.webm;
-  const effectivePoster = poster || config?.poster;
+  const effectivePoster = poster || config?.poster || '';
   const effectiveAriaLabel = ariaLabel || config?.ariaLabel || config?.title || 'Product demonstration video loop';
 
   const { activeVideoId, registerPlay, registerPause, saveDataMode, prefersReducedMotion } = useVideoSystem();
@@ -132,10 +132,12 @@ export const LoopVideo: React.FC<LoopVideoProps> = ({
   };
 
   const ratioClass =
-    aspectRatio === '16:9'
+    aspectRatio === '16:9' || aspectRatio === '16/9'
       ? 'aspect-video'
-      : aspectRatio === '4:3'
+      : aspectRatio === '4:3' || aspectRatio === '4/3'
       ? 'aspect-[4/3]'
+      : aspectRatio === '1:1'
+      ? 'aspect-square'
       : aspectRatio === '1.3:1'
       ? 'aspect-[1.3/1]'
       : 'h-full w-full';

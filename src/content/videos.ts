@@ -22,7 +22,7 @@ export interface VideoConfig {
   transcript?: string;
   durationSec?: number;
   chapters?: VideoChapter[];
-  aspectRatio?: '16:9' | '4:3' | '1.3:1' | 'auto';
+  aspectRatio?: '16:9' | '16/9' | '4:3' | '4/3' | '1.3:1' | '1:1' | 'auto';
   embedUrl?: string; // YouTube or Vimeo privacy URL
   isPlaceholder?: boolean;
   placeholderText?: string;
