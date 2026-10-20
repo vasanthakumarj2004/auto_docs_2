@@ -1,12 +1,8 @@
 'use client';
 import React from 'react';
-import { Play } from 'lucide-react';
 import { useRouter } from '../lib/router';
 import { HeroProductPanel } from './hero/HeroProductPanel';
 import { HeroBackgroundVideo } from './hero/HeroBackgroundVideo';
-import { VideoModal } from './video/VideoModal';
-import { LoopVideo } from './video/LoopVideo';
-import { videosConfig } from '../content/videos';
 
 export const Hero: React.FC = () => {
   const { navigate } = useRouter();
@@ -75,40 +71,7 @@ export const Hero: React.FC = () => {
               </a>
             </div>
 
-            {/* Homepage Video Card Slot: VideoModal trigger with LoopVideo preview */}
-            <div className="mt-6">
-              <VideoModal
-                config={videosConfig['hero-walkthrough']}
-                trigger={
-                  <div className="group flex items-center gap-3.5 rounded-xl border border-slate-200/90 bg-slate-50/70 p-2 pr-4 shadow-[0_1px_2px_rgba(15,23,42,0.03)] hover:border-blue-400 hover:bg-blue-50/40 transition-all duration-200 cursor-pointer max-w-fit">
-                    <div className="relative h-11 w-18 shrink-0 overflow-hidden rounded-lg border border-slate-700 bg-slate-900 shadow-xs">
-                      <LoopVideo
-                        config={videosConfig['hero-walkthrough']}
-                        aspectRatio="16/9"
-                        className="h-full w-full object-cover"
-                      />
-                      <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/10 transition-colors">
-                        <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-600 text-white shadow-xs group-hover:scale-110 transition-transform">
-                          <Play size={10} className="translate-x-0.5 fill-white text-white" />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-left">
-                      <div className="flex items-center gap-1.5 font-mono text-[10px] font-bold text-blue-600 uppercase tracking-wider">
-                        <span>Watch 2-Min Demo</span>
-                        <span className="text-slate-300">·</span>
-                        <span className="text-slate-500 font-normal">2:00</span>
-                      </div>
-                      <div className="text-xs font-semibold text-slate-800 group-hover:text-blue-700 transition-colors">
-                        See bills &amp; emails post autonomously
-                      </div>
-                    </div>
-                  </div>
-                }
-              />
-            </div>
-
-            <div className="mt-7 flex flex-wrap items-center gap-6 text-[12px] font-semibold text-slate-500">
+            <div className="mt-9 flex flex-wrap items-center gap-6 text-[12px] font-semibold text-slate-500">
               <span className="flex items-center gap-2">
                 <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
                 Built around your approvals

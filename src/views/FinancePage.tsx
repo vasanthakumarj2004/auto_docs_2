@@ -16,9 +16,6 @@ import { StickyCtaBar } from '../components/StickyCtaBar';
 import { MetricTransition } from '../components/MetricTransition';
 import { AnimatedCheckmark } from '../components/AnimatedCheckmark';
 import { FlowConnector } from '../components/FlowConnector';
-import { LoopVideo } from '../components/video/LoopVideo';
-import { VideoSlot } from '../components/video/VideoSlot';
-import { videosConfig } from '../content/videos';
 
 // Config constant for bank partners label as required by spec
 export const BANK_PARTNERS_LABEL = 'via your bank';
@@ -209,13 +206,23 @@ export const FinancePage: React.FC = () => {
                   </p>
                 </div>
 
-                {/* Product Visual Ambient Loop */}
-                <div className="relative z-10 my-4 overflow-hidden rounded-xl border border-emerald-500/30 bg-black/40 shadow-inner">
-                  <LoopVideo
-                    config={videosConfig['finance-desk-loop']}
-                    aspectRatio="16/9"
-                    className="w-full"
+                {/* Product Visual Showcase Image */}
+                <div className="relative z-10 my-4 overflow-hidden rounded-xl border border-emerald-500/30 bg-black/40 shadow-inner group">
+                  <img
+                    src="/images/finance-desk-card.jpg"
+                    alt="Docsynecx Finance Desk - Invoice Automation & AP Telemetry"
+                    width={1376}
+                    height={768}
+                    className="w-full aspect-video object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                    loading="eager"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/70 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute top-2.5 right-2.5 z-10 pointer-events-none">
+                    <span className="inline-flex items-center gap-1.5 rounded-md border border-emerald-400/40 bg-emerald-950/80 px-2 py-0.5 text-[9px] font-mono font-bold text-emerald-300 backdrop-blur-xs shadow-xs">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      TallyPrime Sync · AI 3-Way Match
+                    </span>
+                  </div>
                 </div>
 
                 {/* Docked Interactive Telemetry Strip (Shipsy/Wove Style) */}
@@ -640,16 +647,6 @@ export const FinancePage: React.FC = () => {
                     <div className="text-base font-extrabold text-slate-900">3 Categories</div>
                     <div className="text-[9px] text-slate-500 font-medium mt-0.5">Purchase · Spares · Service</div>
                   </div>
-                </div>
-
-                {/* Customer Case Study Video Slot */}
-                <div className="mt-4">
-                  <VideoSlot
-                    config={videosConfig['customer-story-rajadurai']}
-                    mode="coming-soon"
-                    badgeText="Customer video coming soon"
-                    aspectRatio="16/9"
-                  />
                 </div>
               </div>
 

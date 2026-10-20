@@ -12,9 +12,6 @@ import { StickyCtaBar } from '../components/StickyCtaBar';
 import { MetricTransition } from '../components/MetricTransition';
 import { AnimatedCheckmark } from '../components/AnimatedCheckmark';
 import { FlowConnector } from '../components/FlowConnector';
-import { LoopVideo } from '../components/video/LoopVideo';
-import { VideoSlot } from '../components/video/VideoSlot';
-import { videosConfig } from '../content/videos';
 
 export const LogisticsPage: React.FC = () => {
   const { navigate } = useRouter();
@@ -175,13 +172,23 @@ export const LogisticsPage: React.FC = () => {
                   </p>
                 </div>
 
-                {/* Product Visual Ambient Loop */}
-                <div className="relative z-10 my-4 overflow-hidden rounded-xl border border-teal-500/30 bg-black/40 shadow-inner">
-                  <LoopVideo
-                    config={videosConfig['logistics-desk-loop']}
-                    aspectRatio="16/9"
-                    className="w-full"
+                {/* Product Visual Showcase Image */}
+                <div className="relative z-10 my-4 overflow-hidden rounded-xl border border-teal-500/30 bg-black/40 shadow-inner group">
+                  <img
+                    src="/images/logistics-desk-card.jpg"
+                    alt="Docsynecx Logistics Desk - Freight Forwarding & CargoWise Job Telemetry"
+                    width={1376}
+                    height={768}
+                    className="w-full aspect-video object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                    loading="eager"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-teal-950/70 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute top-2.5 right-2.5 z-10 pointer-events-none">
+                    <span className="inline-flex items-center gap-1.5 rounded-md border border-teal-400/40 bg-teal-950/80 px-2 py-0.5 text-[9px] font-mono font-bold text-teal-300 backdrop-blur-xs shadow-xs">
+                      <span className="h-1.5 w-1.5 rounded-full bg-teal-400 animate-pulse" />
+                      CargoWise One · eAdaptor Sync
+                    </span>
+                  </div>
                 </div>
 
                 {/* Shipsy/Wove-Style Embedded Telemetry Console Inside Card */}
