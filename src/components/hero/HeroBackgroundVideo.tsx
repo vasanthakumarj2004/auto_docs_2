@@ -89,6 +89,13 @@ export const HeroBackgroundVideo: React.FC<HeroBackgroundVideoProps> = ({ classN
       return;
     }
 
+    const handleResize = () => {
+      if (window.innerWidth < 1024) {
+        setDisabledReason('Viewport width < 1024px (mobile/tablet)');
+      }
+    };
+    window.addEventListener('resize', handleResize);
+
     // Defer video loading until requestIdleCallback after LCP
     const loadVideo = () => {
       setShouldLoadVideo(true);
@@ -100,13 +107,17 @@ export const HeroBackgroundVideo: React.FC<HeroBackgroundVideoProps> = ({ classN
         { timeout: 2500 }
       );
       return () => {
+        window.removeEventListener('resize', handleResize);
         if ('cancelIdleCallback' in window) {
           (window as Window & { cancelIdleCallback: (id: number) => void }).cancelIdleCallback(handle);
         }
       };
     } else {
       const timer = setTimeout(loadVideo, 1200);
-      return () => clearTimeout(timer);
+      return () => {
+        window.removeEventListener('resize', handleResize);
+        clearTimeout(timer);
+      };
     }
   }, []);
 
@@ -252,6 +263,7 @@ export const HeroBackgroundVideo: React.FC<HeroBackgroundVideoProps> = ({ classN
         {shouldLoadVideo && !disabledReason && (
           <video
             ref={videoRef}
+            data-hero-ambient-video="true"
             muted
             loop
             playsInline
