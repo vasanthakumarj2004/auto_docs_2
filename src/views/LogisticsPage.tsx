@@ -90,7 +90,7 @@ export const LogisticsPage: React.FC = () => {
         <div className="site-shell relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
             {/* Left Column: Eyebrow, Headline, Subtext, Buttons */}
-            <div className="lg:col-span-7 text-left">
+            <div className="lg:col-span-7 text-left lg:sticky lg:top-[120px]">
               {/* Tag: FOR FREIGHT FORWARDERS ON CARGOWISE with live status dot */}
               <div className="inline-flex items-center gap-1.5 rounded-full border border-teal-200/90 bg-teal-50/90 px-3.5 py-1 text-[11px] font-bold uppercase tracking-wider text-teal-800 shadow-2xs font-mono">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
