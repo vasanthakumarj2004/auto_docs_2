@@ -1,0 +1,306 @@
+[
+  {
+    "viewport": "1920x1080",
+    "page": "finance",
+    "target_center": 580.0,
+    "scrollY_0": {
+      "y": 395.875,
+      "height": 368.25,
+      "center": 580.0,
+      "delta": 0.0
+    },
+    "scrollY_mid": {
+      "scrollY": 325.375,
+      "y": 70.875,
+      "center": 255.0,
+      "delta": 325.0
+    },
+    "scrollY_pinned_end": {
+      "scrollY": 445.375,
+      "y": -49.125,
+      "center": 135.0,
+      "delta": 445.0
+    },
+    "unpinned_y_at_1200": -804.125,
+    "right_card_top": 120,
+    "left_gutter": 360,
+    "right_gutter": 360,
+    "gutter_diff": 0,
+    "has_h_scroll": false
+  },
+  {
+    "viewport": "1920x1080",
+    "page": "logistics",
+    "target_center": 580.0,
+    "scrollY_0": {
+      "y": 434.875,
+      "height": 290.25,
+      "center": 580.0,
+      "delta": 0.0
+    },
+    "scrollY_mid": {
+      "scrollY": 345.875,
+      "y": 88.875,
+      "center": 234.0,
+      "delta": 346.0
+    },
+    "scrollY_pinned_end": {
+      "scrollY": 465.875,
+      "y": -31.125,
+      "center": 114.0,
+      "delta": 466.0
+    },
+    "unpinned_y_at_1200": -765.125,
+    "right_card_top": 120,
+    "left_gutter": 360,
+    "right_gutter": 360,
+    "gutter_diff": 0,
+    "has_h_scroll": false
+  },
+  {
+    "viewport": "1440x900",
+    "page": "finance",
+    "target_center": 490.0,
+    "scrollY_0": {
+      "y": 305.875,
+      "height": 368.25,
+      "center": 490.0,
+      "delta": 0.0
+    },
+    "scrollY_mid": {
+      "scrollY": 325.375,
+      "y": -19.125,
+      "center": 165.0,
+      "delta": 325.0
+    },
+    "scrollY_pinned_end": {
+      "scrollY": 445.375,
+      "y": -139.125,
+      "center": 45.0,
+      "delta": 445.0
+    },
+    "unpinned_y_at_1200": -894.125,
+    "right_card_top": 120,
+    "left_gutter": 120,
+    "right_gutter": 120,
+    "gutter_diff": 0,
+    "has_h_scroll": false
+  },
+  {
+    "viewport": "1440x900",
+    "page": "logistics",
+    "target_center": 490.0,
+    "scrollY_0": {
+      "y": 344.875,
+      "height": 290.25,
+      "center": 490.0,
+      "delta": 0.0
+    },
+    "scrollY_mid": {
+      "scrollY": 345.875,
+      "y": -1.125,
+      "center": 144.0,
+      "delta": 346.0
+    },
+    "scrollY_pinned_end": {
+      "scrollY": 465.875,
+      "y": -121.125,
+      "center": 24.0,
+      "delta": 466.0
+    },
+    "unpinned_y_at_1200": -855.125,
+    "right_card_top": 120,
+    "left_gutter": 120,
+    "right_gutter": 120,
+    "gutter_diff": 0,
+    "has_h_scroll": false
+  },
+  {
+    "viewport": "1366x768",
+    "page": "finance",
+    "target_center": 424.0,
+    "scrollY_0": {
+      "y": 239.875,
+      "height": 368.25,
+      "center": 424.0,
+      "delta": 0.0
+    },
+    "scrollY_mid": {
+      "scrollY": 325.375,
+      "y": -82.375,
+      "center": 101.75,
+      "delta": 322.25
+    },
+    "scrollY_pinned_end": {
+      "scrollY": 445.375,
+      "y": -202.375,
+      "center": -18.25,
+      "delta": 442.25
+    },
+    "unpinned_y_at_1200": -957.375,
+    "right_card_top": 120,
+    "left_gutter": 83,
+    "right_gutter": 83,
+    "gutter_diff": 0,
+    "has_h_scroll": false
+  },
+  {
+    "viewport": "1366x768",
+    "page": "logistics",
+    "target_center": 424.0,
+    "scrollY_0": {
+      "y": 278.875,
+      "height": 290.25,
+      "center": 424.0,
+      "delta": 0.0
+    },
+    "scrollY_mid": {
+      "scrollY": 345.875,
+      "y": -23.375,
+      "center": 121.75,
+      "delta": 302.25
+    },
+    "scrollY_pinned_end": {
+      "scrollY": 465.875,
+      "y": -143.375,
+      "center": 1.75,
+      "delta": 422.25
+    },
+    "unpinned_y_at_1200": -877.375,
+    "right_card_top": 120,
+    "left_gutter": 83,
+    "right_gutter": 83,
+    "gutter_diff": 0,
+    "has_h_scroll": false
+  },
+  {
+    "viewport": "1280x720",
+    "page": "finance",
+    "target_center": 400.0,
+    "scrollY_0": {
+      "y": 215.875,
+      "height": 368.25,
+      "center": 400.0,
+      "delta": 0.0
+    },
+    "scrollY_mid": {
+      "scrollY": 325.375,
+      "y": -58.375,
+      "center": 125.75,
+      "delta": 274.25
+    },
+    "scrollY_pinned_end": {
+      "scrollY": 445.375,
+      "y": -178.375,
+      "center": 5.75,
+      "delta": 394.25
+    },
+    "unpinned_y_at_1200": -933.375,
+    "right_card_top": 120,
+    "left_gutter": 40,
+    "right_gutter": 40,
+    "gutter_diff": 0,
+    "has_h_scroll": false
+  },
+  {
+    "viewport": "1280x720",
+    "page": "logistics",
+    "target_center": 400.0,
+    "scrollY_0": {
+      "y": 254.875,
+      "height": 290.25,
+      "center": 400.0,
+      "delta": 0.0
+    },
+    "scrollY_mid": {
+      "scrollY": 345.875,
+      "y": 0.625,
+      "center": 145.75,
+      "delta": 254.25
+    },
+    "scrollY_pinned_end": {
+      "scrollY": 465.875,
+      "y": -119.375,
+      "center": 25.75,
+      "delta": 374.25
+    },
+    "unpinned_y_at_1200": -853.375,
+    "right_card_top": 120,
+    "left_gutter": 40,
+    "right_gutter": 40,
+    "gutter_diff": 0,
+    "has_h_scroll": false
+  },
+  {
+    "viewport": "1024x768",
+    "page": "finance",
+    "target_center": 424.0,
+    "scrollY_0": {
+      "y": 239.875,
+      "height": 368.25,
+      "center": 424.0,
+      "delta": 0.0
+    },
+    "scrollY_mid": {
+      "scrollY": 307.25,
+      "y": -67.125,
+      "center": 117.0,
+      "delta": 307.0
+    },
+    "scrollY_pinned_end": {
+      "scrollY": 427.25,
+      "y": -187.125,
+      "center": -3.0,
+      "delta": 427.0
+    },
+    "unpinned_y_at_1200": -960.125,
+    "right_card_top": 120,
+    "left_gutter": 32,
+    "right_gutter": 32,
+    "gutter_diff": 0,
+    "has_h_scroll": false
+  },
+  {
+    "viewport": "1024x768",
+    "page": "logistics",
+    "target_center": 424.0,
+    "scrollY_0": {
+      "y": 278.875,
+      "height": 290.25,
+      "center": 424.0,
+      "delta": 0.0
+    },
+    "scrollY_mid": {
+      "scrollY": 317.75,
+      "y": -39.125,
+      "center": 106.0,
+      "delta": 318.0
+    },
+    "scrollY_pinned_end": {
+      "scrollY": 437.75,
+      "y": -159.125,
+      "center": -14.0,
+      "delta": 438.0
+    },
+    "unpinned_y_at_1200": -921.125,
+    "right_card_top": 120,
+    "left_gutter": 32,
+    "right_gutter": 32,
+    "gutter_diff": 0,
+    "has_h_scroll": false
+  },
+  {
+    "viewport": "1280x500 (SHORT FALLBACK)",
+    "page": "finance",
+    "y": 120,
+    "target_top": 120,
+    "diff_from_target_top": 0
+  },
+  {
+    "viewport": "1280x500 (SHORT FALLBACK)",
+    "page": "logistics",
+    "y": 120,
+    "target_top": 120,
+    "diff_from_target_top": 0
+  }
+]

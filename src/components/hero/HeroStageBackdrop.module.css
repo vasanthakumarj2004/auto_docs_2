@@ -1,0 +1,59 @@
+.backdrop {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  contain: paint;
+}
+
+.base,
+.plate,
+.motion,
+.atmosphere,
+.vignette {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.base { background: linear-gradient(135deg, #0c222e, #122e3d 48%, #1c4456); }
+
+.plate {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: left center;
+     object-position: left center;
+  opacity: 0.64;
+  mix-blend-mode: screen;
+  transform: scale(1.12);
+  animation: cameraDrift 12s ease-in-out infinite alternate;
+  animation-play-state: paused;
+  will-change: transform;
+}
+
+.backdrop[data-running='true'] .plate { animation-play-state: running; }
+
+.motion { opacity: 0.94; }
+
+.atmosphere {
+  background: linear-gradient(to bottom, rgb(103 151 175 / 24%), transparent 46%);
+  backdrop-filter: blur(0.35px);
+}
+
+.vignette {
+  background: linear-gradient(to right, rgb(12 34 46 / 12%), transparent 75%),
+    linear-gradient(to top, rgb(12 34 46 / 30%), transparent 24%);
+}
+
+@keyframes cameraDrift {
+  from { transform: scale(1.12) translate3d(1.5%, -1%, 0); }
+  to { transform: scale(1.12) translate3d(-2.5%, 1.5%, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .plate { animation: none; will-change: auto; }
+}

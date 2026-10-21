@@ -13,6 +13,7 @@ import { PipelineView } from './PipelineView';
 import { BillQueueView } from './BillQueueView';
 import { WalkthroughView } from './WalkthroughView';
 import { HeroActivityRow } from './HeroActivityRow';
+import { LivePipelinePanel } from './LivePipelinePanel';
 
 interface HeroProductPanelProps {
   onTabChange?: (tabIndex: number) => void;
@@ -43,9 +44,17 @@ export const HeroProductPanel: React.FC<HeroProductPanelProps> = ({ onTabChange 
   return (
     <div
       ref={panelRef}
+      data-hero-product-panel
       className="relative w-full select-none"
     >
-      {/* Outer Frosted-Glass Bezel Shell (blur 18px, 28px rounded) */}
+      {activeTab === 0 ? (
+        <LivePipelinePanel
+          isPaused={!isVisible}
+          isPosted={isPosted}
+          onStateChange={setIsPosted}
+          onTabChange={handleTabClick}
+        />
+      ) : (
       <div className="relative rounded-[28px] bg-white/75 backdrop-blur-[18px] backdrop-saturate-[1.15] border border-white/80 shadow-[0_40px_80px_-30px_rgba(6,20,36,0.45),inset_0_1px_0_0_rgba(255,255,255,0.9)] p-3 sm:p-4">
         
         {/* ================= 1. SINGLE GLASS SEGMENTED HEADER BAR ================= */}
@@ -150,6 +159,7 @@ export const HeroProductPanel: React.FC<HeroProductPanelProps> = ({ onTabChange 
         <HeroActivityRow isPosted={isPosted} />
 
       </div>
+      )}
     </div>
   );
 };
