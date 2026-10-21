@@ -114,7 +114,40 @@ export const FinancePage: React.FC = () => {
       {/* =========================================================================
           TIER 1: HERO SECTION (2-Column Split Hero with Live Outcome Card & Telemetry)
           ========================================================================= */}
-      <section className="relative border-b border-slate-200/80 bg-[#fdfdfd] pt-6 sm:pt-8 lg:pt-10 pb-20 sm:pb-28">
+      <section className="relative border-b border-slate-200/80 bg-[#fdfdfd] pt-6 sm:pt-8 lg:pt-0 pb-20 sm:pb-28">
+        <style dangerouslySetInnerHTML={{ __html: `
+          :root {
+            --nav-h: 80px;
+            --left-center-offset: 0px;
+          }
+          @media (min-width: 1024px) {
+            .hero-desk-sticky-wrapper {
+              position: sticky;
+              top: var(--nav-h, 80px);
+              align-self: start;
+              height: calc(100vh - var(--nav-h, 80px));
+              height: calc(100dvh - var(--nav-h, 80px));
+              height: calc(100svh - var(--nav-h, 80px));
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+            }
+            .hero-desk-text-block {
+              transform: translateY(var(--left-center-offset, 0px));
+            }
+          }
+          @media (min-width: 1024px) and (max-height: 540px) {
+            .hero-desk-sticky-wrapper {
+              position: sticky;
+              top: calc(var(--nav-h, 80px) + 40px);
+              height: auto;
+              display: block;
+            }
+            .hero-desk-text-block {
+              transform: none;
+            }
+          }
+        `}} />
         {/* Subtle Ambient Background Lighting & Dotted Matrix */}
         <div className="pointer-events-none absolute inset-0 bg-dot-matrix opacity-40" aria-hidden="true" />
         <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-60" aria-hidden="true">
@@ -124,57 +157,59 @@ export const FinancePage: React.FC = () => {
         <div className="site-shell relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
             {/* Left Column: Eyebrow, Headline, Subtext, Buttons */}
-            <div className="lg:col-span-7 text-left lg:sticky lg:top-[120px]">
-              {/* Tag: NEW · FINANCE DESK with live status dot */}
-              <div className="inline-flex items-center gap-1.5 rounded-full border border-orange-200/90 bg-orange-50/90 px-3.5 py-1 text-[11px] font-bold uppercase tracking-wider text-orange-700 shadow-2xs font-mono">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                <Sparkles size={11} className="text-orange-600" />
-                <span>NEW · FINANCE DESK</span>
-              </div>
+            <div className="lg:col-span-7 text-left hero-desk-sticky-wrapper">
+              <div className="hero-desk-text-block">
+                {/* Tag: NEW · FINANCE DESK with live status dot */}
+                <div className="inline-flex items-center gap-1.5 rounded-full border border-orange-200/90 bg-orange-50/90 px-3.5 py-1 text-[11px] font-bold uppercase tracking-wider text-orange-700 shadow-2xs font-mono">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                  <Sparkles size={11} className="text-orange-600" />
+                  <span>NEW · FINANCE DESK</span>
+                </div>
 
-              {/* Headline */}
-              <h1 className="mt-6 text-4xl sm:text-5xl lg:text-[54px] font-extrabold leading-[1.08] tracking-[-0.035em] text-slate-950">
-                Approve the bill. Pay the vendor.
-                <br className="hidden sm:inline" />
-                {' '}The entry posts itself.
-              </h1>
+                {/* Headline */}
+                <h1 className="mt-6 text-4xl sm:text-5xl lg:text-[54px] font-extrabold leading-[1.08] tracking-[-0.035em] text-slate-950">
+                  Approve the bill. Pay the vendor.
+                  <br className="hidden sm:inline" />
+                  {' '}The entry posts itself.
+                </h1>
 
-              {/* Subtext */}
-              <p className="mt-6 max-w-xl text-[15px] sm:text-base leading-relaxed text-slate-600 font-medium">
-                From vendor bill to paid and posted in Tally — without retyping a line. Built for businesses that run on Tally, not on spreadsheets.
-              </p>
+                {/* Subtext */}
+                <p className="mt-6 max-w-xl text-[15px] sm:text-base leading-relaxed text-slate-600 font-medium">
+                  From vendor bill to paid and posted in Tally — without retyping a line. Built for businesses that run on Tally, not on spreadsheets.
+                </p>
 
-              {/* Buttons */}
-              <div className="mt-9 flex flex-wrap items-center gap-4">
-                <button
-                  type="button"
-                  onClick={() => navigate('/#demo')}
-                  className="group button-primary text-sm px-6 py-3 cursor-pointer shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue"
-                >
-                  <span>Book a demo</span>
-                  <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" />
-                </button>
+                {/* Buttons */}
+                <div className="mt-9 flex flex-wrap items-center gap-4">
+                  <button
+                    type="button"
+                    onClick={() => navigate('/#demo')}
+                    className="group button-primary text-sm px-6 py-3 cursor-pointer shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue"
+                  >
+                    <span>Book a demo</span>
+                    <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" />
+                  </button>
 
-                <button
-                  type="button"
-                  onClick={() => {
-                    const el = document.getElementById('accounts-payable');
-                    if (el) {
-                      el.scrollIntoView({ behavior: 'smooth' });
-                    } else {
-                      navigate('/#demo');
-                    }
-                  }}
-                  className="group rounded-lg border border-slate-300 bg-white px-5 py-3 text-xs sm:text-sm font-bold text-slate-800 transition-all duration-200 hover:border-slate-400 hover:bg-slate-50 hover:-translate-y-0.5 cursor-pointer shadow-2xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-400 inline-flex items-center gap-1.5"
-                >
-                  <span>Already on invoice? Switch on payments</span>
-                  <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" />
-                </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const el = document.getElementById('accounts-payable');
+                      if (el) {
+                        el.scrollIntoView({ behavior: 'smooth' });
+                      } else {
+                        navigate('/#demo');
+                      }
+                    }}
+                    className="group rounded-lg border border-slate-300 bg-white px-5 py-3 text-xs sm:text-sm font-bold text-slate-800 transition-all duration-200 hover:border-slate-400 hover:bg-slate-50 hover:-translate-y-0.5 cursor-pointer shadow-2xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-400 inline-flex items-center gap-1.5"
+                  >
+                    <span>Already on invoice? Switch on payments</span>
+                    <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" />
+                  </button>
+                </div>
               </div>
             </div>
 
             {/* Right Column: RAJADURAI E-VEHICLES Verified Outcome Card + Shipsy/Wove Live Telemetry */}
-            <div className="lg:col-span-5">
+            <div className="lg:col-span-5 pt-0 lg:pt-10">
               <div className="relative group/hero-rajadurai rounded-3xl bg-white/80 backdrop-blur-2xl border border-white/90 shadow-[0_25px_60px_-15px_rgba(15,23,42,0.12),0_1px_3px_rgba(15,23,42,0.06),inset_0_1px_1px_rgba(255,255,255,0.95)] p-6 md:p-8 text-slate-900 min-h-[220px] overflow-hidden">
                 {/* Subtle Ambient Light Refraction Behind the Glass */}
                 <div className="absolute -top-24 -right-24 w-72 h-72 bg-blue-500/[0.08] blur-3xl rounded-full pointer-events-none" />
