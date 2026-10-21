@@ -114,7 +114,7 @@ export const FinancePage: React.FC = () => {
       {/* =========================================================================
           TIER 1: HERO SECTION (2-Column Split Hero with Live Outcome Card & Telemetry)
           ========================================================================= */}
-      <section className="relative overflow-hidden border-b border-slate-200/80 bg-[#fdfdfd] pt-16 pb-20 sm:pt-24 sm:pb-28">
+      <section className="relative border-b border-slate-200/80 bg-[#fdfdfd] pt-6 sm:pt-8 lg:pt-10 pb-20 sm:pb-28">
         {/* Subtle Ambient Background Lighting & Dotted Matrix */}
         <div className="pointer-events-none absolute inset-0 bg-dot-matrix opacity-40" aria-hidden="true" />
         <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-60" aria-hidden="true">
@@ -122,7 +122,7 @@ export const FinancePage: React.FC = () => {
         </div>
 
         <div className="site-shell relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
             {/* Left Column: Eyebrow, Headline, Subtext, Buttons */}
             <div className="lg:col-span-7 text-left">
               {/* Tag: NEW · FINANCE DESK with live status dot */}
