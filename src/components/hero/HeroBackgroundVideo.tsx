@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Pause, Play } from 'lucide-react';
 
 // Feature Flag for 1-line rollback
-export const HERO_BG_VIDEO_ENABLED = true;
+export const HERO_BG_VIDEO_ENABLED = false;
 
 interface HeroBackgroundVideoProps {
   className?: string;

@@ -1,354 +1,395 @@
 'use client';
+
 import React, { useState, useEffect } from 'react';
-import { 
-  FileText, 
-  CheckCircle2, 
-  ShieldCheck, 
-  Mail, 
-  Sparkles, 
-  Database,
-  ArrowRight
-} from 'lucide-react';
-import { pipelineInvoice, pipelineVoucher } from './mockData';
+import { Check, CheckCircle2, FileText, FileCheck2 } from 'lucide-react';
+import { pipelineInvoice } from './mockData';
 
 interface PipelineViewProps {
   isPaused?: boolean;
 }
 
 export const PipelineView: React.FC<PipelineViewProps> = ({ isPaused = false }) => {
-  const [phase, setPhase] = useState<number>(5);
+  // Toggle between State A (AI Extractor) and State B (Tally Prime Synced)
+  // Defaults to State B (Tally Prime Synced) matching the reference video/image
+  const [isStateB, setIsStateB] = useState<boolean>(true);
+  const [isHovered, setIsHovered] = useState<boolean>(false);
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setPhase(5);
-      return;
-    }
+    if (isPaused || isHovered) return;
+    const motionPref = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (motionPref.matches) return;
 
-    if (isPaused) {
-      setPhase(5);
-      return;
-    }
+    const timer = setInterval(() => {
+      if (!document.hidden) {
+        setIsStateB((prev) => !prev);
+      }
+    }, 2600);
 
-    let isMounted = true;
-    let timeouts: NodeJS.Timeout[] = [];
-
-    const runSequence = () => {
-      setPhase(0);
-      timeouts.push(setTimeout(() => { if (isMounted) setPhase(1); }, 700));
-      timeouts.push(setTimeout(() => { if (isMounted) setPhase(2); }, 2400));
-      timeouts.push(setTimeout(() => { if (isMounted) setPhase(3); }, 3600));
-      timeouts.push(setTimeout(() => { if (isMounted) setPhase(4); }, 4400));
-      timeouts.push(setTimeout(() => { if (isMounted) setPhase(5); }, 5600));
-      timeouts.push(setTimeout(() => { if (isMounted) runSequence(); }, 8000));
-    };
-
-    runSequence();
-
-    return () => {
-      isMounted = false;
-      timeouts.forEach(clearTimeout);
-    };
-  }, [isPaused]);
+    return () => clearInterval(timer);
+  }, [isPaused, isHovered]);
 
   return (
-    <div className="w-full flex flex-col justify-between h-full space-y-3">
-      {/* 3-Column Processing Stage */}
-      <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1.05fr)_auto_minmax(0,1fr)] items-stretch gap-1.5 sm:gap-2">
+    <div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      className="w-full h-full flex flex-col justify-between select-none"
+    >
+      {/* 3-Column Interactive Node-Graph Canvas */}
+      <div className="relative rounded-xl bg-[#FAFCFF] bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:14px_14px] border border-slate-200/70 p-3 sm:p-4 min-h-[295px] grid grid-cols-1 md:grid-cols-12 gap-3.5 sm:gap-4 items-start">
         
-        {/* ================= COLUMN 1: INCOMING BILL ================= */}
-        <div className="flex flex-col rounded-xl border border-slate-200/90 bg-gradient-to-b from-white via-slate-50/40 to-slate-100/50 p-2.5 sm:p-3 shadow-xs">
-          {/* Column Header */}
-          <div className="flex items-center justify-between pb-1.5 border-b border-slate-200/70">
-            <div className="flex items-center gap-1.5">
-              <span className="flex h-4.5 w-4.5 items-center justify-center rounded bg-blue-50 text-blue-700 font-mono text-[9.5px] font-bold border border-blue-200/70">
-                01
+        {/* Animated SVG Bezier Connectors Overlay (Desktop) */}
+        <svg
+          className="hidden md:block absolute inset-0 w-full h-full pointer-events-none z-10"
+          viewBox="0 0 600 280"
+          preserveAspectRatio="none"
+          fill="none"
+          aria-hidden="true"
+        >
+          <defs>
+            <linearGradient id="curveGrad1" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="#3b82f6" />
+              <stop offset="100%" stopColor="#10b981" />
+            </linearGradient>
+            <linearGradient id="curveGrad2" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="#10b981" />
+              <stop offset="100%" stopColor="#059669" />
+            </linearGradient>
+          </defs>
+
+          {/* Curve 1: Step 01 Right Port -> Step 02 Left Port */}
+          <path
+            d="M 194 140 H 208"
+            stroke="url(#curveGrad1)"
+            strokeWidth="2.2"
+            strokeDasharray="4 4"
+            strokeLinecap="round"
+          />
+          {/* Flowing packet 1 */}
+          <circle r="3" fill="#10b981">
+            <animateMotion
+              path="M 194 140 H 208"
+              dur="1.4s"
+              repeatCount="indefinite"
+            />
+          </circle>
+
+          {/* Curve 2: Step 02 Right Port -> Swooping down into Step 03 Bottom-Left Port */}
+          <path
+            d="M 392 140 C 404 140, 396 215, 404 215 C 409 215, 412 205, 415 195"
+            stroke="url(#curveGrad2)"
+            strokeWidth="2.2"
+            strokeDasharray="4 4"
+            strokeLinecap="round"
+          />
+          {/* Flowing packet 2 */}
+          <circle r="3" fill="#10b981">
+            <animateMotion
+              path="M 392 140 C 404 140, 396 215, 404 215 C 409 215, 412 205, 415 195"
+              dur="1.8s"
+              repeatCount="indefinite"
+            />
+          </circle>
+
+          {/* Curve 3: Direct upper connection into Step 03 */}
+          <path
+            d="M 392 140 C 400 140, 402 110, 412 110"
+            stroke="url(#curveGrad2)"
+            strokeWidth="1.8"
+            strokeDasharray="3 3"
+            strokeOpacity="0.4"
+            strokeLinecap="round"
+          />
+        </svg>
+
+        {/* ================= COLUMN 1: STEP 01 ================= */}
+        <div className="md:col-span-4 flex flex-col">
+          {/* Header directly on top of card */}
+          <div className="mb-2.5">
+            <div className="flex items-center justify-between gap-1 mb-1">
+              <span className="text-[10px] font-mono text-slate-400 font-bold uppercase tracking-wider">Step 01</span>
+              <span className="bg-blue-50 text-blue-600 border border-blue-200 text-[9.5px] font-semibold px-2 py-0.5 rounded-md">
+                01 Pipeline
               </span>
-              <span className="text-[11.5px] font-bold text-slate-900">Incoming bill</span>
             </div>
-            <span className="inline-flex items-center gap-1 rounded bg-blue-50/80 px-1.5 py-0.2 font-mono text-[9.5px] font-semibold text-blue-700 border border-blue-200/60">
-              <Mail size={9} /> PDF
-            </span>
+            <h3 className="text-xs font-bold text-slate-900 leading-tight">Incoming bill</h3>
+            <p className="text-[10px] text-slate-500">Email • PDF • Scan</p>
           </div>
 
-          {/* Paper Tax Invoice Card */}
-          <div 
-            className={`mt-2 flex-1 rounded-lg border border-slate-200/90 bg-white p-2.5 shadow-[0_3px_10px_-2px_rgba(15,23,42,0.06)] transition-all duration-500 relative flex flex-col justify-between ${
-              phase >= 0 ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-60'
-            }`}
-          >
+          {/* Node Card */}
+          <div className="relative rounded-xl bg-white border border-slate-200/90 shadow-sm p-3 min-h-[184px] flex flex-col justify-between">
+            {/* Top row */}
             <div>
-              <div className="flex items-center justify-between border-b border-slate-100 pb-1 text-[10.5px]">
-                <div className="flex items-center gap-1">
-                  <span className="h-3.5 px-1 rounded bg-rose-500 text-[8px] font-extrabold text-white flex items-center gap-0.5">
-                    <FileText size={8} /> PDF
-                  </span>
-                  <span className="font-mono font-bold text-slate-900">{pipelineInvoice.invoiceNo}</span>
+              <div className="flex items-center gap-2">
+                <span className="h-6 w-6 rounded-md bg-rose-50 border border-rose-200 text-rose-600 flex items-center justify-center font-bold text-[9px] shrink-0">
+                  <FileText size={12} className="stroke-[2.5]" />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <div className="text-xs font-bold text-slate-800 truncate leading-tight">Apex Freight</div>
+                  <div className="text-[9px] text-slate-400">INV-8492</div>
                 </div>
-                <span className="font-mono text-slate-400 text-[9.5px]">{pipelineInvoice.date}</span>
               </div>
 
-              {/* Vendor & GSTIN */}
-              <div className="mt-1.5 text-[11px]">
-                <div className="font-extrabold text-slate-950 leading-tight truncate">{pipelineInvoice.vendor}</div>
-                <div className="font-mono text-[9.5px] text-slate-500 mt-0.5">GSTIN: {pipelineInvoice.gstin}</div>
-              </div>
-
-              {/* Line items preview */}
-              <div className="mt-2 border-t border-slate-100 pt-1 space-y-0.5 text-[10.5px]">
-                {pipelineInvoice.lineItems.map((item) => (
-                  <div key={item.id} className="flex justify-between text-slate-600">
-                    <span className="truncate max-w-[110px] text-[10px]">{item.description}</span>
-                    <span className="font-mono tabular-nums text-slate-900 font-medium text-[10px]">{item.amount}</span>
-                  </div>
-                ))}
+              <div className="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between">
+                <span className="text-[10px] text-slate-400 font-medium">Invoice</span>
+                <span className="text-xs font-extrabold text-slate-900 font-mono">{pipelineInvoice.totalAmount}</span>
               </div>
             </div>
 
-            {/* Total Strip */}
-            <div className="mt-2 border-t border-slate-200 pt-1.5 flex items-center justify-between text-xs font-bold">
-              <span className="text-slate-500 font-mono text-[10px]">Total (18% IGST)</span>
-              <span className="font-mono tabular-nums text-blue-700 text-[12.5px] font-extrabold">{pipelineInvoice.totalAmount}</span>
+            {/* Bottom status */}
+            <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+              <span className="bg-emerald-50 text-emerald-700 border border-emerald-200 text-[9px] font-bold px-2 py-0.5 rounded flex items-center gap-1">
+                <Check size={10} className="stroke-[3]" />
+                Delivered
+              </span>
+              <span className="text-[9px] font-mono text-slate-400">{pipelineInvoice.fileSize}</span>
             </div>
 
-            {/* Scanning highlight overlay */}
-            {phase === 1 && (
-              <div 
-                className="absolute inset-0 rounded-lg border-2 border-blue-500 bg-blue-500/10 pointer-events-none transition-all duration-700 animate-pulse"
-                aria-hidden="true"
-              />
-            )}
-          </div>
-
-          {/* Source confirmation pill */}
-          <div className="mt-1.5 flex items-center justify-between text-[10px] font-mono text-slate-500">
-            <span>{pipelineInvoice.fileSize}</span>
-            <span className="inline-flex items-center gap-1 text-emerald-700 font-bold bg-emerald-50 px-1 py-0.2 rounded border border-emerald-200/60 text-[9.5px]">
-              <CheckCircle2 size={9} className="text-emerald-600" /> Captured
-            </span>
-          </div>
-        </div>
-
-        {/* CONNECTOR 1: OCR-PARSE */}
-        <div className="hidden lg:flex flex-col items-center justify-center px-0.5">
-          <span className="font-mono text-[8px] font-bold uppercase tracking-wider text-slate-400 mb-1">
-            OCR
-          </span>
-          <div className="relative h-12 w-0.5 border-r border-dashed border-slate-300">
-            <div 
-              className={`absolute w-1.5 h-1.5 rounded-full -left-[2.5px] bg-blue-600 shadow-sm transition-all duration-700 ${
-                phase >= 1 ? 'top-8 opacity-100 scale-110' : 'top-1 opacity-40'
-              }`}
+            {/* Right Connection Port Dot */}
+            <span
+              className="hidden md:block h-2.5 w-2.5 rounded-full bg-blue-500 ring-4 ring-blue-100 absolute -right-1.25 top-1/2 -translate-y-1/2 z-20"
+              aria-hidden="true"
             />
           </div>
-          <ArrowRight size={12} className="text-slate-400 mt-1" />
         </div>
 
-        {/* ================= COLUMN 2: READING & CHECK ================= */}
-        <div className="flex flex-col rounded-xl border border-slate-200/90 bg-white p-2.5 sm:p-3 shadow-xs">
-          {/* Column Header */}
-          <div className="flex items-center justify-between pb-1.5 border-b border-slate-200/70">
-            <div className="flex items-center gap-1.5">
-              <span className="flex h-4.5 w-4.5 items-center justify-center rounded bg-blue-50 text-blue-700 font-mono text-[9.5px] font-bold border border-blue-200/70">
-                02
-              </span>
-              <span className="text-[11.5px] font-bold text-slate-900">Reading & check</span>
+        {/* ================= COLUMN 2: STEP 02 ================= */}
+        <div className="md:col-span-4 flex flex-col">
+          {/* Header directly on top of card */}
+          <div className="mb-2.5">
+            <div className="flex items-center justify-between gap-1 mb-1">
+              <span className="text-[10px] font-mono text-slate-400 font-bold uppercase tracking-wider">Step 02</span>
             </div>
-            <span className="inline-flex items-center gap-1 rounded bg-blue-600 px-1.5 py-0.2 font-mono text-[9px] font-bold text-white shadow-2xs">
-              <Sparkles size={9} /> 99.8% Match
-            </span>
+            <h3 className="text-xs font-bold text-slate-900 leading-tight">Reading &amp; Check</h3>
+            <p className="text-[10px] text-slate-500">Record-level Telemetry</p>
           </div>
 
-          {/* Extracted Fields Checklist */}
-          <div className="mt-2 space-y-1.5 flex-1 flex flex-col justify-between">
-            <div className="space-y-1">
-              <div className="text-[9.5px] font-mono font-bold uppercase tracking-wider text-slate-400">
-                Extracted Fields
-              </div>
-              
-              <div className="grid grid-cols-2 gap-1 text-[10.5px]">
-                <div className={`p-1 rounded border transition-colors ${phase >= 1 ? 'border-blue-200 bg-blue-50/50' : 'border-slate-100 bg-slate-50/60'}`}>
-                  <span className="block text-[8.5px] text-slate-400 font-mono uppercase">Vendor GSTIN</span>
-                  <span className="font-mono text-slate-900 font-semibold truncate block text-[10px]">33AABCP1234A</span>
-                </div>
-                <div className={`p-1 rounded border transition-colors ${phase >= 1 ? 'border-blue-200 bg-blue-50/50' : 'border-slate-100 bg-slate-50/60'}`}>
-                  <span className="block text-[8.5px] text-slate-400 font-mono uppercase">Inv Date</span>
-                  <span className="font-mono text-slate-900 font-semibold block text-[10px]">{pipelineInvoice.date}</span>
-                </div>
-              </div>
+          {/* Node Card */}
+          <div className="relative rounded-xl bg-emerald-50/40 border border-emerald-300/80 shadow-sm p-3 min-h-[184px] flex flex-col justify-between">
+            {/* Left Connection Port Dot */}
+            <span
+              className="hidden md:block h-2.5 w-2.5 rounded-full bg-emerald-500 ring-4 ring-emerald-100 absolute -left-1.25 top-1/2 -translate-y-1/2 z-20"
+              aria-hidden="true"
+            />
 
-              <div className={`p-1 rounded border text-[10.5px] flex items-center justify-between transition-colors ${phase >= 1 ? 'border-blue-200 bg-blue-50/50' : 'border-slate-100 bg-slate-50/60'}`}>
-                <span className="text-[9.5px] text-slate-500 font-mono">Taxable / IGST</span>
-                <span className="font-mono tabular-nums text-slate-900 font-semibold text-[10px]">₹1,21,017 + ₹21,783</span>
-              </div>
-            </div>
-
-            {/* Validation Checkpoints */}
-            <div className="mt-1 border-t border-slate-100 pt-1.5 space-y-1">
-              <div className="text-[9.5px] font-mono font-bold uppercase tracking-wider text-slate-400">
-                Pre-Posting Checks
-              </div>
-
-              <div className={`flex items-center justify-between text-[10.5px] p-1 rounded border transition-all duration-300 ${
-                phase >= 2 ? 'border-emerald-200 bg-emerald-50/60 text-emerald-900 font-medium' : 'border-slate-100 bg-slate-50/50 text-slate-400'
-              }`}>
-                <span className="flex items-center gap-1">
-                  <CheckCircle2 size={11} className={phase >= 2 ? 'text-emerald-600' : 'text-slate-300'} />
-                  GST Portal: Matched 2B
-                </span>
-                <span className="font-mono text-[8.5px] font-bold">LIVE API</span>
-              </div>
-
-              <div className={`flex items-center justify-between text-[10.5px] p-1 rounded border transition-all duration-300 ${
-                phase >= 2 ? 'border-emerald-200 bg-emerald-50/60 text-emerald-900 font-medium' : 'border-slate-100 bg-slate-50/50 text-slate-400'
-              }`}>
-                <span className="flex items-center gap-1">
-                  <CheckCircle2 size={11} className={phase >= 2 ? 'text-emerald-600' : 'text-slate-300'} />
-                  PO match: 3-way
-                </span>
-                <span className="font-mono text-[8.5px] font-bold">100% OK</span>
-              </div>
-
-              <div className={`flex items-center justify-between text-[10.5px] p-1 rounded border transition-all duration-300 ${
-                phase >= 2 ? 'border-emerald-200 bg-emerald-50/60 text-emerald-900 font-medium' : 'border-slate-100 bg-slate-50/50 text-slate-400'
-              }`}>
-                <span className="flex items-center gap-1">
-                  <ShieldCheck size={11} className={phase >= 2 ? 'text-emerald-600' : 'text-slate-300'} />
-                  Duplicate: none found
-                </span>
-                <span className="font-mono text-[8.5px] font-bold">CLEAR</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* INTERSTITIAL APPROVAL GATE & CONNECTOR 2: POST-XML */}
-        <div className="hidden lg:flex flex-col items-center justify-center px-0.5">
-          {/* Approval Node */}
-          <div className={`flex flex-col items-center rounded border p-1 text-center transition-all duration-300 ${
-            phase >= 3 
-              ? 'border-emerald-300 bg-emerald-50 text-emerald-900 ring-1 ring-emerald-500/20' 
-              : 'border-slate-200 bg-slate-50 text-slate-400'
-          }`}>
-            <div className="flex h-4.5 w-4.5 items-center justify-center rounded-full bg-emerald-600 text-white text-[8px] font-bold font-mono">
-              AC
-            </div>
-            <span className="text-[7.5px] font-mono font-bold mt-0.5 uppercase">Approved</span>
-          </div>
-
-          {/* Pulse Connector */}
-          <div className="flex flex-col items-center mt-1">
-            <span className="font-mono text-[8px] font-bold uppercase tracking-wider text-slate-400 mb-0.5">
-              XML
-            </span>
-            <div className="relative h-10 w-0.5 border-r border-dashed border-slate-300">
-              <div 
-                className={`absolute w-1.5 h-1.5 rounded-full -left-[2.5px] bg-emerald-600 shadow-sm transition-all duration-700 ${
-                  phase >= 4 ? 'top-6 opacity-100 scale-110' : 'top-1 opacity-40'
-                }`}
-              />
-            </div>
-            <ArrowRight size={12} className="text-slate-400 mt-0.5" />
-          </div>
-        </div>
-
-        {/* ================= COLUMN 3: POSTED TO TALLY ================= */}
-        <div className="flex flex-col rounded-xl border border-slate-200/90 bg-gradient-to-b from-white via-slate-50/40 to-slate-100/50 p-2.5 sm:p-3 shadow-xs">
-          {/* Column Header */}
-          <div className="flex items-center justify-between pb-1.5 border-b border-slate-200/70">
-            <div className="flex items-center gap-1.5">
-              <span className="flex h-4.5 w-4.5 items-center justify-center rounded bg-emerald-50 text-emerald-700 font-mono text-[9.5px] font-bold border border-emerald-200/70">
-                03
-              </span>
-              <span className="text-[11.5px] font-bold text-slate-900">Posted to Tally</span>
-            </div>
-            <span className="inline-flex items-center gap-1 rounded bg-emerald-100/80 px-1.5 py-0.2 font-mono text-[9.5px] font-bold text-emerald-800 border border-emerald-200">
-              <Database size={9} /> Tally
-            </span>
-          </div>
-
-          {/* Tally Voucher Card */}
-          <div 
-            className={`mt-2 flex-1 rounded-lg border border-slate-200/90 bg-white p-2.5 shadow-xs transition-all duration-500 relative flex flex-col justify-between ${
-              phase >= 4 ? 'border-emerald-300 bg-white ring-1 ring-emerald-500/20' : 'border-slate-200/80 bg-slate-50/70'
-            }`}
-          >
+            {/* Content */}
             <div>
-              <div className="flex items-center justify-between border-b border-slate-100 pb-1 text-[10.5px]">
-                <span className="font-mono text-slate-500 text-[9.5px]">Purchase Voucher</span>
-                <span className="font-mono font-bold text-emerald-700 text-[11.5px]">{pipelineVoucher.voucherNo}</span>
+              <div className="flex items-center justify-between">
+                <span className="h-7 w-7 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
+                  <FileCheck2 size={15} />
+                </span>
+                <span className="text-slate-400 text-xs tracking-widest">•••</span>
               </div>
 
-              <div className="mt-1.5 text-[11px] space-y-1">
-                <div>
-                  <span className="block text-[8.5px] text-slate-400 font-mono uppercase">Ledger Account</span>
-                  <span className="font-semibold text-slate-900 block truncate text-[10.5px]">{pipelineVoucher.ledger}</span>
+              <div className="mt-2.5">
+                <div className="text-xs font-bold text-slate-900 flex items-center gap-1">
+                  <Check size={13} className="text-emerald-600 stroke-[3]" />
+                  No Duplicate
                 </div>
-
-                <div className="flex justify-between items-center text-[10px] font-mono border-t border-slate-100 pt-1">
-                  <span className="text-slate-500">Audit ID:</span>
-                  <span className="font-bold text-slate-800">{pipelineVoucher.auditId}</span>
-                </div>
-
-                <div className="flex justify-between items-center text-[10px] font-mono">
-                  <span className="text-slate-500">Synced:</span>
-                  <span className="text-slate-700">10:42:11</span>
-                </div>
+                <div className="text-[10px] text-slate-500 mt-0.5">Record-level Telemetry</div>
+                <div className="text-[10px] font-mono text-emerald-700 font-semibold mt-1">99.8% confidence</div>
               </div>
             </div>
 
-            {/* Total Posted Row */}
-            <div className="mt-2 border-t border-slate-200 pt-1.5 flex items-center justify-between text-xs font-bold">
-              <span className="text-slate-500 font-mono text-[10px]">Voucher Total</span>
-              <span className="font-mono tabular-nums text-slate-950 font-extrabold text-[12.5px]">{pipelineInvoice.totalAmount}</span>
+            {/* Bottom progress bar */}
+            <div className="mt-2.5">
+              <div className="h-1.5 w-full bg-emerald-100 rounded-full overflow-hidden">
+                <div className="h-full bg-emerald-500 w-4/5 rounded-full animate-pulse" />
+              </div>
             </div>
 
-            {/* POSTED STAMP */}
-            {phase >= 4 && (
-              <div 
-                className="absolute top-7 right-2 rotate-[-12deg] rounded border-2 border-emerald-600 bg-emerald-50/95 px-2 py-0.2 text-center text-emerald-800 font-mono text-[10px] font-black uppercase tracking-wider shadow-sm transition-all duration-300 scale-100"
-              >
-                ✓ POSTED
-              </div>
-            )}
+            {/* Right Connection Port Dot */}
+            <span
+              className="hidden md:block h-2.5 w-2.5 rounded-full bg-emerald-500 ring-4 ring-emerald-100 absolute -right-1.25 top-1/2 -translate-y-1/2 z-20"
+              aria-hidden="true"
+            />
+          </div>
+        </div>
+
+        {/* ================= COLUMN 3: STEP 03 (AUTO-MORPHING) ================= */}
+        <div className="md:col-span-4 flex flex-col">
+          {/* Header directly on top of card */}
+          <div className="mb-2.5">
+            <div className="flex items-center justify-between gap-1 mb-1">
+              <span className="text-[10px] font-mono text-slate-400 font-bold uppercase tracking-wider">Step 03</span>
+              <span className="text-[9.5px] font-semibold text-emerald-600 bg-emerald-50 px-1.5 py-0.5 rounded">
+                Auto-sync
+              </span>
+            </div>
+            <h3 className="text-xs font-bold text-slate-900 leading-tight">
+              {isStateB ? 'Tally Prime Synced' : 'AI Extractor'}
+            </h3>
+            <p className="text-[10px] text-slate-500">
+              {isStateB ? 'Voucher Generated' : 'Response Telemetry'}
+            </p>
           </div>
 
-          {/* Under Column 3: Subtle Bracket Strip */}
-          <div className="mt-1.5 rounded bg-emerald-50/70 border border-emerald-200/60 px-1.5 py-0.5 text-center font-mono text-[9px] font-semibold text-emerald-900 truncate">
-            Writes back to your books, nothing replaced
+          {/* Morphing Container — Both states mounted for SEO & CLS = 0 */}
+          <div className="relative min-h-[184px]">
+            {/* Ghost card layers for State B (matching reference) */}
+            <div
+              className={`absolute -inset-1 bg-slate-100 rounded-xl translate-y-1.5 translate-x-1 -z-10 border border-slate-200/70 shadow-xs transition-opacity duration-500 ${
+                isStateB ? 'opacity-80' : 'opacity-0'
+              }`}
+              aria-hidden="true"
+            />
+            <div
+              className={`absolute -inset-1 bg-slate-200/50 rounded-xl translate-y-3 translate-x-2 -z-20 border border-slate-300/50 shadow-xs transition-opacity duration-500 ${
+                isStateB ? 'opacity-50' : 'opacity-0'
+              }`}
+              aria-hidden="true"
+            />
+
+            {/* STATE B: TALLY PRIME SYNCED (Active in reference screenshot) */}
+            <div
+              className={`rounded-xl bg-white border-2 border-emerald-400/80 shadow-md p-3 relative overflow-hidden transition-all duration-500 ease-out min-h-[184px] flex flex-col justify-between ${
+                isStateB
+                  ? 'opacity-100 scale-100 z-10 pointer-events-auto'
+                  : 'opacity-0 scale-95 z-0 pointer-events-none absolute inset-0'
+              }`}
+            >
+              {/* Left connection port for swooping curve */}
+              <span
+                className="hidden md:block h-2.5 w-2.5 rounded-full bg-emerald-500 ring-4 ring-emerald-100 absolute -left-1.25 bottom-6 z-20"
+                aria-hidden="true"
+              />
+
+              {/* Diagonal corner ribbon */}
+              <div className="absolute -right-6 top-3 bg-emerald-500 text-white text-[8px] font-extrabold tracking-wider uppercase py-0.5 px-7 rotate-45 shadow-xs pointer-events-none">
+                01 Pipeline
+              </div>
+
+              {/* Tally Header */}
+              <div>
+                <div className="flex items-center justify-between pr-4">
+                  <div>
+                    <span
+                      className="text-xl font-black italic tracking-tight text-slate-800"
+                      style={{ fontFamily: 'Georgia, serif' }}
+                    >
+                      Tally
+                    </span>
+                    <span className="text-[7.5px] font-bold italic text-slate-400 block -mt-1 font-serif tracking-wider">
+                      POWER OF SIMPLICITY
+                    </span>
+                  </div>
+                  <span className="bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-bold px-1.5 py-0.5 rounded-full inline-flex items-center gap-1">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    Synced
+                  </span>
+                </div>
+
+                <div className="mt-1 flex items-center justify-between">
+                  <span className="text-xs font-bold text-slate-900">Tally Prime</span>
+                  <span className="text-[10px] text-slate-500 font-mono">#VCH-8492</span>
+                </div>
+
+                {/* Sub-box: Auto-voucher created */}
+                <div className="mt-2 px-2.5 py-1.5 rounded-lg bg-emerald-50/70 border border-emerald-200/80 text-[11px] font-semibold text-slate-800 flex items-center justify-between">
+                  <span className="flex items-center gap-1.5">
+                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                    Auto-voucher created
+                  </span>
+                </div>
+              </div>
+
+              {/* Bottom Posted Button */}
+              <button
+                type="button"
+                className="mt-2.5 w-full py-1.5 rounded-lg bg-[#10B981] hover:bg-emerald-600 text-white font-bold text-xs text-center shadow-xs transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+              >
+                <Check size={13} className="stroke-[3]" />
+                Posted
+              </button>
+            </div>
+
+            {/* STATE A: AI EXTRACTOR (Morphs every ~2.5s) */}
+            <div
+              className={`rounded-xl bg-white border border-slate-200/90 shadow-md p-3 relative overflow-hidden transition-all duration-500 ease-out min-h-[184px] flex flex-col justify-between ${
+                !isStateB
+                  ? 'opacity-100 scale-100 z-10 pointer-events-auto'
+                  : 'opacity-0 scale-95 z-0 pointer-events-none absolute inset-0'
+              }`}
+            >
+              {/* Left connection port */}
+              <span
+                className="hidden md:block h-2.5 w-2.5 rounded-full bg-blue-500 ring-4 ring-blue-100 absolute -left-1.25 top-1/2 -translate-y-1/2 z-20"
+                aria-hidden="true"
+              />
+
+              <div>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="text-xs font-bold text-slate-900">AI Extractor</h4>
+                    <p className="text-[9.5px] text-slate-400">Response Telemetry</p>
+                  </div>
+                  <span className="bg-blue-50 text-blue-600 border border-blue-200 text-[9px] font-bold px-1.5 py-0.5 rounded">
+                    Active
+                  </span>
+                </div>
+
+                <div className="mt-2 p-2 rounded-lg bg-slate-50 border border-slate-200/80 space-y-0.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10.5px] font-semibold text-slate-700">Matched 2B</span>
+                    <span className="bg-emerald-100 text-emerald-800 text-[9.5px] font-bold px-1.5 py-0.2 rounded">
+                      Verified
+                    </span>
+                  </div>
+                  <div className="text-[9.5px] font-mono text-slate-500">Timestamp: 3.2ms</div>
+                </div>
+
+                <div className="mt-1.5 p-2 rounded-lg bg-emerald-50/50 border border-emerald-200/80 space-y-0.5">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10.5px] font-semibold text-slate-700">GST Portal Match</span>
+                    <span className="bg-emerald-500 text-white text-[9.5px] font-bold px-1.5 py-0.2 rounded">
+                      Verified
+                    </span>
+                  </div>
+                  <div className="text-[9.5px] font-mono text-slate-600">Status: 04:20 · 100% Tax Math</div>
+                </div>
+              </div>
+
+              <div className="mt-2 w-full py-1.5 rounded-lg bg-slate-100 border border-slate-200 text-slate-600 font-semibold text-[11px] text-center">
+                Ready for Sync
+              </div>
+            </div>
           </div>
         </div>
 
       </div>
 
-      {/* Live Event Log */}
-      <div className="rounded-xl border border-slate-200/80 bg-slate-900 px-3 py-2 text-slate-300 font-mono text-[10.5px] shadow-inner select-none">
-        <div className="flex items-center justify-between border-b border-slate-800 pb-1 mb-1 text-[9.5px] text-slate-400">
-          <span className="flex items-center gap-1.5 font-bold uppercase tracking-wider">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            Live Event Stream
-          </span>
-          <span>Buffer: 3 active events</span>
+      {/* ================= DOCKED FOOTER TELEMETRY CARDS ================= */}
+      <div className="mt-3 flex flex-col sm:flex-row items-center gap-2.5 sm:gap-3 relative">
+        {/* Left Card: Apex Freight */}
+        <div className="flex-1 w-full rounded-xl bg-white border border-slate-200/90 p-2.5 shadow-xs flex items-center gap-2.5">
+          <div className="h-7 w-7 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+            <FileText size={14} className="stroke-[2.5]" />
+          </div>
+          <div className="min-w-0 flex-1">
+            <div className="text-xs font-bold text-slate-900 truncate">Apex Freight</div>
+            <div className="text-[9.5px] text-slate-500 truncate">142 KB · Scan from CargoWise</div>
+          </div>
         </div>
 
-        <div className="space-y-0.5 text-[10.5px] leading-relaxed">
-          {phase >= 4 && (
-            <div className="flex items-center gap-2 text-emerald-400 transition-opacity duration-300">
-              <span className="text-slate-500 text-[9.5px]">10:42:11</span>
-              <span className="truncate">Voucher #PUR-8492 posted to Tally Prime · Audit ID #89283 confirmed</span>
+        {/* Center Indicator Arrow */}
+        <span className="text-slate-400 text-xs font-bold hidden sm:block shrink-0" aria-hidden="true">
+          →
+        </span>
+
+        {/* Right Card: Post-XML */}
+        <div className="flex-1 w-full rounded-xl bg-white border border-slate-200/90 p-2.5 shadow-xs flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <div className="h-7 w-7 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+              <CheckCircle2 size={16} />
             </div>
-          )}
-          {phase >= 2 && (
-            <div className="flex items-center gap-2 text-blue-300 transition-opacity duration-300">
-              <span className="text-slate-500 text-[9.5px]">10:42:09</span>
-              <span className="truncate">GSTIN 33AABCP1234A1Z5 verified · 2B return matched · 0 duplicates</span>
+            <div className="min-w-0">
+              <div className="text-xs font-bold text-slate-900">Post-XML</div>
+              <div className="text-[9.5px] text-slate-400">Posted</div>
             </div>
-          )}
-          {phase >= 0 && (
-            <div className="flex items-center gap-2 text-slate-300 transition-opacity duration-300">
-              <span className="text-slate-500 text-[9.5px]">10:42:07</span>
-              <span className="truncate">Email received from apex@freight.com · Ingested INV-8492.pdf (142 KB)</span>
-            </div>
-          )}
+          </div>
+
+          <div className="w-18 sm:w-20 h-1.5 bg-slate-100 rounded-full overflow-hidden shrink-0">
+            <div className="h-full bg-emerald-500 w-full rounded-full" />
+          </div>
         </div>
       </div>
     </div>

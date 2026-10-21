@@ -26,6 +26,7 @@ interface DropdownItem {
 interface NavDropdownProps {
   onNavigate: (href: string) => void;
   currentPath: string;
+  triggerClassName?: string;
 }
 
 interface DeskCardSlide {
@@ -44,7 +45,7 @@ interface DeskCardSlide {
   ctaButtonClass: string;
 }
 
-export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPath }) => {
+export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPath, triggerClassName }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isPinned, setIsPinned] = useState(false);
   const [activeSlide, setActiveSlide] = useState<0 | 1>(0);
@@ -278,7 +279,7 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
             setIsPinned(true);
           }
         }}
-        className={`group inline-flex items-center gap-1.5 py-1 text-[13px] font-semibold transition-colors focus:outline-none cursor-pointer rounded-md ${
+        className={triggerClassName || `group inline-flex items-center gap-1.5 py-1 text-[13px] font-semibold transition-colors focus:outline-none cursor-pointer rounded-md ${
           isOpen ? 'text-brand-blue' : 'text-slate-600 hover:text-slate-950'
         } focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2`}
         aria-expanded={isOpen}

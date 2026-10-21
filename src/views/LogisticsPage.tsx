@@ -141,20 +141,18 @@ export const LogisticsPage: React.FC = () => {
 
             {/* Right Column: FT LOGISTICS Hero Proof Card + Shipsy/Wove Live Telemetry */}
             <div className="lg:col-span-5">
-              <div className="card-3d-layered relative group/ft rounded-2xl border border-teal-800/60 border-l-4 border-l-teal-400 bg-gradient-to-br from-[#064E3B] via-[#065F46] to-[#042F2E] p-7 sm:p-8 text-white shadow-xl min-h-[220px]">
-                <div className="card-3d-ghost card-3d-ghost-1 bg-teal-900/40 border-teal-800/40" aria-hidden="true" />
-                <div className="card-3d-ghost card-3d-ghost-2 bg-teal-950/20 border-teal-800/20" aria-hidden="true" />
-
-                {/* Subtle Radial Glow */}
-                <div className="pointer-events-none absolute inset-0 bg-radial from-teal-400/15 via-transparent to-transparent rounded-2xl" />
+              <div className="relative group/ft rounded-3xl bg-white/80 backdrop-blur-2xl border border-white/90 shadow-[0_25px_60px_-15px_rgba(15,23,42,0.12),0_1px_3px_rgba(15,23,42,0.06),inset_0_1px_1px_rgba(255,255,255,0.95)] p-6 md:p-8 text-slate-900 min-h-[220px] overflow-hidden">
+                {/* Subtle Ambient Light Refraction Behind the Glass */}
+                <div className="absolute -top-24 -right-24 w-72 h-72 bg-blue-500/[0.08] blur-3xl rounded-full pointer-events-none" />
+                <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-slate-400/[0.08] blur-3xl rounded-full pointer-events-none" />
 
                 {/* Card Tag */}
-                <div className="relative z-10 flex items-center justify-between border-b border-teal-700/60 pb-4">
-                  <span className="font-mono text-xs font-bold uppercase tracking-wider text-teal-200">
+                <div className="relative z-10 flex items-center justify-between border-b border-slate-200/80 pb-4">
+                  <span className="font-mono text-xs font-bold uppercase tracking-wider text-slate-500">
                     FT LOGISTICS
                   </span>
-                  <div className="flex items-center gap-1.5 rounded bg-teal-900/80 px-2.5 py-0.5 border border-teal-700/60 text-[10px] font-mono text-teal-200 shadow-2xs">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <div className="flex items-center gap-1.5 rounded-full bg-slate-900/[0.04] backdrop-blur-md px-3 py-1 border border-slate-200/80 text-[10px] font-mono font-bold text-slate-700 shadow-2xs">
+                    <span className="h-1.5 w-1.5 rounded-full bg-blue-600 animate-pulse" />
                     <span>✓ VERIFIED OUTCOME</span>
                   </div>
                 </div>
@@ -164,58 +162,65 @@ export const LogisticsPage: React.FC = () => {
                   <MetricTransition
                     from="2 hrs"
                     to="2 min"
-                    className="text-4xl sm:text-5xl lg:text-[46px] font-extrabold font-mono tracking-tight text-white leading-none"
-                    accentClassName="text-teal-200"
+                    className="text-4xl sm:text-5xl lg:text-[46px] font-extrabold font-mono tracking-tight text-slate-900 leading-none"
+                    accentClassName="text-blue-600"
                   />
-                  <p className="mt-3 text-xs sm:text-sm font-medium text-teal-100">
+                  <p className="mt-3 text-xs sm:text-sm font-medium text-slate-500">
                     email-to-CargoWise posting
                   </p>
                 </div>
 
-                {/* Product Visual Showcase Image */}
-                <div className="relative z-10 my-4 overflow-hidden rounded-xl border border-teal-500/30 bg-black/40 shadow-inner group">
-                  <img
-                    src="/images/logistics-desk-card.jpg"
-                    alt="Docsynecx Logistics Desk - Freight Forwarding & CargoWise Job Telemetry"
-                    width={1376}
-                    height={768}
-                    className="w-full aspect-video object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
-                    loading="eager"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-teal-950/70 via-transparent to-transparent pointer-events-none" />
-                  <div className="absolute top-2.5 right-2.5 z-10 pointer-events-none">
-                    <span className="inline-flex items-center gap-1.5 rounded-md border border-teal-400/40 bg-teal-950/80 px-2 py-0.5 text-[9px] font-mono font-bold text-teal-300 backdrop-blur-xs shadow-xs">
-                      <span className="h-1.5 w-1.5 rounded-full bg-teal-400 animate-pulse" />
-                      CargoWise One · eAdaptor Sync
-                    </span>
+                {/* Product Visual Showcase Image in Refined Inner Glass Container */}
+                <div className="relative z-10 my-5 rounded-2xl bg-slate-950 p-2 border border-slate-200/80 shadow-md overflow-hidden group">
+                  <div className="relative overflow-hidden rounded-xl">
+                    <img
+                      src="/images/logistics-desk-card.jpg"
+                      alt="Docsynecx Logistics Desk - Freight Forwarding & CargoWise Job Telemetry"
+                      width={1376}
+                      height={768}
+                      className="w-full aspect-video object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                      loading="eager"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none" />
+                    <div className="absolute top-2.5 right-2.5 z-10 pointer-events-none">
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-slate-900/80 backdrop-blur-md px-3 py-1 text-xs font-mono font-medium text-white shadow-sm">
+                        <span className="h-2 w-2 rounded-full bg-blue-400 animate-pulse" />
+                        CargoWise One · eAdaptor Sync
+                      </span>
+                    </div>
                   </div>
                 </div>
 
                 {/* Shipsy/Wove-Style Embedded Telemetry Console Inside Card */}
-                <div className="relative z-10 my-5 rounded-xl bg-black/30 border border-white/10 p-3.5 backdrop-blur-sm">
+                <div className="relative z-10 my-5 rounded-2xl bg-white/70 border border-slate-200/80 p-3.5 sm:p-4 backdrop-blur-md shadow-2xs">
                   {/* Top Status Row: Packet Tag & Circular SVG Gauge */}
-                  <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
-                    <div className="flex items-center gap-2 font-mono text-[9px]">
-                      <span className="text-teal-200 font-bold uppercase tracking-wide">
+                  <div className="flex items-center justify-between border-b border-slate-200/80 pb-2.5">
+                    <div className="flex items-center gap-2 font-mono text-[9px] sm:text-[10px]">
+                      <span className="flex items-center gap-1.5 font-bold uppercase tracking-wider text-slate-800">
+                        <span className="h-2 w-2 rounded-full bg-blue-600 animate-pulse" />
+                        LIVE TELEMETRY
+                      </span>
+                      <span className="text-slate-300">|</span>
+                      <span className="text-slate-600 font-bold uppercase tracking-wide">
                         PACKET: BL + PL + INV
                       </span>
-                      <span className="rounded bg-emerald-500/20 border border-emerald-400/40 px-1.5 py-0.2 text-[8px] font-bold text-emerald-300">
+                      <span className="rounded-full bg-blue-50 border border-blue-200/80 px-2 py-0.5 text-[8px] font-bold text-blue-700">
                         Suspicious → Verified
                       </span>
                     </div>
 
                     {/* Circular SVG Confidence Gauge */}
-                    <div className="flex items-center gap-1.5 font-mono text-[9px] text-emerald-200 shrink-0">
+                    <div className="flex items-center gap-1.5 font-mono text-[9px] text-slate-700 shrink-0">
                       <svg className="h-4 w-4 -rotate-90" viewBox="0 0 36 36" aria-hidden="true">
                         <path
-                          className="text-white/10"
+                          className="text-slate-200"
                           stroke="currentColor"
                           strokeWidth="3.5"
                           fill="none"
                           d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                         />
                         <path
-                          className="text-emerald-400"
+                          className="text-blue-600"
                           stroke="currentColor"
                           strokeDasharray="99.8, 100"
                           strokeWidth="3.5"
@@ -224,70 +229,70 @@ export const LogisticsPage: React.FC = () => {
                           d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                         />
                       </svg>
-                      <span className="font-bold">99.8%</span>
+                      <span className="font-bold text-slate-900">99.8%</span>
                     </div>
                   </div>
 
                   {/* 3-Node Pulsing Horizontal Pipeline */}
-                  <div className="mt-2.5 grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr_auto_1fr] items-center gap-1.5 font-mono text-[9.5px]">
-                    <div className="rounded-lg bg-teal-950/70 border border-teal-700/60 p-2 text-left">
-                      <div className="font-bold text-white flex items-center gap-1">
+                  <div className="mt-2.5 grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr_auto_1fr] items-center gap-2 font-mono text-[10px]">
+                    <div className="bg-white/90 backdrop-blur-md border border-slate-200/90 rounded-xl p-3 text-slate-800 text-left shadow-2xs">
+                      <div className="font-bold text-slate-900 flex items-center justify-between gap-1">
                         <span>1. Email &amp; PDF Split</span>
-                        <span className="text-emerald-400 font-bold">✓</span>
+                        <span className="text-blue-600 font-bold">✓</span>
                       </div>
-                      <div className="text-[8px] text-teal-200/80 truncate">BL · PL · Invoice</div>
+                      <div className="text-[9px] text-slate-500 truncate mt-0.5">BL · PL · Invoice</div>
                     </div>
 
                     {/* Animated Pulsing Connector 1 */}
                     <div className="hidden sm:flex items-center justify-center px-1" aria-hidden="true">
                       <div className="relative flex items-center">
-                        <div className="h-0.5 w-5 bg-emerald-500/40" />
-                        <span className="absolute -top-1 left-1/2 -translate-x-1/2 h-2 w-2 rounded-full bg-emerald-400 animate-ping opacity-75" />
-                        <span className="absolute -top-0.5 left-1/2 -translate-x-1/2 h-1.5 w-1.5 rounded-full bg-emerald-300" />
+                        <div className="h-0.5 w-4 bg-slate-300" />
+                        <span className="absolute -top-1 left-1/2 -translate-x-1/2 h-2 w-2 rounded-full bg-blue-500 animate-ping opacity-75" />
+                        <span className="absolute -top-0.5 left-1/2 -translate-x-1/2 h-1.5 w-1.5 rounded-full bg-blue-600" />
                       </div>
                     </div>
 
-                    <div className="rounded-lg bg-teal-950/70 border border-teal-700/60 p-2 text-left">
-                      <div className="font-bold text-white flex items-center gap-1">
+                    <div className="bg-white/90 backdrop-blur-md border border-slate-200/90 rounded-xl p-3 text-slate-800 text-left shadow-2xs">
+                      <div className="font-bold text-slate-900 flex items-center justify-between gap-1">
                         <span>2. Cross-Check</span>
-                        <span className="text-emerald-400 font-bold">✓</span>
+                        <span className="text-blue-600 font-bold">✓</span>
                       </div>
-                      <div className="text-[8px] text-teal-200/80 truncate">Ports · Weight · Marks</div>
+                      <div className="text-[9px] text-slate-500 truncate mt-0.5">Ports · Weight · Marks</div>
                     </div>
 
                     {/* Animated Pulsing Connector 2 */}
                     <div className="hidden sm:flex items-center justify-center px-1" aria-hidden="true">
                       <div className="relative flex items-center">
-                        <div className="h-0.5 w-5 bg-emerald-500/40" />
-                        <span className="absolute -top-1 left-1/2 -translate-x-1/2 h-2 w-2 rounded-full bg-emerald-400 animate-ping opacity-75" />
-                        <span className="absolute -top-0.5 left-1/2 -translate-x-1/2 h-1.5 w-1.5 rounded-full bg-emerald-300" />
+                        <div className="h-0.5 w-4 bg-slate-300" />
+                        <span className="absolute -top-1 left-1/2 -translate-x-1/2 h-2 w-2 rounded-full bg-blue-500 animate-ping opacity-75" />
+                        <span className="absolute -top-0.5 left-1/2 -translate-x-1/2 h-1.5 w-1.5 rounded-full bg-blue-600" />
                       </div>
                     </div>
 
-                    <div className="rounded-lg bg-teal-950/70 border border-teal-700/60 p-2 text-left">
-                      <div className="font-bold text-white flex items-center gap-1">
+                    <div className="bg-white/90 backdrop-blur-md border border-slate-200/90 rounded-xl p-3 text-slate-800 text-left shadow-2xs">
+                      <div className="font-bold text-slate-900 flex items-center justify-between gap-1">
                         <span>3. CW1 Job #S00038421</span>
-                        <span className="text-emerald-400 font-bold">✓</span>
+                        <span className="text-blue-600 font-bold">✓</span>
                       </div>
-                      <div className="text-[8px] text-teal-200/80 truncate">Posted via eAdaptor</div>
+                      <div className="text-[9px] text-slate-500 truncate mt-0.5">Posted via eAdaptor</div>
                     </div>
                   </div>
                 </div>
 
                 {/* Card Link */}
-                <div className="relative z-10 pt-3 border-t border-teal-700/60 flex items-center justify-between">
+                <div className="relative z-10 pt-3 border-t border-slate-200/80 flex items-center justify-between">
                   <a
                     href="/customers/ft-logistics"
                     onClick={(e) => {
                       e.preventDefault();
                       navigate('/customers/ft-logistics');
                     }}
-                    className="group/link inline-flex items-center gap-1 text-xs font-bold text-teal-200 transition-colors hover:text-white cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-teal-300 rounded"
+                    className="group/link inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 transition-colors hover:text-blue-700 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-blue-400 rounded"
                   >
                     <span>Read the story</span>
                     <ArrowRight size={13} className="transition-transform duration-200 group-hover/link:translate-x-1" />
                   </a>
-                  <span className="font-mono text-[9px] text-teal-300/80">eAdaptor Certified</span>
+                  <span className="font-mono text-[10px] text-slate-500">eAdaptor Certified</span>
                 </div>
               </div>
             </div>

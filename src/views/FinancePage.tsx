@@ -175,20 +175,18 @@ export const FinancePage: React.FC = () => {
 
             {/* Right Column: RAJADURAI E-VEHICLES Verified Outcome Card + Shipsy/Wove Live Telemetry */}
             <div className="lg:col-span-5">
-              <div className="card-3d-layered relative group/hero-rajadurai rounded-2xl border border-emerald-800/60 border-l-4 border-l-emerald-400 bg-gradient-to-br from-[#064E3B] via-[#065F46] to-[#042F2E] p-7 sm:p-8 text-white shadow-xl min-h-[220px]">
-                <div className="card-3d-ghost card-3d-ghost-1 bg-emerald-900/40 border-emerald-800/40" aria-hidden="true" />
-                <div className="card-3d-ghost card-3d-ghost-2 bg-emerald-950/20 border-emerald-800/20" aria-hidden="true" />
-
-                {/* Subtle Radial Glow */}
-                <div className="pointer-events-none absolute inset-0 bg-radial from-emerald-400/15 via-transparent to-transparent rounded-2xl" />
+              <div className="relative group/hero-rajadurai rounded-3xl bg-white/80 backdrop-blur-2xl border border-white/90 shadow-[0_25px_60px_-15px_rgba(15,23,42,0.12),0_1px_3px_rgba(15,23,42,0.06),inset_0_1px_1px_rgba(255,255,255,0.95)] p-6 md:p-8 text-slate-900 min-h-[220px] overflow-hidden">
+                {/* Subtle Ambient Light Refraction Behind the Glass */}
+                <div className="absolute -top-24 -right-24 w-72 h-72 bg-blue-500/[0.08] blur-3xl rounded-full pointer-events-none" />
+                <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-slate-400/[0.08] blur-3xl rounded-full pointer-events-none" />
 
                 {/* Card Tag */}
-                <div className="relative z-10 flex items-center justify-between border-b border-emerald-700/60 pb-4">
-                  <span className="font-mono text-xs font-bold uppercase tracking-wider text-emerald-200">
+                <div className="relative z-10 flex items-center justify-between border-b border-slate-200/80 pb-4">
+                  <span className="font-mono text-xs font-bold uppercase tracking-wider text-slate-500">
                     RAJADURAI E-VEHICLES
                   </span>
-                  <div className="flex items-center gap-1.5 rounded bg-emerald-900/80 px-2.5 py-0.5 border border-emerald-500/40 text-[10px] font-mono font-bold text-emerald-200 shadow-2xs">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <div className="flex items-center gap-1.5 rounded-full bg-slate-900/[0.04] backdrop-blur-md px-3 py-1 border border-slate-200/80 text-[10px] font-mono font-bold text-slate-700 shadow-2xs">
+                    <span className="h-1.5 w-1.5 rounded-full bg-blue-600 animate-pulse" />
                     <span>✓ VERIFIED OUTCOME</span>
                   </div>
                 </div>
@@ -198,76 +196,78 @@ export const FinancePage: React.FC = () => {
                   <MetricTransition
                     from="Days"
                     to="hours"
-                    className="text-4xl sm:text-5xl lg:text-[44px] font-extrabold font-mono tracking-tight text-white leading-none"
-                    accentClassName="text-emerald-200"
+                    className="text-4xl sm:text-5xl lg:text-[44px] font-extrabold font-mono tracking-tight text-slate-900 leading-none"
+                    accentClassName="text-blue-600"
                   />
-                  <p className="mt-3 text-xs sm:text-sm font-medium text-emerald-100">
+                  <p className="mt-3 text-xs sm:text-sm font-medium text-slate-500">
                     purchase, spares & service entry into TallyPrime
                   </p>
                 </div>
 
-                {/* Product Visual Showcase Image */}
-                <div className="relative z-10 my-4 overflow-hidden rounded-xl border border-emerald-500/30 bg-black/40 shadow-inner group">
-                  <img
-                    src="/images/finance-desk-card.jpg"
-                    alt="Docsynecx Finance Desk - Invoice Automation & AP Telemetry"
-                    width={1376}
-                    height={768}
-                    className="w-full aspect-video object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
-                    loading="eager"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/70 via-transparent to-transparent pointer-events-none" />
-                  <div className="absolute top-2.5 right-2.5 z-10 pointer-events-none">
-                    <span className="inline-flex items-center gap-1.5 rounded-md border border-emerald-400/40 bg-emerald-950/80 px-2 py-0.5 text-[9px] font-mono font-bold text-emerald-300 backdrop-blur-xs shadow-xs">
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      TallyPrime Sync · AI 3-Way Match
-                    </span>
+                {/* Product Visual Showcase Image in Refined Inner Glass Container */}
+                <div className="relative z-10 my-5 rounded-2xl bg-slate-950 p-2 border border-slate-200/80 shadow-md overflow-hidden group">
+                  <div className="relative overflow-hidden rounded-xl">
+                    <img
+                      src="/images/finance-desk-card.jpg"
+                      alt="Docsynecx Finance Desk - Invoice Automation & AP Telemetry"
+                      width={1376}
+                      height={768}
+                      className="w-full aspect-video object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+                      loading="eager"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none" />
+                    <div className="absolute top-2.5 right-2.5 z-10 pointer-events-none">
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-slate-900/80 backdrop-blur-md px-3 py-1 text-xs font-mono font-medium text-white shadow-sm">
+                        <span className="h-2 w-2 rounded-full bg-blue-400 animate-pulse" />
+                        TallyPrime Sync · 3-Way Match
+                      </span>
+                    </div>
                   </div>
                 </div>
 
-                {/* Docked Interactive Telemetry Strip (Shipsy/Wove Style) */}
-                <div className="relative z-10 mt-6 pt-4 border-t border-emerald-700/60 space-y-2">
-                  <div className="flex items-center justify-between text-[9px] font-mono text-emerald-300 uppercase tracking-wider">
-                    <span className="flex items-center gap-1 font-bold">
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      Live Telemetry
+                {/* Docked Interactive Telemetry Strip */}
+                <div className="relative z-10 mt-6 pt-4 border-t border-slate-200/80 space-y-2.5">
+                  <div className="flex items-center justify-between text-[10px] font-mono text-slate-500 uppercase tracking-wider">
+                    <span className="flex items-center gap-1.5 font-bold text-slate-700">
+                      <span className="h-2 w-2 rounded-full bg-blue-600 animate-pulse" />
+                      LIVE TELEMETRY
                     </span>
-                    <span>Direct ERP Sync · 3.8s</span>
+                    <span className="text-slate-400">Direct ERP Sync · 3.8s</span>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr_auto_1fr] items-center gap-1.5 font-mono text-[9.5px]">
-                    <div className="rounded-lg bg-emerald-900/80 border border-emerald-700/70 p-2 text-left">
-                      <div className="font-bold text-white flex items-center gap-1">
+                  <div className="grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr_auto_1fr] items-center gap-2 font-mono text-[10px]">
+                    <div className="bg-white/90 backdrop-blur-md border border-slate-200/90 rounded-xl p-3 text-slate-800 text-left shadow-2xs">
+                      <div className="font-bold text-slate-900 flex items-center justify-between gap-1">
                         <span>1. Bill & GST Check</span>
-                        <span className="text-emerald-300 font-bold">✓</span>
+                        <span className="text-blue-600 font-bold">✓</span>
                       </div>
-                      <div className="text-[8px] text-emerald-200/80 truncate">GSTIN · HSN · Guard</div>
+                      <div className="text-[9px] text-slate-500 truncate mt-0.5">GSTIN · HSN · Guard</div>
                     </div>
 
-                    <span className="text-emerald-400/60 hidden sm:inline text-xs font-bold text-center">→</span>
+                    <span className="text-slate-400 hidden sm:inline text-xs font-bold text-center">→</span>
 
-                    <div className="rounded-lg bg-emerald-900/80 border border-emerald-700/70 p-2 text-left">
-                      <div className="font-bold text-white flex items-center gap-1">
+                    <div className="bg-white/90 backdrop-blur-md border border-slate-200/90 rounded-xl p-3 text-slate-800 text-left shadow-2xs">
+                      <div className="font-bold text-slate-900 flex items-center justify-between gap-1">
                         <span>2. MD Payout</span>
-                        <span className="text-emerald-300 font-bold">✓</span>
+                        <span className="text-blue-600 font-bold">✓</span>
                       </div>
-                      <div className="text-[8px] text-emerald-200/80 truncate">Rule matched · Paid</div>
+                      <div className="text-[9px] text-slate-500 truncate mt-0.5">Rule matched · Paid</div>
                     </div>
 
-                    <span className="text-emerald-400/60 hidden sm:inline text-xs font-bold text-center">→</span>
+                    <span className="text-slate-400 hidden sm:inline text-xs font-bold text-center">→</span>
 
-                    <div className="rounded-lg bg-emerald-900/80 border border-emerald-700/70 p-2 text-left">
-                      <div className="font-bold text-white flex items-center gap-1">
+                    <div className="bg-white/90 backdrop-blur-md border border-slate-200/90 rounded-xl p-3 text-slate-800 text-left shadow-2xs">
+                      <div className="font-bold text-slate-900 flex items-center justify-between gap-1">
                         <span>3. Tally Voucher</span>
-                        <span className="text-emerald-300 font-bold">✓</span>
+                        <span className="text-blue-600 font-bold">✓</span>
                       </div>
-                      <div className="text-[8px] text-emerald-200/80 truncate">Auto-posted XML</div>
+                      <div className="text-[9px] text-slate-500 truncate mt-0.5">Auto-posted XML</div>
                     </div>
                   </div>
                 </div>
 
                 {/* Card Link */}
-                <div className="relative z-10 mt-5 pt-3 border-t border-emerald-700/60 flex items-center justify-between">
+                <div className="relative z-10 mt-5 pt-3 border-t border-slate-200/80 flex items-center justify-between">
                   <button
                     type="button"
                     onClick={() => {
@@ -278,12 +278,12 @@ export const FinancePage: React.FC = () => {
                         navigate('/customers/rajadurai');
                       }
                     }}
-                    className="inline-flex items-center gap-1 text-xs font-bold text-emerald-200 transition-colors hover:text-white cursor-pointer group/link rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-emerald-300"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 transition-colors hover:text-blue-700 cursor-pointer group/link rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-blue-400"
                   >
                     <span>Read the story</span>
                     <ArrowRight size={13} className="transition-transform duration-200 group-hover/link:translate-x-1" />
                   </button>
-                  <span className="font-mono text-[9px] text-emerald-300/80">TallyPrime Native</span>
+                  <span className="font-mono text-[10px] text-slate-500">TallyPrime Native</span>
                 </div>
               </div>
             </div>

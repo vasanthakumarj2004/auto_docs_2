@@ -45,11 +45,6 @@ export const DemoCta: React.FC = () => {
 
   return (
     <section ref={sectionRef} className="cta-section relative overflow-hidden" id="demo">
-      {/* Subtle ambient radial blue glow behind CTA */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-60" aria-hidden="true">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[560px] w-[560px] rounded-full bg-[radial-gradient(circle,rgba(47,61,224,0.12)_0%,rgba(16,185,129,0.05)_40%,transparent_70%)] blur-3xl" />
-      </div>
-
       <div className="site-shell relative z-10 text-center">
         <h2 className="text-3xl font-extrabold tracking-[-0.045em] text-slate-950 sm:text-5xl">
           Stop retyping. Start growing.

@@ -67,8 +67,7 @@ button, input, textarea, select {
 
 /* Hero Section */
 .hero-section {
-  background: radial-gradient(circle at 50% 0%, rgba(232, 234, 251, 0.5) 0%, rgba(255, 255, 255, 0) 70%),
-              linear-gradient(180deg, #fcfdff 0%, #f9fbff 60%, #ffffff 100%);
+  background: #ffffff;
 }
 
 .eyebrow {
@@ -233,7 +232,7 @@ button, input, textarea, select {
 .cta-section {
   border-top: 1px solid #e8eafb;
   border-bottom: 1px solid #e8eafb;
-  background: linear-gradient(180deg, #f8f6f1 0%, #fdfcfb 100%);
+  background: #ffffff;
   padding-block: 72px;
 }
 
