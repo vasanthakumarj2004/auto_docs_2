@@ -8,13 +8,13 @@ export const HeroStage: React.FC = () => {
 
   return (
     <div className="relative w-full h-full flex flex-col justify-center select-none py-8 lg:py-12 z-10">
-      {/* 1. Frosted Tag Pill matching reference video */}
-      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#e8ebfa]/92 border border-blue-200/80 shadow-xs mb-6 w-fit backdrop-blur-md">
+      {/* 1. Frosted Tag Pill with High Contrast */}
+      <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#e8eafb] border border-[#c7d2fe]/90 shadow-xs mb-6 w-fit backdrop-blur-sm select-none">
         <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75" />
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-[#2563EB]" />
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75" />
+          <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-600" />
         </span>
-        <span className="text-xs sm:text-[13px] font-semibold text-[#2563EB] tracking-tight">
+        <span className="text-xs sm:text-[13px] font-bold text-[#1e3a8a] tracking-tight">
           For businesses that run on Tally, an ERP, or CargoWise
         </span>
       </div>
