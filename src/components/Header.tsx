@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { useRouter } from '../lib/router';
 import { NavDropdown } from './NavDropdown';
+import { AutoDocsLogo } from './AutoDocsLogo';
 
 export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -31,11 +32,7 @@ export const Header: React.FC = () => {
             className="group inline-flex items-center"
             aria-label="AutoDocs home"
           >
-            <img
-              src="/autodocs-logo.svg"
-              alt="AutoDocs"
-              className="h-8 sm:h-9 w-auto object-contain transition-opacity group-hover:opacity-90"
-            />
+            <AutoDocsLogo className="h-8 sm:h-9 w-auto transition-opacity group-hover:opacity-90" />
           </a>
         </div>
 

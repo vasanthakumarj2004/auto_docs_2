@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { useRouter } from '../lib/router';
+import { AutoDocsLogo } from './AutoDocsLogo';
 
 export const Footer: React.FC = () => {
   const { navigate } = useRouter();
@@ -22,10 +23,9 @@ export const Footer: React.FC = () => {
               className="inline-flex items-center group outline-none"
               aria-label="AutoDocs home"
             >
-              <img
-                src="/autodocs-logo-footer.svg"
-                alt="AutoDocs"
-                className="h-10 sm:h-11 w-auto object-contain transition-all duration-300 group-hover:scale-[1.02] group-hover:opacity-95"
+              <AutoDocsLogo
+                variant="footer"
+                className="h-10 sm:h-11 w-auto transition-all duration-300 group-hover:scale-[1.02] group-hover:opacity-95"
               />
             </a>
             <p className="mt-4 max-w-xs text-xs leading-5 text-gray-400">
