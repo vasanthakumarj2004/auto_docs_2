@@ -105,7 +105,7 @@ export const WalkthroughView: React.FC<WalkthroughViewProps> = ({
             onClick={() => setDisplayMode('player')}
             className={`inline-flex items-center gap-1.5 rounded px-2.5 py-1 transition-all cursor-pointer outline-none ${
               displayMode === 'player'
-                ? 'bg-blue-600 text-white font-bold shadow-xs border border-blue-400'
+                ? 'bg-[#8B32F7] text-white font-bold shadow-xs border border-violet-400'
                 : 'bg-slate-900 text-slate-400 border border-slate-800 hover:text-white hover:bg-slate-800'
             }`}
           >
@@ -120,7 +120,7 @@ export const WalkthroughView: React.FC<WalkthroughViewProps> = ({
             onClick={() => setDisplayMode('storyboard')}
             className={`inline-flex items-center gap-1.5 rounded px-2.5 py-1 transition-all cursor-pointer outline-none ${
               displayMode === 'storyboard'
-                ? 'bg-blue-600 text-white font-bold shadow-xs border border-blue-400'
+                ? 'bg-[#8B32F7] text-white font-bold shadow-xs border border-violet-400'
                 : 'bg-slate-900 text-slate-400 border border-slate-800 hover:text-white hover:bg-slate-800'
             }`}
           >
@@ -131,7 +131,7 @@ export const WalkthroughView: React.FC<WalkthroughViewProps> = ({
 
         {/* Illustrative Demo Badge */}
         <span className="inline-flex items-center gap-1 rounded bg-slate-900 border border-slate-700/80 px-2 py-0.5 font-mono text-[9.5px] text-slate-400 self-start sm:self-auto">
-          <Sparkles size={10} className="text-blue-400" />
+          <Sparkles size={10} className="text-violet-400" />
           Illustrative demo
         </span>
       </div>
@@ -156,7 +156,7 @@ export const WalkthroughView: React.FC<WalkthroughViewProps> = ({
                 onClick={() => handleJumpChapter(idx)}
                 className={`rounded px-2 py-0.5 transition-all cursor-pointer shrink-0 ${
                   currentChapter === idx
-                    ? 'bg-blue-900/60 text-blue-200 border border-blue-500/50 font-bold'
+                    ? 'bg-violet-900/60 text-violet-200 border border-violet-500/50 font-bold'
                     : 'text-slate-400 hover:text-slate-200'
                 }`}
               >
@@ -172,14 +172,14 @@ export const WalkthroughView: React.FC<WalkthroughViewProps> = ({
             {currentChapter === 0 && (
               <div className="w-full max-w-md space-y-3 animate-fadeIn">
                 <div className="flex items-center justify-between text-xs font-mono text-slate-400 border-b border-slate-800 pb-2">
-                  <span className="flex items-center gap-1.5 font-bold text-blue-400">
+                  <span className="flex items-center gap-1.5 font-bold text-violet-400">
                     <Mail size={12} /> Chapter 01: Multi-Channel Intake
                   </span>
-                  <span className="text-[10px] text-emerald-400 font-semibold">● Ingestion Active</span>
+                  <span className="text-[10px] text-violet-400 font-semibold">● Ingestion Active</span>
                 </div>
 
                 <div className="grid grid-cols-3 gap-2 text-center text-[10.5px] font-mono">
-                  <div className="rounded border border-blue-500/50 bg-blue-950/40 p-2 text-blue-200">
+                  <div className="rounded border border-violet-500/50 bg-violet-950/40 p-2 text-violet-200">
                     <span className="block font-bold text-white">Shared Inbox</span>
                     <span className="text-[9px] text-slate-400">bills@company.com</span>
                   </div>
@@ -203,7 +203,7 @@ export const WalkthroughView: React.FC<WalkthroughViewProps> = ({
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="font-bold text-emerald-400">{pipelineInvoice.totalAmount}</div>
+                    <div className="font-bold text-violet-400">{pipelineInvoice.totalAmount}</div>
                     <div className="text-[9.5px] text-slate-400">142 KB · 3 lines</div>
                   </div>
                 </div>
@@ -214,21 +214,21 @@ export const WalkthroughView: React.FC<WalkthroughViewProps> = ({
             {currentChapter === 1 && (
               <div className="w-full max-w-md space-y-3 animate-fadeIn">
                 <div className="flex items-center justify-between text-xs font-mono text-slate-400 border-b border-slate-800 pb-2">
-                  <span className="flex items-center gap-1.5 font-bold text-blue-400">
+                  <span className="flex items-center gap-1.5 font-bold text-violet-400">
                     <Sparkles size={12} /> Chapter 02: AI Field Extraction
                   </span>
-                  <span className="rounded bg-blue-900/80 border border-blue-500/50 px-2 py-0.2 text-[9.5px] font-bold text-blue-200">
+                  <span className="rounded bg-violet-900/80 border border-violet-500/50 px-2 py-0.2 text-[9.5px] font-bold text-violet-200">
                     99.8% Field Confidence
                   </span>
                 </div>
 
                 <div className="grid grid-cols-2 gap-2 text-xs font-mono">
-                  <div className="rounded border border-blue-500/40 bg-blue-950/30 p-2">
-                    <span className="block text-[9.5px] text-blue-300 uppercase">Vendor GSTIN</span>
+                  <div className="rounded border border-violet-500/40 bg-violet-950/30 p-2">
+                    <span className="block text-[9.5px] text-violet-300 uppercase">Vendor GSTIN</span>
                     <span className="font-bold text-white text-[11px]">{pipelineInvoice.gstin}</span>
                   </div>
-                  <div className="rounded border border-blue-500/40 bg-blue-950/30 p-2">
-                    <span className="block text-[9.5px] text-blue-300 uppercase">Invoice Date</span>
+                  <div className="rounded border border-violet-500/40 bg-violet-950/30 p-2">
+                    <span className="block text-[9.5px] text-violet-300 uppercase">Invoice Date</span>
                     <span className="font-bold text-white text-[11px]">{pipelineInvoice.date}</span>
                   </div>
                 </div>
@@ -238,7 +238,7 @@ export const WalkthroughView: React.FC<WalkthroughViewProps> = ({
                     <span className="block text-[9.5px] text-slate-400 uppercase">Line Items Verified</span>
                     <span className="text-slate-200">Ocean Freight + THC + BAF</span>
                   </div>
-                  <span className="font-bold text-emerald-400 text-sm">{pipelineInvoice.totalAmount}</span>
+                  <span className="font-bold text-violet-400 text-sm">{pipelineInvoice.totalAmount}</span>
                 </div>
               </div>
             )}
@@ -250,24 +250,24 @@ export const WalkthroughView: React.FC<WalkthroughViewProps> = ({
                   <span className="flex items-center gap-1.5 font-bold text-amber-400">
                     <ShieldCheck size={12} /> Chapter 03: Pre-Posting Guardrails
                   </span>
-                  <span className="text-[10px] text-emerald-400 font-semibold">● 3 Checks Passed</span>
+                  <span className="text-[10px] text-violet-400 font-semibold">● 3 Checks Passed</span>
                 </div>
 
                 <div className="space-y-1.5 text-xs font-mono">
-                  <div className="flex items-center justify-between rounded border border-emerald-500/40 bg-emerald-950/30 p-2 text-emerald-200">
+                  <div className="flex items-center justify-between rounded border border-violet-500/40 bg-violet-950/30 p-2 text-violet-200">
                     <span className="flex items-center gap-1.5">
-                      <CheckCircle2 size={12} className="text-emerald-400" />
+                      <CheckCircle2 size={12} className="text-violet-400" />
                       Government GST Portal 2B Match
                     </span>
-                    <span className="text-[10px] font-bold text-emerald-400">VERIFIED</span>
+                    <span className="text-[10px] font-bold text-violet-400">VERIFIED</span>
                   </div>
 
-                  <div className="flex items-center justify-between rounded border border-emerald-500/40 bg-emerald-950/30 p-2 text-emerald-200">
+                  <div className="flex items-center justify-between rounded border border-violet-500/40 bg-violet-950/30 p-2 text-violet-200">
                     <span className="flex items-center gap-1.5">
-                      <CheckCircle2 size={12} className="text-emerald-400" />
+                      <CheckCircle2 size={12} className="text-violet-400" />
                       3-Way PO & Quantity Math Check
                     </span>
-                    <span className="text-[10px] font-bold text-emerald-400">100% OK</span>
+                    <span className="text-[10px] font-bold text-violet-400">100% OK</span>
                   </div>
 
                   <div className="flex items-center justify-between rounded border border-amber-500/40 bg-amber-950/30 p-2 text-amber-200">
@@ -285,18 +285,18 @@ export const WalkthroughView: React.FC<WalkthroughViewProps> = ({
             {currentChapter === 3 && (
               <div className="w-full max-w-md space-y-2.5 animate-fadeIn">
                 <div className="flex items-center justify-between text-xs font-mono text-slate-400 border-b border-slate-800 pb-2">
-                  <span className="flex items-center gap-1.5 font-bold text-emerald-400">
+                  <span className="flex items-center gap-1.5 font-bold text-violet-400">
                     <Database size={12} /> Chapter 04: Zero-Touch Tally Posting
                   </span>
-                  <span className="rounded bg-emerald-900/80 border border-emerald-500/50 px-2 py-0.2 text-[9.5px] font-bold text-emerald-300">
+                  <span className="rounded bg-violet-900/80 border border-violet-500/50 px-2 py-0.2 text-[9.5px] font-bold text-violet-300">
                     Tally Prime Synced
                   </span>
                 </div>
 
-                <div className="relative rounded border border-emerald-500/50 bg-slate-800/90 p-3 font-mono text-xs">
+                <div className="relative rounded border border-violet-500/50 bg-slate-800/90 p-3 font-mono text-xs">
                   <div className="flex justify-between items-center text-slate-400 text-[10px]">
                     <span>Purchase Voucher</span>
-                    <span className="font-bold text-emerald-400 text-xs">{pipelineVoucher.voucherNo}</span>
+                    <span className="font-bold text-violet-400 text-xs">{pipelineVoucher.voucherNo}</span>
                   </div>
 
                   <div className="mt-2 text-slate-200 text-xs space-y-1">
@@ -308,12 +308,12 @@ export const WalkthroughView: React.FC<WalkthroughViewProps> = ({
                   </div>
 
                   {/* Verified Stamp */}
-                  <div className="absolute top-4 right-3 rotate-[-12deg] rounded border-2 border-emerald-400 bg-emerald-950/90 px-2.5 py-0.5 text-center text-emerald-300 font-black text-[10.5px] tracking-wider">
+                  <div className="absolute top-4 right-3 rotate-[-12deg] rounded border-2 border-violet-400 bg-violet-950/90 px-2.5 py-0.5 text-center text-violet-300 font-black text-[10.5px] tracking-wider">
                     ✓ POSTED
                   </div>
                 </div>
 
-                <div className="rounded bg-emerald-950/40 border border-emerald-800/60 p-1.5 text-center font-mono text-[10px] text-emerald-300">
+                <div className="rounded bg-violet-950/40 border border-violet-800/60 p-1.5 text-center font-mono text-[10px] text-violet-300">
                   Direct XML push · Your existing Tally ledger stays completely unchanged
                 </div>
               </div>
@@ -335,7 +335,7 @@ export const WalkthroughView: React.FC<WalkthroughViewProps> = ({
                 type="button"
                 onClick={togglePlay}
                 aria-label={isPlaying ? 'Pause walkthrough' : 'Play walkthrough'}
-                className="flex h-7 w-7 items-center justify-center rounded-md bg-blue-600 text-white hover:bg-blue-500 transition-colors cursor-pointer"
+                className="flex h-7 w-7 items-center justify-center rounded-md bg-[#8B32F7] text-white hover:bg-violet-600 transition-colors cursor-pointer"
               >
                 {isPlaying ? <Pause size={12} /> : <Play size={12} className="ml-0.5" />}
               </button>
@@ -355,7 +355,7 @@ export const WalkthroughView: React.FC<WalkthroughViewProps> = ({
                 className="relative flex-1 h-2 rounded-full bg-slate-800 cursor-pointer overflow-hidden group"
               >
                 <div 
-                  className="h-full bg-blue-500 rounded-full transition-all duration-300 group-hover:bg-blue-400"
+                  className="h-full bg-violet-500 rounded-full transition-all duration-300 group-hover:bg-violet-400"
                   style={{ width: `${progressPercent}%` }}
                 />
               </div>

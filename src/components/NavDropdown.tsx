@@ -162,7 +162,7 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
     onNavigate(href);
   };
 
-  // Products and Workflows (Exact previous data from docsynecx)
+  // Products and Workflows (Exact previous data from autodocs)
   const products: DropdownItem[] = [
     {
       href: '/finance',
@@ -170,7 +170,7 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
       description: 'Tally & ERP automation, auto-post vouchers',
       icon: Receipt,
       iconBg: 'bg-brand-lavender/70',
-      iconColor: 'text-brand-blue',
+      iconColor: 'text-brand-violet',
       badge: 'Popular',
     },
     {
@@ -178,20 +178,20 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
       label: 'Logistics & Supply Chain',
       description: 'CargoWise & shipment documents sync',
       icon: Truck,
-      iconBg: 'bg-brand-mint/70',
-      iconColor: 'text-brand-teal',
+      iconBg: 'bg-brand-lavender/70',
+      iconColor: 'text-brand-violet',
     },
     {
       href: '#how-it-works',
       label: 'Workflows & Approvals',
       description: 'Configurable approval flows & rule engine',
       icon: Workflow,
-      iconBg: 'bg-indigo-50',
-      iconColor: 'text-indigo-600',
+      iconBg: 'bg-violet-50',
+      iconColor: 'text-violet-600',
     },
   ];
 
-  // Integrations & Tools (Exact previous data from docsynecx)
+  // Integrations & Tools (Exact previous data from autodocs)
   const tools: DropdownItem[] = [
     {
       href: '/calculator',
@@ -199,7 +199,7 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
       description: 'Calculate monthly hours & INR saved',
       icon: Calculator,
       iconBg: 'bg-orange-50',
-      iconColor: 'text-brand-orange',
+      iconColor: 'text-brand-violet',
       badge: 'Live',
     },
     {
@@ -207,8 +207,8 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
       label: 'Tally & ERP Integrations',
       description: 'Direct connectors for TallyPrime & Zoho',
       icon: Database,
-      iconBg: 'bg-blue-50',
-      iconColor: 'text-brand-blue',
+      iconBg: 'bg-violet-50',
+      iconColor: 'text-brand-violet',
     },
     {
       href: '#faq',
@@ -225,32 +225,32 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
     {
       id: 'finance',
       badgeLabel: 'Finance Desk',
-      badgeDotColor: 'bg-brand-blue',
-      badgeBg: 'bg-blue-50/80',
-      badgeBorder: 'border-blue-200',
-      badgeTextColor: 'text-brand-blue',
+      badgeDotColor: 'bg-brand-violet',
+      badgeBg: 'bg-violet-50/80',
+      badgeBorder: 'border-violet-200',
+      badgeTextColor: 'text-brand-violet',
       title: 'Approve the bill. The entry posts itself.',
       description: 'Eliminate 95% of manual data entry into Tally & ERP with AI 3-way line item match.',
       imageSrc: '/images/finance-desk-card.jpg',
-      imageAlt: 'Docsynecx Finance Desk - Invoice Automation & Tally Voucher Sync',
+      imageAlt: 'AutoDocs Finance Desk - Invoice Automation & Tally Voucher Sync',
       href: '/finance',
       ctaText: 'Explore Finance Desk',
-      ctaButtonClass: 'bg-brand-blue hover:bg-brand-blue-hover text-white',
+      ctaButtonClass: 'button-primary px-4 py-2 text-xs font-semibold rounded-lg',
     },
     {
       id: 'logistics',
       badgeLabel: 'Logistics Desk',
-      badgeDotColor: 'bg-brand-teal',
-      badgeBg: 'bg-emerald-50/80',
-      badgeBorder: 'border-emerald-200',
-      badgeTextColor: 'text-brand-teal',
+      badgeDotColor: 'bg-brand-violet',
+      badgeBg: 'bg-violet-50/80',
+      badgeBorder: 'border-violet-200',
+      badgeTextColor: 'text-brand-violet',
       title: 'Read the manifest. The job creates itself.',
       description: 'Turn booking emails, manifests & shipping bills into structured CargoWise TMS jobs.',
       imageSrc: '/images/logistics-desk-card.jpg',
-      imageAlt: 'Docsynecx Logistics Desk - Freight Forwarding & CargoWise Sync',
+      imageAlt: 'AutoDocs Logistics Desk - Freight Forwarding & CargoWise Sync',
       href: '/logistics',
       ctaText: 'Explore Logistics Desk',
-      ctaButtonClass: 'bg-brand-teal hover:bg-brand-teal-hover text-white',
+      ctaButtonClass: 'button-primary px-4 py-2 text-xs font-semibold rounded-lg',
     },
   ];
 
@@ -280,8 +280,8 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
           }
         }}
         className={triggerClassName || `group inline-flex items-center gap-1.5 py-1 text-[13px] font-semibold transition-colors focus:outline-none cursor-pointer rounded-md ${
-          isOpen ? 'text-brand-blue' : 'text-slate-600 hover:text-slate-950'
-        } focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2`}
+          isOpen ? 'text-brand-violet' : 'text-slate-600 hover:text-slate-950'
+        } focus-visible:ring-2 focus-visible:ring-brand-violet focus-visible:ring-offset-2`}
         aria-expanded={isOpen}
         aria-haspopup="true"
         aria-controls="resources-mega-dropdown"
@@ -291,7 +291,7 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
         <ChevronDown
           size={12}
           className={`transition-transform duration-200 ease-out ${
-            isOpen ? 'rotate-180 text-brand-blue' : 'text-slate-400 group-hover:text-slate-700'
+            isOpen ? 'rotate-180 text-brand-violet' : 'text-slate-400 group-hover:text-slate-700'
           }`}
           aria-hidden="true"
         />
@@ -316,7 +316,7 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
       >
         {/* Anti-flicker invisible hover bridge */}
         <div
-          className="absolute -top-5 -left-10 -right-10 h-7 pointer-events-auto"
+          className="absolute -top-5 inset-x-0 h-7 pointer-events-auto"
           aria-hidden="true"
           onMouseEnter={() => {
             if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -347,9 +347,9 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
                           role="menuitem"
                           className={`group flex items-start gap-3 rounded-xl p-2.5 transition-all duration-150 ${
                             active
-                              ? 'bg-brand-lavender/30 text-brand-blue'
-                              : 'text-slate-700 hover:bg-slate-50/90 hover:text-brand-blue'
-                          } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue`}
+                              ? 'bg-brand-lavender/30 text-brand-violet'
+                              : 'text-slate-700 hover:bg-slate-50/90 hover:text-brand-violet'
+                          } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-violet`}
                         >
                           <span
                             className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${item.iconBg} ${item.iconColor} transition-transform duration-200 group-hover:scale-105 group-hover:translate-x-0.5`}
@@ -359,11 +359,11 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
                           </span>
                           <div className="min-w-0 flex-1">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-[12.5px] font-bold text-slate-900 group-hover:text-brand-blue transition-colors leading-tight">
+                              <span className="text-[12.5px] font-bold text-slate-900 group-hover:text-brand-violet transition-colors leading-tight">
                                 {item.label}
                               </span>
                               {item.badge && (
-                                <span className="rounded-full bg-brand-blue/10 px-1.5 py-0.5 text-[9px] font-extrabold text-brand-blue tracking-wide uppercase">
+                                <span className="rounded-full bg-brand-violet/10 px-1.5 py-0.5 text-[9px] font-extrabold text-brand-violet tracking-wide uppercase">
                                   {item.badge}
                                 </span>
                               )}
@@ -395,9 +395,9 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
                           role="menuitem"
                           className={`group flex items-start gap-3 rounded-xl p-2.5 transition-all duration-150 ${
                             active
-                              ? 'bg-brand-lavender/30 text-brand-blue'
-                              : 'text-slate-700 hover:bg-slate-50/90 hover:text-brand-blue'
-                          } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue`}
+                              ? 'bg-brand-lavender/30 text-brand-violet'
+                              : 'text-slate-700 hover:bg-slate-50/90 hover:text-brand-violet'
+                          } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-violet`}
                         >
                           <span
                             className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${item.iconBg} ${item.iconColor} transition-transform duration-200 group-hover:scale-105 group-hover:translate-x-0.5`}
@@ -407,11 +407,11 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
                           </span>
                           <div className="min-w-0 flex-1">
                             <div className="flex items-center gap-1.5">
-                              <span className="text-[12.5px] font-bold text-slate-900 group-hover:text-brand-blue transition-colors leading-tight">
+                              <span className="text-[12.5px] font-bold text-slate-900 group-hover:text-brand-violet transition-colors leading-tight">
                                 {item.label}
                               </span>
                               {item.badge && (
-                                <span className="rounded-full bg-emerald-50 px-1.5 py-0.5 text-[9px] font-extrabold text-emerald-700 border border-emerald-200/60 tracking-wide uppercase">
+                                <span className="rounded-full bg-violet-50 px-1.5 py-0.5 text-[9px] font-extrabold text-violet-700 border border-violet-200/60 tracking-wide uppercase">
                                   {item.badge}
                                 </span>
                               )}
@@ -430,13 +430,13 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
               {/* Bottom Quick Bar */}
               <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500 px-2.5">
                 <span className="flex items-center gap-1.5 font-medium">
-                  <Sparkles size={12} className="text-brand-blue" />
+                  <Sparkles size={12} className="text-brand-violet" />
                   Direct sync for Tally, Zoho & CargoWise
                 </span>
                 <a
                   href="/calculator"
                   onClick={(e) => handleLinkClick('/calculator', e)}
-                  className="font-bold text-brand-blue hover:text-brand-blue-hover inline-flex items-center gap-1 transition-colors"
+                  className="font-bold text-brand-violet hover:text-brand-violet-hover inline-flex items-center gap-1 transition-colors"
                 >
                   Estimate your savings
                   <ArrowRight size={11} />
@@ -446,7 +446,7 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
 
             {/* Right Column: Dynamic Changing Card (Finance & Logistics, 8-Second Cycle) */}
             <div
-              className="w-[260px] shrink-0 bg-gradient-to-br from-slate-50/90 via-slate-50 to-blue-50/20 p-4 flex flex-col justify-between"
+              className="w-[260px] shrink-0 bg-gradient-to-br from-slate-50/90 via-slate-50 to-violet-50/20 p-4 flex flex-col justify-between"
               onMouseEnter={() => setIsHoveredCard(true)}
               onMouseLeave={() => setIsHoveredCard(false)}
             >
@@ -469,7 +469,7 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
                         onClick={() => setActiveSlide(idx as 0 | 1)}
                         className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
                           activeSlide === idx
-                            ? `w-5 ${slide.id === 'finance' ? 'bg-brand-blue' : 'bg-brand-teal'}`
+                            ? `w-5 ${slide.id === 'finance' ? 'bg-brand-violet' : 'bg-brand-violet'}`
                             : 'w-1.5 bg-slate-200 hover:bg-slate-300'
                         }`}
                         aria-label={`Switch to ${slide.badgeLabel}`}
@@ -517,7 +517,7 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
                   <a
                     href="#demo"
                     onClick={(e) => handleLinkClick('#demo', e)}
-                    className="font-medium text-slate-500 hover:text-brand-blue transition-colors"
+                    className="font-medium text-slate-500 hover:text-brand-violet transition-colors"
                   >
                     Book a demo
                   </a>

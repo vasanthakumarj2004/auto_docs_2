@@ -9,18 +9,18 @@ import { FeatureSection } from '@/src/components/FeatureSection';
 import { BillReviewVisual } from '@/src/components/BillReviewVisual';
 import { ShipmentVisual } from '@/src/components/ShipmentVisual';
 import { CalculatorBar } from '@/src/components/CalculatorBar';
-import { WhyDocsynecx } from '@/src/components/WhyDocsynecx';
+import { WhyAutoDocs } from '@/src/components/WhyAutoDocs';
 import { FaqSection } from '@/src/components/FaqSection';
 import { DemoCta } from '@/src/components/DemoCta';
 import { Newsletter } from '@/src/components/Newsletter';
 import { Footer } from '@/src/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Docsynecx — Grow the business, not the data-entry desk',
+  title: 'AutoDocs — Grow the business, not the data-entry desk',
   description:
     'Bills read, checked, paid and posted to Tally. Emails become CargoWise jobs. Your team handles exceptions, not typing.',
   alternates: {
-    canonical: 'https://docsynecx.com/',
+    canonical: 'https://autodocs.com/',
   },
 };
 
@@ -63,7 +63,7 @@ const logisticsSteps: [string, string, string][] = [
 const softwareAppSchema = {
   '@context': 'https://schema.org',
   '@type': 'SoftwareApplication',
-  name: 'Docsynecx',
+  name: 'AutoDocs',
   operatingSystem: 'All (Cloud/Web-based)',
   applicationCategory: 'BusinessApplication',
   description:
@@ -89,18 +89,18 @@ const faqPageSchema = {
   mainEntity: [
     {
       '@type': 'Question',
-      name: 'What systems does Docsynecx integrate with natively?',
+      name: 'What systems does AutoDocs integrate with natively?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Docsynecx integrates directly with Tally Prime (via XML server and ODBC), CargoWise One (via native eAdaptor XML), Zoho Books, and major enterprise ERPs including SAP and Oracle NetSuite.',
+        text: 'AutoDocs integrates directly with Tally Prime (via XML server and ODBC), CargoWise One (via native eAdaptor XML), Zoho Books, and major enterprise ERPs including SAP and Oracle NetSuite.',
       },
     },
     {
       '@type': 'Question',
-      name: 'How does Docsynecx connect without disrupting our existing setup?',
+      name: 'How does AutoDocs connect without disrupting our existing setup?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'There is zero downtime and no rip-and-replace required. Docsynecx connects via official application APIs and shared inboxes. Your team continues working in Tally or CargoWise as usual.',
+        text: 'There is zero downtime and no rip-and-replace required. AutoDocs connects via official application APIs and shared inboxes. Your team continues working in Tally or CargoWise as usual.',
       },
     },
     {
@@ -108,15 +108,15 @@ const faqPageSchema = {
       name: 'How are duplicate invoices and GST mismatches prevented?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Every incoming vendor bill undergoes a multi-layer verification check against your database and government GST portal APIs before posting. If an invoice matches an existing record, Docsynecx flags a Duplicate Hold.',
+        text: 'Every incoming vendor bill undergoes a multi-layer verification check against your database and government GST portal APIs before posting. If an invoice matches an existing record, AutoDocs flags a Duplicate Hold.',
       },
     },
     {
       '@type': 'Question',
-      name: 'Can Docsynecx process low-resolution scans and non-standard vendor formats?',
+      name: 'Can AutoDocs process low-resolution scans and non-standard vendor formats?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. Unlike template-based OCR engines that break when columns move, Docsynecx uses document vision models trained specifically on trade manifests, tax invoices, and packing lists.',
+        text: 'Yes. Unlike template-based OCR engines that break when columns move, AutoDocs uses document vision models trained specifically on trade manifests, tax invoices, and packing lists.',
       },
     },
   ],
@@ -172,8 +172,8 @@ export default function HomePage() {
           {/* 7. Dark navy calculator bar linking to /calculator */}
           <CalculatorBar />
 
-          {/* 8. Why Docsynecx: 2 feature cards */}
-          <WhyDocsynecx />
+          {/* 8. Why AutoDocs: 2 feature cards */}
+          <WhyAutoDocs />
 
           {/* 9. FAQ accordion */}
           <FaqSection />

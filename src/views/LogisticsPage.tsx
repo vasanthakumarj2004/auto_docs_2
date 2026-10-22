@@ -1,852 +1,589 @@
 'use client';
-import React, { useEffect, useState, useRef } from 'react';
+
+import React, { useEffect, useRef, useState } from 'react';
 import { 
+  ArrowDown, 
   ArrowRight, 
-  Sparkles,
-  ShieldCheck,
-  FileCheck2,
-  Database
+  ArrowUpRight, 
+  Building2, 
+  Check, 
+  CheckCheck, 
+  ChevronDown, 
+  CircleCheck, 
+  Copy, 
+  FileCheck2, 
+  FileText, 
+  History, 
+  Inbox, 
+  Layers, 
+  LockKeyhole, 
+  Scale, 
+  ShieldCheck, 
+  Ship, 
+  Users, 
+  Workflow 
 } from 'lucide-react';
-import { useRouter } from '../lib/router';
-import { StickyCtaBar } from '../components/StickyCtaBar';
-import { MetricTransition } from '../components/MetricTransition';
-import { AnimatedCheckmark } from '../components/AnimatedCheckmark';
-import { FlowConnector } from '../components/FlowConnector';
+import { LogisticsWorkbench } from '../components/logistics/LogisticsWorkbench';
+import s from '../components/logistics/LogisticsDesk.module.css';
+
+const forwarderFaqs = [
+  {
+    question: 'How does AutoDocs connect with CargoWise One?',
+    answer:
+      'AutoDocs integrates natively with CargoWise One via standard eAdaptor XML interfaces. There is zero screen scraping, no fragile browser extensions, and no local desktop software installs. Booking confirmations, ocean bills of lading, and packing list line items transmit directly into your forwarding database.',
+  },
+  {
+    question: 'Can AutoDocs handle non-standard and scanned carrier BL formats?',
+    answer:
+      'Yes. AutoDocs uses advanced multimodal document models trained across thousands of ocean carriers (Maersk, MSC, CMA CGM, Hapag-Lloyd, ONE, Cosco) and air waybill formats. It dynamically extracts container numbers, seal IDs, piece counts, and weights without relying on rigid coordinate templates.',
+  },
+  {
+    question: 'What happens when shipment weights or container numbers mismatch?',
+    answer:
+      'When discrepancies between a bill of lading, customer packing list, or commercial invoice exceed your configured tolerance thresholds (e.g., gross weight variance or container typo), AutoDocs places the job on an exception hold and highlights the exact discrepancy for documentation desk verification.',
+  },
+  {
+    question: 'Can we automate customs declaration pre-fills alongside forwarding jobs?',
+    answer:
+      'Yes. AutoDocs extracts line-item tariff descriptions from commercial invoices and automatically maps them against your customer’s historic HS code profiles, pre-filling customs entries and saving 15–20 minutes per international declaration.',
+  },
+  {
+    question: 'How are multi-branch and forwarder approval permissions managed?',
+    answer:
+      'You can configure branch-level routing, customer-specific business rules, and tiered operator permissions. Exception holds and shipment approvals can be reviewed directly by branch operators or supervisors before eAdaptor transmission.',
+  },
+];
+
+const capabilities = [
+  {
+    icon: Ship,
+    title: 'Multimodal freight extraction.',
+    copy: 'Extract carrier BLs, air waybills, booking confirmations, and arrival notices with full container and voyage context.',
+    label: 'FREIGHT EXTRACTION',
+  },
+  {
+    icon: Scale,
+    title: 'Cross-document reconciliation.',
+    copy: 'Reconcile bills of lading against customer packing lists to spot weight variations, piece count errors, and container typos early.',
+    label: 'INTEGRITY AUDIT',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Exception routing that protects margin.',
+    copy: 'Hold discrepancies before freight moves to prevent expensive customs delays, carrier amendment fees, and demurrage penalties.',
+    label: 'EXCEPTION CONTROLS',
+  },
+  {
+    icon: Users,
+    title: 'Branch and operator governance.',
+    copy: 'Route shipment approvals and exception reviews by branch, trade lane, and forwarder team member with complete transparency.',
+    label: 'GOVERNANCE',
+  },
+  {
+    icon: Workflow,
+    title: 'Native CargoWise eAdaptor sync.',
+    copy: 'Transmit validated forwarding jobs directly into CargoWise One via secure eAdaptor XML interfaces with zero coordinate scraping.',
+    label: 'CARGOWISE INTEGRATION',
+  },
+  {
+    icon: History,
+    title: 'Permanent shipment audit trail.',
+    copy: 'Keep customer emails, carrier PDFs, parsed metadata, and CargoWise job references permanently linked for instant compliance retrieval.',
+    label: 'AUDIT TRACEABILITY',
+  },
+];
+
+function HeroPreview() {
+  return (
+    <div className={s.heroVisual} aria-label="Illustrative Logistics Desk preview">
+      <div className={s.visualGrid} aria-hidden="true" />
+      <div className={s.visualCaption}>
+        <span className={s.liveDot} />
+        FROM SHIPMENT EMAIL TO TMS
+        <span>PRODUCT PREVIEW</span>
+      </div>
+      <div className={s.heroConsole}>
+        <div className={s.heroConsoleBar}>
+          <span className={s.appIcon}>
+            <Ship size={17} />
+          </span>
+          <strong>Logistics Desk</strong>
+          <span>Shipment review</span>
+          <span className={s.consoleDots}>•••</span>
+        </div>
+        <div className={s.heroConsoleBody}>
+          <div className={s.previewHeading}>
+            <span className={s.micro}>OCEAN BL · HL-9384721</span>
+            <span className={s.status}>
+              <Check size={12} />
+              Reconciled
+            </span>
+          </div>
+          <h3>TransWorld Logistics LLC</h3>
+          <div className={s.heroAmount}>
+            <span>Gross shipment weight</span>
+            <strong>
+              24,500<span> KG</span>
+            </strong>
+          </div>
+          <div className={s.heroFields}>
+            <div>
+              <span>Port Routing Pair</span>
+              <b>JEA (Jebel Ali) → INNSA</b>
+            </div>
+            <div>
+              <span>Containers</span>
+              <b>2 × 40HC (HLXU-4920194)</b>
+            </div>
+          </div>
+          <div className={s.heroCheckRows}>
+            <span>
+              <CircleCheck size={15} />
+              Container numbers & seals valid
+              <small>Complete</small>
+            </span>
+            <span>
+              <CircleCheck size={15} />
+              BL ↔ Packing list reconciled
+              <small>Complete</small>
+            </span>
+            <span>
+              <CircleCheck size={15} />
+              Customs declaration drafted
+              <small>Recorded</small>
+            </span>
+          </div>
+          <div className={s.heroPosting}>
+            <span>
+              <CheckCheck size={19} />
+              <span>
+                <strong>Created in CargoWise One</strong>
+                <small>Forwarding job · #S00038421</small>
+              </span>
+            </span>
+            <ArrowUpRight size={20} />
+          </div>
+        </div>
+      </div>
+      <div className={s.sourceCard}>
+        <span>
+          <FileText size={20} />
+        </span>
+        <div>
+          <strong>Booking & BL.pdf</strong>
+          <small>Source paperwork linked to CargoWise job</small>
+        </div>
+        <Check size={16} />
+      </div>
+      <div className={s.approvalChip}>
+        <ShieldCheck size={15} />
+        Exception controls keep your desk in the loop
+      </div>
+    </div>
+  );
+}
 
 export const LogisticsPage: React.FC = () => {
-  const { navigate } = useRouter();
-  const stepperRef = useRef<HTMLElement>(null);
-  const [activeStep, setActiveStep] = useState<number>(0);
-  const [hoveredRow, setHoveredRow] = useState<number | null>(null);
+  const heroRef = useRef<HTMLElement>(null);
+  const closingRef = useRef<HTMLElement>(null);
+  const [showSticky, setShowSticky] = useState(false);
+  const [closingReached, setClosingReached] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
 
-  // Manage SEO Document Title and Meta Description
   useEffect(() => {
-    const originalTitle = document.title;
-    document.title = 'Logistics Door — Docsynecx | Shipment emails in. CargoWise jobs out.';
-
-    const metaDescription = document.querySelector('meta[name="description"]');
-    const originalDescription = metaDescription?.getAttribute('content') || '';
-    if (metaDescription) {
-      metaDescription.setAttribute(
-        'content',
-        'Your documentation desk handles the exceptions — not the typing. Native CargoWise job creation from shipment emails and documents.'
-      );
-    }
-
-    window.scrollTo({ top: 0, behavior: 'instant' });
-
+    const hero = heroRef.current;
+    const closing = closingRef.current;
+    if (!hero || !closing) return;
+    const heroObserver = new IntersectionObserver(
+      ([entry]) => setShowSticky(!entry.isIntersecting && entry.boundingClientRect.top < 0),
+      { threshold: 0 }
+    );
+    const closingObserver = new IntersectionObserver(
+      ([entry]) => setClosingReached(entry.boundingClientRect.top < window.innerHeight),
+      { threshold: 0 }
+    );
+    heroObserver.observe(hero);
+    closingObserver.observe(closing);
     return () => {
-      document.title = originalTitle;
-      if (metaDescription) {
-        metaDescription.setAttribute('content', originalDescription);
-      }
+      heroObserver.disconnect();
+      closingObserver.disconnect();
     };
   }, []);
 
-  // Sequence workflow stepper on scroll-in
-  useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setActiveStep(5);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          let step = 1;
-          setActiveStep(1);
-          const interval = setInterval(() => {
-            step += 1;
-            setActiveStep(step);
-            if (step >= 5) {
-              clearInterval(interval);
-            }
-          }, 450);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.25 }
-    );
-
-    if (stepperRef.current) {
-      observer.observe(stepperRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <div className="bg-white text-slate-800">
-      {/* =========================================================================
-          TIER 1: HERO SECTION (2-Column Split Hero with FT Logistics Outcome Card & Telemetry)
-          ========================================================================= */}
-      <section className="relative border-b border-slate-200/80 bg-[#fdfdfd] pt-6 sm:pt-8 lg:pt-0 pb-20 sm:pb-28">
-        <style dangerouslySetInnerHTML={{ __html: `
-          :root {
-            --nav-h: 80px;
-            --left-center-offset: 0px;
-          }
-          @media (min-width: 1024px) {
-            .hero-desk-sticky-wrapper {
-              position: sticky;
-              top: var(--nav-h, 80px);
-              align-self: start;
-              height: calc(100vh - var(--nav-h, 80px));
-              height: calc(100dvh - var(--nav-h, 80px));
-              height: calc(100svh - var(--nav-h, 80px));
-              display: flex;
-              flex-direction: column;
-              justify-content: center;
-            }
-            .hero-desk-text-block {
-              transform: translateY(var(--left-center-offset, 0px));
-            }
-          }
-          @media (min-width: 1024px) and (max-height: 540px) {
-            .hero-desk-sticky-wrapper {
-              position: sticky;
-              top: calc(var(--nav-h, 80px) + 40px);
-              height: auto;
-              display: block;
-            }
-            .hero-desk-text-block {
-              transform: none;
-            }
-          }
-        `}} />
-        {/* Subtle Ambient Radial Glow & Dot Matrix */}
-        <div className="pointer-events-none absolute inset-0 bg-dot-matrix opacity-40" aria-hidden="true" />
-        <div className="pointer-events-none absolute inset-0 overflow-hidden opacity-60" aria-hidden="true">
-          <div className="absolute -top-24 right-1/4 h-96 w-96 rounded-full bg-gradient-to-br from-teal-100/35 via-emerald-100/25 to-transparent blur-3xl" />
+    <main className={s.page} id="logistics-top">
+      {/* SECTION 1: SPLIT HERO WITH PREVIEW CONSOLE & PROOF STRIP */}
+      <section className={s.hero} ref={heroRef} aria-labelledby="logistics-title">
+        <div className={`${s.container} ${s.heroGrid}`}>
+          <div className={s.heroCopy}>
+            <span className={s.eyebrow}>
+              <span className={s.liveDot} />
+              LOGISTICS DESK / BUILT AROUND CARGOWISE
+            </span>
+            <h1 id="logistics-title">
+              Shipment emails in.
+              <br />
+              CargoWise jobs out.
+              <br />
+              <span>Exceptions flagged before freight moves.</span>
+            </h1>
+            <p>
+              Turn customer booking emails and carrier paperwork into structured CargoWise jobs automatically. Give your
+              documentation desk exceptions to review, not screens to retype.
+            </p>
+            <div className={s.actions}>
+              <a className={s.primaryButton} href="/#demo">
+                Book a demo <ArrowRight size={17} />
+              </a>
+              <a className={s.secondaryButton} href="#logistics-workbench">
+                Explore the workflow <ArrowDown size={17} />
+              </a>
+            </div>
+            <div className={s.heroTrust}>
+              <span>
+                <Check size={14} />
+                Native CargoWise eAdaptor XML
+              </span>
+              <span>
+                <Check size={14} />
+                Your forwarding validation rules
+              </span>
+            </div>
+          </div>
+          <HeroPreview />
         </div>
+        <div className={`${s.container} ${s.proofStrip}`}>
+          <span className={s.micro}>CUSTOMER SPOTLIGHT</span>
+          <strong>FT Logistics</strong>
+          <span className={s.proofResult}>
+            2 hrs <ArrowRight size={18} /> 2 min
+          </span>
+          <span>Email-to-CargoWise forwarding jobs</span>
+          <a href="/customers/ft-logistics/" className={s.textLink}>
+            Read the story <ArrowUpRight size={15} />
+          </a>
+        </div>
+      </section>
 
-        <div className="site-shell relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
-            {/* Left Column: Eyebrow, Headline, Subtext, Buttons */}
-            <div className="lg:col-span-7 text-left hero-desk-sticky-wrapper">
-              <div className="hero-desk-text-block">
-                {/* Tag: FOR FREIGHT FORWARDERS ON CARGOWISE with live status dot */}
-                <div className="inline-flex items-center gap-1.5 rounded-full border border-teal-200/90 bg-teal-50/90 px-3.5 py-1 text-[11px] font-bold uppercase tracking-wider text-teal-800 shadow-2xs font-mono">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  <Sparkles size={11} className="text-teal-600" />
-                  <span>FOR FREIGHT FORWARDERS ON CARGOWISE</span>
-                </div>
-
-                {/* Headline */}
-                <h1 className="mt-6 text-4xl sm:text-5xl lg:text-[54px] font-extrabold leading-[1.08] tracking-[-0.035em] text-slate-950">
-                  Shipment emails in.
-                  <br />
-                  CargoWise jobs out.
-                </h1>
-
-                {/* Subtext */}
-                <p className="mt-6 max-w-xl text-[15px] sm:text-base leading-relaxed text-slate-600 font-medium">
-                  Your documentation desk handles the exceptions — not the typing.
-                </p>
-
-                {/* Buttons */}
-                <div className="mt-9 flex flex-wrap items-center gap-4">
-                  <button
-                    type="button"
-                    onClick={() => navigate('/#demo')}
-                    className="group button-teal text-sm px-6 py-3 cursor-pointer shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-teal-500"
-                  >
-                    <span>Book a demo</span>
-                    <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" />
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={() => {
-                      const el = document.getElementById('retyping-audit');
-                      if (el) {
-                        el.scrollIntoView({ behavior: 'smooth' });
-                      } else {
-                        navigate('/#demo');
-                      }
-                    }}
-                    className="group rounded-lg border border-slate-300 bg-white px-5 py-3 text-xs sm:text-sm font-bold text-slate-800 transition-all duration-200 hover:border-slate-400 hover:bg-slate-50 hover:-translate-y-0.5 cursor-pointer shadow-2xs focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-400 inline-flex items-center gap-1.5"
-                  >
-                    <span>Send us a week of emails</span>
-                    <ArrowRight size={14} className="transition-transform duration-200 group-hover:translate-x-1" />
-                  </button>
-                </div>
+      {/* SECTION 2: THE CHALLENGE & DUAL MODULE STACK (Dark Navy) */}
+      <section
+        id="dual-module-section"
+        className={`${s.section} ${s.darkSection}`}
+        aria-labelledby="logistics-challenge-title"
+      >
+        <div className={s.container}>
+          <div className={s.challengeLayout}>
+            <div>
+              <span className={s.eyebrow}>THE CHALLENGE</span>
+              <h2 id="logistics-challenge-title">
+                More shipment volume.
+                <br />
+                The same manual handoffs.
+              </h2>
+              <p className={s.sectionIntro}>
+                The work between receiving customer booking emails and keying jobs into CargoWise is where documentation
+                time and margin get lost.
+              </p>
+              <div className={s.problemRows}>
+                {[
+                  [
+                    '01',
+                    'The same details, entered again.',
+                    'Container numbers, seals, weights, and shipper entities typed manually from PDF attachments into CargoWise.',
+                  ],
+                  [
+                    '02',
+                    'Exceptions found too late.',
+                    'A weight discrepancy between the BL and packing list triggers customs holds and demurrage penalties at the port.',
+                  ],
+                  [
+                    '03',
+                    'Decisions scattered across inboxes.',
+                    'Documentation teams spend hours chasing Outlook attachments, rate approvals, and manual job updates.',
+                  ],
+                ].map(([number, title, copy]) => (
+                  <div key={number}>
+                    <span>{number}</span>
+                    <div>
+                      <h3>{title}</h3>
+                      <p>{copy}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-
-            {/* Right Column: FT LOGISTICS Hero Proof Card + Shipsy/Wove Live Telemetry */}
-            <div className="lg:col-span-5 pt-0 lg:pt-10">
-              <div className="relative group/ft rounded-3xl bg-white/80 backdrop-blur-2xl border border-white/90 shadow-[0_25px_60px_-15px_rgba(15,23,42,0.12),0_1px_3px_rgba(15,23,42,0.06),inset_0_1px_1px_rgba(255,255,255,0.95)] p-6 md:p-8 text-slate-900 min-h-[220px] overflow-hidden">
-                {/* Subtle Ambient Light Refraction Behind the Glass */}
-                <div className="absolute -top-24 -right-24 w-72 h-72 bg-blue-500/[0.08] blur-3xl rounded-full pointer-events-none" />
-                <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-slate-400/[0.08] blur-3xl rounded-full pointer-events-none" />
-
-                {/* Card Tag */}
-                <div className="relative z-10 flex items-center justify-between border-b border-slate-200/80 pb-4">
-                  <span className="font-mono text-xs font-bold uppercase tracking-wider text-slate-500">
-                    FT LOGISTICS
+            <div className={s.moduleStack}>
+              <div className={s.moduleCard}>
+                <div className={s.moduleTop}>
+                  <span className={s.featureIcon}>
+                    <Ship size={22} />
                   </span>
-                  <div className="flex items-center gap-1.5 rounded-full bg-slate-900/[0.04] backdrop-blur-md px-3 py-1 border border-slate-200/80 text-[10px] font-mono font-bold text-slate-700 shadow-2xs">
-                    <span className="h-1.5 w-1.5 rounded-full bg-blue-600 animate-pulse" />
-                    <span>✓ VERIFIED OUTCOME</span>
-                  </div>
+                  <span className={s.micro}>START WITH THE EMAIL</span>
                 </div>
-
-                {/* Big Hero Metric Transition */}
-                <div className="relative z-10 mt-6">
-                  <MetricTransition
-                    from="2 hrs"
-                    to="2 min"
-                    className="text-4xl sm:text-5xl lg:text-[46px] font-extrabold font-mono tracking-tight text-slate-900 leading-none"
-                    accentClassName="text-blue-600"
-                  />
-                  <p className="mt-3 text-xs sm:text-sm font-medium text-slate-500">
-                    email-to-CargoWise posting
-                  </p>
+                <h3>CargoWise job automation</h3>
+                <p>Build a reliable path from incoming booking paperwork to reviewed, native CargoWise forwarding entries.</p>
+                <ul className={s.checkList}>
+                  <li>
+                    <Check size={15} />
+                    Extract carrier BLs, packing lists & booking emails
+                  </li>
+                  <li>
+                    <Check size={15} />
+                    Reconcile weights, piece counts & container IDs
+                  </li>
+                  <li>
+                    <Check size={15} />
+                    Post native eAdaptor XML directly into CargoWise One
+                  </li>
+                </ul>
+                <a href="/free-trial/" className={s.textLink}>
+                  Explore forwarding automation <ArrowRight size={16} />
+                </a>
+              </div>
+              <div className={`${s.moduleCard} ${s.addOnCard}`}>
+                <div className={s.moduleTop}>
+                  <span className={s.featureIcon}>
+                    <Users size={22} />
+                  </span>
+                  <span className={s.micro}>EXTEND THE WORKFLOW</span>
                 </div>
-
-                {/* Product Visual Showcase Image in Refined Inner Glass Container */}
-                <div className="relative z-10 my-5 rounded-2xl bg-slate-950 p-2 border border-slate-200/80 shadow-md overflow-hidden group">
-                  <div className="relative overflow-hidden rounded-xl">
-                    <img
-                      src="/images/logistics-desk-card.jpg"
-                      alt="Docsynecx Logistics Desk - Freight Forwarding & CargoWise Job Telemetry"
-                      width={1376}
-                      height={768}
-                      className="w-full aspect-video object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
-                      loading="eager"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent pointer-events-none" />
-                    <div className="absolute top-2.5 right-2.5 z-10 pointer-events-none">
-                      <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-slate-900/80 backdrop-blur-md px-3 py-1 text-xs font-mono font-medium text-white shadow-sm">
-                        <span className="h-2 w-2 rounded-full bg-blue-400 animate-pulse" />
-                        CargoWise One · eAdaptor Sync
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Shipsy/Wove-Style Embedded Telemetry Console Inside Card */}
-                <div className="relative z-10 my-5 rounded-2xl bg-white/70 border border-slate-200/80 p-3.5 sm:p-4 backdrop-blur-md shadow-2xs">
-                  {/* Top Status Row: Packet Tag & Circular SVG Gauge */}
-                  <div className="flex items-center justify-between border-b border-slate-200/80 pb-2.5">
-                    <div className="flex items-center gap-2 font-mono text-[9px] sm:text-[10px]">
-                      <span className="flex items-center gap-1.5 font-bold uppercase tracking-wider text-slate-800">
-                        <span className="h-2 w-2 rounded-full bg-blue-600 animate-pulse" />
-                        LIVE TELEMETRY
-                      </span>
-                      <span className="text-slate-300">|</span>
-                      <span className="text-slate-600 font-bold uppercase tracking-wide">
-                        PACKET: BL + PL + INV
-                      </span>
-                      <span className="rounded-full bg-blue-50 border border-blue-200/80 px-2 py-0.5 text-[8px] font-bold text-blue-700">
-                        Suspicious → Verified
-                      </span>
-                    </div>
-
-                    {/* Circular SVG Confidence Gauge */}
-                    <div className="flex items-center gap-1.5 font-mono text-[9px] text-slate-700 shrink-0">
-                      <svg className="h-4 w-4 -rotate-90" viewBox="0 0 36 36" aria-hidden="true">
-                        <path
-                          className="text-slate-200"
-                          stroke="currentColor"
-                          strokeWidth="3.5"
-                          fill="none"
-                          d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                        />
-                        <path
-                          className="text-blue-600"
-                          stroke="currentColor"
-                          strokeDasharray="99.8, 100"
-                          strokeWidth="3.5"
-                          strokeLinecap="round"
-                          fill="none"
-                          d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                        />
-                      </svg>
-                      <span className="font-bold text-slate-900">99.8%</span>
-                    </div>
-                  </div>
-
-                  {/* 3-Node Pulsing Horizontal Pipeline */}
-                  <div className="mt-2.5 grid grid-cols-1 sm:grid-cols-[1fr_auto_1fr_auto_1fr] items-center gap-2 font-mono text-[10px]">
-                    <div className="bg-white/90 backdrop-blur-md border border-slate-200/90 rounded-xl p-3 text-slate-800 text-left shadow-2xs">
-                      <div className="font-bold text-slate-900 flex items-center justify-between gap-1">
-                        <span>1. Email &amp; PDF Split</span>
-                        <span className="text-blue-600 font-bold">✓</span>
-                      </div>
-                      <div className="text-[9px] text-slate-500 truncate mt-0.5">BL · PL · Invoice</div>
-                    </div>
-
-                    {/* Animated Pulsing Connector 1 */}
-                    <div className="hidden sm:flex items-center justify-center px-1" aria-hidden="true">
-                      <div className="relative flex items-center">
-                        <div className="h-0.5 w-4 bg-slate-300" />
-                        <span className="absolute -top-1 left-1/2 -translate-x-1/2 h-2 w-2 rounded-full bg-blue-500 animate-ping opacity-75" />
-                        <span className="absolute -top-0.5 left-1/2 -translate-x-1/2 h-1.5 w-1.5 rounded-full bg-blue-600" />
-                      </div>
-                    </div>
-
-                    <div className="bg-white/90 backdrop-blur-md border border-slate-200/90 rounded-xl p-3 text-slate-800 text-left shadow-2xs">
-                      <div className="font-bold text-slate-900 flex items-center justify-between gap-1">
-                        <span>2. Cross-Check</span>
-                        <span className="text-blue-600 font-bold">✓</span>
-                      </div>
-                      <div className="text-[9px] text-slate-500 truncate mt-0.5">Ports · Weight · Marks</div>
-                    </div>
-
-                    {/* Animated Pulsing Connector 2 */}
-                    <div className="hidden sm:flex items-center justify-center px-1" aria-hidden="true">
-                      <div className="relative flex items-center">
-                        <div className="h-0.5 w-4 bg-slate-300" />
-                        <span className="absolute -top-1 left-1/2 -translate-x-1/2 h-2 w-2 rounded-full bg-blue-500 animate-ping opacity-75" />
-                        <span className="absolute -top-0.5 left-1/2 -translate-x-1/2 h-1.5 w-1.5 rounded-full bg-blue-600" />
-                      </div>
-                    </div>
-
-                    <div className="bg-white/90 backdrop-blur-md border border-slate-200/90 rounded-xl p-3 text-slate-800 text-left shadow-2xs">
-                      <div className="font-bold text-slate-900 flex items-center justify-between gap-1">
-                        <span>3. CW1 Job #S00038421</span>
-                        <span className="text-blue-600 font-bold">✓</span>
-                      </div>
-                      <div className="text-[9px] text-slate-500 truncate mt-0.5">Posted via eAdaptor</div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Card Link */}
-                <div className="relative z-10 pt-3 border-t border-slate-200/80 flex items-center justify-between">
-                  <a
-                    href="/customers/ft-logistics"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigate('/customers/ft-logistics');
-                    }}
-                    className="group/link inline-flex items-center gap-1.5 text-xs font-bold text-blue-600 transition-colors hover:text-blue-700 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-blue-400 rounded"
-                  >
-                    <span>Read the story</span>
-                    <ArrowRight size={13} className="transition-transform duration-200 group-hover/link:translate-x-1" />
-                  </a>
-                  <span className="font-mono text-[10px] text-slate-500">eAdaptor Certified</span>
-                </div>
+                <h3>Customs pre-fill & freight AP audit</h3>
+                <p>Auto-map HS tariff codes from commercial invoices and audit incoming carrier invoices against agreed freight buy rates.</p>
+                <a href="/#demo" className={s.textLink}>
+                  Discuss your forwarder workflow <ArrowRight size={16} />
+                </a>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* =========================================================================
-          TIER 2: DUAL-COLUMN WORKFLOW BENTO FRAME (TODAY vs WITH DOCSYNECX)
-          ========================================================================= */}
-      <section className="border-b border-slate-200/80 bg-white py-16 sm:py-24">
-        <div className="site-shell">
-          {/* Large Outer Rounded Bento Frame mirroring Tier 2 of /finance */}
-          <div className="relative rounded-3xl border border-slate-200/90 bg-white p-6 md:p-10 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_36px_-6px_rgba(15,23,42,0.06),inset_0_1px_0_0_rgba(255,255,255,0.9)] overflow-hidden">
-            <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:16px_16px] opacity-40" aria-hidden="true" />
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 items-stretch relative z-10">
-              {/* Left Column: TODAY (Manual friction) */}
-              <div className="flex flex-col justify-between p-2 sm:p-4 rounded-2xl border border-slate-200/80 bg-white/95">
-                <div>
-                  <div className="flex items-center justify-between mb-5">
-                    <span className="font-mono text-xs font-bold uppercase tracking-wider text-amber-600 block">
-                      TODAY
-                    </span>
-                    <span className="font-mono text-[9px] rounded-md bg-amber-50 border border-amber-200 text-amber-800 px-2 py-0.5 font-bold">
-                      MANUAL BOTTLENECK
-                    </span>
-                  </div>
-
-                  <div className="space-y-3.5">
-                    {/* Row 1 */}
-                    <div
-                      onMouseEnter={() => setHoveredRow(0)}
-                      onMouseLeave={() => setHoveredRow(null)}
-                      className={`flex items-center justify-between gap-3 p-2 rounded-xl transition-all ${
-                        hoveredRow === 0 ? 'bg-amber-50/70 border border-amber-200 shadow-2xs' : 'border border-transparent'
-                      }`}
-                    >
-                      <p className="text-sm font-medium text-slate-700 leading-snug">
-                        Open each email, find the BL
-                      </p>
-                      <span className="hidden sm:inline-flex rounded border border-amber-200/80 bg-amber-50 px-2 py-0.5 font-mono text-[10px] text-amber-700 font-bold shrink-0">
-                        15–25 min / shipment
-                      </span>
-                    </div>
-
-                    {/* Row 2 */}
-                    <div
-                      onMouseEnter={() => setHoveredRow(1)}
-                      onMouseLeave={() => setHoveredRow(null)}
-                      className={`flex items-center justify-between gap-3 p-2 rounded-xl transition-all ${
-                        hoveredRow === 1 ? 'bg-rose-50/70 border border-rose-200 shadow-2xs' : 'border border-transparent'
-                      }`}
-                    >
-                      <p className="text-sm font-medium text-slate-700 leading-snug">
-                        Re-key shipper, consignee, ports
-                      </p>
-                      <span className="hidden sm:inline-flex rounded border border-rose-200/80 bg-rose-50 px-2 py-0.5 font-mono text-[10px] text-rose-700 font-bold shrink-0">
-                        High typo risk ↗
-                      </span>
-                    </div>
-
-                    {/* Row 3 */}
-                    <div
-                      onMouseEnter={() => setHoveredRow(2)}
-                      onMouseLeave={() => setHoveredRow(null)}
-                      className={`flex items-center justify-between gap-3 p-2 rounded-xl transition-all ${
-                        hoveredRow === 2 ? 'bg-amber-50/70 border border-amber-200 shadow-2xs' : 'border border-transparent'
-                      }`}
-                    >
-                      <p className="text-sm font-medium text-slate-700 leading-snug">
-                        Cross-check packing list by eye
-                      </p>
-                      <span className="hidden sm:inline-flex rounded border border-amber-200/80 bg-amber-50 px-2 py-0.5 font-mono text-[10px] text-amber-700 font-bold shrink-0">
-                        Weight / Container mismatch
-                      </span>
-                    </div>
-
-                    {/* Row 4 */}
-                    <div
-                      onMouseEnter={() => setHoveredRow(3)}
-                      onMouseLeave={() => setHoveredRow(null)}
-                      className={`flex items-center justify-between gap-3 p-2 rounded-xl transition-all ${
-                        hoveredRow === 3 ? 'bg-rose-50/70 border border-rose-200 shadow-2xs' : 'border border-transparent'
-                      }`}
-                    >
-                      <p className="text-sm font-medium text-slate-700 leading-snug">
-                        Create the job field by field
-                      </p>
-                      <span className="hidden sm:inline-flex rounded border border-rose-200/80 bg-rose-50 px-2 py-0.5 font-mono text-[10px] text-rose-700 font-bold shrink-0">
-                        120+ manual keystrokes
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Compact Diagnostic Strip */}
-                <div className="mt-5 rounded-xl bg-slate-50 border border-slate-200/80 p-3 shadow-2xs">
-                  <div className="flex items-center justify-between text-[9px] font-mono text-slate-400 uppercase tracking-wider mb-1 font-bold">
-                    <span>Operational Cost Analysis</span>
-                    <span className="text-amber-700 font-bold font-mono">Unmitigated Exposure</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 font-mono text-[10px] text-slate-700 font-medium">
-                    <span className="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" />
-                    <span>Manual Bottleneck: 2 hrs avg. cycle time · Delayed pre-alerts &amp; demurrage risk</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Column: WITH DOCSYNECX (Tinted Emerald Card with Animated Checks & Outcome Metrics) */}
-              <div className="flex flex-col justify-between rounded-2xl border-2 border-emerald-500/80 bg-emerald-50/25 p-6 sm:p-7 shadow-xs relative overflow-hidden">
-                <div>
-                  <div className="flex items-center justify-between mb-5">
-                    <span className="font-mono text-xs font-bold uppercase tracking-wider text-teal-900 block">
-                      WITH DOCSYNECX
-                    </span>
-                    <span className="font-mono text-[9px] rounded-md bg-emerald-100 border border-emerald-300 text-emerald-800 px-2 py-0.5 font-bold">
-                      AUTONOMOUS TELEMETRY
-                    </span>
-                  </div>
-
-                  <div className="space-y-3.5">
-                    {/* Row 1 */}
-                    <div
-                      onMouseEnter={() => setHoveredRow(0)}
-                      onMouseLeave={() => setHoveredRow(null)}
-                      className={`flex items-center justify-between gap-3 p-2 rounded-xl transition-all ${
-                        hoveredRow === 0 ? 'bg-emerald-100/60 border border-emerald-300 shadow-2xs' : 'border border-transparent'
-                      }`}
-                    >
-                      <div className="flex items-center gap-3 text-sm font-semibold text-slate-800">
-                        <AnimatedCheckmark
-                          badgeClassName="bg-emerald-100 text-emerald-800 border border-emerald-300"
-                          delayMs={100}
-                        />
-                        <span>Documents collected from email</span>
-                      </div>
-                      <span className="hidden sm:inline-flex rounded border border-emerald-200/90 bg-emerald-100/80 px-2 py-0.5 font-mono text-[10px] text-emerald-800 font-bold shrink-0">
-                        Auto-split PDFs
-                      </span>
-                    </div>
-
-                    {/* Row 2 */}
-                    <div
-                      onMouseEnter={() => setHoveredRow(1)}
-                      onMouseLeave={() => setHoveredRow(null)}
-                      className={`flex items-center justify-between gap-3 p-2 rounded-xl transition-all ${
-                        hoveredRow === 1 ? 'bg-emerald-100/60 border border-emerald-300 shadow-2xs' : 'border border-transparent'
-                      }`}
-                    >
-                      <div className="flex items-center gap-3 text-sm font-semibold text-slate-800">
-                        <AnimatedCheckmark
-                          badgeClassName="bg-emerald-100 text-emerald-800 border border-emerald-300"
-                          delayMs={200}
-                        />
-                        <span>Key fields read and matched</span>
-                      </div>
-                      <span className="hidden sm:inline-flex rounded border border-emerald-200/90 bg-emerald-100/80 px-2 py-0.5 font-mono text-[10px] text-emerald-800 font-bold shrink-0">
-                        BL ↔ PL ↔ Inv Checked
-                      </span>
-                    </div>
-
-                    {/* Row 3 */}
-                    <div
-                      onMouseEnter={() => setHoveredRow(2)}
-                      onMouseLeave={() => setHoveredRow(null)}
-                      className={`flex items-center justify-between gap-3 p-2 rounded-xl transition-all ${
-                        hoveredRow === 2 ? 'bg-emerald-100/60 border border-emerald-300 shadow-2xs' : 'border border-transparent'
-                      }`}
-                    >
-                      <div className="flex items-center gap-3 text-sm font-semibold text-slate-800">
-                        <AnimatedCheckmark
-                          badgeClassName="bg-emerald-100 text-emerald-800 border border-emerald-300"
-                          delayMs={300}
-                        />
-                        <span>Job created or updated in CargoWise</span>
-                      </div>
-                      <span className="hidden sm:inline-flex rounded border border-emerald-200/90 bg-emerald-100/80 px-2 py-0.5 font-mono text-[10px] text-emerald-800 font-bold shrink-0">
-                        &lt; 2 min via eAdaptor
-                      </span>
-                    </div>
-
-                    {/* Row 4 */}
-                    <div
-                      onMouseEnter={() => setHoveredRow(3)}
-                      onMouseLeave={() => setHoveredRow(null)}
-                      className={`flex items-center justify-between gap-3 p-2 rounded-xl transition-all ${
-                        hoveredRow === 3 ? 'bg-emerald-100/60 border border-emerald-300 shadow-2xs' : 'border border-transparent'
-                      }`}
-                    >
-                      <div className="flex items-center gap-3 text-sm font-semibold text-slate-800">
-                        <AnimatedCheckmark
-                          badgeClassName="bg-emerald-100 text-emerald-800 border border-emerald-300"
-                          delayMs={400}
-                        />
-                        <span>Team works only the flagged cases</span>
-                      </div>
-                      <span className="hidden sm:inline-flex rounded border border-emerald-200/90 bg-emerald-100/80 px-2 py-0.5 font-mono text-[10px] text-emerald-800 font-bold shrink-0">
-                        ~98% less manual keying
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Compact Live Verification Strip */}
-                <div className="mt-5 rounded-xl bg-white/90 border border-emerald-200/90 p-3 shadow-xs">
-                  <div className="flex items-center justify-between text-[9px] font-mono text-emerald-700 uppercase tracking-wider mb-1 font-bold">
-                    <span>Autonomous Job Dispatch</span>
-                    <span className="text-emerald-800 font-bold font-mono flex items-center gap-1">
-                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                      Live eAdaptor Link
-                    </span>
-                  </div>
-                  <div className="flex flex-wrap items-center justify-between gap-1.5 font-mono text-[10px]">
-                    <span className="font-bold text-slate-900">INMAA → SGSIN</span>
-                    <span className="text-slate-300">·</span>
-                    <span className="text-slate-700 font-medium">1x40&apos; HC</span>
-                    <span className="text-slate-300">·</span>
-                    <span className="font-semibold text-slate-800">18,400 kg</span>
-                    <span className="rounded bg-emerald-100 border border-emerald-200 px-1.5 py-0.5 text-[9px] font-bold text-emerald-800">
-                      ✓ 3 Docs Cross-Checked &amp; Posted to CW1
-                    </span>
-                  </div>
-                </div>
-              </div>
+      {/* SECTION 3: THE CONNECTED DESK (4-Step Journey) */}
+      <section className={`${s.section} ${s.journeySection}`} aria-labelledby="logistics-journey-title">
+        <div className={s.container}>
+          <div className={s.sectionHeading}>
+            <div>
+              <span className={s.eyebrow}>THE CONNECTED DESK</span>
+              <h2 id="logistics-journey-title">One shipment. A clear path to your TMS.</h2>
             </div>
-
-            {/* Cross-Stage Capability Strip Inside Bottom of Tier 2 (Shipsy Architecture Pattern) */}
-            <div className="mt-8 pt-6 border-t border-dashed border-slate-200/90 relative z-10">
-              <div className="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-                <span>RUNS ACROSS EVERY SHIPMENT PACKET</span>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 font-mono text-[10px]">
-                <div className="rounded-xl border border-slate-200/80 bg-slate-50/80 p-3">
-                  <div className="flex items-center gap-1.5 font-bold text-slate-900 mb-1">
-                    <FileCheck2 size={13} className="text-emerald-600" />
-                    <span>DOCUMENT AI ENGINE</span>
-                  </div>
-                  <p className="text-[9px] text-slate-500 leading-relaxed font-sans">
-                    Multi-page BL · Packing List · Commercial Invoice · Arrival Notice
-                  </p>
-                </div>
-
-                <div className="rounded-xl border border-slate-200/80 bg-slate-50/80 p-3">
-                  <div className="flex items-center gap-1.5 font-bold text-slate-900 mb-1">
-                    <ShieldCheck size={13} className="text-emerald-600" />
-                    <span>DISCREPANCY GUARD</span>
-                  </div>
-                  <p className="text-[9px] text-slate-500 leading-relaxed font-sans">
-                    Shipper/Consignee · Gross Weight · Container &amp; Seal # · HS Codes
-                  </p>
-                </div>
-
-                <div className="rounded-xl border border-slate-200/80 bg-slate-50/80 p-3">
-                  <div className="flex items-center gap-1.5 font-bold text-slate-900 mb-1">
-                    <Database size={13} className="text-emerald-600" />
-                    <span>CARGOWISE SYNC</span>
-                  </div>
-                  <p className="text-[9px] text-slate-500 leading-relaxed font-sans">
-                    Native XML / eAdaptor · Consol &amp; Shipment Creation · Audit Trail
-                  </p>
-                </div>
-              </div>
-            </div>
+            <p>Each step carries the document and its freight context forward. Your team stays in control of the exceptions.</p>
           </div>
-        </div>
-      </section>
-
-      {/* =========================================================================
-          SECTION: "START WITH ONE WORKFLOW" (Numbered Stepper with Flow Connectors)
-          ========================================================================= */}
-      <section ref={stepperRef} className="border-b border-[#ede8de] bg-[#F8F6F1] py-16 sm:py-24">
-        <div className="site-shell">
-          {/* Section Label */}
-          <div className="text-left mb-8 sm:mb-10">
-            <span className="font-mono text-xs font-bold uppercase tracking-widest text-slate-500">
-              START WITH ONE WORKFLOW
+          <ol className={s.journey}>
+            {[
+              { icon: Inbox, name: 'Capture', text: 'Booking emails, ocean BLs, air waybills & packing lists' },
+              { icon: Scale, name: 'Check', text: 'Cross-check gross weights, pieces, seals & container IDs' },
+              { icon: ShieldCheck, name: 'Validate', text: 'Enforce tolerance rules and spot paperwork errors' },
+              { icon: Building2, name: 'Post', text: 'Native eAdaptor XML creates CargoWise One job' },
+            ].map(({ icon: Icon, name, text }, index) => (
+              <li key={name}>
+                <div>
+                  <span className={s.featureIcon}>
+                    <Icon size={22} />
+                  </span>
+                  <span className={s.micro}>0{index + 1}</span>
+                </div>
+                <h3>{name}</h3>
+                <p>{text}</p>
+              </li>
+            ))}
+          </ol>
+          <div className={s.journeyFoot}>
+            <span>
+              <Layers size={16} />
+              One linked shipment file
+            </span>
+            <span>
+              <LockKeyhole size={16} />
+              Exception tolerance holds
+            </span>
+            <span>
+              <History size={16} />
+              Traceable eAdaptor audit trail
             </span>
           </div>
+        </div>
+      </section>
 
-          {/* 5 Module Stepper Cards with Sequential Animated Connectors */}
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr_auto_1fr] items-center gap-2 sm:gap-2 lg:gap-3">
-            {/* Step 1: Email → CargoWise job */}
-            <div
-              className={`flex flex-col justify-between rounded-xl border bg-white p-5 transition-all duration-300 hover:shadow-md hover:-translate-y-1 min-h-[160px] ${
-                activeStep >= 1 ? 'border-teal-300/80 border-t-2 border-t-teal-600 shadow-xs' : 'border-slate-200/90 shadow-2xs opacity-85'
-              }`}
-            >
-              <div>
-                <span className="font-mono text-[11px] font-bold text-teal-700 bg-teal-50 border border-teal-200 rounded px-1.5 py-0.5 inline-block mb-3">
-                  01
-                </span>
-                <h3 className="text-sm font-extrabold text-slate-900 leading-snug">
-                  Email → CargoWise job
-                </h3>
-                <p className="mt-2 text-xs leading-relaxed text-slate-500">
-                  the job is ready before your team opens the email
-                </p>
-              </div>
+      {/* SECTION 4: INSIDE LOGISTICS DESK (Interactive 4-Tab Workbench) */}
+      <section
+        id="logistics-workbench"
+        className={`${s.section} ${s.workbenchSection}`}
+        aria-labelledby="logistics-workbench-title"
+      >
+        <div className={s.container}>
+          <div className={s.sectionHeading}>
+            <div>
+              <span className={s.eyebrow}>INSIDE LOGISTICS DESK</span>
+              <h2 id="logistics-workbench-title">
+                Less explanation.
+                <br />
+                More of the actual workflow.
+              </h2>
             </div>
+            <p>Explore four everyday forwarding tasks. Switch views, inspect a container variance, and try an automated CargoWise job creation with sample data.</p>
+          </div>
+          <LogisticsWorkbench />
+        </div>
+      </section>
 
-            {/* Connector 1 */}
-            <FlowConnector stepIndex={1} activeStep={activeStep} />
-
-            {/* Step 2: BL & packing list check */}
-            <div
-              className={`flex flex-col justify-between rounded-xl border bg-white p-5 transition-all duration-300 hover:shadow-md hover:-translate-y-1 min-h-[160px] ${
-                activeStep >= 2 ? 'border-teal-300/80 border-t-2 border-t-teal-600 shadow-xs' : 'border-slate-200/90 shadow-2xs opacity-85'
-              }`}
-            >
-              <div>
-                <span className="font-mono text-[11px] font-bold text-teal-700 bg-teal-50 border border-teal-200 rounded px-1.5 py-0.5 inline-block mb-3">
-                  02
-                </span>
-                <h3 className="text-sm font-extrabold text-slate-900 leading-snug">
-                  BL & packing list check
-                </h3>
-                <p className="mt-2 text-xs leading-relaxed text-slate-500">
-                  mismatches caught at intake
-                </p>
-              </div>
+      {/* SECTION 5: BUILT FOR THE DETAILS (Capabilities Grid - Dark Navy) */}
+      <section
+        className={`${s.section} ${s.darkSection} ${s.capabilitiesSection}`}
+        aria-labelledby="logistics-controls-title"
+      >
+        <div className={s.container}>
+          <div className={s.sectionHeading}>
+            <div>
+              <span className={s.eyebrow}>BUILT FOR THE DETAILS</span>
+              <h2 id="logistics-controls-title">
+                Move faster.
+                <br />
+                Keep the controls that matter.
+              </h2>
             </div>
+            <p>Automation handles repetitive PDF extraction. Your forwarding team owns exceptions, container holds, and dispatch authorization.</p>
+          </div>
+          <div className={s.capabilityGrid}>
+            {capabilities.map(({ icon: Icon, title, copy, label }) => (
+              <article key={title}>
+                <div>
+                  <Icon size={23} />
+                  <span className={s.micro}>{label}</span>
+                </div>
+                <h3>{title}</h3>
+                <p>{copy}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
-            {/* Connector 2 */}
-            <FlowConnector stepIndex={2} activeStep={activeStep} />
-
-            {/* Step 3: Customs entry */}
-            <div
-              className={`flex flex-col justify-between rounded-xl border bg-white p-5 transition-all duration-300 hover:shadow-md hover:-translate-y-1 min-h-[160px] ${
-                activeStep >= 3 ? 'border-teal-300/80 border-t-2 border-t-teal-600 shadow-xs' : 'border-slate-200/90 shadow-2xs opacity-85'
-              }`}
-            >
-              <div>
-                <span className="font-mono text-[11px] font-bold text-teal-700 bg-teal-50 border border-teal-200 rounded px-1.5 py-0.5 inline-block mb-3">
-                  03
-                </span>
-                <h3 className="text-sm font-extrabold text-slate-900 leading-snug">
-                  Customs entry
-                </h3>
-                <p className="mt-2 text-xs leading-relaxed text-slate-500">
-                  pre-filled line by line
-                </p>
-              </div>
+      {/* SECTION 6: CUSTOMER STORY (FT Logistics Metric Split) */}
+      <section className={`${s.section} ${s.storySection}`} id="customer-story-ft-logistics" aria-labelledby="logistics-story-title">
+        <div className={`${s.container} ${s.storyGrid}`}>
+          <div className={s.storyMetric}>
+            <span className={s.micro}>FT LOGISTICS</span>
+            <div>
+              <span>2 hrs</span>
+              <ArrowRight size={43} />
+              <strong>2 min.</strong>
             </div>
-
-            {/* Connector 3 */}
-            <FlowConnector stepIndex={3} activeStep={activeStep} />
-
-            {/* Step 4: Freight AP check */}
-            <div
-              className={`flex flex-col justify-between rounded-xl border bg-white p-5 transition-all duration-300 hover:shadow-md hover:-translate-y-1 min-h-[160px] ${
-                activeStep >= 4 ? 'border-teal-300/80 border-t-2 border-t-teal-600 shadow-xs' : 'border-slate-200/90 shadow-2xs opacity-85'
-              }`}
-            >
-              <div>
-                <span className="font-mono text-[11px] font-bold text-teal-700 bg-teal-50 border border-teal-200 rounded px-1.5 py-0.5 inline-block mb-3">
-                  04
-                </span>
-                <h3 className="text-sm font-extrabold text-slate-900 leading-snug">
-                  Freight AP check
-                </h3>
-                <p className="mt-2 text-xs leading-relaxed text-slate-500">
-                  carrier charges vs expected cost
-                </p>
-              </div>
+            <p>Shipment email extraction and direct CargoWise One job posting.</p>
+            <span className={s.storyLabel}>
+              <Building2 size={15} />
+              Customer story
+            </span>
+          </div>
+          <div>
+            <span className={s.eyebrow}>FROM THE FORWARDING DESK</span>
+            <h2 id="logistics-story-title">
+              A shorter path
+              <br />
+              from shipment emails to CargoWise.
+            </h2>
+            <p className={s.sectionIntro}>
+              See how FT Logistics scaled monthly shipment volume across ocean and air freight without adding documentation headcount or risking customs demurrage.
+            </p>
+            <div className={s.storyTags}>
+              <span>Ocean Freight</span>
+              <span>Air Waybills</span>
+              <span>CargoWise eAdaptor</span>
             </div>
+            <a href="/customers/ft-logistics/" className={s.textLink}>
+              Explore the customer story <ArrowUpRight size={17} />
+            </a>
+          </div>
+        </div>
+      </section>
 
-            {/* Connector 4 */}
-            <FlowConnector stepIndex={4} activeStep={activeStep} />
-
-            {/* Step 5: Quote to booking */}
-            <div
-              className={`flex flex-col justify-between rounded-xl border border-orange-200/90 border-t-2 border-t-orange-400 bg-[#fef9f3] p-5 transition-all duration-300 hover:shadow-md hover:border-orange-300 hover:-translate-y-1 min-h-[160px] ${
-                activeStep >= 5 ? 'shadow-xs' : 'shadow-2xs opacity-85'
-              }`}
-            >
-              <div>
-                <span className="font-mono text-[11px] font-bold text-orange-700 bg-orange-100/70 border border-orange-200 rounded px-1.5 py-0.5 inline-block mb-3">
-                  05
-                </span>
-                <h3 className="text-sm font-extrabold text-slate-900 leading-snug">
-                  Quote to booking
+      {/* SECTION 7: BEFORE YOU GET STARTED (FAQs with Accordion) */}
+      <section className={`${s.section} ${s.faqSection}`} aria-labelledby="logistics-faq-title">
+        <div className={`${s.container} ${s.faqGrid}`}>
+          <div>
+            <span className={s.eyebrow}>BEFORE YOU GET STARTED</span>
+            <h2 id="logistics-faq-title">
+              Good questions.
+              <br />
+              Clear answers.
+            </h2>
+            <p className={s.sectionIntro}>
+              Start with your forwarding setup, carrier paperwork, and the way your documentation team operates today.
+            </p>
+            <a href="/#demo" className={s.textLink}>
+              Talk through your forwarding requirements <ArrowRight size={16} />
+            </a>
+          </div>
+          <div className={s.faqList}>
+            {forwarderFaqs.map(({ question, answer }, index) => (
+              <div className={s.faqItem} key={question} data-open={openFaq === index}>
+                <h3>
+                  <button
+                    type="button"
+                    id={`logistics-faq-button-${index}`}
+                    aria-expanded={openFaq === index}
+                    aria-controls={`logistics-faq-answer-${index}`}
+                    onClick={() => setOpenFaq(openFaq === index ? null : index)}
+                  >
+                    <span>{question}</span>
+                    <ChevronDown size={18} aria-hidden="true" />
+                  </button>
                 </h3>
-                <p className="mt-2 text-xs leading-relaxed text-orange-800/80 font-medium">
-                  coming — join the list
-                </p>
+                <div
+                  id={`logistics-faq-answer-${index}`}
+                  role="region"
+                  aria-labelledby={`logistics-faq-button-${index}`}
+                  hidden={openFaq !== index}
+                >
+                  <p>{answer}</p>
+                </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 8: CLOSING CTA CARD & STICKY BAR */}
+      <section className={s.closingSection} ref={closingRef} aria-labelledby="logistics-closing-title">
+        <div className={s.container}>
+          <div className={s.closingCard}>
+            <div>
+              <span className={s.eyebrow}>YOUR NEXT FORWARDING WORKFLOW</span>
+              <h2 id="logistics-closing-title">
+                Bring a shipment email.
+                <br />
+                See the whole journey.
+              </h2>
+              <p>
+                Walk through email capture, BL cross-checks, HS code mapping, and CargoWise job creation with your team’s sample shipments in mind.
+              </p>
+            </div>
+            <div className={s.closingActions}>
+              <a href="/#demo" className={s.primaryButton}>
+                Book a Logistics Desk demo <ArrowRight size={17} />
+              </a>
+              <a href="/free-trial/" className={s.textLink}>
+                Start with document automation <ArrowUpRight size={16} />
+              </a>
+              <span>Built around your existing CargoWise One workflow.</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* =========================================================================
-          TIER 3: BOTTOM 3-CARD BENTO GRID & STICKY CONVERSION DOCK
-          ========================================================================= */}
-      <section id="retyping-audit" className="bg-white py-16 sm:py-24 scroll-mt-20">
-        <div className="site-shell">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-            {/* Card 1: POSTS INTO CargoWise One + Native Integration Telemetry Strip */}
-            <div className="flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white/95 backdrop-blur-sm p-6 sm:p-7 shadow-xs transition-all duration-200 hover:border-slate-300 hover:shadow-md">
-              <div>
-                <span className="font-mono text-xs font-bold uppercase tracking-wider text-slate-400 block mb-3">
-                  POSTS INTO
-                </span>
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="inline-flex items-center rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-bold text-slate-800 font-mono shadow-2xs">
-                    CargoWise One
-                  </span>
-                  <span className="text-xs text-slate-600 font-medium">
-                    through native APIs · other TMS on request
-                  </span>
-                </div>
-              </div>
-
-              {/* Native Integration Telemetry Strip */}
-              <div className="mt-5 pt-4 border-t border-slate-100">
-                <div className="flex flex-wrap gap-1.5 font-mono text-[9px]">
-                  <span className="rounded bg-slate-100 border border-slate-200 px-2 py-0.5 text-slate-700 font-semibold">
-                    [ eAdaptor XML ]
-                  </span>
-                  <span className="rounded bg-slate-100 border border-slate-200 px-2 py-0.5 text-slate-700 font-semibold">
-                    [ Forwarding Shipments ]
-                  </span>
-                  <span className="rounded bg-slate-100 border border-slate-200 px-2 py-0.5 text-slate-700 font-semibold">
-                    [ Customs &amp; AP ]
-                  </span>
-                  <span className="rounded bg-emerald-50 border border-emerald-200 px-2 py-0.5 text-emerald-800 font-bold">
-                    [ Zero Screen-Scraping ]
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 2: FOR Forwarders in India · Middle East (Phase 2) + Trade Lane & Mode Strip */}
-            <div className="flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white/95 backdrop-blur-sm p-6 sm:p-7 shadow-xs transition-all duration-200 hover:border-slate-300 hover:shadow-md">
-              <div>
-                <span className="font-mono text-xs font-bold uppercase tracking-wider text-slate-400 block mb-3">
-                  FOR
-                </span>
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="text-xs font-semibold text-slate-900">
-                    Forwarders in
-                  </span>
-                  <span className="inline-flex items-center rounded-md border border-slate-200 bg-slate-50 px-2 py-0.5 text-xs font-bold text-slate-800 font-mono shadow-2xs">
-                    India
-                  </span>
-                  <span className="text-slate-400">·</span>
-                  <span className="inline-flex items-center rounded-md border border-slate-200 bg-slate-50 px-2 py-0.5 text-xs font-medium text-slate-700 font-mono shadow-2xs">
-                    Middle East <span className="text-[10px] text-slate-400 ml-1">(Phase 2)</span>
-                  </span>
-                </div>
-              </div>
-
-              {/* Trade Lane & Mode Strip */}
-              <div className="mt-5 pt-4 border-t border-slate-100">
-                <div className="flex flex-wrap gap-1.5 font-mono text-[9px]">
-                  <span className="rounded bg-slate-100 border border-slate-200 px-2 py-0.5 text-slate-700 font-semibold">
-                    [ Ocean FCL / LCL ]
-                  </span>
-                  <span className="rounded bg-slate-100 border border-slate-200 px-2 py-0.5 text-slate-700 font-semibold">
-                    [ Air Freight ]
-                  </span>
-                  <span className="rounded bg-slate-100 border border-slate-200 px-2 py-0.5 text-slate-700 font-semibold">
-                    [ CHA &amp; Customs ]
-                  </span>
-                  <span className="rounded bg-slate-100 border border-slate-200 px-2 py-0.5 text-slate-700 font-semibold">
-                    [ Multi-Branch Desks ]
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Card 3: Retyping Audit (High-Craft Dark Navy #0B1120 Closing Card) */}
-            <div 
-              onClick={() => navigate('/#demo')}
-              className="group cursor-pointer relative flex flex-col justify-between rounded-2xl border border-white/10 bg-[#0B1120] p-6 sm:p-7 text-white shadow-xl transition-all duration-300 hover:shadow-2xl hover:border-teal-400/60 hover:-translate-y-0.5 overflow-hidden"
-            >
-              {/* Radial Top Blue/Emerald Ambient Glow */}
-              <div className="pointer-events-none absolute inset-0 bg-radial from-teal-500/15 via-blue-500/5 to-transparent rounded-2xl" />
-
-              <div className="relative z-10">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-base font-extrabold text-white tracking-wide">
-                    Retyping Audit
-                  </h3>
-                  <ArrowRight size={15} className="text-teal-400 transition-transform duration-200 group-hover:translate-x-1" />
-                </div>
-                <p className="mt-2 text-xs leading-relaxed text-slate-300 font-medium">
-                  one week of shipment emails → your hours report
-                </p>
-
-                {/* Report Preview Pill */}
-                <div className="mt-4 inline-flex items-center rounded-md border border-teal-500/30 bg-teal-950/60 px-2.5 py-1 font-mono text-[9px] text-teal-200 font-medium tracking-tight">
-                  Deliverable: Exact Time-Wasted &amp; Exception Rate Breakdown
-                </div>
-              </div>
-
-              <div className="relative z-10 mt-6 pt-3.5 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-teal-300 font-semibold">
-                <span className="group-hover:text-white transition-colors">Request report</span>
-                <span className="group-hover:translate-x-0.5 transition-transform">Free 24h turnaround →</span>
-              </div>
-            </div>
+      {showSticky && !closingReached && (
+        <aside className={s.stickyBar} aria-label="Logistics Desk demo">
+          <div className={`${s.container} ${s.stickyInner}`}>
+            <span>
+              <span className={s.liveDot} />
+              <strong>Logistics Desk</strong>
+              <span>Shipment emails in. CargoWise jobs out.</span>
+            </span>
+            <a href="/#demo" className={s.primaryButton}>
+              Book a demo <ArrowRight size={15} />
+            </a>
           </div>
-        </div>
-      </section>
-
-      {/* =========================================================================
-          SLIM STICKY BOTTOM CONVERSION CTA BAR
-          ========================================================================= */}
-      <StickyCtaBar
-        theme="teal"
-        badge="LOGISTICS DESK"
-        title="Shipment emails in. CargoWise jobs out."
-        subtext="Your documentation desk handles the exceptions — not the typing."
-        buttonText="Book a demo"
-        onButtonClick={() => navigate('/#demo')}
-      />
-    </div>
+        </aside>
+      )}
+    </main>
   );
 };

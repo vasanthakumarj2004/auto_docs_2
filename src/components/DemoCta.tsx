@@ -70,9 +70,9 @@ export const DemoCta: React.FC = () => {
         </div>
 
         {/* High-Craft Bento Surface with Specular Top Border Glow */}
-        <SpotlightCard className="relative mx-auto mt-10 max-w-3xl rounded-2xl border border-slate-200/90 bg-white/95 backdrop-blur-sm shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_36px_-6px_rgba(15,23,42,0.08),inset_0_1px_0_0_rgba(255,255,255,0.9)] hover:border-blue-300/80 transition-all duration-300 overflow-hidden">
+        <SpotlightCard className="relative mx-auto mt-10 max-w-3xl rounded-2xl border border-slate-200/90 bg-white/95 backdrop-blur-sm shadow-[0_1px_2px_rgba(15,23,42,0.04),0_12px_36px_-6px_rgba(15,23,42,0.08),inset_0_1px_0_0_rgba(255,255,255,0.9)] hover:border-violet-300/80 transition-all duration-300 overflow-hidden">
           {/* Top specular glow border */}
-          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-500/60 to-transparent" aria-hidden="true" />
+          <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-violet-500/60 to-transparent" aria-hidden="true" />
 
           <form
             id="demo-form"
@@ -90,7 +90,7 @@ export const DemoCta: React.FC = () => {
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 suppressHydrationWarning
-                className="form-input transition-all duration-200 focus:ring-2 focus:ring-blue-500/20 focus:border-brand-blue"
+                className="form-input transition-all duration-200 focus:ring-2 focus:ring-violet-500/20 focus:border-brand-violet"
                 placeholder="you@company.com"
               />
             </div>
@@ -105,7 +105,7 @@ export const DemoCta: React.FC = () => {
                 value={formData.company}
                 onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                 suppressHydrationWarning
-                className="form-input transition-all duration-200 focus:ring-2 focus:ring-blue-500/20 focus:border-brand-blue"
+                className="form-input transition-all duration-200 focus:ring-2 focus:ring-violet-500/20 focus:border-brand-violet"
                 placeholder="Your company"
               />
             </div>
@@ -120,7 +120,7 @@ export const DemoCta: React.FC = () => {
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 suppressHydrationWarning
-                className="form-input resize-none transition-all duration-200 focus:ring-2 focus:ring-blue-500/20 focus:border-brand-blue"
+                className="form-input resize-none transition-all duration-200 focus:ring-2 focus:ring-violet-500/20 focus:border-brand-violet"
                 placeholder="Bills, shipment emails, or both?"
               />
             </div>
@@ -132,7 +132,7 @@ export const DemoCta: React.FC = () => {
                     status === 'error'
                       ? 'text-rose-600 font-bold'
                       : status === 'success'
-                      ? 'text-emerald-600 font-bold'
+                      ? 'text-violet-600 font-bold'
                       : 'text-slate-500'
                   }`}
                 >
@@ -144,7 +144,7 @@ export const DemoCta: React.FC = () => {
                 </p>
 
                 {status === 'idle' && (
-                  <span className="inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-0.5 text-[9.5px] font-mono font-bold text-emerald-700 shadow-2xs w-fit">
+                  <span className="inline-flex items-center gap-1 rounded-full border border-violet-200 bg-violet-50 px-2.5 py-0.5 text-[9.5px] font-mono font-bold text-violet-700 shadow-2xs w-fit">
                     ⚡ 15-min live walkthrough with your own sample PDFs
                   </span>
                 )}

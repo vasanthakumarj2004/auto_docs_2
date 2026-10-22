@@ -5,11 +5,11 @@ import { Header } from '@/src/components/Header';
 import { Footer } from '@/src/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Free Trial Registration | Docsynecx',
+  title: 'Free Trial Registration | AutoDocs',
   description:
-    'Register for the Docsynecx free trial. Batch onboarding for automated invoice and logistics document processing into Tally and CargoWise.',
+    'Register for the AutoDocs free trial. Batch onboarding for automated invoice and logistics document processing into Tally and CargoWise.',
   alternates: {
-    canonical: 'https://docsynecx.com/free-trial/',
+    canonical: 'https://autodocs.com/free-trial/',
   },
 };
 
@@ -18,7 +18,7 @@ export default function FreeTrialPage() {
     <div className="min-h-screen max-w-full overflow-x-clip lg:overflow-visible bg-white text-slate-800">
       <Header />
       <div className="py-24 text-center site-shell">
-        <span className="font-mono text-xs uppercase tracking-wider text-brand-blue font-bold">
+        <span className="font-mono text-xs uppercase tracking-wider text-brand-violet font-bold">
           Early Access
         </span>
         <h1 className="mt-3 text-3xl font-extrabold text-slate-950 sm:text-4xl">

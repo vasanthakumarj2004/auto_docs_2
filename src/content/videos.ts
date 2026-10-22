@@ -32,7 +32,7 @@ export interface VideoConfig {
 export const videosConfig: Record<string, VideoConfig> = {
   'hero-walkthrough': {
     id: 'hero-walkthrough',
-    title: 'Docsynecx Product Walkthrough (2 Min)',
+    title: 'AutoDocs Product Walkthrough (2 Min)',
     description: 'Watch vendor invoices read, validated for GST against government 2B portal, and posted to Tally Prime in real time with zero manual keying.',
     type: 'player',
     sources: {
@@ -45,7 +45,7 @@ export const videosConfig: Record<string, VideoConfig> = {
     captionsVtt: '/videos/captions/walkthrough.vtt',
     durationSec: 120,
     aspectRatio: '16:9',
-    ariaLabel: 'Docsynecx two-minute product walkthrough video player',
+    ariaLabel: 'AutoDocs two-minute product walkthrough video player',
     isPlaceholder: true, // until real production footage is uploaded
     placeholderText: 'Illustrative demo',
     chapters: [
@@ -54,13 +54,13 @@ export const videosConfig: Record<string, VideoConfig> = {
       { id: 'check', timeSec: 60, label: '01:00 Check', title: 'GST & Duplicate Guardrails', description: 'Validates vendor GSTIN against government 2B portal and halts duplicates before payout.' },
       { id: 'post', timeSec: 90, label: '01:30 Post', title: 'Zero-Touch Tally Posting', description: 'Posts purchase vouchers directly into Tally Prime via native XML server. Your books stay unchanged.' },
     ],
-    transcript: `Docsynecx automated walkthrough: In Chapter 1, incoming vendor invoices are captured from email, scans, and supplier portals. In Chapter 2, document AI models extract line items, amounts, and tax breakdowns with 99.8% precision. In Chapter 3, automated guardrails cross-reference government GST 2B portals and detect historical duplicate bills. In Chapter 4, approved vouchers post directly into Tally Prime through native XML server integrations without changing your existing chart of accounts.`,
+    transcript: `AutoDocs automated walkthrough: In Chapter 1, incoming vendor invoices are captured from email, scans, and supplier portals. In Chapter 2, document AI models extract line items, amounts, and tax breakdowns with 99.8% precision. In Chapter 3, automated guardrails cross-reference government GST 2B portals and detect historical duplicate bills. In Chapter 4, approved vouchers post directly into Tally Prime through native XML server integrations without changing your existing chart of accounts.`,
   },
 
   'homepage-demo-modal': {
     id: 'homepage-demo-modal',
-    title: 'Docsynecx Live Product Demo',
-    description: 'Interactive demonstration of Docsynecx invoice reading, duplicate protection, and automated CargoWise and Tally voucher sync.',
+    title: 'AutoDocs Live Product Demo',
+    description: 'Interactive demonstration of AutoDocs invoice reading, duplicate protection, and automated CargoWise and Tally voucher sync.',
     type: 'modal',
     sources: {
       webm: '/videos/demo-preview.webm',
@@ -72,7 +72,7 @@ export const videosConfig: Record<string, VideoConfig> = {
     captionsVtt: '/videos/captions/walkthrough.vtt',
     durationSec: 120,
     aspectRatio: '16:9',
-    ariaLabel: 'Watch Docsynecx live product demo video',
+    ariaLabel: 'Watch AutoDocs live product demo video',
     isPlaceholder: true,
     placeholderText: 'Watch 2-Min Demo',
   },
@@ -143,14 +143,14 @@ export const videosConfig: Record<string, VideoConfig> = {
 
   'sample-video-facade': {
     id: 'sample-video-facade',
-    title: 'Docsynecx Platform Architecture Overview',
-    description: 'Deep dive into Docsynecx document intelligence and ERP integrations.',
+    title: 'AutoDocs Platform Architecture Overview',
+    description: 'Deep dive into AutoDocs document intelligence and ERP integrations.',
     type: 'facade',
     embedUrl: 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1',
     poster: '/videos/posters/facade-poster.webp',
     posterWidth: 1280,
     posterHeight: 720,
     aspectRatio: '16:9',
-    ariaLabel: 'Watch Docsynecx platform architecture overview video',
+    ariaLabel: 'Watch AutoDocs platform architecture overview video',
   },
 };

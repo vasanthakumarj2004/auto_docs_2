@@ -5,11 +5,11 @@ import { FinancePage } from '@/src/views/FinancePage';
 import { Footer } from '@/src/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Accounts Payable Automation | Docsynecx',
+  title: 'Accounts Payable Automation | AutoDocs',
   description:
     'Automate vendor bill processing, GST verification, and voucher auto-posting directly to Tally and Zoho Books.',
   alternates: {
-    canonical: 'https://docsynecx.com/finance/',
+    canonical: 'https://autodocs.com/finance/',
   },
   robots: {
     index: true,

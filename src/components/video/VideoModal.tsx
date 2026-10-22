@@ -98,7 +98,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({
               handleOpen();
             }
           }}
-          className={`cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-xl ${className}`}
+          className={`cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-violet-500 rounded-xl ${className}`}
           aria-label={`Open video modal: ${config.title}`}
         >
           {trigger}
@@ -108,7 +108,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({
           ref={triggerRef as React.RefObject<HTMLButtonElement>}
           type="button"
           onClick={handleOpen}
-          className={`inline-flex items-center gap-2 rounded-xl bg-slate-900 border border-slate-700 px-4 py-2 text-xs font-mono font-bold text-white shadow-md hover:bg-slate-800 transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-blue-500 ${className}`}
+          className={`inline-flex items-center gap-2 rounded-xl bg-slate-900 border border-slate-700 px-4 py-2 text-xs font-mono font-bold text-white shadow-md hover:bg-slate-800 transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-violet-500 ${className}`}
         >
           <Play size={13} className="fill-white text-white" />
           <span>{triggerLabel}</span>
@@ -133,7 +133,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({
             {/* Modal Header */}
             <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
               <div>
-                <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-blue-400">
+                <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-violet-400">
                   Product Demonstration
                 </span>
                 <h3 id="video-modal-title" className="text-sm sm:text-base font-extrabold text-white">
@@ -146,7 +146,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({
                 type="button"
                 onClick={handleClose}
                 aria-label="Close video dialog (Escape)"
-                className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-700 bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+                className="flex h-8 w-8 items-center justify-center rounded-lg border border-slate-700 bg-slate-800 text-slate-300 hover:text-white hover:bg-slate-700 transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
               >
                 <X size={16} />
               </button>

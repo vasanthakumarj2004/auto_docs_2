@@ -11,7 +11,7 @@ export const Footer: React.FC = () => {
   };
 
   return (
-    <footer id="resources" className="border-t border-gray-850 bg-gradient-to-b from-gray-900 via-gray-900 to-[#070b18] text-white pt-16 pb-8">
+    <footer id="resources" className="border-t border-violet-900/40 bg-gradient-to-b from-violet-950 via-violet-950 to-[#1B1224] text-white pt-16 pb-8">
       <div className="site-shell">
         <div className="grid gap-10 border-b border-gray-800 pb-12 sm:grid-cols-2 md:grid-cols-6">
           {/* Brand Info */}
@@ -20,11 +20,11 @@ export const Footer: React.FC = () => {
               href="/"
               onClick={(e) => handleLink(e, '/')}
               className="inline-flex items-center group outline-none"
-              aria-label="Docsynecx home"
+              aria-label="AutoDocs home"
             >
               <img
-                src="/Docsynecx-Logo-footer.svg"
-                alt="Docsynecx"
+                src="/AutoDocs-Logo-footer.svg"
+                alt="AutoDocs"
                 className="h-10 sm:h-11 w-auto object-contain transition-all duration-300 group-hover:scale-[1.02] group-hover:opacity-95"
               />
             </a>
@@ -40,21 +40,21 @@ export const Footer: React.FC = () => {
               <a
                 href="/finance"
                 onClick={(e) => handleLink(e, '/finance')}
-                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-blue-400"
+                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-violet-400"
               >
                 Finance desk
               </a>
               <a
                 href="/logistics"
                 onClick={(e) => handleLink(e, '/logistics')}
-                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-blue-400"
+                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-violet-400"
               >
                 Shipment desk
               </a>
               <a
                 href="#how-it-works"
                 onClick={(e) => handleLink(e, '#how-it-works')}
-                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-blue-400"
+                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-violet-400"
               >
                 How it works
               </a>
@@ -88,7 +88,7 @@ export const Footer: React.FC = () => {
               <a
                 href="/calculator"
                 onClick={(e) => handleLink(e, '/calculator')}
-                className="transition-all duration-200 hover:text-blue-300 hover:translate-x-0.5 font-semibold text-blue-400 focus-visible:outline-1 focus-visible:outline-blue-400"
+                className="transition-all duration-200 hover:text-violet-300 hover:translate-x-0.5 font-semibold text-violet-400 focus-visible:outline-1 focus-visible:outline-violet-400"
               >
                 Free calculator
               </a>
@@ -96,7 +96,7 @@ export const Footer: React.FC = () => {
               <a
                 href="#faq"
                 onClick={(e) => handleLink(e, '#faq')}
-                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-blue-400"
+                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-violet-400"
               >
                 Help centre
               </a>
@@ -107,21 +107,21 @@ export const Footer: React.FC = () => {
               <a
                 href="/"
                 onClick={(e) => handleLink(e, '/')}
-                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-blue-400"
+                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-violet-400"
               >
                 About us
               </a>
               <a
                 href="#demo"
                 onClick={(e) => handleLink(e, '#demo')}
-                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-blue-400"
+                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-violet-400"
               >
                 Contact
               </a>
               <a
                 href="#demo"
                 onClick={(e) => handleLink(e, '#demo')}
-                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-blue-400"
+                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-violet-400"
               >
                 Book a demo
               </a>
@@ -131,7 +131,7 @@ export const Footer: React.FC = () => {
 
         {/* Bottom Bar */}
         <div className="flex flex-col justify-between gap-3 pt-6 text-[11px] text-gray-400 sm:flex-row">
-          <span>© 2026 SynecxAI Labs Private Limited. All rights reserved.</span>
+          <span>© 2026 AutoDocs AI Labs Private Limited. All rights reserved.</span>
           <span className="flex gap-6">
             <a href="/" onClick={(e) => handleLink(e, '/')} className="hover:text-white transition-colors">
               Privacy

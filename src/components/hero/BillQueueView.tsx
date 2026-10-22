@@ -117,7 +117,7 @@ export const BillQueueView: React.FC = () => {
           role="status"
           className="absolute top-2 right-4 z-50 flex items-center gap-2 rounded-lg bg-slate-900 text-white px-3 py-1.5 font-mono text-[11px] shadow-lg border border-slate-700 animate-fadeIn"
         >
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="h-1.5 w-1.5 rounded-full bg-violet-400 animate-pulse" />
           <span>{toastMessage}</span>
         </div>
       )}
@@ -128,7 +128,7 @@ export const BillQueueView: React.FC = () => {
           <div>
             <div className="flex items-center gap-2">
               <h3 className="text-sm font-extrabold text-slate-950">Vendor bills</h3>
-              <span className="inline-flex items-center gap-1 rounded bg-blue-50 border border-blue-200/80 px-2 py-0.2 font-mono text-[9.5px] font-bold text-blue-700">
+              <span className="inline-flex items-center gap-1 rounded bg-violet-50 border border-violet-200/80 px-2 py-0.2 font-mono text-[9.5px] font-bold text-violet-700">
                 Interactive demo
               </span>
             </div>
@@ -146,7 +146,7 @@ export const BillQueueView: React.FC = () => {
                 placeholder="Search bill or vendor..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="h-7 w-44 sm:w-48 rounded-lg border border-slate-200 bg-slate-50/70 pl-7 pr-2.5 text-[11px] text-slate-800 placeholder-slate-400 outline-none focus:border-blue-500 focus:bg-white transition-all font-mono"
+                className="h-7 w-44 sm:w-48 rounded-lg border border-slate-200 bg-slate-50/70 pl-7 pr-2.5 text-[11px] text-slate-800 placeholder-slate-400 outline-none focus:border-violet-500 focus:bg-white transition-all font-mono"
               />
               {searchQuery && (
                 <button
@@ -217,12 +217,12 @@ export const BillQueueView: React.FC = () => {
               onClick={() => setFilter('posted')}
               className={`flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-[11px] font-mono transition-all cursor-pointer ${
                 filter === 'posted'
-                  ? 'bg-emerald-600 text-white font-bold shadow-2xs'
-                  : 'bg-emerald-50 text-emerald-800 border border-emerald-200/60 hover:bg-emerald-100/80'
+                  ? 'bg-violet-600 text-white font-bold shadow-2xs'
+                  : 'bg-violet-50 text-violet-800 border border-violet-200/60 hover:bg-violet-100/80'
               }`}
             >
               <span>Posted</span>
-              <span className={`rounded px-1.5 py-0.2 text-[9px] font-bold ${filter === 'posted' ? 'bg-emerald-700 text-white' : 'bg-emerald-200/80 text-emerald-900'}`}>
+              <span className={`rounded px-1.5 py-0.2 text-[9px] font-bold ${filter === 'posted' ? 'bg-violet-700 text-white' : 'bg-violet-200/80 text-violet-900'}`}>
                 23
               </span>
             </button>
@@ -264,8 +264,8 @@ export const BillQueueView: React.FC = () => {
                   }}
                   className={`h-[50px] transition-colors cursor-pointer outline-none ${
                     isSelected
-                      ? 'bg-blue-50/80 ring-1 ring-inset ring-blue-500/30'
-                      : 'hover:bg-slate-50/80 focus-visible:bg-blue-50/50'
+                      ? 'bg-violet-50/80 ring-1 ring-inset ring-violet-500/30'
+                      : 'hover:bg-slate-50/80 focus-visible:bg-violet-50/50'
                   }`}
                 >
                   {/* Bill No */}
@@ -295,8 +295,8 @@ export const BillQueueView: React.FC = () => {
 
                   {/* GST Check */}
                   <td className="py-2 px-2 text-center">
-                    <span className="inline-flex items-center gap-1 rounded bg-emerald-50 px-1.5 py-0.5 text-[9.5px] font-mono font-bold text-emerald-800 border border-emerald-200/70">
-                      <Check size={10} className="text-emerald-600" />
+                    <span className="inline-flex items-center gap-1 rounded bg-violet-50 px-1.5 py-0.5 text-[9.5px] font-mono font-bold text-violet-800 border border-violet-200/70">
+                      <Check size={10} className="text-violet-600" />
                       Verified
                     </span>
                   </td>
@@ -304,14 +304,14 @@ export const BillQueueView: React.FC = () => {
                   {/* Status Chip */}
                   <td className="py-2 px-3 whitespace-nowrap">
                     {bill.status === 'Posted to Tally' && (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[10px] font-mono font-bold text-emerald-800 border border-emerald-200">
-                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                      <span className="inline-flex items-center gap-1 rounded-full bg-violet-50 px-2 py-0.5 text-[10px] font-mono font-bold text-violet-800 border border-violet-200">
+                        <span className="h-1.5 w-1.5 rounded-full bg-violet-500" />
                         Posted to Tally
                       </span>
                     )}
                     {bill.status === 'Needs review' && (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-blue-50 px-2 py-0.5 text-[10px] font-mono font-bold text-blue-800 border border-blue-200">
-                        <span className="h-1.5 w-1.5 rounded-full bg-blue-500 animate-pulse" />
+                      <span className="inline-flex items-center gap-1 rounded-full bg-violet-50 px-2 py-0.5 text-[10px] font-mono font-bold text-violet-800 border border-violet-200">
+                        <span className="h-1.5 w-1.5 rounded-full bg-violet-500 animate-pulse" />
                         Needs review
                       </span>
                     )}
@@ -342,11 +342,11 @@ export const BillQueueView: React.FC = () => {
       {/* ================= BOTTOM INSIGHT STRIP ================= */}
       <div className="mt-2 flex items-center justify-between text-[11px] font-mono text-slate-500 px-1">
         <div className="flex items-center gap-3">
-          <span>Bills posted today: <b className="text-emerald-700 font-bold">23</b></span>
+          <span>Bills posted today: <b className="text-violet-700 font-bold">23</b></span>
           <span className="text-slate-300">·</span>
           <span>Held: <b className="text-amber-700 font-bold">1</b></span>
           <span className="text-slate-300">·</span>
-          <span>Awaiting review: <b className="text-blue-700 font-bold">0</b></span>
+          <span>Awaiting review: <b className="text-violet-700 font-bold">0</b></span>
         </div>
         <span className="text-slate-400 hidden sm:inline">100% audit logging active</span>
       </div>
@@ -415,7 +415,7 @@ export const BillQueueView: React.FC = () => {
               </div>
               <div className="flex justify-between border-t border-slate-200 pt-1.5 text-xs font-bold">
                 <span className="font-mono text-slate-600">Total Amount</span>
-                <span className="font-mono tabular-nums text-blue-700">{selectedBill.amount}</span>
+                <span className="font-mono tabular-nums text-violet-700">{selectedBill.amount}</span>
               </div>
             </div>
 
@@ -430,7 +430,7 @@ export const BillQueueView: React.FC = () => {
                   <div key={idx} className="relative pl-3">
                     <span 
                       className={`absolute -left-[5px] top-1 h-2 w-2 rounded-full ${
-                        item.status === 'completed' ? 'bg-emerald-500' : item.status === 'current' ? 'bg-amber-500' : 'bg-slate-300'
+                        item.status === 'completed' ? 'bg-violet-500' : item.status === 'current' ? 'bg-amber-500' : 'bg-slate-300'
                       }`} 
                     />
                     <div className="flex justify-between items-center text-[10px] font-mono text-slate-400">
@@ -455,7 +455,7 @@ export const BillQueueView: React.FC = () => {
               className={`flex-1 flex items-center justify-center gap-1.5 rounded-lg py-2 text-[11px] font-bold font-mono transition-all cursor-pointer ${
                 selectedBill.status === 'Posted to Tally'
                   ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
-                  : 'bg-brand-blue text-white shadow-xs hover:bg-brand-blue-hover'
+                  : 'bg-brand-violet text-white shadow-xs hover:bg-brand-violet-hover'
               }`}
             >
               <Check size={12} />

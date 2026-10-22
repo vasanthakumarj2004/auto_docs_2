@@ -1,0 +1,112 @@
+{
+  "layouts": [
+    {
+      "width": 1920,
+      "pipeline_and_cta": "passed",
+      "document_width": 1920
+    },
+    {
+      "width": 1440,
+      "pipeline_and_cta": "passed",
+      "document_width": 1440
+    },
+    {
+      "width": 1280,
+      "pipeline_and_cta": "passed",
+      "document_width": 1280
+    },
+    {
+      "width": 1024,
+      "pipeline_and_cta": "passed",
+      "document_width": 1063
+    },
+    {
+      "width": 768,
+      "pipeline_and_cta": "passed",
+      "document_width": 768
+    },
+    {
+      "width": 390,
+      "pipeline_and_cta": "passed",
+      "document_width": 390
+    },
+    {
+      "width": 320,
+      "pipeline_and_cta": "passed",
+      "document_width": 320
+    }
+  ],
+  "routes": [
+    {
+      "route": "/",
+      "width": 1440,
+      "loaded": true
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "loaded": true
+    },
+    {
+      "route": "/finance/",
+      "width": 1440,
+      "loaded": true
+    },
+    {
+      "route": "/finance/",
+      "width": 390,
+      "loaded": true
+    },
+    {
+      "route": "/logistics/",
+      "width": 1440,
+      "loaded": true
+    },
+    {
+      "route": "/logistics/",
+      "width": 390,
+      "loaded": true
+    },
+    {
+      "route": "/calculator/",
+      "width": 1440,
+      "loaded": true
+    },
+    {
+      "route": "/calculator/",
+      "width": 390,
+      "loaded": true
+    },
+    {
+      "route": "/free-trial/",
+      "width": 1440,
+      "loaded": true
+    },
+    {
+      "route": "/free-trial/",
+      "width": 390,
+      "loaded": true
+    },
+    {
+      "route": "/customers/ft-logistics/",
+      "width": 1440,
+      "loaded": true
+    },
+    {
+      "route": "/customers/ft-logistics/",
+      "width": 390,
+      "loaded": true
+    },
+    {
+      "route": "/customers/rajadurai/",
+      "width": 1440,
+      "loaded": true
+    },
+    {
+      "route": "/customers/rajadurai/",
+      "width": 390,
+      "loaded": true
+    }
+  ],
+  "errors": []
+}

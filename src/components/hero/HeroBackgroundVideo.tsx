@@ -44,7 +44,7 @@ export const HeroBackgroundVideo: React.FC<HeroBackgroundVideoProps> = ({ classN
 
     // Check saved user pause state
     try {
-      const savedPaused = localStorage.getItem('docsynecx_hero_bg_paused');
+      const savedPaused = localStorage.getItem('autodocs_hero_bg_paused');
       if (savedPaused === 'true') {
         setIsUserPaused(true);
       }
@@ -220,7 +220,7 @@ export const HeroBackgroundVideo: React.FC<HeroBackgroundVideoProps> = ({ classN
     setIsUserPaused((prev) => {
       const next = !prev;
       try {
-        localStorage.setItem('docsynecx_hero_bg_paused', String(next));
+        localStorage.setItem('autodocs_hero_bg_paused', String(next));
       } catch {
         // Ignore storage exceptions
       }
@@ -299,7 +299,7 @@ export const HeroBackgroundVideo: React.FC<HeroBackgroundVideoProps> = ({ classN
               onClick={toggleUserPause}
               aria-label={isUserPaused ? 'Play ambient background video' : 'Pause ambient background video'}
               aria-pressed={isUserPaused}
-              className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200/90 bg-white/80 text-slate-500 shadow-xs backdrop-blur-xs transition-all duration-200 hover:bg-white hover:text-slate-900 focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-blue-500 opacity-0 hover:opacity-100 focus:opacity-100 cursor-pointer"
+              className="flex h-11 w-11 items-center justify-center rounded-xl border border-slate-200/90 bg-white/80 text-slate-500 shadow-xs backdrop-blur-xs transition-all duration-200 hover:bg-white hover:text-slate-900 focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-violet-500 opacity-0 hover:opacity-100 focus:opacity-100 cursor-pointer"
               title={isUserPaused ? 'Play ambient animation' : 'Pause ambient animation'}
             >
               {isUserPaused ? (

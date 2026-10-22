@@ -171,7 +171,7 @@ export const useHeroAutoScroll = ({
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (prefersReducedMotion.matches) {
       if (typeof console !== 'undefined' && console.info) {
-        console.info('[Docsynecx] prefers-reduced-motion: reduce is active. Auto-scroll paused; static 3D depth preserved.');
+        console.info('[AutoDocs] prefers-reduced-motion: reduce is active. Auto-scroll paused; static 3D depth preserved.');
       }
       userInterruptedRef.current = true;
       setIsCancelled(true);

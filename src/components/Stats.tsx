@@ -20,7 +20,7 @@ export const Stats: React.FC = () => {
               <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-slate-400">
                 Processing Velocity
               </span>
-              <span className="font-mono text-[10px] tracking-tight rounded-md px-2 py-0.5 border bg-emerald-50 text-emerald-700 border-emerald-200 font-bold shadow-2xs">
+              <span className="font-mono text-[10px] tracking-tight rounded-md px-2 py-0.5 border bg-violet-50 text-violet-700 border-violet-200 font-bold shadow-2xs">
                 -98.3% CYCLE TIME
               </span>
             </div>
@@ -40,7 +40,7 @@ export const Stats: React.FC = () => {
               <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-slate-400">
                 Turnaround Rate
               </span>
-              <span className="font-mono text-[10px] tracking-tight rounded-md px-2 py-0.5 border bg-blue-50 text-blue-700 border-blue-200 font-bold shadow-2xs">
+              <span className="font-mono text-[10px] tracking-tight rounded-md px-2 py-0.5 border bg-violet-50 text-violet-700 border-violet-200 font-bold shadow-2xs">
                 10x FASTER POSTING
               </span>
             </div>
@@ -60,8 +60,8 @@ export const Stats: React.FC = () => {
               <span className="font-mono text-[9px] font-bold uppercase tracking-wider text-slate-400">
                 System Reliability
               </span>
-              <span className="font-mono text-[10px] tracking-tight rounded-md px-2 py-0.5 border bg-emerald-50 text-emerald-700 border-emerald-200 font-bold shadow-2xs inline-flex items-center gap-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="font-mono text-[10px] tracking-tight rounded-md px-2 py-0.5 border bg-violet-50 text-violet-700 border-violet-200 font-bold shadow-2xs inline-flex items-center gap-1.5">
+                <span className="h-1.5 w-1.5 rounded-full bg-violet-500 animate-pulse" />
                 99.8% FIELD ACCURACY
               </span>
             </div>
@@ -98,37 +98,25 @@ export const Stats: React.FC = () => {
                   <div
                     key={`logo-primary-${i}`}
                     tabIndex={0}
-                    className="group relative flex shrink-0 min-w-[170px] sm:min-w-[190px] items-center justify-between rounded-xl border border-slate-200/90 bg-gradient-to-b from-white via-slate-50/50 to-slate-100/50 p-1 shadow-xs transition-all duration-300 hover:border-blue-300 hover:shadow-sm focus-visible:border-brand-blue"
+                    className="flex h-11 items-center justify-center rounded-xl border border-slate-200/90 bg-white/95 px-5 shadow-2xs hover:border-slate-300 hover:shadow-xs transition-all duration-200"
                   >
-                    <div className="flex w-full items-center justify-between rounded-lg border border-slate-100/90 bg-white px-3.5 py-2.5 text-[11px] font-semibold text-slate-700 transition-colors group-hover:text-slate-950">
-                      <span className="flex items-center gap-2">
-                        <span className="h-3.5 w-3.5 rounded bg-slate-200/90 transition-colors group-hover:bg-brand-blue" />
-                        Customer logo
-                      </span>
-                      <span className="font-mono text-[9px] font-bold text-slate-400 uppercase tracking-tighter">
-                        Verified
-                      </span>
-                    </div>
+                    <span className="font-mono text-xs font-bold text-slate-600 tracking-tight">
+                      Enterprise Customer {i + 1}
+                    </span>
                   </div>
                 ))}
               </div>
-
-              {/* Seamless clone set for infinite loop (hidden on reduced motion) */}
-              <div className="marquee-duplicate flex shrink-0 gap-4" aria-hidden="true">
+              {/* Duplicate logo set */}
+              <div className="flex shrink-0 gap-4" aria-hidden="true">
                 {Array.from({ length: 6 }, (_, i) => (
                   <div
-                    key={`logo-clone-${i}`}
-                    className="group relative flex shrink-0 min-w-[170px] sm:min-w-[190px] items-center justify-between rounded-xl border border-slate-200/90 bg-gradient-to-b from-white via-slate-50/50 to-slate-100/50 p-1 shadow-xs transition-all duration-300 hover:border-blue-300 hover:shadow-sm"
+                    key={`logo-duplicate-${i}`}
+                    tabIndex={-1}
+                    className="flex h-11 items-center justify-center rounded-xl border border-slate-200/90 bg-white/95 px-5 shadow-2xs"
                   >
-                    <div className="flex w-full items-center justify-between rounded-lg border border-slate-100/90 bg-white px-3.5 py-2.5 text-[11px] font-semibold text-slate-700 transition-colors group-hover:text-slate-950">
-                      <span className="flex items-center gap-2">
-                        <span className="h-3.5 w-3.5 rounded bg-slate-200/90 transition-colors group-hover:bg-brand-blue" />
-                        Customer logo
-                      </span>
-                      <span className="font-mono text-[9px] font-bold text-slate-400 uppercase tracking-tighter">
-                        Verified
-                      </span>
-                    </div>
+                    <span className="font-mono text-xs font-bold text-slate-600 tracking-tight">
+                      Enterprise Customer {i + 1}
+                    </span>
                   </div>
                 ))}
               </div>

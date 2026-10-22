@@ -55,7 +55,7 @@ export const HeroProductPanel: React.FC<HeroProductPanelProps> = ({ onTabChange 
           onTabChange={handleTabClick}
         />
       ) : (
-      <div className="relative rounded-[28px] bg-white/75 backdrop-blur-[18px] backdrop-saturate-[1.15] border border-white/80 shadow-[0_40px_80px_-30px_rgba(6,20,36,0.45),inset_0_1px_0_0_rgba(255,255,255,0.9)] p-3 sm:p-4">
+      <div className="relative rounded-[18px] bg-white/75 backdrop-blur-[18px] backdrop-saturate-[1.15] border border-white/80 shadow-[0_24px_50px_-25px_rgba(6,20,36,0.35),inset_0_1px_0_0_rgba(255,255,255,0.9)] p-2.5 sm:p-3">
         
         {/* ================= 1. SINGLE GLASS SEGMENTED HEADER BAR ================= */}
         <div className="flex flex-wrap items-center justify-between gap-2 pb-3 px-1 border-b border-slate-200/60">
@@ -73,10 +73,10 @@ export const HeroProductPanel: React.FC<HeroProductPanelProps> = ({ onTabChange 
                   : 'text-slate-600 hover:text-slate-900 font-medium hover:bg-white/50'
               }`}
             >
-              <Activity size={13} className="text-blue-600" />
+              <Activity size={13} className="text-violet-600" />
               <span>Live Pipeline</span>
               <ChevronDown size={11} className="text-slate-400" />
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse ml-0.5" />
+              <span className="h-1.5 w-1.5 rounded-full bg-violet-500 animate-pulse ml-0.5" />
             </button>
 
             {/* Tab 1: Finance Bill Queue */}
@@ -117,7 +117,7 @@ export const HeroProductPanel: React.FC<HeroProductPanelProps> = ({ onTabChange 
 
           {/* Right Telemetry Status */}
           <div className="hidden sm:inline-flex items-center gap-1.5 text-[11px] text-slate-500 font-medium">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="h-1.5 w-1.5 rounded-full bg-violet-500 animate-pulse" />
             <span>Auto-sync telemetry</span>
           </div>
         </div>
@@ -137,14 +137,14 @@ export const HeroProductPanel: React.FC<HeroProductPanelProps> = ({ onTabChange 
           </div>
 
           {/* Right Live Pipeline Chip */}
-          <div className="bg-emerald-50 border border-emerald-200 text-emerald-700 text-[11px] font-semibold px-2.5 py-0.5 rounded-full inline-flex items-center gap-1 shadow-2xs">
-            <ArrowUp size={11} className="text-emerald-600 stroke-[2.5]" />
+          <div className="bg-violet-50 border border-violet-200 text-violet-700 text-[11px] font-semibold px-2.5 py-0.5 rounded-full inline-flex items-center gap-1 shadow-2xs">
+            <ArrowUp size={11} className="text-violet-600 stroke-[2.5]" />
             <span>Live Pipeline</span>
           </div>
         </div>
 
         {/* ================= 3. CANVAS AREA (#eceff4) ================= */}
-        <div className="mt-3 rounded-xl bg-[#eceff4] border border-slate-200/80 p-3 sm:p-4 min-h-[310px] overflow-hidden">
+        <div className="mt-2.5 rounded-xl bg-[#eceff4] border border-slate-200/80 p-2.5 sm:p-3 min-h-[270px] overflow-hidden">
           {activeTab === 0 && (
             <PipelineView
               isPaused={!isVisible}

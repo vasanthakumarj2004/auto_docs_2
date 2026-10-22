@@ -41,7 +41,7 @@ export const LivePipelinePanel: React.FC<LivePipelinePanelProps> = ({ isPaused, 
                   });
                 }
               }} className={styles.tab}>
-              <Icon size={13} aria-hidden="true" />
+              <Icon size={12} aria-hidden="true" />
               <span>{label}</span>
               {index === 0 && <span className={styles.dot} />}
               {index === 1 && <span className={styles.count}>24</span>}
@@ -51,20 +51,12 @@ export const LivePipelinePanel: React.FC<LivePipelinePanelProps> = ({ isPaused, 
         <span className={styles.telemetry}><span className={styles.dot} />Auto-sync telemetry</span>
       </div>
 
-      <nav className={styles.workspaceTabs} aria-label="Pipeline workspace">
-        {views.map(({ label, icon: Icon }, index) => (
-          <button key={label} type="button" aria-current={index === 0 ? 'page' : undefined} onClick={() => onTabChange(index)}>
-            {index !== 0 && <Icon size={14} aria-hidden="true" />}{label}
-          </button>
-        ))}
-      </nav>
-
       <div className={styles.workspace} id="live-preview-content" role="tabpanel" aria-labelledby="live-preview-tab-0">
         <div className={styles.toolbar}>
           <div className={styles.toolbarLeft}>
             <span>Live Pipeline</span>
             <button type="button" className={styles.search} onClick={() => onTabChange(1)} aria-label="Search bills in Finance Bill Queue">
-              <Search size={12} aria-hidden="true" />Search
+              <Search size={11} aria-hidden="true" />Search
             </button>
           </div>
           <span className={styles.liveBadge}><ArrowUp size={11} aria-hidden="true" />Live Pipeline</span>
@@ -76,18 +68,18 @@ export const LivePipelinePanel: React.FC<LivePipelinePanelProps> = ({ isPaused, 
 
       <div className={styles.activity}>
         <button type="button" className={styles.billActivity} onClick={() => onTabChange(1)} aria-label="View Apex Freight in the bill queue">
-          <span className={styles.documentIcon}><FileText size={19} aria-hidden="true" /><span>PDF</span></span>
+          <span className={styles.documentIcon}><FileText size={16} aria-hidden="true" /><span>PDF</span></span>
           <span className={styles.activityCopy}><strong>Apex Freight</strong><span>Document captured, checks complete</span></span>
         </button>
         <button type="button" className={styles.postActivity} onClick={() => onTabChange(1)} aria-label="View invoice INV-8492 in the bill queue">
-          <span className={styles.plusIcon}><Plus size={22} aria-hidden="true" /></span>
+          <span className={styles.plusIcon}><Plus size={18} aria-hidden="true" /></span>
           <span className={styles.activityCopy}><strong>INV-8492</strong><span>{isPosted ? 'Posted to Tally' : 'Ready for posting'}</span></span>
-          <span className={styles.activityArrow}><ChevronRight size={17} aria-hidden="true" /></span>
+          <span className={styles.activityArrow}><ChevronRight size={15} aria-hidden="true" /></span>
         </button>
       </div>
 
       <button type="button" className={styles.helpButton} onClick={() => setHelpOpen(!helpOpen)} aria-expanded={helpOpen} aria-controls="pipeline-help" aria-label={helpOpen ? 'Close pipeline help' : 'About this pipeline'}>
-        {helpOpen ? <X size={19} /> : <MessageSquare size={21} fill="currentColor" />}
+        {helpOpen ? <X size={17} /> : <MessageSquare size={17} fill="currentColor" />}
       </button>
       {helpOpen && <aside id="pipeline-help" className={styles.help}>
         <strong>From bill to books</strong>

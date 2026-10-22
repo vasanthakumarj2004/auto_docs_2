@@ -7,11 +7,11 @@ import { VideoSlot } from '@/src/components/video/VideoSlot';
 import { videosConfig } from '@/src/content/videos';
 
 export const metadata: Metadata = {
-  title: 'Customer Case Study: Rajadurai E-Vehicles | Docsynecx',
+  title: 'Customer Case Study: Rajadurai E-Vehicles | AutoDocs',
   description:
-    'How Rajadurai E-Vehicles condensed purchase, spares and service ledger entries from days to hours with Docsynecx automated Tally voucher posting.',
+    'How Rajadurai E-Vehicles condensed purchase, spares and service ledger entries from days to hours with AutoDocs automated Tally voucher posting.',
   alternates: {
-    canonical: 'https://docsynecx.com/customers/rajadurai/',
+    canonical: 'https://autodocs.com/customers/rajadurai/',
   },
 };
 
@@ -20,7 +20,7 @@ export default function RajaduraiCaseStudyPage() {
     <div className="min-h-screen max-w-full overflow-x-clip lg:overflow-visible bg-white text-slate-800">
       <Header />
       <div className="py-20 text-center site-shell">
-        <span className="font-mono text-xs uppercase tracking-wider text-emerald-700 font-bold">
+        <span className="font-mono text-xs uppercase tracking-wider text-violet-700 font-bold">
           Customer Case Study
         </span>
         <h1 className="mt-3 text-3xl font-extrabold text-slate-950 sm:text-4xl">
@@ -28,7 +28,7 @@ export default function RajaduraiCaseStudyPage() {
         </h1>
         <p className="mt-3 text-sm text-slate-600 max-w-lg mx-auto">
           Case study: How Rajadurai E-Vehicles condensed purchase, spares and
-          service ledger entries from days to hours with Docsynecx.
+          service ledger entries from days to hours with AutoDocs.
         </p>
 
         {/* Customer Video Slot */}

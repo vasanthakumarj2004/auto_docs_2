@@ -22,8 +22,8 @@ export const SharedFaqAccordion: React.FC<SharedFaqAccordionProps> = ({
     setOpenIndex((prev) => (prev === idx ? null : idx));
   };
 
-  const activeColor = theme === 'teal' ? 'text-teal-700' : 'text-brand-blue';
-  const borderActive = theme === 'teal' ? 'border-teal-500/40' : 'border-brand-blue/30';
+  const activeColor = theme === 'teal' ? 'text-violet-700' : 'text-brand-violet';
+  const borderActive = theme === 'teal' ? 'border-violet-500/40' : 'border-brand-violet/30';
 
   return (
     <div
@@ -51,7 +51,7 @@ export const SharedFaqAccordion: React.FC<SharedFaqAccordionProps> = ({
               onClick={() => toggle(idx)}
               aria-expanded={isOpen}
               aria-controls={answerId}
-              className="flex w-full items-center justify-between gap-4 p-4 text-left cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-brand-blue rounded-xl"
+              className="flex w-full items-center justify-between gap-4 p-4 text-left cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-brand-violet rounded-xl"
             >
               <span
                 className={`text-sm font-bold transition-colors ${

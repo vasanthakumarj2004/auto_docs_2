@@ -58,12 +58,12 @@ export const CalculatorPage: React.FC = () => {
   };
 
   return (
-    <div className="bg-[#fcfdff] min-h-screen py-10">
+    <div className="bg-[#FAFAFA] min-h-screen py-10">
       <div className="site-shell">
         {/* Back Link */}
         <button
           onClick={() => navigate('/')}
-          className="inline-flex items-center gap-2 text-xs font-bold text-slate-500 hover:text-brand-blue mb-8 transition-colors"
+          className="inline-flex items-center gap-2 text-xs font-bold text-slate-500 hover:text-brand-violet mb-8 transition-colors cursor-pointer"
         >
           <ArrowLeft size={14} /> Back to homepage
         </button>
@@ -93,7 +93,7 @@ export const CalculatorPage: React.FC = () => {
             <div className="rounded-xl border border-slate-200/90 bg-slate-50/70 p-4">
               <div className="flex justify-between items-center text-xs font-bold text-slate-700">
                 <span>Monthly Document Volume</span>
-                <span className="font-mono text-brand-blue font-extrabold text-base">
+                <span className="font-mono text-brand-violet font-extrabold text-base">
                   {documents.toLocaleString()} docs
                 </span>
               </div>
@@ -104,7 +104,7 @@ export const CalculatorPage: React.FC = () => {
                 step="50"
                 value={documents}
                 onChange={(e) => setDocuments(Number(e.target.value))}
-                className="w-full mt-3"
+                className="w-full mt-3 accent-violet-600"
               />
               <span className="text-[10px] text-slate-400 mt-1 block">
                 Vendor invoices, Bills of Lading, Packing Lists, Pre-alert emails
@@ -115,7 +115,7 @@ export const CalculatorPage: React.FC = () => {
             <div className="rounded-xl border border-slate-200/90 bg-slate-50/70 p-4">
               <div className="flex justify-between items-center text-xs font-bold text-slate-700">
                 <span>Minutes to Read, Cross-Check & Key Each Document</span>
-                <span className="font-mono text-brand-blue font-extrabold text-base">
+                <span className="font-mono text-brand-violet font-extrabold text-base">
                   {minutes} mins
                 </span>
               </div>
@@ -126,7 +126,7 @@ export const CalculatorPage: React.FC = () => {
                 step="1"
                 value={minutes}
                 onChange={(e) => setMinutes(Number(e.target.value))}
-                className="w-full mt-3"
+                className="w-full mt-3 accent-violet-600"
               />
               <span className="text-[10px] text-slate-400 mt-1 block">
                 Includes line item checks, party matching, and ERP typing
@@ -137,7 +137,7 @@ export const CalculatorPage: React.FC = () => {
             <div className="rounded-xl border border-slate-200/90 bg-slate-50/70 p-4">
               <div className="flex justify-between items-center text-xs font-bold text-slate-700">
                 <span>Monthly Cost per Data Entry Operator</span>
-                <span className="font-mono text-brand-blue font-extrabold text-base">
+                <span className="font-mono text-brand-violet font-extrabold text-base">
                   ₹{staffCost.toLocaleString('en-IN')}
                 </span>
               </div>
@@ -148,7 +148,7 @@ export const CalculatorPage: React.FC = () => {
                 step="2500"
                 value={staffCost}
                 onChange={(e) => setStaffCost(Number(e.target.value))}
-                className="w-full mt-3"
+                className="w-full mt-3 accent-violet-600"
               />
               <span className="text-[10px] text-slate-400 mt-1 block">
                 Salary + employer costs based on 160 operational hours/month
@@ -156,8 +156,8 @@ export const CalculatorPage: React.FC = () => {
             </div>
 
             {/* How It's Worked Out Box */}
-            <div className="rounded-xl border border-blue-100 bg-brand-lavender/40 p-5 mt-6">
-              <span className="text-xs font-extrabold uppercase tracking-wider text-brand-blue block mb-2">
+            <div className="rounded-xl border border-violet-100 bg-brand-lavender/40 p-5 mt-6">
+              <span className="text-xs font-extrabold uppercase tracking-wider text-brand-violet block mb-2">
                 How It’s Worked Out:
               </span>
               <div className="space-y-1.5 font-mono text-[11px] text-slate-700">
@@ -177,10 +177,10 @@ export const CalculatorPage: React.FC = () => {
               <div className="mt-4 space-y-4">
                 <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-5">
                   <div className="flex items-center gap-2 text-xs font-bold text-slate-600 mb-1">
-                    <Clock size={16} className="text-brand-blue" />
+                    <Clock size={16} className="text-brand-violet" />
                     <span>Time Sunk in Manual Typing</span>
                   </div>
-                  <div className="text-3xl font-extrabold text-brand-blue font-mono">
+                  <div className="text-3xl font-extrabold text-brand-violet font-mono">
                     {calculations.monthlyHours.toLocaleString()} hrs <span className="text-sm font-normal text-slate-500">/ month</span>
                   </div>
                   <div className="text-xs text-slate-500 mt-1">
@@ -190,14 +190,14 @@ export const CalculatorPage: React.FC = () => {
 
                 <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-5">
                   <div className="flex items-center gap-2 text-xs font-bold text-slate-600 mb-1">
-                    <TrendingUp size={16} className="text-emerald-600" />
+                    <TrendingUp size={16} className="text-violet-600" />
                     <span>Direct Salary Cost</span>
                   </div>
                   <div className="text-3xl font-extrabold text-slate-950 font-mono">
                     ₹{calculations.monthlyCost.toLocaleString('en-IN')} <span className="text-sm font-normal text-slate-500">/ month</span>
                   </div>
-                  <div className="text-xs text-emerald-700 font-bold mt-1">
-                    ₹{calculations.annualCost.toLocaleString('en-IN')} saved annually with Docsynecx.
+                  <div className="text-xs text-violet-700 font-bold mt-1">
+                    ₹{calculations.annualCost.toLocaleString('en-IN')} saved annually with AutoDocs.
                   </div>
                 </div>
               </div>
@@ -218,68 +218,35 @@ export const CalculatorPage: React.FC = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="form-input text-xs"
-                  placeholder="Your work email"
+                  placeholder="Work email"
+                  className="form-input"
                 />
                 <input
-                  required
                   type="text"
                   value={company}
                   onChange={(e) => setCompany(e.target.value)}
-                  className="form-input text-xs"
                   placeholder="Company name"
+                  className="form-input"
                 />
                 <button
                   type="submit"
                   disabled={formStatus === 'submitting'}
                   className="button-primary w-full text-xs py-3"
                 >
-                  {formStatus === 'submitting' ? 'Submitting…' : 'Book a Retyping Audit + demo'}{' '}
-                  <ArrowRight size={14} />
+                  {formStatus === 'submitting' ? 'Submitting...' : 'Request audit breakdown'}
                 </button>
 
                 {formStatus === 'success' && (
-                  <p className="text-xs font-bold text-emerald-600 flex items-center gap-1.5 pt-1">
-                    <CheckCircle2 size={14} /> Audit request received. Our team will contact you shortly!
-                  </p>
+                  <div className="text-xs text-violet-700 font-bold flex items-center gap-1.5 pt-1">
+                    <CheckCircle2 size={14} /> Audit request sent. We’ll follow up with your benchmark report.
+                  </div>
+                )}
+                {formStatus === 'error' && (
+                  <div className="text-xs text-rose-600 font-bold pt-1">
+                    Something went wrong. Please try again.
+                  </div>
                 )}
               </form>
-            </div>
-          </div>
-        </div>
-
-        {/* Proof Strip */}
-        <div className="mt-16 border-t border-slate-200 pt-12">
-          <div className="text-center mb-8">
-            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
-              Proven Across Trade and Finance Teams
-            </span>
-          </div>
-
-          <div className="grid divide-y divide-slate-200 rounded-xl border border-slate-200 bg-white p-6 shadow-xs sm:grid-cols-3 sm:divide-x sm:divide-y-0">
-            <div className="px-4 py-3 first:pl-0">
-              <div className="text-2xl font-extrabold tracking-tight text-slate-950 font-mono">
-                2 hrs → 2 min
-              </div>
-              <div className="mt-1 text-xs text-slate-500 font-medium">
-                FTL logistics: email to CargoWise
-              </div>
-            </div>
-            <div className="px-4 py-3 sm:pl-6">
-              <div className="text-2xl font-extrabold tracking-tight text-slate-950 font-mono">
-                Days → hours
-              </div>
-              <div className="mt-1 text-xs text-slate-500 font-medium">
-                Rejections & re-fetches: purchase and spares
-              </div>
-            </div>
-            <div className="px-4 py-3 sm:pl-6">
-              <div className="text-2xl font-extrabold tracking-tight text-slate-950 font-mono">
-                In daily use
-              </div>
-              <div className="mt-1 text-xs text-slate-500 font-medium">
-                Job billing: assets and purchase bills
-              </div>
             </div>
           </div>
         </div>

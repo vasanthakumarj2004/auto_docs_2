@@ -5,11 +5,11 @@ import { LogisticsPage } from '@/src/views/LogisticsPage';
 import { Footer } from '@/src/components/Footer';
 
 export const metadata: Metadata = {
-  title: 'Logistics & Trade Document Processing | Docsynecx',
+  title: 'Logistics & Trade Document Processing | AutoDocs',
   description:
     'Turn customer booking emails and shipment paperwork into structured CargoWise jobs automatically.',
   alternates: {
-    canonical: 'https://docsynecx.com/logistics/',
+    canonical: 'https://autodocs.com/logistics/',
   },
   robots: {
     index: true,

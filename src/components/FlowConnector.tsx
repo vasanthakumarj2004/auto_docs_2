@@ -19,7 +19,7 @@ export const FlowConnector: React.FC<FlowConnectorProps> = ({
       <div className="hidden md:flex items-center gap-1 w-8 lg:w-10 relative">
         <div className="h-[2px] w-full bg-slate-200 relative overflow-hidden rounded-full">
           <div
-            className={`absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-500 transition-all duration-500 ${
+            className={`absolute inset-0 bg-gradient-to-r from-violet-400 to-violet-500 transition-all duration-500 ${
               isPast ? 'w-full opacity-100' : 'w-0 opacity-0'
             }`}
           />
@@ -30,7 +30,7 @@ export const FlowConnector: React.FC<FlowConnectorProps> = ({
         <ArrowRight
           size={14}
           className={`shrink-0 transition-colors duration-300 ${
-            isPast ? 'text-brand-blue' : 'text-slate-300'
+            isPast ? 'text-brand-violet' : 'text-slate-300'
           }`}
         />
       </div>
@@ -39,7 +39,7 @@ export const FlowConnector: React.FC<FlowConnectorProps> = ({
       <div className="flex md:hidden flex-col items-center my-1 relative">
         <div className="w-[2px] h-6 bg-slate-200 relative overflow-hidden rounded-full">
           <div
-            className={`absolute inset-0 bg-gradient-to-b from-blue-400 to-indigo-500 transition-all duration-500 ${
+            className={`absolute inset-0 bg-gradient-to-b from-violet-400 to-violet-500 transition-all duration-500 ${
               isPast ? 'h-full opacity-100' : 'h-0 opacity-0'
             }`}
           />
@@ -47,7 +47,7 @@ export const FlowConnector: React.FC<FlowConnectorProps> = ({
         <ArrowDown
           size={13}
           className={`shrink-0 transition-colors duration-300 ${
-            isPast ? 'text-brand-blue' : 'text-slate-300'
+            isPast ? 'text-brand-violet' : 'text-slate-300'
           }`}
         />
       </div>

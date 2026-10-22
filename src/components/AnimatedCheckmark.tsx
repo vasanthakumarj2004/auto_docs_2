@@ -9,7 +9,7 @@ interface AnimatedCheckmarkProps {
 
 export const AnimatedCheckmark: React.FC<AnimatedCheckmarkProps> = ({
   size = 14,
-  badgeClassName = 'bg-emerald-50 text-emerald-600 border border-emerald-200',
+  badgeClassName = 'bg-violet-50 text-violet-600 border border-violet-200',
   delayMs = 0,
 }) => {
   const containerRef = useRef<HTMLSpanElement>(null);

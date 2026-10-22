@@ -40,11 +40,11 @@ export const FinanceDeskVisual: React.FC<{ isCentered?: boolean }> = ({ isCenter
         {/* Card Header Bar */}
         <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50/90 px-4 py-3">
           <div className="flex items-center gap-2 text-[10px] font-bold text-slate-800">
-            <span className="brand-mark h-4 w-4 rounded text-[8px]">D</span>
-            Docsynecx <span className="font-normal text-slate-400">/ Finance desk</span>
+            <span className="brand-mark h-4 w-4 rounded text-[8px]">A</span>
+            AutoDocs <span className="font-normal text-slate-400">/ Finance desk</span>
           </div>
-          <span className="floating-badge-2 flex items-center gap-1.5 rounded-full border border-emerald-200/80 bg-white px-2.5 py-0.5 text-[9px] font-bold text-emerald-700 shadow-sm">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="floating-badge-2 flex items-center gap-1.5 rounded-full border border-violet-200/80 bg-white px-2.5 py-0.5 text-[9px] font-bold text-violet-700 shadow-sm">
+            <span className="h-1.5 w-1.5 rounded-full bg-violet-500 animate-pulse" />
             Tally connected
           </span>
         </div>
@@ -55,7 +55,7 @@ export const FinanceDeskVisual: React.FC<{ isCentered?: boolean }> = ({ isCenter
               <h3 className="text-base font-extrabold text-slate-950">Vendor bills</h3>
               <p className="mt-1 text-[10px] text-slate-400">From inbox to books. 24-hour auto-syncing.</p>
             </div>
-            <span className="floating-badge-1 rounded border border-blue-200 bg-blue-50/90 px-2.5 py-1 text-[9px] font-bold text-blue-700 shadow-sm">
+            <span className="floating-badge-1 rounded border border-violet-200 bg-violet-50/90 px-2.5 py-1 text-[9px] font-bold text-violet-800 shadow-sm">
               Demo workspace
             </span>
           </div>
@@ -69,11 +69,11 @@ export const FinanceDeskVisual: React.FC<{ isCentered?: boolean }> = ({ isCenter
                 suppressHydrationWarning
                 className={`pb-1 transition-all relative cursor-pointer outline-none ${
                   activeTab === 'all'
-                    ? 'border-b-2 border-brand-blue text-brand-blue font-bold'
+                    ? 'border-b-2 border-brand-violet text-brand-violet font-bold'
                     : 'text-slate-400 hover:text-slate-600'
                 }`}
               >
-                All bills <b className={`ml-1 rounded-full px-1.5 py-0.5 text-[8px] transition-colors ${activeTab === 'all' ? 'bg-blue-50 text-brand-blue' : 'bg-slate-100 text-slate-500'}`}><CountUp end={24} /></b>
+                All bills <b className={`ml-1 rounded-full px-1.5 py-0.5 text-[8px] transition-colors ${activeTab === 'all' ? 'bg-violet-50 text-violet-700' : 'bg-slate-100 text-slate-500'}`}><CountUp end={24} /></b>
               </button>
 
               <button
@@ -97,16 +97,16 @@ export const FinanceDeskVisual: React.FC<{ isCentered?: boolean }> = ({ isCenter
                 suppressHydrationWarning
                 className={`pb-1 transition-all relative cursor-pointer outline-none ${
                   activeTab === 'posted'
-                    ? 'border-b-2 border-emerald-600 text-emerald-600 font-bold'
+                    ? 'border-b-2 border-violet-600 text-violet-600 font-bold'
                     : 'text-slate-400 hover:text-slate-600'
                 }`}
               >
-                Posted <b className={`ml-1 rounded-full px-1.5 py-0.5 text-[8px] transition-colors ${activeTab === 'posted' ? 'bg-emerald-50 text-emerald-600' : 'bg-slate-100 text-slate-500'}`}><CountUp end={22} /></b>
+                Posted <b className={`ml-1 rounded-full px-1.5 py-0.5 text-[8px] transition-colors ${activeTab === 'posted' ? 'bg-violet-50 text-violet-600' : 'bg-slate-100 text-slate-500'}`}><CountUp end={22} /></b>
               </button>
             </div>
 
             {/* Elevated dark floating alert pill */}
-            <div className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-[#0B1120] text-white px-2.5 py-0.5 shadow-md border border-slate-700/80 text-[8.5px] font-mono shrink-0">
+            <div className="hidden sm:inline-flex items-center gap-1.5 rounded-full bg-[#231134] text-white px-2.5 py-0.5 shadow-md border border-slate-700/80 text-[8.5px] font-mono shrink-0">
               <span className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
               <span className="text-amber-300 font-semibold">Duplicate hold</span>
               <span className="text-slate-400">· not paid twice</span>
@@ -129,8 +129,8 @@ export const FinanceDeskVisual: React.FC<{ isCentered?: boolean }> = ({ isCenter
                     <td className="py-2.5 font-mono font-bold text-slate-800">{billNo}</td>
                     <td className="text-slate-600 font-medium">{vendor}</td>
                     <td>
-                      <span className="inline-flex items-center gap-1.5 text-emerald-700 font-semibold rounded bg-emerald-50 px-2 py-0.5 border border-emerald-100 shadow-2xs">
-                        <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                      <span className="inline-flex items-center gap-1.5 text-violet-700 font-semibold rounded bg-violet-50 px-2 py-0.5 border border-violet-100 shadow-2xs">
+                        <span className="inline-block h-1.5 w-1.5 rounded-full bg-violet-500" />
                         Verified
                       </span>
                     </td>
@@ -139,7 +139,7 @@ export const FinanceDeskVisual: React.FC<{ isCentered?: boolean }> = ({ isCenter
                         className={`inline-block rounded border px-2 py-0.5 text-[8.5px] font-bold shadow-2xs ${
                           status === 'Duplicate hold'
                             ? 'floating-badge-2 border-amber-200 bg-amber-50 text-amber-700'
-                            : 'floating-badge-1 border-emerald-200 bg-emerald-50 text-emerald-700'
+                            : 'floating-badge-1 border-violet-200 bg-violet-50 text-violet-700'
                         }`}
                       >
                         {status}
@@ -153,7 +153,7 @@ export const FinanceDeskVisual: React.FC<{ isCentered?: boolean }> = ({ isCenter
 
           <div className="mt-3.5 flex justify-between text-[9px] text-slate-400">
             <span>Sync active just now</span>
-            <span className="font-bold text-brand-blue hover:underline cursor-pointer">View activity →</span>
+            <span className="font-bold text-brand-violet hover:underline cursor-pointer">View activity →</span>
           </div>
         </div>
 

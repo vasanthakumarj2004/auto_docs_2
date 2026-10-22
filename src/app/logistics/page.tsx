@@ -9,45 +9,45 @@ export const metadata: Metadata = {
   description:
     'Turn customer booking emails and shipment paperwork into structured CargoWise jobs automatically. Spot document mismatches across BLs, packing lists, and invoices before freight moves.',
   alternates: {
-    canonical: 'https://docsynecx.com/logistics/',
+    canonical: 'https://autodocs.com/logistics/',
   },
   openGraph: {
-    title: 'Logistics Document Automation & CargoWise Sync | Docsynecx',
+    title: 'Logistics Document Automation & CargoWise Sync | AutoDocs',
     description:
       'Turn customer booking emails and shipment paperwork into structured CargoWise jobs automatically with AI checks.',
-    url: 'https://docsynecx.com/logistics/',
+    url: 'https://autodocs.com/logistics/',
     type: 'website',
     images: [
       {
-        url: '/Docsynecx-Logo.svg',
+        url: '/AutoDocs-Logo.svg',
         width: 1200,
         height: 630,
-        alt: 'Docsynecx Logistics Desk',
+        alt: 'AutoDocs Logistics Desk',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Logistics Document Automation & CargoWise Sync | Docsynecx',
+    title: 'Logistics Document Automation & CargoWise Sync | AutoDocs',
     description:
       'Turn customer booking emails and shipment paperwork into structured CargoWise jobs automatically with AI checks.',
-    images: ['/Docsynecx-Logo.svg'],
+    images: ['/AutoDocs-Logo.svg'],
   },
 };
 
 const logisticsServiceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
-  name: 'Docsynecx Logistics Desk',
+  name: 'AutoDocs Logistics Desk',
   provider: {
     '@type': 'Organization',
-    name: 'Docsynecx',
-    url: 'https://docsynecx.com',
+    name: 'AutoDocs',
+    url: 'https://autodocs.com',
   },
   serviceType: 'Freight Document Processing & CargoWise Job Automation',
   description:
     'Converts shipping instructions, bills of lading, arrival notices, and commercial invoices into structured CargoWise One jobs with exception detection.',
-  url: 'https://docsynecx.com/logistics/',
+  url: 'https://autodocs.com/logistics/',
 };
 
 export default function LogisticsRoutePage() {

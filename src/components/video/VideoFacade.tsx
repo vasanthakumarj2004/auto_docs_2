@@ -71,7 +71,7 @@ export const VideoFacade: React.FC<VideoFacadeProps> = ({
           type="button"
           onClick={handleActivate}
           aria-label={`Play video: ${title}`}
-          className="group relative flex h-full w-full items-center justify-center cursor-pointer overflow-hidden text-left outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+          className="group relative flex h-full w-full items-center justify-center cursor-pointer overflow-hidden text-left outline-none focus-visible:ring-2 focus-visible:ring-violet-500"
         >
           {/* Poster or dark fallback backdrop */}
           {resolvedPoster ? (
@@ -90,7 +90,7 @@ export const VideoFacade: React.FC<VideoFacadeProps> = ({
 
           {/* Centered Play Button Facade */}
           <div className="relative z-10 flex flex-col items-center gap-3">
-            <div className="flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-2xl bg-blue-600/90 text-white shadow-2xl backdrop-blur-md ring-1 ring-white/30 transition-all duration-300 group-hover:scale-110 group-hover:bg-blue-600 group-active:scale-95">
+            <div className="flex h-16 w-16 sm:h-20 sm:w-20 items-center justify-center rounded-2xl bg-[#8B32F7]/90 text-white shadow-2xl backdrop-blur-md ring-1 ring-white/30 transition-all duration-300 group-hover:scale-110 group-hover:bg-[#8B32F7] group-active:scale-95">
               <Play size={28} className="translate-x-0.5 fill-white text-white sm:h-8 sm:w-8" />
             </div>
 

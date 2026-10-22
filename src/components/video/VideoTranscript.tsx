@@ -21,16 +21,16 @@ export const VideoTranscript: React.FC<VideoTranscriptProps> = ({
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
         aria-expanded={isOpen}
-        className="flex w-full items-center justify-between font-mono text-[11px] font-bold text-slate-700 hover:text-slate-900 transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded"
+        className="flex w-full items-center justify-between font-mono text-[11px] font-bold text-slate-700 hover:text-slate-900 transition-colors cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-violet-600 rounded"
       >
         <span className="flex items-center gap-2">
-          <FileText size={13} className="text-blue-600" />
+          <FileText size={13} className="text-violet-600" />
           <span>Read the transcript ({title})</span>
         </span>
         <ChevronDown
           size={14}
           className={`transition-transform duration-200 text-slate-400 ${
-            isOpen ? 'rotate-180 text-blue-600' : ''
+            isOpen ? 'rotate-180 text-violet-600' : ''
           }`}
         />
       </button>

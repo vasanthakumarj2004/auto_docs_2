@@ -273,7 +273,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
         ref={containerRef}
         tabIndex={0}
         onKeyDown={handleKeyDown}
-        className="group/player relative aspect-video w-full rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 select-none"
+        className="group/player relative aspect-video w-full rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-500 select-none"
         aria-label={config.ariaLabel || `${config.title} video player`}
       >
         {/* Fixed Dimension Poster (Shown until user presses play or buffers) */}
@@ -320,7 +320,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
         {/* Missing or Pending Footage Fallback Overlay */}
         {hasError && (
           <div className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-slate-950/90 p-6 text-center backdrop-blur-xs">
-            <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-blue-400 mb-1">
+            <span className="font-mono text-[10px] uppercase font-bold tracking-wider text-violet-400 mb-1">
               Illustrative Demo Mode
             </span>
             <p className="text-sm font-bold text-white mb-2">
@@ -333,7 +333,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
               <button
                 type="button"
                 onClick={onFallbackToStoryboard}
-                className="inline-flex items-center gap-1.5 rounded-lg bg-blue-600 px-3.5 py-2 font-mono text-xs font-bold text-white hover:bg-blue-500 transition-colors cursor-pointer shadow-md"
+                className="inline-flex items-center gap-1.5 rounded-lg bg-[#8B32F7] px-3.5 py-2 font-mono text-xs font-bold text-white hover:bg-violet-600 transition-colors cursor-pointer shadow-md"
               >
                 <span>Launch Interactive Storyboard</span>
                 <span>→</span>
@@ -349,7 +349,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
               type="button"
               onClick={togglePlay}
               aria-label={`Play ${config.title}`}
-              className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-600 text-white shadow-xl transition-transform duration-300 hover:scale-110 hover:bg-blue-500 cursor-pointer focus-visible:ring-4 focus-visible:ring-blue-400"
+              className="flex h-16 w-16 items-center justify-center rounded-full bg-[#8B32F7] text-white shadow-xl transition-transform duration-300 hover:scale-110 hover:bg-violet-600 cursor-pointer focus-visible:ring-4 focus-visible:ring-violet-400"
             >
               <Play size={24} className="ml-1 fill-white" />
             </button>
@@ -373,7 +373,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
                   onClick={() => jumpToChapter(ch)}
                   className={`rounded px-2 py-0.5 border transition-all cursor-pointer ${
                     currentTime >= ch.timeSec && currentTime < (ch.timeSec + 30)
-                      ? 'bg-blue-600/90 border-blue-400 text-white font-bold'
+                      ? 'bg-[#8B32F7]/90 border-violet-400 text-white font-bold'
                       : 'bg-slate-900/80 border-slate-700/80 text-slate-300 hover:text-white hover:bg-slate-800'
                   }`}
                 >
@@ -407,7 +407,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
           >
             {/* Progress Fill */}
             <div
-              className="h-1.5 rounded-full bg-blue-500 group-hover/scrub:h-2 transition-all duration-100"
+              className="h-1.5 rounded-full bg-violet-500 group-hover/scrub:h-2 transition-all duration-100"
               style={{ width: `${progressPercent}%` }}
             />
 
@@ -452,7 +452,7 @@ export const VideoPlayer: React.FC<VideoPlayerProps> = ({
                 title="Subtitles / Captions (C)"
                 aria-pressed={captionsEnabled}
                 className={`p-1.5 rounded hover:bg-white/10 transition-colors cursor-pointer ${
-                  captionsEnabled ? 'text-blue-400 font-bold' : 'text-slate-400'
+                  captionsEnabled ? 'text-violet-400 font-bold' : 'text-slate-400'
                 }`}
               >
                 <Subtitles size={14} />

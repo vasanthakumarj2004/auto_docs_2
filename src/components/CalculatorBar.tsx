@@ -15,7 +15,7 @@ export const CalculatorBar: React.FC = () => {
   const totals = useMemo(() => {
     const hours = Math.round((documents * minutes) / 60);
     const cost = Math.round(hours * (staffCost / 160));
-    // Docsynecx reduces repetitive data entry by ~96.5%, leaving only exceptions (~3.5%)
+    // AutoDocs reduces repetitive data entry by ~96.5%, leaving only exceptions (~3.5%)
     const automatedHours = Math.max(0.5, Math.round(hours * 0.035 * 10) / 10);
     return { hours, cost, automatedHours };
   }, [documents, minutes, staffCost]);
@@ -37,7 +37,7 @@ export const CalculatorBar: React.FC = () => {
             <button
               onClick={() => navigate('/calculator')}
               suppressHydrationWarning
-              className="button-orange text-xs"
+              className="button-primary text-xs"
             >
               See my number
             </button>
@@ -48,7 +48,7 @@ export const CalculatorBar: React.FC = () => {
         </SpotlightCard>
 
         {/* The cost of doing it by hand Box */}
-        <SpotlightCard className="rounded-2xl border border-slate-200/90 bg-white/95 backdrop-blur-sm p-5 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_-4px_rgba(15,23,42,0.06),inset_0_1px_0_0_rgba(255,255,255,0.9)] sm:p-8 transition-all duration-300 hover:shadow-md hover:border-blue-300/80">
+        <SpotlightCard className="rounded-2xl border border-slate-200/90 bg-white/95 backdrop-blur-sm p-5 shadow-[0_1px_2px_rgba(15,23,42,0.04),0_8px_24px_-4px_rgba(15,23,42,0.06),inset_0_1px_0_0_rgba(255,255,255,0.9)] sm:p-8 transition-all duration-300 hover:shadow-md hover:border-violet-300/80">
           <div className="flex flex-col justify-between gap-3 border-b border-slate-100 pb-5 sm:flex-row sm:items-center">
             <h3 className="text-base font-extrabold text-slate-950">
               The cost of doing it by hand
@@ -62,7 +62,7 @@ export const CalculatorBar: React.FC = () => {
             <div className="lg:col-span-7">
               <div className="grid gap-3 sm:grid-cols-3">
                 {/* Input 1 */}
-                <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-3 block focus-within:border-brand-blue focus-within:bg-white transition-all">
+                <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-3 block focus-within:border-brand-violet focus-within:bg-white transition-all">
                   <span className="block text-[10px] font-bold text-slate-500">Documents a month</span>
                   <div className="mt-1.5 flex items-center justify-between">
                     <input
@@ -99,13 +99,13 @@ export const CalculatorBar: React.FC = () => {
                     step="100"
                     value={documents}
                     onChange={(e) => setDocuments(Number(e.target.value))}
-                    className="mt-2 w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                    className="mt-2 w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-violet-600"
                   />
                   <span className="mt-1 block text-[9px] text-slate-400 font-mono">documents</span>
                 </div>
 
                 {/* Input 2 */}
-                <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-3 block focus-within:border-brand-blue focus-within:bg-white transition-all">
+                <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-3 block focus-within:border-brand-violet focus-within:bg-white transition-all">
                   <span className="block text-[10px] font-bold text-slate-500">Minutes each</span>
                   <div className="mt-1.5 flex items-center justify-between">
                     <input
@@ -142,13 +142,13 @@ export const CalculatorBar: React.FC = () => {
                     step="1"
                     value={minutes}
                     onChange={(e) => setMinutes(Number(e.target.value))}
-                    className="mt-2 w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                    className="mt-2 w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-violet-600"
                   />
                   <span className="mt-1 block text-[9px] text-slate-400 font-mono">minutes</span>
                 </div>
 
                 {/* Input 3 */}
-                <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-3 block focus-within:border-brand-blue focus-within:bg-white transition-all">
+                <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-3 block focus-within:border-brand-violet focus-within:bg-white transition-all">
                   <span className="block text-[10px] font-bold text-slate-500">Staff cost a month</span>
                   <div className="mt-1.5 flex items-center justify-between">
                     <div className="flex items-center">
@@ -188,7 +188,7 @@ export const CalculatorBar: React.FC = () => {
                     step="5000"
                     value={staffCost}
                     onChange={(e) => setStaffCost(Number(e.target.value))}
-                    className="mt-2 w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                    className="mt-2 w-full h-1 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-violet-600"
                   />
                   <span className="mt-1 block text-[9px] text-slate-400 font-mono">per person</span>
                 </div>
@@ -207,7 +207,7 @@ export const CalculatorBar: React.FC = () => {
                 <span className="text-[9px] font-extrabold uppercase tracking-wider text-slate-400 block font-mono">
                   Time & cost lost to retyping / month
                 </span>
-                <div className="mt-2 text-3xl font-extrabold tracking-[-0.04em] text-brand-blue flex items-baseline font-mono">
+                <div className="mt-2 text-3xl font-extrabold tracking-[-0.04em] text-[#8B32F7] flex items-baseline font-mono">
                   <span>{totals.hours.toLocaleString('en-IN')} hrs</span>
                   <span className="mx-2 font-normal text-slate-300">/</span>
                   <span className="text-slate-950">₹{totals.cost.toLocaleString('en-IN')}</span>
@@ -219,7 +219,7 @@ export const CalculatorBar: React.FC = () => {
                 {/* Before vs. After Efficiency Bar */}
                 <div className="mt-5 pt-4 border-t border-slate-200/80 space-y-2.5">
                   <div className="text-[9px] font-mono uppercase tracking-wider text-slate-400 font-bold">
-                    Manual vs. Docsynecx Impact
+                    Manual vs. AutoDocs Impact
                   </div>
                   <div>
                     <div className="flex items-center justify-between text-[10px] font-mono mb-1">
@@ -232,15 +232,15 @@ export const CalculatorBar: React.FC = () => {
                   </div>
                   <div>
                     <div className="flex items-center justify-between text-[10px] font-mono mb-1">
-                      <span className="text-brand-blue font-semibold flex items-center gap-1">
-                        <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                        With Docsynecx:
+                      <span className="text-[#8B32F7] font-semibold flex items-center gap-1">
+                        <span className="h-1.5 w-1.5 rounded-full bg-violet-500 animate-pulse" />
+                        With AutoDocs:
                       </span>
-                      <span className="font-bold text-emerald-700">~{totals.automatedHours} hrs / mo (Exceptions only)</span>
+                      <span className="font-bold text-violet-700">~{totals.automatedHours} hrs / mo (Exceptions only)</span>
                     </div>
                     <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
                       <div
-                        className="h-full bg-emerald-500 rounded-full transition-all duration-300"
+                        className="h-full bg-[#8B32F7] rounded-full transition-all duration-300"
                         style={{
                           width: `${Math.max(4, Math.min(100, (totals.automatedHours / Math.max(1, totals.hours)) * 100))}%`,
                         }}
@@ -253,7 +253,7 @@ export const CalculatorBar: React.FC = () => {
               <button
                 onClick={() => navigate('/calculator')}
                 suppressHydrationWarning
-                className="mt-6 flex items-center text-[11px] font-bold text-brand-blue hover:text-brand-blue-hover transition-colors"
+                className="mt-6 flex items-center text-[11px] font-bold text-[#8B32F7] hover:text-violet-700 transition-colors"
               >
                 Get the full breakdown <ArrowRight size={13} className="ml-1" />
               </button>

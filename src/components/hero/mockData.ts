@@ -100,7 +100,7 @@ export const initialQueueBills: BillQueueItem[] = [
     category: 'Electrical Parts',
     auditTrail: [
       { step: 'Received via shared inbox', time: '09:12:04', actor: 'System Gateway', status: 'completed' },
-      { step: 'PDF extraction & math validation', time: '09:12:06', actor: 'Docsynecx OCR', status: 'completed' },
+      { step: 'PDF extraction & math validation', time: '09:12:06', actor: 'AutoDocs OCR', status: 'completed' },
       { step: 'GSTIN verified on GST Portal 2B', time: '09:12:07', actor: 'GST API', status: 'completed' },
       { step: '3-way PO match confirmed', time: '09:12:08', actor: 'Finance Desk', status: 'completed' },
       { step: 'Posted to Tally (Voucher #PUR-2018)', time: '09:12:09', actor: 'Tally XML Sync', status: 'completed' },
@@ -121,7 +121,7 @@ export const initialQueueBills: BillQueueItem[] = [
     category: 'Fasteners & Tools',
     auditTrail: [
       { step: 'Received via shared inbox', time: '11:45:10', actor: 'System Gateway', status: 'completed' },
-      { step: 'PDF extraction & math validation', time: '11:45:12', actor: 'Docsynecx OCR', status: 'completed' },
+      { step: 'PDF extraction & math validation', time: '11:45:12', actor: 'AutoDocs OCR', status: 'completed' },
       { step: 'GSTIN verified on GST Portal 2B', time: '11:45:13', actor: 'GST API', status: 'completed' },
       { step: 'Approved by Finance Head', time: '11:45:14', actor: 'Sanjay T.', status: 'completed' },
       { step: 'Posted to Tally (Voucher #PUR-3081)', time: '11:45:15', actor: 'Tally XML Sync', status: 'completed' },
@@ -145,7 +145,7 @@ export const initialQueueBills: BillQueueItem[] = [
     explanation: 'Matches INV-0021. Held, not paid twice.',
     auditTrail: [
       { step: 'Received via supplier portal', time: '14:20:01', actor: 'System Gateway', status: 'completed' },
-      { step: 'PDF extraction & math validation', time: '14:20:03', actor: 'Docsynecx OCR', status: 'completed' },
+      { step: 'PDF extraction & math validation', time: '14:20:03', actor: 'AutoDocs OCR', status: 'completed' },
       { step: 'Duplicate detected in Tally ledger', time: '14:20:04', actor: 'Audit Engine', status: 'current' },
       { step: 'Held before payout queue', time: '14:20:04', actor: 'Guardrail Policy', status: 'current' },
       { step: 'Posting halted awaiting review', time: '14:20:05', actor: 'Priya C.', status: 'pending' },
@@ -166,7 +166,7 @@ export const initialQueueBills: BillQueueItem[] = [
     category: 'Raw Sheet Metal',
     auditTrail: [
       { step: 'Received via shared inbox', time: '16:05:22', actor: 'System Gateway', status: 'completed' },
-      { step: 'PDF extraction & math validation', time: '16:05:24', actor: 'Docsynecx OCR', status: 'completed' },
+      { step: 'PDF extraction & math validation', time: '16:05:24', actor: 'AutoDocs OCR', status: 'completed' },
       { step: 'GSTIN verified on GST Portal 2B', time: '16:05:25', actor: 'GST API', status: 'completed' },
       { step: 'Approved by Joseph I.', time: '16:05:26', actor: 'Joseph I.', status: 'completed' },
       { step: 'Posted to Tally (Voucher #PUR-2082)', time: '16:05:27', actor: 'Tally XML Sync', status: 'completed' },
@@ -188,7 +188,7 @@ export const initialQueueBills: BillQueueItem[] = [
     explanation: 'Rate variance: +₹4,200 against agreed rate card. Requires approval.',
     auditTrail: [
       { step: 'Received via freight email', time: '10:02:15', actor: 'System Gateway', status: 'completed' },
-      { step: 'PDF extraction & math validation', time: '10:02:17', actor: 'Docsynecx OCR', status: 'completed' },
+      { step: 'PDF extraction & math validation', time: '10:02:17', actor: 'AutoDocs OCR', status: 'completed' },
       { step: 'GSTIN verified on GST Portal 2B', time: '10:02:18', actor: 'GST API', status: 'completed' },
       { step: 'Flagged: Rate card variance check', time: '10:02:19', actor: 'Rule Engine', status: 'current' },
       { step: 'Assigned to Tanvi L. for approval', time: '10:02:20', actor: 'Tanvi L.', status: 'pending' },
@@ -209,7 +209,7 @@ export const initialQueueBills: BillQueueItem[] = [
     category: 'Air Cargo Express',
     auditTrail: [
       { step: 'Received via shared inbox', time: '12:30:11', actor: 'System Gateway', status: 'completed' },
-      { step: 'PDF extraction & math validation', time: '12:30:13', actor: 'Docsynecx OCR', status: 'completed' },
+      { step: 'PDF extraction & math validation', time: '12:30:13', actor: 'AutoDocs OCR', status: 'completed' },
       { step: 'GSTIN verified on GST Portal 2B', time: '12:30:14', actor: 'GST API', status: 'completed' },
       { step: 'Approved by Pradeep F.', time: '12:30:15', actor: 'Pradeep F.', status: 'completed' },
       { step: 'Posted to Tally (Voucher #PUR-1185)', time: '12:30:16', actor: 'Tally XML Sync', status: 'completed' },

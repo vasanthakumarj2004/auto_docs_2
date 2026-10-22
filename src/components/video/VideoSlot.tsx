@@ -56,19 +56,19 @@ export const VideoSlot: React.FC<VideoSlotProps> = ({
           {badgeType === 'soon' ? (
             <Clock size={11} className="text-amber-600" />
           ) : (
-            <Sparkles size={11} className="text-blue-600" />
+            <Sparkles size={11} className="text-violet-600" />
           )}
           <span>{displayLabel}</span>
         </span>
 
         <span className="font-mono text-[10px] text-slate-400">
-          Docsynecx Production Slot
+          AutoDocs Production Slot
         </span>
       </div>
 
       {/* Center Camera & Title Area */}
       <div className="relative z-10 flex flex-col items-center justify-center text-center my-auto py-4">
-        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white border border-slate-200 text-slate-400 shadow-sm transition-transform duration-300 group-hover:scale-105 group-hover:text-blue-600 group-hover:border-blue-300">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white border border-slate-200 text-slate-400 shadow-sm transition-transform duration-300 group-hover:scale-105 group-hover:text-violet-600 group-hover:border-violet-300">
           <Video size={22} />
         </div>
         <h4 className="mt-3 text-sm font-extrabold text-slate-900 tracking-tight max-w-sm">

@@ -28,7 +28,7 @@ export const HeroActivityRow: React.FC<HeroActivityRowProps> = ({ isPosted = fal
         {/* Right Activity Card: INV-8492 Status */}
         <div className="rounded-xl bg-white/90 backdrop-blur-md border border-white/80 shadow-[0_8px_20px_-4px_rgba(15,23,42,0.1)] px-3 py-2 flex items-center justify-between gap-3 flex-1 min-w-[220px]">
           <div className="flex items-center gap-2.5">
-            <span className="h-7 w-7 rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center font-bold text-[10px] shrink-0">
+            <span className="h-7 w-7 rounded-lg bg-violet-50 border border-violet-200 text-violet-600 flex items-center justify-center font-bold text-[10px] shrink-0">
               <Plus size={14} className="stroke-[2.5]" />
             </span>
             <div>
@@ -43,13 +43,13 @@ export const HeroActivityRow: React.FC<HeroActivityRowProps> = ({ isPosted = fal
             <span
               className={`text-[10px] font-bold px-2 py-0.5 rounded-full inline-flex items-center gap-1 transition-colors duration-300 ${
                 isPosted
-                  ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-                  : 'bg-blue-50 text-blue-700 border border-blue-200'
+                  ? 'bg-violet-50 text-violet-700 border border-violet-200'
+                  : 'bg-violet-50 text-violet-700 border border-violet-200'
               }`}
             >
               <span
                 className={`h-1.5 w-1.5 rounded-full ${
-                  isPosted ? 'bg-emerald-500' : 'bg-blue-500 animate-pulse'
+                  isPosted ? 'bg-violet-500' : 'bg-violet-500 animate-pulse'
                 }`}
               />
               {isPosted ? 'Posted' : 'Captured'}
@@ -68,9 +68,9 @@ export const HeroActivityRow: React.FC<HeroActivityRowProps> = ({ isPosted = fal
       {/* Optional Help Circle button behind SHOW_HELP_BUTTON flag */}
       {SHOW_HELP_BUTTON && (
         <div
-          className="h-10 w-10 rounded-full bg-blue-600 text-white shadow-lg flex items-center justify-center hover:scale-105 transition-all cursor-pointer shrink-0"
-          title="Docsynecx Assistant"
-          aria-label="Docsynecx Assistant"
+          className="h-10 w-10 rounded-full bg-[#8B32F7] text-white shadow-lg flex items-center justify-center hover:scale-105 transition-all cursor-pointer shrink-0"
+          title="AutoDocs Assistant"
+          aria-label="AutoDocs Assistant"
         >
           <MessageSquare size={17} className="fill-current" />
         </div>

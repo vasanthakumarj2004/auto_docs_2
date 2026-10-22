@@ -4,24 +4,24 @@ import React from 'react';
 export const FaqSection: React.FC = () => {
   const faqs = [
     {
-      question: 'What systems does Docsynecx integrate with natively?',
+      question: 'What systems does AutoDocs integrate with natively?',
       answer:
-        'Docsynecx integrates directly with Tally Prime (via XML server and ODBC), CargoWise One (via native eAdaptor XML), Zoho Books, and major enterprise ERPs including SAP and Oracle NetSuite. We also provide secure REST and webhook APIs for proprietary TMS and custom accounting software.',
+        'AutoDocs integrates directly with Tally Prime (via XML server and ODBC), CargoWise One (via native eAdaptor XML), Zoho Books, and major enterprise ERPs including SAP and Oracle NetSuite. We also provide secure REST and webhook APIs for proprietary TMS and custom accounting software.',
     },
     {
-      question: 'How does Docsynecx connect without disrupting our existing setup?',
+      question: 'How does AutoDocs connect without disrupting our existing setup?',
       answer:
-        'There is zero downtime and no rip-and-replace required. Docsynecx connects via official application APIs and shared inboxes. Your team continues working in Tally or CargoWise as usual, while Docsynecx handles data ingestion and voucher/job creation in the background.',
+        'There is zero downtime and no rip-and-replace required. AutoDocs connects via official application APIs and shared inboxes. Your team continues working in Tally or CargoWise as usual, while AutoDocs handles data ingestion and voucher/job creation in the background.',
     },
     {
       question: 'How are duplicate invoices and GST mismatches prevented?',
       answer:
-        'Every incoming vendor bill undergoes a multi-layer verification check against your database and government GST portal APIs before posting. If an invoice number, vendor GSTIN, or total matches an existing record, Docsynecx flags a Duplicate Hold and halts payment progression.',
+        'Every incoming vendor bill undergoes a multi-layer verification check against your database and government GST portal APIs before posting. If an invoice number, vendor GSTIN, or total matches an existing record, AutoDocs flags a Duplicate Hold and halts payment progression.',
     },
     {
-      question: 'Can Docsynecx process low-resolution scans and non-standard vendor formats?',
+      question: 'Can AutoDocs process low-resolution scans and non-standard vendor formats?',
       answer:
-        'Yes. Unlike template-based OCR engines that break when columns move, Docsynecx uses document vision models trained specifically on trade manifests, tax invoices, and packing lists. It extracts line items accurately regardless of layout variations or skewed scans.',
+        'Yes. Unlike template-based OCR engines that break when columns move, AutoDocs uses document vision models trained specifically on trade manifests, tax invoices, and packing lists. It extracts line items accurately regardless of layout variations or skewed scans.',
     },
     {
       question: 'How long does implementation and onboarding take?',
@@ -36,7 +36,7 @@ export const FaqSection: React.FC = () => {
   ];
 
   return (
-    <section id="faq" className="border-b border-slate-200/80 bg-[#f8f9fc] py-16 sm:py-24 scroll-mt-16">
+    <section id="faq" className="border-b border-slate-200/80 bg-[#FAFAFA] py-16 sm:py-24 scroll-mt-16">
       <div className="site-shell max-w-[780px]">
         <div className="text-center mb-12">
           <div className="eyebrow mb-4">
@@ -54,11 +54,11 @@ export const FaqSection: React.FC = () => {
           {faqs.map((faq, index) => (
             <details
               key={index}
-              className="group rounded-2xl border border-slate-200/90 bg-white/95 backdrop-blur-sm shadow-[0_1px_2px_rgba(15,23,42,0.04)] open:border-blue-500/40 open:bg-blue-50/10 open:shadow-[0_4px_16px_-4px_rgba(37,99,235,0.08)] transition-all duration-300"
+              className="group rounded-2xl border border-slate-200/90 bg-white/95 backdrop-blur-sm shadow-[0_1px_2px_rgba(15,23,42,0.04)] open:border-violet-500/40 open:bg-violet-50/10 open:shadow-[0_4px_16px_-4px_rgba(139,50,247,0.08)] transition-all duration-300"
             >
               <summary className="flex cursor-pointer list-none items-center justify-between px-6 py-5 text-[15px] font-bold text-slate-950 [&::-webkit-details-marker]:hidden select-none">
                 <span className="pr-4">{faq.question}</span>
-                <span className="ml-4 shrink-0 text-xl font-light text-slate-400 group-hover:text-slate-600 group-open:text-brand-blue group-open:rotate-45 transition-transform duration-300 leading-none select-none text-center inline-block w-5">
+                <span className="ml-4 shrink-0 text-xl font-light text-slate-400 group-hover:text-slate-600 group-open:text-brand-violet group-open:rotate-45 transition-transform duration-300 leading-none select-none text-center inline-block w-5">
                   +
                 </span>
               </summary>

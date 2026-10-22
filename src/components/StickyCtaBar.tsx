@@ -40,15 +40,12 @@ export const StickyCtaBar: React.FC<StickyCtaBarProps> = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const buttonStyle =
-    theme === 'teal'
-      ? 'bg-teal-600 hover:bg-teal-700 text-white shadow-[0_4px_14px_rgba(15,138,106,0.25)] focus-visible:ring-teal-500'
-      : 'bg-brand-blue hover:bg-brand-blue-hover text-white shadow-[0_4px_14px_rgba(47,61,224,0.25)] focus-visible:ring-brand-blue';
+  const buttonStyle = 'button-primary shadow-[0_4px_14px_rgba(15,23,42,0.1)]';
 
   const badgeStyle =
     theme === 'teal'
-      ? 'bg-teal-50 text-teal-800 border-teal-200'
-      : 'bg-blue-50 text-brand-blue border-blue-200';
+      ? 'bg-violet-50 text-violet-800 border-violet-200'
+      : 'bg-violet-50 text-brand-violet border-violet-200';
 
   return (
     <div
@@ -68,7 +65,7 @@ export const StickyCtaBar: React.FC<StickyCtaBarProps> = ({
               <span
                 className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider font-mono shrink-0 ${badgeStyle}`}
               >
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="h-1.5 w-1.5 rounded-full bg-violet-500 animate-pulse" />
                 {badge}
               </span>
             )}
@@ -98,7 +95,6 @@ export const StickyCtaBar: React.FC<StickyCtaBarProps> = ({
               />
             </button>
           </div>
-
         </div>
       </div>
     </div>

@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 80" width="340" height="80" fill="none">
+  <defs>
+    <!-- Royal Violet Primary Gradient -->
+    <linearGradient id="adVioletGrad" x1="10" y1="14" x2="62" y2="66" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#4338CA"/>
+    </linearGradient>
+
+    <!-- Crisp Teal Accent Gradient -->
+    <linearGradient id="adTealGrad" x1="18" y1="58" x2="62" y2="20" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#14B8A6"/>
+      <stop offset="100%" stop-color="#0D9488"/>
+    </linearGradient>
+
+    <!-- Corner Fold Gradient -->
+    <linearGradient id="adFoldGrad" x1="44" y1="14" x2="58" y2="28" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#5EEAD4"/>
+      <stop offset="100%" stop-color="#0D9488"/>
+    </linearGradient>
+
+    <!-- Wordmark "Docs" Gradient: Royal Violet to Crisp Teal -->
+    <linearGradient id="adDocsGrad" x1="154" y1="20" x2="246" y2="52" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4F46E5"/>
+      <stop offset="65%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#0D9488"/>
+    </linearGradient>
+
+    <!-- Soft Ambient Glow -->
+    <filter id="adMarkGlow" x="4" y="6" width="70" height="70" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#4F46E5" flood-opacity="0.22"/>
+    </filter>
+  </defs>
+
+  <!-- Modern Icon Mark (Smart Document + Automated Infinity Flow) -->
+  <g filter="url(#adMarkGlow)">
+    <!-- Base Document Shell with Folded Top-Right Corner -->
+    <path d="M 20 16 C 16.5 16, 14 18.5, 14 22 L 14 58 C 14 61.5, 16.5 64, 20 64 L 52 64 C 55.5 64, 58 61.5, 58 58 L 58 28 L 46 16 Z"
+          fill="url(#adVioletGrad)"/>
+
+    <!-- Document Fold Corner in Crisp Teal -->
+    <path d="M 46 16 L 46 25 C 46 26.6, 47.4 28, 49 28 L 58 28 Z"
+          fill="url(#adFoldGrad)" opacity="0.95"/>
+
+    <!-- Automated Flow Ribbon (Crisp Teal) -->
+    <path d="M 22 47 C 22 36, 32 30, 42 34 C 47 36, 49 41, 51 46 C 52 48.5, 54 50, 56 50 C 58 50, 59 48.5, 59 46"
+          stroke="url(#adTealGrad)" stroke-width="3.5" stroke-linecap="round"/>
+
+    <!-- Interlocking White Automation Ribbon -->
+    <path d="M 20 34 C 23 34, 25 35.5, 26 38 C 28 43, 33 48, 41 48 C 47 48, 51 43, 51 38"
+          stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round"/>
+
+    <!-- Automation Spark Nodes -->
+    <circle cx="36" cy="41" r="3.2" fill="#FFFFFF"/>
+    <circle cx="36" cy="41" r="1.6" fill="#0D9488"/>
+  </g>
+
+  <!-- Typography: AutoDocs -->
+  <g>
+    <!-- "Auto" in Bold Slate-900 -->
+    <text x="74" y="47"
+          font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', 'Segoe UI', Roboto, sans-serif"
+          font-size="34"
+          font-weight="900"
+          letter-spacing="-0.04em"
+          fill="#0F172A">Auto</text>
+
+    <!-- "Docs" in Royal Violet to Teal Gradient -->
+    <text x="156" y="47"
+          font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', 'Segoe UI', Roboto, sans-serif"
+          font-size="34"
+          font-weight="900"
+          letter-spacing="-0.04em"
+          fill="url(#adDocsGrad)">Docs</text>
+
+    <!-- Subtitle: INTELLIGENT DOCUMENT AUTOMATION -->
+    <text x="75" y="63"
+          font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', 'Segoe UI', Roboto, sans-serif"
+          font-size="8"
+          font-weight="700"
+          letter-spacing="0.22em"
+          fill="#64748B">INTELLIGENT DOCUMENT AUTOMATION</text>
+
+    <!-- Micro Tech Node Accent -->
+    <circle cx="248" cy="28" r="3" fill="#0D9488"/>
+    <circle cx="248" cy="28" r="1.5" fill="#FFFFFF"/>
+  </g>
+</svg>
