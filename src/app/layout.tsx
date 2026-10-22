@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/AutoDocs-Logo.svg',
+        url: '/autodocs-logo.svg',
         width: 1200,
         height: 630,
         alt: 'AutoDocs Document AI Platform',
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     title: 'AutoDocs — Grow the business, not the data-entry desk',
     description:
       'Bills read, checked, paid and posted to Tally. Emails become CargoWise jobs. Your team handles exceptions, not typing.',
-    images: ['/AutoDocs-Logo.svg'],
+    images: ['/autodocs-logo.svg'],
   },
   robots: {
     index: true,
@@ -92,7 +92,7 @@ const organizationSchema = {
   '@type': 'Organization',
   name: 'AutoDocs',
   url: 'https://autodocs.com',
-  logo: 'https://autodocs.com/AutoDocs-Logo.svg',
+  logo: 'https://autodocs.com/autodocs-logo.svg',
   description:
     'AI-powered document automation for finance and logistics teams running on Tally, Zoho Books, and CargoWise.',
   sameAs: [

@@ -32,7 +32,7 @@ export const Header: React.FC = () => {
             aria-label="AutoDocs home"
           >
             <img
-              src="/AutoDocs-Logo.svg"
+              src="/autodocs-logo.svg"
               alt="AutoDocs"
               className="h-8 sm:h-9 w-auto object-contain transition-opacity group-hover:opacity-90"
             />

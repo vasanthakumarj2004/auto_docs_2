@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="80" height="80" fill="none">
+  <defs>
+    <!-- Royal Violet Gradient -->
+    <linearGradient id="iconVioletGrad" x1="12" y1="12" x2="68" y2="68" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#4338CA"/>
+    </linearGradient>
+    <!-- Crisp Teal Gradient -->
+    <linearGradient id="iconTealGrad" x1="20" y1="60" x2="68" y2="20" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#14B8A6"/>
+      <stop offset="100%" stop-color="#0D9488"/>
+    </linearGradient>
+    <!-- Accent Fold Gradient -->
+    <linearGradient id="iconFoldGrad" x1="46" y1="14" x2="60" y2="28" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#5EEAD4"/>
+      <stop offset="100%" stop-color="#0D9488"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Modern Icon Mark (Smart Document + Automated Infinity Flow) -->
+  <g>
+    <!-- Base Document Shell with Folded Top-Right Corner -->
+    <path d="M 20 16 C 16.5 16, 14 18.5, 14 22 L 14 58 C 14 61.5, 16.5 64, 20 64 L 54 64 C 57.5 64, 60 61.5, 60 58 L 60 28 L 48 16 Z"
+          fill="url(#iconVioletGrad)"/>
+
+    <!-- Document Fold Corner in Crisp Teal -->
+    <path d="M 48 16 L 48 25 C 48 26.6, 49.4 28, 51 28 L 60 28 Z"
+          fill="url(#iconFoldGrad)" opacity="0.95"/>
+
+    <!-- Automated Flow Ribbon (Crisp Teal) -->
+    <path d="M 22 47 C 22 36, 32 30, 42 34 C 47 36, 49 41, 51 46 C 52 48.5, 54 50, 56 50 C 58 50, 59 48.5, 59 46"
+          stroke="url(#iconTealGrad)" stroke-width="3.5" stroke-linecap="round"/>
+
+    <!-- Interlocking White Automation Ribbon -->
+    <path d="M 20 34 C 23 34, 25 35.5, 26 38 C 28 43, 33 48, 41 48 C 47 48, 52 43, 52 38"
+          stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round"/>
+
+    <!-- Automation Spark Nodes -->
+    <circle cx="36" cy="41" r="3.2" fill="#FFFFFF"/>
+    <circle cx="36" cy="41" r="1.6" fill="#0D9488"/>
+  </g>
+</svg>

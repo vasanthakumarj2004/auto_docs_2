@@ -23,7 +23,7 @@ export const Footer: React.FC = () => {
               aria-label="AutoDocs home"
             >
               <img
-                src="/AutoDocs-Logo-footer.svg"
+                src="/autodocs-logo-footer.svg"
                 alt="AutoDocs"
                 className="h-10 sm:h-11 w-auto object-contain transition-all duration-300 group-hover:scale-[1.02] group-hover:opacity-95"
               />
