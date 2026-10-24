@@ -23,12 +23,11 @@
 .sectionHeading > div { max-width: 660px; }
 .sectionHeading > p { max-width: 345px; color: var(--logistics-muted); line-height: 1.8; font-size: 14px; padding-bottom: 3px; }
 .primaryButton, .secondaryButton { display: inline-flex; align-items: center; justify-content: center; gap: 13px; padding: 14px 20px; min-height: 48px; border: 1px solid var(--color-brand); border-radius: 12px; font-size: 13px; font-weight: 650; line-height: 1.4; text-decoration: none; cursor: pointer; transition: background-color 160ms, color 160ms, border-color 160ms; }
-.primaryButton { background: var(--color-brand); color: #fafafa; }
+.primaryButton { composes: button-reference-fill from global; background: var(--color-brand); color: #fafafa; }
 .secondaryButton { border-color: #cbd5e1; color: var(--logistics-ink); background: #fff; }
 .textLink { display: inline-flex; align-items: center; gap: 9px; font-size: 12px; font-weight: 650; line-height: 1.6; color: var(--color-brand-strong); text-decoration: none; }
 .textLink:hover { text-decoration: underline; text-underline-offset: 4px; }
 @media (hover: hover) {
-  .primaryButton:hover { color: var(--logistics-ink); background: #fafafa; }
   .secondaryButton:hover { background: var(--color-brand-soft); border-color: var(--color-brand-border); }
 }
 .hero { padding-top: 68px; overflow: hidden; background: radial-gradient(ellipse at 83% 29%, var(--color-brand-soft), transparent 58%), #fafafa; border-bottom: 1px solid var(--logistics-line); }

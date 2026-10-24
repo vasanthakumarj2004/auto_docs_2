@@ -31,7 +31,7 @@ export const HeroStage: React.FC = () => {
         Bills read, checked, paid and posted to Tally. Emails become CargoWise jobs. Your team handles exceptions, not typing.
       </p>
 
-      {/* 4. Reference violet buttons invert to white on hover or keyboard focus. */}
+      {/* 4. Reference fill rises from the bottom on hover or keyboard focus. */}
       <div className="mt-7 flex flex-wrap items-center gap-4">
         {/* Royal Violet CTA: Run a finance desk */}
         <a
