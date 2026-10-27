@@ -166,7 +166,7 @@ export default function HomePage() {
             copy="Give your operations team a job to review, not an inbox to retype. Shipment details move together, with checks built in."
             steps={logisticsSteps}
             visualType="logistics"
-            reverse={true}
+            reverse
           />
 
           {/* 7. Dark navy calculator bar linking to /calculator */}

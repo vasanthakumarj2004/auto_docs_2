@@ -32,7 +32,7 @@ export const Newsletter: React.FC = () => {
   };
 
   return (
-    <section className="border-b border-slate-200 bg-white py-8">
+    <section id="newsletter" className="border-b border-slate-200 bg-white py-8 scroll-mt-16">
       <div className="site-shell flex flex-col justify-between gap-4 md:flex-row md:items-center">
         <div>
           <h3 className="text-sm font-extrabold text-slate-950">Get product updates and trade news.</h3>

@@ -1,7 +1,8 @@
 'use client';
-import React, { useState, ReactNode } from 'react';
-import { BillReviewVisual } from './BillReviewVisual';
-import { ShipmentVisual } from './ShipmentVisual';
+import React, { useEffect, useRef, useState, ReactNode } from 'react';
+import { Check, FileText, ArrowDown } from 'lucide-react';
+import { DeskDocumentPreview } from './DeskDocumentPreview';
+import styles from './FeatureSection.module.css';
 
 interface FeatureSectionProps {
   id: string;
@@ -54,195 +55,165 @@ const breadcrumbsMap: Record<string, string[]> = {
 };
 
 export const FeatureSection: React.FC<FeatureSectionProps> = ({
-  id,
-  label,
-  title,
-  copy,
-  steps,
-  visual,
-  visualType,
-  reverse = false,
+  id, label, title, copy, steps, visual, visualType, reverse = false,
 }) => {
-  const [activeStep, setActiveStep] = useState<number>(0);
+  const [activeStep, setActiveStep] = useState(0);
+  const [syncVisible, setSyncVisible] = useState(false);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const copyRef = useRef<HTMLDivElement>(null);
+  const previewRef = useRef<HTMLDivElement>(null);
+  const syncRef = useRef<HTMLDivElement>(null);
+  const isFinance = visualType === 'finance';
+  const eyebrows = visualType ? stepEyebrowsMap[visualType] : [];
+  const badges = visualType ? stepBadgesMap[visualType] : [];
+  const breadcrumbs = visualType ? breadcrumbsMap[visualType] : [];
 
-  const handleStepClick = (index: number) => {
-    setActiveStep(index);
+  useEffect(() => {
+    const grid = gridRef.current;
+    const summary = copyRef.current;
+    const preview = previewRef.current;
+    if (!grid || !summary || !preview) return;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      grid.style.setProperty('--desk-left-height', `${summary.offsetHeight}px`);
+      const stages = Array.from(preview.querySelectorAll<HTMLElement>('[data-desk-stage]'));
+      const readingLine = Math.max(120, Math.min(240, window.innerHeight * 0.3));
+      let next = 0;
+      stages.forEach((stage, index) => {
+        if (stage.getBoundingClientRect().top <= readingLine) next = index;
+      });
+      setActiveStep(next);
+    };
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+    const resizeObserver = new ResizeObserver(schedule);
+    resizeObserver.observe(summary);
+    resizeObserver.observe(preview);
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    update();
+    return () => {
+      cancelAnimationFrame(frame);
+      resizeObserver.disconnect();
+      window.removeEventListener('scroll', schedule);
+      window.removeEventListener('resize', schedule);
+    };
+  }, []);
+
+  useEffect(() => {
+    const footer = syncRef.current;
+    if (!footer) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setSyncVisible(true);
+        observer.disconnect();
+      }
+    }, { threshold: 0.25 });
+    observer.observe(footer);
+    return () => observer.disconnect();
+  }, []);
+
+  const selectStep = (index: number) => {
+    const stage = previewRef.current?.querySelectorAll<HTMLElement>('[data-desk-stage]')[index];
+    if (!stage) return;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({
+      top: window.scrollY + stage.getBoundingClientRect().top - 112,
+      behavior: reducedMotion ? 'instant' : 'smooth',
+    });
   };
 
   return (
-    <section
-      id={id}
-      className="relative border-b border-slate-200/80 bg-white scroll-mt-16 py-16 sm:py-24"
-    >
-      <div className="w-full">
-        <div className="site-shell grid items-center gap-10 lg:gap-14 lg:grid-cols-12 w-full">
-          {/* Column 1: Copy & Static Steps (Permanently Visible) */}
-          <div className={`lg:col-span-6 ${reverse ? 'lg:order-2' : 'lg:order-1'}`}>
-            <span
-              className={`section-label font-mono text-[11px] font-bold uppercase tracking-wider ${
-                reverse ? 'text-brand-violet' : 'text-brand-violet'
-              }`}
-            >
-              {label}
-            </span>
-            <h2 className="mt-2 max-w-xl text-3xl font-extrabold leading-[1.15] tracking-[-0.05em] text-slate-950 sm:text-4xl">
-              {title}
-            </h2>
-            <p className="mt-3 max-w-xl text-sm leading-6 text-slate-600">{copy}</p>
+    <section id={id} className={styles.section} aria-labelledby={`${id}-desk-title`}>
+      <div ref={gridRef} className={`site-shell ${styles.deskGrid} ${reverse ? styles.deskGridReversed : ''}`}>
+        <div ref={copyRef} className={styles.stickyLeft}>
+          <span className="section-label font-mono text-[11px] font-bold uppercase tracking-wider text-brand-violet">{label}</span>
+          <h2 id={`${id}-desk-title`} className="mt-3 max-w-xl text-3xl font-extrabold leading-[1.15] tracking-[-0.05em] text-slate-950 sm:text-4xl">{title}</h2>
+          <p className="mt-5 max-w-xl text-sm leading-6 text-slate-600">{copy}</p>
+          <ol className={styles.stepList}>
+            {steps.map(([num, stepTitle, stepDesc], index) => (
+              <li key={num}>
+                <button type="button" className={styles.stepLink}
+                  data-active={activeStep === index}
+                  aria-current={activeStep === index ? 'step' : undefined}
+                  aria-controls={`${id}-desk-stage-${index}`}
+                  onClick={() => selectStep(index)}>
+                  <span className={styles.stepDash} aria-hidden="true" />
+                  <span><strong>{stepTitle}</strong><span className={styles.stepDescription}>{stepDesc}</span></span>
+                </button>
+              </li>
+            ))}
+          </ol>
+        </div>
 
-            <div className="mt-8 space-y-3" role="list">
-              {steps.map(([num, stepTitle, stepDesc], index) => {
-                const isActive = activeStep === index;
-                const eyebrow =
-                  visualType && stepEyebrowsMap[visualType]
-                    ? stepEyebrowsMap[visualType][index]
-                    : `${num} · STEP`;
-                const badges =
-                  visualType && stepBadgesMap[visualType]
-                    ? stepBadgesMap[visualType][index]
-                    : [];
-
-                return (
-                  <div
-                    key={num}
-                    role="listitem"
-                    tabIndex={0}
-                    onClick={() => handleStepClick(index)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter' || e.key === ' ') {
-                        e.preventDefault();
-                        handleStepClick(index);
-                      }
-                    }}
-                    className={`cursor-pointer outline-none select-none rounded-2xl border p-5 shadow-xs ${
-                      isActive
-                        ? reverse
-                          ? 'border-violet-300/90 bg-violet-50/40 ring-1 ring-violet-500/20'
-                          : 'border-violet-300/90 bg-violet-50/40 ring-1 ring-violet-500/20'
-                        : 'border-slate-200/80 bg-white'
-                    }`}
-                  >
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <div
-                          className={`font-mono text-[11px] font-bold uppercase tracking-wider ${
-                            isActive
-                              ? reverse
-                                ? 'text-violet-700'
-                                : 'text-violet-700'
-                              : 'text-slate-500'
-                          }`}
-                        >
-                          {eyebrow}
-                        </div>
-                        <h3
-                          className={`mt-1 font-bold ${
-                            isActive
-                              ? 'text-lg text-slate-950 font-extrabold'
-                              : 'text-base text-slate-800 font-semibold'
-                          }`}
-                        >
-                          {stepTitle}
-                        </h3>
-                      </div>
-
-                      <div className="shrink-0 pt-0.5">
-                        <span
-                          className={`inline-flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-bold font-mono ${
-                            isActive
-                              ? reverse
-                                ? 'bg-violet-600 text-white shadow-xs'
-                                : 'bg-[#8B32F7] text-white shadow-xs'
-                              : 'bg-slate-100 text-slate-500'
-                          }`}
-                        >
-                          {num}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Permanently Visible Step Content (No Collapsing Accordion) */}
-                    <div className="mt-2.5">
-                      <p className="text-xs leading-5 text-slate-600">{stepDesc}</p>
-
-                      {/* Checkmark pills */}
-                      {badges.length > 0 && (
-                        <div className="mt-3 flex flex-wrap gap-1.5">
-                          {badges.map((badge, bIdx) => (
-                            <span
-                              key={bIdx}
-                              className={`inline-flex items-center rounded-md px-2 py-0.5 text-[10.5px] font-medium font-mono ${
-                                reverse
-                                  ? 'bg-violet-100/70 text-violet-900 border border-violet-300/70'
-                                  : 'bg-violet-100/70 text-violet-900 border border-violet-300/70'
-                              }`}
-                            >
-                              {badge}
-                            </span>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+        <div ref={previewRef} className={styles.preview} aria-label={`${label} illustrative workflow`}>
+          <div className={styles.windowBar}>
+            <span><FileText size={15} aria-hidden="true" />{breadcrumbs?.[0] || 'AutoDocs Telemetry'}</span>
+            <span className={styles.statusPill}>{isFinance ? 'Ready to post' : 'Live'}</span>
+          </div>
+          <div id={`${id}-desk-stage-0`} data-desk-stage="0" className={styles.documentStage}>
+            {visualType ? <DeskDocumentPreview type={visualType} /> : visual}
           </div>
 
-          {/* Column 2: Persistent Window Stage (Right-Side Product Mockup - UNTOUCHED) */}
-          <div className={`lg:col-span-6 w-full ${reverse ? 'lg:order-1' : 'lg:order-2'}`}>
-            {/* Outer Frosted Bezel */}
-            <div className="rounded-3xl bg-slate-100/80 p-3 sm:p-4 border border-slate-200/90 shadow-[0_20px_50px_-12px_rgba(15,23,42,0.08)]">
-              {/* Inner macOS Window */}
-              <div className="rounded-2xl bg-white border border-slate-200/90 shadow-sm overflow-hidden min-h-[440px] flex flex-col justify-between">
-                {/* Permanent macOS Window Top Bar */}
-                <div className="flex items-center justify-between border-b border-slate-200/80 bg-slate-50/90 px-4 py-3 select-none">
-                  <div className="flex items-center gap-2">
-                    <div className="flex items-center gap-1.5">
-                      <span className="h-2.5 w-2.5 rounded-full bg-rose-400" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-violet-400" />
-                    </div>
-                    <span className="ml-2 font-mono text-[11px] font-medium text-slate-500">
-                      {visualType && breadcrumbsMap[visualType]
-                        ? breadcrumbsMap[visualType][activeStep] || 'AutoDocs'
-                        : 'AutoDocs Telemetry'}
-                    </span>
-                  </div>
+          <div className={styles.extractionBar}>
+            <span>{isFinance ? 'Bill review' : 'BL ↔ Packing List ↔ Invoice'}</span>
+            <span className={styles.confidence}>{isFinance ? 'AI Field Confidence: 99.9%' : '✓ Read & cross-checked in 110s'}</span>
+          </div>
 
-                  {/* Right Status Pill */}
-                  <span
-                    className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-0.5 text-[10px] font-bold font-mono ${
-                      reverse
-                        ? 'border-violet-200 bg-violet-50 text-violet-700'
-                        : 'border-violet-200 bg-violet-50 text-violet-700'
-                    }`}
-                  >
-                    <span className={`h-1.5 w-1.5 rounded-full ${reverse ? 'bg-violet-500' : 'bg-violet-500'} animate-pulse`} />
-                    {visualType === 'finance' ? 'Ready to post' : 'Live'}
-                  </span>
-                </div>
+          <div className={styles.checkSection}>
+            <div className={styles.eyebrow}>{eyebrows?.[0]}</div>
+            <div className={styles.fields}>
+              {(isFinance ? [
+                ['Tax invoice', 'INV #829 · FY 2024-25'],
+                ['GSTIN', '33AABCP1234A1Z5'],
+                ['Prime Components', '4 line items · 18% GST'],
+                ['Total', '₹74,095'],
+              ] : [
+                ['Origin → destination', 'INMAA → SGSIN'],
+                ['Shipment', "1 x 40' HC · Sea export"],
+                ['CargoWise job', 'S00038421'],
+                ['BL ↔ Packing List ↔ Invoice', '18,400 kg · 0 Discrepancies'],
+              ]).map(([field, value]) => <div key={field}><span>{field}</span><strong>{value}</strong></div>)}
+            </div>
+            <ul className={styles.checkList}>{badges?.[0]?.map(badge => <li key={badge}>{badge}</li>)}</ul>
+          </div>
 
-                {/* Main Interactive Visual Body */}
-                <div className="p-4 sm:p-5 flex-1 flex flex-col justify-center">
-                  {visualType === 'finance' ? (
-                    <BillReviewVisual activeStep={activeStep} />
-                  ) : visualType === 'logistics' ? (
-                    <ShipmentVisual activeStep={activeStep} />
-                  ) : (
-                    visual
-                  )}
-                </div>
-
-                {/* Bottom Status / Domain Caption */}
-                <div className="border-t border-slate-100 bg-slate-50/70 px-4 py-2.5 text-center text-[11px] font-medium text-slate-500">
-                  {visualType === 'finance'
-                    ? 'Same review workflow, your approval rules, zero retyping.'
-                    : 'From attachment-heavy email to structured shipment.'}
-                </div>
+          {steps.slice(1).map(([num, stepTitle, stepDesc], offset) => {
+            const index = offset + 1;
+            return <div key={num} id={`${id}-desk-stage-${index}`} data-desk-stage={index}
+              className={styles.checkSection} data-active={activeStep === index}>
+              <div className={styles.eyebrow}>{eyebrows?.[index]}</div>
+              <h3 className={styles.stageTitle}>{stepTitle}</h3>
+              <p className={styles.stageDescription}>{stepDesc}</p>
+              <ul className={styles.checkList}>{badges?.[index]?.map(badge => <li key={badge}>{badge}</li>)}</ul>
+              <div className={styles.resultRow}>
+                <Check size={16} aria-hidden="true" />
+                {isFinance
+                  ? index === 1 ? 'Approval recorded' : 'No duplicate bill found'
+                  : index === 1 ? '3 documents cross-checked · ready for review' : 'Customs HS & Freight Payables Aligned · Ready for CargoWise eAdaptor posting'}
               </div>
+              {isFinance && index === 2 && <p className={styles.auditNote}>Scanned 1,420 historical vouchers · Repeated Invoice #INV-1104 held automatically</p>}
+            </div>;
+          })}
+
+          <div className={styles.summaryRow}>
+            <strong>{isFinance ? 'GST & line items totals verified' : '✓ Read & cross-checked in 110s'}</strong>
+            <span><ArrowDown size={14} aria-hidden="true" />{isFinance ? 'XML Sync Active' : 'eAdaptor XML Payload Ready'}</span>
+          </div>
+          <div ref={syncRef} className={styles.syncFooter} data-visible={syncVisible}>
+            <div className={styles.syncHeading}>
+              <span>{breadcrumbs?.[isFinance ? 1 : 2]}</span>
+              <span className={styles.syncStatus}>{isFinance ? 'Posted to Tally: voucher #829' : 'Job created'}</span>
+            </div>
+            <div className={styles.syncTrack} aria-hidden="true"><span /></div>
+            <div className={styles.syncChecks}>
+              {(isFinance ? ['GST & line items totals verified', 'Approval recorded', 'No duplicate bill found']
+                : ['3 documents cross-checked · ready for review', 'CargoWise job · S00038421', 'Customs HS & Freight Payables Aligned'])
+                .map((text, index) => <span key={text} style={{ '--sync-index': index } as React.CSSProperties}><Check size={14} aria-hidden="true" />{text}</span>)}
             </div>
           </div>
+          <p className={styles.caption}>{isFinance ? 'Same review workflow, your approval rules, zero retyping.' : 'From attachment-heavy email to structured shipment.'}</p>
+          <p className={styles.disclaimer}>{isFinance ? 'Illustrative workflow · your approvals rules, your books' : 'Illustrative workflow · from email to structured shipment'}</p>
         </div>
       </div>
     </section>

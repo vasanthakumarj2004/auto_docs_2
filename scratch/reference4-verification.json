@@ -1,0 +1,64 @@
+{
+  "desktop": [
+    {
+      "desk": "finance",
+      "width": 1916,
+      "stickyLeft": true,
+      "rightScrolls": true,
+      "releases": true
+    },
+    {
+      "desk": "logistics",
+      "width": 1916,
+      "stickyLeft": true,
+      "rightScrolls": true,
+      "releases": true
+    },
+    {
+      "desk": "finance",
+      "width": 1440,
+      "stickyLeft": true,
+      "rightScrolls": true,
+      "releases": true
+    },
+    {
+      "desk": "logistics",
+      "width": 1440,
+      "stickyLeft": true,
+      "rightScrolls": true,
+      "releases": true
+    },
+    {
+      "desk": "finance",
+      "width": 1280,
+      "stickyLeft": true,
+      "rightScrolls": true,
+      "releases": true
+    },
+    {
+      "desk": "logistics",
+      "width": 1280,
+      "stickyLeft": true,
+      "rightScrolls": true,
+      "releases": true
+    },
+    {
+      "desk": "finance",
+      "width": 1024,
+      "stickyLeft": true,
+      "rightScrolls": true,
+      "releases": true
+    },
+    {
+      "desk": "logistics",
+      "width": 1024,
+      "stickyLeft": true,
+      "rightScrolls": true,
+      "releases": true
+    }
+  ],
+  "navigation": "all six step links and keyboard navigation passed",
+  "responsive": "768px, 390px, 320px: no horizontal overflow; normal stacked flow",
+  "reducedMotion": "passed",
+  "browserErrors": []
+}

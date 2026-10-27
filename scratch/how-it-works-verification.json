@@ -1,0 +1,60 @@
+{
+  "http": 200,
+  "steps": [
+    {
+      "index": 0,
+      "heading": "Document comes in",
+      "top": 196,
+      "visible": true
+    },
+    {
+      "index": 1,
+      "heading": "Details extracted",
+      "top": 196,
+      "visible": true
+    },
+    {
+      "index": 2,
+      "heading": "Cross-checked & matched",
+      "top": 196,
+      "visible": true
+    },
+    {
+      "index": 3,
+      "heading": "Pushed to system",
+      "top": 196,
+      "visible": true
+    },
+    {
+      "index": 4,
+      "heading": "Review exceptions only",
+      "top": 195,
+      "visible": true
+    }
+  ],
+  "clickNavigation": true,
+  "keyboardNavigation": true,
+  "overflowDesktop": false,
+  "themeColor": "rgb(134, 52, 246)",
+  "390": {
+    "overflow": false,
+    "enhanced": "false"
+  },
+  "320": {
+    "overflow": false,
+    "enhanced": "false"
+  },
+  "768": {
+    "overflow": false,
+    "enhanced": "false"
+  },
+  "1280": {
+    "overflow": false,
+    "enhanced": "true"
+  },
+  "reducedMotion": {
+    "enhanced": "false",
+    "accessibleSteps": 5
+  },
+  "errors": []
+}

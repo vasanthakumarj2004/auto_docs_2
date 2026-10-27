@@ -1,147 +1,98 @@
-'use client';
 import React from 'react';
-import { useRouter } from '../lib/router';
+import Link from 'next/link';
+import { ArrowUpRight, FileSearch, ListChecks, Linkedin, Workflow } from 'lucide-react';
 import { AutoDocsLogo } from './AutoDocsLogo';
+import styles from './Footer.module.css';
 
-export const Footer: React.FC = () => {
-  const { navigate } = useRouter();
+const navigation = [
+  [
+    { title: 'Platform', links: [
+      { label: 'Finance desk', href: '/finance/' },
+      { label: 'Shipment desk', href: '/logistics/' },
+      { label: 'How it works', href: '/#how-it-works' },
+    ] },
+    { title: 'Solutions', links: [
+      { label: 'Accounts payable', href: '/accounts-payable/' },
+      { label: 'Freight operations', href: '/logistics-trade/' },
+      { label: 'Document checks', href: '/#how-it-works' },
+    ] },
+  ],
+  [
+    { title: 'Integrations', links: [
+      { label: 'Tally', href: '/finance/#finance-workbench' },
+      { label: 'Zoho Books', href: '/#faq' },
+      { label: 'CargoWise', href: '/logistics/#logistics-workbench' },
+    ] },
+    { title: 'Resources', links: [
+      { label: 'Free calculator', href: '/calculator/' },
+      { label: 'Trade insights', href: '/#newsletter' },
+      { label: 'Help centre', href: '/#faq' },
+    ] },
+  ],
+  [
+    { title: 'Company', links: [
+      { label: 'About us', href: '/#why-autodocs' },
+      { label: 'Our customers', href: '/#customers' },
+      { label: 'Rajadurai E-Vehicles', href: '/customers/rajadurai/' },
+      { label: 'FT Logistics', href: '/customers/ft-logistics/' },
+      { label: 'Contact', href: '/#demo' },
+      { label: 'Start a free trial', href: '/free-trial/' },
+      { label: 'Book a demo', href: '/#demo-form' },
+    ] },
+  ],
+];
 
-  const handleLink = (e: React.MouseEvent, href: string) => {
-    e.preventDefault();
-    navigate(href);
-  };
-
-  return (
-    <footer id="resources" className="border-t border-violet-900/40 bg-gradient-to-b from-violet-950 via-violet-950 to-[#1B1224] text-white pt-16 pb-8">
-      <div className="site-shell">
-        <div className="grid gap-10 border-b border-gray-800 pb-12 sm:grid-cols-2 md:grid-cols-6">
-          {/* Brand Info */}
-          <div className="sm:col-span-2">
-            <a
-              href="/"
-              onClick={(e) => handleLink(e, '/')}
-              className="inline-flex items-center group outline-none"
-              aria-label="AutoDocs home"
-            >
-              <AutoDocsLogo
-                variant="footer"
-                className="h-10 sm:h-11 w-auto transition-all duration-300 group-hover:scale-[1.02] group-hover:opacity-95"
-              />
+export const Footer: React.FC = () => (
+  <footer id="resources" className={styles.footer}>
+    <div className="site-shell">
+      <div className={styles.main}>
+        <div className={styles.brand}>
+          <Link href="/" className={styles.logoLink} aria-label="AutoDocs home">
+            <AutoDocsLogo className={styles.logo} />
+          </Link>
+          <p className={styles.description}>
+            The AI-Powered Document Automation Platform for Intelligent Processing, Data Extraction, and Business Workflows.
+          </p>
+          <div className={styles.socials} aria-label="Follow AutoDocs">
+            <a href="https://www.linkedin.com/company/autodocs" target="_blank" rel="noopener noreferrer" aria-label="AutoDocs on LinkedIn (opens in a new tab)">
+              <Linkedin size={16} aria-hidden="true" />
             </a>
-            <p className="mt-4 max-w-xs text-xs leading-5 text-gray-400">
-              The AI-Powered Document Automation Platform for Intelligent Processing, Data Extraction, and Business Workflows.
-            </p>
+            <a href="https://twitter.com/autodocs" target="_blank" rel="noopener noreferrer" aria-label="AutoDocs on X (opens in a new tab)">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.6 5.5 22H2.3l7.3-8.5L1.6 2h6.5l4.5 6.8L18.9 2Zm-1.1 18h1.7L7.2 3.9H5.4L17.8 20Z" /></svg>
+            </a>
           </div>
-
-          {/* Platform */}
-          <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white">Platform</h4>
-            <div className="mt-3 flex flex-col gap-2.5 text-xs text-gray-400">
-              <a
-                href="/finance"
-                onClick={(e) => handleLink(e, '/finance')}
-                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-violet-400"
-              >
-                Finance desk
-              </a>
-              <a
-                href="/logistics"
-                onClick={(e) => handleLink(e, '/logistics')}
-                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-violet-400"
-              >
-                Shipment desk
-              </a>
-              <a
-                href="#how-it-works"
-                onClick={(e) => handleLink(e, '#how-it-works')}
-                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-violet-400"
-              >
-                How it works
-              </a>
-            </div>
+          <div className={styles.workflow} aria-label="Document automation workflow">
+            {[
+              { label: 'Extract', Icon: FileSearch },
+              { label: 'Validate', Icon: ListChecks },
+              { label: 'Sync', Icon: Workflow },
+            ].map(({ label, Icon }) => <Link key={label} href="/#how-it-works" className={styles.workflowItem}>
+              <span><Icon size={18} strokeWidth={1.6} aria-hidden="true" /></span>{label}
+            </Link>)}
           </div>
-
-          {/* Integrations */}
-          <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white">Integrations</h4>
-            <div className="mt-3 flex flex-col gap-2.5 text-xs text-gray-400">
-              <span className="transition-all duration-200 hover:text-white hover:translate-x-0.5 cursor-pointer">Tally</span>
-              <span className="transition-all duration-200 hover:text-white hover:translate-x-0.5 cursor-pointer">Zoho Books</span>
-              <span className="transition-all duration-200 hover:text-white hover:translate-x-0.5 cursor-pointer">CargoWise</span>
-            </div>
-          </div>
-
-          {/* Solutions */}
-          <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white">Solutions</h4>
-            <div className="mt-3 flex flex-col gap-2.5 text-xs text-gray-400">
-              <span className="transition-all duration-200 hover:text-white hover:translate-x-0.5 cursor-pointer">Accounts payable</span>
-              <span className="transition-all duration-200 hover:text-white hover:translate-x-0.5 cursor-pointer">Freight operations</span>
-              <span className="transition-all duration-200 hover:text-white hover:translate-x-0.5 cursor-pointer">Document checks</span>
-            </div>
-          </div>
-
-          {/* Resources & Company */}
-          <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white">Resources</h4>
-            <div className="mt-3 flex flex-col gap-2.5 text-xs text-gray-400">
-              <a
-                href="/calculator"
-                onClick={(e) => handleLink(e, '/calculator')}
-                className="transition-all duration-200 hover:text-violet-300 hover:translate-x-0.5 font-semibold text-violet-400 focus-visible:outline-1 focus-visible:outline-violet-400"
-              >
-                Free calculator
-              </a>
-              <span className="transition-all duration-200 hover:text-white hover:translate-x-0.5 cursor-pointer">Trade insights</span>
-              <a
-                href="#faq"
-                onClick={(e) => handleLink(e, '#faq')}
-                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-violet-400"
-              >
-                Help centre
-              </a>
-            </div>
-
-            <h4 className="mt-6 text-xs font-bold uppercase tracking-wider text-white">Company</h4>
-            <div className="mt-3 flex flex-col gap-2.5 text-xs text-gray-400">
-              <a
-                href="/"
-                onClick={(e) => handleLink(e, '/')}
-                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-violet-400"
-              >
-                About us
-              </a>
-              <a
-                href="#demo"
-                onClick={(e) => handleLink(e, '#demo')}
-                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-violet-400"
-              >
-                Contact
-              </a>
-              <a
-                href="#demo"
-                onClick={(e) => handleLink(e, '#demo')}
-                className="transition-all duration-200 hover:text-white hover:translate-x-0.5 focus-visible:outline-1 focus-visible:outline-violet-400"
-              >
-                Book a demo
-              </a>
-            </div>
-          </div>
+          <Link href="/#demo-form" className={styles.demoLink}>Talk to AutoDocs <ArrowUpRight size={15} aria-hidden="true" /></Link>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="flex flex-col justify-between gap-3 pt-6 text-[11px] text-gray-400 sm:flex-row">
-          <span>© 2026 AutoDocs AI Labs Private Limited. All rights reserved.</span>
-          <span className="flex gap-6">
-            <a href="/" onClick={(e) => handleLink(e, '/')} className="hover:text-white transition-colors">
-              Privacy
-            </a>
-            <a href="/" onClick={(e) => handleLink(e, '/')} className="hover:text-white transition-colors">
-              Terms
-            </a>
-          </span>
-        </div>
+        {navigation.map((groups, index) => <div className={styles.column} key={index}>
+          {groups.map(group => <nav key={group.title} aria-label={`${group.title} footer links`}>
+            <h2 className={styles.groupTitle}>{group.title}</h2>
+            <ul className={styles.links}>
+              {group.links.map(link => <li key={link.label}>
+                <Link href={link.href} className={link.label === 'Book a demo' || link.label === 'Free calculator' ? styles.featuredLink : undefined}>
+                  {link.label}
+                  {link.label === 'Book a demo' && <ArrowUpRight size={13} aria-hidden="true" />}
+                </Link>
+              </li>)}
+            </ul>
+          </nav>)}
+        </div>)}
       </div>
-    </footer>
-  );
-};
+
+      <div className={styles.bottom}>
+        <p>© 2026 AutoDocs AI Labs Private Limited. All rights reserved.</p>
+        {/* Keep legal labels as text until actual policy destinations exist. */}
+        <div className={styles.legal}><span>Privacy</span><span>Terms</span></div>
+      </div>
+    </div>
+  </footer>
+);
