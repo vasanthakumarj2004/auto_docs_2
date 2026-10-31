@@ -3,16 +3,11 @@ import React from 'react';
 import { Header } from '@/src/components/Header';
 import { Hero } from '@/src/components/Hero';
 import { Stats } from '@/src/components/Stats';
-import { TheProblem } from '@/src/components/TheProblem';
+import { WhatWeDo } from '@/src/components/WhatWeDo';
 import { HowItWorks } from '@/src/components/HowItWorks';
 import { FeatureSection } from '@/src/components/FeatureSection';
-import { BillReviewVisual } from '@/src/components/BillReviewVisual';
-import { ShipmentVisual } from '@/src/components/ShipmentVisual';
-import { CalculatorBar } from '@/src/components/CalculatorBar';
-import { WhyAutoDocs } from '@/src/components/WhyAutoDocs';
+import { Testimonials } from '@/src/components/Testimonials';
 import { FaqSection } from '@/src/components/FaqSection';
-import { DemoCta } from '@/src/components/DemoCta';
-import { Newsletter } from '@/src/components/Newsletter';
 import { Footer } from '@/src/components/Footer';
 
 export const metadata: Metadata = {
@@ -134,23 +129,22 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqPageSchema) }}
       />
       <div className="min-h-screen max-w-full overflow-x-clip lg:overflow-visible bg-white text-slate-800">
-        {/* 1. Sticky navbar */}
         <Header />
 
         <main id="top">
-          {/* 2. Hero (two columns): tag, headline, subtext, buttons; flow card and video slot */}
+          {/* 1. Hero */}
           <Hero />
 
-          {/* 3. Proof stat row and logo slot */}
+          {/* 2. Stats band */}
           <Stats />
 
-          {/* 4. The problem: 3 short cards */}
-          <TheProblem />
+          {/* What we do: capabilities overview */}
+          <WhatWeDo />
 
-          {/* 5. How it works: 5-step stepper */}
+          {/* 3. How we do */}
           <HowItWorks />
 
-          {/* 6. Finance desk and Shipment desk cards */}
+          {/* 4. Finance desk */}
           <FeatureSection
             id="finance"
             label="FINANCE DESK"
@@ -159,9 +153,10 @@ export default function HomePage() {
             steps={financeSteps}
             visualType="finance"
           />
+          {/* 5. Logistics desk */}
           <FeatureSection
             id="logistics"
-            label="SHIPMENT DESK"
+            label="LOGISTICS DESK"
             title="Customer emails become CargoWise jobs."
             copy="Give your operations team a job to review, not an inbox to retype. Shipment details move together, with checks built in."
             steps={logisticsSteps}
@@ -169,21 +164,14 @@ export default function HomePage() {
             reverse
           />
 
-          {/* 7. Dark navy calculator bar linking to /calculator */}
-          <CalculatorBar />
+          {/* Customer testimonials */}
+          <Testimonials />
 
-          {/* 8. Why AutoDocs: 2 feature cards */}
-          <WhyAutoDocs />
-
-          {/* 9. FAQ accordion */}
+          {/* 6. FAQ */}
           <FaqSection />
-
-          {/* 10. Final CTA band & Newsletter */}
-          <DemoCta />
-          <Newsletter />
         </main>
 
-        {/* 11. Multi-column footer */}
+        {/* 7. Footer */}
         <Footer />
       </div>
     </>

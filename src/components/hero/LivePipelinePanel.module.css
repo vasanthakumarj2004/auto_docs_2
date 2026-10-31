@@ -10,6 +10,7 @@
   box-shadow: 0 16px 40px -22px rgb(30 52 66 / 35%), inset 0 1px 1px rgb(255 255 255 / 90%);
   color: #374151;
   container-type: inline-size;
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .topbar { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-bottom: 9px; border-bottom: 1px solid rgb(148 163 184 / 15%); }
@@ -46,6 +47,81 @@
 .help { position: absolute; z-index: 5; right: 16px; bottom: 58px; max-width: min(280px, calc(100% - 32px)); padding: 14px; border: 1px solid #e2e8f0; border-radius: 10px; background: #fff; box-shadow: 0 8px 30px rgb(30 41 59 / 15%); font-size: 11.5px; line-height: 1.5; }
 .help p { margin-top: 4px; }
 .shell button:focus-visible { outline: 2px solid var(--color-brand); outline-offset: 3px; }
+
+/* In Dark Mode, the Live Pipeline console and visual image retain a crisp, brilliant white background */
+:global([data-appearance='dark']) .shell {
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: 18px;
+  background: #ffffff !important;
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.65), inset 0 1px 1px #fff;
+  color: #374151;
+}
+:global([data-appearance='dark']) .topbar {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+}
+:global([data-appearance='dark']) .tabs {
+  background: rgba(203, 211, 222, 0.35);
+}
+:global([data-appearance='dark']) .tab {
+  color: #697482;
+}
+:global([data-appearance='dark']) .tab[aria-selected='true'] {
+  color: var(--color-brand-strong);
+  background: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 1px 4px rgba(68, 83, 100, 0.12);
+}
+:global([data-appearance='dark']) .tab:hover {
+  background: rgba(255, 255, 255, 0.85);
+}
+:global([data-appearance='dark']) .count {
+  color: #78818c;
+}
+:global([data-appearance='dark']) .telemetry {
+  color: #78858a;
+}
+:global([data-appearance='dark']) .workspace {
+  background: #ffffff !important;
+  border-radius: 8px;
+  box-shadow: inset 0 0 0 1px rgba(226, 232, 240, 0.9), 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+:global([data-appearance='dark']) .toolbar {
+  background: #ffffff !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+}
+:global([data-appearance='dark']) .toolbarLeft {
+  color: #41464b !important;
+}
+:global([data-appearance='dark']) .search {
+  background: #f7f7f8 !important;
+  color: #9a9b9f !important;
+}
+:global([data-appearance='dark']) .graphViewport {
+  background: #ffffff !important;
+}
+:global([data-appearance='dark']) .billActivity,
+:global([data-appearance='dark']) .postActivity {
+  border: 1px solid rgba(226, 232, 240, 0.85) !important;
+  background: rgba(255, 255, 255, 0.96) !important;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 8px 24px -6px rgba(15, 23, 42, 0.18), inset 0 1px 0 #fff !important;
+}
+:global([data-appearance='dark']) .activityCopy strong {
+  color: #4a555c !important;
+}
+:global([data-appearance='dark']) .activityCopy > span {
+  color: #89949c !important;
+}
+:global([data-appearance='dark']) .documentIcon {
+  background: #ffffff !important;
+  color: #9ba9b3 !important;
+}
+:global([data-appearance='dark']) .activityArrow {
+  background: #e8edf0 !important;
+  color: #8d969f !important;
+}
 
 @media (min-width: 1024px) {
   .activity { left: -3%; right: 14%; }

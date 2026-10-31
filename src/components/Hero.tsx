@@ -4,22 +4,50 @@ import React from 'react';
 import { HeroStage } from './hero/HeroStage';
 import { HeroStageBackdrop } from './hero/HeroStageBackdrop';
 import { HeroProductPanel } from './hero/HeroProductPanel';
+import { useLandingLayout } from './LandingLayoutProvider';
+import { HeroCentered } from './hero/HeroCentered';
 
 export const Hero: React.FC = () => {
+  const { layout, appearance } = useLandingLayout();
+  if (layout === 'v2') return <HeroCentered />;
+
+  const isDark = appearance === 'dark';
+
   return (
-    <section className="relative overflow-hidden bg-[#FAFAFA] pt-12 pb-12 sm:pt-14 sm:pb-14 lg:pt-16 lg:pb-16 border-b border-slate-200/80">
-      
+    <section
+      data-hero-layout="v1"
+      data-appearance={appearance}
+      className={`relative overflow-hidden min-h-[calc(100svh-64px)] flex items-center pt-8 pb-10 sm:pt-10 sm:pb-12 lg:pt-12 lg:pb-14 border-b transition-colors duration-300 ${
+        isDark
+          ? 'bg-[#100a21] border-[#2a203d] text-white'
+          : 'bg-[#FAFAFA] border-slate-200/80 text-slate-800'
+      }`}
+    >
       {/* ================= 1. ASYMMETRIC SPLIT-SCREEN BACKDROP ================= */}
       
       {/* Right Canvas Ambient Dotted Matrix & Subtle Radial Glow (lg:w-[38%]) */}
       <div 
-        className="pointer-events-none absolute inset-y-0 right-0 w-full lg:w-[42%] bg-[radial-gradient(#cbd5e1_1.2px,transparent_1.2px)] [background-size:16px_16px] opacity-75 z-0" 
+        className={`pointer-events-none absolute inset-y-0 right-0 w-full lg:w-[42%] [background-size:16px_16px] z-0 transition-opacity duration-300 ${
+          isDark
+            ? 'bg-[radial-gradient(#ffffff15_1.2px,transparent_1.2px)] opacity-50'
+            : 'bg-[radial-gradient(#cbd5e1_1.2px,transparent_1.2px)] opacity-75'
+        }`} 
         aria-hidden="true" 
       />
       <div 
-        className="pointer-events-none absolute top-1/2 right-12 -translate-y-1/2 h-[450px] w-[450px] rounded-full bg-violet-500/[0.04] blur-3xl z-0"
+        className={`pointer-events-none absolute top-1/2 right-12 -translate-y-1/2 h-[450px] w-[450px] rounded-full blur-3xl z-0 transition-opacity duration-300 ${
+          isDark
+            ? 'bg-violet-600/[0.18]'
+            : 'bg-violet-500/[0.04]'
+        }`}
         aria-hidden="true" 
       />
+      {isDark && (
+        <div
+          className="pointer-events-none absolute -top-24 left-1/4 h-[350px] w-[500px] rounded-full bg-violet-900/[0.22] blur-3xl z-0"
+          aria-hidden="true"
+        />
+      )}
 
       {/* Left Stage Container: plain, clean static surface */}
       <div 
@@ -29,10 +57,10 @@ export const Hero: React.FC = () => {
       </div>
 
       {/* ================= 2. SITE SHELL & FOREGROUND GRID ================= */}
-      <div className="site-shell relative z-10 grid items-start gap-10 lg:gap-8 lg:grid-cols-12 w-full">
+      <div className="site-shell relative z-10 grid items-center gap-10 lg:gap-8 lg:grid-cols-12 w-full my-auto">
         
         {/* ================= LEFT COLUMN CONTENT (lg:col-span-5) ================= */}
-        <div className="lg:col-span-5 flex flex-col justify-start z-10 max-w-[540px]">
+        <div className="lg:col-span-5 flex flex-col justify-center z-10 max-w-[540px]">
           <HeroStage />
         </div>
 

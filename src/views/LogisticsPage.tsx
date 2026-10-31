@@ -232,7 +232,7 @@ export const LogisticsPage: React.FC = () => {
               documentation desk exceptions to review, not screens to retype.
             </p>
             <div className={s.actions}>
-              <a className={s.primaryButton} href="/#demo">
+              <a className={s.primaryButton} href="/demo/">
                 Book a demo <ArrowRight size={17} />
               </a>
               <a className={s.secondaryButton} href="#logistics-workbench">
@@ -349,7 +349,7 @@ export const LogisticsPage: React.FC = () => {
                 </div>
                 <h3>Customs pre-fill & freight AP audit</h3>
                 <p>Auto-map HS tariff codes from commercial invoices and audit incoming carrier invoices against agreed freight buy rates.</p>
-                <a href="/#demo" className={s.textLink}>
+                <a href="/demo/" className={s.textLink}>
                   Discuss your forwarder workflow <ArrowRight size={16} />
                 </a>
               </div>
@@ -509,7 +509,7 @@ export const LogisticsPage: React.FC = () => {
             <p className={s.sectionIntro}>
               Start with your forwarding setup, carrier paperwork, and the way your documentation team operates today.
             </p>
-            <a href="/#demo" className={s.textLink}>
+            <a href="/demo/" className={s.textLink}>
               Talk through your forwarding requirements <ArrowRight size={16} />
             </a>
           </div>
@@ -558,7 +558,7 @@ export const LogisticsPage: React.FC = () => {
               </p>
             </div>
             <div className={s.closingActions}>
-              <a href="/#demo" className={s.primaryButton}>
+              <a href="/demo/" className={s.primaryButton}>
                 Book a Logistics Desk demo <ArrowRight size={17} />
               </a>
               <a href="/free-trial/" className={s.textLink}>
@@ -578,7 +578,7 @@ export const LogisticsPage: React.FC = () => {
               <strong>Logistics Desk</strong>
               <span>Shipment emails in. CargoWise jobs out.</span>
             </span>
-            <a href="/#demo" className={s.primaryButton}>
+            <a href="/demo/" className={s.primaryButton}>
               Book a demo <ArrowRight size={15} />
             </a>
           </div>

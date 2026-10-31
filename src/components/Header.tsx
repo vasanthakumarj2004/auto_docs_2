@@ -1,16 +1,36 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { RESOURCE_PREVIEW_EVENT, useResourceCardStyle } from './ResourceCardStyleProvider';
+import { ResourcesMenuVariants } from './ResourcesMenuVariants';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { useRouter } from '../lib/router';
 import { NavDropdown } from './NavDropdown';
-import { AutoDocsLogo } from './AutoDocsLogo';
+import { DocsynecxLogo } from './DocsynecxLogo';
+import { useLandingLayout } from './LandingLayoutProvider';
+import centered from './HeaderCentered.module.css';
 
 export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
   const { currentPath, navigate } = useRouter();
+  const { layout, appearance, navbarTheme } = useLandingLayout();
+  const { cardStyle } = useResourceCardStyle();
+  const [resourceSlide, setResourceSlide] = useState<0 | 1>(0);
+  useEffect(() => {
+    const preview = () => {
+      const breakpoint = currentPath === '/' && layout === 'v2' ? 1100 : 767;
+      if (window.matchMedia(`(max-width: ${breakpoint}px)`).matches) {
+        setMobileMenuOpen(true);
+        setMobileResourcesOpen(true);
+      }
+    };
+    window.addEventListener(RESOURCE_PREVIEW_EVENT, preview);
+    return () => window.removeEventListener(RESOURCE_PREVIEW_EVENT, preview);
+  }, [layout, currentPath]);
+  const isCentered = currentPath === '/' && layout === 'v2';
   const isFinanceActive = currentPath === '/finance' || currentPath === '/accounts-payable';
   const isLogisticsActive = currentPath === '/logistics' || currentPath === '/logistics-trade';
+  const isDarkNav = navbarTheme === 'dark';
 
   const handleLinkClick = (href: string) => {
     setMobileMenuOpen(false);
@@ -19,7 +39,19 @@ export const Header: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur-md transition-all">
+    <header
+      data-header-layout={isCentered ? 'v2' : 'v1'}
+      data-appearance={appearance}
+      data-navbar-theme={navbarTheme}
+      style={{
+        backgroundColor: isDarkNav ? 'rgba(16, 10, 33, 0.98)' : 'rgba(255, 255, 255, 0.98)',
+        borderColor: isDarkNav ? '#2a203d' : '#e2e8f0',
+        transition: 'background-color 0.2s ease, border-color 0.2s ease',
+      }}
+      className={`sticky top-0 z-50 border-b backdrop-blur-md transition-all ${
+        isCentered ? centered.header : ''
+      }`}
+    >
       <div className="site-shell flex h-16 items-center justify-between md:grid md:grid-cols-[1fr_auto_1fr]">
         {/* Brand Logo */}
         <div className="flex items-center justify-start">
@@ -30,9 +62,9 @@ export const Header: React.FC = () => {
               handleLinkClick('/');
             }}
             className="group inline-flex items-center"
-            aria-label="AutoDocs home"
+            aria-label="Docsynecx home"
           >
-            <AutoDocsLogo className="h-8 sm:h-9 w-auto transition-opacity group-hover:opacity-90" />
+            <DocsynecxLogo variant={isDarkNav ? 'footer' : 'header'} className="h-8 sm:h-9 w-auto transition-opacity group-hover:opacity-90" />
           </a>
         </div>
 
@@ -47,6 +79,8 @@ export const Header: React.FC = () => {
             className={`inline-flex items-center py-1 text-[13px] font-medium transition-colors duration-150 ${
               isFinanceActive
                 ? 'text-brand-violet font-semibold'
+                : isDarkNav
+                ? 'text-slate-200 hover:text-white'
                 : 'text-slate-600 hover:text-brand-violet'
             }`}
           >
@@ -61,20 +95,22 @@ export const Header: React.FC = () => {
             className={`inline-flex items-center py-1 text-[13px] font-medium transition-colors duration-150 ${
               isLogisticsActive
                 ? 'text-brand-violet font-semibold'
+                : isDarkNav
+                ? 'text-slate-200 hover:text-white'
                 : 'text-slate-600 hover:text-brand-violet'
             }`}
           >
             Logistics
           </a>
           <a
-            href="#problem"
+            href="#how-it-works"
             onClick={(e) => {
               e.preventDefault();
-              handleLinkClick('#problem');
+              handleLinkClick('#how-it-works');
             }}
-            className="inline-flex items-center py-1 text-[13px] font-medium text-slate-600 transition-colors duration-150 hover:text-brand-violet"
+            className={`inline-flex items-center py-1 text-[13px] font-medium transition-colors duration-150 ${isDarkNav ? 'text-slate-200 hover:text-white' : 'text-slate-600 hover:text-brand-violet'}`}
           >
-            Industries
+            How we do
           </a>
           <a
             href="#customers"
@@ -82,13 +118,21 @@ export const Header: React.FC = () => {
               e.preventDefault();
               handleLinkClick('#customers');
             }}
-            className="inline-flex items-center py-1 text-[13px] font-medium text-slate-600 transition-colors duration-150 hover:text-brand-violet"
+            className={`inline-flex items-center py-1 text-[13px] font-medium transition-colors duration-150 ${isDarkNav ? 'text-slate-200 hover:text-white' : 'text-slate-600 hover:text-brand-violet'}`}
           >
             Customers
           </a>
 
           {/* Resources Dropdown */}
-          <NavDropdown onNavigate={handleLinkClick} currentPath={currentPath} />
+          <NavDropdown
+            onNavigate={handleLinkClick}
+            currentPath={currentPath}
+            triggerClassName={
+              isDarkNav
+                ? 'group inline-flex items-center gap-1.5 py-1 text-[13px] font-semibold transition-colors focus:outline-none cursor-pointer rounded-md text-slate-200 hover:text-white focus-visible:ring-2 focus-visible:ring-brand-violet focus-visible:ring-offset-2'
+                : undefined
+            }
+          />
 
           <a
             href="/calculator"
@@ -99,6 +143,8 @@ export const Header: React.FC = () => {
             className={`inline-flex items-center py-1 text-[13px] font-medium transition-colors duration-150 ${
               currentPath === '/calculator'
                 ? 'text-brand-violet font-semibold'
+                : isDarkNav
+                ? 'text-slate-200 hover:text-white'
                 : 'text-slate-600 hover:text-brand-violet'
             }`}
           >
@@ -107,23 +153,25 @@ export const Header: React.FC = () => {
         </nav>
 
         {/* Right CTA cluster */}
-        <div className="hidden items-center justify-end gap-5 md:flex">
+        <div data-header-actions className="hidden items-center justify-end gap-5 md:flex">
           <a
+            data-header-calculator
             href="/calculator"
             onClick={(e) => {
               e.preventDefault();
               handleLinkClick('/calculator');
             }}
-            className="group inline-flex items-center gap-2 text-[12.5px] font-medium text-slate-600 transition-colors hover:text-brand-violet"
+            className={`group inline-flex items-center gap-2 text-[12.5px] font-medium transition-colors ${isDarkNav ? 'text-slate-200 hover:text-white' : 'text-slate-600 hover:text-brand-violet'}`}
           >
             <span className="h-1.5 w-1.5 rounded-full bg-brand-violet transition-transform duration-150 group-hover:scale-125" />
             <span>Free calculator</span>
           </a>
           <a
-            href="#demo"
+            data-header-demo
+            href="/demo/"
             onClick={(e) => {
               e.preventDefault();
-              handleLinkClick('#demo');
+              handleLinkClick('/demo/');
             }}
             className="button-primary rounded-lg px-3.5 py-1.5 text-[12.5px] font-semibold shadow-sm active:scale-[0.98]"
           >
@@ -134,7 +182,7 @@ export const Header: React.FC = () => {
         {/* Mobile toggle */}
         <div className="flex items-center justify-end md:hidden">
           <button
-            className="rounded-lg p-2 text-slate-700 hover:bg-slate-100 cursor-pointer"
+            className={`rounded-lg p-2 cursor-pointer ${isDarkNav ? 'text-slate-200 hover:bg-white/10' : 'text-slate-700 hover:bg-slate-100'}`}
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-label={mobileMenuOpen ? 'Close navigation' : 'Open navigation'}
           >
@@ -145,7 +193,7 @@ export const Header: React.FC = () => {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <nav className="border-t border-slate-100 bg-white px-5 py-4 md:hidden" aria-label="Mobile navigation">
+        <nav className={`border-t px-5 py-4 md:hidden max-h-[calc(100svh-64px)] overflow-y-auto ${isDarkNav ? 'border-[#2a203d] bg-[#100a21] text-[#f1edf8]' : 'border-slate-100 bg-white text-slate-700'}`} aria-label="Mobile navigation">
           <div className="flex flex-col gap-3.5">
             <a
               href="/finance"
@@ -172,16 +220,6 @@ export const Header: React.FC = () => {
               Logistics Desk
             </a>
             <a
-              href="#problem"
-              onClick={(e) => {
-                e.preventDefault();
-                handleLinkClick('#problem');
-              }}
-              className="text-sm font-medium text-slate-700 transition-colors hover:text-brand-violet"
-            >
-              The Problem
-            </a>
-            <a
               href="#how-it-works"
               onClick={(e) => {
                 e.preventDefault();
@@ -189,17 +227,7 @@ export const Header: React.FC = () => {
               }}
               className="text-sm font-medium text-slate-700 transition-colors hover:text-brand-violet"
             >
-              How it works
-            </a>
-            <a
-              href="#why-autodocs"
-              onClick={(e) => {
-                e.preventDefault();
-                handleLinkClick('#why-autodocs');
-              }}
-              className="text-sm font-medium text-slate-700 transition-colors hover:text-brand-violet"
-            >
-              Why AutoDocs
+              How we do
             </a>
             <a
               href="#customers"
@@ -228,7 +256,9 @@ export const Header: React.FC = () => {
                   }`}
                 />
               </button>
-              {mobileResourcesOpen && (
+              {mobileResourcesOpen && (cardStyle !== 'original' ? (
+                <ResourcesMenuVariants compact variant={cardStyle} activeSlide={resourceSlide} onSlideChange={setResourceSlide} onNavigate={handleLinkClick} />
+              ) : (
                 <div className="flex flex-col gap-2 pb-2 pl-2 pt-1 border-l-2 border-brand-violet/30 ml-1">
                   <a
                     href="/finance"
@@ -259,7 +289,7 @@ export const Header: React.FC = () => {
                     }}
                     className="text-xs font-medium text-slate-600 hover:text-brand-violet transition-colors"
                   >
-                    Workflows & Approvals
+                    How we do
                   </a>
                   <a
                     href="/calculator"
@@ -283,7 +313,7 @@ export const Header: React.FC = () => {
                     FAQ & Help Center
                   </a>
                 </div>
-              )}
+              ))}
             </div>
 
             <a
@@ -308,10 +338,10 @@ export const Header: React.FC = () => {
               <span>Free calculator</span>
             </a>
             <a
-              href="#demo"
+              href="/demo/"
               onClick={(e) => {
                 e.preventDefault();
-                handleLinkClick('#demo');
+                handleLinkClick('/demo/');
               }}
               className="button-primary rounded-lg mt-2 w-fit px-5 py-2 text-xs font-semibold shadow-sm active:scale-[0.98]"
             >

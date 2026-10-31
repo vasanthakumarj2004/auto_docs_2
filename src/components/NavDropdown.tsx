@@ -1,5 +1,7 @@
 'use client';
 import React, { useState, useRef, useEffect } from 'react';
+import { RESOURCE_PREVIEW_EVENT, useResourceCardStyle } from './ResourceCardStyleProvider';
+import { ResourcesMenuVariants } from './ResourcesMenuVariants';
 import {
   ChevronDown,
   Receipt,
@@ -46,6 +48,7 @@ interface DeskCardSlide {
 }
 
 export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPath, triggerClassName }) => {
+  const { cardStyle } = useResourceCardStyle();
   const [isOpen, setIsOpen] = useState(false);
   const [isPinned, setIsPinned] = useState(false);
   const [activeSlide, setActiveSlide] = useState<0 | 1>(0);
@@ -56,6 +59,19 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
   const triggerRef = useRef<HTMLButtonElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    const preview = () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      isOpenRef.current = true;
+      isPinnedRef.current = true;
+      setIsOpen(true);
+      setIsPinned(true);
+      triggerRef.current?.focus({ preventScroll: true });
+    };
+    window.addEventListener(RESOURCE_PREVIEW_EVENT, preview);
+    return () => window.removeEventListener(RESOURCE_PREVIEW_EVENT, preview);
+  }, []);
 
   // Sync refs with state
   useEffect(() => {
@@ -72,17 +88,18 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
 
   // 8-second auto-rotation between Finance Desk and Logistics Desk
   useEffect(() => {
-    if (isHoveredCard) return; // Pause rotation when user hovers over card to inspect or click
+    if (!isOpen || isHoveredCard || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const interval = setInterval(() => {
       setActiveSlide((prev) => (prev === 0 ? 1 : 0));
     }, 8000); // 8 seconds per desk
 
     return () => clearInterval(interval);
-  }, [isHoveredCard]);
+  }, [isHoveredCard, isOpen]);
 
   // Close on outside click
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
+      if ((event.target as Element).closest('[data-resource-card-switcher]')) return;
       if (
         panelRef.current &&
         !panelRef.current.contains(event.target as Node) &&
@@ -104,6 +121,7 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
   // Close on Escape key press
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
+      if ((event.target as Element).closest('[data-resource-card-switcher]')) return;
       if (event.key === 'Escape' && isOpenRef.current) {
         isOpenRef.current = false;
         isPinnedRef.current = false;
@@ -183,8 +201,8 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
     },
     {
       href: '#how-it-works',
-      label: 'Workflows & Approvals',
-      description: 'Configurable approval flows & rule engine',
+      label: 'How we do',
+      description: 'Capture, extract, validate and sync',
       icon: Workflow,
       iconBg: 'bg-violet-50',
       iconColor: 'text-violet-600',
@@ -301,13 +319,17 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
       <div
         ref={panelRef}
         id="resources-mega-dropdown"
-        role="menu"
+        role={cardStyle === 'original' ? 'menu' : 'region'}
+        style={cardStyle === 'original' ? undefined : { position: 'fixed', left: '50%', top: '64px', width: 'min(920px, calc(100vw - 40px))', maxHeight: 'calc(100svh - 100px)', overflowY: 'auto' }}
+        onFocusCapture={() => setIsHoveredCard(true)}
+        onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setIsHoveredCard(false); }}
         aria-labelledby="resources-menu-trigger"
         onMouseEnter={() => {
           if (timeoutRef.current) clearTimeout(timeoutRef.current);
           setIsOpen(true);
+          setIsHoveredCard(true);
         }}
-        onMouseLeave={handleMouseLeave}
+        onMouseLeave={() => { setIsHoveredCard(false); handleMouseLeave(); }}
         className={`absolute left-1/2 -translate-x-1/2 top-full pt-2.5 z-[60] w-[750px] max-w-[calc(100vw-2rem)] transition-all duration-200 ease-out ${
           isOpen
             ? 'opacity-100 translate-y-0 pointer-events-auto visible'
@@ -324,7 +346,7 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
           }}
         />
 
-        {/* The Card Surface */}
+        {cardStyle === 'original' ? (
         <div className="overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-[0_20px_48px_-10px_rgba(11,19,48,0.18),0_6px_20px_-4px_rgba(11,19,48,0.08)]">
           <div className="flex divide-x divide-slate-100">
             {/* Left Columns: Products & Tools (Exact previous contents) */}
@@ -515,8 +537,8 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
 
                 <div className="flex items-center justify-center text-[10.5px] px-1 pt-0.5">
                   <a
-                    href="#demo"
-                    onClick={(e) => handleLinkClick('#demo', e)}
+                    href="/demo/"
+                    onClick={(e) => handleLinkClick('/demo/', e)}
                     className="font-medium text-slate-500 hover:text-brand-violet transition-colors"
                   >
                     Book a demo
@@ -526,6 +548,17 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
             </div>
           </div>
         </div>
+        ) : (
+          <ResourcesMenuVariants variant={cardStyle} activeSlide={activeSlide} onSlideChange={setActiveSlide}
+            onNavigate={href => {
+              if (timeoutRef.current) clearTimeout(timeoutRef.current);
+              isOpenRef.current = false;
+              isPinnedRef.current = false;
+              setIsOpen(false);
+              setIsPinned(false);
+              onNavigate(href);
+            }} />
+        )}
       </div>
     </div>
   );

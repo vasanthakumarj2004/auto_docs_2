@@ -69,7 +69,7 @@ export const FinancePage: React.FC = () => {
           <span className={s.eyebrow}><span className={s.liveDot} />FINANCE DESK / BUILT AROUND TALLY</span>
           <h1 id="finance-title">Approve the bill.<br />Pay the vendor.<br /><span>The entry posts itself.</span></h1>
           <p>From a vendor invoice to your books, keep every check and approval connected. Give your finance team a bill to review, not a screen to retype.</p>
-          <div className={s.actions}><a className={s.primaryButton} href="/#demo">Book a demo <ArrowRight size={17} /></a><a className={s.secondaryButton} href="#finance-workbench">Explore the workflow <ArrowDown size={17} /></a></div>
+          <div className={s.actions}><a className={s.primaryButton} href="/demo/">Book a demo <ArrowRight size={17} /></a><a className={s.secondaryButton} href="#finance-workbench">Explore the workflow <ArrowDown size={17} /></a></div>
           <div className={s.heroTrust}><span><Check size={14} />Works with TallyPrime</span><span><Check size={14} />Your approval rules</span></div>
         </div>
         <HeroPreview />
@@ -88,7 +88,7 @@ export const FinancePage: React.FC = () => {
         </div>
         <div className={s.moduleStack}>
           <div className={s.moduleCard}><div className={s.moduleTop}><span className={s.featureIcon}><FileCheck2 size={22} /></span><span className={s.micro}>START WITH THE BILL</span></div><h3>Invoice automation</h3><p>Build a reliable path from incoming document to reviewed accounting entry.</p><ul className={s.checkList}><li><Check size={15} />Capture and GST-check bills</li><li><Check size={15} />Review potential duplicates</li><li><Check size={15} />Post to Tally, Zoho Books or your ERP</li></ul><a href="/free-trial/" className={s.textLink}>Explore invoice automation <ArrowRight size={16} /></a></div>
-          <div className={`${s.moduleCard} ${s.addOnCard}`}><div className={s.moduleTop}><span className={s.featureIcon}><Users size={22} /></span><span className={s.micro}>EXTEND THE WORKFLOW</span></div><h3>Approvals & payments</h3><p>Connect approval rules and payment handoffs to the same reviewed bill.</p><a href="/#demo" className={s.textLink}>Discuss your payment workflow <ArrowRight size={16} /></a></div>
+          <div className={`${s.moduleCard} ${s.addOnCard}`}><div className={s.moduleTop}><span className={s.featureIcon}><Users size={22} /></span><span className={s.micro}>EXTEND THE WORKFLOW</span></div><h3>Approvals & payments</h3><p>Connect approval rules and payment handoffs to the same reviewed bill.</p><a href="/demo/" className={s.textLink}>Discuss your payment workflow <ArrowRight size={16} /></a></div>
         </div>
       </div></div>
     </section>
@@ -120,12 +120,12 @@ export const FinancePage: React.FC = () => {
     </div></section>
 
     <section className={`${s.section} ${s.faqSection}`} aria-labelledby="finance-faq-title"><div className={`${s.container} ${s.faqGrid}`}>
-      <div><span className={s.eyebrow}>BEFORE YOU GET STARTED</span><h2 id="finance-faq-title">Good questions.<br />Clear answers.</h2><p className={s.sectionIntro}>Start with your accounting setup and the way your team works today.</p><a href="/#demo" className={s.textLink}>Talk through your requirements <ArrowRight size={16} /></a></div>
+      <div><span className={s.eyebrow}>BEFORE YOU GET STARTED</span><h2 id="finance-faq-title">Good questions.<br />Clear answers.</h2><p className={s.sectionIntro}>Start with your accounting setup and the way your team works today.</p><a href="/demo/" className={s.textLink}>Talk through your requirements <ArrowRight size={16} /></a></div>
       <div className={s.faqList}>{faqs.map(({ question, answer }, index) => <div className={s.faqItem} key={question} data-open={openFaq === index}><h3><button type="button" id={`finance-faq-button-${index}`} aria-expanded={openFaq === index} aria-controls={`finance-faq-answer-${index}`} onClick={() => setOpenFaq(openFaq === index ? null : index)}><span>{question}</span><ChevronDown size={18} aria-hidden="true" /></button></h3><div id={`finance-faq-answer-${index}`} role="region" aria-labelledby={`finance-faq-button-${index}`} hidden={openFaq !== index}><p>{answer}</p></div></div>)}</div>
     </div></section>
 
-    <section className={s.closingSection} ref={closingRef} aria-labelledby="finance-closing-title"><div className={s.container}><div className={s.closingCard}><div><span className={s.eyebrow}>YOUR NEXT FINANCE WORKFLOW</span><h2 id="finance-closing-title">Bring a bill.<br />See the whole journey.</h2><p>Walk through capture, checks, approvals and Tally posting with your team’s requirements in mind.</p></div><div className={s.closingActions}><a href="/#demo" className={s.primaryButton}>Book a Finance Desk demo <ArrowRight size={17} /></a><a href="/free-trial/" className={s.textLink}>Start with invoice automation <ArrowUpRight size={16} /></a><span>Built around your existing accounting workflow.</span></div></div></div></section>
+    <section className={s.closingSection} ref={closingRef} aria-labelledby="finance-closing-title"><div className={s.container}><div className={s.closingCard}><div><span className={s.eyebrow}>YOUR NEXT FINANCE WORKFLOW</span><h2 id="finance-closing-title">Bring a bill.<br />See the whole journey.</h2><p>Walk through capture, checks, approvals and Tally posting with your team’s requirements in mind.</p></div><div className={s.closingActions}><a href="/demo/" className={s.primaryButton}>Book a Finance Desk demo <ArrowRight size={17} /></a><a href="/free-trial/" className={s.textLink}>Start with invoice automation <ArrowUpRight size={16} /></a><span>Built around your existing accounting workflow.</span></div></div></div></section>
 
-    {showSticky && !closingReached && <aside className={s.stickyBar} aria-label="Finance Desk demo"><div className={`${s.container} ${s.stickyInner}`}><span><span className={s.liveDot} /><strong>Finance Desk</strong><span>From vendor bill to your books.</span></span><a href="/#demo" className={s.primaryButton}>Book a demo <ArrowRight size={15} /></a></div></aside>}
+    {showSticky && !closingReached && <aside className={s.stickyBar} aria-label="Finance Desk demo"><div className={`${s.container} ${s.stickyInner}`}><span><span className={s.liveDot} /><strong>Finance Desk</strong><span>From vendor bill to your books.</span></span><a href="/demo/" className={s.primaryButton}>Book a demo <ArrowRight size={15} /></a></div></aside>}
   </main>;
 };

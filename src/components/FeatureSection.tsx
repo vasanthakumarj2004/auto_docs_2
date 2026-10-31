@@ -123,8 +123,14 @@ export const FeatureSection: React.FC<FeatureSectionProps> = ({
     });
   };
 
+  const sectionBgClass = visualType === 'finance'
+    ? styles.sectionFinance
+    : visualType === 'logistics'
+    ? styles.sectionLogistics
+    : '';
+
   return (
-    <section id={id} className={styles.section} aria-labelledby={`${id}-desk-title`}>
+    <section id={id} className={`${styles.section} ${sectionBgClass}`} aria-labelledby={`${id}-desk-title`}>
       <div ref={gridRef} className={`site-shell ${styles.deskGrid} ${reverse ? styles.deskGridReversed : ''}`}>
         <div ref={copyRef} className={styles.stickyLeft}>
           <span className="section-label font-mono text-[11px] font-bold uppercase tracking-wider text-brand-violet">{label}</span>

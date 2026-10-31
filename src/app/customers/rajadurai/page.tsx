@@ -41,7 +41,7 @@ export default function RajaduraiCaseStudyPage() {
         </div>
 
         <div className="mt-8 flex justify-center gap-3">
-          <Link href="/#demo" className="button-primary cursor-pointer">
+          <Link href="/demo/" className="button-primary cursor-pointer">
             Book a walkthrough
           </Link>
           <Link href="/finance" className="button-secondary cursor-pointer">

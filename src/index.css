@@ -28,6 +28,24 @@
   text-rendering: optimizeLegibility;
 }
 
+:root[data-theme="logo"] {
+  /* Logo Theme: Docsynecx Signature Green (#18CB96) */
+  --color-brand: #18CB96;
+  --color-brand-strong: #0FA879;
+  --color-brand-soft: #E8FAF4;
+  --color-brand-border: #99EBD1;
+  --color-brand-text: #0A5C43;
+  --color-brand-50: #E8FAF4;
+  --color-brand-100: #D0F6E9;
+  --color-brand-200: #99EBD1;
+  --color-brand-400: #42E2B2;
+  --color-brand-500: #18CB96;
+  --color-brand-800: #0A5C43;
+  --color-brand-900: #063D2C;
+  --color-paper: #FAFAFA;
+  --color-ink: #063D2C;
+}
+
 :root[data-theme="green"] {
   /* Green: Enterprise Emerald */
   --color-brand: #059669;
@@ -406,10 +424,10 @@ button, input, textarea, select {
 }
 
 .cta-section {
-  border-top: 1px solid #F8F3FF;
-  border-bottom: 1px solid #F8F3FF;
-  background: #FAFAFA;
-  padding-block: 72px;
+  border-top: 1px solid var(--color-brand-border, #e9e3f2);
+  border-bottom: 1px solid var(--color-brand-border, #e9e3f2);
+  background: radial-gradient(ellipse at 50% 0%, var(--color-brand-soft, #f4edfb), transparent 70%), #fafafa;
+  padding-block: 84px;
 }
 
 .form-label {
@@ -1101,8 +1119,99 @@ input:focus-visible {
   }
 }
 
+/* =========================================================================
+   Version 2 Dark Mode - Hero Viewport Color Flow
+   Only the dark hero consumes these colors; other sections keep their themes.
+   ========================================================================= */
+[data-v2-viewport-flow="true"] {
+  --v2-vp-flow-bg: #0B1D18;
+  --v2-vp-flow-border: rgba(39, 92, 77, 0.7);
+  --v2-vp-flow-accent: #18CB96;
+  --v2-vp-flow-accent-text: #18CB96;
+  --v2-vp-flow-glow: rgba(24, 203, 150, 0.25);
+  --v2-vp-flow-cta-bg: rgba(14, 52, 40, 0.95);
+  --v2-vp-flow-cta-hover: rgba(20, 75, 58, 1);
+  --v2-vp-flow-text: #F8FAFC;
+  --v2-vp-flow-body: #E2E8F0;
+  --v2-vp-flow-muted: #CBD5E1;
+}
+
+/* A single solid surface, with no gradient or grid overlays. */
+[data-v2-viewport-flow="true"] [data-hero-layout="v2"][data-appearance="dark"] {
+  background-color: var(--v2-vp-flow-bg) !important;
+  background-image: none !important;
+  color: #ffffff !important;
+  transition: background-color 0.25s ease;
+}
+
+[data-v2-viewport-flow="true"] [data-hero-layout="v2"][data-appearance="dark"]::before,
+[data-v2-viewport-flow="true"] [data-hero-layout="v2"][data-appearance="dark"]::after {
+  content: none !important;
+}
+
+/* Hero text and controls retain readable colors for each hue. */
+[data-v2-viewport-flow="true"] [data-hero-layout="v2"][data-appearance="dark"] h1,
+[data-v2-viewport-flow="true"] [data-hero-layout="v2"][data-appearance="dark"] h1 > span:first-child {
+  color: #ffffff !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+[data-v2-viewport-flow="true"] [data-hero-layout="v2"][data-appearance="dark"] [class*="accent"] {
+  color: var(--v2-vp-flow-accent-text) !important;
+  text-shadow: none;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.6));
+}
+
+[data-v2-viewport-flow="true"] [data-hero-layout="v2"][data-appearance="dark"] [class*="description"],
+[data-v2-viewport-flow="true"] [data-hero-layout="v2"][data-appearance="dark"] [class*="description"] span {
+  color: var(--v2-vp-flow-body) !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+[data-v2-viewport-flow="true"] [data-hero-layout="v2"][data-appearance="dark"] [class*="eyebrow"] {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-color: var(--v2-vp-flow-border) !important;
+  color: #ffffff !important;
+}
+
+[data-v2-viewport-flow="true"] [data-hero-layout="v2"][data-appearance="dark"] [class*="eyebrow"] > span {
+  background-color: var(--v2-vp-flow-accent) !important;
+  box-shadow: 0 0 10px var(--v2-vp-flow-accent) !important;
+}
+
+[data-v2-viewport-flow="true"] [data-hero-layout="v2"][data-appearance="dark"] [class*="trust"] {
+  color: var(--v2-vp-flow-muted) !important;
+}
+
+[data-v2-viewport-flow="true"] [data-hero-layout="v2"][data-appearance="dark"] [class*="trust"] svg {
+  color: var(--v2-vp-flow-accent-text) !important;
+}
+
+/* Hero CTA Buttons */
+[data-v2-viewport-flow="true"] [data-hero-layout="v2"][data-appearance="dark"] .desk-button,
+[data-v2-viewport-flow="true"] [data-hero-layout="v2"][data-appearance="dark"] [class*="cta"] {
+  background-color: var(--v2-vp-flow-cta-bg) !important;
+  border: 1px solid var(--v2-vp-flow-border) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 18px -4px var(--v2-vp-flow-glow), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+}
+
+[data-v2-viewport-flow="true"] [data-hero-layout="v2"][data-appearance="dark"] .desk-button:hover,
+[data-v2-viewport-flow="true"] [data-hero-layout="v2"][data-appearance="dark"] [class*="cta"]:hover {
+  background-color: var(--v2-vp-flow-cta-hover) !important;
+  border-color: var(--v2-vp-flow-accent) !important;
+  transform: translateY(-1px);
+}
+
+[data-v2-viewport-flow="true"] [data-hero-layout="v2"][data-appearance="dark"] .desk-button svg,
+[data-v2-viewport-flow="true"] [data-hero-layout="v2"][data-appearance="dark"] [class*="cta"] svg {
+  color: var(--v2-vp-flow-accent-text) !important;
+}
 
 
-
-
-
+/* Floating controls keep their own surfaces. */
+#theme-studio,
+#landing-layout-options,
+#v2-viewport-flow-panel {
+  isolation: isolate;
+}

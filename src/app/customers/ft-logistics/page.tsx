@@ -41,7 +41,7 @@ export default function FtLogisticsCaseStudyPage() {
         </div>
 
         <div className="mt-8 flex justify-center gap-3">
-          <Link href="/#demo" className="button-primary cursor-pointer">
+          <Link href="/demo/" className="button-primary cursor-pointer">
             Book a demo
           </Link>
           <Link href="/logistics" className="button-secondary cursor-pointer">

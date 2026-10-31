@@ -55,8 +55,9 @@ export const HeroProductPanel: React.FC<HeroProductPanelProps> = ({ onTabChange 
           onTabChange={handleTabClick}
         />
       ) : (
-      <div className="relative rounded-[18px] bg-white/75 backdrop-blur-[18px] backdrop-saturate-[1.15] border border-white/80 shadow-[0_24px_50px_-25px_rgba(6,20,36,0.35),inset_0_1px_0_0_rgba(255,255,255,0.9)] p-2.5 sm:p-3">
-        
+      <div
+        className="relative rounded-[18px] backdrop-blur-[18px] backdrop-saturate-[1.15] border p-2.5 sm:p-3 bg-white border-white/90 shadow-[0_24px_50px_-25px_rgba(0,0,0,0.5),inset_0_1px_0_0_rgba(255,255,255,0.9)] text-slate-800"
+      >
         {/* ================= 1. SINGLE GLASS SEGMENTED HEADER BAR ================= */}
         <div className="flex flex-wrap items-center justify-between gap-2 pb-3 px-1 border-b border-slate-200/60">
           {/* Left Tabs */}
@@ -116,19 +117,19 @@ export const HeroProductPanel: React.FC<HeroProductPanelProps> = ({ onTabChange 
           </div>
 
           {/* Right Telemetry Status */}
-          <div className="hidden sm:inline-flex items-center gap-1.5 text-[11px] text-slate-500 font-medium">
+          <div className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-medium text-slate-500">
             <span className="h-1.5 w-1.5 rounded-full bg-violet-500 animate-pulse" />
             <span>Auto-sync telemetry</span>
           </div>
         </div>
 
         {/* ================= 2. INNER TOOLBAR CARD ================= */}
-        <div className="mt-3 rounded-xl bg-white/95 border border-slate-200/80 shadow-2xs px-3.5 py-2.5 flex items-center justify-between gap-3">
+        <div className="mt-3 rounded-xl border shadow-2xs px-3.5 py-2.5 flex items-center justify-between gap-3 bg-white/95 border-slate-200/80">
           <div className="flex items-center gap-3">
-            <span className="text-xs font-bold text-slate-900 tracking-tight">Live Pipeline</span>
+            <span className="text-xs font-bold tracking-tight text-slate-900">Live Pipeline</span>
             {/* Visual-only search input */}
             <div
-              className="bg-slate-50 border border-slate-200/80 text-slate-400 text-[11px] px-2.5 py-1 rounded-md w-28 sm:w-36 flex items-center gap-1.5 select-none"
+              className="text-[11px] px-2.5 py-1 rounded-md w-28 sm:w-36 flex items-center gap-1.5 select-none border bg-slate-50 border-slate-200/80 text-slate-400"
               aria-hidden="true"
             >
               <Search size={11} />
@@ -137,14 +138,14 @@ export const HeroProductPanel: React.FC<HeroProductPanelProps> = ({ onTabChange 
           </div>
 
           {/* Right Live Pipeline Chip */}
-          <div className="bg-violet-50 border border-violet-200 text-violet-700 text-[11px] font-semibold px-2.5 py-0.5 rounded-full inline-flex items-center gap-1 shadow-2xs">
+          <div className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full inline-flex items-center gap-1 shadow-2xs border bg-violet-50 border-violet-200 text-violet-700">
             <ArrowUp size={11} className="text-violet-600 stroke-[2.5]" />
             <span>Live Pipeline</span>
           </div>
         </div>
 
-        {/* ================= 3. CANVAS AREA (#eceff4) ================= */}
-        <div className="mt-2.5 rounded-xl bg-[#eceff4] border border-slate-200/80 p-2.5 sm:p-3 min-h-[270px] overflow-hidden">
+        {/* ================= 3. CANVAS AREA ================= */}
+        <div className="mt-2.5 rounded-xl border p-2.5 sm:p-3 min-h-[270px] overflow-hidden bg-white border-slate-200/80">
           {activeTab === 0 && (
             <PipelineView
               isPaused={!isVisible}

@@ -1,194 +1,107 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
-import { Mail, Search, FileCheck2, Database, CheckCircle2, FileText, Check, ArrowRight } from 'lucide-react';
+
+import React, { useEffect, useRef } from 'react';
+import Link from 'next/link';
+import { ArrowUpRight, Check, CheckCircle2, Database, FileCheck2, FileText, Inbox, Mail, ScanLine, ShieldCheck, Upload } from 'lucide-react';
+import { useLandingLayout } from './LandingLayoutProvider';
 import styles from './HowItWorks.module.css';
 
 const steps = [
-    {
-      step: '01',
-      title: 'Document comes in',
-      desc: 'Via email, PDF, or customer upload — AutoDocs ingests it automatically.',
-      icon: Mail,
-      artifact: 'PDF · Scan · Pre-Alert Email',
-    },
-    {
-      step: '02',
-      title: 'Details extracted',
-      desc: 'AutoDocs extracts line items, party ledgers, GSTIN, and shipment specs.',
-      icon: Search,
-      artifact: 'Line Items · GSTIN · Container #',
-    },
-    {
-      step: '03',
-      title: 'Cross-checked & matched',
-      desc: 'Reconciles BL vs Packing List, checks GST portal, and verifies PO matching.',
-      icon: FileCheck2,
-      artifact: 'GST Portal · 3-Way PO · BL vs PL',
-    },
-    {
-      step: '04',
-      title: 'Pushed to system',
-      desc: 'Voucher or job is built and pushed directly into Tally or CargoWise.',
-      icon: Database,
-      artifact: 'Tally XML · CargoWise eAdaptor',
-    },
-    {
-      step: '05',
-      title: 'Review exceptions only',
-      desc: 'Your team reviews only flagged discrepancies — clean records post automatically.',
-      icon: CheckCircle2,
-      artifact: 'Exception Queue · Audit Log',
-    },
-  ];
+  { number: '01', label: 'Capture', title: 'We collect your documents', description: 'Send PDFs and scans, or connect email, portals and APIs. We bring your finance and shipment documents into one flow.', href: '/demo/', action: 'Bring your documents' },
+  { number: '02', label: 'Extract', title: 'We turn documents into data', description: 'Our AI reads each document and structures the fields your team needs, from invoice line items to bank transactions and shipment details.', href: '/finance/', action: 'Explore Finance Desk' },
+  { number: '03', label: 'Validate', title: 'We check before moving forward', description: 'We apply your business rules, check for duplicates and mismatches, and route exceptions for review before data moves downstream.', href: '/finance/#finance-workbench', action: 'See the checks' },
+  { number: '04', label: 'Sync', title: 'We sync with your systems', description: 'Validated data reaches your accounting, ERP or transport system, so your team can continue the workflow without entering it again.', href: '/logistics/', action: 'Explore Logistics Desk' },
+];
 
-// Illustrations use only the existing step labels, keeping the website's copy intact.
-function StepPreview({ index }: { index: number }) {
-  const item = steps[index];
-  const Icon = item.icon;
-  const labels = item.artifact.split(' · ');
-
-  return (
-    <div className={styles.preview} aria-hidden="true">
-      <div className={styles.previewHeader}>
-        <span className={styles.previewIcon}><Icon size={21} /></span>
-        <span className={styles.previewStep}>STEP {item.step}</span>
-        <span className={styles.statusDot} />
+function WorkflowVisual({ index }: { index: number }) {
+  return <div className={styles.visual} data-visual={index} aria-hidden="true">
+    <div className={styles.visualGrid} />
+    {index === 0 && <div className={styles.captureScene}>
+      <div className={styles.orbit} /><div className={styles.orbitInner} />
+      <div className={styles.sourceDocument} data-position="one"><Mail size={22} /><span>Email</span><i /><i /></div>
+      <div className={styles.sourceDocument} data-position="two"><FileText size={22} /><span>Invoice.pdf</span><i /><i /></div>
+      <div className={styles.sourceDocument} data-position="three"><Upload size={22} /><span>Upload</span><i /><i /></div>
+      <div className={styles.captureHub}><Inbox size={43} strokeWidth={1.4} /><strong>One inbox</strong></div>
+      <div className={styles.sceneBadge}><CheckCircle2 size={15} />Ready for processing</div>
+    </div>}
+    {index === 1 && <div className={styles.extractScene}>
+      <div className={styles.extractionPaper}><FileText size={28} /><span>Example invoice</span><i /><i /><i /><div className={styles.paperTable}><b /><b /><b /><b /><b /><b /></div><div className={styles.scanLine} /></div>
+      <div className={styles.dataPanel}><div className={styles.panelTop}><ScanLine size={18} /><span>Structured data</span><span className={styles.panelDot} /></div>
+        {[['Document', 'Vendor invoice'], ['Invoice no.', 'INV-0042'], ['Line items', 'Captured'], ['Tax details', 'Extracted']].map(([label, value]) => <div className={styles.dataRow} key={label}><span>{label}</span><strong>{value}</strong></div>)}
+        <div className={styles.panelFooter}><Check size={14} />Ready for validation</div>
       </div>
-      {index === 0 && <>
-        <div className={styles.sourcePills}>{labels.map(label => <span key={label}>{label}</span>)}</div>
-        <div className={styles.scanTrack}><span /></div>
-        <div className={styles.documents}>{labels.map(label => (
-          <div className={styles.document} key={label}>
-            <FileText size={25} /><span>{label}</span>
-            <div className={styles.paperLines}><i /><i /><i /></div>
-            <span className={styles.documentCheck}><Check size={13} /></span>
-          </div>
-        ))}</div>
-      </>}
-      {index === 1 && <div className={styles.extraction}>
-        {labels.map((label, i) => <div className={styles.field} key={label}>
-          <span>{label}</span><div className={styles.fieldValue}><i style={{ width: `${72 - i * 14}%` }} /><Check size={16} /></div>
-        </div>)}
-        <div className={styles.tableLines}>{[0, 1, 2].map(row => <div key={row}><i /><i /><i /></div>)}</div>
-      </div>}
-      {index === 2 && <>
-        <div className={styles.checks}>{labels.map(label => <div key={label}><CheckCircle2 size={21} /><span>{label}</span></div>)}</div>
-        <div className={styles.match}><FileText size={30} /><span /><FileCheck2 size={30} /></div>
-      </>}
-      {index === 3 && <>
-        <div className={styles.transfer}><FileCheck2 size={32} /><span><ArrowRight size={20} /></span><Database size={32} /></div>
-        <div className={styles.destinations}>{labels.map(label => <div key={label}><span>{label}</span><Check size={19} /></div>)}</div>
-      </>}
-      {index === 4 && <div className={styles.review}>
-        {labels.map((label, i) => <div key={label}>
-          <span className={styles.reviewLabel}>{i === 0 ? <Search size={18} /> : <CheckCircle2 size={18} />}{label}</span>
-          {[0, 1, 2].map(row => <div className={styles.reviewRow} key={row}><i /><span>{i === 0 && row === 0 ? <Search size={14} /> : <Check size={14} />}</span></div>)}
-        </div>)}
-      </div>}
-    </div>
-  );
+    </div>}
+    {index === 2 && <div className={styles.validationScene}>
+      <div className={styles.validationHalo} />
+      <div className={styles.validationPanel}>
+        <div className={styles.validationHeading}><span><ShieldCheck size={28} /></span><div><small>Your rules. Every document.</small><strong>Checks before sync</strong></div></div>
+        {['GST & duplicate checks', 'Purchase order matching', 'Cross-document checks'].map(label => <div className={styles.checkRow} key={label}><CheckCircle2 size={18} /><span>{label}</span><i /></div>)}
+        <div className={styles.reviewNote}><FileCheck2 size={16} />Exceptions stay with your team</div>
+      </div>
+    </div>}
+    {index === 3 && <div className={styles.syncScene}>
+      <svg className={styles.connections} viewBox="0 0 440 320" fill="none"><path d="M220 160H110V62H65M220 160H330V62H375M220 160H110V258H65M220 160H330V258H375" /></svg>
+      <div className={styles.syncHub}><Database size={31} /><strong>Verified data</strong><span>Ready to sync</span></div>
+      {['Tally', 'Zoho Books', 'CargoWise', 'ERP / TMS'].map((name, i) => <div className={styles.system} data-system={i} key={name}><span>{name === 'ERP / TMS' ? <Database size={21} /> : name[0]}</span><strong>{name}</strong><Check size={13} /></div>)}
+    </div>}
+  </div>;
 }
 
 export const HowItWorks: React.FC = () => {
-  const sectionRef = useRef<HTMLElement>(null);
-  const pinRef = useRef<HTMLDivElement>(null);
-  const [activeStep, setActiveStep] = useState(0);
-  const [enhanced, setEnhanced] = useState(false);
+  const { appearance } = useLandingLayout();
+  const stackRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLElement | null)[]>([]);
 
   useEffect(() => {
-    const query = window.matchMedia('(min-width: 1024px) and (min-height: 680px) and (prefers-reduced-motion: no-preference)');
-    const updateMode = () => setEnhanced(query.matches);
-    updateMode();
-    query.addEventListener('change', updateMode);
-    return () => query.removeEventListener('change', updateMode);
-  }, []);
-
-  useEffect(() => {
-    if (!enhanced) return;
+    const stack = stackRef.current;
+    if (!stack) return;
     let frame = 0;
     const update = () => {
       frame = 0;
-      const section = sectionRef.current;
-      const pin = pinRef.current;
-      if (!section || !pin) return;
-      const travel = section.offsetHeight - pin.offsetHeight;
-      const progress = Math.max(0, Math.min(1, (64 - section.getBoundingClientRect().top) / travel));
-      const stepPosition = progress * (steps.length - 1);
-      // A small dead band avoids flickering between steps on tiny scroll reversals.
-      setActiveStep(current => Math.abs(stepPosition - current) > 0.56
-        ? Math.round(stepPosition)
-        : current);
-      section.style.setProperty('--timeline-progress', `${progress * 100}%`);
+      const bounds = stack.getBoundingClientRect();
+      const progress = Math.max(0, Math.min(1, (window.innerHeight * 0.7 - bounds.top) / bounds.height));
+      stack.style.setProperty('--rail-progress', `${progress * 100}%`);
     };
     const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
-    update();
+    const observer = new ResizeObserver(schedule);
+    observer.observe(stack);
     window.addEventListener('scroll', schedule, { passive: true });
     window.addEventListener('resize', schedule);
-    const resizeObserver = new ResizeObserver(schedule);
-    resizeObserver.observe(sectionRef.current!);
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener('scroll', schedule);
-      window.removeEventListener('resize', schedule);
-      resizeObserver.disconnect();
-    };
-  }, [enhanced]);
+    update();
+    return () => { cancelAnimationFrame(frame); observer.disconnect(); window.removeEventListener('scroll', schedule); window.removeEventListener('resize', schedule); };
+  }, []);
 
-  const selectStep = (index: number) => {
-    const section = sectionRef.current;
-    const pin = pinRef.current;
-    if (!section || !pin) return;
-    const top = window.scrollY + section.getBoundingClientRect().top - 64;
-    const travel = section.offsetHeight - pin.offsetHeight;
-    window.scrollTo({ top: top + travel * index / (steps.length - 1), behavior: 'smooth' });
+  // Reveal a covered card when its link receives keyboard focus.
+  const revealCard = (index: number, target: EventTarget & HTMLAnchorElement) => {
+    if (!target.matches(':focus-visible')) return;
+    const stack = stackRef.current;
+    const card = cardRefs.current[index];
+    if (!stack || !card || getComputedStyle(card).position !== 'sticky') return;
+    const gap = parseFloat(getComputedStyle(stack).rowGap) || 0;
+    const top = window.scrollY + stack.getBoundingClientRect().top;
+    window.scrollTo({ top: top + index * (card.offsetHeight + gap) - parseFloat(getComputedStyle(card).top), behavior: 'instant' });
   };
 
-  return (
-    <section ref={sectionRef} id="how-it-works" className={styles.section} data-enhanced={enhanced} aria-labelledby="how-it-works-title">
-      <div ref={pinRef} className={styles.pin}>
-        <div className="site-shell">
-          <div className={styles.heading}>
-            <div className="eyebrow mb-4">End-To-End Automation</div>
-            <h2 id="how-it-works-title" className="text-2xl md:text-3xl font-extrabold tracking-[-0.04em] text-slate-950 sm:text-4xl">How it works</h2>
-            <p className="mt-3 text-sm leading-6 text-slate-600 max-w-xl">
-              From incoming bill or pre-alert email to verified system ledger — fully automated, fully auditable.
-            </p>
-          </div>
-          <div className={styles.stage}>
-            {enhanced && <nav className={styles.timeline} aria-label="How it works steps">
-              <div className={styles.track}><span /></div>
-              {steps.map((item, index) => <button
-                key={item.step}
-                type="button"
-                className={styles.node}
-                data-active={index === activeStep}
-                data-complete={index < activeStep}
-                aria-label={`Step ${item.step}: ${item.title}`}
-                aria-current={index === activeStep ? 'step' : undefined}
-                aria-controls={`how-it-works-step-${item.step}`}
-                onClick={() => selectStep(index)}
-              >{item.step}</button>)}
-            </nav>}
-            {steps.map((item, index) => <article
-              key={item.step}
-              id={`how-it-works-step-${item.step}`}
-              className={styles.step}
-              data-active={index === activeStep}
-              data-side={index % 2 === 0 ? 'left' : 'right'}
-              aria-hidden={enhanced && index !== activeStep ? true : undefined}
-              style={{ '--step-ratio': index / (steps.length - 1) } as React.CSSProperties}
-            >
-              <div className={styles.copy}>
-                <span className={styles.mobileNumber}>STEP {item.step}</span>
-                <div className={styles.artifact}>{item.artifact}</div>
-                <h3>{item.title}</h3>
-                <p>{item.desc}</p>
-              </div>
-              <div className={styles.visual}><StepPreview index={index} /></div>
-            </article>)}
-          </div>
-        </div>
+  return <section id="how-it-works" className={styles.section} data-appearance={appearance} aria-labelledby="how-it-works-title">
+    <div className="site-shell">
+      <div className={styles.heading}>
+        <span className={styles.eyebrow}>Your documents. One connected workflow.</span>
+        <h2 id="how-it-works-title">How we do</h2>
+        <p>We handle capture, extraction, checks and system updates, with your team in control of approvals and exceptions.</p>
       </div>
-    </section>
-  );
+      <div ref={stackRef} className={styles.stack}>
+        <div className={styles.rail} aria-hidden="true"><span /><i /></div>
+        {steps.map((step, index) => <article key={step.number} ref={element => { cardRefs.current[index] = element; }}
+          className={styles.card} id={`how-it-works-step-${step.number}`} style={{ '--card-index': index } as React.CSSProperties}>
+          <div className={styles.copy}>
+            <div className={styles.kicker}><span>{step.number}</span>{step.label}</div>
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+            <Link href={step.href} className={styles.learnMore} onFocus={event => revealCard(index, event.currentTarget)}>{step.action}<ArrowUpRight size={16} aria-hidden="true" /></Link>
+          </div>
+          <WorkflowVisual index={index} />
+        </article>)}
+      </div>
+    </div>
+  </section>;
 };

@@ -19,10 +19,10 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/AutoDocs-Logo.svg',
+        url: '/Docsynecx-Logo.svg',
         width: 1200,
         height: 630,
-        alt: 'AutoDocs Logistics Desk',
+        alt: 'Docsynecx Logistics Desk',
       },
     ],
   },
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: 'Logistics Document Automation & CargoWise Sync | AutoDocs',
     description:
       'Turn customer booking emails and shipment paperwork into structured CargoWise jobs automatically with AI checks.',
-    images: ['/AutoDocs-Logo.svg'],
+    images: ['/Docsynecx-Logo.svg'],
   },
 };
 

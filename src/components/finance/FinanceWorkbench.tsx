@@ -46,7 +46,7 @@ export function FinanceWorkbench() {
         <h3>{current.title}</h3>
         <p>{current.copy}</p>
         <ul className={s.checkList}>{current.points.map((point) => <li key={point}><Check size={16} aria-hidden="true" />{point}</li>)}</ul>
-        <a href="/#demo" className={s.textLink}>See it with your workflow <ArrowRight size={16} aria-hidden="true" /></a>
+        <a href="/demo/" className={s.textLink}>See it with your workflow <ArrowRight size={16} aria-hidden="true" /></a>
       </div>
 
       <div className={s.workbenchWindow}>

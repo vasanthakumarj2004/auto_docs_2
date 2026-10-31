@@ -19,10 +19,10 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/AutoDocs-Logo.svg',
+        url: '/Docsynecx-Logo.svg',
         width: 1200,
         height: 630,
-        alt: 'AutoDocs Finance Desk',
+        alt: 'Docsynecx Finance Desk',
       },
     ],
   },
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: 'AI Accounts Payable & Tally Automation Desk | AutoDocs',
     description:
       'Automate vendor bill processing, GST verification, 3-way matching, and auto-post vouchers directly into Tally and Zoho Books.',
-    images: ['/AutoDocs-Logo.svg'],
+    images: ['/Docsynecx-Logo.svg'],
   },
 };
 

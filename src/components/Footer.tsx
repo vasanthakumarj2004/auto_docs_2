@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowUpRight, FileSearch, ListChecks, Linkedin, Workflow } from 'lucide-react';
-import { AutoDocsLogo } from './AutoDocsLogo';
+import { DocsynecxLogo } from './DocsynecxLogo';
 import styles from './Footer.module.css';
 
 const navigation = [
@@ -9,7 +9,7 @@ const navigation = [
     { title: 'Platform', links: [
       { label: 'Finance desk', href: '/finance/' },
       { label: 'Shipment desk', href: '/logistics/' },
-      { label: 'How it works', href: '/#how-it-works' },
+      { label: 'How we do', href: '/#how-it-works' },
     ] },
     { title: 'Solutions', links: [
       { label: 'Accounts payable', href: '/accounts-payable/' },
@@ -25,19 +25,17 @@ const navigation = [
     ] },
     { title: 'Resources', links: [
       { label: 'Free calculator', href: '/calculator/' },
-      { label: 'Trade insights', href: '/#newsletter' },
       { label: 'Help centre', href: '/#faq' },
     ] },
   ],
   [
     { title: 'Company', links: [
-      { label: 'About us', href: '/#why-autodocs' },
       { label: 'Our customers', href: '/#customers' },
       { label: 'Rajadurai E-Vehicles', href: '/customers/rajadurai/' },
       { label: 'FT Logistics', href: '/customers/ft-logistics/' },
-      { label: 'Contact', href: '/#demo' },
+      { label: 'Contact', href: '/demo/' },
       { label: 'Start a free trial', href: '/free-trial/' },
-      { label: 'Book a demo', href: '/#demo-form' },
+      { label: 'Book a demo', href: '/demo/#demo-form' },
     ] },
   ],
 ];
@@ -47,8 +45,8 @@ export const Footer: React.FC = () => (
     <div className="site-shell">
       <div className={styles.main}>
         <div className={styles.brand}>
-          <Link href="/" className={styles.logoLink} aria-label="AutoDocs home">
-            <AutoDocsLogo className={styles.logo} />
+          <Link href="/" className={styles.logoLink} aria-label="Docsynecx home">
+            <DocsynecxLogo className={styles.logo} />
           </Link>
           <p className={styles.description}>
             The AI-Powered Document Automation Platform for Intelligent Processing, Data Extraction, and Business Workflows.
@@ -70,7 +68,7 @@ export const Footer: React.FC = () => (
               <span><Icon size={18} strokeWidth={1.6} aria-hidden="true" /></span>{label}
             </Link>)}
           </div>
-          <Link href="/#demo-form" className={styles.demoLink}>Talk to AutoDocs <ArrowUpRight size={15} aria-hidden="true" /></Link>
+          <Link href="/demo/#demo-form" className={styles.demoLink}>Talk to AutoDocs <ArrowUpRight size={15} aria-hidden="true" /></Link>
         </div>
 
         {navigation.map((groups, index) => <div className={styles.column} key={index}>

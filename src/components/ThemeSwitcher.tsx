@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useTransition } from 'react';
-import { Palette, Check, X, RotateCcw, Sliders, Droplet } from 'lucide-react';
+import { Palette, Check, X, RotateCcw, Sun, Moon, Droplet } from 'lucide-react';
+import { applyDarkTheme, DARK_THEME_KEY, DEFAULT_DARK_THEME, LOGO_DARK_THEME, LOGO_GREEN, parseDarkTheme, type DarkTheme } from '../lib/darkTheme';
 
 export interface ThemeOption {
   id: string;
@@ -13,6 +14,7 @@ export interface ThemeOption {
 
 export const THEME_OPTIONS: ThemeOption[] = [
   { id: 'current', name: 'Current Theme (Royal Violet / Teal)', color: '#8B32F7', hue: 267, description: 'Original Royal Violet & Teal' },
+  { id: 'logo', name: 'Logo theme', color: LOGO_GREEN, hue: LOGO_DARK_THEME.hue, description: `Docsynecx logo green (${LOGO_GREEN})` },
   { id: 'green', name: 'Green', color: '#059669', hue: 160, description: 'Enterprise Emerald' },
   { id: 'light-green', name: 'Light Green', color: '#16A34A', hue: 142, description: 'Fresh Lime & Mint' },
   { id: 'red', name: 'Red', color: '#DC2626', hue: 0, description: 'Bold Crimson Red' },
@@ -20,6 +22,8 @@ export const THEME_OPTIONS: ThemeOption[] = [
   { id: 'yellow', name: 'Yellow', color: '#D97706', hue: 36, description: 'Warm Amber & Gold' },
   { id: 'orange', name: 'Orange', color: '#EA580C', hue: 21, description: 'Vibrant Sunset Orange' },
 ];
+
+const DARK_THEME_OPTIONS: ThemeOption[] = THEME_OPTIONS;
 
 const BRAND_STYLE_PROPERTIES = [
   '--color-brand',
@@ -90,12 +94,31 @@ function getPaletteFromHue(hue: number, opacity: number = 100) {
 export const ThemeSwitcher: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'color' | 'opacity'>('color');
-  const [currentTheme, setCurrentTheme] = useState('current');
-  const [sliderHue, setSliderHue] = useState<number>(267);
-  const [opacity, setOpacity] = useState<number>(100);
-  const [isCustom, setIsCustom] = useState(false);
+  const [colorTarget, setColorTarget] = useState<'light' | 'dark'>('light');
+  const [lightTheme, setCurrentTheme] = useState('current');
+  const [lightHue, setSliderHue] = useState<number>(267);
+  const [lightOpacity, setOpacity] = useState<number>(100);
+  const [lightIsCustom, setIsCustom] = useState(false);
+  const [darkTheme, setDarkTheme] = useState<DarkTheme>(DEFAULT_DARK_THEME);
+  const currentTheme = colorTarget === 'dark' ? darkTheme.id : lightTheme;
+  const sliderHue = colorTarget === 'dark' ? darkTheme.hue : lightHue;
+  const opacity = colorTarget === 'dark' ? 100 : lightOpacity;
+  const isCustom = colorTarget === 'dark' ? darkTheme.id === 'custom' : lightIsCustom;
+  const themeOptions = colorTarget === 'dark' ? DARK_THEME_OPTIONS : THEME_OPTIONS;
   const [, startTransition] = useTransition();
   const panelRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+
+  const updateDarkTheme = (theme: DarkTheme) => {
+    setDarkTheme(theme);
+    applyDarkTheme(theme);
+    try { localStorage.setItem(DARK_THEME_KEY, JSON.stringify(theme)); } catch {}
+  };
+
+  const selectTarget = (target: 'light' | 'dark') => {
+    setColorTarget(target);
+    setActiveTab('color');
+  };
 
   // Apply theme and opacity in tandem across the DOM
   const applyThemeStyle = (
@@ -130,6 +153,8 @@ export const ThemeSwitcher: React.FC = () => {
       } catch {}
     } else {
       document.documentElement.setAttribute('data-theme', themeId);
+      // Clear the previous custom palette before applying a preset at any opacity.
+      BRAND_STYLE_PROPERTIES.forEach((prop) => rootStyle.removeProperty(prop));
       const preset = THEME_OPTIONS.find((t) => t.id === themeId);
 
       if (preset) {
@@ -159,6 +184,10 @@ export const ThemeSwitcher: React.FC = () => {
   };
 
   const handleHueChange = (newHue: number) => {
+    if (colorTarget === 'dark') {
+      updateDarkTheme({ id: 'custom', hue: newHue });
+      return;
+    }
     setSliderHue(newHue);
     setIsCustom(true);
     setCurrentTheme('custom');
@@ -166,30 +195,51 @@ export const ThemeSwitcher: React.FC = () => {
   };
 
   const handleOpacityChange = (newOpacity: number) => {
+    if (colorTarget === 'dark') return;
     setOpacity(newOpacity);
     applyThemeStyle(currentTheme, sliderHue, newOpacity, isCustom);
   };
 
   const handlePresetSelect = (themeId: string) => {
-    const preset = THEME_OPTIONS.find((t) => t.id === themeId);
+    const preset = themeOptions.find((t) => t.id === themeId);
+    if (colorTarget === 'dark') {
+      updateDarkTheme({ id: themeId, hue: preset?.hue ?? 267 });
+      return;
+    }
     setCurrentTheme(themeId);
     setIsCustom(false);
     if (preset) {
       setSliderHue(preset.hue);
     }
-    applyThemeStyle(themeId, preset?.hue || sliderHue, opacity, false);
+    applyThemeStyle(themeId, preset?.hue ?? sliderHue, opacity, false);
   };
+
+  useEffect(() => {
+    let saved = DEFAULT_DARK_THEME;
+    try { saved = parseDarkTheme(localStorage.getItem(DARK_THEME_KEY)); } catch {}
+    setDarkTheme(saved);
+    applyDarkTheme(saved);
+    const sync = (event: StorageEvent) => {
+      if (event.key !== DARK_THEME_KEY && event.key !== null) return;
+      const next = parseDarkTheme(event.newValue);
+      setDarkTheme(next);
+      applyDarkTheme(next);
+    };
+    window.addEventListener('storage', sync);
+    return () => window.removeEventListener('storage', sync);
+  }, []);
 
   useEffect(() => {
     try {
       const savedTheme = localStorage.getItem('autodocs-theme');
       const savedOpacity = localStorage.getItem('autodocs-theme-opacity');
-      const initialOpacity = savedOpacity ? Math.max(10, Math.min(100, parseInt(savedOpacity, 10))) : 100;
+      const parsedOpacity = Number(savedOpacity ?? 100);
+      const initialOpacity = Number.isFinite(parsedOpacity) ? Math.max(15, Math.min(100, parsedOpacity)) : 100;
       setOpacity(initialOpacity);
 
       if (savedTheme && savedTheme.startsWith('custom:')) {
         const hueVal = parseInt(savedTheme.split(':')[1], 10);
-        if (!isNaN(hueVal)) {
+        if (Number.isFinite(hueVal) && hueVal >= 0 && hueVal <= 360) {
           setSliderHue(hueVal);
           setIsCustom(true);
           setCurrentTheme('custom');
@@ -203,7 +253,7 @@ export const ThemeSwitcher: React.FC = () => {
         if (preset) setSliderHue(preset.hue);
         setCurrentTheme(savedTheme);
         setIsCustom(false);
-        applyThemeStyle(savedTheme, preset?.hue || 267, initialOpacity, false);
+        applyThemeStyle(savedTheme, preset?.hue ?? 267, initialOpacity, false);
       } else {
         applyThemeStyle('current', 267, initialOpacity, false);
       }
@@ -219,7 +269,7 @@ export const ThemeSwitcher: React.FC = () => {
       }
     };
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setIsOpen(false);
+      if (event.key === 'Escape') { setIsOpen(false); triggerRef.current?.focus(); }
     };
 
     if (isOpen) {
@@ -232,8 +282,10 @@ export const ThemeSwitcher: React.FC = () => {
     };
   }, [isOpen]);
 
-  const activePreset = THEME_OPTIONS.find((t) => t.id === currentTheme);
-  const activeColorHex = isCustom
+  const activePreset = themeOptions.find((t) => t.id === currentTheme);
+  const activeColorHex = colorTarget === 'dark'
+    ? (currentTheme === 'current' ? '#100A21' : hslToHex(sliderHue, 53, 8.4))
+    : isCustom
     ? getPaletteFromHue(sliderHue).solidHex
     : activePreset?.color || '#8B32F7';
 
@@ -270,9 +322,12 @@ export const ThemeSwitcher: React.FC = () => {
 
       {/* Discreet, unnoticeable trigger button: faint 35% opacity until hovered */}
       <button
+        ref={triggerRef}
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
         aria-label="Theme & opacity switcher"
+        aria-expanded={isOpen}
+        aria-controls="theme-studio"
         title="Theme Switcher"
         className="h-7 w-7 sm:h-8 sm:w-8 rounded-full border border-slate-300/60 bg-white/70 backdrop-blur-md shadow-2xs opacity-35 hover:opacity-100 hover:border-slate-400 hover:shadow-md transition-all flex items-center justify-center text-slate-500 hover:text-slate-900 cursor-pointer"
       >
@@ -282,9 +337,10 @@ export const ThemeSwitcher: React.FC = () => {
       {/* Flyout popup card */}
       {isOpen && (
         <div
+          id="theme-studio"
           role="dialog"
           aria-label="Theme options"
-          className="absolute bottom-9 right-0 sm:bottom-10 sm:right-0 w-76 sm:w-80 rounded-xl border border-slate-200/90 bg-white/98 backdrop-blur-xl shadow-2xl p-3.5 animate-in fade-in zoom-in-95 duration-150"
+          className="absolute bottom-9 right-0 sm:bottom-10 sm:right-0 w-80 max-w-[calc(100vw-24px)] max-h-[calc(100svh-72px)] overflow-y-auto rounded-xl border border-slate-200/90 bg-white text-slate-800 shadow-2xl p-3.5 animate-in fade-in zoom-in-95 duration-150"
         >
           {/* Header */}
           <div className="flex items-center justify-between pb-2 mb-2.5 border-b border-slate-100">
@@ -302,7 +358,7 @@ export const ThemeSwitcher: React.FC = () => {
             </div>
             <button
               type="button"
-              onClick={() => setIsOpen(false)}
+              onClick={() => { setIsOpen(false); triggerRef.current?.focus(); }}
               className="text-slate-400 hover:text-slate-700 p-1 rounded-md cursor-pointer transition-colors"
               aria-label="Close theme menu"
             >
@@ -310,7 +366,21 @@ export const ThemeSwitcher: React.FC = () => {
             </button>
           </div>
 
-          {/* Segmented Tabs: Color vs Opacity */}
+          <div role="group" aria-label="Choose which colors to change" className="grid grid-cols-2 gap-2 mb-2">
+            {(['light', 'dark'] as const).map(target => (
+              <button key={target} type="button" aria-pressed={colorTarget === target} onClick={() => selectTarget(target)}
+                className={`flex items-center justify-center gap-2 rounded-lg border px-3 py-2.5 text-xs font-semibold cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-500 ${colorTarget === target ? 'border-slate-800 bg-slate-800 text-white' : 'border-slate-200 bg-white text-slate-600 hover:bg-slate-50'}`}>
+                {target === 'light' ? <Sun size={15} /> : <Moon size={15} />}
+                {target === 'light' ? 'Light color' : 'Dark color'}
+              </button>
+            ))}
+          </div>
+          <p className="mb-3 text-[10px] leading-relaxed text-slate-500">
+            {colorTarget === 'light' ? 'Change the lighter glow, buttons and accents.' : 'Change the dark background. Your light color stays the same.'}
+          </p>
+
+          {/* Opacity applies only to accents; dark backgrounds stay opaque. */}
+          {colorTarget === 'light' && <>
           <div className="grid grid-cols-2 p-1 mb-3 rounded-lg bg-slate-100 text-xs font-semibold">
             <button
               type="button"
@@ -340,6 +410,7 @@ export const ThemeSwitcher: React.FC = () => {
               </span>
             </button>
           </div>
+          </>}
 
           {/* TAB 1: COLOR (SPECTRUM SLIDER + PRESETS) */}
           {activeTab === 'color' && (
@@ -375,8 +446,8 @@ export const ThemeSwitcher: React.FC = () => {
                       const val = Number(e.target.value);
                       startTransition(() => handleHueChange(val));
                     }}
-                    aria-label="Color hue spectrum slider"
-                    className="theme-control-slider w-full h-3 rounded-full appearance-none cursor-pointer outline-none shadow-inner"
+                    aria-label={`${colorTarget === 'dark' ? 'Dark background' : 'Light accent'} color hue`}
+                    className="theme-control-slider w-full h-3 rounded-full appearance-none cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-slate-500 shadow-inner"
                     style={{
                       background:
                         'linear-gradient(to right, #ff0000 0%, #ff8000 14%, #ffff00 28%, #00ff00 42%, #00ffff 57%, #0077ff 71%, #8800ff 85%, #ff0080 93%, #ff0000 100%)',
@@ -395,29 +466,29 @@ export const ThemeSwitcher: React.FC = () => {
               {/* Presets Header */}
               <div className="flex items-center justify-between px-0.5 pb-1 mb-1.5">
                 <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider">
-                  Presets (7)
+                  Presets ({themeOptions.length})
                 </span>
-                {isCustom && (
+                {(isCustom || currentTheme !== 'current') && (
                   <button
                     type="button"
                     onClick={() => handlePresetSelect('current')}
                     className="text-[10px] text-brand hover:underline flex items-center gap-1 font-medium cursor-pointer"
-                    title="Reset to current default theme"
+                    title={`Reset ${colorTarget} color to original purple`}
                   >
                     <RotateCcw size={10} /> Reset
                   </button>
                 )}
               </div>
 
-              {/* 7 Preset Buttons */}
-              <div className="flex flex-col gap-1" role="menu">
-                {THEME_OPTIONS.map((theme) => {
+              <div className="flex flex-col gap-1" role="group" aria-label={`${colorTarget} color presets`}>
+                {themeOptions.map((theme) => {
                   const isSelected = !isCustom && currentTheme === theme.id;
                   return (
                     <button
                       key={theme.id}
                       type="button"
-                      role="menuitem"
+                      aria-pressed={isSelected}
+                      title={theme.description}
                       onClick={() => handlePresetSelect(theme.id)}
                       className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors text-left cursor-pointer ${
                         isSelected
@@ -428,10 +499,11 @@ export const ThemeSwitcher: React.FC = () => {
                       <div className="flex items-center gap-2">
                         <span
                           className="h-3.5 w-3.5 rounded-full border border-black/10 shrink-0 shadow-2xs"
-                          style={{ backgroundColor: theme.color }}
+                          style={{ backgroundColor: colorTarget === 'dark' && theme.id !== 'logo' ? (theme.id === 'current' ? '#100a21' : hslToHex(theme.hue, 53, 8.4)) : theme.color }}
                           aria-hidden="true"
                         />
-                        <span className="truncate">{theme.name}</span>
+                        <span className="truncate">{theme.id === 'current' ? 'Original purple' : theme.name}</span>
+                        {theme.id === 'logo' && <span className="text-[9px] font-mono text-slate-500">{LOGO_GREEN}</span>}
                       </div>
                       {isSelected && (
                         <Check

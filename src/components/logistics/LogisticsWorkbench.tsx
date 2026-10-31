@@ -141,7 +141,7 @@ export function LogisticsWorkbench() {
               </li>
             ))}
           </ul>
-          <a href="/#demo" className={s.textLink}>
+          <a href="/demo/" className={s.textLink}>
             See it with your forwarder workflow <ArrowRight size={16} aria-hidden="true" />
           </a>
         </div>

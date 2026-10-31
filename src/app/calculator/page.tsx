@@ -19,10 +19,10 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/AutoDocs-Logo.svg',
+        url: '/Docsynecx-Logo.svg',
         width: 1200,
         height: 630,
-        alt: 'AutoDocs ROI Calculator',
+        alt: 'Docsynecx ROI Calculator',
       },
     ],
   },
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     title: 'Free Accounts Payable ROI Calculator | AutoDocs',
     description:
       'Calculate your monthly hours and financial savings with AutoDocs AI automation.',
-    images: ['/AutoDocs-Logo.svg'],
+    images: ['/Docsynecx-Logo.svg'],
   },
 };
 

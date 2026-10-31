@@ -29,7 +29,7 @@ export default function FreeTrialPage() {
           banking partner rollout.
         </p>
         <div className="mt-6 flex justify-center gap-3">
-          <Link href="/#demo" className="button-primary cursor-pointer">
+          <Link href="/demo/" className="button-primary cursor-pointer">
             Book a demo for instant access
           </Link>
           <Link href="/finance" className="button-secondary cursor-pointer">

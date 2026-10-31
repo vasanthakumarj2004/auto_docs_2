@@ -2,24 +2,45 @@
 
 import React from 'react';
 import { useRouter } from '../../lib/router';
+import { useLandingLayout } from '../LandingLayoutProvider';
 
 export const HeroStage: React.FC = () => {
   const { navigate } = useRouter();
+  const { appearance } = useLandingLayout();
+  const isDark = appearance === 'dark';
 
   return (
     <div className="relative w-full flex flex-col justify-start select-none pt-1 pb-4 z-10">
       {/* 1. Frosted Tag Pill with High Contrast */}
-      <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-violet-50 border border-violet-200/90 shadow-xs mb-5 w-fit select-none">
+      <div
+        className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full shadow-xs mb-5 w-fit select-none border transition-colors ${
+          isDark
+            ? 'bg-white/[0.06] border-white/15 text-violet-200'
+            : 'bg-violet-50 border-violet-200/90 text-violet-900'
+        }`}
+      >
         <span className="relative flex h-2 w-2">
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-violet-600" />
+          <span
+            className={`relative inline-flex rounded-full h-2 w-2 ${
+              isDark ? 'bg-violet-400' : 'bg-violet-600'
+            }`}
+          />
         </span>
-        <span className="text-xs sm:text-[13px] font-bold text-violet-900 tracking-tight">
+        <span
+          className={`text-xs sm:text-[13px] font-bold tracking-tight ${
+            isDark ? 'text-violet-200' : 'text-violet-900'
+          }`}
+        >
           For businesses that run on Tally, an ERP, or CargoWise
         </span>
       </div>
 
       {/* 2. 4-Line Balanced Headline with Crisp Contrast */}
-      <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-extrabold tracking-[-0.03em] leading-[1.12] text-left text-wrap-balance text-slate-950">
+      <h1
+        className={`text-4xl sm:text-5xl lg:text-[54px] font-extrabold tracking-[-0.03em] leading-[1.12] text-left text-wrap-balance transition-colors ${
+          isDark ? 'text-white' : 'text-slate-950'
+        }`}
+      >
         <span className="block">Grow the</span>
         <span className="block">business, not</span>
         <span className="block">the data-</span>
@@ -27,11 +48,15 @@ export const HeroStage: React.FC = () => {
       </h1>
 
       {/* 3. Subtext */}
-      <p className="mt-5 text-base sm:text-[18px] text-slate-600 leading-[1.58] max-w-[530px] font-normal">
+      <p
+        className={`mt-5 text-base sm:text-[18px] leading-[1.58] max-w-[530px] font-normal transition-colors ${
+          isDark ? 'text-slate-300' : 'text-slate-600'
+        }`}
+      >
         Bills read, checked, paid and posted to Tally. Emails become CargoWise jobs. Your team handles exceptions, not typing.
       </p>
 
-      {/* 4. Reference fill rises from the bottom on hover or keyboard focus. */}
+      {/* 4. Desk CTAs */}
       <div className="mt-7 flex flex-wrap items-center gap-4">
         {/* Royal Violet CTA: Run a finance desk */}
         <a
@@ -85,7 +110,11 @@ export const HeroStage: React.FC = () => {
       </div>
 
       {/* 5. Trust Bullets */}
-      <div className="mt-7 flex flex-wrap items-center gap-8 text-[15px] text-slate-600 font-medium">
+      <div
+        className={`mt-7 flex flex-wrap items-center gap-8 text-[15px] font-medium transition-colors ${
+          isDark ? 'text-slate-300' : 'text-slate-600'
+        }`}
+      >
         <span className="inline-flex items-center gap-2.5">
           <span className="h-2 w-2 rounded-full bg-brand-violet" />
           Built around your approvals

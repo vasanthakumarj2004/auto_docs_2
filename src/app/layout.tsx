@@ -4,6 +4,12 @@ import '@/src/index.css';
 import { RouterProvider } from '@/src/lib/router';
 import { VideoProvider } from '@/src/components/video/VideoContext';
 import { ThemeSwitcher } from '@/src/components/ThemeSwitcher';
+import { LandingLayoutProvider } from '@/src/components/LandingLayoutProvider';
+import { LayoutSwitcher } from '@/src/components/LayoutSwitcher';
+import { V2ViewportDarkSwitcher } from '@/src/components/V2ViewportDarkSwitcher';
+import { darkThemeInitScript } from '@/src/lib/darkTheme';
+import { ResourceCardStyleProvider } from '@/src/components/ResourceCardStyleProvider';
+import { ResourceCardSwitcher } from '@/src/components/ResourceCardSwitcher';
 
 export const viewport: Viewport = {
   themeColor: '#8B32F7',
@@ -52,10 +58,10 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/autodocs-logo.svg',
+        url: '/Docsynecx-Logo.svg',
         width: 1200,
         height: 630,
-        alt: 'AutoDocs Document AI Platform',
+        alt: 'Docsynecx Document AI Platform',
       },
     ],
   },
@@ -64,7 +70,7 @@ export const metadata: Metadata = {
     title: 'AutoDocs — Grow the business, not the data-entry desk',
     description:
       'Bills read, checked, paid and posted to Tally. Emails become CargoWise jobs. Your team handles exceptions, not typing.',
-    images: ['/autodocs-logo.svg'],
+    images: ['/Docsynecx-Logo.svg'],
   },
   robots: {
     index: true,
@@ -80,6 +86,7 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: '/favicon.ico', sizes: 'any' },
+      { url: '/logo-icon.svg', type: 'image/svg+xml' },
       { url: '/icon.svg', type: 'image/svg+xml' },
     ],
     apple: [{ url: '/apple-touch-icon.png', sizes: '180x180' }],
@@ -90,9 +97,9 @@ export const metadata: Metadata = {
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'AutoDocs',
-  url: 'https://autodocs.com',
-  logo: 'https://autodocs.com/autodocs-logo.svg',
+  name: 'Docsynecx',
+  url: 'https://docsynecx.com',
+  logo: 'https://docsynecx.com/Docsynecx-Logo.svg',
   description:
     'AI-powered document automation for finance and logistics teams running on Tally, Zoho Books, and CargoWise.',
   sameAs: [
@@ -102,7 +109,7 @@ const organizationSchema = {
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer support',
-    url: 'https://autodocs.com/#demo',
+    url: 'https://autodocs.com/demo/',
   },
 };
 
@@ -114,6 +121,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: darkThemeInitScript }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -137,10 +145,17 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-screen bg-white text-slate-800 antialiased font-sans" suppressHydrationWarning>
-        <RouterProvider>
-          <VideoProvider>{children}</VideoProvider>
-        </RouterProvider>
-        <ThemeSwitcher />
+        <LandingLayoutProvider>
+          <ResourceCardStyleProvider>
+            <RouterProvider>
+              <VideoProvider>{children}</VideoProvider>
+            </RouterProvider>
+            <LayoutSwitcher />
+            <ThemeSwitcher />
+            <V2ViewportDarkSwitcher />
+            <ResourceCardSwitcher />
+          </ResourceCardStyleProvider>
+        </LandingLayoutProvider>
       </body>
     </html>
   );
