@@ -131,13 +131,13 @@
 .steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; list-style: none; padding: 0; }
 .steps li { padding: 26px 24px; border: 1px solid var(--landing-line); border-top: 3px solid var(--color-brand); border-radius: 0 0 12px 12px; background: white; }
 .integrationLayout { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; }
-.integrationLayout .sectionHeading, .faqLayout .sectionHeading { margin-bottom: 24px; }
+.integrationLayout .sectionHeading { margin-bottom: 24px; }
 .integrationLayout .textLink { margin-top: 24px; }
 .integrationPanel { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding: 24px; background: white; border: 1px solid var(--landing-line); border-radius: 16px; }
 .integrationPanel > div { padding: 22px 18px; border: 1px solid var(--landing-line); border-radius: 8px; background: var(--landing-bg); }
 .integrationPanel strong { font-size: 14px; font-weight: 700; }
 .integrationPanel span { display: block; margin-top: 7px; font-size: 11px; line-height: 1.5; color: var(--landing-muted); }
-.faqLayout { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0, 1.25fr); gap: 70px; align-items: start; }
+.faqLayout { max-width: 820px; margin-inline: auto; }
 .inlineLink { color: var(--color-brand-text); font-weight: 600; }
 .closing { padding: 0 0 40px; }
 .closingCard { display: flex; align-items: center; justify-content: space-between; gap: 60px; padding: 44px; border: 1px solid var(--landing-line); border-radius: 18px; background: white; }
@@ -154,7 +154,7 @@
 .footer ul { display: grid; gap: 13px; font-size: 12px; line-height: 1.7; }
 .footer a:hover { color: white; text-decoration: underline; text-underline-offset: 5px; }
 .footerBottom { display: flex; justify-content: space-between; gap: 24px; padding: 24px 0; border-top: 1px solid #1f2937; font-size: 10px; line-height: 1.8; }
-@media (max-width: 1100px) { .navigation, .navGroup { gap: 14px; } .navbar { gap: 20px; } .navigation { font-size: 12px; } .heroGrid { gap: 24px; } .heroActions .heroButton { font-size: 11px; padding-inline: 12px; } .sectionHeading { gap: 30px; } .sectionCopy { max-width: 320px; } .industries, .benefits, .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } .industries article:last-child { grid-column: 1 / -1; } .faqLayout, .integrationLayout { gap: 40px; } }
+@media (max-width: 1100px) { .navigation, .navGroup { gap: 14px; } .navbar { gap: 20px; } .navigation { font-size: 12px; } .heroGrid { gap: 24px; } .heroActions .heroButton { font-size: 11px; padding-inline: 12px; } .sectionHeading { gap: 30px; } .sectionCopy { max-width: 320px; } .industries, .benefits, .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } .industries article:last-child { grid-column: 1 / -1; } .integrationLayout { gap: 40px; } }
 @media (max-width: 900px) {
   .navbar { display: flex; justify-content: space-between; min-height: 72px; }
   .desktopDemo { display: none; }
@@ -179,7 +179,7 @@
   .statLabel span { display: block; }
   .stories { grid-template-columns: 1fr; }
   .stories h3 { margin-top: 18px; }
-  .faqLayout, .integrationLayout { grid-template-columns: 1fr; gap: 32px; }
+  .integrationLayout { grid-template-columns: 1fr; gap: 32px; }
   .closingCard { padding: 32px; gap: 30px; flex-direction: column; align-items: start; }
   .footerGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
   .footerGrid > div { grid-column: 1 / -1; }

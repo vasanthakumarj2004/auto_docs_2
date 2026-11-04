@@ -106,7 +106,7 @@ export function LandingPage() {
       </section>
       <section id="faq" className={styles.section} aria-labelledby="faq-title">
         <div className={`site-shell ${styles.faqLayout}`}>
-          <div><SectionHeading id="faq-title" eyebrow="FAQ" title="Questions teams ask before they start." /><p className={styles.sectionCopy}>Can’t find your answer? <Link href="/demo/" className={styles.inlineLink}>Book a demo</Link> and we’ll walk through your workflow.</p></div>
+          <h2 id="faq-title" className="sr-only">Frequently asked questions</h2>
           <SharedFaqAccordion items={landingFaqs} defaultOpenIndex={0} toggleStyle="plus" />
         </div>
       </section>
