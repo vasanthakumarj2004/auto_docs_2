@@ -4,9 +4,16 @@
 @tailwind components;
 @tailwind utilities;
 
-:root,
-:root[data-theme="current"] {
-  /* Current Theme: Royal Violet */
+:root {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  color: #0f172a;
+  background: #FAFAFA;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+:root[data-theme="violet"] {
+  /* Optional Royal Violet preset; never the first-visit default. */
   --color-brand: #8B32F7;
   --color-brand-strong: #7022D1;
   --color-brand-soft: #F8F3FF;
@@ -21,15 +28,12 @@
   --color-brand-900: #411974;
   --color-paper: #FAFAFA;
   --color-ink: #21182B;
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  color: #0f172a;
-  background: #FAFAFA;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
 }
 
+:root,
+:root[data-theme="current"],
 :root[data-theme="logo"] {
-  /* Logo Theme: Docsynecx Signature Green (#18CB96) */
+  /* Public default, including no-JS visits and legacy default preferences. */
   --color-brand: #18CB96;
   --color-brand-strong: #0FA879;
   --color-brand-soft: #E8FAF4;

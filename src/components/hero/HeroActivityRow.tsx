@@ -68,7 +68,7 @@ export const HeroActivityRow: React.FC<HeroActivityRowProps> = ({ isPosted = fal
       {/* Optional Help Circle button behind SHOW_HELP_BUTTON flag */}
       {SHOW_HELP_BUTTON && (
         <div
-          className="h-10 w-10 rounded-full bg-[#8B32F7] text-white shadow-lg flex items-center justify-center hover:scale-105 transition-all cursor-pointer shrink-0"
+          className="h-10 w-10 rounded-full bg-brand-violet text-white shadow-lg flex items-center justify-center hover:scale-105 transition-all cursor-pointer shrink-0"
           title="AutoDocs Assistant"
           aria-label="AutoDocs Assistant"
         >

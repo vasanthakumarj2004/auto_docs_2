@@ -13,7 +13,7 @@ export interface ThemeOption {
 }
 
 export const THEME_OPTIONS: ThemeOption[] = [
-  { id: 'current', name: 'Current Theme (Royal Violet / Teal)', color: '#8B32F7', hue: 267, description: 'Original Royal Violet & Teal' },
+  { id: 'violet', name: 'Royal Violet', color: '#8B32F7', hue: 267, description: 'Optional Royal Violet palette' },
   { id: 'logo', name: 'Logo theme', color: LOGO_GREEN, hue: LOGO_DARK_THEME.hue, description: `Docsynecx logo green (${LOGO_GREEN})` },
   { id: 'green', name: 'Green', color: '#059669', hue: 160, description: 'Enterprise Emerald' },
   { id: 'light-green', name: 'Light Green', color: '#16A34A', hue: 142, description: 'Fresh Lime & Mint' },
@@ -23,7 +23,7 @@ export const THEME_OPTIONS: ThemeOption[] = [
   { id: 'orange', name: 'Orange', color: '#EA580C', hue: 21, description: 'Vibrant Sunset Orange' },
 ];
 
-const DARK_THEME_OPTIONS: ThemeOption[] = THEME_OPTIONS;
+const DARK_THEME_OPTIONS: ThemeOption[] = THEME_OPTIONS.map(theme => theme.id === 'violet' ? { ...theme, id: 'current', name: 'Original purple' } : theme);
 
 const BRAND_STYLE_PROPERTIES = [
   '--color-brand',
@@ -95,8 +95,8 @@ export const ThemeSwitcher: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'color' | 'opacity'>('color');
   const [colorTarget, setColorTarget] = useState<'light' | 'dark'>('light');
-  const [lightTheme, setCurrentTheme] = useState('current');
-  const [lightHue, setSliderHue] = useState<number>(267);
+  const [lightTheme, setCurrentTheme] = useState('logo');
+  const [lightHue, setSliderHue] = useState<number>(LOGO_DARK_THEME.hue);
   const [lightOpacity, setOpacity] = useState<number>(100);
   const [lightIsCustom, setIsCustom] = useState(false);
   const [darkTheme, setDarkTheme] = useState<DarkTheme>(DEFAULT_DARK_THEME);
@@ -231,7 +231,9 @@ export const ThemeSwitcher: React.FC = () => {
 
   useEffect(() => {
     try {
-      const savedTheme = localStorage.getItem('autodocs-theme');
+      const storedTheme = localStorage.getItem('autodocs-theme');
+      // The old picker saved "current" even when visitors never chose a color.
+      const savedTheme = !storedTheme || storedTheme === 'current' ? 'logo' : storedTheme;
       const savedOpacity = localStorage.getItem('autodocs-theme-opacity');
       const parsedOpacity = Number(savedOpacity ?? 100);
       const initialOpacity = Number.isFinite(parsedOpacity) ? Math.max(15, Math.min(100, parsedOpacity)) : 100;
@@ -253,12 +255,12 @@ export const ThemeSwitcher: React.FC = () => {
         if (preset) setSliderHue(preset.hue);
         setCurrentTheme(savedTheme);
         setIsCustom(false);
-        applyThemeStyle(savedTheme, preset?.hue ?? 267, initialOpacity, false);
+        applyThemeStyle(savedTheme, preset?.hue ?? LOGO_DARK_THEME.hue, initialOpacity, false);
       } else {
-        applyThemeStyle('current', 267, initialOpacity, false);
+        applyThemeStyle('logo', LOGO_DARK_THEME.hue, initialOpacity, false);
       }
     } catch {
-      applyThemeStyle('current', 267, 100, false);
+      applyThemeStyle('logo', LOGO_DARK_THEME.hue, 100, false);
     }
   }, []);
 
@@ -287,7 +289,7 @@ export const ThemeSwitcher: React.FC = () => {
     ? (currentTheme === 'current' ? '#100A21' : hslToHex(sliderHue, 53, 8.4))
     : isCustom
     ? getPaletteFromHue(sliderHue).solidHex
-    : activePreset?.color || '#8B32F7';
+    : activePreset?.color || LOGO_GREEN;
 
   return (
     <div
@@ -468,12 +470,12 @@ export const ThemeSwitcher: React.FC = () => {
                 <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider">
                   Presets ({themeOptions.length})
                 </span>
-                {(isCustom || currentTheme !== 'current') && (
+                {(isCustom || currentTheme !== (colorTarget === 'dark' ? 'current' : 'logo')) && (
                   <button
                     type="button"
-                    onClick={() => handlePresetSelect('current')}
+                    onClick={() => handlePresetSelect(colorTarget === 'dark' ? 'current' : 'logo')}
                     className="text-[10px] text-brand hover:underline flex items-center gap-1 font-medium cursor-pointer"
-                    title={`Reset ${colorTarget} color to original purple`}
+                    title={colorTarget === 'dark' ? 'Reset dark color to original purple' : 'Reset light color to Docsynecx green'}
                   >
                     <RotateCcw size={10} /> Reset
                   </button>

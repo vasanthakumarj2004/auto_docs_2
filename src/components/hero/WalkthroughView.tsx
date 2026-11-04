@@ -105,7 +105,7 @@ export const WalkthroughView: React.FC<WalkthroughViewProps> = ({
             onClick={() => setDisplayMode('player')}
             className={`inline-flex items-center gap-1.5 rounded px-2.5 py-1 transition-all cursor-pointer outline-none ${
               displayMode === 'player'
-                ? 'bg-[#8B32F7] text-white font-bold shadow-xs border border-violet-400'
+                ? 'bg-brand-violet text-white font-bold shadow-xs border border-violet-400'
                 : 'bg-slate-900 text-slate-400 border border-slate-800 hover:text-white hover:bg-slate-800'
             }`}
           >
@@ -120,7 +120,7 @@ export const WalkthroughView: React.FC<WalkthroughViewProps> = ({
             onClick={() => setDisplayMode('storyboard')}
             className={`inline-flex items-center gap-1.5 rounded px-2.5 py-1 transition-all cursor-pointer outline-none ${
               displayMode === 'storyboard'
-                ? 'bg-[#8B32F7] text-white font-bold shadow-xs border border-violet-400'
+                ? 'bg-brand-violet text-white font-bold shadow-xs border border-violet-400'
                 : 'bg-slate-900 text-slate-400 border border-slate-800 hover:text-white hover:bg-slate-800'
             }`}
           >
@@ -335,7 +335,7 @@ export const WalkthroughView: React.FC<WalkthroughViewProps> = ({
                 type="button"
                 onClick={togglePlay}
                 aria-label={isPlaying ? 'Pause walkthrough' : 'Play walkthrough'}
-                className="flex h-7 w-7 items-center justify-center rounded-md bg-[#8B32F7] text-white hover:bg-violet-600 transition-colors cursor-pointer"
+                className="flex h-7 w-7 items-center justify-center rounded-md bg-brand-violet text-white hover:bg-violet-600 transition-colors cursor-pointer"
               >
                 {isPlaying ? <Pause size={12} /> : <Play size={12} className="ml-0.5" />}
               </button>

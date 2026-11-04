@@ -5,12 +5,12 @@ import { RouterProvider } from '@/src/lib/router';
 import { VideoProvider } from '@/src/components/video/VideoContext';
 import { ThemeSwitcher } from '@/src/components/ThemeSwitcher';
 import { LandingLayoutProvider } from '@/src/components/LandingLayoutProvider';
-import { darkThemeInitScript } from '@/src/lib/darkTheme';
+import { darkThemeInitScript, LOGO_GREEN } from '@/src/lib/darkTheme';
 import { ResourceCardStyleProvider } from '@/src/components/ResourceCardStyleProvider';
 import { ResourceCardSwitcher } from '@/src/components/ResourceCardSwitcher';
 
 export const viewport: Viewport = {
-  themeColor: '#8B32F7',
+  themeColor: LOGO_GREEN,
   width: 'device-width',
   initialScale: 1,
 };
@@ -117,7 +117,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" data-theme="logo" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: darkThemeInitScript }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -138,7 +138,7 @@ export default function RootLayout({
         />
         <script
           dangerouslySetInnerHTML={{
-            __html: `(function(){try{var t=localStorage.getItem('autodocs-theme');if(t&&t.indexOf('custom:')===0){var h=parseInt(t.split(':')[1],10);if(!isNaN(h)){var isY=h>=35&&h<=75,bL=isY?45:54,sL=isY?38:45,tL=isY?25:32,s=document.documentElement.style;document.documentElement.setAttribute('data-theme','custom');s.setProperty('--color-brand','hsl('+h+', 92%, '+bL+'%)');s.setProperty('--color-brand-strong','hsl('+h+', 94%, '+sL+'%)');s.setProperty('--color-brand-soft','hsl('+h+', 90%, 97%)');s.setProperty('--color-brand-border','hsl('+h+', 80%, 86%)');s.setProperty('--color-brand-text','hsl('+h+', 92%, '+tL+'%)');s.setProperty('--color-brand-50','hsl('+h+', 90%, 97%)');s.setProperty('--color-brand-100','hsl('+h+', 85%, 93%)');s.setProperty('--color-brand-200','hsl('+h+', 80%, 86%)');s.setProperty('--color-brand-400','hsl('+h+', 80%, 70%)');s.setProperty('--color-brand-500','hsl('+h+', 92%, '+bL+'%)');s.setProperty('--color-brand-800','hsl('+h+', 92%, '+tL+'%)');s.setProperty('--color-brand-900','hsl('+h+', 95%, 22%)');}}else if(t){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();`,
+            __html: `(function(){try{var t=localStorage.getItem('autodocs-theme')||'logo';if(t==='current')t='logo';if(t&&t.indexOf('custom:')===0){var h=parseInt(t.split(':')[1],10);if(Number.isFinite(h)&&h>=0&&h<=360){var isY=h>=35&&h<=75,bL=isY?45:54,sL=isY?38:45,tL=isY?25:32,s=document.documentElement.style;document.documentElement.setAttribute('data-theme','custom');s.setProperty('--color-brand','hsl('+h+', 92%, '+bL+'%)');s.setProperty('--color-brand-strong','hsl('+h+', 94%, '+sL+'%)');s.setProperty('--color-brand-soft','hsl('+h+', 90%, 97%)');s.setProperty('--color-brand-border','hsl('+h+', 80%, 86%)');s.setProperty('--color-brand-text','hsl('+h+', 92%, '+tL+'%)');s.setProperty('--color-brand-50','hsl('+h+', 90%, 97%)');s.setProperty('--color-brand-100','hsl('+h+', 85%, 93%)');s.setProperty('--color-brand-200','hsl('+h+', 80%, 86%)');s.setProperty('--color-brand-400','hsl('+h+', 80%, 70%)');s.setProperty('--color-brand-500','hsl('+h+', 92%, '+bL+'%)');s.setProperty('--color-brand-800','hsl('+h+', 92%, '+tL+'%)');s.setProperty('--color-brand-900','hsl('+h+', 95%, 22%)');}}else if(['logo','violet','green','light-green','red','blue','yellow','orange'].includes(t)){document.documentElement.setAttribute('data-theme',t);}}catch(e){}})();`,
           }}
         />
       </head>
