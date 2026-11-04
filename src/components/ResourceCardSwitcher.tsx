@@ -1,11 +1,13 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { ArrowUpRight, Check, PanelsTopLeft, X } from 'lucide-react';
 import { RESOURCE_CARD_STYLES, RESOURCE_PREVIEW_EVENT, useResourceCardStyle } from './ResourceCardStyleProvider';
 import styles from './ResourceCardSwitcher.module.css';
 
 export function ResourceCardSwitcher() {
+  const pathname = usePathname();
   const { cardStyle, setCardStyle } = useResourceCardStyle();
   const [open, setOpen] = useState(false);
   const root = useRef<HTMLDivElement>(null);
@@ -19,6 +21,7 @@ export function ResourceCardSwitcher() {
     document.addEventListener('keydown', escape);
     return () => { document.removeEventListener('pointerdown', outside); document.removeEventListener('keydown', escape); };
   }, [open]);
+  if (pathname === '/') return null;
   return <div className={styles.root} ref={root} data-resource-card-switcher>
     <button ref={trigger} type="button" className={styles.trigger} aria-expanded={open} aria-controls="resource-card-options" onClick={() => setOpen(!open)}>
       <PanelsTopLeft size={15} aria-hidden="true" /><span>Cards</span><strong>{selected.name}</strong>

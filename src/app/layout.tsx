@@ -5,8 +5,6 @@ import { RouterProvider } from '@/src/lib/router';
 import { VideoProvider } from '@/src/components/video/VideoContext';
 import { ThemeSwitcher } from '@/src/components/ThemeSwitcher';
 import { LandingLayoutProvider } from '@/src/components/LandingLayoutProvider';
-import { LayoutSwitcher } from '@/src/components/LayoutSwitcher';
-import { V2ViewportDarkSwitcher } from '@/src/components/V2ViewportDarkSwitcher';
 import { darkThemeInitScript } from '@/src/lib/darkTheme';
 import { ResourceCardStyleProvider } from '@/src/components/ResourceCardStyleProvider';
 import { ResourceCardSwitcher } from '@/src/components/ResourceCardSwitcher';
@@ -150,9 +148,7 @@ export default function RootLayout({
             <RouterProvider>
               <VideoProvider>{children}</VideoProvider>
             </RouterProvider>
-            <LayoutSwitcher />
             <ThemeSwitcher />
-            <V2ViewportDarkSwitcher />
             <ResourceCardSwitcher />
           </ResourceCardStyleProvider>
         </LandingLayoutProvider>

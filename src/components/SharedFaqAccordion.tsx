@@ -1,6 +1,6 @@
 'use client';
-import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import React, { useId, useState } from 'react';
+import { ChevronDown, Minus, Plus } from 'lucide-react';
 
 export interface FaqItem {
   question: string;
@@ -10,13 +10,18 @@ export interface FaqItem {
 interface SharedFaqAccordionProps {
   items: FaqItem[];
   theme?: 'blue' | 'teal';
+  defaultOpenIndex?: number | null;
+  toggleStyle?: 'chevron' | 'plus';
 }
 
 export const SharedFaqAccordion: React.FC<SharedFaqAccordionProps> = ({
   items,
   theme = 'blue',
+  defaultOpenIndex = null,
+  toggleStyle = 'chevron',
 }) => {
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [openIndex, setOpenIndex] = useState<number | null>(defaultOpenIndex);
+  const id = useId();
 
   const toggle = (idx: number) => {
     setOpenIndex((prev) => (prev === idx ? null : idx));
@@ -33,8 +38,8 @@ export const SharedFaqAccordion: React.FC<SharedFaqAccordionProps> = ({
     >
       {items.map((item, idx) => {
         const isOpen = openIndex === idx;
-        const answerId = `faq-answer-${idx}`;
-        const buttonId = `faq-button-${idx}`;
+        const answerId = `${id}-faq-answer-${idx}`;
+        const buttonId = `${id}-faq-button-${idx}`;
 
         return (
           <div
@@ -65,17 +70,18 @@ export const SharedFaqAccordion: React.FC<SharedFaqAccordionProps> = ({
               <span
                 className={`shrink-0 transition-transform duration-200 ${
                   isOpen
-                    ? `rotate-180 ${activeColor}`
+                    ? `${toggleStyle === 'chevron' ? 'rotate-180' : ''} ${activeColor}`
                     : 'text-slate-400 group-hover:text-slate-600'
                 }`}
               >
-                <ChevronDown size={17} />
+                {toggleStyle === 'plus' ? (isOpen ? <Minus size={17} aria-hidden="true" /> : <Plus size={17} aria-hidden="true" />) : <ChevronDown size={17} aria-hidden="true" />}
               </span>
             </button>
 
-            {isOpen && item.answer && (
+            {item.answer && (
               <div
                 id={answerId}
+                hidden={!isOpen}
                 role="region"
                 aria-labelledby={buttonId}
                 className="px-4 pb-4 pt-1"

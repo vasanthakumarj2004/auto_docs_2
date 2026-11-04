@@ -2,13 +2,13 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { Check, Columns2, LayoutTemplate, Moon, PanelTop, Sun, X } from 'lucide-react';
+import { Check, Columns2, LayoutTemplate, PanelTop, X } from 'lucide-react';
 import { useLandingLayout } from './LandingLayoutProvider';
 import styles from './LayoutSwitcher.module.css';
 
 export function LayoutSwitcher() {
   const pathname = usePathname();
-  const { layout, setLayout, appearance, setAppearance, navbarTheme, setNavbarTheme } = useLandingLayout();
+  const { layout, setLayout } = useLandingLayout();
   const [open, setOpen] = useState(false);
   const root = useRef<HTMLDivElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
@@ -35,13 +35,13 @@ export function LayoutSwitcher() {
   return (
     <div ref={root} className={styles.root}>
       <button ref={trigger} type="button" className={styles.trigger} aria-expanded={open}
-        aria-controls="landing-layout-options" aria-label="Switch landing layout" onClick={() => setOpen(!open)}>
-        <LayoutTemplate size={15} /><span>Layout</span><strong>{layout.toUpperCase()}</strong>
+        aria-controls="landing-layout-options" aria-label="Switch hero layout" onClick={() => setOpen(!open)}>
+        <LayoutTemplate size={15} aria-hidden="true" /><span>Hero layout</span><strong>{layout.toUpperCase()}</strong>
       </button>
-      {open && <div id="landing-layout-options" className={styles.panel} role="region" aria-label="Landing layout options">
-        <div className={styles.heading}><span>Landing layout</span><button type="button" aria-label="Close layout menu"
+      {open && <div id="landing-layout-options" className={styles.panel} role="region" aria-label="Hero layout options">
+        <div className={styles.heading}><span>Hero layout</span><button type="button" aria-label="Close layout menu"
           onClick={() => { setOpen(false); trigger.current?.focus(); }}><X size={16} /></button></div>
-        <p>Choose your first impression.</p>
+        <p>Two layouts, always in light mode.</p>
         <div className={styles.options}>
           {([
             { id: 'v1', title: 'Version 1', detail: 'Split layout · live pipeline', Icon: Columns2 },
@@ -53,31 +53,7 @@ export function LayoutSwitcher() {
           </button>)}
         </div>
 
-        <fieldset className={styles.appearance}>
-          <legend>Hero appearance</legend>
-          <div className={styles.modeOptions}>
-            <button type="button" aria-pressed={appearance === 'light'} onClick={() => setAppearance('light')}>
-              <Sun size={16} aria-hidden="true" />Light
-            </button>
-            <button type="button" aria-pressed={appearance === 'dark'} onClick={() => setAppearance('dark')}>
-              <Moon size={16} aria-hidden="true" />Dark
-            </button>
-          </div>
-        </fieldset>
-
-        <fieldset className={styles.appearance}>
-          <legend>Navbar theme</legend>
-          <div className={styles.modeOptions}>
-            <button type="button" aria-pressed={navbarTheme === 'light'} onClick={() => setNavbarTheme('light')}>
-              <Sun size={16} aria-hidden="true" />Light
-            </button>
-            <button type="button" aria-pressed={navbarTheme === 'dark'} onClick={() => setNavbarTheme('dark')}>
-              <Moon size={16} aria-hidden="true" />Dark
-            </button>
-          </div>
-        </fieldset>
-
-        <small className={styles.note}>Header & hero only. Your colour theme stays.</small>
+        <small className={styles.note}>Changes the hero only. Your choice is saved automatically.</small>
       </div>}
     </div>
   );
