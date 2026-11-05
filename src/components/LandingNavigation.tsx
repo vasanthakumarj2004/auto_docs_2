@@ -6,9 +6,10 @@ import { ChevronDown, Menu, X } from 'lucide-react';
 import { DocsynecxLogo } from './DocsynecxLogo';
 import { landingDesks, landingIndustries } from '../content/landing';
 import styles from './LandingPage.module.css';
+import { FinanceMenu } from './FinanceMenu';
 
 const menus = [
-  ...landingDesks.map(desk => ({ label: desk.title, links: [
+  ...landingDesks.filter(desk => desk.id !== 'finance').map(desk => ({ label: desk.title, links: [
     { label: `Explore ${desk.title}`, href: desk.href },
     ...desk.features.map(label => ({ label, href: desk.href })),
   ] })),
@@ -66,9 +67,10 @@ export function LandingNavigation() {
           {mobileOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
         <nav id="landing-navigation" className={styles.navigation} data-open={mobileOpen} aria-label="Main navigation">
+          <FinanceMenu onNavigate={close} />
           {menus.map((menu, index) => (
             <div key={menu.label} className={styles.navGroup}>
-              {index === 3 && <Link className={styles.customersLink} href="/#customers" onClick={close}>Customers</Link>}
+              {index === 2 && <Link className={styles.customersLink} href="/#customers" onClick={close}>Customers</Link>}
               <div className={styles.dropdown} onBlur={event => {
                 if (!event.currentTarget.contains(event.relatedTarget as Node)) setOpenMenu(current => current === menu.label ? null : current);
               }}>

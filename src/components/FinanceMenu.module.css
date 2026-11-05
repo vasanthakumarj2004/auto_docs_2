@@ -1,0 +1,20 @@
+.menu { position: relative; font-size: 13px; font-weight: 500; }
+.triggerRow { display: flex; align-items: center; }
+.hub { padding-block: 12px; white-space: nowrap; }
+.hub[data-active='true'] { color: var(--color-brand-text); }
+.triggerRow button { display: inline-flex; padding: 12px 4px 12px 6px; border-radius: 5px; cursor: pointer; }
+.triggerRow button[aria-expanded='true'] svg { transform: rotate(180deg); }
+.menu :is(a, button):focus-visible { outline: 2px solid var(--color-brand-text); outline-offset: 3px; }
+.panel { position: absolute; z-index: 60; top: 100%; left: -16px; width: 370px; max-width: calc(100vw - 40px); padding: 8px; list-style: none; border: 1px solid #dde1e9; border-radius: 12px; background: #fff; color: #0f172a; box-shadow: 0 12px 30px #0f172a12; }
+.panel a { display: flex; align-items: flex-start; gap: 12px; border-radius: 7px; padding: 13px 12px; font-size: 12px; }
+.panel a:hover, .panel a[aria-current='page'] { background: var(--color-brand-soft); color: var(--color-brand-text); }
+.panel .overview { justify-content: space-between; border-bottom: 1px solid #dde1e9; border-radius: 0; margin-bottom: 5px; color: var(--color-brand-text); font-weight: 650; }
+.number { font: 10px 'JetBrains Mono', monospace; color: #586579; padding-top: 3px; }
+.label { flex: 1; }
+.label small { display: block; margin-top: 5px; color: #586579; font-size: 10px; font-weight: 400; line-height: 1.7; }
+.badge { border-radius: 4px; padding: 3px 5px; background: var(--color-brand-soft); color: var(--color-brand-text); font-size: 8px; font-weight: 700; text-transform: uppercase; }
+.menu[data-dark='true'] .hub { color: #e2e8f0; }
+.menu[data-compact='true'] .triggerRow { justify-content: space-between; }
+.menu[data-compact='true'] .panel { position: static; width: 100%; margin-top: 4px; box-shadow: none; }
+@media (max-width: 1100px) { .menu { font-size: 12px; } }
+@media (max-width: 900px) { .menu { font-size: 14px; } .triggerRow { justify-content: space-between; } .panel { position: static; width: 100%; margin-bottom: 8px; box-shadow: none; } }

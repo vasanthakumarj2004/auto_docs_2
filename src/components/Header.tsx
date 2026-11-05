@@ -8,6 +8,7 @@ import { NavDropdown } from './NavDropdown';
 import { DocsynecxLogo } from './DocsynecxLogo';
 import { useLandingLayout } from './LandingLayoutProvider';
 import centered from './HeaderCentered.module.css';
+import { FinanceMenu } from './FinanceMenu';
 
 export const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -28,7 +29,6 @@ export const Header: React.FC = () => {
     return () => window.removeEventListener(RESOURCE_PREVIEW_EVENT, preview);
   }, [layout, currentPath]);
   const isCentered = currentPath === '/' && layout === 'v2';
-  const isFinanceActive = currentPath === '/finance' || currentPath === '/accounts-payable';
   const isLogisticsActive = currentPath === '/logistics' || currentPath === '/logistics-trade';
   const isDarkNav = navbarTheme === 'dark';
 
@@ -70,22 +70,7 @@ export const Header: React.FC = () => {
 
         {/* Desktop Nav - Centered */}
         <nav className="hidden items-center justify-center gap-6 lg:gap-8 md:flex" aria-label="Main navigation">
-          <a
-            href="/finance"
-            onClick={(e) => {
-              e.preventDefault();
-              handleLinkClick('/finance');
-            }}
-            className={`inline-flex items-center py-1 text-[13px] font-medium transition-colors duration-150 ${
-              isFinanceActive
-                ? 'text-brand-violet font-semibold'
-                : isDarkNav
-                ? 'text-slate-200 hover:text-white'
-                : 'text-slate-600 hover:text-brand-violet'
-            }`}
-          >
-            Finance
-          </a>
+          <FinanceMenu dark={isDarkNav} />
           <a
             href="/logistics"
             onClick={(e) => {
@@ -195,18 +180,7 @@ export const Header: React.FC = () => {
       {mobileMenuOpen && (
         <nav className={`border-t px-5 py-4 md:hidden max-h-[calc(100svh-64px)] overflow-y-auto ${isDarkNav ? 'border-[#2a203d] bg-[#100a21] text-[#f1edf8]' : 'border-slate-100 bg-white text-slate-700'}`} aria-label="Mobile navigation">
           <div className="flex flex-col gap-3.5">
-            <a
-              href="/finance"
-              onClick={(e) => {
-                e.preventDefault();
-                handleLinkClick('/finance');
-              }}
-              className={`text-sm font-medium transition-colors ${
-                isFinanceActive ? 'text-brand-violet font-semibold' : 'text-slate-700 hover:text-brand-violet'
-              }`}
-            >
-              Finance Desk
-            </a>
+            <FinanceMenu compact dark={isDarkNav} onNavigate={() => setMobileMenuOpen(false)} />
             <a
               href="/logistics"
               onClick={(e) => {
@@ -261,10 +235,10 @@ export const Header: React.FC = () => {
               ) : (
                 <div className="flex flex-col gap-2 pb-2 pl-2 pt-1 border-l-2 border-brand-violet/30 ml-1">
                   <a
-                    href="/finance"
+                    href="/finance-desk/invoice-automation/"
                     onClick={(e) => {
                       e.preventDefault();
-                      handleLinkClick('/finance');
+                      handleLinkClick('/finance-desk/invoice-automation/');
                     }}
                     className="text-xs font-medium text-slate-600 hover:text-brand-violet flex items-center justify-between pr-2 transition-colors"
                   >

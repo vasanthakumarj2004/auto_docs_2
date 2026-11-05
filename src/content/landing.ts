@@ -11,9 +11,9 @@ export const landingFaqs = [
 
 export const landingDesks = [
   {
-    id: 'finance', title: 'Finance Desk', tag: 'Finance automation & intelligence', href: '/finance/',
+    id: 'finance', title: 'Finance Desk', tag: 'Finance automation & intelligence', href: '/finance-desk/',
     copy: 'Move beyond invoice entry. Automate supplier documents and bring financial intelligence, business reporting and AI insights into one workspace.',
-    features: ['Invoice Automation', 'Financial Intelligence', 'Business Intelligence', 'AI Insights'],
+    features: ['Invoice Automation', 'Banking & Reconciliation', 'Payment Reminders', 'Accounts Payable (Upcoming)', 'Docsynecx Intelligence'],
   },
   {
     id: 'shipment', title: 'Shipment Desk', tag: 'Freight & logistics operations', href: '/logistics/',

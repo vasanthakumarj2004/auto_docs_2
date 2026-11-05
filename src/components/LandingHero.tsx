@@ -18,7 +18,7 @@ export function LandingHero() {
           <h1 id="hero-title" className="text-4xl sm:text-5xl lg:text-[54px] font-extrabold tracking-[-0.03em] leading-[1.12]">Grow the business.<br /><span>Not the data-entry desk.</span></h1>
           <p className={styles.heroDescription}>Bills read, checked, paid and posted to Tally. Emails become CargoWise jobs. Your team handles exceptions, not typing.</p>
           <div className={styles.heroActions}>
-            <Link href="/finance/" className={`desk-button ${styles.heroButton} ${styles.shipmentButton}`}>I run a finance desk<ArrowRight size={16} aria-hidden="true" /></Link>
+            <Link href="/finance-desk/" className={`desk-button ${styles.heroButton} ${styles.shipmentButton}`}>I run a finance desk<ArrowRight size={16} aria-hidden="true" /></Link>
             <Link href="/logistics/" className={`desk-button ${styles.heroButton} ${styles.shipmentButton}`}>I run a shipment desk<ArrowRight size={16} aria-hidden="true" /></Link>
             {layout === 'v1' && <Link href="/demo/" className={`${styles.heroButton} ${styles.demoButton}`}>Book a demo</Link>}
           </div>
