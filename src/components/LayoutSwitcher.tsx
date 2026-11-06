@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { Check, Columns2, LayoutTemplate, PanelTop, X } from 'lucide-react';
+import { Check, Columns2, LayoutTemplate, PanelTop, Sparkles, X } from 'lucide-react';
 import { useLandingLayout } from './LandingLayoutProvider';
 import styles from './LayoutSwitcher.module.css';
 
@@ -41,12 +41,13 @@ export function LayoutSwitcher() {
       {open && <div id="landing-layout-options" className={styles.panel} role="region" aria-label="Hero layout options">
         <div className={styles.heading}><span>Hero layout</span><button type="button" aria-label="Close layout menu"
           onClick={() => { setOpen(false); trigger.current?.focus(); }}><X size={16} /></button></div>
-        <p>Choose your landing page layout.</p>
+        <p>Four layouts, with live preview.</p>
         <div className={styles.options}>
           {([
             { id: 'v1', title: 'Version 1', detail: 'Split layout · live pipeline', Icon: Columns2 },
-            { id: 'v2', title: 'Version 2', detail: 'Centred layout · cinematic background', Icon: PanelTop },
-            { id: 'v3', title: 'Version 3', detail: '3D dashboard · workflow overview', Icon: LayoutTemplate },
+            { id: 'v2', title: 'Version 2', detail: 'Centred layout · ambient video (Main)', Icon: PanelTop },
+            { id: 'v3', title: 'Version 3', detail: '3D dashboard · workflow overview (Main)', Icon: LayoutTemplate },
+            { id: 'v4', title: 'Version 4', detail: 'Motion backdrop · dynamic video (Changes_1)', Icon: Sparkles },
           ] as const).map(({ id, title, detail, Icon }) => <button key={id} type="button"
             aria-pressed={layout === id} onClick={() => setLayout(id)} className={styles.option}>
             <Icon size={24} /><span><strong>{title}</strong><small>{detail}</small></span>

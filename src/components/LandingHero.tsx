@@ -15,7 +15,8 @@ export function LandingHero() {
   if (layout === 'v3') return <><LandingLayoutThreeHero /><LayoutSwitcher /></>;
 
   return <>
-    <section id="top" className={styles.hero} data-hero-layout={layout} data-appearance={layout === 'v2' ? 'dark' : 'light'} aria-labelledby="hero-title">
+    <section id="top" className={styles.hero} data-hero-layout={layout} data-appearance={layout === 'v2' || layout === 'v4' ? 'dark' : 'light'} aria-labelledby="hero-title">
+      {/* Layout 2 from Main branch: custom ambient video backdrop */}
       {layout === 'v2' && <LayoutTwoBackgroundVideo />}
       <div className={`site-shell ${styles.heroGrid}`}>
         <div className={styles.heroCopy}>
@@ -25,7 +26,7 @@ export function LandingHero() {
           <div className={styles.heroActions}>
             <Link href="/finance/" className={`desk-button ${styles.heroButton} ${styles.financeButton}`}>I run a finance desk<ArrowRight size={16} aria-hidden="true" /></Link>
             <Link href="/logistics/" className={`desk-button ${styles.heroButton} ${styles.shipmentButton}`}>I run a shipment desk<ArrowRight size={16} aria-hidden="true" /></Link>
-            {layout === 'v1' && <Link href="/demo/" className={`${styles.heroButton} ${styles.demoButton}`}>Book a demo</Link>}
+            {(layout === 'v1' || layout === 'v4') && <Link href="/demo/" className={`${styles.heroButton} ${styles.demoButton}`}>Book a demo</Link>}
           </div>
           <p className={styles.trust}><strong>Built for businesses</strong> that run on Tally, an ERP or CargoWise.</p>
         </div>

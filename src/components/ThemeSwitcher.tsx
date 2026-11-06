@@ -279,14 +279,10 @@ export const ThemeSwitcher: React.FC = () => {
     rootStyle.setProperty('--landing-green', brandRgba);
 
     try {
-      const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
-      if (themeId.startsWith('custom-brand-')) {
-        localStorage.setItem('autodocs-theme', themeId);
-      } else if (isCustomMode) {
-        localStorage.setItem('autodocs-theme', `custom:${hsl.h}`);
-      } else {
-        localStorage.setItem('autodocs-theme', themeId);
-      }
+      const storedThemeKey = isCustomMode
+        ? (themeId.startsWith('custom-brand-') ? themeId : 'custom')
+        : themeId;
+      localStorage.setItem('autodocs-theme', storedThemeKey);
       localStorage.setItem('autodocs-theme-opacity', String(alphaPercent));
       localStorage.setItem('autodocs-brand-hex', hex);
     } catch {}
@@ -309,6 +305,7 @@ export const ThemeSwitcher: React.FC = () => {
     try {
       const storedTheme = localStorage.getItem('autodocs-theme');
       const savedTheme = !storedTheme || storedTheme === 'current' ? 'logo' : storedTheme;
+      const savedBrandHex = localStorage.getItem('autodocs-brand-hex');
       const savedOpacity = localStorage.getItem('autodocs-theme-opacity');
       const parsedOpacity = Number(savedOpacity ?? 100);
       const initialOpacity = Number.isFinite(parsedOpacity)
@@ -324,39 +321,30 @@ export const ThemeSwitcher: React.FC = () => {
 
       const allBrands = [...THEME_OPTIONS, ...customBrands];
       const match = allBrands.find((t) => t.id === savedTheme);
-      const savedBrandHex = localStorage.getItem('autodocs-brand-hex');
 
-      if (match) {
-        setBrandHex(match.color);
-        setSliderHue(match.hue);
-        setCurrentTheme(match.id);
-        setIsCustom(!!match.isCustom);
-        applyBrandStyle(match.id, match.color, initialOpacity, !!match.isCustom);
-      } else if (savedBrandHex && savedBrandHex.startsWith('#')) {
+      const isCustomSaved =
+        savedTheme === 'custom' ||
+        savedTheme.startsWith('custom') ||
+        (savedBrandHex &&
+          savedBrandHex.startsWith('#') &&
+          !['logo', 'violet', 'green', 'light-green', 'red', 'blue', 'yellow', 'orange'].includes(
+            savedTheme
+          ));
+
+      if (isCustomSaved && savedBrandHex && savedBrandHex.startsWith('#')) {
         const rgb = hexToRgb(savedBrandHex);
         const hsl = rgb ? rgbToHsl(rgb.r, rgb.g, rgb.b) : { h: 162, s: 70, l: 50 };
         setBrandHex(savedBrandHex);
         setSliderHue(hsl.h);
         setIsCustom(true);
-        setCurrentTheme(savedTheme && savedTheme.startsWith('custom') ? savedTheme : 'custom');
-        applyBrandStyle(
-          savedTheme && savedTheme.startsWith('custom') ? savedTheme : 'custom',
-          savedBrandHex,
-          initialOpacity,
-          true
-        );
-      } else if (savedTheme && savedTheme.startsWith('custom:')) {
-        const hueVal = parseInt(savedTheme.split(':')[1], 10);
-        if (Number.isFinite(hueVal) && hueVal >= 0 && hueVal <= 360) {
-          const hex = hslToHex(hueVal, 92, 54);
-          setSliderHue(hueVal);
-          setBrandHex(hex);
-          setIsCustom(true);
-          setCurrentTheme('custom');
-          applyBrandStyle('custom', hex, initialOpacity, true);
-        } else {
-          applyBrandStyle('logo', LOGO_GREEN, initialOpacity, false);
-        }
+        setCurrentTheme(match ? match.id : 'custom');
+        applyBrandStyle(match ? match.id : 'custom', savedBrandHex, initialOpacity, true);
+      } else if (match) {
+        setBrandHex(match.color);
+        setSliderHue(match.hue);
+        setCurrentTheme(match.id);
+        setIsCustom(!!match.isCustom);
+        applyBrandStyle(match.id, match.color, initialOpacity, !!match.isCustom);
       } else {
         applyBrandStyle('logo', LOGO_GREEN, initialOpacity, false);
       }
@@ -386,6 +374,24 @@ export const ThemeSwitcher: React.FC = () => {
     setIsCustom(true);
     setCurrentTheme('custom');
     applyBrandStyle('custom', hex, opacity, true);
+  };
+
+  // Direct custom hex input or native color picker change (instant live apply & localStorage persistence)
+  const handleCustomHexInput = (rawHex: string) => {
+    let clean = rawHex.toUpperCase();
+    if (!clean.startsWith('#') && clean.length > 0) clean = `#${clean}`;
+    setBrandHex(clean);
+    const validHex = normalizeHex(clean);
+    if (validHex) {
+      const rgb = hexToRgb(validHex);
+      if (rgb) {
+        const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+        setSliderHue(hsl.h);
+      }
+      setIsCustom(true);
+      setCurrentTheme('custom');
+      applyBrandStyle('custom', validHex, opacity, true);
+    }
   };
 
   // Handle opacity slider change
@@ -694,14 +700,28 @@ export const ThemeSwitcher: React.FC = () => {
                         Color Spectrum
                       </span>
                       <div className="flex items-center gap-1.5">
-                        <span
-                          className="h-3.5 w-3.5 rounded-full border border-black/15 shadow-2xs"
-                          style={{ backgroundColor: brandHex, opacity: opacity / 100 }}
-                          aria-hidden="true"
+                        <label className="relative flex items-center cursor-pointer" title="Pick custom color">
+                          <input
+                            type="color"
+                            value={normalizeHex(brandHex) || '#18CB96'}
+                            onChange={(e) => handleCustomHexInput(e.target.value)}
+                            className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
+                          />
+                          <span
+                            className="h-4 w-4 rounded-full border border-black/20 shadow-2xs transition-transform hover:scale-110"
+                            style={{ backgroundColor: brandHex, opacity: opacity / 100 }}
+                            aria-hidden="true"
+                          />
+                        </label>
+                        <input
+                          type="text"
+                          value={brandHex}
+                          onChange={(e) => handleCustomHexInput(e.target.value)}
+                          maxLength={7}
+                          placeholder="#18CB96"
+                          aria-label="Hex color code"
+                          className="w-20 text-[11px] font-mono font-bold text-slate-700 bg-white border border-slate-200 rounded px-1.5 py-0.5 focus:outline-none focus:border-slate-500"
                         />
-                        <span className="text-[11px] font-mono font-bold text-slate-700">
-                          {brandHex}
-                        </span>
                       </div>
                     </div>
 

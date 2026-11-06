@@ -1,11 +1,13 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowRight, ArrowLeftRight, ArrowUpRight, FileText, Zap, ShieldCheck, CheckCircle2, TrendingUp } from 'lucide-react';
 import { FinanceFooter } from './FinanceFooter';
 import { LandingHero } from './LandingHero';
 import { SharedFaqAccordion } from './SharedFaqAccordion';
 import { LandingNavigation } from './LandingNavigation';
+import { useLandingLayout } from './LandingLayoutProvider';
 import CircularCarousel, { CustomerStoryItem } from './CircularCarousel';
 import { landingDesks, landingFaqs, landingIndustries } from '../content/landing';
 import styles from './LandingPage.module.css';
@@ -55,8 +57,52 @@ function SectionHeading({ eyebrow, title, copy, id }: { eyebrow: string; title: 
 }
 
 export function LandingPage() {
+  const { layout } = useLandingLayout();
+  const [heroHeight, setHeroHeight] = useState<number>(0);
+
+  useEffect(() => {
+    const update = () => {
+      const hero = document.getElementById('top');
+      if (hero) {
+        const rect = hero.getBoundingClientRect();
+        const scroll = window.scrollY || document.documentElement.scrollTop;
+        setHeroHeight(rect.bottom + scroll);
+      }
+    };
+    update();
+    const hero = document.getElementById('top');
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(update) : null;
+    if (hero && ro) ro.observe(hero);
+    window.addEventListener('resize', update);
+    return () => {
+      ro?.disconnect();
+      window.removeEventListener('resize', update);
+    };
+  }, []);
+
   return <div className={styles.page}>
     <a href="#main-content" className={styles.skipLink}>Skip to content</a>
+    {/* Full background video starting from announcement bar down through hero (Layout 4 from changes_1) */}
+    {layout === 'v4' && (
+      <div
+        className={styles.heroBgWrapper}
+        style={{ height: heroHeight > 0 ? `${heroHeight}px` : '100svh' }}
+        aria-hidden="true"
+      >
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className={styles.heroBgMedia}
+          poster="/images/bg1_thumb.jpg"
+        >
+          <source src="/images/bg1.mp4" type="video/mp4" />
+          <img src="/images/bg1.gif" alt="" className={styles.heroBgMedia} />
+        </video>
+        <div className={styles.heroOverlay} />
+      </div>
+    )}
     <LandingNavigation />
     <main id="main-content">
       <LandingHero />
@@ -204,20 +250,20 @@ export function LandingPage() {
       </section>
       <section id="customers" className={`${styles.section} ${styles.alternate}`} aria-labelledby="customers-title">
         <div className="site-shell">
-          <SectionHeading id="customers-title" eyebrow="Customer stories" title={<>Real workflows.<br /><span>Meaningful time saved.</span></>} copy="Selected outcomes from customer workflows. Results depend on process scope, document quality and implementation." />
+          <SectionHeading id="customers-title" eyebrow="Customer stories" title={<>Real workflows.<br /><span>Meaningful time saved.</span></>} copy="" />
           
-          <div style={{ width: '100%', height: '520px', position: 'relative', marginTop: '20px' }}>
+          <div style={{ width: '100%', height: '450px', position: 'relative', marginTop: '-50px', marginBottom: '-30px' }}>
             <CircularCarousel
               stories={stories}
               preset="cylinder"
               intro="rise"
-              cardWidth={380}
-              aspectRatio={1.18}
-              gap={30}
-              speed={10}
+              cardWidth={400}
+              aspectRatio={1.28}
+              gap={25}
+              speed={8}
               fadeColor="#f6f5f9"
               depthFade={0.55}
-              cornerRadius={0}
+              cornerRadius={12}
               draggable={true}
               pauseOnHover={true}
               focusOnClick={true}
