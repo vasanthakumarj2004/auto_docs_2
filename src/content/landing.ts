@@ -29,3 +29,17 @@ export const landingIndustries = [
   { id: 'retail-industry', title: 'Retail & Distribution', copy: 'High-volume invoice and document workflows' },
   { id: 'textile-industry', title: 'Textile & Garments', copy: 'Supplier and purchase documentation' },
 ];
+
+export const landingNavigationMenus = [
+  ...landingDesks.filter(desk => desk.id !== 'finance').map(desk => ({ label: desk.title, links: [
+    { label: `Explore ${desk.title}`, href: desk.href },
+    ...desk.features.map(label => ({ label, href: desk.href })),
+  ] })),
+  { label: 'Solutions', links: landingIndustries.map(industry => ({ label: industry.title, href: `/#${industry.id}` })) },
+  { label: 'Resources', links: [
+    { label: 'How it works', href: '/#how-it-works' },
+    { label: 'Integrations', href: '/#integrations' },
+    { label: 'Free ROI calculator', href: '/calculator/' },
+    { label: 'Frequently asked questions', href: '/#faq' },
+  ] },
+];

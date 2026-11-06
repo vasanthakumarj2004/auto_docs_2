@@ -5,10 +5,13 @@ import { ArrowRight } from 'lucide-react';
 import { HeroProductPanel } from './hero/HeroProductPanel';
 import { useLandingLayout } from './LandingLayoutProvider';
 import { LayoutSwitcher } from './LayoutSwitcher';
+import { LandingLayoutTwoHero } from './LandingLayoutTwo';
 import styles from './LandingPage.module.css';
 
 export function LandingHero() {
   const { layout } = useLandingLayout();
+
+  if (layout === 'v2') return <><LandingLayoutTwoHero /><LayoutSwitcher /></>;
 
   return <>
     <section id="top" className={styles.hero} data-hero-layout={layout} data-appearance="light" aria-labelledby="hero-title">

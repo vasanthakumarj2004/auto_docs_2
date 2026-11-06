@@ -4,25 +4,14 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { DocsynecxLogo } from './DocsynecxLogo';
-import { landingDesks, landingIndustries } from '../content/landing';
+import { landingNavigationMenus as menus } from '../content/landing';
 import styles from './LandingPage.module.css';
 import { FinanceMenu } from './FinanceMenu';
-
-const menus = [
-  ...landingDesks.filter(desk => desk.id !== 'finance').map(desk => ({ label: desk.title, links: [
-    { label: `Explore ${desk.title}`, href: desk.href },
-    ...desk.features.map(label => ({ label, href: desk.href })),
-  ] })),
-  { label: 'Solutions', links: landingIndustries.map(industry => ({ label: industry.title, href: `/#${industry.id}` })) },
-  { label: 'Resources', links: [
-    { label: 'How it works', href: '/#how-it-works' },
-    { label: 'Integrations', href: '/#integrations' },
-    { label: 'Free ROI calculator', href: '/calculator/' },
-    { label: 'Frequently asked questions', href: '/#faq' },
-  ] },
-];
+import { useLandingLayout } from './LandingLayoutProvider';
+import { LandingLayoutTwoNavigation } from './LandingLayoutTwo';
 
 export function LandingNavigation() {
+  const { layout } = useLandingLayout();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement>(null);
@@ -55,6 +44,8 @@ export function LandingNavigation() {
   }, [openMenu, mobileOpen]);
 
   const close = () => { setOpenMenu(null); setMobileOpen(false); };
+
+  if (layout === 'v2') return <LandingLayoutTwoNavigation />;
 
   return (
     <header ref={headerRef} className={styles.header}>

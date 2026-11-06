@@ -1,4 +1,5 @@
 .page { --landing-bg: var(--color-paper, #fafafa); --landing-alt: #f6f5f9; --landing-ink: #0f172a; --landing-muted: #586579; --landing-line: #dde1e9; --landing-green: #18735c; background: var(--landing-bg); color: var(--landing-ink); }
+.page:has([data-landing-header='v2']) { display: flow-root; background: #fafbf9; }
 .page :is(section, article)[id] { scroll-margin-top: 100px; }
 .page :is(a, button):focus-visible { outline: 2px solid var(--color-brand); outline-offset: 5px; }
 .skipLink { position: fixed; top: 8px; left: 16px; z-index: 100; padding: 12px 18px; border-radius: 8px; background: white; color: var(--landing-ink); transform: translateY(-160%); }
