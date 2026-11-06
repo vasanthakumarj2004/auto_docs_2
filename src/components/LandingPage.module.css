@@ -1274,13 +1274,184 @@
 .integrationPanel > div { padding: 22px 18px; border: 1px solid var(--landing-line); border-radius: 8px; background: var(--landing-bg); }
 .integrationPanel strong { font-size: 14px; font-weight: 700; }
 .integrationPanel span { display: block; margin-top: 7px; font-size: 11px; line-height: 1.5; color: var(--landing-muted); }
+/* FAQ Section */
+.faqSection {
+  padding-top: 88px;
+  padding-bottom: 96px;
+  border-bottom: 1px solid var(--landing-line, #dde1e9);
+  background: var(--landing-bg, #fafafa);
+}
+
+.faqHeader {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 52px;
+}
+
+.faqHeader .eyebrow {
+  margin-bottom: 12px;
+}
+
+.faqHeader h2 {
+  font-size: clamp(32px, 3.5vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--landing-ink, #0f172a);
+  margin: 0 0 16px;
+}
+
+.faqSubtitle {
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--landing-muted, #586579);
+  margin: 0;
+}
+
 .faqLayout { max-width: 820px; margin-inline: auto; }
 .inlineLink { color: var(--color-brand-text); font-weight: 600; }
-.closing { padding: 0 0 40px; }
-.closingCard { display: flex; align-items: center; justify-content: space-between; gap: 60px; padding: 44px; border: 1px solid var(--landing-line); border-radius: 18px; background: white; }
-.closingCard h2 { max-width: 720px; }
-.closingCard h2 + p { max-width: 600px; margin-top: 20px; color: var(--landing-muted); font-size: 14px; line-height: 1.8; }
-.closingButton { flex-shrink: 0; min-height: 38px; height: 38px; padding: 0 18px; border-radius: 15px !important; font-size: 12.5px; font-weight: 600; }
+
+/* ==========================================================================
+   Shipsy-Style "Let's make work flow" (Outside the Footer, Light Card)
+   ========================================================================== */
+.closing {
+  padding: 56px 0 84px;
+  position: relative;
+  background: transparent;
+}
+
+.closingCardLight {
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 26px;
+  padding: 68px 44px;
+  text-align: center;
+  box-shadow: 0 16px 40px -10px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+/* Subtle soft ambient light glow inside card header */
+.closingCardLight::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 130px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(24, 203, 150, 0.14), transparent 70%);
+  pointer-events: none;
+}
+
+.closingCardLight > * {
+  position: relative;
+  z-index: 1;
+}
+
+.closingEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 20px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: rgba(24, 203, 150, 0.12);
+  border: 1px solid rgba(24, 203, 150, 0.3);
+  color: #0b8a5e;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.closingEyebrowDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #18cb96;
+  box-shadow: 0 0 6px #18cb96;
+}
+
+.closingHeadline {
+  color: #0f172a !important;
+  font-size: clamp(28px, 3.8vw, 44px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  max-width: 22ch;
+  margin: 0 auto 16px;
+}
+
+.closingSub {
+  color: #475569;
+  font-size: clamp(14.5px, 1.2vw, 16px);
+  line-height: 1.65;
+  max-width: 58ch;
+  margin: 0 auto 32px;
+}
+
+.closingCtas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.closingPrimaryBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  height: 44px;
+  padding: 0 24px;
+  border-radius: 15px !important;
+  background: var(--color-brand, #18cb96);
+  border: 1px solid var(--color-brand, #18cb96);
+  color: #052c23;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(24, 203, 150, 0.35);
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.closingPrimaryBtn:hover {
+  background: #20e0a5;
+  border-color: #20e0a5;
+  color: #032019;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(24, 203, 150, 0.45);
+}
+
+.closingGhostBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  height: 44px;
+  padding: 0 22px;
+  border-radius: 15px !important;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #0f172a;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+  transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.closingGhostBtn:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  color: #0f172a;
+  transform: translateY(-2px);
+}
+
 .companyLine { margin-top: 20px; color: var(--landing-muted); font-size: 10px; line-height: 1.8; text-align: center; }
 .footer { background: #111827; color: #9ca3af; }
 .footerGrid { display: grid; grid-template-columns: 1.3fr 1fr 1fr .65fr; gap: 48px; padding-block: 60px 50px; }
@@ -1386,6 +1557,12 @@
   .integrationPanel > div { padding: 18px 12px; }
   .integrationPanel strong { font-size: 12px; }
   .closingCard { padding: 26px; }
+  .closing { padding: 36px 0 60px; }
+  .closingCardLight { padding: 44px 20px; border-radius: 20px; }
+  .closingHeadline { font-size: 26px !important; }
+  .closingCtas { flex-direction: column; width: 100%; }
+  .closingPrimaryBtn, .closingGhostBtn { width: 100%; }
+  .faqHeader { margin-bottom: 36px; }
   .footerGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 20px; }
   .footerBottom { flex-direction: column; gap: 12px; padding-bottom: 72px; }
 }
