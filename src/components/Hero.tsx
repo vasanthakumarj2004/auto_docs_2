@@ -20,7 +20,7 @@ export const Hero: React.FC = () => {
       className={`relative overflow-hidden min-h-[calc(100svh-64px)] flex items-center pt-8 pb-10 sm:pt-10 sm:pb-12 lg:pt-12 lg:pb-14 border-b transition-colors duration-300 ${
         isDark
           ? 'bg-[#100a21] border-[#2a203d] text-white'
-          : 'bg-[#FAFAFA] border-slate-200/80 text-slate-800'
+          : 'bg-[var(--color-hero-bg,#f7f5f0)] border-slate-200/80 text-slate-800'
       }`}
     >
       {/* ================= 1. ASYMMETRIC SPLIT-SCREEN BACKDROP ================= */}

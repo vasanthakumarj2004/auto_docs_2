@@ -20,10 +20,10 @@ export function HeroCentered() {
           <span>Your team handles exceptions, not typing.</span>
         </p>
         <div className={styles.actions}>
-          <Link href="/finance/" className={`desk-button ${styles.cta}`}>
+          <Link href="/finance/" className={`desk-button ${styles.cta} desk-button-finance`}>
             <span>Run a finance desk</span><ArrowRight size={19} aria-hidden="true" />
           </Link>
-          <Link href="/logistics/" className={`desk-button ${styles.cta}`}>
+          <Link href="/logistics/" className={`desk-button ${styles.cta} desk-button-shipment`}>
             <span>Run the logistics desk</span><ArrowRight size={19} aria-hidden="true" />
           </Link>
         </div>

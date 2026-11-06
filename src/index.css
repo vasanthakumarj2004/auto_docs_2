@@ -1,4 +1,4 @@
-@import "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap";
 
 @tailwind base;
 @tailwind components;
@@ -35,55 +35,55 @@
 :root[data-theme="logo"] {
   /* Public default, including no-JS visits and legacy default preferences. */
   --color-brand: #18CB96;
-  --color-brand-strong: #0FA879;
+  --color-brand-strong: #15B886;
   --color-brand-soft: #E8FAF4;
   --color-brand-border: #99EBD1;
-  --color-brand-text: #0A5C43;
+  --color-brand-text: #18CB96;
   --color-brand-50: #E8FAF4;
   --color-brand-100: #D0F6E9;
   --color-brand-200: #99EBD1;
   --color-brand-400: #42E2B2;
   --color-brand-500: #18CB96;
-  --color-brand-800: #0A5C43;
-  --color-brand-900: #063D2C;
+  --color-brand-800: #18CB96;
+  --color-brand-900: #15B886;
   --color-paper: #FAFAFA;
-  --color-ink: #063D2C;
+  --color-ink: #0F172A;
 }
 
 :root[data-theme="green"] {
   /* Green: Enterprise Emerald */
-  --color-brand: #059669;
-  --color-brand-strong: #047857;
-  --color-brand-soft: #ECFDF5;
-  --color-brand-border: #A7F3D0;
-  --color-brand-text: #065F46;
-  --color-brand-50: #ECFDF5;
-  --color-brand-100: #D1FAE5;
-  --color-brand-200: #A7F3D0;
-  --color-brand-400: #34D399;
-  --color-brand-500: #10B981;
-  --color-brand-800: #065F46;
-  --color-brand-900: #064E3B;
+  --color-brand: #18CB96;
+  --color-brand-strong: #15B886;
+  --color-brand-soft: #E8FAF4;
+  --color-brand-border: #99EBD1;
+  --color-brand-text: #18CB96;
+  --color-brand-50: #E8FAF4;
+  --color-brand-100: #D0F6E9;
+  --color-brand-200: #99EBD1;
+  --color-brand-400: #42E2B2;
+  --color-brand-500: #18CB96;
+  --color-brand-800: #18CB96;
+  --color-brand-900: #15B886;
   --color-paper: #FAFAFA;
-  --color-ink: #064E3B;
+  --color-ink: #0F172A;
 }
 
 :root[data-theme="light-green"] {
   /* Light Green: Fresh Mint / Lime */
-  --color-brand: #16A34A;
-  --color-brand-strong: #15803D;
-  --color-brand-soft: #F0FDF4;
-  --color-brand-border: #BBF7D0;
-  --color-brand-text: #166534;
-  --color-brand-50: #F0FDF4;
-  --color-brand-100: #DCFCE7;
-  --color-brand-200: #BBF7D0;
-  --color-brand-400: #4ADE80;
-  --color-brand-500: #22C55E;
-  --color-brand-800: #166534;
-  --color-brand-900: #14532D;
+  --color-brand: #18CB96;
+  --color-brand-strong: #15B886;
+  --color-brand-soft: #F0FDF9;
+  --color-brand-border: #BBF7E2;
+  --color-brand-text: #18CB96;
+  --color-brand-50: #F0FDF9;
+  --color-brand-100: #DCFCEE;
+  --color-brand-200: #BBF7E2;
+  --color-brand-400: #4ADEB2;
+  --color-brand-500: #18CB96;
+  --color-brand-800: #18CB96;
+  --color-brand-900: #15B886;
   --color-paper: #FAFAFA;
-  --color-ink: #14532D;
+  --color-ink: #0F172A;
 }
 
 :root[data-theme="red"] {
@@ -243,13 +243,16 @@ button, input, textarea, select {
   align-items: center;
   justify-content: center;
   gap: 8px;
+  min-height: 38px;
+  padding: 0 18px;
   border: 1px solid var(--color-brand) !important;
-  border-radius: 12px;
+  border-radius: 15px !important;
   background-color: var(--color-brand) !important;
   color: var(--color-paper, #FAFAFA) !important;
   cursor: pointer;
   text-decoration: none;
   white-space: nowrap;
+  font-size: 12.5px;
   font-weight: 600;
   box-shadow: 0 2px 8px rgb(15 23 42 / 8%);
 }
@@ -279,11 +282,26 @@ button, input, textarea, select {
 .desk-button {
   justify-content: space-between;
   gap: 12px;
-  height: 46px;
-  padding: 0 16px;
-  border-radius: 14px;
-  font-size: 15px;
+  min-height: 38px;
+  height: 38px;
+  padding: 0 18px;
+  border-radius: 15px !important;
+  font-size: 13px;
   line-height: 1;
+}
+
+.desk-button-finance,
+.desk-button-shipment {
+  background-color: var(--color-brand, #18cb96) !important;
+  border: 1px solid var(--color-brand, #18cb96) !important;
+  color: #ffffff !important;
+}
+
+.desk-button-finance:hover,
+.desk-button-shipment:hover {
+  background-color: var(--color-brand-strong, #15b886) !important;
+  border-color: var(--color-brand-strong, #15b886) !important;
+  color: #ffffff !important;
 }
 
 .desk-button-icon {
@@ -345,9 +363,18 @@ button, input, textarea, select {
 }
 
 .button-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 38px;
+  padding: 0 18px;
   border: 1px solid #e2e8f0;
+  border-radius: 15px !important;
   background: #FAFAFA;
   color: #334155;
+  font-size: 12.5px;
+  font-weight: 600;
   box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
 }
 

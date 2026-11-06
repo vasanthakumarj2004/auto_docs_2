@@ -11,21 +11,46 @@ export const landingFaqs = [
 
 export const landingDesks = [
   {
-    id: 'finance', title: 'Finance Desk', tag: 'Finance automation & intelligence', href: '/finance/',
+    id: 'finance', title: 'Finance', tag: 'Finance automation & intelligence', href: '/finance/',
     copy: 'Move beyond invoice entry. Automate supplier documents and bring financial intelligence, business reporting and AI insights into one workspace.',
     features: ['Invoice Automation', 'Financial Intelligence', 'Business Intelligence', 'AI Insights'],
   },
   {
-    id: 'shipment', title: 'Shipment Desk', tag: 'Freight & logistics operations', href: '/logistics/',
+    id: 'shipment', title: 'Shipment', tag: 'Freight & logistics operations', href: '/logistics/',
     copy: 'Connect freight operations from customer enquiry and booking to shipment management, tracking and document automation.',
     features: ['RFQ to Booking', 'Shipment Management', 'Shipment Tracking', 'Document Automation'],
   },
 ];
 
 export const landingIndustries = [
-  { id: 'logistics-industry', title: 'Logistics & Freight Forwarding', copy: 'RFQ, shipments, tracking and trade documents' },
-  { id: 'automotive-industry', title: 'Automotive & EV', copy: 'Purchase invoices, spares and service documents' },
-  { id: 'manufacturing-industry', title: 'Manufacturing', copy: 'Supplier invoices and operational documents' },
-  { id: 'retail-industry', title: 'Retail & Distribution', copy: 'High-volume invoice and document workflows' },
-  { id: 'textile-industry', title: 'Textile & Garments', copy: 'Supplier and purchase documentation' },
+  {
+    id: 'logistics-industry',
+    title: 'Logistics & Freight Forwarding',
+    copy: 'RFQ, shipments, container tracking and trade documents.',
+    image: '/images/industry-logistics.jpg',
+  },
+  {
+    id: 'automotive-industry',
+    title: 'Automotive & EV',
+    copy: 'Purchase invoices, spare parts and service documentation.',
+    image: '/images/industry-automotive.jpg',
+  },
+  {
+    id: 'manufacturing-industry',
+    title: 'Manufacturing',
+    copy: 'Supplier invoices, material receipts and operational records.',
+    image: '/images/industry-manufacturing.jpg',
+  },
+  {
+    id: 'retail-industry',
+    title: 'Retail & Distribution',
+    copy: 'High-volume invoice auditing and multi-vendor document workflows.',
+    image: '/images/industry-retail.jpg',
+  },
+  {
+    id: 'textile-industry',
+    title: 'Textile & Garments',
+    copy: 'Supplier and purchase documentation with rapid ledger posting.',
+    image: '/images/industry-textile.jpg',
+  },
 ];

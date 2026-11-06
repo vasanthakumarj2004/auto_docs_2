@@ -113,8 +113,8 @@ test('light logo theme preset exists with #18CB96 and has corresponding css defi
   const cssSource = fs.readFileSync(path.join(__dirname, '../src/index.css'), 'utf8');
   assert.ok(cssSource.includes(':root[data-theme="logo"]'));
   assert.ok(cssSource.includes('--color-brand: #18CB96;'));
-  assert.ok(cssSource.includes('--color-brand-strong: #0FA879;'));
-  assert.ok(cssSource.includes('--color-brand-text: #0A5C43;'));
+  assert.ok(cssSource.includes('--color-brand-strong: #15B886;'));
+  assert.ok(cssSource.includes('--color-brand-text: #18CB96;'));
 });
 
 test('v2 viewport dark flow switcher exists and supports toggle, spectrum, and opacity flow', () => {

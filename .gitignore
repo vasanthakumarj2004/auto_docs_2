@@ -28,3 +28,10 @@ out
 # Generated video render frames
 tools/hero-video/frames/
 reference_sites_report.json
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*$py.class

@@ -1,11 +1,19 @@
+'use client';
+
 import Link from 'next/link';
-import { ArrowRight, ArrowLeftRight, ArrowUpRight, FileText } from 'lucide-react';
+import { ArrowRight, ArrowLeftRight, ArrowUpRight, FileText, Zap, ShieldCheck, CheckCircle2, TrendingUp } from 'lucide-react';
 import { DocsynecxLogo } from './DocsynecxLogo';
 import { LandingHero } from './LandingHero';
 import { SharedFaqAccordion } from './SharedFaqAccordion';
 import { LandingNavigation } from './LandingNavigation';
+import CircularCarousel, { CustomerStoryItem } from './CircularCarousel';
 import { landingDesks, landingFaqs, landingIndustries } from '../content/landing';
 import styles from './LandingPage.module.css';
+
+const DESK_IMAGES: Record<string, string> = {
+  finance: '/images/624dcd31-e7ca-4c2f-b804-e87bb521192e.png',
+  shipment: '/images/e38389f2-4afd-4f87-86dd-6210a3100071.png',
+};
 
 const benefits = [
   ['Reduce repetitive work', 'Automate document-heavy steps that slow teams down.'],
@@ -13,16 +21,24 @@ const benefits = [
   ['Connect your systems', 'Move validated information into your existing business tools.'],
   ['Make data useful', 'Turn finance and operations information into visibility.'],
 ];
+const BENEFIT_ITEMS = [
+  { icon: Zap, tag: 'Autonomous Flow' },
+  { icon: ShieldCheck, tag: 'Human Review Gate' },
+  { icon: ArrowLeftRight, tag: 'Two-Way System Sync' },
+  { icon: TrendingUp, tag: 'Actionable Visibility' },
+];
 const steps = [
   ['Understand', 'Review your process, systems, document types and volumes.'],
   ['Configure', 'Map the workflow, validation points and integration needs.'],
   ['Validate', 'Test with representative documents and your team.'],
   ['Scale', 'Expand to more workflows as results are established.'],
 ];
-const stories = [
-  { tag: 'Logistics', name: 'FT Logistics', metric: '2 hrs → 2 min', summary: 'email to CargoWise', copy: 'A specific email-to-CargoWise document workflow reduced from around two hours to approximately two minutes.', href: '/customers/ft-logistics/' },
-  { tag: 'Automotive & EV', name: 'Rajadurai E-Vehicles', metric: 'Days → hours', summary: 'document workflow', copy: 'Manual document workload reduced from days to hours through an AI-assisted workflow.', href: '/customers/rajadurai/' },
-  { tag: 'Business operations', name: 'Arishfirma', metric: 'In daily use', summary: 'assets & purchase bills', copy: 'Regular operational use for asset and purchase bill workflows.' },
+const stories: CustomerStoryItem[] = [
+  { tag: 'Logistics', name: 'FreightForwarders', metric: '2 hrs → 2 min', summary: 'email to CargoWise', copy: 'A specific email-to-CargoWise document workflow reduced from around two hours to approximately two minutes.', href: '/customers/ft-logistics/' },
+  { tag: 'Automotive & EV', name: 'Automotive Industries', metric: 'Days → hours', summary: 'document workflow', copy: 'Manual document workload reduced from days to hours through an AI-assisted workflow.', href: '/customers/rajadurai/' },
+  { tag: 'Business operations', name: 'Manufacturing', metric: 'In daily use', summary: 'assets & purchase bills', copy: 'Regular operational use for asset and purchase bill workflows with zero manual re-entry.' },
+  { tag: 'Retail & Distribution', name: 'OmniRetail Networks', metric: '94% automated', summary: 'multi-vendor invoicing', copy: 'High-volume invoice auditing and trade documents posted directly without error delays.' },
+  { tag: 'Textile & Garments', name: 'Global Fabrics Ltd', metric: '3x faster sync', summary: 'supplier & export manifests', copy: 'Complex supplier bills and export manifests reconciled in minutes instead of days.' },
 ];
 const integrations = [
   ['TallyPrime', 'Finance integration'], ['CargoWise', 'Logistics integration'],
@@ -47,47 +63,166 @@ export function LandingPage() {
       <section className={styles.statStrip} aria-labelledby="outcomes-title">
         <div className="site-shell">
           <h2 id="outcomes-title" className={styles.eyebrow}>Selected customer outcomes</h2>
-          <div className={styles.stats}>{stories.map(story => <div key={story.name}>
-            <p className={styles.statValue}>{story.metric}</p>
-            <p className={styles.statLabel}><strong>{story.name}</strong><span> · {story.summary}</span></p>
-          </div>)}</div>
+          <div className={styles.stats}>
+            {stories.slice(0, 3).map((story, index) => {
+              const Icon = index === 0 ? Zap : index === 1 ? ShieldCheck : CheckCircle2;
+              return (
+                <div key={story.name} className={styles.outcomeCard}>
+                  <div className={styles.outcomeCardTop}>
+                    <p className={styles.statValue}>{story.metric}</p>
+                    <span className={styles.outcomeIconBadge} aria-hidden="true">
+                      <Icon size={15} className="stroke-[2.2]" />
+                    </span>
+                  </div>
+                  <div className={styles.outcomeCardBody}>
+                    <h3 className={styles.outcomeTitle}>{story.name}</h3>
+                    <p className={styles.outcomeSummary}>{story.summary}</p>
+                    <p className={styles.outcomeCopy}>{story.copy}</p>
+                  </div>
+                  {story.href && (
+                    <Link href={story.href} className={styles.outcomeLink}>
+                      <span>Read customer story</span>
+                      <ArrowUpRight size={13} aria-hidden="true" />
+                    </Link>
+                  )}
+                </div>
+              );
+            })}
+          </div>
         </div>
       </section>
       <section id="platform" className={styles.section} aria-labelledby="platform-title">
         <div className="site-shell">
-          <SectionHeading id="platform-title" eyebrow="One platform. Two desks." title={<>Two focused workspaces.<br />One connected platform.</>} copy="Start with the workflow that takes the most effort today. Expand as your teams are ready." />
-          <div className={styles.desks}>{landingDesks.map((desk, index) => <article key={desk.id} id={desk.id} className={styles.desk} data-desk={desk.id}>
-            <div className={styles.deskTop}><p className={styles.eyebrow}>{desk.tag}</p><span className={styles.deskIcon}>{index === 0 ? <FileText size={24} aria-hidden="true" /> : <ArrowLeftRight size={24} aria-hidden="true" />}</span></div>
-            <h3>{desk.title}</h3><p className={styles.deskCopy}>{desk.copy}</p>
-            <ul className={styles.chips}>{desk.features.map(feature => <li key={feature}>{feature}</li>)}</ul>
-            <Link href={desk.href} className={styles.deskLink}>Explore {desk.title}<ArrowRight size={17} aria-hidden="true" /></Link>
-          </article>)}</div>
+          <SectionHeading id="platform-title" eyebrow="One platform. Two desks." title={<>One Platform.<br /><span>Endless Opportunities.</span></>} />
+          <div className={styles.desks}>
+            {landingDesks.map((desk, index) => {
+              const imageSrc = DESK_IMAGES[desk.id] || (index === 0 ? '/images/624dcd31-e7ca-4c2f-b804-e87bb521192e.png' : '/images/e38389f2-4afd-4f87-86dd-6210a3100071.png');
+              return (
+                <article key={desk.id} id={desk.id} className={styles.desk} data-desk={desk.id} tabIndex={0}>
+                  <div className={styles.deskImageWrapper}>
+                    <img
+                      src={imageSrc}
+                      alt={`${desk.title} background`}
+                      className={styles.deskImage}
+                      loading="lazy"
+                    />
+                    <div className={styles.deskScrim} />
+                  </div>
+
+                  <div className={styles.deskCenterView}>
+                    <h3 className={styles.deskCenterTitle}>{desk.title}</h3>
+                  </div>
+
+                  <div className={styles.deskHoverView}>
+                    <div className={styles.deskHoverTop}>
+                      <span className={styles.deskHoverEyebrow}>{desk.tag}</span>
+                      <span className={styles.deskHoverIcon}>
+                        {index === 0 ? <FileText size={20} aria-hidden="true" /> : <ArrowLeftRight size={20} aria-hidden="true" />}
+                      </span>
+                    </div>
+
+                    <div className={styles.deskHoverBody}>
+                      <h3 className={styles.deskHoverTitle}>{desk.title}</h3>
+                      <p className={styles.deskHoverCopy}>{desk.copy}</p>
+                      <ul className={styles.deskHoverChips}>
+                        {desk.features.map(feature => (
+                          <li key={feature}>{feature}</li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className={styles.deskHoverFooter}>
+                      <Link href={desk.href} className={styles.deskHoverLink}>
+                        Explore {desk.title}
+                        <ArrowRight size={16} aria-hidden="true" />
+                      </Link>
+                    </div>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+          <p className={styles.deskText}>Start with the workflow that takes the most effort today. Expand as your teams are ready.</p>
         </div>
       </section>
       <section id="why-docsynecx" className={`${styles.section} ${styles.alternate}`} aria-labelledby="why-title">
         <div className="site-shell">
           <SectionHeading id="why-title" eyebrow="Why Docsynecx" title={<>Less manual effort.<br /><span>More operational clarity.</span></>} />
-          <div className={styles.benefits}>{benefits.map(([title, copy], index) => <article key={title}>
-            <span className={styles.number}>0{index + 1}</span><h3>{title}</h3><p>{copy}</p>
-          </article>)}</div>
+          <div className={styles.benefits}>
+            {benefits.map(([title, copy], index) => {
+              const item = BENEFIT_ITEMS[index] || BENEFIT_ITEMS[0];
+              const IconComponent = item.icon;
+              return (
+                <article key={title} className={styles.benefitCard}>
+                  <div className={styles.benefitVisual}>
+                    <div className={styles.benefitIconBox}>
+                      <div className={styles.benefitRingOuter} />
+                      <div className={styles.benefitRingInner} />
+                      <span className={styles.benefitIconBadge}>
+                        <IconComponent size={26} strokeWidth={2.2} aria-hidden="true" />
+                      </span>
+                      <span className={styles.benefitTag}>
+                        <span className={styles.benefitDot} />
+                        {item.tag}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className={styles.benefitContent}>
+                    <span className={styles.benefitNumber}>0{index + 1}</span>
+                    <h3 className={styles.benefitTitle}>{title}</h3>
+                    <p className={styles.benefitCopy}>{copy}</p>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
         </div>
       </section>
       <section id="solutions" className={styles.section} aria-labelledby="solutions-title">
         <div className="site-shell">
-          <SectionHeading id="solutions-title" eyebrow="Solutions by industry" title="Designed for real business operations." copy="Solutions for organisations where invoices, shipment updates and business documents are part of everyday work." />
-          <div className={styles.industries}>{landingIndustries.map((industry, index) => <article key={industry.id} id={industry.id}>
-            <span className={styles.number}>0{index + 1}</span><h3>{industry.title}</h3><p>{industry.copy}</p>
-          </article>)}</div>
+          <SectionHeading id="solutions-title" eyebrow="Solutions by industry" title="Designed for real business operations." copy="" />
+          <div className={styles.industries}>
+            {landingIndustries.map((industry) => (
+              <article key={industry.id} id={industry.id} className={styles.industryCard}>
+                <div className={styles.industryImageWrapper}>
+                  <img
+                    src={industry.image}
+                    alt={industry.title}
+                    className={styles.industryImage}
+                    loading="lazy"
+                  />
+                  <div className={styles.industryImageOverlay} aria-hidden="true" />
+                </div>
+                <h3 className={styles.industryTitle}>{industry.title}</h3>
+                <p className={styles.industryCopy}>{industry.copy}</p>
+              </article>
+            ))}
+          </div>
           <ul className={`${styles.chips} ${styles.workflowChips}`}>{['Invoice Automation', 'Financial Workflows', 'RFQ to Booking', 'Shipment Tracking', 'Document Automation'].map(item => <li key={item}>{item}</li>)}</ul>
         </div>
       </section>
       <section id="customers" className={`${styles.section} ${styles.alternate}`} aria-labelledby="customers-title">
         <div className="site-shell">
           <SectionHeading id="customers-title" eyebrow="Customer stories" title={<>Real workflows.<br /><span>Meaningful time saved.</span></>} copy="Selected outcomes from customer workflows. Results depend on process scope, document quality and implementation." />
-          <div className={styles.stories}>{stories.map(story => <article key={story.name}>
-            <p className={styles.storyTag}>{story.tag}</p><h3>{story.name}</h3><p>{story.copy}</p>
-            {story.href && <Link href={story.href} className={styles.textLink}>Read customer story<ArrowUpRight size={15} aria-hidden="true" /></Link>}
-          </article>)}</div>
+          
+          <div style={{ width: '100%', height: '520px', position: 'relative', marginTop: '20px' }}>
+            <CircularCarousel
+              stories={stories}
+              preset="cylinder"
+              intro="rise"
+              cardWidth={380}
+              aspectRatio={1.18}
+              gap={30}
+              speed={10}
+              fadeColor="#f6f5f9"
+              depthFade={0.55}
+              cornerRadius={0}
+              draggable={true}
+              pauseOnHover={true}
+              focusOnClick={true}
+            />
+          </div>
         </div>
       </section>
       <section id="how-it-works" className={styles.section} aria-labelledby="process-title">
@@ -124,7 +259,7 @@ export function LandingPage() {
       <div className="site-shell">
         <div className={styles.footerGrid}>
           <div><Link href="/" className={styles.brand} aria-label="Docsynecx home"><DocsynecxLogo variant="footer" className={styles.footerLogo} /><span>Intelligent workflows</span></Link><p className={styles.footerDescription}>AI-powered finance and logistics workflows for document-intensive businesses.</p></div>
-          {landingDesks.map(desk => <nav key={desk.id} aria-label={`${desk.title} footer links`}><h2>{desk.title}</h2><ul>{desk.id === 'finance' && <li><Link href={desk.href}>Docsynecx Intelligence</Link></li>}{desk.features.map(feature => <li key={feature}><Link href={desk.href}>{feature}</Link></li>)}</ul></nav>)}
+          {landingDesks.map(desk => <nav key={desk.id} aria-label={`${desk.title} footer links`}><h2>{desk.title}</h2><ul>{desk.id === 'finance' && <li><Link href={desk.href}>Docsynecx Intelligence</Link></li>}{desk.features.map(feature => <li key={feature}>{feature}</li>)}</ul></nav>)}
           <nav aria-label="Company footer links"><h2>Company</h2><ul><li><Link href="/#solutions">Solutions</Link></li><li><Link href="/#customers">Customers</Link></li><li><Link href="/#why-docsynecx">About Us</Link></li><li><Link href="/demo/">Contact</Link></li></ul></nav>
         </div>
         <div className={styles.footerBottom}><p>© 2026 SynecX AI Labs Private Limited. All rights reserved.</p><a href="mailto:info@docsynecx.com">info@docsynecx.com</a></div>

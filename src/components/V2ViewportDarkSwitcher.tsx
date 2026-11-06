@@ -259,7 +259,7 @@ export const V2ViewportDarkSwitcher: React.FC = () => {
         title="V2 Dark Viewport Flow"
         className={`flex items-center gap-2 h-8 px-3 rounded-full border backdrop-blur-md shadow-lg text-xs font-semibold transition-all cursor-pointer ${
           isEnabled
-            ? 'border-emerald-500/60 bg-slate-900/90 text-emerald-300 hover:border-emerald-400 hover:text-white shadow-emerald-950/40'
+            ? 'border-emerald-500/60 bg-slate-900/90 text-emerald-300 hover:border-emerald-400 hover:text-white shadow-slate-950/40'
             : 'border-slate-300/80 bg-white/90 text-slate-700 hover:border-slate-400 hover:text-slate-900'
         }`}
       >
@@ -274,7 +274,7 @@ export const V2ViewportDarkSwitcher: React.FC = () => {
         <span
           className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold ${
             isEnabled
-              ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-700/50'
+              ? 'bg-slate-800/90 text-emerald-300 border border-slate-700/50'
               : 'bg-slate-100 text-slate-600 border border-slate-200'
           }`}
         >

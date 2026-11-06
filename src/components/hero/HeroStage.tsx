@@ -65,7 +65,7 @@ export const HeroStage: React.FC = () => {
             e.preventDefault();
             navigate('/finance');
           }}
-          className="desk-button w-[210px]"
+          className="desk-button desk-button-finance w-[210px]"
         >
           <span>Run a finance desk</span>
           <span className="desk-button-icon" aria-hidden="true">
@@ -90,7 +90,7 @@ export const HeroStage: React.FC = () => {
             e.preventDefault();
             navigate('/logistics');
           }}
-          className="desk-button w-[230px]"
+          className="desk-button desk-button-shipment w-[230px]"
         >
           <span>Run the logistics desk</span>
           <span className="desk-button-icon" aria-hidden="true">
