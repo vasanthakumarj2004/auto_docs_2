@@ -2,7 +2,7 @@
 
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
-import { ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, TrendingUp } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, TrendingUp } from 'lucide-react';
 
 export interface CustomerStoryItem {
   tag: string;
@@ -260,26 +260,26 @@ export default function CircularCarousel({
   stories = DEFAULT_STORIES,
   preset = 'cylinder',
   intro = 'rise',
-  cardWidth = 380,
-  aspectRatio = 1.2,
+  cardWidth = 460,
+  aspectRatio = 1.22,
   gap = 35,
   curve,
   tilt,
   perspective,
   autoplay = 'drift',
-  speed = 10,
+  speed = 8,
   interval = 3.5,
   direction = 'left',
   draggable = true,
-  momentum = 0.65,
+  momentum = 0.25,
   snap = true,
   pauseOnHover = true,
   focusOnClick = true,
   parallax = 0.25,
-  stretch = 0.35,
+  stretch = 0.2,
   depthFade = 0.55,
   fadeColor = '#f6f5f9',
-  cornerRadius = 0,
+  cornerRadius = 24,
   onChange,
   onItemClick,
   className = '',
@@ -635,10 +635,10 @@ export default function CircularCarousel({
       const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : 0;
       if (!delta) return;
       event.preventDefault();
-      const perPixel = 180 / (Math.PI * s.radius * state.fit);
+      const perPixel = (180 / (Math.PI * s.radius * state.fit)) * 0.28;
       state.target = null;
       state.angle -= delta * perPixel * (s.layout.inward ? -1 : 1);
-      state.velocity = -delta * perPixel * (s.layout.inward ? -1 : 1) * 30;
+      state.velocity = -delta * perPixel * (s.layout.inward ? -1 : 1) * 15;
       state.holdUntil = performance.now() + 1600;
       clearTimeout(state.wheelTimer);
       state.wheelTimer = setTimeout(() => {
@@ -746,7 +746,8 @@ export default function CircularCarousel({
         rootRef.current?.setPointerCapture(event.pointerId);
       } catch {}
     }
-    const perPixel = 180 / (Math.PI * s.radius * state.fit);
+    // Damped drag sensitivity (reduced rotation scale from 1.0 to 0.28) so left-click + hold dragging feels solid and not over-sensitive
+    const perPixel = (180 / (Math.PI * s.radius * state.fit)) * 0.58;
     state.angle = press.angle + (delta - press.origin) * perPixel * (s.layout.inward ? -1 : 1);
     const now = performance.now();
     press.samples.push({ time: now, angle: state.angle });
@@ -767,12 +768,13 @@ export default function CircularCarousel({
     const first = press.samples[0];
     const last = press.samples[press.samples.length - 1];
     const span = (last.time - first.time) / 1000;
-    const velocity = span > 0.008 ? clamp((last.angle - first.angle) / span, -1400, 1400) : 0;
+    const rawVelocity = span > 0.008 ? (last.angle - first.angle) / span : 0;
+    const velocity = clamp(rawVelocity * 0.35, -450, 450);
     state.velocity = velocity;
     if (Math.abs(velocity) > 60) state.dir = Math.sign(velocity);
     const coasting = s.autoplay === 'drift' && !(s.pauseOnHover && state.hover && event.pointerType === 'mouse');
     if (s.snap && !coasting) {
-      const tau = 0.18 + s.momentum * 1.5;
+      const tau = 0.12 + s.momentum * 0.8;
       state.target = Math.round((state.angle + velocity * tau * 0.55) / s.step) * s.step;
     }
     wakeRef.current();
@@ -847,7 +849,7 @@ export default function CircularCarousel({
       onKeyDown={handleKeyDown}
     >
       {/* 3D Ring Viewport Stage */}
-      <div className="relative w-full flex-1 overflow-hidden" style={{ minHeight: '440px' }}>
+      <div className="relative w-full flex-1 overflow-hidden" style={{ minHeight: '500px' }}>
         <div
           ref={stageRef}
           className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-[450ms] ease-out group-data-[ready]/cc:opacity-100 motion-reduce:transition-none"
@@ -877,63 +879,54 @@ export default function CircularCarousel({
                         height: cardH,
                       }}
                     >
-                      {/* Thought Card with Frosted Blurred Background and strictly non-rounded elements */}
+                      {/* iOS Style Frosted Card with Soft Multi-Layer Shadow, NO outline, NO border, NO ambient glow */}
                       <article
-                        className="relative flex h-full w-full flex-col justify-between overflow-hidden p-6 transition-all duration-300"
+                        className="relative flex h-full w-full flex-col justify-between overflow-hidden p-7 transition-all duration-300"
                         style={{
-                          borderRadius: `${cornerRadius}px`,
-                          backdropFilter: 'blur(20px)',
-                          WebkitBackdropFilter: 'blur(20px)',
+                          borderRadius: `${cornerRadius || 24}px`,
+                          backdropFilter: 'blur(24px)',
+                          WebkitBackdropFilter: 'blur(24px)',
                           background: isActive
-                            ? 'rgba(255, 255, 255, 0.94)'
-                            : 'rgba(255, 255, 255, 0.82)',
-                          border: isActive
-                            ? '1.5px solid rgba(24, 203, 150, 0.45)'
-                            : '1px solid rgba(226, 232, 240, 0.9)',
+                            ? 'rgba(255, 255, 255, 0.96)'
+                            : 'rgba(255, 255, 255, 0.88)',
+                          border: 'none',
+                          outline: 'none',
                           boxShadow: isActive
-                            ? '0 12px 35px -8px rgba(15, 23, 42, 0.12), 0 25px 60px -15px rgba(24, 203, 150, 0.22)'
-                            : '0 4px 18px -4px rgba(15, 23, 42, 0.06)',
+                            ? '0 4px 14px -2px rgba(0, 0, 0, 0.05), 0 16px 38px -6px rgba(0, 0, 0, 0.09), 0 1px 3px rgba(0, 0, 0, 0.03)'
+                            : '0 2px 10px -2px rgba(0, 0, 0, 0.04), 0 8px 24px -4px rgba(0, 0, 0, 0.05)',
                           cursor: isActive ? 'default' : 'pointer',
                         }}
                       >
-                        {/* Ambient Glow Accent on Active Card */}
-                        <div
-                          className="pointer-events-none absolute -right-8 -top-8 h-28 w-28"
-                          style={{
-                            background: 'radial-gradient(circle, rgba(24, 203, 150, 0.18) 0%, transparent 70%)',
-                          }}
-                        />
-
-                        {/* Top Meta Bar: Non-rounded tag badge + non-rounded metric badge */}
+                        {/* Top Meta Bar: iOS Pill badges using active custom tool theme colors */}
                         <div className="relative z-10 flex items-center justify-between gap-2.5">
-                          {/* Tag: Sharp Rectangular Badge */}
+                          {/* Tag: iOS Capsule Pill Badge */}
                           <div
-                            className="inline-flex items-center gap-1.5 px-3 py-1 font-mono text-[10.5px] font-bold uppercase tracking-wider"
+                            className="inline-flex items-center gap-1.5 px-3 py-1 font-mono text-[11px] font-bold uppercase tracking-wider"
                             style={{
-                              borderRadius: '0px',
-                              background: 'rgba(24, 203, 150, 0.1)',
-                              border: '1px solid rgba(24, 203, 150, 0.35)',
-                              color: '#15b886',
+                              borderRadius: '9999px',
+                              background: 'var(--color-brand-soft, rgba(24, 203, 150, 0.12))',
+                              color: 'var(--color-brand-strong, var(--color-brand, #15b886))',
+                              border: 'none',
                             }}
                           >
                             <span
-                              className="inline-block h-1.5 w-1.5"
-                              style={{ borderRadius: '0px', background: '#18cb96' }}
+                              className="inline-block h-1.5 w-1.5 rounded-full"
+                              style={{ background: 'var(--color-brand, #18cb96)' }}
                             />
                             <span>{story.tag}</span>
                           </div>
 
-                          {/* Metric: Sharp Rectangular Badge */}
+                          {/* Metric: iOS Capsule Pill Badge */}
                           <div
-                            className="inline-flex items-center gap-1.5 px-3 py-1 font-mono text-[11px] font-bold"
+                            className="inline-flex items-center gap-1.5 px-3 py-1 font-mono text-[11.5px] font-bold"
                             style={{
-                              borderRadius: '0px',
-                              background: '#f8fafc',
-                              border: '1px solid #cbd5e1',
+                              borderRadius: '9999px',
+                              background: 'rgba(241, 245, 249, 0.9)',
                               color: '#0f172a',
+                              border: 'none',
                             }}
                           >
-                            <TrendingUp size={11} className="text-[#18cb96]" aria-hidden="true" />
+                            <TrendingUp size={12} style={{ color: 'var(--color-brand, #18cb96)' }} aria-hidden="true" />
                             <span>{story.metric}</span>
                           </div>
                         </div>
@@ -943,7 +936,8 @@ export default function CircularCarousel({
                           <span
                             className="pointer-events-none block select-none text-2xl font-normal leading-none"
                             style={{
-                              color: 'rgba(24, 203, 150, 0.45)',
+                              color: 'var(--color-brand, #18cb96)',
+                              opacity: 0.35,
                               fontFamily: 'Georgia, serif',
                               marginBottom: '-4px',
                             }}
@@ -961,30 +955,34 @@ export default function CircularCarousel({
                           </p>
                         </div>
 
-                        {/* Bottom Row: Company Info & Non-Rounded Action Button */}
+                        {/* Bottom Row: Company Info & iOS Style Action Button */}
                         <div
                           className="relative z-10 border-t pt-3"
-                          style={{ borderColor: 'rgba(226, 232, 240, 0.8)' }}
+                          style={{ borderColor: 'rgba(0, 0, 0, 0.05)' }}
                         >
                           <div className="flex items-end justify-between gap-3">
                             <div>
                               <h4 className="m-0 text-[17px] font-extrabold tracking-tight text-slate-900">
                                 {story.name}
                               </h4>
-                              <p className="m-0 mt-0.5 text-[12px] font-semibold text-[#18cb96]">
+                              <p
+                                className="m-0 mt-0.5 text-[12.5px] font-semibold"
+                                style={{ color: 'var(--color-brand-strong, var(--color-brand, #15b886))' }}
+                              >
                                 {story.summary}
                               </p>
                             </div>
 
-                            {/* Non-rounded Action Button */}
+                            {/* iOS Capsule Action Button with dynamic brand color */}
                             {story.href ? (
                               <Link
                                 href={story.href}
-                                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-[11.5px] font-bold tracking-tight text-slate-900 transition-all hover:bg-[#18cb96] hover:text-white"
+                                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-[11.5px] font-bold tracking-tight transition-all hover:opacity-90 active:scale-95"
                                 style={{
-                                  borderRadius: '0px',
-                                  border: '1px solid rgba(24, 203, 150, 0.45)',
-                                  background: 'rgba(24, 203, 150, 0.08)',
+                                  borderRadius: '9999px',
+                                  border: 'none',
+                                  background: 'var(--color-brand-soft, rgba(24, 203, 150, 0.12))',
+                                  color: 'var(--color-brand-strong, var(--color-brand, #15b886))',
                                 }}
                                 onClick={(e) => e.stopPropagation()}
                               >
@@ -994,11 +992,12 @@ export default function CircularCarousel({
                             ) : (
                               <Link
                                 href="/demo/"
-                                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-[11.5px] font-bold tracking-tight text-slate-900 transition-all hover:bg-[#18cb96] hover:text-white"
+                                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-[11.5px] font-bold tracking-tight transition-all hover:opacity-90 active:scale-95"
                                 style={{
-                                  borderRadius: '0px',
-                                  border: '1px solid rgba(24, 203, 150, 0.45)',
-                                  background: 'rgba(24, 203, 150, 0.08)',
+                                  borderRadius: '9999px',
+                                  border: 'none',
+                                  background: 'var(--color-brand-soft, rgba(24, 203, 150, 0.12))',
+                                  color: 'var(--color-brand-strong, var(--color-brand, #15b886))',
                                 }}
                                 onClick={(e) => e.stopPropagation()}
                               >
@@ -1015,7 +1014,7 @@ export default function CircularCarousel({
                           style={{
                             background: 'var(--cc-fade)',
                             opacity: 'var(--cc-depth, 0)',
-                            borderRadius: `${cornerRadius}px`,
+                            borderRadius: `${cornerRadius || 24}px`,
                             backdropFilter: 'blur(calc(var(--cc-depth, 0) * 10px))',
                             WebkitBackdropFilter: 'blur(calc(var(--cc-depth, 0) * 10px))',
                           }}
@@ -1030,21 +1029,9 @@ export default function CircularCarousel({
         </div>
       </div>
 
-      {/* Carousel Navigation Bar (Non-rounded navigation controls) */}
-      <div className="relative z-20 mt-3 flex items-center justify-center gap-4 py-2">
-        {/* Previous Button (Sharp square) */}
-        <button
-          type="button"
-          className="flex h-9 w-9 items-center justify-center bg-white border border-slate-300 text-slate-700 shadow-sm transition-all hover:border-[#18cb96] hover:text-[#18cb96] active:scale-95"
-          style={{ borderRadius: '0px' }}
-          onClick={() => stepBy(-1)}
-          aria-label="Previous story"
-        >
-          <ChevronLeft size={17} aria-hidden="true" />
-        </button>
-
-        {/* Story Selector Indicators (Sharp square indicators) */}
-        <div className="flex items-center gap-2" role="tablist" aria-label="Customer review cards">
+      {/* Carousel Navigation Bar (Clean iOS Pill Indicators without Arrow Buttons) */}
+      <div className="relative z-20 mt-3 flex items-center justify-center py-2" role="tablist" aria-label="Customer review cards">
+        <div className="flex items-center gap-2">
           {list.map((item, index) => {
             const isCurrent = active === index;
             return (
@@ -1054,30 +1041,19 @@ export default function CircularCarousel({
                 role="tab"
                 aria-selected={isCurrent}
                 aria-label={`View story ${index + 1}: ${item.name}`}
-                className="transition-all duration-300 cursor-pointer"
+                className="transition-all duration-300 cursor-pointer outline-none"
                 style={{
-                  width: isCurrent ? '26px' : '9px',
-                  height: '9px',
-                  borderRadius: '0px',
-                  background: isCurrent ? '#18cb96' : '#cbd5e1',
-                  border: isCurrent ? '1px solid #15b886' : 'none',
+                  width: isCurrent ? '28px' : '8px',
+                  height: '8px',
+                  borderRadius: '9999px',
+                  background: isCurrent ? 'var(--color-brand, #18cb96)' : 'rgba(203, 213, 225, 0.7)',
+                  border: 'none',
                 }}
                 onClick={() => focusIndex(index)}
               />
             );
           })}
         </div>
-
-        {/* Next Button (Sharp square) */}
-        <button
-          type="button"
-          className="flex h-9 w-9 items-center justify-center bg-white border border-slate-300 text-slate-700 shadow-sm transition-all hover:border-[#18cb96] hover:text-[#18cb96] active:scale-95"
-          style={{ borderRadius: '0px' }}
-          onClick={() => stepBy(1)}
-          aria-label="Next story"
-        >
-          <ChevronRight size={17} aria-hidden="true" />
-        </button>
       </div>
     </div>
   );

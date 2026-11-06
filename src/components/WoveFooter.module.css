@@ -1,0 +1,369 @@
+.footer {
+  --footer-bg: #111827;
+  --footer-border: #1f2937;
+  --footer-heading: #ffffff;
+  --footer-text: #9ca3af;
+  --footer-link: #9ca3af;
+  --footer-muted: #9ca3af;
+  --footer-subtle: #6b7280;
+  --footer-input-bg: #1f2937;
+  --footer-input-border: #374151;
+  --footer-input-text: #ffffff;
+  --footer-btn-bg: var(--color-brand, #18cb96);
+  --footer-btn-border: var(--color-brand, #18cb96);
+  --footer-btn-text: #052c23;
+
+  position: relative;
+  border-top: 1px solid var(--footer-border);
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  font-family: inherit;
+}
+
+/* Dark variant: explicitly matches existing Docsynecx dark footer */
+.footer[data-variant='dark'] {
+  --footer-bg: #111827;
+  --footer-border: #1f2937;
+  --footer-heading: #ffffff;
+  --footer-text: #9ca3af;
+  --footer-link: #9ca3af;
+  --footer-muted: #9ca3af;
+  --footer-subtle: #6b7280;
+  --footer-input-bg: #1f2937;
+  --footer-input-border: #374151;
+  --footer-input-text: #ffffff;
+  --footer-btn-bg: var(--color-brand, #18cb96);
+  --footer-btn-border: var(--color-brand, #18cb96);
+  --footer-btn-text: #052c23;
+}
+
+/* Light variant option if ever needed */
+.footer[data-variant='light'] {
+  --footer-bg: #fafbf9;
+  --footer-border: #e2e8f0;
+  --footer-heading: #0f172a;
+  --footer-text: #334155;
+  --footer-link: #475569;
+  --footer-muted: #64748b;
+  --footer-subtle: #8292a4;
+  --footer-input-bg: #ffffff;
+  --footer-input-border: #cbd5e1;
+  --footer-input-text: #0f172a;
+  --footer-btn-bg: #0f172a;
+  --footer-btn-border: #0f172a;
+  --footer-btn-text: #ffffff;
+}
+
+.shell {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+/* ==========================================================================
+   Tier 1: Newsletter / Updates Bar
+   ========================================================================== */
+.newsletterBar {
+  border-bottom: 1px solid var(--footer-border);
+}
+
+.newsletterContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding-block: 36px;
+}
+
+.newsletterText {
+  max-width: 520px;
+}
+
+.newsletterTitle {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--footer-heading);
+}
+
+.newsletterSubtitle {
+  margin-top: 6px;
+  margin-bottom: 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--footer-muted);
+}
+
+.newsletterForm {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 440px;
+}
+
+.inputWrapper {
+  position: relative;
+  flex: 1;
+}
+
+.newsletterInput {
+  width: 100%;
+  min-height: 42px;
+  padding: 0 14px;
+  border: 1px solid var(--footer-input-border);
+  border-radius: 12px;
+  background: var(--footer-input-bg);
+  color: var(--footer-heading);
+  font-size: 13.5px;
+  outline: none;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.newsletterInput:focus {
+  border-color: var(--color-brand, #18cb96);
+  box-shadow: 0 0 0 3px rgba(24, 203, 150, 0.16);
+}
+
+.newsletterInput::placeholder {
+  color: var(--footer-subtle);
+}
+
+.subscribeButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 20px;
+  border: 1px solid var(--footer-btn-border);
+  border-radius: 15px !important;
+  background: var(--footer-btn-bg);
+  color: var(--footer-btn-text);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 160ms ease;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+}
+
+.subscribeButton:hover {
+  background: var(--color-brand, #18cb96);
+  border-color: var(--color-brand, #18cb96);
+  color: #063d2c;
+  transform: translateY(-1px);
+}
+
+.subscribeButton[data-status='success'] {
+  background: #10b981;
+  border-color: #10b981;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Tier 2: 6-Column Navigation Grid
+   ========================================================================== */
+.navigationGrid {
+  display: grid;
+  gap: 40px 24px;
+  padding-block: 54px 44px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: 640px) {
+  .navigationGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .navigationGrid {
+    grid-template-columns: 1.35fr repeat(5, minmax(0, 1fr));
+    gap: 40px 22px;
+  }
+}
+
+.brandCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.logoLink {
+  display: inline-block;
+  align-self: flex-start;
+  margin-bottom: 12px;
+  border-radius: 4px;
+}
+
+.logo {
+  height: 38px;
+  width: auto;
+  max-width: 100%;
+}
+
+.brandDescription {
+  max-width: 230px;
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--footer-muted);
+}
+
+.socialList {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-top: 18px;
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: var(--footer-link);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.socialLink:hover {
+  color: #ffffff;
+}
+
+.navCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.colHeader {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--footer-heading);
+  margin-bottom: 18px;
+}
+
+.linkList {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footerLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--footer-link);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.footerLink:hover {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.upcomingBadge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: rgba(24, 203, 150, 0.14);
+  color: var(--color-brand, #18cb96);
+  border: 1px solid rgba(24, 203, 150, 0.32);
+}
+
+/* ==========================================================================
+   Tier 3: Bottom Legal & Operational Strip
+   ========================================================================== */
+.bottomStrip {
+  border-top: 1px solid var(--footer-border);
+}
+
+.bottomContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding-block: 22px 36px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--footer-subtle);
+}
+
+.brandTagline {
+  font-weight: 500;
+  color: var(--footer-muted);
+}
+
+.bottomLinks {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.bottomLink {
+  color: var(--footer-subtle);
+  text-decoration: none;
+  transition: color 150ms ease;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+}
+
+.bottomLink:hover {
+  color: var(--footer-heading);
+}
+
+.copyright {
+  color: var(--footer-subtle);
+}
+
+/* Focus states */
+.footer a:focus-visible,
+.footer button:focus-visible,
+.footer input:focus-visible {
+  outline: 2px solid var(--color-brand, #18cb96);
+  outline-offset: 3px;
+}
+
+@media (max-width: 639px) {
+  .newsletterContent {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .newsletterForm {
+    max-width: 100%;
+  }
+  .bottomContent {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
