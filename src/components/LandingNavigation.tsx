@@ -16,7 +16,12 @@ interface MegaOverviewLink {
 interface MegaFeatureLink {
   sno?: string | number;
   title: string;
-  description: string;
+  description?: string;
+  href: string;
+}
+
+interface MegaSimpleLink {
+  title: string;
   href: string;
 }
 
@@ -27,6 +32,10 @@ interface MegaMenuData {
   exploreLabel: string;
   overviewLinks: MegaOverviewLink[];
   featureLinks: MegaFeatureLink[];
+  whoHeading?: string;
+  whoLinks?: MegaSimpleLink[];
+  integrationsHeading?: string;
+  integrationsLinks?: MegaSimpleLink[];
 }
 
 const MEGA_MENUS: Record<string, MegaMenuData> = {
@@ -40,33 +49,36 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
       {
         sno: '01',
         title: 'Invoice Automation',
-        description: 'Split, extract and validate supplier invoices with 3-way match against accruals.',
         href: '/finance/',
       },
       {
         sno: '02',
-        title: 'Financial Intelligence',
-        description: 'Move vendor documents into cashflow, ledger and tax visibility.',
+        title: 'Bank Statement & Reconcilation',
         href: '/finance/',
-      },
+      }, 
       {
         sno: '03',
-        title: 'Business Intelligence',
-        description: 'Continuous line-item audit, variance detection and GST 2B reconciliation.',
+        title: 'Docsynecx Intelligence',
         href: '/finance/',
       },
       {
         sno: '04',
-        title: 'AI Insights',
-        description: 'Automated exception handling and instant voucher creation.',
+        title: 'Account Payable ( upcoming )',
         href: '/finance/',
       },
-      {
-        sno: '05',
-        title: 'Docsynecx Intelligence',
-        description: 'Automated exception handling and instant voucher creation.',
-        href: '/finance/',
-      },
+    ],
+    whoHeading: "Who it's for",
+    whoLinks: [
+      { title: 'Business Owners', href: '/demo/' },
+      { title: 'Finance Teams', href: '/finance/' },
+      { title: 'Accounts Teams', href: '/accounts-payable/' },
+      { title: 'CA firms', href: '/demo/' },
+    ],
+    integrationsHeading: 'Integrations',
+    integrationsLinks: [
+      { title: 'Tally', href: '/#integrations' },
+      { title: 'Zoho Books', href: '/#integrations' },
+      { title: 'Custom ERP', href: '/#integrations' },
     ],
   },
   'Shipment Desk': {
@@ -79,53 +91,61 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
       {
         sno: '01',
         title: 'RFQ to Booking',
-        description: 'Automated quotation comparison and instant freight rate confirmation.',
         href: '/logistics/',
       },
       {
         sno: '02',
         title: 'Shipment Management',
-        description: 'Consolidate bills of lading, airway bills and custom manifests.',
         href: '/logistics/',
       },
       {
         sno: '03',
         title: 'Shipment Tracking',
-        description: 'Real-time milestones, container tracking and carrier status updates.',
         href: '/logistics/',
       },
       {
         sno: '04',
         title: 'Document Automation',
-        description: 'Extract and validate multi-page logistics docs and origin certificates.',
         href: '/logistics/',
       },
+    ],
+    whoHeading: "Who it's for",
+    whoLinks: [
+      { title: 'Business Owners', href: '/demo/' },
+      { title: 'Finance Teams', href: '/logistics/' },
+      { title: 'Accounts Teams', href: '/logistics/' },
+      { title: 'CA firms', href: '/demo/' },
+    ],
+    integrationsHeading: 'Integrations',
+    integrationsLinks: [
+      { title: 'Cargowise', href: '/#integrations' },
+      { title: 'Custom ERP', href: '/#integrations' },
     ],
   },
   'Solutions': {
     label: 'Solutions',
-    eyebrow: 'INDUSTRIES',
+    eyebrow: 'BY INDUSTRIES',
     overviewHref: '/#platform',
     exploreLabel: 'Explore all solutions',
     overviewLinks: [],
     featureLinks: [
       {
         sno: '01',
-        title: 'Logistics & Freight Forwarding',
-        description: 'RFQ, shipments, container tracking and trade documents.',
-        href: '/#logistics-industry',
-      },
-      {
-        sno: '02',
-        title: 'Automotive & EV',
+        title: 'Automotive Industry',
         description: 'Purchase invoices, spare parts and service documentation.',
         href: '/#automotive-industry',
       },
       {
-        sno: '03',
+        sno: '02',
         title: 'Manufacturing',
         description: 'Supplier invoices, material receipts and operational records.',
         href: '/#manufacturing-industry',
+      },
+      {
+        sno: '03',
+        title: 'Textile & Garments',
+        description: 'Supplier and purchase documentation with rapid ledger posting.',
+        href: '/#textile-industry',
       },
       {
         sno: '04',
@@ -135,9 +155,9 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
       },
       {
         sno: '05',
-        title: 'Textile & Garments',
-        description: 'Supplier and purchase documentation with rapid ledger posting.',
-        href: '/#textile-industry',
+        title: 'Logistics & Freight Forwarders',
+        description: 'RFQ, shipments, container tracking and trade documents.',
+        href: '/#logistics-industry',
       },
     ],
   },
@@ -146,38 +166,29 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
     eyebrow: 'TOOLS & GUIDES',
     overviewHref: '/#how-it-works',
     exploreLabel: 'Explore resources',
-    overviewLinks: [
-      {
-        title: 'How it works',
-        href: '/#how-it-works',
-      },
-      {
-        title: 'Integrations',
-        href: '/#integrations',
-      },
-    ],
+    overviewLinks: [],
     featureLinks: [
       {
         sno: '01',
-        title: 'Free ROI Calculator',
+        title: 'Blogs',
         description: 'Calculate monthly hours, error reduction and financial savings.',
         href: '/calculator/',
       },
       {
         sno: '02',
-        title: 'Frequently asked questions',
+        title: 'Case Studies',
         description: 'Answers about GST validation, security rules and human approvals.',
         href: '/#faq',
       },
       {
         sno: '03',
-        title: 'Accounts Payable Automation',
+        title: 'About Us',
         description: 'End-to-end bill ingestion, validation and automated voucher posting.',
         href: '/accounts-payable/',
       },
       {
         sno: '04',
-        title: 'Logistics & Trade Documents',
+        title: 'Events',
         description: 'Automate bills of lading, shipping orders and customs manifests.',
         href: '/logistics-trade/',
       },
@@ -251,16 +262,32 @@ export function LandingNavigation() {
     }, 180);
   };
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 8);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const activeMega = openMenu ? MEGA_MENUS[openMenu] : null;
 
   return (
     <>
       <AnnouncementBarV2 />
-      <header ref={headerRef} className={styles.header} onMouseLeave={handleMouseLeave}>
+      <header
+        ref={headerRef}
+        className={styles.header}
+        data-scrolled={isScrolled ? 'true' : 'false'}
+        onMouseLeave={handleMouseLeave}
+      >
         <div className={`site-shell ${styles.navbar}`}>
           <Link href="/" className={styles.brand} aria-label="Docsynecx home" onClick={close}>
-            <DocsynecxLogo className={styles.logo} />
-            <span>Intelligent workflows</span>
+            <DocsynecxLogo variant="header" className={styles.logo} />
+            {/* <span>Intelligent workflows</span> */}
           </Link>
 
           <button
@@ -345,6 +372,30 @@ export function LandingNavigation() {
                           </Link>
                         </li>
                       ))}
+                      {MEGA_MENUS[item.key]?.whoLinks && (
+                        <li className={styles.mobileSectionHeading}>
+                          <span>{MEGA_MENUS[item.key]?.whoHeading || "Who it's for"}</span>
+                        </li>
+                      )}
+                      {MEGA_MENUS[item.key]?.whoLinks?.map((link) => (
+                        <li key={link.title}>
+                          <Link href={link.href} onClick={close}>
+                            <strong>{link.title}</strong>
+                          </Link>
+                        </li>
+                      ))}
+                      {MEGA_MENUS[item.key]?.integrationsLinks && (
+                        <li className={styles.mobileSectionHeading}>
+                          <span>{MEGA_MENUS[item.key]?.integrationsHeading || 'Integrations'}</span>
+                        </li>
+                      )}
+                      {MEGA_MENUS[item.key]?.integrationsLinks?.map((link) => (
+                        <li key={link.title}>
+                          <Link href={link.href} onClick={close}>
+                            <strong>{link.title}</strong>
+                          </Link>
+                        </li>
+                      ))}
                     </ul>
                   )}
                 </div>
@@ -384,29 +435,136 @@ export function LandingNavigation() {
             onMouseLeave={handleMouseLeave}
           >
             <div className="site-shell">
-              <div className={styles.megaDropdownContent}>
-                {/* Left Column: Light Capabilities Grid */}
+              <div
+                className={styles.megaDropdownContent}
+                data-layout={activeMega.whoLinks ? 'four-col' : 'standard'}
+              >
+                {/* Left Area: 3 Columns for Finance/Shipment, or standard 2-column feature grid */}
                 <div className={styles.megaLeft}>
-                  <div className={styles.megaEyebrow}>{activeMega.eyebrow}</div>
+                  {activeMega.whoLinks && activeMega.integrationsLinks ? (
+                    <div className={styles.megaThreeColGrid}>
+                      {/* Column 1: Current contents (with SNO numbers) */}
+                      <div className={styles.megaCol}>
+                        <div className={styles.megaEyebrow}>{activeMega.eyebrow}</div>
+                        <div className={styles.megaColStack}>
+                          {activeMega.featureLinks.map((linkItem) => (
+                            <Link
+                              key={linkItem.title}
+                              href={linkItem.href}
+                              onClick={close}
+                              className={styles.megaFeatureItem}
+                            >
+                              <div className={styles.megaItemTitle}>
+                                {linkItem.sno && (
+                                  <span className={styles.megaItemNumber}>{linkItem.sno}</span>
+                                )}
+                                <span>{linkItem.title}</span>
+                              </div>
+                              {linkItem.description && (
+                                <p className={styles.megaItemDesc}>{linkItem.description}</p>
+                              )}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
 
-                  {/* Top Overview / Primary Links (if configured) */}
-                  {activeMega.overviewLinks.length > 0 && (
+                      {/* Column 2: Who it's for (NO SNO numbers) */}
+                      <div className={`${styles.megaCol} ${styles.megaBorderCol}`}>
+                        <div className={styles.megaEyebrow}>
+                          {activeMega.whoHeading || "Who it's for"}
+                        </div>
+                        <ul className={styles.megaSimpleList}>
+                          {activeMega.whoLinks.map((linkItem) => (
+                            <li key={linkItem.title}>
+                              <Link
+                                href={linkItem.href}
+                                onClick={close}
+                                className={styles.megaSimpleLink}
+                              >
+                                <span>{linkItem.title}</span>
+                                <ArrowRight
+                                  size={12}
+                                  className={styles.megaSimpleArrow}
+                                  aria-hidden="true"
+                                />
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Column 3: Integrations (NO SNO numbers) */}
+                      <div className={`${styles.megaCol} ${styles.megaBorderCol}`}>
+                        <div className={styles.megaEyebrow}>
+                          {activeMega.integrationsHeading || 'Integrations'}
+                        </div>
+                        <ul className={styles.megaSimpleList}>
+                          {activeMega.integrationsLinks.map((linkItem) => (
+                            <li key={linkItem.title}>
+                              <Link
+                                href={linkItem.href}
+                                onClick={close}
+                                className={styles.megaSimpleLink}
+                              >
+                                <span>{linkItem.title}</span>
+                                <ArrowRight
+                                  size={12}
+                                  className={styles.megaSimpleArrow}
+                                  aria-hidden="true"
+                                />
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  ) : (
                     <>
-                      <div className={styles.megaTopGrid}>
-                        {activeMega.overviewLinks.map((linkItem) => (
+                      <div className={styles.megaEyebrow}>{activeMega.eyebrow}</div>
+
+                      {/* Top Overview / Primary Links (if configured) */}
+                      {activeMega.overviewLinks.length > 0 && (
+                        <>
+                          <div className={styles.megaTopGrid}>
+                            {activeMega.overviewLinks.map((linkItem) => (
+                              <Link
+                                key={linkItem.title}
+                                href={linkItem.href}
+                                onClick={close}
+                                className={styles.megaOverviewItem}
+                              >
+                                <div className={styles.megaItemTitle}>
+                                  <span>{linkItem.title}</span>
+                                  <ArrowRight
+                                    size={13}
+                                    className={styles.megaArrow}
+                                    aria-hidden="true"
+                                  />
+                                </div>
+                                {linkItem.description && (
+                                  <p className={styles.megaItemDesc}>{linkItem.description}</p>
+                                )}
+                              </Link>
+                            ))}
+                          </div>
+                          <div className={styles.megaDivider} />
+                        </>
+                      )}
+
+                      {/* Feature / Capabilities Grid (2 columns) */}
+                      <div className={styles.megaFeatureGrid}>
+                        {activeMega.featureLinks.map((linkItem) => (
                           <Link
                             key={linkItem.title}
                             href={linkItem.href}
                             onClick={close}
-                            className={styles.megaOverviewItem}
+                            className={styles.megaFeatureItem}
                           >
                             <div className={styles.megaItemTitle}>
+                              {linkItem.sno && (
+                                <span className={styles.megaItemNumber}>{linkItem.sno}</span>
+                              )}
                               <span>{linkItem.title}</span>
-                              <ArrowRight
-                                size={13}
-                                className={styles.megaArrow}
-                                aria-hidden="true"
-                              />
                             </div>
                             {linkItem.description && (
                               <p className={styles.megaItemDesc}>{linkItem.description}</p>
@@ -414,31 +572,8 @@ export function LandingNavigation() {
                           </Link>
                         ))}
                       </div>
-                      <div className={styles.megaDivider} />
                     </>
                   )}
-
-                  {/* Feature / Capabilities Grid (2 columns) */}
-                  <div className={styles.megaFeatureGrid}>
-                    {activeMega.featureLinks.map((linkItem) => (
-                      <Link
-                        key={linkItem.title}
-                        href={linkItem.href}
-                        onClick={close}
-                        className={styles.megaFeatureItem}
-                      >
-                        <div className={styles.megaItemTitle}>
-                          {linkItem.sno && (
-                            <span className={styles.megaItemNumber}>{linkItem.sno}</span>
-                          )}
-                          <span>{linkItem.title}</span>
-                        </div>
-                        {linkItem.description && (
-                          <p className={styles.megaItemDesc}>{linkItem.description}</p>
-                        )}
-                      </Link>
-                    ))}
-                  </div>
                 </div>
 
                 {/* Right Column: Signature Hero Callout (Green Div) */}

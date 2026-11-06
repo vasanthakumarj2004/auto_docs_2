@@ -11,7 +11,7 @@ export function LandingHero() {
   const { layout } = useLandingLayout();
 
   return <>
-    <section id="top" className={styles.hero} data-hero-layout={layout} data-appearance="light" aria-labelledby="hero-title">
+    <section id="top" className={styles.hero} data-hero-layout={layout} data-appearance="dark" aria-labelledby="hero-title">
       <div className={`site-shell ${styles.heroGrid}`}>
         <div className={styles.heroCopy}>
           {/* <p className={styles.eyebrow}>Intelligent workflows. Everyday progress.</p> */}
