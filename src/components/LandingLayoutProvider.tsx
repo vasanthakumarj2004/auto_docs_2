@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 
-export type LandingLayout = 'v1' | 'v2';
+export type LandingLayout = 'v1' | 'v2' | 'v3';
 export type LandingAppearance = 'light' | 'dark';
 export type NavbarTheme = 'light' | 'dark';
 
@@ -34,7 +34,7 @@ export function LandingLayoutProvider({ children }: { children: React.ReactNode 
   useEffect(() => {
     try {
       const saved = localStorage.getItem(storageKey);
-      if (saved === 'v1' || saved === 'v2') updateLayout(saved);
+      if (saved === 'v1' || saved === 'v2' || saved === 'v3') updateLayout(saved);
       const savedAppearance = localStorage.getItem(appearanceKey);
       if (savedAppearance === 'light' || savedAppearance === 'dark') updateAppearance(savedAppearance);
       const savedNavbarTheme = localStorage.getItem(navbarThemeKey);
@@ -45,7 +45,7 @@ export function LandingLayoutProvider({ children }: { children: React.ReactNode 
       }
     } catch { /* Layout switching also works when storage is unavailable. */ }
     const sync = (event: StorageEvent) => {
-      if (event.key === storageKey) updateLayout(event.newValue === 'v1' ? 'v1' : 'v2');
+      if (event.key === storageKey) updateLayout(event.newValue === 'v1' || event.newValue === 'v3' ? event.newValue : 'v2');
       if (event.key === appearanceKey) updateAppearance(event.newValue === 'light' ? 'light' : 'dark');
       if (event.key === navbarThemeKey) updateNavbarTheme(event.newValue === 'light' ? 'light' : 'dark');
     };

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { ArrowRight, ArrowLeftRight, ArrowUpRight, FileText, Zap, ShieldCheck, CheckCircle2, TrendingUp } from 'lucide-react';
-import { DocsynecxLogo } from './DocsynecxLogo';
+import { FinanceFooter } from './FinanceFooter';
 import { LandingHero } from './LandingHero';
 import { SharedFaqAccordion } from './SharedFaqAccordion';
 import { LandingNavigation } from './LandingNavigation';
@@ -255,15 +255,6 @@ export function LandingPage() {
         </div>
       </section>
     </main>
-    <footer className={styles.footer}>
-      <div className="site-shell">
-        <div className={styles.footerGrid}>
-          <div><Link href="/" className={styles.brand} aria-label="Docsynecx home"><DocsynecxLogo variant="footer" className={styles.footerLogo} /><span>Intelligent workflows</span></Link><p className={styles.footerDescription}>AI-powered finance and logistics workflows for document-intensive businesses.</p></div>
-          {landingDesks.map(desk => <nav key={desk.id} aria-label={`${desk.title} footer links`}><h2>{desk.title}</h2><ul>{desk.id === 'finance' && <li><Link href={desk.href}>Docsynecx Intelligence</Link></li>}{desk.features.map(feature => <li key={feature}>{feature}</li>)}</ul></nav>)}
-          <nav aria-label="Company footer links"><h2>Company</h2><ul><li><Link href="/#solutions">Solutions</Link></li><li><Link href="/#customers">Customers</Link></li><li><Link href="/#why-docsynecx">About Us</Link></li><li><Link href="/demo/">Contact</Link></li></ul></nav>
-        </div>
-        <div className={styles.footerBottom}><p>© 2026 SynecX AI Labs Private Limited. All rights reserved.</p><a href="mailto:info@docsynecx.com">info@docsynecx.com</a></div>
-      </div>
-    </footer>
+    <FinanceFooter />
   </div>;
 }

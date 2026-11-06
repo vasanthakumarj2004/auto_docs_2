@@ -3,23 +3,23 @@ import Link from 'next/link';
 import { ArrowUpRight, FileSearch, ListChecks, Linkedin, Workflow } from 'lucide-react';
 import { DocsynecxLogo } from './DocsynecxLogo';
 import styles from './Footer.module.css';
+import { financeCapabilities, financeRoot } from '../content/finance';
 
 const navigation = [
   [
-    { title: 'Platform', links: [
-      { label: 'Finance desk', href: '/finance/' },
-      { label: 'Shipment desk', href: '/logistics/' },
-      { label: 'How we do', href: '/#how-it-works' },
+    { title: 'Finance Desk', links: [
+      { label: 'Overview', href: financeRoot },
+      ...financeCapabilities.map(item => ({ label: item.title + (item.slug === 'accounts-payable' ? ' (Upcoming)' : ''), href: `${financeRoot}${item.slug}/` })),
     ] },
     { title: 'Solutions', links: [
-      { label: 'Accounts payable', href: '/accounts-payable/' },
+      { label: 'Shipment desk', href: '/logistics/' },
       { label: 'Freight operations', href: '/logistics-trade/' },
       { label: 'Document checks', href: '/#how-it-works' },
     ] },
   ],
   [
     { title: 'Integrations', links: [
-      { label: 'Tally', href: '/finance/#finance-workbench' },
+      { label: 'Tally', href: '/finance-desk/invoice-automation/' },
       { label: 'Zoho Books', href: '/#faq' },
       { label: 'CargoWise', href: '/logistics/#logistics-workbench' },
     ] },

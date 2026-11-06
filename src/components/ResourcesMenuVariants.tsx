@@ -5,17 +5,17 @@ import type { ResourceCardStyle } from './ResourceCardStyleProvider';
 import styles from './ResourcesMenuVariants.module.css';
 
 const products = [
-  { href: '/finance', label: 'Invoice Automation', description: 'Read bills, validate details and post to Tally.', Icon: Receipt },
+  { href: '/finance-desk/invoice-automation/', label: 'Invoice Automation', description: 'Read bills, validate details and post to Tally.', Icon: Receipt },
   { href: '/logistics', label: 'Logistics & Supply Chain', description: 'Turn shipment documents into CargoWise jobs.', Icon: Truck },
   { href: '/#how-it-works', label: 'How we do', description: 'Capture, extract, validate and sync.', Icon: Workflow },
 ];
 const tools = [
   { href: '/calculator', label: 'Free ROI Calculator', description: 'See the time and cost your team could save.', Icon: Calculator },
-  { href: '/finance', label: 'Tally & ERP Integrations', description: 'Connect the systems your team already uses.', Icon: Database },
+  { href: '/finance-desk/invoice-automation/', label: 'Tally & ERP Integrations', description: 'Connect the systems your team already uses.', Icon: Database },
   { href: '/#faq', label: 'FAQ & Help Center', description: 'Answers about setup, checks and security.', Icon: HelpCircle },
 ];
 const desks = [
-  { name: 'Finance', title: 'Approve the bill. The entry posts itself.', image: '/images/finance-desk-card.jpg', href: '/finance', detail: 'From the first invoice to the final entry, keep your finance team in control.' },
+  { name: 'Finance', title: 'Approve the bill. The entry posts itself.', image: '/images/finance-desk-card.jpg', href: '/finance-desk/', detail: 'From the first invoice to the final entry, keep your finance team in control.' },
   { name: 'Logistics', title: 'Documents in. Shipments moving.', image: '/images/logistics-desk-card.jpg', href: '/logistics', detail: 'Bring shipment details together and give your operations team a job to review.' },
 ];
 

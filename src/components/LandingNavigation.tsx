@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from 'react';
 import { ChevronDown, Menu, X, ArrowRight } from 'lucide-react';
 import { DocsynecxLogo } from './DocsynecxLogo';
 import { AnnouncementBarV2 } from './AnnouncementBar';
+import { useLandingLayout } from './LandingLayoutProvider';
+import { LandingLayoutThreeNavigation } from './LandingLayoutThree';
 import styles from './LandingPage.module.css';
 
 interface MegaOverviewLink {
@@ -198,6 +200,11 @@ const NAV_ITEMS: NavItem[] = [
 ];
 
 export function LandingNavigation() {
+  const { layout } = useLandingLayout();
+  return layout === 'v3' ? <LandingLayoutThreeNavigation /> : <StandardLandingNavigation />;
+}
+
+function StandardLandingNavigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement>(null);

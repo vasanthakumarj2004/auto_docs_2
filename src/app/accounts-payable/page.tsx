@@ -1,28 +1,6 @@
-import type { Metadata } from 'next';
-import React from 'react';
-import { Header } from '@/src/components/Header';
-import { FinancePage } from '@/src/views/FinancePage';
-import { Footer } from '@/src/components/Footer';
+import { FinancePage } from '@/src/components/finance/FinancePages';
+import { financeMetadata } from '@/src/lib/financeMetadata';
 
-export const metadata: Metadata = {
-  title: 'Accounts Payable Automation | AutoDocs',
-  description:
-    'Automate vendor bill processing, GST verification, and voucher auto-posting directly to Tally and Zoho Books.',
-  alternates: {
-    canonical: 'https://autodocs.com/finance/',
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
-
-export default function AccountsPayableAliasPage() {
-  return (
-    <div className="min-h-screen max-w-full overflow-x-clip lg:overflow-visible bg-white text-slate-800">
-      <Header />
-      <FinancePage />
-      <Footer />
-    </div>
-  );
-}
+// Preserve existing bookmarks in the static export with the new canonical URL.
+export const metadata = financeMetadata('accounts-payable');
+export default function LegacyFinancePage() { return <FinancePage page="accounts-payable" />; }

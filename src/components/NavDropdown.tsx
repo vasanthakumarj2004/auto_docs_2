@@ -183,7 +183,7 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
   // Products and Workflows (Exact previous data from autodocs)
   const products: DropdownItem[] = [
     {
-      href: '/finance',
+      href: '/finance-desk/invoice-automation/',
       label: 'Invoice Automation',
       description: 'Tally & ERP automation, auto-post vouchers',
       icon: Receipt,
@@ -221,7 +221,7 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
       badge: 'Live',
     },
     {
-      href: '/finance',
+      href: '/finance-desk/invoice-automation/',
       label: 'Tally & ERP Integrations',
       description: 'Direct connectors for TallyPrime & Zoho',
       icon: Database,
@@ -251,7 +251,7 @@ export const NavDropdown: React.FC<NavDropdownProps> = ({ onNavigate, currentPat
       description: 'Eliminate 95% of manual data entry into Tally & ERP with AI 3-way line item match.',
       imageSrc: '/images/finance-desk-card.jpg',
       imageAlt: 'AutoDocs Finance Desk - Invoice Automation & Tally Voucher Sync',
-      href: '/finance',
+      href: '/finance-desk/',
       ctaText: 'Explore Finance Desk',
       ctaButtonClass: 'button-primary px-4 py-2 text-xs font-semibold rounded-lg',
     },

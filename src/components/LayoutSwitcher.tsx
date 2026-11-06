@@ -41,11 +41,12 @@ export function LayoutSwitcher() {
       {open && <div id="landing-layout-options" className={styles.panel} role="region" aria-label="Hero layout options">
         <div className={styles.heading}><span>Hero layout</span><button type="button" aria-label="Close layout menu"
           onClick={() => { setOpen(false); trigger.current?.focus(); }}><X size={16} /></button></div>
-        <p>Two layouts, always in light mode.</p>
+        <p>Three layouts, always in light mode.</p>
         <div className={styles.options}>
           {([
             { id: 'v1', title: 'Version 1', detail: 'Split layout · live pipeline', Icon: Columns2 },
             { id: 'v2', title: 'Version 2', detail: 'Centred layout · simple & focused', Icon: PanelTop },
+            { id: 'v3', title: 'Version 3', detail: '3D dashboard · workflow overview', Icon: LayoutTemplate },
           ] as const).map(({ id, title, detail, Icon }) => <button key={id} type="button"
             aria-pressed={layout === id} onClick={() => setLayout(id)} className={styles.option}>
             <Icon size={24} /><span><strong>{title}</strong><small>{detail}</small></span>
@@ -53,7 +54,7 @@ export function LayoutSwitcher() {
           </button>)}
         </div>
 
-        <small className={styles.note}>Changes the hero only. Your choice is saved automatically.</small>
+        <small className={styles.note}>Version 3 also changes the header. Your choice is saved automatically.</small>
       </div>}
     </div>
   );
