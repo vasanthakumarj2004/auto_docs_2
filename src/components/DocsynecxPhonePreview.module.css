@@ -1,9 +1,9 @@
-.preview { width: 300px; margin: 0; font-family: Arial, Helvetica, sans-serif; line-height: 1.4; }
-.phone { position: relative; width: 300px; height: 628px; padding: 6px; border: 1px solid #bfc7c1; border-radius: 46px; background: linear-gradient(115deg, #fff 0%, #e2e6e2 34%, #fff 58%, #ced4ce 100%); box-shadow: 0 0 0 2px #fff, 0 0 0 3px #e4e8e3, 0 22px 46px -20px #243b2b33, inset 0 0 0 2px #f8faf7; }
+.preview { --phone-radius: 46px; --phone-bezel: 6px; --phone-stroke: 1px; width: 300px; margin: 0; font-family: Arial, Helvetica, sans-serif; line-height: 1.4; }
+.phone { position: relative; box-sizing: border-box; width: 100%; height: 628px; padding: var(--phone-bezel); border: var(--phone-stroke) solid #bfc7c1; border-radius: var(--phone-radius); background: linear-gradient(115deg, #fff 0%, #e2e6e2 34%, #fff 58%, #ced4ce 100%); box-shadow: 0 22px 46px -20px #243b2b33, inset 0 0 0 1px #f8faf7; }
 .phone::before, .phone::after { content: ''; position: absolute; width: 3px; border-radius: 2px; background: #d8ded7; }
 .phone::before { left: -4px; top: 117px; height: 62px; box-shadow: 0 76px 0 #d8ded7; }
 .phone::after { right: -4px; top: 153px; height: 70px; }
-.screen { position: relative; height: 100%; overflow: hidden; border: 1px solid #e1e6df; border-radius: 39px; background: #fcfdfa; color: #29392f; }
+.screen { position: relative; box-sizing: border-box; width: 100%; height: 100%; overflow: hidden; border: 1px solid #e1e6df; border-radius: calc(var(--phone-radius) - var(--phone-bezel) - var(--phone-stroke)); background: #fcfdfa; color: #29392f; }
 .statusBar { position: relative; display: flex; justify-content: space-between; align-items: center; height: 41px; padding: 0 19px; font-size: 10px; font-weight: 600; }
 .island { position: absolute; top: 10px; left: 50%; width: 80px; height: 22px; transform: translateX(-50%); border-radius: 20px; background: #252d28; box-shadow: inset 0 0 2px #000; }
 .island::after { content: ''; position: absolute; right: 12px; top: 7px; width: 7px; height: 7px; border-radius: 50%; background: #3b4942; box-shadow: inset 1px 1px 2px #131c16; }

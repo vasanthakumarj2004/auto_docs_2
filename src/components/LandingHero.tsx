@@ -6,6 +6,7 @@ import { HeroProductPanel } from './hero/HeroProductPanel';
 import { useLandingLayout } from './LandingLayoutProvider';
 import { LayoutSwitcher } from './LayoutSwitcher';
 import { LandingLayoutThreeHero } from './LandingLayoutThree';
+import { LayoutTwoBackgroundVideo } from './hero/LayoutTwoBackgroundVideo';
 import styles from './LandingPage.module.css';
 
 export function LandingHero() {
@@ -14,7 +15,8 @@ export function LandingHero() {
   if (layout === 'v3') return <><LandingLayoutThreeHero /><LayoutSwitcher /></>;
 
   return <>
-    <section id="top" className={styles.hero} data-hero-layout={layout} data-appearance="light" aria-labelledby="hero-title">
+    <section id="top" className={styles.hero} data-hero-layout={layout} data-appearance={layout === 'v2' ? 'dark' : 'light'} aria-labelledby="hero-title">
+      {layout === 'v2' && <LayoutTwoBackgroundVideo />}
       <div className={`site-shell ${styles.heroGrid}`}>
         <div className={styles.heroCopy}>
           {/* <p className={styles.eyebrow}>Intelligent workflows. Everyday progress.</p> */}

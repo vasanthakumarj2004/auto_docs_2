@@ -1,0 +1,155 @@
+/**
+ * theme.css — Tailwind v4 design token theme
+ *
+ * @theme block  → generates utility classes (bg-primary, p-4, rounded-lg …)
+ * :root block   → component-level aliases (no utility output)
+ *
+ * variables.css is imported below so that its :root tokens are available
+ * to both @theme references and component styles without redeclaration.
+ */
+
+@import "tailwindcss";
+@import "./variables.css";
+
+@theme {
+  /* Colors */
+  --color-primary: #865910;
+  --color-secondary: #d4a04a;
+  --color-accent: #f3ebdd;
+  --color-neutral-50: #cecbc6;
+  --color-neutral-100: #15141a;
+  --color-neutral-200: #f5f4f0;
+  --color-neutral-300: #6b6762;
+  --color-neutral-400: #000000;
+  --color-neutral-500: #4a4643;
+  --color-neutral-600: #e2dfda;
+  --color-neutral-700: #2a2830;
+  --color-neutral-800: #3a383d;
+  --color-neutral-900: #8a857f;
+  --color-background: #f5f4f0;
+  --color-foreground: #000000;
+
+  /* Typography */
+  --font-sans: '__fontSans_4eb6f8', sans-serif;
+  --font-body: '__fontMono_d8f362', sans-serif;
+  --font-font2: '__fontDisplay_c32a4e', sans-serif;
+  --text-84: 84px;
+  --text-84--line-height: 84px;
+  --text-84--letter-spacing: -3.36px;
+  --text-60: 60px;
+  --text-60--line-height: 60px;
+  --text-60--letter-spacing: -2.1px;
+  --text-48: 48px;
+  --text-48--line-height: 50.4px;
+  --text-48--letter-spacing: -1.44px;
+  --text-40: 40px;
+  --text-40--line-height: 40px;
+  --text-40--letter-spacing: -0.8px;
+  --text-32: 32px;
+  --text-32--line-height: 36.8px;
+  --text-32--letter-spacing: -0.64px;
+  --text-28: 28px;
+  --text-28--line-height: 40.6px;
+  --text-28--letter-spacing: -0.56px;
+  --text-26: 26px;
+  --text-26--line-height: 29.9px;
+  --text-26--letter-spacing: -0.52px;
+  --text-22: 22px;
+  --text-22--line-height: 31.9px;
+  --text-22--letter-spacing: -0.44px;
+  --text-20: 20px;
+  --text-20--line-height: 28px;
+  --text-19: 19px;
+  --text-19--line-height: 28.5px;
+  --text-19--letter-spacing: -0.19px;
+  --text-18: 18px;
+  --text-18--line-height: 28px;
+  --text-17: 17px;
+  --text-17--line-height: 25.5px;
+  --text-16: 16px;
+  --text-16--line-height: 24px;
+  --text-15: 15px;
+  --text-15--line-height: 22.5px;
+  --text-14: 14px;
+  --text-14--line-height: 20px;
+
+  /* Spacing */
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-7: 28px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+  --spacing-12: 48px;
+  --spacing-14: 56px;
+  --spacing-24: 96px;
+  --spacing-28: 112px;
+  --spacing-41: 164px;
+  --spacing-2px: 2px;
+  --spacing-6px: 6px;
+  --spacing-9px: 9px;
+
+  /* Border Radius */
+  --radius-xs: 2px;
+  --radius-md: 8px;
+  --radius-full: 999px;
+  --radius-full-9999: 9999px;
+
+  /* Shadows */
+  --shadow-xs: rgba(0, 0, 0, 0) 2px 0px 0px 0px inset;
+  --shadow-xs-inset: rgb(134, 89, 16) 2px 0px 0px 0px inset;
+  --shadow-xs-2: rgba(0, 0, 0, 0) 0px 0px 0px 0px;
+  --shadow-xs-3: rgba(212, 160, 74, 0.2) 0px 0px 0px 4px;
+  --shadow-lg: rgba(21, 20, 26, 0.35) 0px 6px 18px -10px;
+
+  /* Breakpoints */
+  --breakpoint-sm: 420px;
+  --breakpoint-sm-2: 440px;
+  --breakpoint-sm-3: 480px;
+  --breakpoint-560px: 560px;
+  --breakpoint-sm-4: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-md-2: 790px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-1120px: 1120px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-1400px: 1400px;
+  --breakpoint-2xl: 1536px;
+}
+
+/**
+ * Component semantic mappings — referenced in component CSS only.
+ * These are intentionally in :root, NOT in @theme, to avoid
+ * generating unwanted Tailwind utility classes (e.g. bg-btn-primary-bg).
+ */
+:root {
+  /* — colors — */
+  --foreground: 250 13% 9%;
+  --card: 40 27.3% 97.8%;
+  --card-foreground: 250 13% 9%;
+  --popover: 40 27.3% 97.8%;
+  --popover-foreground: 250 13% 9%;
+  --primary: 250 13% 9%;
+  --primary-foreground: 48 20% 95.1%;
+  --secondary: 38 12.1% 87.1%;
+  --secondary-foreground: 250 13% 9%;
+  --muted: 38 12.1% 87.1%;
+  --muted-foreground: 26 5% 27.6%;
+  --accent: 38 47.8% 91%;
+  --accent-foreground: 250 13% 9%;
+  --destructive: 0 72% 42%;
+  --destructive-foreground: 40 27.3% 97.8%;
+  --border: 37 7.5% 79.2%;
+  --ring: 250 13% 9%;
+  /* — spacing — */
+  /* — typography — */
+  --display: '__fontDisplay_c32a4e', '__fontDisplay_Fallback_c32a4e';
+  --mono: '__fontMono_d8f362', '__fontMono_Fallback_d8f362';
+  /* — shadows — */
+  /* — radii — */
+  --radius: 0.375rem;
+  /* — other — */
+  --background: 48 20% 95.1%;
+  --input: 37 7.5% 79.2%;
+}

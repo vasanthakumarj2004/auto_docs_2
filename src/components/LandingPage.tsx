@@ -239,19 +239,41 @@ export function LandingPage() {
           <div className={styles.integrationPanel}>{integrations.map(([name, type]) => <div key={name}><strong>{name}</strong><span>{type}</span></div>)}</div>
         </div>
       </section>
-      <section id="faq" className={styles.section} aria-labelledby="faq-title">
+      <section id="faq" className={`${styles.section} ${styles.faqSection}`} aria-labelledby="faq-title">
         <div className={`site-shell ${styles.faqLayout}`}>
-          <h2 id="faq-title" className="sr-only">Frequently asked questions</h2>
+          <div className={styles.faqHeader}>
+            <p className={styles.eyebrow}>FAQ</p>
+            <h2 id="faq-title">Frequently asked questions</h2>
+            <p className={styles.faqSubtitle}>Everything you need to know about Docsynecx document automation, integrations, and deployment.</p>
+          </div>
           <SharedFaqAccordion items={landingFaqs} defaultOpenIndex={0} toggleStyle="plus" />
         </div>
       </section>
+
+      {/* Standalone "Let's make work flow" light card section outside the footer */}
       <section id="contact" className={styles.closing} aria-labelledby="closing-title">
         <div className="site-shell">
-          <div className={styles.closingCard}>
-            <div><p className={styles.eyebrow}>Let’s make work flow</p><h2 id="closing-title">What could your team do with less manual work?</h2><p>Tell us about your finance or freight workflow. We’ll help identify a practical place to start.</p></div>
-            <Link href="/demo/" className={`button-primary ${styles.closingButton}`}>Book a Demo<ArrowUpRight size={17} aria-hidden="true" /></Link>
+          <div className={styles.closingCardLight}>
+            <div className={styles.closingEyebrow}>
+              <span className={styles.closingEyebrowDot} aria-hidden="true" />
+              <span>Let’s make work flow</span>
+            </div>
+            <h2 id="closing-title" className={styles.closingHeadline}>
+              What could your team do with less manual work?
+            </h2>
+            <p className={styles.closingSub}>
+              Finance and logistics are too critical for manual typing and data-entry errors. Docsynecx automates document checks, posting, and matching directly in Tally and CargoWise.
+            </p>
+            <div className={styles.closingCtas}>
+              <Link href="/demo/" className={styles.closingPrimaryBtn}>
+                <span>Book a Demo</span>
+                <ArrowUpRight size={16} aria-hidden="true" />
+              </Link>
+              <Link href="/calculator/" className={styles.closingGhostBtn}>
+                <span>Calculate ROI</span>
+              </Link>
+            </div>
           </div>
-          <p className={styles.companyLine}>SynecX AI Labs Private Limited · Coimbatore, Tamil Nadu, India · <a href="mailto:info@docsynecx.com">info@docsynecx.com</a></p>
         </div>
       </section>
     </main>

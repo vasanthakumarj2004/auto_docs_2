@@ -7,6 +7,7 @@ import { DocsynecxLogo } from './DocsynecxLogo';
 import { DocsynecxDashboardPreview } from './DocsynecxDashboardPreview';
 import { DocsynecxPhonePreview } from './DocsynecxPhonePreview';
 import { FinanceMenu } from './FinanceMenu';
+import { LayoutThreeBackground } from './hero/LayoutThreeBackground';
 import { landingNavigationMenus } from '../content/landing';
 import menuStyles from './LandingPage.module.css';
 import styles from './LandingLayoutThree.module.css';
@@ -74,6 +75,7 @@ export function LandingLayoutThreeNavigation() {
 export function LandingLayoutThreeHero() {
   return <section id="top" className={styles.heroFrame} data-hero-layout="v3" aria-labelledby="hero-title">
     <div className={styles.hero}>
+      <LayoutThreeBackground />
       <div className={styles.copy}>
         <p className={styles.eyebrow}>Intelligent workflows. Everyday progress.</p>
         <h1 id="hero-title">Grow the business.<br /><span>Not the data-entry desk.</span></h1>
@@ -81,7 +83,7 @@ export function LandingLayoutThreeHero() {
         <div className={styles.heroActions}>
           <Link href="/finance-desk/" className={styles.primaryButton}>I run a finance desk<ArrowRight size={16} aria-hidden="true" /></Link>
           <Link href="/logistics/" className={styles.primaryButton}>I run a shipment desk<ArrowRight size={16} aria-hidden="true" /></Link>
-          <Link href="/demo/" className={`${styles.outlineButton} ${menuStyles.demoButton}`}>Book a demo</Link>
+          <Link href="/demo/" className={styles.outlineButton}>Book a demo</Link>
         </div>
         <p className={styles.heroNote}><strong>Built for businesses</strong> that run on Tally, an ERP or CargoWise.</p>
       </div>
