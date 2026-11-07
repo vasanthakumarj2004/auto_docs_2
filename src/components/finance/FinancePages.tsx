@@ -15,6 +15,7 @@ import { InvoiceWhoItIsFor } from './InvoiceWhoItIsFor';
 import { BankingWhyItMatters } from './BankingWhyItMatters';
 import { BankingWorkflowOverview } from './BankingWorkflowOverview';
 import { PayableWorkingTowards } from './PayableWorkingTowards';
+import { ClosingVisualBg } from '../ClosingVisualBg';
 import { bankingFeatures, demoHref, financeCapabilities, financeFaqs, financePageCopy, financeRoot, intelligenceCapabilities, interestHref, invoiceFeatures, payableFeatures, type Feature, type FinanceSlug } from '../../content/finance';
 import base from '../LandingPage.module.css';
 import s from './FinancePages.module.css';
