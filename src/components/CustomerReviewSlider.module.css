@@ -1,0 +1,241 @@
+/* ==========================================================================
+   Customer Review Slider – Clean editorial card design
+   Minimal, website-native. 3-card stage, center focused, sides softly blurred.
+   ========================================================================== */
+
+.reviewSectionWrapper {
+  position: relative;
+  width: 100%;
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── Stage ──────────────────────────────────────────────────────── */
+.sliderStage {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+/* ── Individual card ──────────────────────────────────────────────── */
+.reviewCard {
+  position: absolute;
+  width: 100%;
+  max-width: 560px;
+
+  /* Clean white card */
+  background-color: #ffffff;
+  border: 1px solid var(--landing-line, #dde1e9);
+  border-radius: 1.5rem;
+  padding: 2rem 2rem 1.5rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  box-sizing: border-box;
+  user-select: none;
+  transform-origin: center center;
+
+  transition:
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, filter, opacity;
+}
+
+/* ── States ───────────────────────────────────────────────────────── */
+.cardActive {
+  transform: translateX(0) scale(1);
+  filter: blur(0);
+  opacity: 1;
+  z-index: 10;
+  box-shadow:
+    0 1px 3px rgba(15, 23, 42, 0.04),
+    0 8px 24px -4px rgba(15, 23, 42, 0.1),
+    0 24px 48px -12px rgba(15, 23, 42, 0.08);
+  cursor: default;
+}
+
+.cardLeft {
+  transform: translateX(-54%) scale(0.91);
+  filter: blur(2.5px);
+  opacity: 0.5;
+  z-index: 5;
+  cursor: pointer;
+}
+
+.cardLeft:hover {
+  opacity: 0.7;
+  filter: blur(1.5px);
+}
+
+.cardRight {
+  transform: translateX(54%) scale(0.91);
+  filter: blur(2.5px);
+  opacity: 0.5;
+  z-index: 5;
+  cursor: pointer;
+}
+
+.cardRight:hover {
+  opacity: 0.7;
+  filter: blur(1.5px);
+}
+
+.cardHidden {
+  opacity: 0;
+  pointer-events: none;
+  filter: blur(6px);
+  transform: scale(0.84);
+  z-index: 1;
+}
+
+/* ── Card content ─────────────────────────────────────────────────── */
+
+/* Industry – small uppercase label, website green */
+.industryLabel {
+  margin: 0 0 0.6rem;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-brand-text, #0f766e);
+}
+
+/* Company name – strong, prominent */
+.companyName {
+  margin: 0 0 1.25rem;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--landing-ink, #0f172a);
+}
+
+/* Thin ruled line between company and copy */
+.divider {
+  width: 32px;
+  height: 2px;
+  background-color: var(--color-brand, #18cb96);
+  border-radius: 9999px;
+  margin-bottom: 1.25rem;
+  flex-shrink: 0;
+}
+
+/* Copy – editorial serif italic, the "thought" voice */
+.reviewCopy {
+  margin: 0 0 1.75rem;
+  font-family: 'Newsreader', 'Georgia', serif;
+  font-style: italic;
+  font-size: 1.08rem;
+  line-height: 1.65;
+  color: #334155;
+  font-weight: 400;
+  text-wrap: pretty;
+  flex: 1;
+}
+
+/* Bottom accent dots – minimal decorative row */
+.cardAccent {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: auto;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--landing-line, #f1f5f9);
+}
+
+.accentDot {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background-color: var(--color-brand, #18cb96);
+  opacity: 0.35;
+}
+
+.accentDot:first-child {
+  opacity: 0.9;
+}
+
+.accentDot:nth-child(2) {
+  opacity: 0.55;
+}
+
+/* ── Description text ────────────────────────────────────────────── */
+.sliderDescription {
+  margin: 10px 0 -50px;
+  max-width: 580px;
+  text-align: center;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 100;
+  line-height: 1.7;
+  color: #687386;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .sliderStage {
+    height: 340px;
+  }
+
+  .reviewCard {
+    max-width: 86vw;
+    padding: 1.75rem 1.75rem 1.25rem;
+  }
+
+  .cardLeft {
+    transform: translateX(-68%) scale(0.91);
+  }
+
+  .cardRight {
+    transform: translateX(68%) scale(0.91);
+  }
+
+  .companyName {
+    font-size: 1.2rem;
+  }
+
+  .reviewCopy {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .sliderStage {
+    height: 360px;
+  }
+
+  .reviewCard {
+    max-width: 92vw;
+    padding: 1.5rem 1.25rem 1.25rem;
+  }
+
+  .cardLeft {
+    transform: translateX(-84%) scale(0.9);
+  }
+
+  .cardRight {
+    transform: translateX(84%) scale(0.9);
+  }
+
+  .companyName {
+    font-size: 1.1rem;
+  }
+
+  .reviewCopy {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+}

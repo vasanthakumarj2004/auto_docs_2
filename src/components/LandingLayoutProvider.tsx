@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext, useEffect, useState } from 'react';
+import { isFunctionalAllowed } from '../lib/consent';
 
 export type LandingLayout = 'v1' | 'v2';
 export type LandingAppearance = 'light' | 'dark';
@@ -55,17 +56,23 @@ export function LandingLayoutProvider({ children }: { children: React.ReactNode 
 
   const setLayout = (value: LandingLayout) => {
     updateLayout(value);
-    try { localStorage.setItem(storageKey, value); } catch {}
+    if (isFunctionalAllowed()) {
+      try { localStorage.setItem(storageKey, value); } catch {}
+    }
   };
 
   const setAppearance = (value: LandingAppearance) => {
     updateAppearance(value);
-    try { localStorage.setItem(appearanceKey, value); } catch {}
+    if (isFunctionalAllowed()) {
+      try { localStorage.setItem(appearanceKey, value); } catch {}
+    }
   };
 
   const setNavbarTheme = (value: NavbarTheme) => {
     updateNavbarTheme(value);
-    try { localStorage.setItem(navbarThemeKey, value); } catch {}
+    if (isFunctionalAllowed()) {
+      try { localStorage.setItem(navbarThemeKey, value); } catch {}
+    }
   };
 
   return (

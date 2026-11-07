@@ -1,9 +1,9 @@
-﻿import type { Metadata } from 'next';
+import type { Metadata } from 'next';
 import { LandingPage } from '@/src/components/LandingPage';
 import { landingFaqs } from '@/src/content/landing';
 
 const title = 'Docsynecx — Intelligent finance and logistics workflows';
-const description = 'Two focused workspaces. One connected platform. Automate document-heavy finance and shipment workflows with Docsynecx, alongside TallyPrime, CargoWise and your existing systems.';
+const description = 'Two focused workspaces. One connected platform. Automate document-heavy finance and logistics workflows with Docsynecx, alongside TallyPrime, CargoWise and your existing systems.';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://docsynecx.com'),

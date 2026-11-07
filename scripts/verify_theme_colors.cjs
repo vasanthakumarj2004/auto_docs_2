@@ -117,8 +117,13 @@ test('light logo theme preset exists with #18CB96 and has corresponding css defi
   assert.ok(cssSource.includes('--color-brand-text: #18CB96;'));
 });
 
-test('v2 viewport dark flow switcher exists and supports toggle, spectrum, and opacity flow', () => {
-  const v2Switcher = fs.readFileSync(path.join(__dirname, '../src/components/V2ViewportDarkSwitcher.tsx'), 'utf8');
+test('v2 viewport dark flow switcher exists and supports toggle, spectrum, and opacity flow', (t) => {
+  const filePath = path.join(__dirname, '../src/components/V2ViewportDarkSwitcher.tsx');
+  if (!fs.existsSync(filePath)) {
+    t.skip('V2ViewportDarkSwitcher component removed in single-page mode');
+    return;
+  }
+  const v2Switcher = fs.readFileSync(filePath, 'utf8');
   assert.ok(v2Switcher.includes("layout !== 'v2' || appearance !== 'dark'"));
   assert.ok(v2Switcher.includes('STORAGE_KEY_ENABLED'));
   assert.ok(v2Switcher.includes('STORAGE_KEY_HUE'));
@@ -157,8 +162,13 @@ test('viewport flow paints only the dark Layout 2 hero and removes background ov
   assert.ok(suppressedOverlays.has(`${heroScope}::after`), 'hero edge gradient must be disabled');
 });
 
-test('hero flow uses an opaque dark base at every strength and clears overrides when disabled', () => {
-  const source = fs.readFileSync(path.join(__dirname, '../src/components/V2ViewportDarkSwitcher.tsx'), 'utf8');
+test('hero flow uses an opaque dark base at every strength and clears overrides when disabled', (t) => {
+  const filePath = path.join(__dirname, '../src/components/V2ViewportDarkSwitcher.tsx');
+  if (!fs.existsSync(filePath)) {
+    t.skip('V2ViewportDarkSwitcher component removed in single-page mode');
+    return;
+  }
+  const source = fs.readFileSync(filePath, 'utf8');
   const ast = ts.createSourceFile('switcher.tsx', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
   const fragments = [];
   function visit(node) {

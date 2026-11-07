@@ -42,37 +42,37 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
   'Finance Desk': {
     label: 'Finance Desk',
     eyebrow: 'Automate Finance Operations',
-    overviewHref: '/finance/',
+    overviewHref: '/#platform',
     exploreLabel: 'Explore Finance Desk',
     overviewLinks: [],
     featureLinks: [
       {
         sno: '01',
         title: 'Invoice Automation',
-        href: '/finance/',
+        href: '/#platform',
       },
       {
         sno: '02',
         title: 'Bank Statement & Reconcilation',
-        href: '/finance/',
+        href: '/#platform',
       }, 
       {
         sno: '03',
         title: 'Docsynecx Intelligence',
-        href: '/finance/',
+        href: '/#platform',
       },
       {
         sno: '04',
         title: 'Account Payable ( upcoming )',
-        href: '/finance/',
+        href: '/#platform',
       },
     ],
     whoHeading: "Who it's for",
     whoLinks: [
-      { title: 'Business Owners', href: '/demo/' },
-      { title: 'Finance Teams', href: '/finance/' },
-      { title: 'Accounts Teams', href: '/accounts-payable/' },
-      { title: 'CA firms', href: '/demo/' },
+      { title: 'Business Owners', href: '/#contact' },
+      { title: 'Finance Teams', href: '/#platform' },
+      { title: 'Accounts Teams', href: '/#platform' },
+      { title: 'CA firms', href: '/#contact' },
     ],
     integrationsHeading: 'Integrations',
     integrationsLinks: [
@@ -81,40 +81,40 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
       { title: 'Custom ERP', href: '/#integrations' },
     ],
   },
-  'Shipment Desk': {
-    label: 'Shipment Desk',
+  'Logistics Desk': {
+    label: 'Logistics Desk',
     eyebrow: 'Automate Freight Operations',
-    overviewHref: '/logistics/',
-    exploreLabel: 'Explore Shipment Desk',
+    overviewHref: '/#platform',
+    exploreLabel: 'Explore Logistics Desk',
     overviewLinks: [],
     featureLinks: [
       {
         sno: '01',
         title: 'RFQ to Booking',
-        href: '/logistics/',
+        href: '/#platform',
       },
       {
         sno: '02',
         title: 'Shipment Management',
-        href: '/logistics/',
+        href: '/#platform',
       },
       {
         sno: '03',
         title: 'Shipment Tracking',
-        href: '/logistics/',
+        href: '/#platform',
       },
       {
         sno: '04',
         title: 'Document Automation',
-        href: '/logistics/',
+        href: '/#platform',
       },
     ],
     whoHeading: "Who it's for",
     whoLinks: [
-      { title: 'Business Owners', href: '/demo/' },
-      { title: 'Finance Teams', href: '/logistics/' },
-      { title: 'Accounts Teams', href: '/logistics/' },
-      { title: 'CA firms', href: '/demo/' },
+      { title: 'Business Owners', href: '/#contact' },
+      { title: 'Finance Teams', href: '/#platform' },
+      { title: 'Accounts Teams', href: '/#platform' },
+      { title: 'CA firms', href: '/#contact' },
     ],
     integrationsHeading: 'Integrations',
     integrationsLinks: [
@@ -125,7 +125,7 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
   'Solutions': {
     label: 'Solutions',
     eyebrow: 'BY INDUSTRIES',
-    overviewHref: '/#platform',
+    overviewHref: '/#solutions',
     exploreLabel: 'Explore all solutions',
     overviewLinks: [],
     featureLinks: [
@@ -133,38 +133,38 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
         sno: '01',
         title: 'Automotive Industry',
         description: 'Purchase invoices, spare parts and service documentation.',
-        href: '/#automotive-industry',
+        href: '/#solutions',
       },
       {
         sno: '02',
         title: 'Manufacturing',
         description: 'Supplier invoices, material receipts and operational records.',
-        href: '/#manufacturing-industry',
+        href: '/#solutions',
       },
       {
         sno: '03',
         title: 'Textile & Garments',
         description: 'Supplier and purchase documentation with rapid ledger posting.',
-        href: '/#textile-industry',
+        href: '/#solutions',
       },
       {
         sno: '04',
         title: 'Retail & Distribution',
         description: 'High-volume invoice auditing and multi-vendor document workflows.',
-        href: '/#retail-industry',
+        href: '/#solutions',
       },
       {
         sno: '05',
         title: 'Logistics & Freight Forwarders',
         description: 'RFQ, shipments, container tracking and trade documents.',
-        href: '/#logistics-industry',
+        href: '/#solutions',
       },
     ],
   },
   'Resources': {
     label: 'Resources',
     eyebrow: 'TOOLS & GUIDES',
-    overviewHref: '/#how-it-works',
+    overviewHref: '/#faq',
     exploreLabel: 'Explore resources',
     overviewLinks: [],
     featureLinks: [
@@ -172,37 +172,37 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
         sno: '01',
         title: 'Blogs',
         description: 'Calculate monthly hours, error reduction and financial savings.',
-        href: '/calculator/',
+        href: '/#why-docsynecx',
       },
       {
         sno: '02',
         title: 'Case Studies',
         description: 'Answers about GST validation, security rules and human approvals.',
-        href: '/#faq',
+        href: '/#customers',
       },
       {
         sno: '03',
         title: 'About Us',
         description: 'End-to-end bill ingestion, validation and automated voucher posting.',
-        href: '/accounts-payable/',
+        href: '/#why-docsynecx',
       },
       {
         sno: '04',
         title: 'Events',
         description: 'Automate bills of lading, shipping orders and customs manifests.',
-        href: '/logistics-trade/',
+        href: '/#contact',
       },
     ],
   },
 };
 
 type NavItem =
-  | { type: 'menu'; key: 'Finance Desk' | 'Shipment Desk' | 'Solutions' | 'Resources' }
+  | { type: 'menu'; key: 'Finance Desk' | 'Logistics Desk' | 'Solutions' | 'Resources' }
   | { type: 'link'; label: string; href: string };
 
 const NAV_ITEMS: NavItem[] = [
   { type: 'menu', key: 'Finance Desk' },
-  { type: 'menu', key: 'Shipment Desk' },
+  { type: 'menu', key: 'Logistics Desk' },
   { type: 'menu', key: 'Solutions' },
   { type: 'link', label: 'Customers', href: '/#customers' },
   { type: 'menu', key: 'Resources' },
@@ -403,7 +403,7 @@ export function LandingNavigation() {
             })}
 
             <Link
-              href="/demo/"
+              href="/#contact"
               className={`${styles.demoButton} ${styles.navDemo} ${styles.mobileDemo}`}
               onClick={close}
             >
@@ -412,7 +412,7 @@ export function LandingNavigation() {
           </nav>
 
           <Link
-            href="/demo/"
+            href="/#contact"
             className={`${styles.demoButton} ${styles.navDemo} ${styles.desktopDemo}`}
             onClick={close}
           >

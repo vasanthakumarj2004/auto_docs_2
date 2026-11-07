@@ -1,0 +1,477 @@
+/* ==========================================================================
+   Cookie Consent Management System – Compact & Low-Height Styling
+   Clean, modern, and unobtrusive UI matching Docsynecx #18CB96
+   ========================================================================== */
+
+/* --- Slim Low-Height Banner Container --- */
+.bannerContainer {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+  animation: slideUpFade 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slimBanner {
+  pointer-events: auto;
+  max-width: 660px;
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.625rem;
+  box-shadow: 0 4px 18px -2px rgba(15, 23, 42, 0.1), 0 2px 6px -1px rgba(15, 23, 42, 0.06);
+  padding: 0.5rem 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.bannerMessage {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.cookieIcon {
+  color: #18cb96;
+  flex-shrink: 0;
+}
+
+.bannerText {
+  font-size: 0.8125rem;
+  color: #334155;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.bannerControls {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.btnPreferences {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.3rem 0.55rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: all 0.15s ease;
+}
+
+.btnPreferences:hover {
+  color: #0f172a;
+  background-color: #f1f5f9;
+}
+
+.btnReject {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.3rem 0.65rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btnReject:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+.btnAccept {
+  background-color: #18cb96;
+  border: 1px solid #18cb96;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.3rem 0.75rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  box-shadow: 0 1px 2px rgba(24, 203, 150, 0.25);
+  transition: all 0.15s ease;
+}
+
+.btnAccept:hover {
+  background-color: #14b484;
+  border-color: #14b484;
+}
+
+.dismissBtn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 0.25rem;
+  margin-left: 0.15rem;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.dismissBtn:hover {
+  color: #334155;
+  background-color: #f1f5f9;
+}
+
+/* --- Preferences Small Div Box --- */
+.overlayContainer {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.25);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  z-index: 100000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 1.25rem;
+  animation: fadeIn 0.18s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.preferencesFloatingBox {
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 16px 32px -8px rgba(15, 23, 42, 0.16), 0 4px 12px -2px rgba(15, 23, 42, 0.08);
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: popIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.preferencesHeader {
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.headerTitleGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.backBtn {
+  background: transparent;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  padding: 0.2rem;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.backBtn:hover {
+  color: #0f172a;
+  background-color: #f1f5f9;
+}
+
+.preferencesTitle {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.closeBtn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  cursor: pointer;
+  padding: 0.2rem;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.closeBtn:hover {
+  color: #0f172a;
+  background-color: #f1f5f9;
+}
+
+/* Checkbox List */
+.checkboxList {
+  padding: 0.6rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.checkboxRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.35rem 0.45rem;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+  user-select: none;
+}
+
+.checkboxRow:hover:not(.checkboxRowDisabled) {
+  background-color: #f8fafc;
+}
+
+.checkboxRowDisabled {
+  cursor: default;
+}
+
+.checkboxControl {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.realCheckbox {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  pointer-events: none;
+}
+
+.customCheckbox {
+  width: 17px;
+  height: 17px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 4px;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.customCheckboxChecked {
+  background-color: #18cb96;
+  border-color: #18cb96;
+}
+
+.customCheckboxDisabled {
+  background-color: #10b981;
+  border-color: #10b981;
+  opacity: 0.9;
+}
+
+.checkIcon {
+  color: #ffffff;
+}
+
+.checkboxLabelGroup {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.categoryName {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.categoryNote {
+  font-size: 0.6875rem;
+  color: #94a3b8;
+}
+
+.alwaysOnBadge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #059669;
+  background-color: #ecfdf5;
+  padding: 0.125rem 0.35rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+/* Preferences Footer */
+.preferencesFooter {
+  padding: 0.55rem 0.85rem;
+  border-top: 1px solid #f1f5f9;
+  background-color: #fafbfc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+}
+
+.footerLeftActions {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.btnSmallGhost {
+  background: transparent;
+  border: none;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #64748b;
+  padding: 0.25rem 0.45rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.btnSmallGhost:hover {
+  background-color: #f1f5f9;
+  color: #0f172a;
+}
+
+.btnSmallOutline {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #334155;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: all 0.12s ease;
+}
+
+.btnSmallOutline:hover {
+  background-color: #f8fafc;
+  color: #0f172a;
+}
+
+.btnSmallPrimary {
+  background: #18cb96;
+  border: 1px solid #18cb96;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #ffffff;
+  padding: 0.25rem 0.65rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  box-shadow: 0 1px 2px rgba(24, 203, 150, 0.25);
+  transition: all 0.12s ease;
+}
+
+.btnSmallPrimary:hover {
+  background-color: #14b484;
+  border-color: #14b484;
+}
+
+/* --- Footer Trigger Button --- */
+.cookieFooterButton {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.7125rem;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.15s ease;
+}
+
+.cookieFooterButton:hover {
+  color: #18cb96;
+}
+
+.footerButtonIcon {
+  color: #18cb96;
+}
+
+/* --- Responsive Layout for Mobile --- */
+@media (max-width: 640px) {
+  .slimBanner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    padding: 0.6rem 0.75rem;
+  }
+
+  .bannerMessage {
+    justify-content: flex-start;
+  }
+
+  .bannerText {
+    white-space: normal;
+  }
+
+  .bannerControls {
+    justify-content: flex-end;
+    gap: 0.25rem;
+  }
+
+  .preferencesFloatingBox {
+    max-width: 100%;
+  }
+}

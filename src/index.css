@@ -86,6 +86,25 @@
   --color-ink: #0F172A;
 }
 
+:root[data-theme="sea-green"] {
+  /* Sea Green: Permanent Brand Palette (#2E8B57) */
+  --color-brand: #2E8B57;
+  --color-brand-strong: #236B43;
+  --color-brand-soft: #EAF6F0;
+  --color-brand-border: #97CBAE;
+  --color-brand-text: #2E8B57;
+  --color-brand-50: #EAF6F0;
+  --color-brand-100: #D0EBDD;
+  --color-brand-200: #A8D9BE;
+  --color-brand-400: #52AB77;
+  --color-brand-500: #2E8B57;
+  --color-brand-800: #1B5334;
+  --color-brand-900: #123722;
+  --color-paper: #FAFAFA;
+  --color-ink: #0F172A;
+  --landing-green: #2E8B57;
+}
+
 :root[data-theme="red"] {
   /* Red: Crimson / Ruby */
   --color-brand: #DC2626;
