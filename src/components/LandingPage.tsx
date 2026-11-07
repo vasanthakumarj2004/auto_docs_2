@@ -3,18 +3,20 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowRight, ArrowLeftRight, ArrowUpRight, FileText, Zap, ShieldCheck, CheckCircle2, TrendingUp } from 'lucide-react';
-import { FinanceFooter } from './FinanceFooter';
+import { DocsynecxLogo } from './DocsynecxLogo';
 import { LandingHero } from './LandingHero';
 import { SharedFaqAccordion } from './SharedFaqAccordion';
 import { LandingNavigation } from './LandingNavigation';
-import { useLandingLayout } from './LandingLayoutProvider';
-import CircularCarousel, { CustomerStoryItem } from './CircularCarousel';
+import { CustomerReviewSlider } from './CustomerReviewSlider';
+import { ClosingVisualBg } from './ClosingVisualBg';
+import { CookieSettingsButton } from './cookie-consent/CookieSettingsButton';
 import { landingDesks, landingFaqs, landingIndustries } from '../content/landing';
 import styles from './LandingPage.module.css';
 
 const DESK_IMAGES: Record<string, string> = {
   finance: '/images/624dcd31-e7ca-4c2f-b804-e87bb521192e.png',
   shipment: '/images/e38389f2-4afd-4f87-86dd-6210a3100071.png',
+  logistics: '/images/e38389f2-4afd-4f87-86dd-6210a3100071.png',
 };
 
 const benefits = [
@@ -35,9 +37,18 @@ const steps = [
   ['Validate', 'Test with representative documents and your team.'],
   ['Scale', 'Expand to more workflows as results are established.'],
 ];
-const stories: CustomerStoryItem[] = [
-  { tag: 'Logistics', name: 'FreightForwarders', metric: '2 hrs → 2 min', summary: 'email to CargoWise', copy: 'A specific email-to-CargoWise document workflow reduced from around two hours to approximately two minutes.', href: '/customers/ft-logistics/' },
-  { tag: 'Automotive & EV', name: 'Automotive Industries', metric: 'Days → hours', summary: 'document workflow', copy: 'Manual document workload reduced from days to hours through an AI-assisted workflow.', href: '/customers/rajadurai/' },
+interface CustomerStoryOutcome {
+  tag: string;
+  name: string;
+  metric: string;
+  summary: string;
+  copy: string;
+  href?: string;
+}
+
+const stories: CustomerStoryOutcome[] = [
+  { tag: 'Logistics', name: 'FreightForwarders', metric: '2 hrs → 2 min', summary: 'email to CargoWise', copy: 'A specific email-to-CargoWise document workflow reduced from around two hours to approximately two minutes.', href: '/#customers' },
+  { tag: 'Automotive & EV', name: 'Automotive Industries', metric: 'Days → hours', summary: 'document workflow', copy: 'Manual document workload reduced from days to hours through an AI-assisted workflow.', href: '/#customers' },
   { tag: 'Business operations', name: 'Manufacturing', metric: 'In daily use', summary: 'assets & purchase bills', copy: 'Regular operational use for asset and purchase bill workflows with zero manual re-entry.' },
   { tag: 'Retail & Distribution', name: 'OmniRetail Networks', metric: '94% automated', summary: 'multi-vendor invoicing', copy: 'High-volume invoice auditing and trade documents posted directly without error delays.' },
   { tag: 'Textile & Garments', name: 'Global Fabrics Ltd', metric: '3x faster sync', summary: 'supplier & export manifests', copy: 'Complex supplier bills and export manifests reconciled in minutes instead of days.' },
@@ -57,7 +68,6 @@ function SectionHeading({ eyebrow, title, copy, id }: { eyebrow: string; title: 
 }
 
 export function LandingPage() {
-  const { layout } = useLandingLayout();
   const [heroHeight, setHeroHeight] = useState<number>(0);
 
   useEffect(() => {
@@ -82,27 +92,25 @@ export function LandingPage() {
 
   return <div className={styles.page}>
     <a href="#main-content" className={styles.skipLink}>Skip to content</a>
-    {/* Full background video starting from announcement bar down through hero (Layout 4 from changes_1) */}
-    {layout === 'v4' && (
-      <div
-        className={styles.heroBgWrapper}
-        style={{ height: heroHeight > 0 ? `${heroHeight}px` : '100svh' }}
-        aria-hidden="true"
+    {/* Full background video starting from announcement bar down through hero */}
+    <div
+      className={styles.heroBgWrapper}
+      style={{ height: heroHeight > 0 ? `${heroHeight}px` : '100svh' }}
+      aria-hidden="true"
+    >
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className={styles.heroBgMedia}
+        poster="/images/bg1_thumb.jpg"
       >
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className={styles.heroBgMedia}
-          poster="/images/bg1_thumb.jpg"
-        >
-          <source src="/images/bg1.mp4" type="video/mp4" />
-          <img src="/images/bg1.gif" alt="" className={styles.heroBgMedia} />
-        </video>
-        <div className={styles.heroOverlay} />
-      </div>
-    )}
+        <source src="/images/bg1.mp4" type="video/mp4" />
+        <img src="/images/bg1.gif" alt="" className={styles.heroBgMedia} />
+      </video>
+      <div className={styles.heroOverlay} />
+    </div>
     <LandingNavigation />
     <main id="main-content">
       <LandingHero />
@@ -137,7 +145,7 @@ export function LandingPage() {
           </div>
         </div>
       </section>
-      <section id="platform" className={styles.section} aria-labelledby="platform-title">
+      <section id="platform" className={`${styles.section} ${styles.platformSection}`} aria-labelledby="platform-title">
         <div className="site-shell">
           <SectionHeading id="platform-title" eyebrow="One platform. Two desks." title={<>One Platform.<br /><span>Endless Opportunities.</span></>} />
           <div className={styles.desks}>
@@ -179,7 +187,7 @@ export function LandingPage() {
 
                     <div className={styles.deskHoverFooter}>
                       <Link href={desk.href} className={styles.deskHoverLink}>
-                        Explore {desk.title}
+                        Explore {desk.title} Desk
                         <ArrowRight size={16} aria-hidden="true" />
                       </Link>
                     </div>
@@ -191,7 +199,7 @@ export function LandingPage() {
           <p className={styles.deskText}>Start with the workflow that takes the most effort today. Expand as your teams are ready.</p>
         </div>
       </section>
-      <section id="why-docsynecx" className={`${styles.section} ${styles.alternate}`} aria-labelledby="why-title">
+      <section id="why-docsynecx" className={`${styles.section} ${styles.whySection}`} aria-labelledby="why-title">
         <div className="site-shell">
           <SectionHeading id="why-title" eyebrow="Why Docsynecx" title={<>Less manual effort.<br /><span>More operational clarity.</span></>} />
           <div className={styles.benefits}>
@@ -225,7 +233,7 @@ export function LandingPage() {
           </div>
         </div>
       </section>
-      <section id="solutions" className={styles.section} aria-labelledby="solutions-title">
+      <section id="solutions" className={`${styles.section} ${styles.solutionsSection}`} aria-labelledby="solutions-title">
         <div className="site-shell">
           <SectionHeading id="solutions-title" eyebrow="Solutions by industry" title="Designed for real business operations." copy="" />
           <div className={styles.industries}>
@@ -248,81 +256,67 @@ export function LandingPage() {
           <ul className={`${styles.chips} ${styles.workflowChips}`}>{['Invoice Automation', 'Financial Workflows', 'RFQ to Booking', 'Shipment Tracking', 'Document Automation'].map(item => <li key={item}>{item}</li>)}</ul>
         </div>
       </section>
-      <section id="customers" className={`${styles.section} ${styles.alternate}`} aria-labelledby="customers-title">
+      <section id="customers" className={`${styles.section} ${styles.customersSection}`} aria-labelledby="customers-title">
         <div className="site-shell">
-          <SectionHeading id="customers-title" eyebrow="Customer stories" title={<>Real workflows.<br /><span>Meaningful time saved.</span></>} copy="" />
-          
-          <div style={{ width: '100%', height: '450px', position: 'relative', marginTop: '-50px', marginBottom: '-30px' }}>
-            <CircularCarousel
-              stories={stories}
-              preset="cylinder"
-              intro="rise"
-              cardWidth={400}
-              aspectRatio={1.28}
-              gap={25}
-              speed={8}
-              fadeColor="#f6f5f9"
-              depthFade={0.55}
-              cornerRadius={12}
-              draggable={true}
-              pauseOnHover={true}
-              focusOnClick={true}
-            />
-          </div>
-        </div>
-      </section>
-      <section id="how-it-works" className={styles.section} aria-labelledby="process-title">
-        <div className="site-shell">
-          <SectionHeading id="process-title" eyebrow="How it works" title="A practical path from problem to progress." copy="Start small, validate with your own documents and expand when the workflow proves its value." />
-          <ol className={styles.steps}>{steps.map(([title, copy], index) => <li key={title}>
-            <span className={styles.number}>0{index + 1}</span><h3>{title}</h3><p>{copy}</p>
-          </li>)}</ol>
-        </div>
-      </section>
-      <section id="integrations" className={`${styles.section} ${styles.alternate}`} aria-labelledby="integrations-title">
-        <div className={`site-shell ${styles.integrationLayout}`}>
-          <div><SectionHeading id="integrations-title" eyebrow="Integrations & resources" title="Fits the systems your teams already use." /><p className={styles.sectionCopy}>Keep your existing tools. Move validated information into the workflows your team relies on.</p><Link href="/demo/" className={styles.textLink}>Discuss your integration<ArrowRight size={16} aria-hidden="true" /></Link></div>
-          <div className={styles.integrationPanel}>{integrations.map(([name, type]) => <div key={name}><strong>{name}</strong><span>{type}</span></div>)}</div>
+          <SectionHeading
+            id="customers-title"
+            eyebrow="Testimonials"
+            title={<>Real workflows.<br /><span>Meaningful time saved.</span></>}
+          />
+          <CustomerReviewSlider />
         </div>
       </section>
       <section id="faq" className={`${styles.section} ${styles.faqSection}`} aria-labelledby="faq-title">
         <div className={`site-shell ${styles.faqLayout}`}>
-          <div className={styles.faqHeader}>
-            <p className={styles.eyebrow}>FAQ</p>
-            <h2 id="faq-title">Frequently asked questions</h2>
-            <p className={styles.faqSubtitle}>Everything you need to know about Docsynecx document automation, integrations, and deployment.</p>
-          </div>
+          <h2 id="faq-title" className="sr-only">Frequently asked questions</h2>
           <SharedFaqAccordion items={landingFaqs} defaultOpenIndex={0} toggleStyle="plus" />
         </div>
       </section>
-
-      {/* Standalone "Let's make work flow" light card section outside the footer */}
       <section id="contact" className={styles.closing} aria-labelledby="closing-title">
         <div className="site-shell">
-          <div className={styles.closingCardLight}>
-            <div className={styles.closingEyebrow}>
-              <span className={styles.closingEyebrowDot} aria-hidden="true" />
-              <span>Let’s make work flow</span>
+          <div className={styles.closingCard}>
+            <div className={styles.closingBgPattern} aria-hidden="true">
+              <ClosingVisualBg />
             </div>
-            <h2 id="closing-title" className={styles.closingHeadline}>
-              What could your team do with less manual work?
-            </h2>
-            <p className={styles.closingSub}>
-              Finance and logistics are too critical for manual typing and data-entry errors. Docsynecx automates document checks, posting, and matching directly in Tally and CargoWise.
-            </p>
-            <div className={styles.closingCtas}>
-              <Link href="/demo/" className={styles.closingPrimaryBtn}>
-                <span>Book a Demo</span>
-                <ArrowUpRight size={16} aria-hidden="true" />
-              </Link>
-              <Link href="/calculator/" className={styles.closingGhostBtn}>
-                <span>Calculate ROI</span>
-              </Link>
+            <div className={styles.closingContent}>
+              <h2 id="closing-title" className={styles.closingTitle}>
+                What could your team do with less manual work?
+              </h2>
+              <p className={styles.closingCopy}>
+                Tell us about your finance or freight workflow. We’ll help identify a practical place to start.
+              </p>
+              <div className={styles.closingActions}>
+                <Link href="/demo/" className={styles.closingPrimaryBtn}>
+                  Book a demo
+                  <ArrowRight size={16} aria-hidden="true" />
+                </Link>
+                <Link href="/#platform" className={styles.closingSecondaryBtn}>
+                  Explore platform
+                </Link>
+              </div>
             </div>
           </div>
+          <p className={styles.companyLine}>
+            SynecX AI Labs Private Limited · Coimbatore, Tamil Nadu, India · <a href="mailto:info@docsynecx.com">info@docsynecx.com</a>
+          </p>
         </div>
       </section>
     </main>
-    <FinanceFooter />
+    <footer className={styles.footer}>
+      <div className="site-shell">
+        <div className={styles.footerGrid}>
+          <div><Link href="/" className={styles.brand} aria-label="Docsynecx home"><DocsynecxLogo variant="footer" className={styles.footerLogo} /></Link><p className={styles.footerDescription}>AI-powered finance and logistics workflows for document-intensive businesses.</p></div>
+          {landingDesks.map(desk => <nav key={desk.id} aria-label={`${desk.title} footer links`}><h2>{desk.title}</h2><ul>{desk.id === 'finance' && <li><Link href={desk.href}>Docsynecx Intelligence</Link></li>}{desk.features.map(feature => <li key={feature}>{feature}</li>)}</ul></nav>)}
+          <nav aria-label="Company footer links"><h2>Company</h2><ul><li><Link href="/#solutions">Solutions</Link></li><li><Link href="/#customers">Customers</Link></li><li><Link href="/#why-docsynecx">About Us</Link></li><li><Link href="/#contact">Contact</Link></li></ul></nav>
+        </div>
+        <div className={styles.footerBottom}>
+          <p>© 2026 SynecX AI Labs Private Limited. All rights reserved.</p>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+            <CookieSettingsButton />
+            <a href="mailto:info@docsynecx.com">info@docsynecx.com</a>
+          </div>
+        </div>
+      </div>
+    </footer>
   </div>;
 }

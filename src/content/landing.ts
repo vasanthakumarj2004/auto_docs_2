@@ -1,5 +1,5 @@
 export const landingFaqs = [
-  { question: 'What is Docsynecx?', answer: 'Docsynecx is an AI-powered workflow platform for document-heavy finance and logistics teams. It has two desks: Finance Desk for invoice automation and financial intelligence, and Shipment Desk for RFQ to booking, shipment management, tracking and document automation.' },
+  { question: 'What is Docsynecx?', answer: 'Docsynecx is an AI-powered workflow platform for document-heavy finance and logistics teams. It has two desks: Finance Desk for invoice automation and Bank Statement & Reconcilation, and Logistics Desk for RFQ to booking, shipment management, tracking and document automation.' },
   { question: 'Which systems does it integrate with?', answer: 'It connects with TallyPrime and CargoWise, and also supports email-based workflows and API connectivity, so validated data moves into the tools your team already uses.' },
   { question: 'Do we need to replace our current software?', answer: 'No. Docsynecx sits alongside your existing accounting, ERP or freight systems and feeds them validated data.' },
   { question: 'Will people still review and approve documents?', answer: 'Yes. Human review and approval stay part of important workflows, so your team remains in control of what gets posted.' },
@@ -12,11 +12,11 @@ export const landingFaqs = [
 export const landingDesks = [
   {
     id: 'finance', title: 'Finance', tag: 'Finance automation & intelligence', href: '/finance/',
-    copy: 'Move beyond invoice entry. Automate supplier documents and bring financial intelligence, business reporting and AI insights into one workspace.',
-    features: ['Invoice Automation', 'Financial Intelligence', 'Business Intelligence', 'AI Insights'],
+    copy: 'Move beyond invoice entry. Automate supplier documents and bring Bank Statement & Reconcilation, accounts payable workflows and AI insights into one workspace.',
+    features: ['Invoice Automation', 'Bank Statement & Reconcilation', 'Docsynecx Intelligence', 'Accounts Payable'],
   },
   {
-    id: 'shipment', title: 'Shipment', tag: 'Freight & logistics operations', href: '/logistics/',
+    id: 'logistics', title: 'Logistics', tag: 'Freight & logistics operations', href: '/logistics/',
     copy: 'Connect freight operations from customer enquiry and booking to shipment management, tracking and document automation.',
     features: ['RFQ to Booking', 'Shipment Management', 'Shipment Tracking', 'Document Automation'],
   },

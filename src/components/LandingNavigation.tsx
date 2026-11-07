@@ -5,8 +5,6 @@ import { useEffect, useRef, useState } from 'react';
 import { ChevronDown, Menu, X, ArrowRight } from 'lucide-react';
 import { DocsynecxLogo } from './DocsynecxLogo';
 import { AnnouncementBarV2 } from './AnnouncementBar';
-import { useLandingLayout } from './LandingLayoutProvider';
-import { LandingLayoutThreeNavigation } from './LandingLayoutThree';
 import styles from './LandingPage.module.css';
 
 interface MegaOverviewLink {
@@ -83,11 +81,11 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
       { title: 'Custom ERP', href: '/#integrations' },
     ],
   },
-  'Shipment Desk': {
-    label: 'Shipment Desk',
+  'Logistics Desk': {
+    label: 'Logistics Desk',
     eyebrow: 'Automate Freight Operations',
     overviewHref: '/logistics/',
-    exploreLabel: 'Explore Shipment Desk',
+    exploreLabel: 'Explore Logistics Desk',
     overviewLinks: [],
     featureLinks: [
       {
@@ -127,7 +125,7 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
   'Solutions': {
     label: 'Solutions',
     eyebrow: 'BY INDUSTRIES',
-    overviewHref: '/#platform',
+    overviewHref: '/#solutions',
     exploreLabel: 'Explore all solutions',
     overviewLinks: [],
     featureLinks: [
@@ -135,38 +133,38 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
         sno: '01',
         title: 'Automotive Industry',
         description: 'Purchase invoices, spare parts and service documentation.',
-        href: '/#automotive-industry',
+        href: '/#solutions',
       },
       {
         sno: '02',
         title: 'Manufacturing',
         description: 'Supplier invoices, material receipts and operational records.',
-        href: '/#manufacturing-industry',
+        href: '/#solutions',
       },
       {
         sno: '03',
         title: 'Textile & Garments',
         description: 'Supplier and purchase documentation with rapid ledger posting.',
-        href: '/#textile-industry',
+        href: '/#solutions',
       },
       {
         sno: '04',
         title: 'Retail & Distribution',
         description: 'High-volume invoice auditing and multi-vendor document workflows.',
-        href: '/#retail-industry',
+        href: '/#solutions',
       },
       {
         sno: '05',
         title: 'Logistics & Freight Forwarders',
         description: 'RFQ, shipments, container tracking and trade documents.',
-        href: '/#logistics-industry',
+        href: '/#solutions',
       },
     ],
   },
   'Resources': {
     label: 'Resources',
     eyebrow: 'TOOLS & GUIDES',
-    overviewHref: '/#how-it-works',
+    overviewHref: '/#faq',
     exploreLabel: 'Explore resources',
     overviewLinks: [],
     featureLinks: [
@@ -174,48 +172,43 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
         sno: '01',
         title: 'Blogs',
         description: 'Calculate monthly hours, error reduction and financial savings.',
-        href: '/calculator/',
+        href: '/#why-docsynecx',
       },
       {
         sno: '02',
         title: 'Case Studies',
         description: 'Answers about GST validation, security rules and human approvals.',
-        href: '/#faq',
+        href: '/#customers',
       },
       {
         sno: '03',
         title: 'About Us',
         description: 'End-to-end bill ingestion, validation and automated voucher posting.',
-        href: '/accounts-payable/',
+        href: '/#why-docsynecx',
       },
       {
         sno: '04',
         title: 'Events',
         description: 'Automate bills of lading, shipping orders and customs manifests.',
-        href: '/logistics-trade/',
+        href: '/#contact',
       },
     ],
   },
 };
 
 type NavItem =
-  | { type: 'menu'; key: 'Finance Desk' | 'Shipment Desk' | 'Solutions' | 'Resources' }
+  | { type: 'menu'; key: 'Finance Desk' | 'Logistics Desk' | 'Solutions' | 'Resources' }
   | { type: 'link'; label: string; href: string };
 
 const NAV_ITEMS: NavItem[] = [
   { type: 'menu', key: 'Finance Desk' },
-  { type: 'menu', key: 'Shipment Desk' },
+  { type: 'menu', key: 'Logistics Desk' },
   { type: 'menu', key: 'Solutions' },
   { type: 'link', label: 'Customers', href: '/#customers' },
   { type: 'menu', key: 'Resources' },
 ];
 
 export function LandingNavigation() {
-  const { layout } = useLandingLayout();
-  return layout === 'v3' ? <LandingLayoutThreeNavigation /> : <StandardLandingNavigation />;
-}
-
-function StandardLandingNavigation() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement>(null);

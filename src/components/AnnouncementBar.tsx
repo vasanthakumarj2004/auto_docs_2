@@ -35,10 +35,10 @@ const ANNOUNCEMENTS: AnnouncementItem[] = [
     href: '/finance/',
   },
   {
-    id: 'shipment',
-    tag: 'Shipment Desk',
+    id: 'logistics',
+    tag: 'Logistics Desk',
     text: 'Real-time milestones, container tracking and carrier status updates',
-    cta: 'Explore Shipment Desk',
+    cta: 'Explore Logistics Desk',
     href: '/logistics/',
   },
 ];
