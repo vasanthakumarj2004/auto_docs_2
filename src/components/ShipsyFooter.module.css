@@ -15,20 +15,12 @@
   border-top: 1px solid var(--footer-border);
   font-family: inherit;
 
-  /* Option A: Full Viewport Height Fold (100vh / 100svh) */
-  min-height: 100vh;
-  min-height: 100svh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   box-sizing: border-box;
 }
 
 .mainSection {
-  flex: 1 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   width: 100%;
 }
 
@@ -189,14 +181,14 @@
   display: grid;
   grid-template-columns: 1.4fr 1fr 1fr 1fr;
   gap: 56px 40px;
-  padding-block: clamp(40px, 5vh, 64px) clamp(32px, 4vh, 48px);
+  padding-block: 40px 40px;
 }
 
 @media (max-width: 1024px) {
   .footerGrid {
     grid-template-columns: 1fr 1fr;
     gap: 48px 32px;
-    padding-block: 56px 40px;
+    padding-block: 32px 36px;
   }
 }
 
@@ -204,7 +196,7 @@
   .footerGrid {
     grid-template-columns: 1fr;
     gap: 40px;
-    padding-block: 48px 32px;
+    padding-block: 28px 32px;
   }
 }
 

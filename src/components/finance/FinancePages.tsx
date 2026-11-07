@@ -5,6 +5,16 @@ import { LandingNavigation } from '../LandingNavigation';
 import { FinanceFooter } from '../FinanceFooter';
 import { SharedFaqAccordion } from '../SharedFaqAccordion';
 import { DemoCta } from '../DemoCta';
+import { ConnectedFinanceWorkspace } from './ConnectedFinanceWorkspace';
+import { FinanceGetStarted } from './FinanceGetStarted';
+import { FinanceWorkflow } from './FinanceWorkflow';
+import { FinanceInvoicePreview } from './FinanceInvoicePreview';
+import { InvoiceBusinessChallenge } from './InvoiceBusinessChallenge';
+import { InvoiceHowItWorks } from './InvoiceHowItWorks';
+import { InvoiceWhoItIsFor } from './InvoiceWhoItIsFor';
+import { BankingWhyItMatters } from './BankingWhyItMatters';
+import { BankingWorkflowOverview } from './BankingWorkflowOverview';
+import { PayableWorkingTowards } from './PayableWorkingTowards';
 import { bankingFeatures, demoHref, financeCapabilities, financeFaqs, financePageCopy, financeRoot, intelligenceCapabilities, interestHref, invoiceFeatures, payableFeatures, type Feature, type FinanceSlug } from '../../content/finance';
 import base from '../LandingPage.module.css';
 import s from './FinancePages.module.css';
@@ -37,9 +47,6 @@ function Numbered({ items, steps = false }: { items: string[][]; steps?: boolean
 function Split({ eyebrow, title, copy, children }: { eyebrow: string; title: string; copy: string; children: ReactNode }) {
   return <div className={base.integrationLayout}><div><Heading eyebrow={eyebrow} title={title} /><p className={base.sectionCopy}>{copy}</p></div>{children}</div>;
 }
-function Tiles({ items }: { items: string[][] }) {
-  return <div className={base.integrationPanel}>{items.map(([title, copy]) => <div key={title}><strong>{title}</strong><span>{copy}</span></div>)}</div>;
-}
 function Related({ slugs }: { slugs: FinanceSlug[] }) {
   return <Section alternate><Heading eyebrow="CONNECTED FINANCE DESK" title="Part of a connected finance workspace." /><div className={`${s.featureGrid} ${s.related}`}>{slugs.map(slug => {
     const item = financeCapabilities.find(capability => capability.slug === slug)!;
@@ -52,8 +59,8 @@ function Hero({ page }: { page: PageKey }) {
   const upcoming = page === 'accounts-payable';
   const intelligence = page === 'docsynecx-intelligence';
   return <section className={`${base.hero} ${s.viewportHero}`} aria-labelledby="finance-title">
-    <div className={`site-shell ${base.heroGrid}`}>
-      <div className={base.heroCopy}>
+    <div className={`site-shell ${base.heroGrid} ${s.heroGrid}`}>
+      <div className={`${base.heroCopy} ${s.heroCopy}`}>
         <Eyebrow>{copy.eyebrow}</Eyebrow>
         {upcoming && <span className={`${s.badge} ${s.heroBadge}`}>Upcoming capability</span>}
         <h1 id="finance-title" className={s.heroTitle}>{copy.headline}<br /><span>{copy.accent}</span></h1>
@@ -64,14 +71,14 @@ function Hero({ page }: { page: PageKey }) {
         </div>
         <p className={`${base.trust} ${s.heroTrust}`}>{intelligence ? <><strong>Decision support, not a replacement</strong> for accounting controls or management judgement.</> : copy.microline}</p>
       </div>
-      <div className={base.heroVisual} aria-label="Illustrative product view">
-        <div className={`${base.visualPanel} ${s.product}`}>
+      <div className={`${base.heroVisual} ${s.heroVisual}`} aria-label="Illustrative product view">
+        {page === 'overview' ? <FinanceInvoicePreview /> : <div className={`${base.visualPanel} ${s.product}`}>
           <div className={s.productHeader}><strong>{copy.visualTitle}</strong><span>{copy.visualLabel}</span></div>
           <div className={s.productTiles}>{copy.tiles.map(([label, title]) => <div key={label}><span>{label}</span><strong>{title}</strong></div>)}</div>
           <div className={s.skeleton} aria-hidden="true"><span /><span /><span /><span /></div>
           <div className={s.productChip}><Check size={12} aria-hidden="true" />{copy.chip}</div>
-        </div>
-        <p className={base.visualCaption}>Illustrative product view{upcoming ? ' · Under development' : ' · Configured around your workflow'}</p>
+        </div>}
+        <p className={base.visualCaption}>Illustrative product view{page === 'overview' ? ' · Sample invoice data' : upcoming ? ' · Under development' : ' · Configured around your workflow'}</p>
       </div>
     </div>
   </section>;
@@ -79,9 +86,7 @@ function Hero({ page }: { page: PageKey }) {
 
 function Overview() {
   return <>
-    <Section alternate><Split eyebrow="ONE CONNECTED FINANCE WORKSPACE" title="From documents to better decisions." copy="Finance teams need more than data entry. Docsynecx combines invoice automation with financial and business intelligence so teams can reduce repetitive work and make better use of business information."><Tiles items={[
-      ['Capture', 'Read business documents'], ['Validate', 'Keep review in the loop'], ['Understand', 'Explore finance information'], ['Act', 'Use reports and insights'],
-    ]} /></Split></Section>
+    <ConnectedFinanceWorkspace />
     <Section id="capabilities"><Heading eyebrow="FIVE CONNECTED CAPABILITIES" title="Finance operations, made more intelligent." copy="Explore the capabilities within Finance Desk. Each can address a distinct need while contributing to a connected finance environment." />
       <div className={s.capabilityGrid}>{financeCapabilities.map((item, index) => <article className={base.desk} key={item.slug}>
         <div className={s.cardTop}><span>{number(index)} / {item.label}</span>{item.slug === 'accounts-payable' && <span className={s.badge}>Upcoming</span>}</div>
@@ -89,42 +94,28 @@ function Overview() {
         <Link className={base.deskLink} href={item.slug === 'accounts-payable' ? interestHref : `${financeRoot}${item.slug}/`}>{item.link}<ArrowRight size={16} aria-hidden="true" /></Link>
       </article>)}</div>
     </Section>
-    <Section dark><Heading eyebrow="THE FINANCE WORKFLOW" title={<>Capture. Validate.<br /><span>Understand. Act.</span></>} /><Process items={['Documents', 'Validation', 'Accounting', 'Reporting']} /></Section>
-    <Section><Heading eyebrow="WHO IT IS FOR" title="Built around finance and business teams." copy="Finance Desk can support teams that handle recurring supplier documents and need clearer views of business performance." /><Numbered items={[
-      ['Business Owners', 'Business and financial visibility'], ['Finance Teams', 'Invoice processing and reporting'], ['Accounts Teams', 'Validated accounting information'], ['CA Firms', 'Document-intensive workflows'], ['Management Teams', 'Performance review and insights'],
-    ]} /></Section>
-    <Section alternate><Split eyebrow="INTEGRATIONS & IMPLEMENTATION" title="Works with your finance ecosystem." copy="Connect approved invoice information with TallyPrime. Additional ERP, workflow and deployment requirements can be assessed during discovery."><Tiles items={[
-      ['TallyPrime', 'Accounting integration'], ['API-first', 'Integration approach'], ['Cloud', 'Deployment discussion'], ['On-premise', 'Deployment discussion'],
-    ]} /></Split></Section>
-    <Section><Heading eyebrow="GET STARTED" title="Start with a focused finance use case." copy="Discovery, workflow mapping, configuration, validation and rollout based on your systems and business needs." /><Numbered steps items={[
-      ['Discover', 'Understand document volumes, systems and reporting needs.'], ['Configure', 'Set up the selected workflows and integrations.'], ['Validate', 'Test with sample documents and review outputs.'], ['Go live', 'Roll out and expand based on agreed scope.'],
-    ]} /></Section>
+    <FinanceWorkflow />
+    <FinanceGetStarted />
     <Section id="faq" alternate><div className={base.faqLayout}><Heading eyebrow="COMMON QUESTIONS" title="Finance Desk FAQ" /><SharedFaqAccordion items={financeFaqs} defaultOpenIndex={0} toggleStyle="plus" /></div></Section>
   </>;
 }
 
 function Invoice() {
   return <>
-    <Section dark><Heading eyebrow="THE BUSINESS CHALLENGE" title="Invoice processing shouldn’t slow down your finance team." /><div className={s.problems}>{[
-      'Manual retyping of supplier invoice details', 'Different invoice layouts and formats', 'Time spent checking GST, HSN and line items', 'Repeated work across batches of invoices', 'Errors and duplicates that require additional review',
-    ].map((title, index) => <article key={title}><span>{number(index)}</span><h3>{title}</h3><p>Reduce friction and improve visibility across the workflow.</p></article>)}</div></Section>
+    <InvoiceBusinessChallenge />
     <Section id="capabilities"><Heading eyebrow="WHAT YOU CAN DO" title="Make the information work harder for you." copy="Start with the needs that matter most to your team. Scope and available workflows can be confirmed during a product walkthrough." /><div className={s.panel}><Checklist items={[
       'AI-powered invoice data extraction', 'Supplier, invoice number and date capture', 'GST and HSN extraction', 'Line-item and tax detail capture', 'Credit note and debit note processing', 'Human-in-the-loop validation and confidence review', 'Duplicate detection and batch processing', 'TallyPrime integration',
     ]} /></div><Features items={invoiceFeatures} /></Section>
-    <Section alternate><Heading eyebrow="HOW IT WORKS" title="A clear path from information to accounting." /><Numbered steps items={[
-      ['Upload', 'Upload or submit supplier invoice documents.'], ['Extract', 'AI identifies invoice fields and line-item information.'], ['Review', 'Your team reviews extracted data and resolves exceptions.'], ['Post', 'Approved information moves through the configured accounting workflow.'],
-    ]} /></Section>
-    <Section><Heading eyebrow="WHO IT IS FOR" title="Designed for teams that need better visibility." copy="Finance Desk capabilities can support different business roles and information needs." /><Numbered items={['Finance and accounts teams', 'Businesses processing recurring supplier invoices', 'Automotive and EV dealerships', 'Manufacturing and distribution businesses', 'TallyPrime users'].map(title => [title, 'Designed around your business workflow.'])} /></Section>
+    <InvoiceHowItWorks />
+    <InvoiceWhoItIsFor />
   </>;
 }
 
 function Banking() {
   return <>
-    <Section alternate><Split eyebrow="WHY IT MATTERS" title="Spend less time organising statement data." copy="Bank reconciliation often involves reviewing statement entries, comparing them with accounting records and investigating unmatched transactions. Docsynecx is designed to help structure this work and make review easier."><div className={s.panel}><h3>Support your reconciliation process</h3><Checklist items={[
-      'Bring statement data into a consistent structure', 'Review transactions against available accounting information', 'Identify entries that may need attention', 'Support a clearer reconciliation review process',
-    ]} /></div></Split></Section>
+    <BankingWhyItMatters />
     <Section id="capabilities"><Heading eyebrow="BANK STATEMENT & RECONCILIATION CAPABILITIES" title="From bank statement to TallyPrime bookkeeping and reconciliation." copy="Docsynecx processes bank statement information, supports bookkeeping and reconciliation, and posts the resulting entries into TallyPrime. Exact formats and workflow steps depend on the implementation configuration." /><Features items={bankingFeatures} /></Section>
-    <Section><Heading eyebrow="WORKFLOW OVERVIEW" title="From bank statement to reconciliation review." copy="Final workflow and matching rules can be aligned with your bank formats, accounting software and operating process." /><Process items={['Provide bank statement', 'Structure transaction data', 'Compare & review', 'Resolve exceptions']} /></Section>
+    <BankingWorkflowOverview />
     <Related slugs={['invoice-automation', 'payment-reminders', 'docsynecx-intelligence']} />
   </>;
 }
@@ -141,9 +132,7 @@ function Reminders() {
 
 function Payable() {
   return <>
-    <Section alternate><Split eyebrow="WHAT WE’RE WORKING TOWARDS" title="A more connected way to manage payables." copy="The planned direction is to support businesses in organising supplier-side financial workflows, from invoice information to payable review and visibility."><div className={s.panel}><h3>Planned areas of focus</h3><Checklist items={[
-      'Supplier invoice and payable information management', 'Visibility into pending supplier payments', 'Structured review and approval workflows', 'Payables reporting and financial visibility', 'Integration with existing finance systems, subject to scope',
-    ]} /></div></Split></Section>
+    <PayableWorkingTowards />
     <Section id="capabilities"><Heading eyebrow="PLANNED CAPABILITIES" title="A preview of what’s ahead." copy="Accounts Payable is under development. These planned areas describe the product direction, not currently available workflows." /><Features items={payableFeatures} /></Section>
   </>;
 }
@@ -172,7 +161,7 @@ export function FinancePage({ page = 'overview' }: { page?: PageKey }) {
       {page === 'payment-reminders' && <Reminders />}
       {upcoming && <Payable />}
       {page === 'docsynecx-intelligence' && <Intelligence />}
-      <Section><div className={base.closingCard}><div><Eyebrow>{copy.ctaEyebrow}</Eyebrow><h2>{copy.ctaTitle}</h2><p>{copy.ctaCopy}</p></div><Link className={`button-primary ${base.closingButton}`} href={upcoming ? '#register-interest' : demoHref}>{upcoming ? 'Register Interest' : page === 'overview' ? 'Book a Finance Desk Demo' : page === 'banking-reconciliation' || page === 'payment-reminders' ? 'Talk to Docsynecx' : 'Book a Demo'}<ArrowUpRight size={16} aria-hidden="true" /></Link></div>
+      <Section><div className={`${base.closingCard} ${s.closingCard}`}><div><Eyebrow>{copy.ctaEyebrow}</Eyebrow><h2>{copy.ctaTitle}</h2><p>{copy.ctaCopy}</p></div><Link className={`button-primary ${base.closingButton}`} href={upcoming ? '#register-interest' : demoHref}>{upcoming ? 'Register Interest' : page === 'overview' ? 'Book a Finance Desk Demo' : page === 'banking-reconciliation' || page === 'payment-reminders' ? 'Talk to Docsynecx' : 'Book a Demo'}<ArrowUpRight size={16} aria-hidden="true" /></Link></div>
         {page === 'docsynecx-intelligence' && <p className={s.disclaimer}>Financial and business intelligence capabilities are scoped to available connected data. Current financial and business reporting pages describe analysis using TallyPrime data. Confirm data availability and configured scope during discovery.</p>}
         {upcoming && <div id="register-interest" className={s.interestForm}><DemoCta intent="accounts-payable" /></div>}
       </Section>

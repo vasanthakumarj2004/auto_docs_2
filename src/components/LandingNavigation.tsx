@@ -51,22 +51,22 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
       {
         sno: '01',
         title: 'Invoice Automation',
-        href: '/finance/',
+        href: '/finance-desk/invoice-automation/',
       },
       {
         sno: '02',
         title: 'Bank Statement & Reconcilation',
-        href: '/finance/',
+        href: '/finance-desk/banking-reconciliation/',
       }, 
       {
         sno: '03',
         title: 'Docsynecx Intelligence',
-        href: '/finance/',
+        href: '/finance-desk/docsynecx-intelligence/',
       },
       {
         sno: '04',
         title: 'Account Payable ( upcoming )',
-        href: '/finance/',
+        href: '/finance-desk/accounts-payable/',
       },
     ],
     whoHeading: "Who it's for",

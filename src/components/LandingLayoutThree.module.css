@@ -68,6 +68,60 @@
 .backdropShade { position: absolute; inset: 0; background: linear-gradient(90deg, #060b0fbd 0%, #060b0f9e 35%, #060b0f1a 65%, transparent 100%), linear-gradient(180deg, transparent 58%, #060b0f99 100%); }
 .backgroundMedia { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .backgroundMedia[data-failed='true'] { display: none; }
+.ambientBackdrop[data-background='clip4'] .backgroundMedia {
+  transform: scale(1.08);
+  transform-origin: 65% 50%;
+  animation: clipFourCameraDrift 28s ease-in-out infinite alternate;
+}
+.clipFourLighting { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.clipFourGlow {
+  position: absolute;
+  inset: -20% -15% -15% 20%;
+  background: radial-gradient(ellipse at 64% 42%, #72d9c63d 0%, #467b9226 30%, transparent 64%);
+  opacity: .7;
+  animation: clipFourGlowDrift 18s ease-in-out infinite alternate;
+}
+.clipFourBeams { position: absolute; inset: -40% -35% -10%; transform: rotate(-24deg); }
+.clipFourBeams span {
+  position: absolute;
+  left: -5%;
+  width: 110%;
+  height: 2px;
+  border-radius: 100%;
+  background: linear-gradient(90deg, transparent 6%, #91bfb82e 24%, #e4fff3b3 58%, #a2cdd75c 78%, transparent 96%);
+  box-shadow: 0 0 14px 2px #b9f4e62e, 0 6px 38px 10px #719b9d12;
+  animation: clipFourLightSweep 16s ease-in-out infinite alternate;
+}
+.clipFourBeams span:nth-child(1) { top: 25%; animation-delay: -5s; }
+.clipFourBeams span:nth-child(2) { top: 52%; height: 4px; filter: blur(1px); animation-duration: 22s; animation-delay: -11s; }
+.clipFourBeams span:nth-child(3) { top: 80%; opacity: .35; animation-duration: 19s; animation-delay: -3s; }
+.clipFourReflection {
+  position: absolute;
+  left: 20%;
+  top: 62%;
+  width: 110%;
+  height: 32%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, #8fd6c829 0%, #4c889d14 36%, transparent 68%);
+  transform: rotate(-18deg);
+  animation: clipFourFloorDrift 24s ease-in-out infinite alternate;
+}
+@keyframes clipFourCameraDrift {
+  from { transform: translate3d(-1%, -.5%, 0) scale(1.08); }
+  to { transform: translate3d(1%, 1%, 0) scale(1.12); }
+}
+@keyframes clipFourGlowDrift {
+  from { transform: translate3d(-5%, -4%, 0) scale(.95); opacity: .5; }
+  to { transform: translate3d(5%, 5%, 0) scale(1.1); opacity: .9; }
+}
+@keyframes clipFourLightSweep {
+  from { transform: translate3d(-9%, -22px, 0); opacity: .25; }
+  to { transform: translate3d(8%, 44px, 0); opacity: .65; }
+}
+@keyframes clipFourFloorDrift {
+  from { transform: translate3d(-5%, -6%, 0) rotate(-18deg); opacity: .4; }
+  to { transform: translate3d(5%, 10%, 0) rotate(-14deg); opacity: .85; }
+}
 .ambientBackdrop[data-background='clip4'] .backdropShade, .ambientBackdrop[data-background='clip5'] .backdropShade { background: linear-gradient(90deg, #060b0f9e 0%, #060b0f85 38%, #060b0f33 70%), linear-gradient(180deg, #060b0f1a 35%, #060b0f8c 100%); }
 .backgroundControls { position: absolute; z-index: 3; left: clamp(48px, 6vw, 116px); right: 24px; bottom: 24px; display: flex; align-items: end; flex-wrap: wrap; gap: 10px; }
 .backgroundPicker { display: flex; flex-direction: column; gap: 7px; max-width: 100%; }
@@ -78,6 +132,7 @@
 .backgroundChoices button[aria-pressed='true'] { background: #94dcc61a; border-color: #94dcc65c; color: #b8f2dd; }
 .motionToggle { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 9px 14px; border: 1px solid #ffffff30; border-radius: 999px; background: #091318eb; color: #dce7e4; font-size: 11px; cursor: pointer; transition: background 160ms ease, border-color 160ms ease; }
 .motionToggle:hover { background: #163032; border-color: #94dcc6; }
+.ambientBackdrop[data-motion='paused'] .backgroundMedia,
 .ambientBackdrop[data-motion='paused'] * { animation-play-state: paused; }
 @keyframes ceilingDrift { from { transform: translate3d(-3%, -16px, 0); } to { transform: translate3d(4%, 34px, 0); } }
 @keyframes reflectionDrift { from { transform: translate3d(-3%, -6%, 0) rotate(-18deg); opacity: .55; } to { transform: translate3d(5%, 8%, 0) rotate(-14deg); opacity: .9; } }
@@ -147,6 +202,7 @@
   .dashboardTilt { transform: perspective(1800px) rotateX(32deg) rotateY(-12deg) rotateZ(13deg); transform-origin: left top; }
 }
 @media (max-width: 600px) {
+  .clipFourLighting { opacity: .65; }
   .backgroundControls { left: 28px; right: 28px; bottom: 20px; }
   .hero { padding-bottom: 152px; }
   .tealReflection { width: 150%; left: -15%; top: 65%; }
@@ -177,5 +233,6 @@
 @media (prefers-reduced-motion: reduce) {
   .primaryButton, .outlineButton, .navSecondary, .motionToggle { transition: none; }
   .ambientBackdrop * { animation: none; }
+  .ambientBackdrop[data-background='clip4'] .backgroundMedia { animation: none; transform: none; }
   .motionToggle { display: none; }
 }

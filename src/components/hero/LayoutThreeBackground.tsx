@@ -98,7 +98,7 @@ export function LayoutThreeBackground() {
 
   return <>
     <div ref={surface} id="layout-three-background" className={styles.ambientBackdrop}
-      data-background={background} data-motion={paused || !active || !motionAllowed ? 'paused' : 'running'} aria-hidden="true">
+      data-background={background} data-motion={paused || !active || !motionAllowed || (isVideo && (!playing || failed)) ? 'paused' : 'running'} aria-hidden="true">
       {isVideo ? <>
         <img key={poster} src={poster} alt="" width={768} height={432} className={styles.backgroundMedia} />
         <video key={background} ref={video} className={styles.backgroundMedia} data-failed={failed}
@@ -111,6 +111,11 @@ export function LayoutThreeBackground() {
         <div className={styles.tealReflection} />
         <div className={styles.reflectionFloor} />
       </>}
+      {background === 'clip4' && <div className={styles.clipFourLighting}>
+        <div className={styles.clipFourGlow} />
+        <div className={styles.clipFourBeams}><span /><span /><span /></div>
+        <div className={styles.clipFourReflection} />
+      </div>}
       <div className={styles.backdropShade} />
     </div>
     <div className={styles.backgroundControls}>
