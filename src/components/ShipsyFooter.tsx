@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ShieldCheck, Lock, CheckCircle2, Activity, Linkedin, Mail, Youtube, ArrowUpRight } from 'lucide-react';
 import { DocsynecxLogo } from './DocsynecxLogo';
 import { financeCapabilities, financeRoot } from '../content/finance';
+import { CookieSettingsButton } from './cookie-consent/CookieSettingsButton';
 import styles from './ShipsyFooter.module.css';
 
 export interface ShipsyFooterProps {
@@ -285,13 +286,11 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
               <Link href="/#faq" className={styles.bottomLink}>
                 Terms of Service
               </Link>
-              <button
-                type="button"
+              <CookieSettingsButton
                 className={styles.bottomLink}
-                onClick={() => alert('All cookie preferences are active.')}
-              >
-                Cookie Settings
-              </button>
+                showIcon={false}
+                label="Cookie Settings"
+              />
               <span className={styles.copyright}>
                 &copy; {currentYear} SynecX AI Labs Private Limited. All rights reserved.
               </span>
