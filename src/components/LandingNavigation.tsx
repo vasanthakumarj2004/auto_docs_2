@@ -111,10 +111,10 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
     ],
     whoHeading: "Who it's for",
     whoLinks: [
-      { title: 'Business Owners', href: '/#contact' },
-      { title: 'Finance Teams', href: '/#platform' },
-      { title: 'Accounts Teams', href: '/#platform' },
-      { title: 'CA firms', href: '/#contact' },
+      { title: 'Business Owners', href: '/finance-desk/business-owners/' },
+      { title: 'Finance Teams', href: '/finance-desk/finance-teams/' },
+      { title: 'Accounts Teams', href: '/finance-desk/accounts-teams/' },
+      { title: 'CA firms', href: '/finance-desk/ca-firms/' },
     ],
     integrationsHeading: 'Integrations',
     integrationsLinks: [
