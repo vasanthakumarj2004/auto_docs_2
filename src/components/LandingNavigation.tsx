@@ -42,7 +42,7 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
   'Finance Desk': {
     label: 'Finance Desk',
     eyebrow: 'Automate Finance Operations',
-    overviewHref: '/finance/',
+    overviewHref: '/finance-desk/',
     exploreLabel: 'Explore Finance Desk',
     overviewLinks: [],
     featureLinks: [
@@ -69,10 +69,10 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
     ],
     whoHeading: "Who it's for",
     whoLinks: [
-      { title: 'Business Owners', href: '/demo/' },
-      { title: 'Finance Teams', href: '/finance/' },
-      { title: 'Accounts Teams', href: '/accounts-payable/' },
-      { title: 'CA firms', href: '/demo/' },
+      { title: 'Business Owners', href: '/finance-desk/business-owners/' },
+      { title: 'Finance Teams', href: '/finance-desk/finance-teams/' },
+      { title: 'Accounts Teams', href: '/finance-desk/accounts-teams/' },
+      { title: 'CA firms', href: '/finance-desk/ca-firms/' },
     ],
     integrationsHeading: 'Integrations',
     integrationsLinks: [
@@ -84,37 +84,37 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
   'Logistics Desk': {
     label: 'Logistics Desk',
     eyebrow: 'Automate Freight Operations',
-    overviewHref: '/logistics/',
+    overviewHref: '/#platform',
     exploreLabel: 'Explore Logistics Desk',
     overviewLinks: [],
     featureLinks: [
       {
         sno: '01',
         title: 'RFQ to Booking',
-        href: '/logistics/',
+        href: '/#platform',
       },
       {
         sno: '02',
         title: 'Shipment Management',
-        href: '/logistics/',
+        href: '/#platform',
       },
       {
         sno: '03',
         title: 'Shipment Tracking',
-        href: '/logistics/',
+        href: '/#platform',
       },
       {
         sno: '04',
         title: 'Document Automation',
-        href: '/logistics/',
+        href: '/#platform',
       },
     ],
     whoHeading: "Who it's for",
     whoLinks: [
-      { title: 'Business Owners', href: '/demo/' },
-      { title: 'Finance Teams', href: '/logistics/' },
-      { title: 'Accounts Teams', href: '/logistics/' },
-      { title: 'CA firms', href: '/demo/' },
+      { title: 'Business Owners', href: '/finance-desk/business-owners/' },
+      { title: 'Finance Teams', href: '/finance-desk/finance-teams/' },
+      { title: 'Accounts Teams', href: '/finance-desk/accounts-teams/' },
+      { title: 'CA firms', href: '/finance-desk/ca-firms/' },
     ],
     integrationsHeading: 'Integrations',
     integrationsLinks: [
@@ -125,7 +125,7 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
   'Solutions': {
     label: 'Solutions',
     eyebrow: 'BY INDUSTRIES',
-    overviewHref: '/#solutions',
+    overviewHref: '/solutions',
     exploreLabel: 'Explore all solutions',
     overviewLinks: [],
     featureLinks: [
@@ -133,31 +133,31 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
         sno: '01',
         title: 'Automotive Industry',
         description: 'Purchase invoices, spare parts and service documentation.',
-        href: '/#solutions',
+        href: '/solutions#automotive',
       },
       {
         sno: '02',
         title: 'Manufacturing',
         description: 'Supplier invoices, material receipts and operational records.',
-        href: '/#solutions',
+        href: '/solutions#manufacturing',
       },
       {
         sno: '03',
         title: 'Textile & Garments',
         description: 'Supplier and purchase documentation with rapid ledger posting.',
-        href: '/#solutions',
+        href: '/solutions#textile',
       },
       {
         sno: '04',
         title: 'Retail & Distribution',
         description: 'High-volume invoice auditing and multi-vendor document workflows.',
-        href: '/#solutions',
+        href: '/solutions#retail',
       },
       {
         sno: '05',
         title: 'Logistics & Freight Forwarders',
         description: 'RFQ, shipments, container tracking and trade documents.',
-        href: '/#solutions',
+        href: '/solutions#logistics',
       },
     ],
   },
@@ -403,7 +403,7 @@ export function LandingNavigation() {
             })}
 
             <Link
-              href="/demo/"
+              href="/#contact"
               className={`${styles.demoButton} ${styles.navDemo} ${styles.mobileDemo}`}
               onClick={close}
             >
@@ -412,7 +412,7 @@ export function LandingNavigation() {
           </nav>
 
           <Link
-            href="/demo/"
+            href="/#contact"
             className={`${styles.demoButton} ${styles.navDemo} ${styles.desktopDemo}`}
             onClick={close}
           >

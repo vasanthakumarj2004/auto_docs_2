@@ -11,12 +11,12 @@ export const landingFaqs = [
 
 export const landingDesks = [
   {
-    id: 'finance', title: 'Finance', tag: 'Finance automation & intelligence', href: '/finance/',
-    copy: 'Move beyond invoice entry. Automate supplier documents and bring Bank Statement & Reconcilation, accounts payable workflows and AI insights into one workspace.',
-    features: ['Invoice Automation', 'Bank Statement & Reconcilation', 'Docsynecx Intelligence', 'Accounts Payable'],
+    id: 'finance', title: 'Finance', tag: 'Finance automation & intelligence', href: '/finance-desk/',
+    copy: 'Move beyond invoice entry. Automate supplier documents and bring Bank Statement & Reconcilation, business reporting and AI insights into one workspace.',
+    features: ['Invoice Automation', 'Bank Statement & Reconcilation', 'Accounts Payable'],
   },
   {
-    id: 'logistics', title: 'Logistics', tag: 'Freight & logistics operations', href: '/logistics/',
+    id: 'logistics', title: 'Logistics', tag: 'Freight & logistics operations', href: '/#platform',
     copy: 'Connect freight operations from customer enquiry and booking to shipment management, tracking and document automation.',
     features: ['RFQ to Booking', 'Shipment Management', 'Shipment Tracking', 'Document Automation'],
   },
@@ -53,18 +53,4 @@ export const landingIndustries = [
     copy: 'Supplier and purchase documentation with rapid ledger posting.',
     image: '/images/industry-textile.jpg',
   },
-];
-
-export const landingNavigationMenus = [
-  ...landingDesks.filter(desk => desk.id !== 'finance').map(desk => ({ label: desk.title, links: [
-    { label: `Explore ${desk.title}`, href: desk.href },
-    ...desk.features.map(label => ({ label, href: desk.href })),
-  ] })),
-  { label: 'Solutions', links: landingIndustries.map(industry => ({ label: industry.title, href: `/#${industry.id}` })) },
-  { label: 'Resources', links: [
-    { label: 'How it works', href: '/#how-it-works' },
-    { label: 'Integrations', href: '/#integrations' },
-    { label: 'Free ROI calculator', href: '/calculator/' },
-    { label: 'Frequently asked questions', href: '/#faq' },
-  ] },
 ];

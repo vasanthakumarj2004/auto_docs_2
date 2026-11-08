@@ -32,7 +32,7 @@ const ANNOUNCEMENTS: AnnouncementItem[] = [
     tag: 'Finance Desk',
     text: '3-way automated invoice matching with zero data re-entry',
     cta: 'Explore Finance Desk',
-    href: '/finance/',
+    href: '/finance-desk/',
   },
   {
     id: 'logistics',

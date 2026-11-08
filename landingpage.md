@@ -56,8 +56,8 @@ Wireframe label: *Stat card*. Full-width white band directly under the hero.
 | Tag | FINANCE AUTOMATION & INTELLIGENCE | FREIGHT & LOGISTICS OPERATIONS |
 | Icon | document/ledger icon, blue chip | swap-arrows icon, green chip |
 | Title | **Finance Desk** | **Shipment Desk** |
-| Copy | Move beyond invoice entry. Automate supplier documents and bring financial intelligence, business reporting and AI insights into one workspace. | Connect freight operations from customer enquiry and booking to shipment management, tracking and document automation. |
-| Chips | Invoice Automation, Financial Intelligence, Business Intelligence, AI Insights | RFQ to Booking, Shipment Management, Shipment Tracking, Document Automation |
+| Copy | Move beyond invoice entry. Automate supplier documents and bring Bank Statement & Reconcilation, business reporting and AI insights into one workspace. | Connect freight operations from customer enquiry and booking to shipment management, tracking and document automation. |
+| Chips | Invoice Automation, Bank Statement & Reconcilation, Business Intelligence, AI Insights | RFQ to Booking, Shipment Management, Shipment Tracking, Document Automation |
 | Link | **Explore Finance Desk →** (blue) | **Explore Shipment Desk →** (green) |
 
 ## 5. Why Docsynecx (dark section)
@@ -128,7 +128,7 @@ Wireframe label: *Stat card*. Full-width white band directly under the hero.
 
 | # | Question | Answer |
 |---|---|---|
-| 1 | What is Docsynecx? | Docsynecx is an AI-powered workflow platform for document-heavy finance and logistics teams. It has two desks: Finance Desk for invoice automation and financial intelligence, and Shipment Desk for RFQ to booking, shipment management, tracking and document automation. |
+| 1 | What is Docsynecx? | Docsynecx is an AI-powered workflow platform for document-heavy finance and logistics teams. It has two desks: Finance Desk for invoice automation and Bank Statement & Reconcilation, and Shipment Desk for RFQ to booking, shipment management, tracking and document automation. |
 | 2 | Which systems does it integrate with? | It connects with TallyPrime and CargoWise, and also supports email-based workflows and API connectivity, so validated data moves into the tools your team already uses. |
 | 3 | Do we need to replace our current software? | No. Docsynecx sits alongside your existing accounting, ERP or freight systems and feeds them validated data. |
 | 4 | Will people still review and approve documents? | Yes. Human review and approval stay part of important workflows, so your team remains in control of what gets posted. |
@@ -153,7 +153,7 @@ Wireframe label: *Stat card*. Full-width white band directly under the hero.
 - Background `--ink`.
 - Left: logo (white), tagline, and *AI-powered finance and logistics workflows for document-intensive businesses.*
 - Columns:
-  - **Finance Desk**: Docsynecx Intelligence, Invoice Automation, Financial Intelligence, Business Intelligence, AI Insights
+  - **Finance Desk**: Docsynecx Intelligence, Invoice Automation, Bank Statement & Reconcilation, Business Intelligence, AI Insights
   - **Shipment Desk**: RFQ to Booking, Shipment Management, Shipment Tracking, Document Automation
   - **Company**: Solutions, Customers, About Us, Contact
 - Bottom bar (thin divider): © 2026 SynecX AI Labs Private Limited. All rights reserved. · info@docsynecx.com

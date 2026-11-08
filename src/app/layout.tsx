@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import React from 'react';
 import '@/src/index.css';
-import { RouterProvider } from '@/src/lib/router';
-import { VideoProvider } from '@/src/components/video/VideoContext';
 import { ThemeSwitcher } from '@/src/components/ThemeSwitcher';
 import { LandingLayoutProvider } from '@/src/components/LandingLayoutProvider';
 import { darkThemeInitScript, LOGO_GREEN } from '@/src/lib/darkTheme';
@@ -145,9 +143,7 @@ export default function RootLayout({
       <body className="min-h-screen bg-white text-slate-800 antialiased font-sans" suppressHydrationWarning>
         <ConsentProvider>
           <LandingLayoutProvider>
-            <RouterProvider>
-              <VideoProvider>{children}</VideoProvider>
-            </RouterProvider>
+            {children}
             <ThemeSwitcher />
             <CookieConsent />
           </LandingLayoutProvider>

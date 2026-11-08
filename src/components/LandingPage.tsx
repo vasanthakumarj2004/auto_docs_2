@@ -187,7 +187,7 @@ export function LandingPage() {
 
                     <div className={styles.deskHoverFooter}>
                       <Link href={desk.href} className={styles.deskHoverLink}>
-                        Explore {desk.title} Desk
+                        Explore {desk.title}
                         <ArrowRight size={16} aria-hidden="true" />
                       </Link>
                     </div>
@@ -286,11 +286,11 @@ export function LandingPage() {
                 Tell us about your finance or freight workflow. We’ll help identify a practical place to start.
               </p>
               <div className={styles.closingActions}>
-                <Link href="/demo/" className={styles.closingPrimaryBtn}>
+                <Link href="/#contact" className={`${styles.demoButton} ${styles.closingPrimaryBtn}`}>
                   Book a demo
                   <ArrowRight size={16} aria-hidden="true" />
                 </Link>
-                <Link href="/#platform" className={styles.closingSecondaryBtn}>
+                <Link href="/#platform" className={`${styles.demoButton} ${styles.closingSecondaryBtn}`}>
                   Explore platform
                 </Link>
               </div>
@@ -307,7 +307,7 @@ export function LandingPage() {
         <div className={styles.footerGrid}>
           <div><Link href="/" className={styles.brand} aria-label="Docsynecx home"><DocsynecxLogo variant="footer" className={styles.footerLogo} /></Link><p className={styles.footerDescription}>AI-powered finance and logistics workflows for document-intensive businesses.</p></div>
           {landingDesks.map(desk => <nav key={desk.id} aria-label={`${desk.title} footer links`}><h2>{desk.title}</h2><ul>{desk.id === 'finance' && <li><Link href={desk.href}>Docsynecx Intelligence</Link></li>}{desk.features.map(feature => <li key={feature}>{feature}</li>)}</ul></nav>)}
-          <nav aria-label="Company footer links"><h2>Company</h2><ul><li><Link href="/#solutions">Solutions</Link></li><li><Link href="/#customers">Customers</Link></li><li><Link href="/#why-docsynecx">About Us</Link></li><li><Link href="/#contact">Contact</Link></li></ul></nav>
+          <nav aria-label="Company footer links"><h2>Company</h2><ul><li><Link href="/solutions">Solutions</Link></li><li><Link href="/#customers">Customers</Link></li><li><Link href="/#why-docsynecx">About Us</Link></li><li><Link href="/#contact">Contact</Link></li></ul></nav>
         </div>
         <div className={styles.footerBottom}>
           <p>© 2026 SynecX AI Labs Private Limited. All rights reserved.</p>

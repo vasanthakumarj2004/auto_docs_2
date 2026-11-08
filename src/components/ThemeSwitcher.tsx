@@ -11,6 +11,7 @@ import {
   parseDarkTheme,
   type DarkTheme,
 } from '../lib/darkTheme';
+import { isFunctionalAllowed } from '../lib/consent';
 
 export interface ThemeOption {
   id: string;
@@ -29,9 +30,21 @@ export interface BgOption {
   isCustom?: boolean;
 }
 
+export const DEFAULT_CUSTOM_BRANDS: ThemeOption[] = [
+  {
+    id: 'custom-sea-green',
+    name: 'Sea Green',
+    color: '#2E8B57',
+    hue: 146,
+    description: 'Permanent custom color (#2E8B57)',
+    isCustom: true,
+  },
+];
+
 export const THEME_OPTIONS: ThemeOption[] = [
   { id: 'violet', name: 'Royal Violet', color: '#8B32F7', hue: 267, description: 'Optional Royal Violet palette' },
   { id: 'logo', name: 'Logo theme', color: LOGO_GREEN, hue: LOGO_DARK_THEME.hue, description: `Docsynecx logo green (${LOGO_GREEN})` },
+  { id: 'sea-green', name: 'Sea Green', color: '#2E8B57', hue: 146, description: 'Permanent Sea Green (#2E8B57)' },
   { id: 'green', name: 'Green', color: '#18CB96', hue: 162, description: 'Fresh Mint (#18CB96)' },
   { id: 'light-green', name: 'Light Green', color: '#18CB96', hue: 162, description: 'Mint Pastel (#18CB96)' },
   { id: 'red', name: 'Red', color: '#DC2626', hue: 0, description: 'Bold Crimson Red' },
@@ -162,7 +175,7 @@ export const ThemeSwitcher: React.FC = () => {
   const [sliderHue, setSliderHue] = useState<number>(LOGO_DARK_THEME.hue);
   const [opacity, setOpacity] = useState<number>(100);
   const [isCustom, setIsCustom] = useState(false);
-  const [customBrandOptions, setCustomBrandOptions] = useState<ThemeOption[]>([]);
+  const [customBrandOptions, setCustomBrandOptions] = useState<ThemeOption[]>(DEFAULT_CUSTOM_BRANDS);
   const [showAddBrandForm, setShowAddBrandForm] = useState(false);
   const [newBrandHex, setNewBrandHex] = useState('#18CB96');
   const [newBrandName, setNewBrandName] = useState('');
@@ -187,9 +200,20 @@ export const ThemeSwitcher: React.FC = () => {
     try {
       const savedCustomBrands = localStorage.getItem('autodocs-custom-brand-list');
       if (savedCustomBrands) {
-        setCustomBrandOptions(JSON.parse(savedCustomBrands));
+        const parsed = JSON.parse(savedCustomBrands);
+        const merged = [...parsed];
+        for (const def of DEFAULT_CUSTOM_BRANDS) {
+          if (!merged.some((item: ThemeOption) => item.id === def.id || (item.color && item.color.toLowerCase() === def.color.toLowerCase()))) {
+            merged.unshift(def);
+          }
+        }
+        setCustomBrandOptions(merged);
+      } else {
+        setCustomBrandOptions(DEFAULT_CUSTOM_BRANDS);
       }
-    } catch {}
+    } catch {
+      setCustomBrandOptions(DEFAULT_CUSTOM_BRANDS);
+    }
 
     try {
       const savedCustomBgs = localStorage.getItem('autodocs-custom-bg-list');
@@ -282,9 +306,11 @@ export const ThemeSwitcher: React.FC = () => {
       const storedThemeKey = isCustomMode
         ? (themeId.startsWith('custom-brand-') ? themeId : 'custom')
         : themeId;
-      localStorage.setItem('autodocs-theme', storedThemeKey);
-      localStorage.setItem('autodocs-theme-opacity', String(alphaPercent));
-      localStorage.setItem('autodocs-brand-hex', hex);
+      if (isFunctionalAllowed()) {
+        localStorage.setItem('autodocs-theme', storedThemeKey);
+        localStorage.setItem('autodocs-theme-opacity', String(alphaPercent));
+        localStorage.setItem('autodocs-brand-hex', hex);
+      }
     } catch {}
   };
 
@@ -327,7 +353,7 @@ export const ThemeSwitcher: React.FC = () => {
         savedTheme.startsWith('custom') ||
         (savedBrandHex &&
           savedBrandHex.startsWith('#') &&
-          !['logo', 'violet', 'green', 'light-green', 'red', 'blue', 'yellow', 'orange'].includes(
+          !['logo', 'violet', 'green', 'light-green', 'sea-green', 'red', 'blue', 'yellow', 'orange'].includes(
             savedTheme
           ));
 
@@ -358,7 +384,9 @@ export const ThemeSwitcher: React.FC = () => {
     setDarkTheme(theme);
     applyDarkTheme(theme);
     try {
-      localStorage.setItem(DARK_THEME_KEY, JSON.stringify(theme));
+      if (isFunctionalAllowed()) {
+        localStorage.setItem(DARK_THEME_KEY, JSON.stringify(theme));
+      }
     } catch {}
   };
 
@@ -430,7 +458,9 @@ export const ThemeSwitcher: React.FC = () => {
     const updated = [newOption, ...customBrandOptions];
     setCustomBrandOptions(updated);
     try {
-      localStorage.setItem('autodocs-custom-brand-list', JSON.stringify(updated));
+      if (isFunctionalAllowed()) {
+        localStorage.setItem('autodocs-custom-brand-list', JSON.stringify(updated));
+      }
     } catch {}
 
     // Immediately select and apply it
@@ -442,10 +472,13 @@ export const ThemeSwitcher: React.FC = () => {
   // Delete custom brand color
   const handleDeleteBrandColor = (id: string, e: React.MouseEvent) => {
     e.stopPropagation();
+    if (id === 'custom-sea-green') return; // Permanent saved color
     const updated = customBrandOptions.filter((o) => o.id !== id);
     setCustomBrandOptions(updated);
     try {
-      localStorage.setItem('autodocs-custom-brand-list', JSON.stringify(updated));
+      if (isFunctionalAllowed()) {
+        localStorage.setItem('autodocs-custom-brand-list', JSON.stringify(updated));
+      }
     } catch {}
 
     if (currentTheme === id) {
@@ -459,8 +492,10 @@ export const ThemeSwitcher: React.FC = () => {
     setCurrentBgHex(bg.color);
     applyBackgroundColor(bg.color);
     try {
-      localStorage.setItem('autodocs-bg-color', bg.color);
-      localStorage.setItem('autodocs-bg-id', bg.id);
+      if (isFunctionalAllowed()) {
+        localStorage.setItem('autodocs-bg-color', bg.color);
+        localStorage.setItem('autodocs-bg-id', bg.id);
+      }
     } catch {}
   };
 
@@ -481,7 +516,9 @@ export const ThemeSwitcher: React.FC = () => {
     const updated = [newOption, ...customBgOptions];
     setCustomBgOptions(updated);
     try {
-      localStorage.setItem('autodocs-custom-bg-list', JSON.stringify(updated));
+      if (isFunctionalAllowed()) {
+        localStorage.setItem('autodocs-custom-bg-list', JSON.stringify(updated));
+      }
     } catch {}
 
     // Immediately select and apply it
@@ -496,7 +533,9 @@ export const ThemeSwitcher: React.FC = () => {
     const updated = customBgOptions.filter((o) => o.id !== id);
     setCustomBgOptions(updated);
     try {
-      localStorage.setItem('autodocs-custom-bg-list', JSON.stringify(updated));
+      if (isFunctionalAllowed()) {
+        localStorage.setItem('autodocs-custom-bg-list', JSON.stringify(updated));
+      }
     } catch {}
 
     if (currentBgId === id) {
@@ -865,14 +904,16 @@ export const ThemeSwitcher: React.FC = () => {
                                     style={{ color: theme.color }}
                                   />
                                 )}
-                                <button
-                                  type="button"
-                                  onClick={(e) => handleDeleteBrandColor(theme.id, e)}
-                                  className="p-1 text-slate-400 hover:text-red-500 rounded transition-colors"
-                                  title="Delete color"
-                                >
-                                  <Trash2 size={12} />
-                                </button>
+                                {theme.id !== 'custom-sea-green' && (
+                                  <button
+                                    type="button"
+                                    onClick={(e) => handleDeleteBrandColor(theme.id, e)}
+                                    className="p-1 text-slate-400 hover:text-red-500 rounded transition-colors"
+                                    title="Delete color"
+                                  >
+                                    <Trash2 size={12} />
+                                  </button>
+                                )}
                               </div>
                             </div>
                           );
