@@ -11,6 +11,7 @@ import { landingDesks } from '../../content/landing';
 import { financePersonas, type PersonaData } from '../../content/financePersonas';
 import layoutStyles from '../LandingPage.module.css';
 import s from './FinancePersonaPage.module.css';
+import { PersonaBusinessChallenge } from './PersonaBusinessChallenge';
 
 interface FinancePersonaPageProps {
   persona: PersonaData['slug'];
@@ -84,28 +85,8 @@ export function FinancePersonaPage({ persona }: FinancePersonaPageProps) {
           </div>
         </section>
 
-        {/* 2. CHALLENGES (DARK SECTION) */}
-        <section className={`${s.section} ${s.dark}`} aria-labelledby="challenges-title">
-          <div className="site-shell">
-            <div className={s.sectionHeading}>
-              <div>
-                <p className={s.eyebrow}>{data.challengesEyebrow}</p>
-                <h2 id="challenges-title">{data.challengesTitle}</h2>
-              </div>
-              <p className={s.sectionCopy}>{data.challengesDescription}</p>
-            </div>
-
-            <div className={s.problems}>
-              {data.challenges.map(({ number, title, description }) => (
-                <article key={number}>
-                  <span>{number}</span>
-                  <h3>{title}</h3>
-                  <p>{description}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
+        {/* 2. BUSINESS CHALLENGE WORKSPACE (Interactive 2-column workspace matching Invoice Automation) */}
+        <PersonaBusinessChallenge persona={persona} />
 
         {/* 3. CAPABILITIES & WHAT YOU GAIN */}
         <section id="capabilities" className={`${s.section} ${s.alternate}`} aria-labelledby="capabilities-title">
