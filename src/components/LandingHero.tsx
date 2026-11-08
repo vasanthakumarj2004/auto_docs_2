@@ -16,7 +16,7 @@ export function LandingHero() {
             Bills read, checked, paid and posted to Tally. Emails become CargoWise jobs. Your team handles exceptions, not typing.
           </p>
           <div className={styles.heroActions}>
-            <Link href="/#platform" className={`desk-button ${styles.heroButton} ${styles.financeButton}`}>
+            <Link href="/finance-desk/" className={`desk-button ${styles.heroButton} ${styles.financeButton}`}>
               I run a finance desk
               <ArrowRight size={16} aria-hidden="true" />
             </Link>

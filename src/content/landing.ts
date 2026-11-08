@@ -11,7 +11,7 @@ export const landingFaqs = [
 
 export const landingDesks = [
   {
-    id: 'finance', title: 'Finance', tag: 'Finance automation & intelligence', href: '/#platform',
+    id: 'finance', title: 'Finance', tag: 'Finance automation & intelligence', href: '/finance-desk/',
     copy: 'Move beyond invoice entry. Automate supplier documents and bring Bank Statement & Reconcilation, business reporting and AI insights into one workspace.',
     features: ['Invoice Automation', 'Bank Statement & Reconcilation', 'Accounts Payable'],
   },

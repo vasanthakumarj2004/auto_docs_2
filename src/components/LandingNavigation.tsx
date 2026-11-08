@@ -42,37 +42,37 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
   'Finance Desk': {
     label: 'Finance Desk',
     eyebrow: 'Automate Finance Operations',
-    overviewHref: '/#platform',
+    overviewHref: '/finance-desk/',
     exploreLabel: 'Explore Finance Desk',
     overviewLinks: [],
     featureLinks: [
       {
         sno: '01',
         title: 'Invoice Automation',
-        href: '/#platform',
+        href: '/finance-desk/invoice-automation/',
       },
       {
         sno: '02',
         title: 'Bank Statement & Reconcilation',
-        href: '/#platform',
+        href: '/finance-desk/banking-reconciliation/',
       }, 
       {
         sno: '03',
         title: 'Docsynecx Intelligence',
-        href: '/#platform',
+        href: '/finance-desk/docsynecx-intelligence/',
       },
       {
         sno: '04',
         title: 'Account Payable ( upcoming )',
-        href: '/#platform',
+        href: '/finance-desk/accounts-payable/',
       },
     ],
     whoHeading: "Who it's for",
     whoLinks: [
-      { title: 'Business Owners', href: '/#contact' },
-      { title: 'Finance Teams', href: '/#platform' },
-      { title: 'Accounts Teams', href: '/#platform' },
-      { title: 'CA firms', href: '/#contact' },
+      { title: 'Business Owners', href: '/finance-desk/business-owners/' },
+      { title: 'Finance Teams', href: '/finance-desk/finance-teams/' },
+      { title: 'Accounts Teams', href: '/finance-desk/accounts-teams/' },
+      { title: 'CA firms', href: '/finance-desk/ca-firms/' },
     ],
     integrationsHeading: 'Integrations',
     integrationsLinks: [

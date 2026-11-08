@@ -1,0 +1,466 @@
+.footer {
+  --footer-bg: #111827;
+  --footer-border: #1f2937;
+  --footer-heading: #ffffff;
+  --footer-text: #9ca3af;
+  --footer-link: #9ca3af;
+  --footer-muted: #9ca3af;
+  --footer-subtle: #6b7280;
+  --footer-badge-bg: rgba(24, 203, 150, 0.12);
+  --footer-badge-border: rgba(24, 203, 150, 0.28);
+
+  position: relative;
+  background: var(--footer-bg);
+  color: var(--footer-text);
+  border-top: 1px solid var(--footer-border);
+  font-family: inherit;
+
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.mainSection {
+  width: 100%;
+}
+
+.shell {
+  max-width: 1240px;
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 24px;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   Shipsy Pre-Footer Integrated CTA ("Let's make work flow")
+   Outside: Dark Footer Canvas (#111827)
+   Inside Card: Light Colour (#ffffff)
+   ========================================================================== */
+.ctaStrip {
+  padding: 64px 0 24px;
+}
+
+.ctaCardLight {
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 26px;
+  padding: 64px 44px;
+  text-align: center;
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.35);
+}
+
+/* Subtle soft ambient light highlight inside card header */
+.ctaCardLight::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 120px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(15, 23, 42, 0.04), transparent 70%);
+  pointer-events: none;
+}
+
+.ctaCardLight > * {
+  position: relative;
+  z-index: 1;
+}
+
+.ctaEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 20px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.ctaEyebrowDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #0f172a;
+  box-shadow: none;
+}
+
+.ctaHeadline {
+  color: #0f172a !important;
+  font-size: clamp(28px, 3.8vw, 44px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  max-width: 22ch;
+  margin: 0 auto 16px;
+}
+
+.ctaSub {
+  color: #475569;
+  font-size: clamp(14.5px, 1.2vw, 16px);
+  line-height: 1.65;
+  max-width: 58ch;
+  margin: 0 auto 32px;
+}
+
+.ctaActions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.ctaPrimaryBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  height: 44px;
+  padding: 0 24px;
+  border-radius: 15px !important;
+  background: var(--color-brand, #18cb96);
+  border: 1px solid var(--color-brand, #18cb96);
+  color: #052c23;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(24, 203, 150, 0.35);
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+
+.ctaPrimaryBtn:hover {
+  background: #20e0a5;
+  border-color: #20e0a5;
+  color: #032019;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(24, 203, 150, 0.45);
+}
+
+.ctaSecondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  height: 44px;
+  padding: 0 22px;
+  border-radius: 15px !important;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #0f172a;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.05);
+  transition: background 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.ctaSecondaryBtn:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  color: #0f172a;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Shipsy 4-Column Main Grid
+   ========================================================================== */
+.footerGrid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 56px 40px;
+  padding-block: 40px 40px;
+}
+
+@media (max-width: 1024px) {
+  .footerGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px 32px;
+    padding-block: 32px 36px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footerGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding-block: 28px 32px;
+  }
+}
+
+/* Brand Column */
+.brandCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.logoLink {
+  display: inline-block;
+  align-self: flex-start;
+  margin-bottom: 16px;
+  border-radius: 4px;
+}
+
+.logo {
+  height: 38px;
+  width: auto;
+  max-width: 100%;
+}
+
+.brandTagline {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--footer-muted);
+  max-width: 320px;
+}
+
+/* Social Buttons (Shipsy style rounded squares) */
+.socialRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.socialBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--footer-border);
+  color: var(--footer-muted);
+  text-decoration: none;
+  transition: all 160ms ease;
+}
+
+.socialBtn:hover {
+  background: rgba(24, 203, 150, 0.12);
+  border-color: rgba(24, 203, 150, 0.35);
+  color: var(--color-brand, #18cb96);
+  transform: translateY(-2px);
+}
+
+/* Shipsy Compliance & Certification Badges Strip */
+.certsStrip {
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid var(--footer-border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 320px;
+}
+
+.certsTitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--footer-subtle);
+  margin-bottom: 2px;
+}
+
+.certBadges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.certBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 9px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--footer-border);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  color: #cbd5e1;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.certBadge svg {
+  color: var(--color-brand, #18cb96);
+  flex-shrink: 0;
+}
+
+/* Nav Columns */
+.navCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.colHeader {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--footer-heading);
+  margin-bottom: 20px;
+}
+
+.subColHeader {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--footer-heading);
+  margin-top: 28px;
+  margin-bottom: 18px;
+}
+
+.linkList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.footerLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--footer-link);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.footerLink:hover {
+  color: #ffffff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.upcomingBadge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: var(--footer-badge-bg);
+  color: var(--color-brand, #18cb96);
+  border: 1px solid var(--footer-badge-border);
+}
+
+/* ==========================================================================
+   Bottom Legal & Operational Bar (Shipsy style)
+   ========================================================================== */
+.bottomStrip {
+  flex-shrink: 0;
+  width: 100%;
+  border-top: 1px solid var(--footer-border);
+}
+
+.bottomContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 18px;
+  padding-block: 24px 32px;
+  font-size: 11.5px;
+  color: var(--footer-subtle);
+}
+
+.brandLocation {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--footer-muted);
+}
+
+.bottomRight {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.bottomLink {
+  color: var(--footer-subtle);
+  text-decoration: none;
+  transition: color 150ms ease;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.bottomLink:hover {
+  color: #ffffff;
+}
+
+.copyright {
+  color: var(--footer-subtle);
+}
+
+/* Accessibility focus ring */
+.footer a:focus-visible,
+.footer button:focus-visible {
+  outline: 2px solid var(--color-brand, #18cb96);
+  outline-offset: 3px;
+}
+
+@media (max-width: 640px) {
+  .ctaStrip {
+    padding: 40px 0 16px;
+  }
+  .ctaCardLight {
+    padding: 44px 20px;
+    border-radius: 20px;
+  }
+  .ctaHeadline {
+    font-size: 26px !important;
+  }
+  .ctaActions {
+    flex-direction: column;
+    width: 100%;
+  }
+  .ctaPrimaryBtn,
+  .ctaSecondaryBtn {
+    width: 100%;
+  }
+  .bottomContent {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .bottomRight {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
