@@ -17,7 +17,8 @@
   position: relative;
   width: 100%;
   max-width: 1100px;
-  height: 320px;
+  height: 380px;
+  min-height: 380px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -123,18 +124,17 @@
 }
 
 /* Thin ruled line between company and copy */
-.divider {
-  width: 32px;
-  height: 2px;
-  background-color: var(--color-brand, #18cb96);
-  border-radius: 9999px;
-  margin-bottom: 1.25rem;
+.quoteIcon {
+  color: var(--color-brand, #18cb96);
+  margin-bottom: 0.9rem;
   flex-shrink: 0;
+  display: block;
 }
 
 /* Copy – editorial serif italic, the "thought" voice */
 .reviewCopy {
-  margin: 0 0 1.75rem;
+  margin: 0px 20px 1.75rem;
+  margin-bottom: 10px;
   font-family: 'Newsreader', 'Georgia', serif;
   font-style: italic;
   font-size: 1.08rem;
@@ -174,20 +174,21 @@
 
 /* ── Description text ────────────────────────────────────────────── */
 .sliderDescription {
-  margin: 10px 0 -50px;
+  margin: 28px auto 0;
   max-width: 580px;
   text-align: center;
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 13px;
-  font-weight: 100;
-  line-height: 1.7;
-  color: #687386;
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--landing-muted, #586579);
 }
 
 /* ── Responsive ───────────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .sliderStage {
-    height: 340px;
+    height: 390px;
+    min-height: 390px;
   }
 
   .reviewCard {
@@ -214,7 +215,8 @@
 
 @media (max-width: 640px) {
   .sliderStage {
-    height: 360px;
+    height: 420px;
+    min-height: 420px;
   }
 
   .reviewCard {

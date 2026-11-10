@@ -16,15 +16,15 @@ export function LandingHero() {
             Bills read, checked, paid and posted to Tally. Emails become CargoWise jobs. Your team handles exceptions, not typing.
           </p>
           <div className={styles.heroActions}>
-            <Link href="/finance/" className={`desk-button ${styles.heroButton} ${styles.financeButton}`}>
+            <Link href="/finance-desk/" className={`desk-button ${styles.heroButton} ${styles.financeButton}`}>
               I run a finance desk
               <ArrowRight size={16} aria-hidden="true" />
             </Link>
-            <Link href="/logistics/" className={`desk-button ${styles.heroButton} ${styles.logisticsButton}`}>
+            <Link href="/#platform" className={`desk-button ${styles.heroButton} ${styles.logisticsButton}`}>
               I run a logistics desk
               <ArrowRight size={16} aria-hidden="true" />
             </Link>
-            <Link href="/demo/" className={`${styles.heroButton} ${styles.demoButton}`}>
+            <Link href="/#contact" className={`${styles.heroButton} ${styles.demoButton}`}>
               Book a demo
             </Link>
           </div>

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { Quote } from 'lucide-react';
 import styles from './CustomerReviewSlider.module.css';
 
 interface CustomerReview {
@@ -120,10 +121,10 @@ export const CustomerReviewSlider: React.FC = () => {
               <h3 className={styles.companyName}>{review.company}</h3>
 
               {/* Divider */}
-              <div className={styles.divider} aria-hidden="true" />
+              <Quote size={25} className={styles.quoteIcon} fill="currentColor" aria-hidden="true" />
 
               {/* Copy */}
-              <p className={styles.reviewCopy}>{review.copy}</p>
+              <blockquote className={styles.reviewCopy}>{review.copy}</blockquote>
 
               {/* Bottom accent */}
               <div className={styles.cardAccent} aria-hidden="true">

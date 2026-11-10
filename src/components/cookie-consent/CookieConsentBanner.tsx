@@ -24,7 +24,14 @@ export const CookieConsentBanner: React.FC = () => {
   // If preferences customization is open, display the small div box
   if (isCustomizing) {
     return (
-      <div className={styles.overlayContainer}>
+      <div
+        className={styles.overlayContainer}
+        onClick={(e) => {
+          if (e.target === e.currentTarget) {
+            closeBanner();
+          }
+        }}
+      >
         <CookiePreferences />
       </div>
     );
