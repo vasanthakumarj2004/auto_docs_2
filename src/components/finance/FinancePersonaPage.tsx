@@ -4,10 +4,8 @@ import React from 'react';
 import Link from 'next/link';
 import { ArrowDown, ArrowRight, ArrowUpRight, Check, Building2 } from 'lucide-react';
 import { LandingNavigation } from '../LandingNavigation';
-import { DocsynecxLogo } from '../DocsynecxLogo';
-import { CookieSettingsButton } from '../cookie-consent/CookieSettingsButton';
+import { ShipsyFooter } from '../ShipsyFooter';
 import { SharedFaqAccordion } from '../SharedFaqAccordion';
-import { landingDesks } from '../../content/landing';
 import { financePersonas, type PersonaData } from '../../content/financePersonas';
 import layoutStyles from '../LandingPage.module.css';
 import s from './FinancePersonaPage.module.css';
@@ -244,52 +242,7 @@ export function FinancePersonaPage({ persona }: FinancePersonaPageProps) {
         </section>
       </main>
 
-      {/* FOOTER (Matching Homepage & Solutions on changes_2) */}
-      <footer className={layoutStyles.footer}>
-        <div className="site-shell">
-          <div className={layoutStyles.footerGrid}>
-            <div>
-              <Link href="/" className={layoutStyles.brand} aria-label="Docsynecx home">
-                <DocsynecxLogo variant="footer" className={layoutStyles.footerLogo} />
-              </Link>
-              <p className={layoutStyles.footerDescription}>
-                AI-powered finance and logistics workflows for document-intensive businesses.
-              </p>
-            </div>
-            {landingDesks.map((desk) => (
-              <nav key={desk.id} aria-label={`${desk.title} footer links`}>
-                <h2>{desk.title}</h2>
-                <ul>
-                  {desk.id === 'finance' && (
-                    <li>
-                      <Link href={desk.href}>Docsynecx Intelligence</Link>
-                    </li>
-                  )}
-                  {desk.features.map((feature) => (
-                    <li key={feature}>{feature}</li>
-                  ))}
-                </ul>
-              </nav>
-            ))}
-            <nav aria-label="Company footer links">
-              <h2>Company</h2>
-              <ul>
-                <li><Link href="/solutions">Solutions</Link></li>
-                <li><Link href="/#customers">Customers</Link></li>
-                <li><Link href="/#why-docsynecx">About Us</Link></li>
-                <li><Link href="/#contact">Contact</Link></li>
-              </ul>
-            </nav>
-          </div>
-          <div className={layoutStyles.footerBottom}>
-            <p>© 2026 SynecX AI Labs Private Limited. All rights reserved.</p>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-              <CookieSettingsButton />
-              <a href="mailto:info@docsynecx.com">info@docsynecx.com</a>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <ShipsyFooter />
     </div>
   );
 }
