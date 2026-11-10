@@ -59,13 +59,57 @@
 .navGroup:last-of-type .dropdownPanel { right: 0; left: auto; }
 .navDemo { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 42px; padding: 0 17px; font-size: 12px; font-weight: 600; white-space: nowrap; }
 .navDemo.demoButton {
-  min-height: 38px;
-  padding-inline: 18px;
-  border-radius: 15px;
+  min-height: 38px !important;
+  height: 38px !important;
+  padding-inline: 18px !important;
+  border-radius: 15px !important;
   background: transparent !important;
-  border: 1px solid var(--landing-green, #18cb96);
-  color: var(--landing-green, #18cb96);
-  box-shadow: 0 1px 3px rgb(15 23 42 / 4%);
+  border: 1px solid var(--landing-green, #18cb96) !important;
+  color: var(--landing-green, #18cb96) !important;
+  box-shadow: 0 1px 3px rgb(15 23 42 / 4%) !important;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.navDemo.demoButton::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: var(--landing-green, #18cb96) !important;
+  clip-path: ellipse(0% 0% at 50% 100%);
+  transition: none;
+}
+
+@media (hover: hover) {
+  .navDemo.demoButton:hover {
+    color: #ffffff !important;
+    border-color: var(--landing-green, #18cb96) !important;
+    box-shadow: 0 4px 14px rgb(24 203 150 / 30%) !important;
+    transform: translateY(-1px);
+    transition: color 220ms ease-in-out, border-color 200ms ease, box-shadow 200ms ease, transform 160ms ease !important;
+  }
+  .navDemo.demoButton:hover::before {
+    clip-path: ellipse(80% 150% at 50% 100%) !important;
+    transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+}
+
+.navDemo.demoButton:focus-visible,
+.navDemo.demoButton:active {
+  color: #ffffff !important;
+}
+
+.navDemo.demoButton:focus-visible::before,
+.navDemo.demoButton:active::before {
+  clip-path: ellipse(80% 150% at 50% 100%) !important;
+  transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.navDemo.demoButton:active {
+  transform: scale(0.98);
 }
 .desktopDemo { justify-self: end; }
 .navigation .mobileDemo { display: none; }
@@ -418,20 +462,62 @@
 .financeButton,
 .shipmentButton,
 .logisticsButton {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   background-color: var(--color-brand, #18cb96) !important;
   border: 1px solid var(--color-brand, #18cb96) !important;
   color: #ffffff !important;
   border-radius: 15px !important;
   min-height: 38px !important;
+  height: 38px !important;
   padding-inline: 18px !important;
-  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease, border-color 160ms ease !important;
+  transition: color 220ms ease-in-out, border-color 200ms ease, box-shadow 200ms ease, transform 160ms ease !important;
+}
+.financeButton::before,
+.shipmentButton::before,
+.logisticsButton::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: #ffffff !important;
+  clip-path: ellipse(0% 0% at 50% 100%);
+  transition: none;
 }
 .financeButton:hover,
 .shipmentButton:hover,
 .logisticsButton:hover {
-  background-color: var(--color-brand-strong, #15b886) !important;
-  border-color: var(--color-brand-strong, #15b886) !important;
-  color: #ffffff !important;
+  color: var(--color-brand, #18cb96) !important;
+  border-color: var(--color-brand, #18cb96) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgb(15 23 42 / 12%) !important;
+  transition: color 220ms ease-in-out, border-color 200ms ease, box-shadow 200ms ease, transform 160ms ease !important;
+}
+.financeButton:hover::before,
+.shipmentButton:hover::before,
+.logisticsButton:hover::before {
+  clip-path: ellipse(80% 150% at 50% 100%) !important;
+  transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.financeButton:focus-visible::before,
+.financeButton:active::before,
+.shipmentButton:focus-visible::before,
+.shipmentButton:active::before,
+.logisticsButton:focus-visible::before,
+.logisticsButton:active::before {
+  clip-path: ellipse(80% 150% at 50% 100%) !important;
+  transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.financeButton:focus-visible,
+.financeButton:active,
+.shipmentButton:focus-visible,
+.shipmentButton:active,
+.logisticsButton:focus-visible,
+.logisticsButton:active {
+  color: var(--color-brand, #18cb96) !important;
+  transform: scale(0.98);
 }
 .demoButton {
   --color-brand: var(--landing-green, #18cb96);
@@ -442,21 +528,21 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 38px;
-  height: 38px;
-  padding: 0 18px;
-  padding-inline: 18px;
-  border: 1px solid var(--landing-green, #18cb96);
-  border-radius: 15px;
-  background: transparent;
-  color: var(--landing-green, #18cb96);
+  min-height: 38px !important;
+  height: 38px !important;
+  padding: 0 18px !important;
+  padding-inline: 18px !important;
+  border: 1px solid var(--landing-green, #18cb96) !important;
+  border-radius: 15px !important;
+  background-color: var(--landing-green, #18cb96) !important;
+  color: #ffffff !important;
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 12px !important;
+  font-weight: 600 !important;
   text-decoration: none;
   white-space: nowrap;
   box-shadow: 0 1px 3px rgb(15 23 42 / 4%);
-  transition: transform 160ms ease, box-shadow 160ms ease, color 220ms ease-in-out, border-color 160ms ease;
+  transition: color 220ms ease-in-out, border-color 200ms ease, box-shadow 200ms ease, transform 160ms ease !important;
   cursor: pointer;
 }
 .demoButton::before {
@@ -465,60 +551,85 @@
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: var(--landing-green, #18cb96);
+  background: #ffffff !important;
   clip-path: ellipse(0% 0% at 50% 100%);
   transition: none;
 }
 @media (hover: hover) {
   .demoButton:hover {
-    color: #fff !important;
+    color: var(--landing-green, #18cb96) !important;
     border-color: var(--landing-green, #18cb96) !important;
-    box-shadow: 0 4px 14px rgb(15 23 42 / 12%);
+    box-shadow: 0 4px 14px rgb(15 23 42 / 12%) !important;
     transform: translateY(-1px);
-    transition: color 220ms ease-in-out, transform 160ms ease, box-shadow 160ms ease;
+    transition: color 220ms ease-in-out, border-color 200ms ease, box-shadow 200ms ease, transform 160ms ease !important;
   }
   .demoButton:hover::before {
-    clip-path: ellipse(80% 150% at 50% 100%);
-    transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    clip-path: ellipse(80% 150% at 50% 100%) !important;
+    transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
 }
-.demoButton:focus-visible, .demoButton:active { color: #fff; }
 .demoButton:focus-visible::before, .demoButton:active::before {
-  clip-path: ellipse(80% 150% at 50% 100%);
-  transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  clip-path: ellipse(80% 150% at 50% 100%) !important;
+  transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.demoButton:focus-visible, .demoButton:active {
+  color: var(--landing-green, #18cb96) !important;
+  transform: scale(0.98);
 }
 .demoButton:active { transform: scale(.98); }
 
-/* Frosted glass demo button inside hero on dark background */
+/* Frosted glass demo button inside hero on dark background with solid white upward liquid-fill hover */
 .hero .demoButton {
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  background: rgba(255, 255, 255, 0.12);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.35) !important;
+  background: rgba(255, 255, 255, 0.12) !important;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  color: #ffffff;
+  color: #ffffff !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease, box-shadow 200ms ease, transform 160ms ease;
+  transition: color 220ms ease-in-out, border-color 200ms ease, box-shadow 200ms ease, transform 160ms ease !important;
 }
+
 .hero .demoButton::before {
-  display: none !important;
-}
-.hero .demoButton:hover {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
   background: #ffffff !important;
-  background-color: #ffffff !important;
-  border-color: #ffffff !important;
-  color: #2e8b57 !important;
-  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.25);
-  transform: translateY(-1px);
+  clip-path: ellipse(0% 0% at 50% 100%);
+  transition: none;
 }
+
 @media (hover: hover) {
   .hero .demoButton:hover {
-    background: #ffffff !important;
-    background-color: #ffffff !important;
+    color: var(--landing-green, #18cb96) !important;
     border-color: #ffffff !important;
-    color: #2e8b57 !important;
-    box-shadow: 0 4px 16px rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 18px rgba(255, 255, 255, 0.35);
     transform: translateY(-1px);
+    transition: color 220ms ease-in-out, border-color 200ms ease, box-shadow 200ms ease, transform 160ms ease !important;
   }
+  .hero .demoButton:hover::before {
+    clip-path: ellipse(80% 150% at 50% 100%) !important;
+    transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+}
+
+.hero .demoButton:focus-visible,
+.hero .demoButton:active {
+  color: var(--landing-green, #18cb96) !important;
+}
+
+.hero .demoButton:focus-visible::before,
+.hero .demoButton:active::before {
+  clip-path: ellipse(80% 150% at 50% 100%) !important;
+  transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.hero .demoButton:active {
+  transform: scale(0.98);
 }
 
 .trust {
@@ -1337,7 +1448,7 @@
   padding-inline: 18px !important;
   border: 1px solid var(--landing-green, #18cb96) !important;
   border-radius: 15px !important;
-  background: var(--landing-green, #18cb96) !important;
+  background-color: var(--landing-green, #18cb96) !important;
   color: #ffffff !important;
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   font-size: 12px !important;
@@ -1345,7 +1456,7 @@
   text-decoration: none;
   white-space: nowrap;
   box-shadow: 0 1px 3px rgb(15 23 42 / 4%);
-  transition: transform 160ms ease, box-shadow 160ms ease, color 220ms ease-in-out, border-color 160ms ease, background-color 220ms ease !important;
+  transition: color 220ms ease-in-out, border-color 200ms ease, box-shadow 200ms ease, transform 160ms ease !important;
   cursor: pointer;
 }
 
@@ -1355,7 +1466,7 @@
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: #ffffff;
+  background: #ffffff !important;
   clip-path: ellipse(0% 0% at 50% 100%);
   transition: none;
 }
@@ -1364,14 +1475,13 @@
   .closingPrimaryBtn:hover {
     color: var(--landing-green, #18cb96) !important;
     border-color: var(--landing-green, #18cb96) !important;
-    background: #ffffff !important;
     box-shadow: 0 4px 14px rgb(15 23 42 / 12%) !important;
     transform: translateY(-1px);
-    transition: color 220ms ease-in-out, transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease !important;
+    transition: color 220ms ease-in-out, border-color 200ms ease, box-shadow 200ms ease, transform 160ms ease !important;
   }
   .closingPrimaryBtn:hover::before {
-    clip-path: ellipse(80% 150% at 50% 100%);
-    transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    clip-path: ellipse(80% 150% at 50% 100%) !important;
+    transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
 }
 
@@ -1382,8 +1492,8 @@
 
 .closingPrimaryBtn:focus-visible::before,
 .closingPrimaryBtn:active::before {
-  clip-path: ellipse(80% 150% at 50% 100%);
-  transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  clip-path: ellipse(80% 150% at 50% 100%) !important;
+  transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .closingPrimaryBtn:active {
@@ -1405,15 +1515,15 @@
   padding-inline: 18px !important;
   border: 1px solid var(--landing-green, #18cb96) !important;
   border-radius: 15px !important;
-  background: transparent !important;
+  background-color: transparent !important;
   color: var(--landing-green, #18cb96) !important;
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   font-size: 12px !important;
   font-weight: 600 !important;
   text-decoration: none;
   white-space: nowrap;
-  box-shadow: 0 1px 3px rgb(15 23 42 / 4%);
-  transition: transform 160ms ease, box-shadow 160ms ease, color 220ms ease-in-out, border-color 160ms ease !important;
+  box-shadow: 0 1px 3px rgb(15 23 42 / 4%) !important;
+  transition: color 220ms ease-in-out, border-color 200ms ease, box-shadow 200ms ease, transform 160ms ease !important;
   cursor: pointer;
 }
 
@@ -1423,34 +1533,34 @@
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: var(--landing-green, #18cb96);
+  background: var(--landing-green, #18cb96) !important;
   clip-path: ellipse(0% 0% at 50% 100%);
   transition: none;
 }
 
 @media (hover: hover) {
   .closingSecondaryBtn:hover {
-    color: #fff !important;
+    color: #ffffff !important;
     border-color: var(--landing-green, #18cb96) !important;
-    box-shadow: 0 4px 14px rgb(15 23 42 / 12%) !important;
+    box-shadow: 0 4px 14px rgb(24 203 150 / 30%) !important;
     transform: translateY(-1px);
-    transition: color 220ms ease-in-out, transform 160ms ease, box-shadow 160ms ease !important;
+    transition: color 220ms ease-in-out, border-color 200ms ease, box-shadow 200ms ease, transform 160ms ease !important;
   }
   .closingSecondaryBtn:hover::before {
-    clip-path: ellipse(80% 150% at 50% 100%);
-    transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    clip-path: ellipse(80% 150% at 50% 100%) !important;
+    transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
 }
 
 .closingSecondaryBtn:focus-visible,
 .closingSecondaryBtn:active {
-  color: #fff !important;
+  color: #ffffff !important;
 }
 
 .closingSecondaryBtn:focus-visible::before,
 .closingSecondaryBtn:active::before {
-  clip-path: ellipse(80% 150% at 50% 100%);
-  transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  clip-path: ellipse(80% 150% at 50% 100%) !important;
+  transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .closingSecondaryBtn:active {
