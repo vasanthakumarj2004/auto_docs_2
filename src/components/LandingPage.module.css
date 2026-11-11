@@ -71,6 +71,43 @@
 .navigation .mobileDemo { display: none; }
 .mobileToggle { display: none; padding: 8px; border: 1px solid var(--landing-line); border-radius: 8px; color: var(--landing-ink); }
 
+/* Homepage-only reference treatment; shared navigation keeps its default theme. */
+.header[data-variant='horizon'] {
+  top: 16px;
+  width: min(1120px, calc(100% - 48px));
+  margin: 16px auto 0;
+  border: 1px solid #ffffff24;
+  border-radius: 9px;
+  background: #17151eee;
+  color: #f7f5fc;
+  box-shadow: 0 8px 30px #20132b1f;
+}
+.header[data-variant='horizon'][data-scrolled='true'] { background: #17151ef5 !important; border-color: #ffffff24; backdrop-filter: blur(20px); }
+.header[data-variant='horizon'] .navbar { width: 100%; min-height: 78px; padding: 0 22px; grid-template-columns: auto 1fr auto; gap: 30px; }
+.header[data-variant='horizon'] .navigation { justify-content: center; }
+.header[data-variant='horizon'] .logo { width: 146px; height: 45px; object-fit: contain; }
+.header[data-variant='horizon'] .navigation :is(button, a):not(.demoButton) { color: #e9e5f0; }
+.header[data-variant='horizon'] .navigation :is(button, a):not(.demoButton):hover { color: #bcf18e; }
+.header[data-variant='horizon'] .navDemo.demoButton { background: #18cb96 !important; color: #192319; border: 0; border-radius: 5px; min-height: 42px; }
+.header[data-variant='horizon'] .mobileToggle { color: #fff; border-color: #ffffff35; }
+.header[data-variant='horizon'] .mobileDropdownList strong { color: #e9e5f0; }
+.header[data-variant='horizon'] .mobileDropdownList span { color: #bcb6ca; }
+.header[data-variant='horizon'] .mobileDropdownList .megaItemNumber { color: #4c4657; }
+@media (max-width: 1100px) and (min-width: 901px) {
+  .header[data-variant='horizon'] { width: calc(100% - 32px); }
+  .header[data-variant='horizon'] .navbar { gap: 16px; padding-inline: 16px; }
+  .header[data-variant='horizon'] .navigation { gap: 12px; font-size: 11px; }
+  .header[data-variant='horizon'] .logo { width: 130px; }
+}
+@media (max-width: 900px) {
+  .header[data-variant='horizon'] { top: 12px; width: calc(100% - 32px); margin-top: 12px; }
+  .header[data-variant='horizon'] .navbar { min-height: 70px; padding-inline: 16px; }
+  .header[data-variant='horizon'] .navigation { background: #1d1927; border: 1px solid #ffffff24; border-radius: 9px; margin-top: 8px; max-height: calc(100dvh - 110px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .header[data-variant='horizon'], .header[data-variant='horizon'] * { animation: none; transition: none; }
+}
+
 /* Mega Dropdown Navigation (Image 2 style) */
 .megaDropdown {
   position: absolute;

@@ -208,7 +208,7 @@ const NAV_ITEMS: NavItem[] = [
   { type: 'menu', key: 'Resources' },
 ];
 
-export function LandingNavigation() {
+export function LandingNavigation({ variant = 'default' }: { variant?: 'default' | 'horizon' }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement>(null);
@@ -277,16 +277,17 @@ export function LandingNavigation() {
 
   return (
     <>
-      <AnnouncementBarV2 />
+      {variant === 'default' && <AnnouncementBarV2 />}
       <header
         ref={headerRef}
         className={styles.header}
+        data-variant={variant}
         data-scrolled={isScrolled ? 'true' : 'false'}
         onMouseLeave={handleMouseLeave}
       >
         <div className={`site-shell ${styles.navbar}`}>
           <Link href="/" className={styles.brand} aria-label="Docsynecx home" onClick={close}>
-            <DocsynecxLogo variant="header" className={styles.logo} />
+            <DocsynecxLogo variant={variant === 'horizon' ? 'footer' : 'header'} className={styles.logo} />
             {/* <span>Intelligent workflows</span> */}
           </Link>
 
