@@ -254,7 +254,9 @@
 }
 
 /* ==========================================================================
-   2. Buttons — Liquid-Ellipse Hover Fill Animation (Identical to Navbar)
+   2. Buttons — Solid White Upward Liquid-Fill Hover Animation
+      Exact signature wave fill expanding from bottom up, with text turning green,
+      translateY(-1px) elevation lift, depth shadow, and scale(0.98) click press.
    ========================================================================== */
 .demoButton {
   --color-brand: var(--landing-green, #18cb96);
@@ -277,7 +279,7 @@
   white-space: nowrap;
   box-shadow: 0 1px 3px rgb(15 23 42 / 4%);
   cursor: pointer;
-  transition: transform 160ms ease, box-shadow 160ms ease, color 220ms ease-in-out, border-color 160ms ease, background-color 220ms ease !important;
+  transition: color 220ms ease-in-out, border-color 200ms ease, box-shadow 200ms ease, transform 160ms ease !important;
 }
 
 .demoButton::before {
@@ -286,6 +288,7 @@
   inset: 0;
   z-index: -1;
   pointer-events: none;
+  background: #ffffff !important;
   clip-path: ellipse(0% 0% at 50% 100%);
   transition: none;
 }
@@ -294,69 +297,68 @@
   .demoButton:hover {
     transform: translateY(-1px);
     box-shadow: 0 4px 14px rgb(15 23 42 / 12%) !important;
-    transition: color 220ms ease-in-out, transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease !important;
+    transition: color 220ms ease-in-out, border-color 200ms ease, box-shadow 200ms ease, transform 160ms ease !important;
   }
   .demoButton:hover::before {
-    clip-path: ellipse(80% 150% at 50% 100%);
-    transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    clip-path: ellipse(80% 150% at 50% 100%) !important;
+    transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
 }
 
 .demoButton:focus-visible::before,
 .demoButton:active::before {
-  clip-path: ellipse(80% 150% at 50% 100%);
-  transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  clip-path: ellipse(80% 150% at 50% 100%) !important;
+  transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 .demoButton:active {
   transform: scale(0.98);
 }
 
-/* Primary Button: Green background + white text at rest; white background + green border + green text on hover */
+/* Primary Button: Solid green at rest; solid white liquid fills upward on hover, text turns website green */
 .primaryBtn {
-  background: var(--landing-green, #18cb96) !important;
+  background-color: var(--landing-green, #18cb96) !important;
   border: 1px solid var(--landing-green, #18cb96) !important;
   color: #ffffff !important;
 }
 
-.primaryBtn::before {
-  background: #ffffff;
-}
-
 @media (hover: hover) {
   .primaryBtn:hover {
-    background: #ffffff !important;
-    border-color: var(--landing-green, #18cb96) !important;
     color: var(--landing-green, #18cb96) !important;
+    border-color: var(--landing-green, #18cb96) !important;
+    box-shadow: 0 4px 14px rgb(15 23 42 / 12%) !important;
   }
 }
 
 .primaryBtn:focus-visible,
 .primaryBtn:active {
   color: var(--landing-green, #18cb96) !important;
+  transform: scale(0.98);
 }
 
-/* Secondary Button: Transparent background + green border + green text at rest; green fill on hover */
+/* Secondary Button: Transparent background + green border at rest; solid green liquid fills upward on hover, text turns white */
 .secondaryBtn {
-  background: transparent !important;
+  background-color: transparent !important;
   border: 1px solid var(--landing-green, #18cb96) !important;
   color: var(--landing-green, #18cb96) !important;
 }
 
 .secondaryBtn::before {
-  background: var(--landing-green, #18cb96);
+  background: var(--landing-green, #18cb96) !important;
 }
 
 @media (hover: hover) {
   .secondaryBtn:hover {
     color: #ffffff !important;
     border-color: var(--landing-green, #18cb96) !important;
+    box-shadow: 0 4px 14px rgb(24 203 150 / 30%) !important;
   }
 }
 
 .secondaryBtn:focus-visible,
 .secondaryBtn:active {
   color: #ffffff !important;
+  transform: scale(0.98);
 }
 
 /* ==========================================================================
