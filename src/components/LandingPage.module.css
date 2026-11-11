@@ -412,12 +412,12 @@
 .heroOverlay {
   position: absolute;
   inset: 0;
-  /* Darker overlay for enhanced depth, smooth video contrast, and crisp text */
+  /* Reduced opacity overlay for enhanced video clarity and crisp text readability */
   background: linear-gradient(
     180deg,
-    rgba(8, 12, 22, 0.64) 0%,
-    rgba(8, 12, 22, 0.74) 45%,
-    rgba(8, 12, 22, 0.88) 100%
+    rgba(8, 12, 22, 0.32) 0%,
+    rgba(8, 12, 22, 0.42) 45%,
+    rgba(8, 12, 22, 0.56) 100%
   );
   pointer-events: none;
 }
@@ -1380,6 +1380,7 @@
   position: relative;
   overflow: hidden;
   border-radius: 32px;
+  height: 400px;
   background: #ffffff;
   border: 1px solid var(--landing-line, #dde1e9);
   box-shadow: 0 10px 32px -4px rgba(15, 23, 42, 0.05),
