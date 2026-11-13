@@ -115,6 +115,65 @@
 .navigation .mobileDemo { display: none; }
 .mobileToggle { display: none; padding: 8px; border: 1px solid var(--landing-line); border-radius: 8px; color: var(--landing-ink); }
 
+/* Homepage glass treatment inspired by Shipsy's floating navigation. */
+.header[data-variant='horizon'] {
+  top: 16px;
+  width: min(1180px, calc(100% - 48px));
+  margin: 16px auto 0;
+  border: 1px solid rgb(255 255 255 / 16%);
+  border-radius: 999px;
+  background: rgb(12 20 38 / 28%);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  color: #f7f5fc;
+  box-shadow: 0 16px 50px rgb(7 12 24 / 25%), inset 0 1px 0 rgb(255 255 255 / 12%);
+  transition: background-color 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
+}
+.header[data-variant='horizon'][data-scrolled='true'] {
+  background: rgb(255 255 255 / 50%) !important;
+  border-color: rgb(255 255 255 / 55%);
+  box-shadow: 0 16px 46px rgb(10 23 52 / 15%), inset 0 1px 0 rgb(255 255 255 / 60%);
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+}
+.header[data-variant='horizon'] .navbar { width: 100%; min-height: 78px; padding: 9px 12px 9px 24px; grid-template-columns: auto 1fr auto; gap: 24px; }
+.header[data-variant='horizon'] .navigation { justify-content: center; gap: 20px; }
+.header[data-variant='horizon'] .logo { width: 146px; height: 40px; object-fit: contain; }
+.header[data-variant='horizon'] .navigation :is(button, a):not(.demoButton) { color: rgb(255 255 255 / 86%); transition: color 180ms ease; }
+.header[data-variant='horizon'] .navigation :is(button, a):not(.demoButton):hover { color: #fff; }
+.header[data-variant='horizon'] .dropdown > button { position: relative; }
+.header[data-variant='horizon'] .dropdown > button::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 4px; height: 1px;
+  background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform 200ms ease;
+}
+.header[data-variant='horizon'] .dropdown > button:is(:hover, :focus-visible, [aria-expanded='true'])::after { transform: scaleX(1); }
+.header[data-variant='horizon'] .navDemo.demoButton { background: #18cb96 !important; color: #14291f; border: 1px solid rgb(255 255 255 / 18%); border-radius: 999px; min-height: 44px; padding-inline: 22px; box-shadow: 0 4px 16px rgb(7 12 24 / 12%); }
+.header[data-variant='horizon'] .mobileToggle { color: #fff; border-color: rgb(255 255 255 / 25%); border-radius: 50%; }
+.header[data-variant='horizon'][data-scrolled='true'] .mobileToggle { color: var(--landing-ink); border-color: rgb(15 23 42 / 15%); }
+.header[data-variant='horizon'] .mobileDropdownList strong { color: #e9e5f0; }
+.header[data-variant='horizon'] .mobileDropdownList span { color: #d0cadc; }
+.header[data-variant='horizon'] .mobileDropdownList .megaItemNumber { color: #4c4657; }
+.header[data-variant='horizon'] .megaDropdown { padding-top: 12px; }
+.header[data-variant='horizon'] .megaDropdownContent { border-radius: 16px; border-color: rgb(255 255 255 / 55%); box-shadow: 0 24px 70px rgb(10 23 52 / 14%), 0 2px 8px rgb(10 23 52 / 5%); }
+@media (min-width: 901px) {
+  .header[data-variant='horizon'][data-scrolled='true'] .navigation :is(button, a):not(.demoButton) { color: #475569; }
+  .header[data-variant='horizon'][data-scrolled='true'] .navigation :is(button, a):not(.demoButton):hover { color: #0f172a; }
+}
+@media (max-width: 1100px) and (min-width: 901px) {
+  .header[data-variant='horizon'] { width: calc(100% - 32px); }
+  .header[data-variant='horizon'] .navbar { gap: 16px; padding-inline: 16px; }
+  .header[data-variant='horizon'] .navigation { gap: 12px; font-size: 11px; }
+  .header[data-variant='horizon'] .logo { width: 130px; }
+}
+@media (max-width: 900px) {
+  .header[data-variant='horizon'] { top: 12px; width: calc(100% - 32px); margin-top: 12px; }
+  .header[data-variant='horizon'] .navbar { min-height: 70px; padding-inline: 16px; }
+  .header[data-variant='horizon'] .navigation { background: rgb(29 25 39 / 94%); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border: 1px solid rgb(255 255 255 / 16%); border-radius: 20px; margin-top: 12px; max-height: calc(100dvh - 110px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .header[data-variant='horizon'], .header[data-variant='horizon'] *, .header[data-variant='horizon'] *::after { animation: none; transition: none; }
+}
+
 /* Mega Dropdown Navigation (Image 2 style) */
 .megaDropdown {
   position: absolute;

@@ -2,10 +2,11 @@
 
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import { ChevronDown, Menu, X, ArrowRight } from 'lucide-react';
+import { ChevronDown, Menu, X, ArrowRight, ArrowUpRight, Workflow } from 'lucide-react';
 import { DocsynecxLogo } from './DocsynecxLogo';
 import { AnnouncementBarV2 } from './AnnouncementBar';
 import styles from './LandingPage.module.css';
+import cardStyles from './NavbarMenuCard.module.css';
 
 interface MegaOverviewLink {
   title: string;
@@ -49,21 +50,25 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
       {
         sno: '01',
         title: 'Invoice Automation',
+        description: 'Read, validate and prepare invoices for your books.',
         href: '/finance-desk/invoice-automation/',
       },
       {
         sno: '02',
         title: 'Bank Statement & Reconcilation',
+        description: 'Bring bank statements and reconciliation into one workflow.',
         href: '/finance-desk/banking-reconciliation/',
       }, 
       {
         sno: '03',
         title: 'Docsynecx Intelligence',
+        description: 'Turn finance data into reports and actionable insights.',
         href: '/finance-desk/docsynecx-intelligence/',
       },
       {
         sno: '04',
         title: 'Account Payable ( upcoming )',
+        description: 'Explore the upcoming accounts payable workspace.',
         href: '/finance-desk/accounts-payable/',
       },
     ],
@@ -91,21 +96,25 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
       {
         sno: '01',
         title: 'RFQ to Booking',
+        description: 'Connect customer enquiries, quotes and freight bookings.',
         href: '/#platform',
       },
       {
         sno: '02',
         title: 'Shipment Management',
+        description: 'Bring shipment operations into one connected workspace.',
         href: '/#platform',
       },
       {
         sno: '03',
         title: 'Shipment Tracking',
+        description: 'Keep shipment milestones and status updates in view.',
         href: '/#platform',
       },
       {
         sno: '04',
         title: 'Document Automation',
+        description: 'Extract and review data from freight documents.',
         href: '/#platform',
       },
     ],
@@ -208,7 +217,51 @@ const NAV_ITEMS: NavItem[] = [
   { type: 'menu', key: 'Resources' },
 ];
 
-export function LandingNavigation() {
+function NavbarMenuCard({ menu, onNavigate }: { menu: MegaMenuData; onNavigate: () => void }) {
+  const groups: Array<{ label: string; links: MegaOverviewLink[] }> = [
+    { label: menu.whoLinks ? 'Capabilities' : menu.label === 'Solutions' ? 'By industry' : 'Explore resources', links: [...menu.overviewLinks, ...menu.featureLinks] },
+    ...(menu.whoLinks ? [{ label: menu.whoHeading || "Who it's for", links: menu.whoLinks }] : []),
+    ...(menu.integrationsLinks ? [{ label: menu.integrationsHeading || 'Integrations', links: menu.integrationsLinks }] : []),
+  ];
+  const [selected, setSelected] = useState(0);
+  const current = groups[selected];
+
+  return <div className={cardStyles.card} data-has-rail={groups.length > 1}>
+    {groups.length > 1 && <div className={cardStyles.rail} role="group" aria-label={`${menu.label} categories`}>
+      <p className={cardStyles.railLabel}>{menu.label}</p>
+      {groups.map((group, index) => <button
+        type="button" key={group.label} aria-pressed={selected === index}
+        aria-controls="navbar-card-panel"
+        onMouseEnter={() => setSelected(index)} onFocus={() => setSelected(index)} onClick={() => setSelected(index)}
+      ><span>{group.label}</span><ArrowRight size={15} aria-hidden="true" /></button>)}
+      <Link href={menu.overviewHref} className={cardStyles.overview} onClick={onNavigate}>{menu.exploreLabel}<ArrowUpRight size={14} aria-hidden="true" /></Link>
+    </div>}
+    <div className={cardStyles.content} id="navbar-card-panel" role="region" aria-label={current.label}>
+      <p className={cardStyles.groupLabel}>{selected === 0 ? menu.eyebrow : current.label}</p>
+      <div className={cardStyles.links}>
+        {current.links.map((item) => <Link href={item.href} key={item.title} className={cardStyles.link} onClick={onNavigate}>
+          <span className={cardStyles.linkTitle}>{item.title}<ArrowUpRight size={14} aria-hidden="true" /></span>
+          {'description' in item && item.description && <span className={cardStyles.description}>{item.description}</span>}
+        </Link>)}
+      </div>
+    </div>
+    <aside className={cardStyles.aside}>
+      <Link href={menu.overviewHref} className={cardStyles.promo} onClick={onNavigate}>
+        <Workflow size={24} aria-hidden="true" />
+        <span className={cardStyles.promoEyebrow}>THE DOCSYNECX PLATFORM</span>
+        <strong>Less manual work.<br />More forward motion.</strong>
+        <span className={cardStyles.promoDescription}>Bring your documents, approvals and connected systems into one workflow.</span>
+        <span className={cardStyles.promoLink}>{menu.exploreLabel}<ArrowRight size={15} aria-hidden="true" /></span>
+      </Link>
+      <Link href="/#contact" className={cardStyles.contact} onClick={onNavigate}>
+        <span>See it on your own documents.</span>
+        <strong>Book a demo<ArrowUpRight size={15} aria-hidden="true" /></strong>
+      </Link>
+    </aside>
+  </div>;
+}
+
+export function LandingNavigation({ variant = 'default' }: { variant?: 'default' | 'horizon' }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement>(null);
@@ -265,28 +318,37 @@ export function LandingNavigation() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
+    const hero = variant === 'horizon' ? document.getElementById('top') : null;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 8);
+      const header = headerRef.current;
+      setIsScrolled(variant === 'horizon'
+        ? Boolean(hero && header && hero.getBoundingClientRect().bottom <= header.getBoundingClientRect().bottom)
+        : window.scrollY > 8);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
     handleScroll();
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, [variant]);
 
   const activeMega = openMenu ? MEGA_MENUS[openMenu] : null;
 
   return (
     <>
-      <AnnouncementBarV2 />
+      {variant === 'default' && <AnnouncementBarV2 />}
       <header
         ref={headerRef}
         className={styles.header}
+        data-variant={variant}
         data-scrolled={isScrolled ? 'true' : 'false'}
         onMouseLeave={handleMouseLeave}
       >
         <div className={`site-shell ${styles.navbar}`}>
           <Link href="/" className={styles.brand} aria-label="Docsynecx home" onClick={close}>
-            <DocsynecxLogo variant="header" className={styles.logo} />
+            <DocsynecxLogo variant={variant === 'horizon' && !isScrolled ? 'footer' : 'header'} className={styles.logo} />
             {/* <span>Intelligent workflows</span> */}
           </Link>
 
@@ -434,7 +496,7 @@ export function LandingNavigation() {
             }}
             onMouseLeave={handleMouseLeave}
           >
-            <div className="site-shell">
+            {variant === 'horizon' ? <NavbarMenuCard key={openMenu} menu={activeMega} onNavigate={close} /> : <div className="site-shell">
               <div
                 className={styles.megaDropdownContent}
                 data-layout={activeMega.whoLinks ? 'four-col' : 'standard'}
@@ -602,7 +664,7 @@ export function LandingNavigation() {
                   </div>
                 </div>
               </div>
-            </div>
+            </div>}
           </div>
         )}
       </header>

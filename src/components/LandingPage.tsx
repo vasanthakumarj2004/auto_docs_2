@@ -1,6 +1,5 @@
 'use client';
 
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ArrowRight, ArrowLeftRight, ArrowUpRight, FileText, Zap, ShieldCheck, CheckCircle2, TrendingUp } from 'lucide-react';
 
@@ -68,50 +67,9 @@ function SectionHeading({ eyebrow, title, copy, id }: { eyebrow: string; title: 
 }
 
 export function LandingPage() {
-  const [heroHeight, setHeroHeight] = useState<number>(0);
-
-  useEffect(() => {
-    const update = () => {
-      const hero = document.getElementById('top');
-      if (hero) {
-        const rect = hero.getBoundingClientRect();
-        const scroll = window.scrollY || document.documentElement.scrollTop;
-        setHeroHeight(rect.bottom + scroll);
-      }
-    };
-    update();
-    const hero = document.getElementById('top');
-    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(update) : null;
-    if (hero && ro) ro.observe(hero);
-    window.addEventListener('resize', update);
-    return () => {
-      ro?.disconnect();
-      window.removeEventListener('resize', update);
-    };
-  }, []);
-
   return <div className={styles.page}>
     <a href="#main-content" className={styles.skipLink}>Skip to content</a>
-    {/* Full background video starting from announcement bar down through hero */}
-    <div
-      className={styles.heroBgWrapper}
-      style={{ height: heroHeight > 0 ? `${heroHeight}px` : '100svh' }}
-      aria-hidden="true"
-    >
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className={styles.heroBgMedia}
-        poster="/images/bg1_thumb.jpg"
-      >
-        <source src="/images/bg1.mp4" type="video/mp4" />
-        <img src="/images/bg1.gif" alt="" className={styles.heroBgMedia} />
-      </video>
-      <div className={styles.heroOverlay} />
-    </div>
-    <LandingNavigation />
+    <LandingNavigation variant="horizon" />
     <main id="main-content">
       <LandingHero />
       <section className={styles.statStrip} aria-labelledby="outcomes-title">
