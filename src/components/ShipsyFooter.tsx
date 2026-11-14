@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ShieldCheck, Lock, CheckCircle2, Activity, Linkedin, Mail, Youtube, ArrowUpRight } from 'lucide-react';
+import { Linkedin, Mail, Youtube, ArrowUpRight } from 'lucide-react';
 import { DocsynecxLogo } from './DocsynecxLogo';
 import { financeCapabilities, financeRoot } from '../content/finance';
 import { CookieSettingsButton } from './cookie-consent/CookieSettingsButton';
@@ -56,7 +56,7 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
               <DocsynecxLogo variant="footer" className={styles.logo} />
             </Link>
             <p className={styles.brandTagline}>
-              The AI execution engine for finance &amp; logistics teams. Built for Tally, ERPs, and CargoWise.
+              AI-powered platforms that simplify complex workflows across Finance and Logistics.
             </p>
 
             <div className={styles.socialRow} aria-label="Docsynecx social channels">
@@ -98,33 +98,28 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
               </a>
             </div>
 
-            {/* Enterprise Certifications & Compliance Strip (Shipsy Signature) */}
-            <div className={styles.certsStrip}>
-              <span className={styles.certsTitle}>Enterprise Standards</span>
-              <div className={styles.certBadges}>
-                <div className={styles.certBadge} title="SOC 2 Type II Certified">
-                  <ShieldCheck size={12} aria-hidden="true" />
-                  <span>SOC 2 Type II</span>
-                </div>
-                <div className={styles.certBadge} title="ISO 27001 Compliant">
-                  <Lock size={12} aria-hidden="true" />
-                  <span>ISO 27001</span>
-                </div>
-                <div className={styles.certBadge} title="GDPR Ready">
-                  <CheckCircle2 size={12} aria-hidden="true" />
-                  <span>GDPR Ready</span>
-                </div>
-                <div className={styles.certBadge} title="99.9% Uptime Guarantee">
-                  <Activity size={12} aria-hidden="true" />
-                  <span>99.9% SLA</span>
-                </div>
-              </div>
-            </div>
           </div>
 
-          {/* Column 2: Solutions */}
+          {/* Column 2: Platforms */}
           <div className={styles.navCol}>
-            <span className={styles.colHeader}>Solutions</span>
+            <span className={styles.colHeader}>Platforms</span>
+            <ul className={styles.linkList}>
+              <li>
+                <Link href="/finance-desk/" className={styles.footerLink}>
+                  Docsynecx Finance
+                </Link>
+              </li>
+              <li>
+                <Link href="/#platform" className={styles.footerLink}>
+                  Docsynecx Logistics
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 3: Finance Modules */}
+          <div className={styles.navCol}>
+            <span className={styles.colHeader}>Finance Modules</span>
             <ul className={styles.linkList}>
               <li>
                 <Link href="/finance-desk/invoice-automation/" className={styles.footerLink}>
@@ -132,137 +127,45 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
                 </Link>
               </li>
               <li>
-                <Link href="/finance-desk/docsynecx-intelligence/" className={styles.footerLink}>
-                  Docsynecx Intelligence
-                </Link>
-              </li>
-              <li>
                 <Link href="/finance-desk/banking-reconciliation/" className={styles.footerLink}>
-                  Banking &amp; Reconciliation
-                </Link>
-              </li>
-              <li>
-                <Link href="/finance-desk/payment-reminders/" className={styles.footerLink}>
-                  Payment Reminders
+                  Bank Reconciliation
                 </Link>
               </li>
               <li>
                 <Link href="/finance-desk/accounts-payable/" className={styles.footerLink}>
                   Accounts Payable
-                  <span className={styles.upcomingBadge}>Upcoming</span>
                 </Link>
               </li>
               <li>
-                <Link href="/logistics/" className={styles.footerLink}>
-                  Shipment Desk
-                </Link>
-              </li>
-              <li>
-                <Link href="/logistics-trade/" className={styles.footerLink}>
-                  Freight Operations
-                </Link>
-              </li>
-              <li>
-                <Link href="/#how-it-works" className={styles.footerLink}>
-                  Document Processing
+                <Link href="/finance-desk/docsynecx-intelligence/" className={styles.footerLink}>
+                  Financial Intelligence
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: Industries & Platform */}
+          {/* Column 4: Logistics Modules */}
           <div className={styles.navCol}>
-            <span className={styles.colHeader}>Industries</span>
+            <span className={styles.colHeader}>Logistics Modules</span>
             <ul className={styles.linkList}>
               <li>
-                <Link href="/#automotive-industry" className={styles.footerLink}>
-                  Automotive &amp; EV
+                <Link href="/logistics/email-to-booking/" className={styles.footerLink}>
+                  Email-to-Booking
                 </Link>
               </li>
               <li>
-                <Link href="/#manufacturing-industry" className={styles.footerLink}>
-                  Manufacturing
+                <Link href="/logistics/shipment-operations/" className={styles.footerLink}>
+                  Shipment Operations
                 </Link>
               </li>
               <li>
-                <Link href="/#retail-industry" className={styles.footerLink}>
-                  Retail &amp; Distribution
+                <Link href="/logistics/shipment-tracking/" className={styles.footerLink}>
+                  Shipment Tracking
                 </Link>
               </li>
               <li>
-                <Link href="/logistics-trade/" className={styles.footerLink}>
-                  Freight Forwarders &amp; 3PLs
-                </Link>
-              </li>
-            </ul>
-
-            <span className={styles.subColHeader}>Platform</span>
-            <ul className={styles.linkList}>
-              <li>
-                <Link href="/finance-desk/invoice-automation/" className={styles.footerLink}>
-                  TallyPrime Integration
-                </Link>
-              </li>
-              <li>
-                <Link href="/logistics/" className={styles.footerLink}>
-                  CargoWise Integration
-                </Link>
-              </li>
-              <li>
-                <Link href="/#faq" className={styles.footerLink}>
-                  Zoho Books Integration
-                </Link>
-              </li>
-              <li>
-                <Link href="/demo/" className={styles.footerLink}>
-                  REST API &amp; Webhooks
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 4: Company & Resources */}
-          <div className={styles.navCol}>
-            <span className={styles.colHeader}>Company</span>
-            <ul className={styles.linkList}>
-              <li>
-                <Link href="/#why-docsynecx" className={styles.footerLink}>
-                  About Docsynecx
-                </Link>
-              </li>
-              <li>
-                <Link href="/customers/ft-logistics/" className={styles.footerLink}>
-                  FT Logistics Story
-                </Link>
-              </li>
-              <li>
-                <Link href="/customers/rajadurai/" className={styles.footerLink}>
-                  Rajadurai E-Vehicles
-                </Link>
-              </li>
-              <li>
-                <Link href="/#customers" className={styles.footerLink}>
-                  All Customer Outcomes
-                </Link>
-              </li>
-              <li>
-                <Link href="/calculator/" className={styles.footerLink}>
-                  Free ROI Calculator
-                </Link>
-              </li>
-              <li>
-                <Link href="/free-trial/" className={styles.footerLink}>
-                  Start Free Trial
-                </Link>
-              </li>
-              <li>
-                <Link href="/demo/" className={styles.footerLink}>
-                  Book a Demo
-                </Link>
-              </li>
-              <li>
-                <Link href="/#faq" className={styles.footerLink}>
-                  Help Center / FAQ
+                <Link href="/logistics/freight-intelligence/" className={styles.footerLink}>
+                  Freight Intelligence
                 </Link>
               </li>
             </ul>
@@ -292,7 +195,7 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
                 label="Cookie Settings"
               />
               <span className={styles.copyright}>
-                &copy; {currentYear} SynecX AI Labs Private Limited. All rights reserved.
+                &copy; 2026 SynecX AI Labs Private Limited. All rights reserved. Built for smarter business operations.
               </span>
             </div>
           </div>

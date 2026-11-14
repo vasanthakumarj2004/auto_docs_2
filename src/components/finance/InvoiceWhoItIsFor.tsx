@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import layoutStyles from '../LandingPage.module.css';
 import styles from './InvoiceWhoItIsFor.module.css';
 
 export interface InvoiceIndustryItem {
@@ -78,7 +79,6 @@ export function InvoiceWhoItIsFor({
               {title}
             </h2>
           </div>
-          {copy && <p className={styles.sectionCopy}>{copy}</p>}
         </div>
 
         <div className={styles.industries}>
@@ -106,6 +106,7 @@ export function InvoiceWhoItIsFor({
             ))}
           </ul>
         )}
+        {copy && <p className={layoutStyles.bottomDescription}>{copy}</p>}
       </div>
     </section>
   );

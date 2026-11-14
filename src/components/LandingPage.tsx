@@ -7,9 +7,9 @@ import { LandingHero } from './LandingHero';
 import { SharedFaqAccordion } from './SharedFaqAccordion';
 import { LandingNavigation } from './LandingNavigation';
 import { CustomerReviewSlider } from './CustomerReviewSlider';
-import { ClosingVisualBg } from './ClosingVisualBg';
+import { LandingClosingCta } from './LandingClosingCta';
 import { ShipsyFooter } from './ShipsyFooter';
-import { landingDesks, landingFaqs, landingIndustries } from '../content/landing';
+import { landingDesks, landingFaqs } from '../content/landing';
 import styles from './LandingPage.module.css';
 
 const DESK_IMAGES: Record<string, string> = {
@@ -191,29 +191,6 @@ export function LandingPage() {
           </div>
         </div>
       </section>
-      <section id="solutions" className={`${styles.section} ${styles.solutionsSection}`} aria-labelledby="solutions-title">
-        <div className="site-shell">
-          <SectionHeading id="solutions-title" eyebrow="Solutions by industry" title="Designed for real business operations." copy="" />
-          <div className={styles.industries}>
-            {landingIndustries.map((industry) => (
-              <article key={industry.id} id={industry.id} className={styles.industryCard}>
-                <div className={styles.industryImageWrapper}>
-                  <img
-                    src={industry.image}
-                    alt={industry.title}
-                    className={styles.industryImage}
-                    loading="lazy"
-                  />
-                  <div className={styles.industryImageOverlay} aria-hidden="true" />
-                </div>
-                <h3 className={styles.industryTitle}>{industry.title}</h3>
-                <p className={styles.industryCopy}>{industry.copy}</p>
-              </article>
-            ))}
-          </div>
-          <ul className={`${styles.chips} ${styles.workflowChips}`}>{['Invoice Automation', 'Financial Workflows', 'RFQ to Booking', 'Shipment Tracking', 'Document Automation'].map(item => <li key={item}>{item}</li>)}</ul>
-        </div>
-      </section>
       <section id="customers" className={`${styles.section} ${styles.customersSection}`} aria-labelledby="customers-title">
         <div className="site-shell">
           <SectionHeading
@@ -230,32 +207,7 @@ export function LandingPage() {
           <SharedFaqAccordion items={landingFaqs} defaultOpenIndex={0} toggleStyle="plus" />
         </div>
       </section>
-      <section id="contact" className={styles.closing} aria-labelledby="closing-title">
-        <div className="site-shell">
-          <div className={styles.closingCard}>
-            <div className={styles.closingBgPattern} aria-hidden="true">
-              <ClosingVisualBg />
-            </div>
-            <div className={styles.closingContent}>
-              <h2 id="closing-title" className={styles.closingTitle}>
-                What could your team do with less manual work?
-              </h2>
-              <p className={styles.closingCopy}>
-                Tell us about your finance or freight workflow. We’ll help identify a practical place to start.
-              </p>
-              <div className={styles.closingActions}>
-                <Link href="/#contact" className={`${styles.demoButton} ${styles.closingPrimaryBtn}`}>
-                  Book a demo
-                  <ArrowRight size={16} aria-hidden="true" />
-                </Link>
-                <Link href="/#platform" className={`${styles.demoButton} ${styles.closingSecondaryBtn}`}>
-                  Explore platform
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <LandingClosingCta />
     </main>
     <ShipsyFooter />
   </div>;

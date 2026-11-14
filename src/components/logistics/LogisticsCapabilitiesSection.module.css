@@ -1,0 +1,743 @@
+.lightSection {
+  background-color: #f8fafc;
+  color: #0f172a;
+  padding-block: clamp(48px, 6vw, 88px);
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  position: relative;
+  overflow: visible;
+}
+
+.capabilitiesShell {
+  width: calc(100% - 64px);
+  max-width: 1740px;
+  margin-inline: auto;
+}
+
+.sectionHeader {
+  margin-bottom: 32px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace, ui-monospace, SFMono-Regular;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #059669;
+  margin-bottom: 6px;
+}
+
+.eyebrowDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #059669;
+  box-shadow: 0 0 8px rgba(5, 150, 105, 0.45);
+}
+
+.mainTitle {
+  font-size: clamp(22px, 2.8vw, 32px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: #0b132b;
+  margin: 0 0 6px 0;
+}
+
+.mainSubtitle {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #64748b;
+  max-width: 680px;
+  margin: 0;
+}
+
+/* =========================================================================
+   SCROLLYTELLING CONTAINER
+   ========================================================================= */
+.scrollyContainer {
+  position: relative;
+  min-height: 380vh; /* Smooth, natural scroll runway */
+}
+
+/* Center the workflow in the viewport beneath the fixed navigation. */
+.stickyStage {
+  position: sticky;
+  top: 84px;
+  z-index: 10;
+  height: auto;
+  min-height: calc(100svh - 84px);
+  padding-block: clamp(48px, 8vh, 88px);
+  display: flex;
+  align-items: center;
+}
+
+/* 3-Zone Master Layout */
+.workflowLayout {
+  display: grid;
+  grid-template-columns: 176px minmax(0, 0.95fr) minmax(0, 1.65fr);
+  gap: clamp(32px, 3.2vw, 64px);
+  align-items: center;
+  width: 100%;
+}
+
+.stepperRail,
+.centerZone,
+.cardZone {
+  min-width: 0;
+}
+
+/* ZONE 1: LEFT VERTICAL TIMELINE / STEPPER */
+.stepperRail {
+  display: flex;
+  flex-direction: column;
+}
+
+.stepperHeader {
+  font-family: 'JetBrains Mono', monospace, ui-monospace, SFMono-Regular;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 24px;
+  line-height: 1.6;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.stepsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.stepItem {
+  position: relative;
+  padding-left: 28px;
+  padding-bottom: 24px;
+}
+
+.stepItem:last-child {
+  padding-bottom: 0;
+}
+
+/* Connecting Line */
+.stepLine {
+  position: absolute;
+  left: 7px;
+  top: 16px;
+  bottom: -4px;
+  width: 2px;
+  background-color: #e2e8f0;
+  transition: background-color 0.25s ease;
+}
+
+.stepItem[data-completed='true'] .stepLine {
+  background-color: #059669;
+}
+
+/* Stepper Node (Circle) */
+.stepNode {
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #cbd5e1;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.25s ease;
+  z-index: 2;
+}
+
+.stepItem[data-completed='true'] .stepNode {
+  border-color: #059669;
+  background-color: #059669;
+}
+
+.stepItem[data-active='true'] .stepNode {
+  border-color: #059669;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.16);
+}
+
+.stepNodeInner {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #059669;
+}
+
+.stepButton {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+}
+
+.stepTitle {
+  font-family: 'JetBrains Mono', monospace, ui-monospace, SFMono-Regular;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #64748b;
+  transition: color 0.2s ease;
+}
+
+.stepItem[data-active='true'] .stepTitle {
+  color: #059669;
+}
+
+.stepItem[data-completed='true'] .stepTitle {
+  color: #0f172a;
+}
+
+.stepSubtitle {
+  font-size: 11.5px;
+  color: #94a3b8;
+  line-height: 1.3;
+}
+
+.stepItem[data-active='true'] .stepSubtitle {
+  color: #334155;
+  font-weight: 500;
+}
+
+/* ZONE 2: CENTER HEADLINE & DESCRIPTION */
+.centerZone {
+  display: flex;
+  flex-direction: column;
+  padding-right: 0;
+}
+
+.stepTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  background-color: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  font-family: 'JetBrains Mono', monospace, ui-monospace, SFMono-Regular;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #047857;
+  margin-bottom: 24px;
+}
+
+.stepHeadline {
+  font-size: clamp(20px, 2.3vw, 28px);
+  font-weight: 800;
+  line-height: 1.22;
+  letter-spacing: -0.025em;
+  color: #0b132b;
+  margin: 0 0 32px 0;
+}
+
+.stepDescription {
+  font-size: 14px;
+  line-height: 1.55;
+  color: #475569;
+  margin: 0 0 32px 0;
+}
+
+.quickNavRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.navArrowBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.navArrowBtn:hover:not(:disabled) {
+  background-color: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.navArrowBtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* ZONE 3: RIGHT INTERACTIVE OPERATIONAL CARD */
+.cardZone {
+  display: flex;
+  flex-direction: column;
+}
+
+.previewCard {
+  display: flex;
+  flex-direction: column;
+  min-height: clamp(440px, 68vh, 620px);
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: all 0.25s ease;
+}
+
+.cardHeaderBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  background-color: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.cardHeaderTitle {
+  font-family: 'JetBrains Mono', monospace, ui-monospace, SFMono-Regular;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.statusPillGreen {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background-color: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  font-family: 'JetBrains Mono', monospace, ui-monospace, SFMono-Regular;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #047857;
+}
+
+.statusPillAmber {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background-color: #fffbeb;
+  border: 1px solid #fde68a;
+  font-family: 'JetBrains Mono', monospace, ui-monospace, SFMono-Regular;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #b45309;
+}
+
+.statusPillBlue {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  font-family: 'JetBrains Mono', monospace, ui-monospace, SFMono-Regular;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #1d4ed8;
+}
+
+.cardBody {
+  padding: 32px 24px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+
+.cardHeadline {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.emailBubble {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #334155;
+  font-style: italic;
+}
+
+.attachmentRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.attachmentChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  background-color: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #047857;
+  font-family: 'JetBrains Mono', monospace, ui-monospace, SFMono-Regular;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Key Value Table / Rows */
+.paramTable {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.paramRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 16px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 13px;
+}
+
+.paramRow:last-child {
+  border-bottom: none;
+}
+
+.paramLabel {
+  color: #64748b;
+  font-weight: 500;
+}
+
+.paramValue {
+  color: #0f172a;
+  font-weight: 600;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Discrepancy & Alert Badges */
+.gapBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background-color: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  color: #047857;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.gapBadgeAmber {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Carrier Matrix & Comparison */
+.carrierMatrix {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.carrierRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background-color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.carrierRowBest {
+  border-color: #059669;
+  background-color: #f0fdf4;
+}
+
+.carrierInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.carrierName {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.carrierMeta {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.carrierPrice {
+  text-align: right;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  color: #047857;
+}
+
+/* Action Buttons */
+.cardActionRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.btnPrimaryGreen {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: 9px;
+  background-color: #059669;
+  color: #ffffff;
+  font-size: 12.5px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(5, 150, 105, 0.3);
+}
+
+.btnPrimaryGreen:hover {
+  background-color: #047857;
+}
+
+.btnOutline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border-radius: 9px;
+  background-color: #ffffff;
+  color: #334155;
+  font-size: 12.5px;
+  font-weight: 600;
+  border: 1px solid #cbd5e1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btnOutline:hover {
+  background-color: #f8fafc;
+  border-color: #94a3b8;
+}
+
+/* Slider Controls */
+.sliderCard {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sliderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.sliderInput {
+  width: 100%;
+  accent-color: #059669;
+  cursor: pointer;
+}
+
+.calculatedOutput {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background-color: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  border-radius: 10px;
+  font-size: 13px;
+  color: #064e3b;
+  font-weight: 700;
+}
+
+/* Card Footer */
+.cardFooterBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  background-color: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  font-family: 'JetBrains Mono', monospace, ui-monospace, SFMono-Regular;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+/* Responsive Styles */
+@media (min-width: 861px) and (max-width: 1100px) {
+  .workflowLayout {
+    grid-template-columns: 160px minmax(0, 1fr) minmax(0, 1.35fr);
+    gap: 24px;
+  }
+
+  .cardHeaderBar,
+  .cardFooterBar {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 860px) {
+  .capabilitiesShell {
+    width: calc(100% - 40px);
+  }
+
+  .scrollyContainer {
+    min-height: auto;
+  }
+
+  .stickyStage {
+    position: static;
+    height: auto;
+    min-height: auto;
+    padding-block: 16px 0;
+  }
+
+  .workflowLayout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .stepTag,
+  .stepHeadline,
+  .stepDescription {
+    margin-bottom: 20px;
+  }
+
+  .previewCard {
+    min-height: auto;
+  }
+
+  .cardHeaderBar,
+  .cardFooterBar {
+    flex-wrap: wrap;
+    padding: 16px;
+  }
+
+  .cardBody {
+    padding: 24px 16px;
+  }
+
+  .paramRow,
+  .carrierRow {
+    flex-wrap: wrap;
+    gap: 8px 16px;
+  }
+
+  .paramValue {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .stepperRail {
+    overflow-x: auto;
+    padding-bottom: 12px;
+  }
+
+  .stepsList {
+    flex-direction: row;
+    gap: 16px;
+  }
+
+  .stepItem {
+    padding-left: 0;
+    padding-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .stepLine {
+    display: none;
+  }
+
+  .stepNode {
+    position: static;
+    margin-bottom: 6px;
+  }
+}

@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { ArrowDown, ArrowRight, ArrowUpRight, Check, Building2 } from 'lucide-react';
 import { LandingNavigation } from '../LandingNavigation';
+import { LandingClosingCta } from '../LandingClosingCta';
 import { ShipsyFooter } from '../ShipsyFooter';
 import { SharedFaqAccordion } from '../SharedFaqAccordion';
 import { financePersonas, type PersonaData } from '../../content/financePersonas';
@@ -94,7 +95,6 @@ export function FinancePersonaPage({ persona }: FinancePersonaPageProps) {
                 <p className={s.eyebrow}>{data.capabilitiesEyebrow}</p>
                 <h2 id="capabilities-title">{data.capabilitiesTitle}</h2>
               </div>
-              <p className={s.sectionCopy}>{data.capabilitiesDescription}</p>
             </div>
 
             <div className={s.panel}>
@@ -117,6 +117,7 @@ export function FinancePersonaPage({ persona }: FinancePersonaPageProps) {
                 </article>
               ))}
             </div>
+            <p className={layoutStyles.bottomDescription}>{data.capabilitiesDescription}</p>
           </div>
         </section>
 
@@ -128,7 +129,6 @@ export function FinancePersonaPage({ persona }: FinancePersonaPageProps) {
                 <p className={s.eyebrow}>{data.processEyebrow}</p>
                 <h2 id="process-title">{data.processTitle}</h2>
               </div>
-              <p className={s.sectionCopy}>{data.processDescription}</p>
             </div>
 
             <ol className={s.process}>
@@ -141,6 +141,7 @@ export function FinancePersonaPage({ persona }: FinancePersonaPageProps) {
                 </li>
               ))}
             </ol>
+            <p className={layoutStyles.bottomDescription}>{data.processDescription}</p>
           </div>
         </section>
 
@@ -186,9 +187,6 @@ export function FinancePersonaPage({ persona }: FinancePersonaPageProps) {
                 <p className={s.eyebrow}>EXPLORE OTHER ROLES</p>
                 <h2 id="related-title">Solutions designed for your entire finance workflow.</h2>
               </div>
-              <p className={s.sectionCopy}>
-                Discover how Docsynecx connects business owners, finance controllers, accounts executives, and CA firms.
-              </p>
             </div>
 
             <div className={s.featureGrid}>
@@ -205,6 +203,9 @@ export function FinancePersonaPage({ persona }: FinancePersonaPageProps) {
                 </article>
               ))}
             </div>
+            <p className={layoutStyles.bottomDescription}>
+              Discover how Docsynecx connects business owners, finance controllers, accounts executives, and CA firms.
+            </p>
           </div>
         </section>
 
@@ -224,22 +225,7 @@ export function FinancePersonaPage({ persona }: FinancePersonaPageProps) {
           </div>
         </section>
 
-        {/* 8. CLOSING CTA CARD */}
-        <section className={s.section}>
-          <div className="site-shell">
-            <div className={s.closingCard}>
-              <div>
-                <p className={s.eyebrow}>{data.ctaEyebrow}</p>
-                <h2>{data.ctaTitle}</h2>
-                <p>{data.ctaDescription}</p>
-              </div>
-              <Link className={s.primaryButton} href={demoHref}>
-                {data.ctaButtonText}
-                <ArrowUpRight size={16} aria-hidden="true" />
-              </Link>
-            </div>
-          </div>
-        </section>
+        <LandingClosingCta primaryHref={demoHref} secondaryHref="/#platform" />
       </main>
 
       <ShipsyFooter />

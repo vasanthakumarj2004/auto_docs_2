@@ -10,7 +10,7 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 import { LandingNavigation } from './LandingNavigation';
-import { ClosingVisualBg } from './ClosingVisualBg';
+import { LandingClosingCta } from './LandingClosingCta';
 import { ShipsyFooter } from './ShipsyFooter';
 import { SOLUTIONS_DATA } from '../content/solutions';
 import styles from './SolutionsPage.module.css';
@@ -277,35 +277,7 @@ export function SolutionsPage() {
         {/* ==================================================================
             4. CLOSING CTA SECTION (Matching Homepage)
             ================================================================== */}
-        <section id="contact" className={styles.closing} aria-labelledby="closing-title">
-          <div className="site-shell">
-            <div className={styles.closingCard}>
-              <div className={styles.closingBgPattern} aria-hidden="true">
-                <ClosingVisualBg />
-              </div>
-
-              <div className={styles.closingContent}>
-                <h2 id="closing-title" className={styles.closingTitle}>
-                  What could your team do with less manual work?
-                </h2>
-                <p className={styles.closingCopy}>
-                  Tell us about your finance or freight workflow. We’ll help identify a practical
-                  place to start.
-                </p>
-                <div className={styles.closingActions}>
-                  <Link href="/demo/" className={`${styles.demoButton} ${styles.primaryBtn}`}>
-                    Book a demo
-                    <ArrowRight size={16} aria-hidden="true" />
-                  </Link>
-                  <Link href="/#platform" className={`${styles.demoButton} ${styles.secondaryBtn}`}>
-                    Explore platform
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </section>
+        <LandingClosingCta primaryHref="/demo/#demo-form" secondaryHref="/#platform" />
       </main>
 
       <ShipsyFooter />

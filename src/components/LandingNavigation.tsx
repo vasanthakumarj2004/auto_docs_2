@@ -40,11 +40,11 @@ interface MegaMenuData {
 }
 
 const MEGA_MENUS: Record<string, MegaMenuData> = {
-  'Finance Desk': {
-    label: 'Finance Desk',
+  'Finance': {
+    label: 'Finance',
     eyebrow: 'Automate Finance Operations',
     overviewHref: '/finance-desk/',
-    exploreLabel: 'Explore Finance Desk',
+    exploreLabel: 'Explore Finance',
     overviewLinks: [],
     featureLinks: [
       {
@@ -87,35 +87,35 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
     ],
   },
   'Logistics Desk': {
-    label: 'Logistics Desk',
-    eyebrow: 'Automate Freight Operations',
+    label: 'Logistics',
+    eyebrow: 'Docsynecx Logistics Modules',
     overviewHref: '/#platform',
-    exploreLabel: 'Explore Logistics Desk',
+    exploreLabel: 'Explore Logistics Platform',
     overviewLinks: [],
     featureLinks: [
       {
         sno: '01',
-        title: 'RFQ to Booking',
-        description: 'Connect customer enquiries, quotes and freight bookings.',
-        href: '/#platform',
+        title: 'Email-to-Booking',
+        description: 'Move freight enquiries from inbox to customer quotation and booking.',
+        href: '/logistics/email-to-booking/',
       },
       {
         sno: '02',
-        title: 'Shipment Management',
-        description: 'Bring shipment operations into one connected workspace.',
-        href: '/#platform',
+        title: 'Shipment Operations',
+        description: 'Connect booking details, shipment documents and job workflows.',
+        href: '/logistics/shipment-operations/',
       },
       {
         sno: '03',
         title: 'Shipment Tracking',
-        description: 'Keep shipment milestones and status updates in view.',
-        href: '/#platform',
+        description: 'Make shipment milestones and delays easier to see.',
+        href: '/logistics/shipment-tracking/',
       },
       {
         sno: '04',
-        title: 'Document Automation',
-        description: 'Extract and review data from freight documents.',
-        href: '/#platform',
+        title: 'Freight Intelligence',
+        description: 'Build a clearer view of shipment costs, margins and performance.',
+        href: '/logistics/freight-intelligence/',
       },
     ],
     whoHeading: "Who it's for",
@@ -206,14 +206,14 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
 };
 
 type NavItem =
-  | { type: 'menu'; key: 'Finance Desk' | 'Logistics Desk' | 'Solutions' | 'Resources' }
+  | { type: 'menu'; key: 'Finance' | 'Logistics Desk' | 'Solutions' | 'Resources' }
   | { type: 'link'; label: string; href: string };
 
 const NAV_ITEMS: NavItem[] = [
-  { type: 'menu', key: 'Finance Desk' },
+  { type: 'menu', key: 'Finance' },
   { type: 'menu', key: 'Logistics Desk' },
-  { type: 'menu', key: 'Solutions' },
-  { type: 'link', label: 'Customers', href: '/#customers' },
+  { type: 'link', label: 'Solutions', href: '/solutions' },
+  { type: 'link', label: 'Pricing', href: '/pricing' },
   { type: 'menu', key: 'Resources' },
 ];
 
@@ -416,7 +416,7 @@ export function LandingNavigation({ variant = 'default' }: { variant?: 'default'
                     aria-controls="landing-mega-menu"
                     onClick={() => setOpenMenu(openMenu === item.key ? null : item.key)}
                   >
-                    {item.key}
+                    {MEGA_MENUS[item.key]?.label || item.key}
                     <ChevronDown
                       size={13}
                       aria-hidden="true"

@@ -1,0 +1,446 @@
+.page {
+  background-color: #fcfdfd;
+  color: #0f172a;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContent {
+  flex: 1;
+}
+
+/* =========================================================================
+   SECTION 1: HERO
+   ========================================================================= */
+.heroSection {
+  padding-top: clamp(100px, 14vh, 150px);
+  padding-bottom: clamp(48px, 8vh, 80px);
+}
+
+.heroContent {
+  max-width: 840px;
+}
+
+.heroTitle {
+  font-size: clamp(2.35rem, 5.2vw, 3.85rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  color: #0b132b;
+  margin: 0;
+}
+
+.highlight {
+  color: #0d7b5f;
+  display: inline-block;
+}
+
+.heroDescription {
+  font-size: clamp(1.05rem, 1.8vw, 1.15rem);
+  color: #475569;
+  line-height: 1.65;
+  margin-top: 1.4rem;
+  margin-bottom: 2rem;
+  max-width: 620px;
+}
+
+.heroActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.anchorPill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.anchorPill:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}
+
+.anchorPill:focus-visible {
+  outline: 2px solid #0d7b5f;
+  outline-offset: 2px;
+}
+
+/* =========================================================================
+   SHARED SECTION HEADINGS
+   ========================================================================= */
+.section {
+  padding: clamp(56px, 8vw, 88px) 0;
+}
+
+.sectionHeader {
+  margin-bottom: clamp(32px, 5vw, 48px);
+}
+
+.eyebrow {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0d7b5f;
+  margin-bottom: 0.75rem;
+}
+
+.sectionTitle {
+  font-size: clamp(2rem, 3.8vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  color: #0b132b;
+  margin: 0 0 0.75rem 0;
+}
+
+.sectionSubtitle {
+  font-size: 1.05rem;
+  color: #64748b;
+  line-height: 1.6;
+  max-width: 680px;
+  margin: 0;
+}
+
+/* =========================================================================
+   SECTION 2: FINANCE PLANS (DUAL CARDS)
+   ========================================================================= */
+.financeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  align-items: stretch;
+}
+
+.planCard {
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: clamp(30px, 4.5vw, 44px);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.starterCard {
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.starterCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.professionalCard {
+  border: 2px solid #0d7b5f;
+  box-shadow: 0 8px 30px rgba(13, 123, 95, 0.08);
+  position: relative;
+}
+
+.professionalCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(13, 123, 95, 0.14);
+}
+
+.planTag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #0d7b5f;
+  margin-bottom: 0.6rem;
+}
+
+.planTitle {
+  font-size: clamp(1.75rem, 2.5vw, 2.15rem);
+  font-weight: 800;
+  color: #0b132b;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.6rem 0;
+}
+
+.planDescription {
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0 0 1.75rem 0;
+}
+
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.25rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex-grow: 1;
+}
+
+.featureItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.93rem;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.checkIcon {
+  color: #0d7b5f;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.buttonOutlined {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 14px 24px;
+  border-radius: 9999px;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  color: #0b132b;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.buttonOutlined:hover {
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.buttonOutlined:focus-visible {
+  outline: 2px solid #0d7b5f;
+  outline-offset: 2px;
+}
+
+.buttonGreen {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 14px 24px;
+  border-radius: 9999px;
+  background-color: #0d7b5f;
+  border: 1px solid #0d7b5f;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(13, 123, 95, 0.25);
+}
+
+.buttonGreen:hover {
+  background-color: #09634c;
+  border-color: #09634c;
+}
+
+.buttonGreen:focus-visible {
+  outline: 2px solid #0d7b5f;
+  outline-offset: 2px;
+}
+
+.footnote {
+  font-size: 0.83rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin-top: 1.75rem;
+  max-width: 960px;
+}
+
+/* =========================================================================
+   SECTION 3: LOGISTICS MODULES (2x2 GRID)
+   ========================================================================= */
+.logisticsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.moduleCard {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: clamp(24px, 3.5vw, 34px);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.moduleCard:hover {
+  border-color: #cbd5e1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+
+.moduleTag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 0.5rem;
+}
+
+.moduleTitle {
+  font-size: clamp(1.25rem, 1.8vw, 1.45rem);
+  font-weight: 800;
+  color: #0b132b;
+  letter-spacing: -0.015em;
+  margin: 0 0 0.6rem 0;
+}
+
+.moduleDescription {
+  font-size: 0.93rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.logisticsActionBlock {
+  margin-top: 2rem;
+}
+
+.buttonBlue {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 13px 28px;
+  border-radius: 9999px;
+  background-color: #1e56a0;
+  border: 1px solid #1e56a0;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(30, 86, 160, 0.2);
+}
+
+.buttonBlue:hover {
+  background-color: #174580;
+  border-color: #174580;
+}
+
+.buttonBlue:focus-visible {
+  outline: 2px solid #1e56a0;
+  outline-offset: 2px;
+}
+
+.logisticsFootnote {
+  font-size: 0.83rem;
+  color: #64748b;
+  line-height: 1.6;
+  margin-top: 1.15rem;
+  max-width: 900px;
+}
+
+/* =========================================================================
+   SECTION 4: NEED HELP CHOOSING & CLOSING BANNER
+   ========================================================================= */
+.helpSection {
+  padding: clamp(56px, 8vw, 88px) 0 clamp(72px, 10vw, 110px) 0;
+}
+
+.closingBanner {
+  background: linear-gradient(135deg, #0d382c 0%, #08281f 100%);
+  border-radius: 24px;
+  padding: clamp(36px, 5vw, 48px) clamp(24px, 5vw, 56px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  box-shadow: 0 12px 36px rgba(13, 56, 44, 0.2);
+}
+
+.closingCopy {
+  max-width: 640px;
+}
+
+.closingTitle {
+  font-size: clamp(1.6rem, 3.2vw, 2.15rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.4rem 0;
+}
+
+.closingSubtitle {
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+  color: #a7f3d0;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.closingButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 13px 28px;
+  border-radius: 9999px;
+  background-color: #10b981;
+  border: 1px solid #10b981;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+  flex-shrink: 0;
+}
+
+.closingButton:hover {
+  background-color: #059669;
+  border-color: #059669;
+}
+
+.closingButton:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+}
+
+/* =========================================================================
+   RESPONSIVE QUERIES
+   ========================================================================= */
+@media (max-width: 900px) {
+  .financeGrid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .logisticsGrid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .closingBanner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .closingButton {
+    width: 100%;
+  }
+}
