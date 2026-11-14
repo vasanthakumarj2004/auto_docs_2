@@ -277,7 +277,7 @@ export function LandingNavigation({ variant = 'default' }: { variant?: 'default'
 
   return (
     <>
-      {variant === 'default' && <AnnouncementBarV2 />}
+      <AnnouncementBarV2 />
       <header
         ref={headerRef}
         className={styles.header}

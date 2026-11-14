@@ -1,4 +1,4 @@
-.hero { position: relative; isolation: isolate; margin-top: -96px; padding: clamp(112px, 13svh, 145px) 24px 72px; overflow: hidden; background: #77659d; color: #fff; }
+.hero { position: relative; isolation: isolate; margin-top: calc(-96px - var(--announcement-bar-height, 37px)); padding: calc(clamp(112px, 13svh, 145px) + var(--announcement-bar-height, 37px)) 24px 72px; overflow: hidden; background: #77659d; color: #fff; }
 .landscape { position: absolute; inset: 0; z-index: -1; overflow: hidden; background: radial-gradient(ellipse at 80% 12%, #b7a0ca55, transparent 55%), linear-gradient(180deg, #685586 0%, #7e679b 42%, #b299b5 61%, #d5bfb9 68%, #8d7caa 73%, #292435 91%, #15151b 100%); }
 .horizon { position: absolute; left: -10%; top: 60%; width: 120%; height: 17%; background: radial-gradient(ellipse at 44% 50%, #e9e3acaa 0%, transparent 40%), linear-gradient(176deg, transparent 45%, #423b5d77 46%, #605471bb 50%, transparent 55%); filter: blur(13px); }
 .water { position: absolute; inset: 68% -20% 0; opacity: .45; background: repeating-linear-gradient(178deg, transparent 0 12px, #dbc7db44 14px 15px, transparent 19px 26px); filter: blur(3px); transform: perspective(250px) rotateX(30deg); }
@@ -74,7 +74,7 @@
 @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes flow { to { background-position: 16px 0; } }
 @media (min-width: 901px) and (max-height: 860px) {
-  .hero { padding-top: 112px; }
+  .hero { padding-top: calc(112px + var(--announcement-bar-height, 37px)); }
   .copy h1 { font-size: clamp(54px, 5.6vw, 84px); }
   .eyebrow { margin-bottom: 20px; }
   .description { margin-top: 16px; }
@@ -83,7 +83,7 @@
   .trust { margin-top: 12px; }
 }
 @media (max-width: 900px) {
-  .hero { margin-top: -84px; padding-top: 134px; }
+  .hero { margin-top: calc(-84px - var(--announcement-bar-height, 37px)); padding-top: calc(134px + var(--announcement-bar-height, 37px)); }
   .copy { min-height: 0; }
   .copy h1 { font-size: clamp(48px, 7.7vw, 70px); }
   .dashboardBody { grid-template-columns: minmax(0, 1fr); }
@@ -95,7 +95,7 @@
   .dashboardBody { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 600px) {
-  .hero { padding: 122px 20px 40px; }
+  .hero { padding: calc(122px + var(--announcement-bar-height, 37px)) 20px 40px; }
   .eyebrow { margin-bottom: 23px; font-size: 9px; }
   .copy h1 { font-size: clamp(39px, 10.3vw, 60px); line-height: 1.08; letter-spacing: -.05em; }
   .description { max-width: 350px; margin-top: 20px; font-size: 12px; line-height: 1.8; }

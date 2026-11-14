@@ -58,6 +58,17 @@ export function AnnouncementBarV2() {
     } catch {}
   }, []);
 
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.style.setProperty('--announcement-bar-height', dismissed ? '0px' : '37px');
+    }
+    return () => {
+      if (typeof document !== 'undefined') {
+        document.documentElement.style.removeProperty('--announcement-bar-height');
+      }
+    };
+  }, [dismissed]);
+
   // Automatic 5-second content cycle
   useEffect(() => {
     if (dismissed || isPaused) return;
@@ -88,10 +99,10 @@ export function AnnouncementBarV2() {
       aria-label="New Release Announcement"
       className="relative z-50 text-white text-xs py-2 px-4 select-none transition-all duration-300"
       style={{
-        background: 'rgba(8, 12, 22, 0.55)',
-        backdropFilter: 'blur(24px)',
-        WebkitBackdropFilter: 'blur(24px)',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+        background: 'rgba(104, 85, 134, 0.45)',
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.14)',
       }}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
