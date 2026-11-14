@@ -41,33 +41,65 @@ export function WorkflowPreview({ mode = 'dashboard', videoSrc, poster }: Workfl
         <video className={styles.demoVideo} controls playsInline preload="none" poster={poster} aria-label="Docsynecx workflow demo"><source src={videoSrc} /></video>
       ) : <>
         <div className={styles.dashboardHeader}>
-          <span className={styles.dashboardBrand}><Workflow size={17} aria-hidden="true" /> Docsynecx <span>/ workflows</span></span>
-          <span className={styles.previewLabel}><i /> Workflow preview</span>
+          <span className={styles.dashboardBrand}>
+            <span className={styles.brandIcon}><Workflow size={20} aria-hidden="true" /></span>
+            <span>Docsynecx<span className={styles.brandSubtitle}>Workflow workspace</span></span>
+          </span>
+          <span className={styles.previewLabel}><i /> Interactive preview</span>
         </div>
         <div className={styles.dashboardBody}>
           <div className={styles.workspace}>
             <div className={styles.workspaceHeading}>
+              <p className={styles.smallLabel}>ONE CONNECTED WORKFLOW</p>
               <h2 id="workflow-title">{current.title}</h2>
-              <div className={styles.deskTabs} role="group" aria-label="Preview a workflow">
-                {(Object.keys(workflows) as Array<keyof typeof workflows>).map((key) => <button type="button" key={key} aria-pressed={desk === key} aria-controls="workflow-canvas" onClick={() => setDesk(key)}>{workflows[key].label}</button>)}
-              </div>
+              <p className={styles.workspaceDescription}>From the first document to the final update. Every step, in one place.</p>
+            </div>
+            <div className={styles.deskTabs} role="group" aria-label="Preview a workflow">
+              {(Object.keys(workflows) as Array<keyof typeof workflows>).map((key) => (
+                <button type="button" key={key} aria-pressed={desk === key} aria-controls="workflow-canvas" onClick={() => setDesk(key)}>
+                  {workflows[key].label}<ArrowUpRight size={14} aria-hidden="true" />
+                </button>
+              ))}
             </div>
             <div id="workflow-canvas" className={styles.canvas} role="region" aria-labelledby="workflow-title" aria-live="polite">
               <ol className={styles.nodes}>
-                {current.steps.map(({ icon: Icon, title, detail }, index) => <li key={title} className={styles.node}>
-                  <span className={styles.nodeIndex}>0{index + 1}</span><span className={styles.nodeIcon}><Icon size={20} aria-hidden="true" /></span><strong>{title}</strong><span>{detail}</span>
-                </li>)}
+                {current.steps.map(({ icon: Icon, title, detail }, index) => (
+                  <li key={title} className={styles.node}>
+                    <span className={styles.nodeIndex}>STEP 0{index + 1}</span>
+                    <span className={styles.nodeIcon}><Icon size={22} aria-hidden="true" /></span>
+                    <strong>{title}</strong>
+                    <span>{detail}</span>
+                  </li>
+                ))}
               </ol>
-              <p className={styles.reviewNote}><ShieldCheck size={13} aria-hidden="true" /> Your team handles exceptions, not typing.</p>
+              <p className={styles.reviewNote}><ShieldCheck size={15} aria-hidden="true" /> Your team stays in control of every approval.</p>
             </div>
           </div>
           <aside className={styles.connections} aria-label={`${current.label} integrations`}>
-            <span className={styles.smallLabel}>Connected workflows</span>
-            {current.systems.map((system) => <div key={system}><span className={styles.systemIcon}>{system.charAt(0)}</span><span>{system}</span><ArrowUpRight size={13} aria-hidden="true" /></div>)}
-            <p>Built for businesses that run on Tally, an ERP or CargoWise.</p>
+            <span className={styles.smallLabel}>WORKS WITH YOUR TOOLS</span>
+            <h3>Your connected stack.</h3>
+            <div className={styles.systemList}>
+              {current.systems.map((system) => (
+                <div key={system} className={styles.systemRow}>
+                  <span className={styles.systemIcon}>{system.charAt(0)}</span>
+                  <span>{system}</span>
+                  <ArrowUpRight size={14} aria-hidden="true" />
+                </div>
+              ))}
+            </div>
+            <div className={styles.approvalCard}>
+              <ShieldCheck size={22} aria-hidden="true" />
+              <strong>Automation with oversight.</strong>
+              <p>Review exceptions. Approve important actions. Keep work moving.</p>
+            </div>
           </aside>
         </div>
-        <div className={styles.dashboardFooter}><span><i /> {current.label}</span><span>{current.capabilities.join(' / ')}</span></div>
+        <div className={styles.dashboardFooter}>
+          <span><i /> {current.label}</span>
+          <div className={styles.capabilityChips}>
+            {current.capabilities.map((capability) => <span key={capability}>{capability}</span>)}
+          </div>
+        </div>
       </>}
     </div>
   );
@@ -105,13 +137,13 @@ export function LandingHero() {
         </div>
         <div className={styles.deskLinks}>
           <Link href="/finance-desk/">I run a finance desk <ArrowUpRight size={17} aria-hidden="true" /></Link>
-          <Link href="/#platform">I run a logistics desk <ArrowUpRight size={17} aria-hidden="true" /></Link>
+          <Link href="/logistics-desk/">I run a logistics desk <ArrowUpRight size={17} aria-hidden="true" /></Link>
         </div>
         <p className={styles.trust}>Built for businesses that run on <strong>Tally, an ERP or CargoWise.</strong></p>
       </div>
       <div className={styles.mediaArea}>
         <div className={styles.mediaCaption}><span>[ WORKFLOW PREVIEW ]</span><span>Explore your workflow <ArrowDown size={12} aria-hidden="true" /></span></div>
-        <div className={styles.frame} ref={frameRef}><WorkflowPreview /><span className={styles.corner} aria-hidden="true" /><span className={styles.corner} aria-hidden="true" /></div>
+        <div className={styles.frame} ref={frameRef}><WorkflowPreview /></div>
       </div>
     </section>
   );

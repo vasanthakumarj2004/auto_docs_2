@@ -8,8 +8,7 @@ import { DemoCta } from '../DemoCta';
 import { ConnectedFinanceWorkspace } from './ConnectedFinanceWorkspace';
 import { FinanceGetStarted } from './FinanceGetStarted';
 import { FinanceWorkflow } from './FinanceWorkflow';
-import { FinanceInvoicePreview } from './FinanceInvoicePreview';
-import { CapabilityHeroPreview } from './CapabilityHeroPreview';
+import { FinanceHeroVisual } from './FinanceHeroVisual';
 import { InvoiceBusinessChallenge } from './InvoiceBusinessChallenge';
 import { InvoiceHowItWorks } from './InvoiceHowItWorks';
 import { InvoiceWhoItIsFor } from './InvoiceWhoItIsFor';
@@ -60,7 +59,6 @@ function Hero({ page }: { page: PageKey }) {
   const copy = financePageCopy[page];
   const upcoming = page === 'accounts-payable';
   const intelligence = page === 'docsynecx-intelligence';
-  const enhancedPreview = page === 'invoice-automation' || page === 'banking-reconciliation' || page === 'docsynecx-intelligence' || page === 'accounts-payable';
   return <section className={`${base.hero} ${s.viewportHero}`} aria-labelledby="finance-title">
     <div className={`site-shell ${base.heroGrid} ${s.heroGrid}`}>
       <div className={`${base.heroCopy} ${s.heroCopy}`}>
@@ -74,14 +72,8 @@ function Hero({ page }: { page: PageKey }) {
         </div>
         <p className={`${base.trust} ${s.heroTrust}`}>{intelligence ? <><strong>Decision support, not a replacement</strong> for accounting controls or management judgement.</> : copy.microline}</p>
       </div>
-      <div className={`${base.heroVisual} ${s.heroVisual} ${enhancedPreview ? s.capabilityVisual : ''}`} aria-label="Illustrative product view">
-        {page === 'overview' ? <FinanceInvoicePreview /> : enhancedPreview ? <CapabilityHeroPreview page={page} /> : <div className={`${base.visualPanel} ${s.product}`}>
-          <div className={s.productHeader}><strong>{copy.visualTitle}</strong><span>{copy.visualLabel}</span></div>
-          <div className={s.productTiles}>{copy.tiles.map(([label, title]) => <div key={label}><span>{label}</span><strong>{title}</strong></div>)}</div>
-          <div className={s.skeleton} aria-hidden="true"><span /><span /><span /><span /></div>
-          <div className={s.productChip}><Check size={12} aria-hidden="true" />{copy.chip}</div>
-        </div>}
-        <p className={base.visualCaption}>Illustrative product view{page === 'overview' ? ' · Sample invoice data' : upcoming ? ' · Under development' : enhancedPreview ? ' · Sample data' : ' · Configured around your workflow'}</p>
+      <div className={s.heroImageWrapper}>
+        <FinanceHeroVisual />
       </div>
     </div>
   </section>;

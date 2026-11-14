@@ -11,7 +11,7 @@ A modern, high-converting React application for **Docsynecx**, built for busines
 
 - **Interactive ROI Calculator**: Real-time computation of manual effort and business cost savings based on document volume, handling minutes, and team compensation (formatted in INR `₹`).
 - **Live Finance Desk Preview**: Simulated real-time syncing dashboard with bill verification statuses, duplicate holds, and Tally connectivity indicators.
-- **Shipment & Logistics Desk Showcase**: Step-by-step workflow mapping customer emails and shipping documents into CargoWise jobs with cross-checks.
+- **Shipment & Logistics Desk Showcase**: Step-by-step workflow mappixng customer emails and shipping documents into CargoWise jobs with cross-checks.
 - **Lead Generation & Contact Forms**: Built-in integration with Supabase for demo requests and newsletter subscriptions.
 - **Design System**: Tailored Plus Jakarta Sans typography, custom button styles, badges, and responsive navigation with mobile drawer support.
 

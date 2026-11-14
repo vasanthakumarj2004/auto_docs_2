@@ -115,8 +115,19 @@
 .navigation .mobileDemo { display: none; }
 .mobileToggle { display: none; padding: 8px; border: 1px solid var(--landing-line); border-radius: 8px; color: var(--landing-ink); }
 
+/* Keep the page's geometry stable while the header contracts inside this frame. */
+.horizonNavFrame {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: auto;
+  margin-top: 0;
+  pointer-events: none;
+}
+
 /* Homepage-only reference treatment; shared navigation keeps its default theme. */
 .header[data-variant='horizon'] {
+  position: relative;
   top: 16px;
   width: min(1120px, calc(100% - 48px));
   margin: 16px auto 0;
@@ -127,11 +138,13 @@
   -webkit-backdrop-filter: blur(20px);
   color: #f7f5fc;
   box-shadow: 0 10px 30px -5px rgba(41, 36, 53, 0.25);
+  pointer-events: auto;
   transition: background-color 280ms ease, border-color 280ms ease, box-shadow 280ms ease, color 280ms ease;
 }
 
 /* While scrolling inside the hero section, maintain the same dusk-matched transparent blur background */
-.header[data-variant='horizon'][data-scrolled='true'] {
+.header[data-variant='horizon'][data-scrolled='true'],
+.header[data-variant='horizon'][data-compact='true'] {
   background: rgba(104, 85, 134, 0.38) !important;
   border-color: rgba(255, 255, 255, 0.26);
   backdrop-filter: blur(24px);
@@ -220,6 +233,9 @@
   color: var(--landing-muted, #586579) !important;
 }
 
+.header[data-variant='horizon'] .megaDropdown { padding-top: 12px; }
+.header[data-variant='horizon'] .megaDropdownContent { border-radius: 16px; border-color: rgb(255 255 255 / 55%); box-shadow: 0 24px 70px rgb(10 23 52 / 14%), 0 2px 8px rgb(10 23 52 / 5%); }
+
 @media (max-width: 1100px) and (min-width: 901px) {
   .header[data-variant='horizon'] { width: calc(100% - 32px); }
   .header[data-variant='horizon'] .navbar { gap: 16px; padding-inline: 20px; }
@@ -227,6 +243,7 @@
   .header[data-variant='horizon'] .logo { width: 130px; }
 }
 @media (max-width: 900px) {
+  .horizonNavFrame { height: auto; }
   .header[data-variant='horizon'] { top: 12px; width: calc(100% - 32px); margin-top: 12px; border-radius: 20px !important; }
   .header[data-variant='horizon'] .navbar { min-height: 64px; padding-inline: 18px; border-radius: 20px; }
   .header[data-variant='horizon'] .navigation { background: #1d1927; border: 1px solid #ffffff24; border-radius: 14px; margin-top: 8px; max-height: calc(100dvh - 110px); }
@@ -481,16 +498,29 @@
 .megaRightCta {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  margin-top: 6px;
-  font-size: 12.5px;
-  font-weight: 800;
-  color: #ffffff;
-  transition: transform 150ms ease, opacity 150ms ease;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  margin-top: 12px;
+  padding: 0 20px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: #f4f8ef;
+  font-size: 12px;
+  font-weight: 600;
+  color: #184b3d;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgb(7 12 24 / 8%);
+  transition: background-color 220ms ease, transform 180ms ease;
 }
 .megaRightCta:hover {
-  opacity: 0.92;
-  transform: translateX(3px);
+  background: #dff4e9;
+  transform: translateY(-1px);
+}
+.megaRightCta:active { transform: scale(.98); }
+@media (prefers-reduced-motion: reduce) {
+  .megaRightCta { transition: none; }
+  .megaRightCta:hover, .megaRightCta:active { transform: none; }
 }
 
 /* Mobile drawer accordion list (hidden on desktop) */

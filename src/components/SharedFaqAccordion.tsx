@@ -9,7 +9,7 @@ export interface FaqItem {
 
 interface SharedFaqAccordionProps {
   items: FaqItem[];
-  theme?: 'blue' | 'teal';
+  theme?: 'blue' | 'teal' | 'brand';
   defaultOpenIndex?: number | null;
   toggleStyle?: 'chevron' | 'plus';
 }
@@ -27,12 +27,28 @@ export const SharedFaqAccordion: React.FC<SharedFaqAccordionProps> = ({
     setOpenIndex((prev) => (prev === idx ? null : idx));
   };
 
-  const activeColor = theme === 'teal' ? 'text-violet-700' : 'text-brand-violet';
-  const borderActive = theme === 'teal' ? 'border-violet-500/40' : 'border-brand-violet/30';
+  const activeColor =
+    theme === 'brand'
+      ? 'text-[#0d9466]'
+      : theme === 'teal'
+      ? 'text-violet-700'
+      : 'text-brand-violet';
+
+  const borderActive =
+    theme === 'brand'
+      ? 'border-[#18cb96]'
+      : theme === 'teal'
+      ? 'border-violet-500/40'
+      : 'border-brand-violet/30';
+
+  const ringColor =
+    theme === 'brand'
+      ? 'focus-visible:ring-[#18cb96]'
+      : 'focus-visible:ring-brand-violet';
 
   return (
     <div
-      className="space-y-2"
+      className="space-y-2.5"
       role="region"
       aria-label="Frequently Asked Questions"
     >
@@ -46,7 +62,9 @@ export const SharedFaqAccordion: React.FC<SharedFaqAccordionProps> = ({
             key={idx}
             className={`rounded-xl border transition-all duration-200 ${
               isOpen
-                ? 'border-slate-300 bg-slate-50/70 shadow-2xs'
+                ? theme === 'brand'
+                  ? 'border-[#18cb96]/45 bg-[#f4fbf8] shadow-2xs'
+                  : 'border-slate-300 bg-slate-50/70 shadow-2xs'
                 : 'border-slate-200/90 bg-white hover:border-slate-300 hover:bg-slate-50/40'
             }`}
           >
@@ -56,7 +74,7 @@ export const SharedFaqAccordion: React.FC<SharedFaqAccordionProps> = ({
               onClick={() => toggle(idx)}
               aria-expanded={isOpen}
               aria-controls={answerId}
-              className="flex w-full items-center justify-between gap-4 p-4 text-left cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-brand-violet rounded-xl"
+              className={`flex w-full items-center justify-between gap-4 p-4 text-left cursor-pointer group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 ${ringColor} rounded-xl`}
             >
               <span
                 className={`text-sm font-bold transition-colors ${

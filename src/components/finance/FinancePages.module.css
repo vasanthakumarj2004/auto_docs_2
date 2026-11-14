@@ -21,9 +21,23 @@
   flex-direction: column;
   justify-content: center;
 }
-.heroVisual {
-  margin-top: 0;
-  max-width: 100%;
+.heroImageWrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+@media (max-width: 900px) {
+  .heroImageWrapper {
+    align-items: center;
+    margin-inline: auto;
+  }
 }
 .page .viewportHero .capabilityVisual {
   padding: 0;
@@ -59,12 +73,6 @@
 }
 .heroTrust strong {
   color: var(--landing-ink, #0f172a) !important;
-}
-.page .viewportHero :global([class*="heroVisual"]) {
-  background: #ffffff !important;
-  border: 1px solid var(--landing-line, #dde1e9) !important;
-  box-shadow: 0 20px 48px -10px rgba(15, 23, 42, 0.08) !important;
-  backdrop-filter: none !important;
 }
 .page .viewportHero :global([class*="visualCaption"]) {
   color: var(--landing-muted, #586579) !important;

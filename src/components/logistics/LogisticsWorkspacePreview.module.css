@@ -1,0 +1,298 @@
+.container {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
+.preview {
+  width: 100%;
+  min-width: 0;
+  background: #ffffff;
+  color: var(--landing-ink, #0f172a);
+  border: 1px solid var(--landing-line, #dde1e9);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px -28px rgba(15, 23, 42, 0.18), 0 4px 16px rgba(15, 23, 42, 0.04);
+  container-type: inline-size;
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--landing-line, #dde1e9);
+  background: #fafbfc;
+}
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--landing-ink, #0f172a);
+}
+.headerLeft svg {
+  color: var(--color-brand, #18cb96);
+  flex-shrink: 0;
+}
+.livePill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--color-brand-soft, #e8faf4);
+  border: 1px solid var(--color-brand-border, #99ebd1);
+  color: var(--color-brand-text, #18cb96);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.liveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-brand, #18cb96);
+  box-shadow: 0 0 0 2px rgba(24, 203, 150, 0.25);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+.metricGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 16px 20px;
+  background: #ffffff;
+  border-bottom: 1px solid var(--landing-line, #dde1e9);
+}
+.metricCard {
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: var(--landing-alt, #f8fafc);
+  border: 1px solid var(--landing-line, #dde1e9);
+}
+.metricValue {
+  display: block;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--landing-ink, #0f172a);
+}
+.metricLabel {
+  display: block;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--landing-muted, #586579);
+  margin-top: 4px;
+}
+.metricSub {
+  display: block;
+  font-size: 8px;
+  color: var(--color-brand-text, #18cb96);
+  margin-top: 2px;
+  font-weight: 500;
+}
+
+.feed {
+  padding: 14px 20px;
+  display: grid;
+  gap: 9px;
+  background: #ffffff;
+}
+.feedHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--landing-muted, #586579);
+  margin-bottom: 2px;
+}
+.feedRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  background: #fbfcfe;
+  border: 1px solid var(--landing-line, #dde1e9);
+  font-size: 10px;
+  transition: background-color 150ms ease;
+}
+.feedRow:hover {
+  background: var(--color-brand-soft, #e8faf4);
+  border-color: var(--color-brand-border, #99ebd1);
+}
+.feedLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.feedIcon {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: rgba(24, 203, 150, 0.1);
+  color: var(--color-brand-strong, #15b886);
+  flex-shrink: 0;
+}
+.feedDetails {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.feedTitle {
+  font-weight: 600;
+  color: var(--landing-ink, #0f172a);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.feedRoute {
+  font-size: 8.5px;
+  color: var(--landing-muted, #586579);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.feedBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 7px;
+  border-radius: 4px;
+  background: var(--color-brand-soft, #e8faf4);
+  color: var(--color-brand-text, #18cb96);
+  font-size: 8px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.chartArea {
+  padding: 14px 20px;
+  background: var(--landing-alt, #f8fafc);
+  border-top: 1px solid var(--landing-line, #dde1e9);
+}
+.chartHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--landing-muted, #586579);
+  margin-bottom: 8px;
+}
+.chartTrend {
+  color: var(--color-brand-text, #18cb96);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.chartSvg {
+  display: block;
+  width: 100%;
+  height: 52px;
+}
+
+.syncBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 20px;
+  background: #111827;
+  color: #ffffff;
+  font-size: 8.5px;
+}
+.syncStatus {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+.syncDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--color-brand, #18cb96);
+}
+.syncSteps {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #9ca3af;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.syncSteps li {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.syncSteps svg {
+  color: var(--color-brand, #18cb96);
+}
+
+.floatingTagOne {
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  z-index: 2;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid var(--color-brand-border, #99ebd1);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.1);
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--color-brand-text, #18cb96);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.floatingTagTwo {
+  position: absolute;
+  bottom: -12px;
+  right: -12px;
+  z-index: 2;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid var(--landing-line, #dde1e9);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.1);
+  font-size: 9.5px;
+  font-weight: 600;
+  color: var(--landing-ink, #0f172a);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+@container (max-width: 440px) {
+  .metricGrid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .syncSteps {
+    display: none;
+  }
+  .floatingTagOne, .floatingTagTwo {
+    display: none;
+  }
+}
