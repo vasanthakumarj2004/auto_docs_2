@@ -115,30 +115,53 @@
 .navigation .mobileDemo { display: none; }
 .mobileToggle { display: none; padding: 8px; border: 1px solid var(--landing-line); border-radius: 8px; color: var(--landing-ink); }
 
-/* Homepage glass treatment inspired by Shipsy's floating navigation. */
+/* Keep the page's geometry stable while the header contracts inside this frame. */
+.horizonNavFrame {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: 80px;
+  margin-top: 0;
+  pointer-events: none;
+}
+
+/* Reference: wide transparent hero navigation becomes a floating glass pill. */
 .header[data-variant='horizon'] {
-  top: 16px;
-  width: min(1180px, calc(100% - 48px));
-  margin: 16px auto 0;
-  border: 1px solid rgb(255 255 255 / 16%);
+  position: relative;
+  top: 0;
+  width: min(1680px, calc(100% - 96px));
+  margin: 0 auto;
+  border: 1px solid transparent;
   border-radius: 999px;
-  background: rgb(12 20 38 / 28%);
-  backdrop-filter: blur(18px) saturate(180%);
-  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   color: #f7f5fc;
+  box-shadow: none;
+  pointer-events: auto;
+  transition: top 550ms cubic-bezier(.22, 1, .36, 1), width 550ms cubic-bezier(.22, 1, .36, 1), background-color 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
+}
+.header[data-variant='horizon'][data-compact='true'] {
+  top: 16px;
+  width: min(1080px, calc(100% - 48px));
+  border-color: rgb(255 255 255 / 16%);
+  background: rgb(12 20 38 / 48%);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
   box-shadow: 0 16px 50px rgb(7 12 24 / 25%), inset 0 1px 0 rgb(255 255 255 / 12%);
-  transition: background-color 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
 }
 .header[data-variant='horizon'][data-scrolled='true'] {
-  background: rgb(255 255 255 / 50%) !important;
+  background: rgb(250 250 247 / 90%) !important;
   border-color: rgb(255 255 255 / 55%);
-  box-shadow: 0 16px 46px rgb(10 23 52 / 15%), inset 0 1px 0 rgb(255 255 255 / 60%);
+  box-shadow: 0 8px 28px rgb(10 23 52 / 10%), inset 0 1px 0 rgb(255 255 255 / 60%);
   backdrop-filter: blur(18px) saturate(180%);
   -webkit-backdrop-filter: blur(18px) saturate(180%);
 }
-.header[data-variant='horizon'] .navbar { width: 100%; min-height: 78px; padding: 9px 12px 9px 24px; grid-template-columns: auto 1fr auto; gap: 24px; }
+.header[data-variant='horizon'] .navbar { width: 100%; min-height: 78px; padding: 9px 12px 9px 24px; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 24px; transition: min-height 550ms cubic-bezier(.22, 1, .36, 1), padding 550ms cubic-bezier(.22, 1, .36, 1); }
+.header[data-variant='horizon'][data-compact='true'] .navbar { min-height: 60px; padding: 4px 10px 4px 20px; }
 .header[data-variant='horizon'] .navigation { justify-content: center; gap: 20px; }
-.header[data-variant='horizon'] .logo { width: 146px; height: 40px; object-fit: contain; }
+.header[data-variant='horizon'] .logo { width: 160px; height: 44px; object-fit: contain; transition: width 550ms cubic-bezier(.22, 1, .36, 1), height 550ms cubic-bezier(.22, 1, .36, 1); }
+.header[data-variant='horizon'][data-compact='true'] .logo { width: 140px; height: 38px; }
 .header[data-variant='horizon'] .navigation :is(button, a):not(.demoButton) { color: rgb(255 255 255 / 86%); transition: color 180ms ease; }
 .header[data-variant='horizon'] .navigation :is(button, a):not(.demoButton):hover { color: #fff; }
 .header[data-variant='horizon'] .dropdown > button { position: relative; }
@@ -147,7 +170,11 @@
   background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform 200ms ease;
 }
 .header[data-variant='horizon'] .dropdown > button:is(:hover, :focus-visible, [aria-expanded='true'])::after { transform: scaleX(1); }
-.header[data-variant='horizon'] .navDemo.demoButton { background: #18cb96 !important; color: #14291f; border: 1px solid rgb(255 255 255 / 18%); border-radius: 999px; min-height: 44px; padding-inline: 22px; box-shadow: 0 4px 16px rgb(7 12 24 / 12%); }
+.header[data-variant='horizon'] .navDemo.demoButton { background: #f4f8ef !important; color: #184b3d !important; border-color: transparent !important; border-radius: 999px !important; min-height: 40px !important; height: 40px !important; padding-inline: 20px !important; box-shadow: 0 2px 8px rgb(7 12 24 / 8%) !important; transition: color 220ms ease, background-color 220ms ease, transform 180ms ease; }
+.header[data-variant='horizon'] .navDemo.demoButton::before { content: none; }
+.header[data-variant='horizon'][data-scrolled='true'] .navDemo.demoButton { background: #184b3d !important; color: #fff !important; }
+.header[data-variant='horizon'] .navDemo.demoButton:hover { background: #dff4e9 !important; color: #184b3d !important; transform: translateY(-1px); }
+.header[data-variant='horizon'][data-scrolled='true'] .navDemo.demoButton:hover { background: #216650 !important; color: #fff !important; }
 .header[data-variant='horizon'] .mobileToggle { color: #fff; border-color: rgb(255 255 255 / 25%); border-radius: 50%; }
 .header[data-variant='horizon'][data-scrolled='true'] .mobileToggle { color: var(--landing-ink); border-color: rgb(15 23 42 / 15%); }
 .header[data-variant='horizon'] .mobileDropdownList strong { color: #e9e5f0; }
@@ -160,13 +187,15 @@
   .header[data-variant='horizon'][data-scrolled='true'] .navigation :is(button, a):not(.demoButton):hover { color: #0f172a; }
 }
 @media (max-width: 1100px) and (min-width: 901px) {
-  .header[data-variant='horizon'] { width: calc(100% - 32px); }
-  .header[data-variant='horizon'] .navbar { gap: 16px; padding-inline: 16px; }
+  .header[data-variant='horizon'], .header[data-variant='horizon'][data-compact='true'] { width: calc(100% - 32px); }
+  .header[data-variant='horizon'] .navbar { grid-template-columns: auto 1fr auto; gap: 16px; padding-inline: 16px; }
   .header[data-variant='horizon'] .navigation { gap: 12px; font-size: 11px; }
-  .header[data-variant='horizon'] .logo { width: 130px; }
+  .header[data-variant='horizon'] .logo, .header[data-variant='horizon'][data-compact='true'] .logo { width: 130px; }
 }
 @media (max-width: 900px) {
-  .header[data-variant='horizon'] { top: 12px; width: calc(100% - 32px); margin-top: 12px; }
+  .horizonNavFrame { height: 72px; }
+  .header[data-variant='horizon'][data-compact='true'] { top: 12px; }
+  .header[data-variant='horizon'], .header[data-variant='horizon'][data-compact='true'] { width: calc(100% - 32px); }
   .header[data-variant='horizon'] .navbar { min-height: 70px; padding-inline: 16px; }
   .header[data-variant='horizon'] .navigation { background: rgb(29 25 39 / 94%); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border: 1px solid rgb(255 255 255 / 16%); border-radius: 20px; margin-top: 12px; max-height: calc(100dvh - 110px); }
 }
@@ -415,16 +444,29 @@
 .megaRightCta {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  margin-top: 6px;
-  font-size: 12.5px;
-  font-weight: 800;
-  color: #ffffff;
-  transition: transform 150ms ease, opacity 150ms ease;
+  justify-content: center;
+  gap: 8px;
+  min-height: 40px;
+  margin-top: 12px;
+  padding: 0 20px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: #f4f8ef;
+  font-size: 12px;
+  font-weight: 600;
+  color: #184b3d;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgb(7 12 24 / 8%);
+  transition: background-color 220ms ease, transform 180ms ease;
 }
 .megaRightCta:hover {
-  opacity: 0.92;
-  transform: translateX(3px);
+  background: #dff4e9;
+  transform: translateY(-1px);
+}
+.megaRightCta:active { transform: scale(.98); }
+@media (prefers-reduced-motion: reduce) {
+  .megaRightCta { transition: none; }
+  .megaRightCta:hover, .megaRightCta:active { transform: none; }
 }
 
 /* Mobile drawer accordion list (hidden on desktop) */

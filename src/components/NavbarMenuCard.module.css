@@ -51,9 +51,10 @@
 .promoDescription { font-size: 11px; line-height: 1.7; color: rgb(255 255 255 / 72%); }
 .promoLink { display: inline-flex; align-items: center; gap: 9px; margin-top: 5px; font-size: 11px; font-weight: 500; color: #8ce2bf; }
 .promoLink svg { flex-shrink: 0; }
-.contact { display: grid; gap: 5px; margin-top: 16px; padding: 16px 4px 2px; border-top: 1px solid var(--menu-line); color: var(--menu-muted); font-size: 11px; line-height: 1.5; }
-.contact strong { display: flex; align-items: center; justify-content: space-between; font-size: 13px; font-weight: 600; color: var(--menu-ink); }
-.contact:hover strong { color: var(--menu-accent); }
+.contact { display: grid; justify-items: start; gap: 12px; margin-top: 16px; padding: 16px 4px 2px; border-top: 1px solid var(--menu-line); color: var(--menu-muted); font-size: 11px; line-height: 1.5; }
+.demoButton { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 40px; padding: 0 20px; border: 1px solid transparent; border-radius: 999px; background: #184b3d; color: #fff; font-size: 12px; font-weight: 600; white-space: nowrap; box-shadow: 0 2px 8px rgb(7 12 24 / 8%); transition: background-color 220ms ease, transform 180ms ease; }
+.demoButton:hover { background: #216650; transform: translateY(-1px); }
+.demoButton:active { transform: scale(.98); }
 @media (min-width: 901px) and (max-width: 1100px) {
   .card { grid-template-columns: 175px minmax(0, 1fr) 245px; }
   .content { padding-inline: 10px; }
@@ -65,5 +66,5 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .card *, .card *::after { transition: none; }
-  .promo:hover { transform: none; }
+  .promo:hover, .demoButton:hover, .demoButton:active { transform: none; }
 }

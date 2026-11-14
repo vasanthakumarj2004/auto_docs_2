@@ -253,10 +253,12 @@ function NavbarMenuCard({ menu, onNavigate }: { menu: MegaMenuData; onNavigate: 
         <span className={cardStyles.promoDescription}>Bring your documents, approvals and connected systems into one workflow.</span>
         <span className={cardStyles.promoLink}>{menu.exploreLabel}<ArrowRight size={15} aria-hidden="true" /></span>
       </Link>
-      <Link href="/#contact" className={cardStyles.contact} onClick={onNavigate}>
+      <div className={cardStyles.contact}>
         <span>See it on your own documents.</span>
-        <strong>Book a demo<ArrowUpRight size={15} aria-hidden="true" /></strong>
-      </Link>
+        <Link href="/#contact" className={cardStyles.demoButton} onClick={onNavigate}>
+          Book a demo<ArrowUpRight size={15} aria-hidden="true" />
+        </Link>
+      </div>
     </aside>
   </div>;
 }
@@ -316,19 +318,32 @@ export function LandingNavigation({ variant = 'default' }: { variant?: 'default'
   };
 
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isCompact, setIsCompact] = useState(false);
 
   useEffect(() => {
     const hero = variant === 'horizon' ? document.getElementById('top') : null;
-    const handleScroll = () => {
+    let frame = 0;
+    const updateNavigation = () => {
+      frame = 0;
       const header = headerRef.current;
+      // Separate the early contraction from the color change at the hero's edge.
+      // A small dead zone prevents flickering near the top during touch scrolling.
+      setIsCompact((compact) => window.scrollY > (compact ? 8 : 32));
       setIsScrolled(variant === 'horizon'
         ? Boolean(hero && header && hero.getBoundingClientRect().bottom <= header.getBoundingClientRect().bottom)
         : window.scrollY > 8);
     };
+    const handleScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateNavigation);
+    };
+    const observer = hero ? new ResizeObserver(handleScroll) : null;
+    if (hero) observer?.observe(hero);
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleScroll);
-    handleScroll();
+    updateNavigation();
     return () => {
+      window.cancelAnimationFrame(frame);
+      observer?.disconnect();
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleScroll);
     };
@@ -336,14 +351,13 @@ export function LandingNavigation({ variant = 'default' }: { variant?: 'default'
 
   const activeMega = openMenu ? MEGA_MENUS[openMenu] : null;
 
-  return (
-    <>
-      {variant === 'default' && <AnnouncementBarV2 />}
+  const navigation = (
       <header
         ref={headerRef}
         className={styles.header}
         data-variant={variant}
         data-scrolled={isScrolled ? 'true' : 'false'}
+        data-compact={isCompact ? 'true' : 'false'}
         onMouseLeave={handleMouseLeave}
       >
         <div className={`site-shell ${styles.navbar}`}>
@@ -668,6 +682,14 @@ export function LandingNavigation({ variant = 'default' }: { variant?: 'default'
           </div>
         )}
       </header>
+  );
+
+  return (
+    <>
+      {variant === 'default' && <AnnouncementBarV2 />}
+      {variant === 'horizon'
+        ? <div className={styles.horizonNavFrame}>{navigation}</div>
+        : navigation}
     </>
   );
 }

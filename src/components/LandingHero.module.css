@@ -1,4 +1,4 @@
-.hero { position: relative; isolation: isolate; margin-top: -96px; padding: clamp(112px, 13svh, 145px) 24px 72px; overflow: hidden; background: #77659d; color: #fff; }
+.hero { position: relative; isolation: isolate; margin-top: -80px; padding: clamp(112px, 13svh, 145px) 24px 72px; overflow: hidden; background: #77659d; color: #fff; }
 .landscape { position: absolute; inset: 0; z-index: -1; overflow: hidden; background: radial-gradient(ellipse at 80% 12%, #b7a0ca55, transparent 55%), linear-gradient(180deg, #685586 0%, #7e679b 42%, #b299b5 61%, #d5bfb9 68%, #8d7caa 73%, #292435 91%, #15151b 100%); }
 .horizon { position: absolute; left: -10%; top: 60%; width: 120%; height: 17%; background: radial-gradient(ellipse at 44% 50%, #e9e3acaa 0%, transparent 40%), linear-gradient(176deg, transparent 45%, #423b5d77 46%, #605471bb 50%, transparent 55%); filter: blur(13px); }
 .water { position: absolute; inset: 68% -20% 0; opacity: .45; background: repeating-linear-gradient(178deg, transparent 0 12px, #dbc7db44 14px 15px, transparent 19px 26px); filter: blur(3px); transform: perspective(250px) rotateX(30deg); }
@@ -90,7 +90,7 @@
   .trust { margin-top: 12px; }
 }
 @media (max-width: 900px) {
-  .hero { margin-top: -84px; padding-top: 134px; }
+  .hero { margin-top: -72px; padding-top: 134px; }
   .copy { min-height: 0; }
   .copy h1 { font-size: clamp(48px, 7.7vw, 70px); }
   .mediaArea { width: 100%; max-width: 720px; }
