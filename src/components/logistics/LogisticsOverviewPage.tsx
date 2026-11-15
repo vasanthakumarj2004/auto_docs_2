@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import Link from 'next/link';
 import { ArrowDown, ArrowRight, ArrowUpRight, Check, Ship, Mail, PackageCheck, Navigation, BarChart3 } from 'lucide-react';
 import { LandingNavigation } from '../LandingNavigation';
-import { FinanceFooter } from '../FinanceFooter';
+import { ShipsyFooter } from '../ShipsyFooter';
 import { SharedFaqAccordion } from '../SharedFaqAccordion';
 import { LogisticsHeroCollage } from './LogisticsHeroCollage';
 import { ConnectedLogisticsWorkspace } from './ConnectedLogisticsWorkspace';
@@ -270,7 +270,7 @@ export function LogisticsOverviewPage({ page = 'overview' }: { page?: PageKey })
           </div>
         </Section>
       </main>
-      <FinanceFooter />
+      <ShipsyFooter />
     </div>
   );
 }

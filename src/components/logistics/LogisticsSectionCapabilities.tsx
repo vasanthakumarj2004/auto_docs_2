@@ -240,7 +240,7 @@ const MODULE_CAPABILITIES: Record<LogisticsSlug, CapabilityTab[]> = {
           {
             variant: 'default',
             icon: 'file',
-            header: 'OCR & Multi-Doc Data Extraction',
+            header: 'AI & Multi-Doc Data Extraction',
             text: 'Extracted 48 key fields: Shipper, Consignee, HS Codes, Gross Weights, Seal Numbers & Line Items.',
           },
           {

@@ -28,11 +28,6 @@ const nextConfig = {
         destination: '/finance-desk/ca-firms/',
         permanent: true,
       },
-      {
-        source: '/demo',
-        destination: '/finance-desk/',
-        permanent: false,
-      },
     ];
   },
 };

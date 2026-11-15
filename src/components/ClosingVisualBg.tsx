@@ -6,7 +6,11 @@ import React, { memo } from 'react';
  * Minimal, architectural dot-matrix 3D geometric forms floating in the perimeter,
  * keeping the central typography completely clear.
  */
-export const ClosingVisualBg = memo(function ClosingVisualBg() {
+export const ClosingVisualBg = memo(function ClosingVisualBg({
+  noGlow = false,
+}: {
+  noGlow?: boolean;
+}) {
   return (
     <svg
       className="pointer-events-none absolute inset-0 h-full w-full select-none"
@@ -14,17 +18,19 @@ export const ClosingVisualBg = memo(function ClosingVisualBg() {
       preserveAspectRatio="xMidYMid slice"
       aria-hidden="true"
     >
-      <defs>
-        {/* Soft radial emerald ambient highlight */}
-        <radialGradient id="cta-ambient" cx="50%" cy="50%" r="60%">
-          <stop offset="0%" stopColor="#18CB96" stopOpacity="0.04" />
-          <stop offset="50%" stopColor="#18CB96" stopOpacity="0.015" />
-          <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
-        </radialGradient>
-      </defs>
+      {!noGlow && (
+        <defs>
+          {/* Soft radial emerald ambient highlight */}
+          <radialGradient id="cta-ambient" cx="50%" cy="50%" r="60%">
+            <stop offset="0%" stopColor="#18CB96" stopOpacity="0.04" />
+            <stop offset="50%" stopColor="#18CB96" stopOpacity="0.015" />
+            <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+      )}
 
       {/* Ambient background highlight */}
-      <rect width="100%" height="100%" fill="url(#cta-ambient)" />
+      {!noGlow && <rect width="100%" height="100%" fill="url(#cta-ambient)" />}
 
       {/* Point-Cloud 3D Isometric Dots */}
       <g className="inertia-dots">

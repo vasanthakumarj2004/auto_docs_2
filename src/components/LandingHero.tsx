@@ -133,7 +133,7 @@ export function LandingHero() {
         <p className={styles.description}>Bills read, checked, paid and posted to Tally. Emails become CargoWise jobs. Your team handles exceptions, not typing.</p>
         <div className={styles.offerCard}>
           <div className={styles.offerHeading}><Workflow size={15} aria-hidden="true" /><span>THE DOCSYNECX PLATFORM</span></div>
-          <div className={styles.offerBody}><p>See it on your own documents.</p><Link href="/#contact">Book a demo <ArrowUpRight size={17} aria-hidden="true" /></Link></div>
+          <div className={styles.offerBody}><p>See it on your own documents.</p><Link href="/demo/">Book a demo <ArrowUpRight size={17} aria-hidden="true" /></Link></div>
         </div>
         <div className={styles.deskLinks}>
           <Link href="/finance-desk/">I run a finance desk <ArrowUpRight size={17} aria-hidden="true" /></Link>

@@ -117,7 +117,39 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
             </ul>
           </div>
 
-          {/* Column 3: Finance Modules */}
+          {/* Column 3: Solutions by Use Case */}
+          <div className={styles.navCol}>
+            <span className={styles.colHeader}>Solutions by Use Case</span>
+            <ul className={styles.linkList}>
+              <li>
+                <Link href="/solutions#automotive" className={styles.footerLink}>
+                  Automotive &amp; EV
+                </Link>
+              </li>
+              <li>
+                <Link href="/solutions#manufacturing" className={styles.footerLink}>
+                  Industrial Manufacturing
+                </Link>
+              </li>
+              <li>
+                <Link href="/solutions#textile" className={styles.footerLink}>
+                  Textile &amp; Garments
+                </Link>
+              </li>
+              <li>
+                <Link href="/solutions#retail" className={styles.footerLink}>
+                  Retail &amp; Distribution
+                </Link>
+              </li>
+              <li>
+                <Link href="/solutions#logistics" className={styles.footerLink}>
+                  Freight &amp; Logistics
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 4: Finance Modules */}
           <div className={styles.navCol}>
             <span className={styles.colHeader}>Finance Modules</span>
             <ul className={styles.linkList}>
@@ -144,7 +176,7 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
             </ul>
           </div>
 
-          {/* Column 4: Logistics Modules */}
+          {/* Column 5: Logistics Modules */}
           <div className={styles.navCol}>
             <span className={styles.colHeader}>Logistics Modules</span>
             <ul className={styles.linkList}>
@@ -170,6 +202,30 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
               </li>
             </ul>
           </div>
+
+          {/* Column 6: Company */}
+          <div className={styles.navCol}>
+            <span className={styles.colHeader}>Company</span>
+            <ul className={styles.linkList}>
+              <li>
+                <Link href="/#faq" className={styles.footerLink}>
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/#faq" className={styles.footerLink}>
+                  Terms and Conditions
+                </Link>
+              </li>
+              <li>
+                <CookieSettingsButton
+                  className={styles.footerLink}
+                  showIcon={false}
+                  label="Cookie Settings"
+                />
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -178,26 +234,14 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
       <div className={styles.bottomStrip}>
         <div className={styles.shell}>
           <div className={styles.bottomContent}>
-            <span className={styles.brandLocation}>
-              SynecX AI Labs Private Limited &middot; Coimbatore, Tamil Nadu, India
-            </span>
-
-            <div className={styles.bottomRight}>
-              <Link href="/#faq" className={styles.bottomLink}>
-                Privacy Policy
-              </Link>
-              <Link href="/#faq" className={styles.bottomLink}>
-                Terms of Service
-              </Link>
-              <CookieSettingsButton
-                className={styles.bottomLink}
-                showIcon={false}
-                label="Cookie Settings"
-              />
-              <span className={styles.copyright}>
-                &copy; 2026 SynecX AI Labs Private Limited. All rights reserved. Built for smarter business operations.
+            <div className={styles.bottomMeta}>
+              <span className={styles.brandLocation}>
+                SynecX AI Labs Private Limited &middot; Coimbatore, Tamil Nadu, India
               </span>
             </div>
+            <span className={styles.copyright}>
+              &copy; powered by Synecx AI Labs Private Limited. All rights reserved. 
+            </span>
           </div>
         </div>
       </div>

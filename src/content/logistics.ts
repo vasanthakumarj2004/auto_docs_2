@@ -93,7 +93,7 @@ export const logisticsModules: Record<LogisticsSlug, LogisticsModuleData> = {
     eyebrow: 'DOCSYNECX LOGISTICS · MODULE',
     heroTitle: 'Move freight enquiries from inbox to customer quotation and booking.',
     heroDescription:
-      'Use AI-assisted workflows to read customer enquiries, gather vendor rates, compare options and prepare customer quotations — helping freight teams reduce repetitive email coordination.',
+      'Use agentic workflows to read customer enquiries, gather vendor rates, compare options and prepare customer quotations — helping freight teams reduce repetitive email coordination.',
     primaryCtaText: 'Discuss this module ↗',
     secondaryCtaText: 'Explore Logistics platform',
     cardBadges: ['AI-assisted', 'Workflow status', 'Review ready'],

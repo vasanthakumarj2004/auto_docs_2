@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { getAllBlogs } from '@/src/content/blogs';
 import { LandingNavigation } from '@/src/components/LandingNavigation';
-import { FinanceFooter } from '@/src/components/FinanceFooter';
+import { ShipsyFooter } from '@/src/components/ShipsyFooter';
 import { BlogListing } from '@/src/components/blogs/BlogListing';
 import base from '@/src/components/LandingPage.module.css';
 
@@ -28,7 +28,7 @@ export default function BlogsPage() {
       <main id="main-content">
         <BlogListing initialPosts={posts} />
       </main>
-      <FinanceFooter />
+      <ShipsyFooter />
     </div>
   );
 }

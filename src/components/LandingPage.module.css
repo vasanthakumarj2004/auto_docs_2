@@ -141,6 +141,13 @@
   transition: top 550ms cubic-bezier(.22, 1, .36, 1), width 550ms cubic-bezier(.22, 1, .36, 1), background-color 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
 }
 
+/* Static compact mode on other pages: immediately set to transitioned size with no animation jitter */
+.header[data-static='true'],
+.header[data-static='true'] .navbar,
+.header[data-static='true'] .logo {
+  transition: none !important;
+}
+
 .header[data-variant='horizon'][data-compact='true'] {
   top: 16px;
   width: min(1080px, calc(100% - 48px));

@@ -21,7 +21,7 @@ import s from './InvoiceHowItWorks.module.css';
 const steps = [
   {
     name: 'Upload',
-    description: 'Upload or submit supplier invoice documents via PDF, email, or bulk scanner.',
+    description: 'Direct Upload or submit supplier invoice documents via PDF, whatsapp, email, or bulk scanner.',
     icon: Inbox,
     heading: 'Multi-channel invoice intake',
     label: '3 documents in queue',

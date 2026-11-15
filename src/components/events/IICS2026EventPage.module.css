@@ -1,0 +1,538 @@
+/* ==========================================================================
+   IICS 2026 Event Showcase: Docsynecx @ Booth Q53
+   Streamlined Viewport-First Exhibition Pass Design
+   ========================================================================== */
+
+.pageWrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(180deg, #f2faf6 0%, #fbfdfc 480px, #ffffff 100%);
+  color: #12292f;
+  font-family: inherit;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: clamp(100px, 12vh, 130px);
+  padding-bottom: clamp(60px, 8vh, 90px);
+  position: relative;
+}
+
+/* Subtle background logistics grid pattern */
+.bgPattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(17, 138, 109, 0.08) 1px, transparent 0);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 0;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, black 20%, transparent 80%);
+}
+
+.bgAmbientGlow {
+  position: absolute;
+  top: 15%;
+  right: 15%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(24, 203, 150, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ==========================================================================
+   VIEWPORT TWO-COLUMN GRID
+   ========================================================================== */
+
+.viewportGrid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr);
+  gap: clamp(36px, 5vw, 68px);
+  align-items: center;
+}
+
+/* ==========================================================================
+   LEFT COLUMN: Value Proposition & What to Expect
+   ========================================================================== */
+
+.pitchColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.eyebrowBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: #e6f7f2;
+  border: 1px solid rgba(17, 138, 109, 0.25);
+  color: #118a6d;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.pulseDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: pulse 2s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+@keyframes pulse {
+  to {
+    box-shadow: 0 0 0 8px rgba(16, 185, 129, 0);
+  }
+}
+
+.headline {
+  font-size: clamp(34px, 3.8vw, 48px);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  color: #12292f;
+  margin-bottom: 14px;
+}
+
+.accent {
+  color: #118a6d;
+  display: inline;
+}
+
+.positioningPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #118a6d;
+  background: rgba(17, 138, 109, 0.08);
+  border-radius: 8px;
+  padding: 6px 12px;
+  margin-bottom: 18px;
+  max-width: fit-content;
+}
+
+.summary {
+  font-size: 15.5px;
+  line-height: 1.68;
+  color: #5f6f75;
+  margin-bottom: 28px;
+  max-width: 560px;
+}
+
+/* Bullet Highlights */
+.highlightsList {
+  list-style: none;
+  margin: 0 0 32px 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 20px;
+}
+
+.highlightItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.checkIconBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #e6f7f2;
+  color: #118a6d;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.highlightItem h4 {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #12292f;
+  margin: 0 0 3px 0;
+  line-height: 1.35;
+}
+
+.highlightItem p {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #5f6f75;
+  margin: 0;
+}
+
+/* Action Button Row */
+.actionRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.primaryCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 26px;
+  background: #118a6d;
+  color: #ffffff;
+  font-size: 14.5px;
+  font-weight: 700;
+  border-radius: 9999px;
+  text-decoration: none;
+  box-shadow: 0 8px 24px -6px rgba(17, 138, 109, 0.45);
+  transition: all 220ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.primaryCta:hover {
+  background: #0e755c;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 28px -6px rgba(17, 138, 109, 0.55);
+}
+
+.secondaryCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 22px;
+  background: #ffffff;
+  color: #12292f;
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid #dde1e9;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 180ms ease;
+}
+
+.secondaryCta:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+/* ==========================================================================
+   RIGHT COLUMN: The "Booth Q53" Exhibition Pass Card
+   ========================================================================== */
+
+.passContainer {
+  position: relative;
+}
+
+.passCard {
+  background: #111827;
+  color: #ffffff;
+  border: 1px solid #1f2937;
+  border-radius: 28px;
+  padding: clamp(28px, 3.5vw, 36px);
+  box-shadow:
+    0 25px 60px -15px rgba(15, 23, 42, 0.4),
+    0 0 0 1px rgba(24, 203, 150, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Card Accent Bar */
+.passCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #18cb96 0%, #118a6d 50%, #064e3b 100%);
+}
+
+.passHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 18px;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.14);
+  margin-bottom: 22px;
+}
+
+.passEyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #18cb96;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.passBadgeYear {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  color: #94a3b8;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.eventTitleBlock {
+  margin-bottom: 22px;
+}
+
+.eventName {
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  color: #ffffff;
+  margin: 0 0 4px 0;
+}
+
+.eventCategory {
+  font-size: 12px;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* Centerpiece Booth Q53 Box */
+.boothHeroBox {
+  background: radial-gradient(circle at 50% 50%, rgba(24, 203, 150, 0.12) 0%, rgba(17, 24, 39, 0.8) 100%);
+  border: 1.5px solid rgba(24, 203, 150, 0.4);
+  border-radius: 18px;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 24px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.boothLabel {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #18cb96;
+  margin-bottom: 4px;
+}
+
+.boothNumber {
+  font-size: clamp(38px, 4.5vw, 48px);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  line-height: 1;
+  text-shadow: 0 0 24px rgba(24, 203, 150, 0.45);
+  margin-bottom: 6px;
+}
+
+.boothSub {
+  font-size: 11.5px;
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+/* Event Factsheet Grid */
+.factsheetGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.14);
+  padding-top: 18px;
+}
+
+.factItem {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.factLabel {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+}
+
+.factValue {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #f1f5f9;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.pendingPill {
+  font-size: 10px;
+  font-weight: 600;
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.12);
+  border: 1px solid rgba(251, 191, 36, 0.25);
+  border-radius: 4px;
+  padding: 1px 6px;
+  display: inline-block;
+  width: fit-content;
+}
+
+/* Venue & Address Card inside Pass */
+.venueCard {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-bottom: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.venueCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2px;
+}
+
+.venueTitle {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.venueAddressText {
+  font-size: 11px;
+  line-height: 1.5;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.directionsLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #18cb96;
+  text-decoration: none;
+  margin-top: 2px;
+  width: fit-content;
+  transition: color 150ms ease;
+}
+
+.directionsLink:hover {
+  color: #5ee3b3;
+  text-decoration: underline;
+}
+
+/* Pass Button */
+.passButton {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 20px;
+  background: #18cb96;
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 200ms ease;
+  box-shadow: 0 4px 16px rgba(24, 203, 150, 0.35);
+}
+
+.passButton:hover {
+  background: #15b786;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 22px rgba(24, 203, 150, 0.45);
+}
+
+.passFooterNote {
+  font-size: 10.5px;
+  color: #64748b;
+  text-align: center;
+  margin: 12px 0 0 0;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .viewportGrid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .mainContent {
+    padding-top: 110px;
+  }
+
+  .passContainer {
+    max-width: 540px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .highlightsList {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .headline {
+    font-size: 30px;
+  }
+
+  .actionRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .primaryCta,
+  .secondaryCta {
+    width: 100%;
+  }
+
+  .passCard {
+    padding: 24px 20px;
+    border-radius: 22px;
+  }
+}

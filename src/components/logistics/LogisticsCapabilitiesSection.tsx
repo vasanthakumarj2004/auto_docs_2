@@ -140,7 +140,7 @@ export const CAPABILITIES_DATA: Record<LogisticsSlug, LogisticsModuleCapabilitie
       {
         stepNum: 'STEP 3 OF 6',
         shortLabel: 'EXTRACT INFORMATION',
-        subLabel: 'Multi-doc OCR',
+        subLabel: 'Multi-doc Extraction',
         headline: 'Extract information from Bill of Lading, Packing List and Commercial Invoice',
         description:
           'Intelligently ingest unstructured PDF and Excel shipping documents, extracting over 45 essential freight fields with automated parsing and data harmonization.',
@@ -834,7 +834,7 @@ export function LogisticsCapabilitiesSection({ slug }: LogisticsCapabilitiesSect
               <div className={s.previewCard}>
                 <div className={s.cardHeaderBar}>
                   <div className={s.cardHeaderTitle}>
-                    <span>TRADE DOCUMENTS OCR</span>
+                    <span>TRADE DOCUMENTS EXTRACTION</span>
                   </div>
                   <span className={s.statusPillGreen}>48 FIELDS PARSED</span>
                 </div>

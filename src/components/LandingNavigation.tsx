@@ -41,7 +41,7 @@ interface MegaMenuData {
 
 const MEGA_MENUS: Record<string, MegaMenuData> = {
   'Finance Desk': {
-    label: 'Finance Desk',
+    label: 'Finance',
     eyebrow: 'Automate Finance Operations',
     overviewHref: '/finance-desk/',
     exploreLabel: 'Explore Finance Desk',
@@ -50,7 +50,7 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
       {
         sno: '01',
         title: 'Invoice Automation',
-        description: 'Read, validate and prepare invoices for your books.',
+        description: 'Post Supplies Invoices into Tally.',
         href: '/finance-desk/invoice-automation/',
       },
       {
@@ -87,7 +87,7 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
     ],
   },
   'Logistics Desk': {
-    label: 'Logistics Desk',
+    label: 'Logistics',
     eyebrow: 'Automate Freight Operations',
     overviewHref: '/logistics/',
     exploreLabel: 'Explore Logistics Desk',
@@ -159,8 +159,8 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
       {
         sno: '04',
         title: 'Events',
-        description: 'Automate bills of lading, shipping orders and customs manifests.',
-        href: '/#contact',
+        description: 'Meet Docsynecx at India International Cargo Show 2026 (Booth Q53).',
+        href: '/events/iics-2026/',
       },
     ],
   },
@@ -216,7 +216,7 @@ function NavbarMenuCard({ menu, onNavigate }: { menu: MegaMenuData; onNavigate: 
       </Link>
       <div className={cardStyles.contact}>
         <span>See it on your own documents.</span>
-        <Link href="/#contact" className={cardStyles.demoButton} onClick={onNavigate}>
+        <Link href="/demo/" className={cardStyles.demoButton} onClick={onNavigate}>
           Book a demo<ArrowUpRight size={15} aria-hidden="true" />
         </Link>
       </div>
@@ -224,7 +224,7 @@ function NavbarMenuCard({ menu, onNavigate }: { menu: MegaMenuData; onNavigate: 
   </div>;
 }
 
-export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default' | 'horizon' }) {
+export function LandingNavigation({ variant = 'compact' }: { variant?: 'default' | 'horizon' | 'compact' }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement>(null);
@@ -278,10 +278,17 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
     }, 180);
   };
 
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isCompact, setIsCompact] = useState(false);
+  const isCompactDefault = variant === 'compact';
+  const [isScrolled, setIsScrolled] = useState(isCompactDefault);
+  const [isCompact, setIsCompact] = useState(isCompactDefault);
 
   useEffect(() => {
+    if (variant === 'compact') {
+      setIsScrolled(true);
+      setIsCompact(true);
+      return;
+    }
+
     const hero = variant === 'horizon' ? document.getElementById('top') : null;
     let frame = 0;
     const updateNavigation = () => {
@@ -313,15 +320,17 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
   }, [variant]);
 
   const activeMega = openMenu ? MEGA_MENUS[openMenu] : null;
+  const headerVariant = variant === 'compact' ? 'horizon' : variant;
 
   const navigation = (
       <header
         ref={headerRef}
         className={styles.header}
-        data-variant={variant}
+        data-variant={headerVariant}
         data-scrolled={isScrolled ? 'true' : 'false'}
         data-compact={isCompact ? 'true' : 'false'}
         data-past-hero={isScrolled ? 'true' : 'false'}
+        data-static={variant === 'compact' ? 'true' : 'false'}
         onMouseLeave={handleMouseLeave}
       >
         <div className={`site-shell ${styles.navbar}`}>
@@ -380,7 +389,7 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
                     aria-controls="landing-mega-menu"
                     onClick={() => setOpenMenu(openMenu === item.key ? null : item.key)}
                   >
-                    {item.key}
+                    {MEGA_MENUS[item.key]?.label || item.key}
                     <ChevronDown
                       size={13}
                       aria-hidden="true"
@@ -443,7 +452,7 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
             })}
 
             <Link
-              href="/#contact"
+              href="/demo/"
               className={`${styles.demoButton} ${styles.navDemo} ${styles.mobileDemo}`}
               onClick={close}
             >
@@ -452,7 +461,7 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
           </nav>
 
           <Link
-            href="/#contact"
+            href="/demo/"
             className={`${styles.demoButton} ${styles.navDemo} ${styles.desktopDemo}`}
             onClick={close}
           >
@@ -483,7 +492,7 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
   return (
     <>
       {variant === 'default' && <AnnouncementBarV2 />}
-      {variant === 'horizon'
+      {variant === 'horizon' || variant === 'compact'
         ? <div className={styles.horizonNavFrame}>{navigation}</div>
         : navigation}
     </>

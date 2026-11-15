@@ -6,7 +6,9 @@ import { ArrowRight, ArrowLeftRight, ArrowUpRight, FileText, Zap, ShieldCheck, C
 import { LandingHero } from './LandingHero';
 import { SharedFaqAccordion } from './SharedFaqAccordion';
 import { LandingNavigation } from './LandingNavigation';
+import { LandingAnnouncementBar } from './LandingAnnouncementBar';
 import { CustomerReviewSlider } from './CustomerReviewSlider';
+import { IntelligenceLayer } from './IntelligenceLayer';
 import { LandingClosingCta } from './LandingClosingCta';
 import { ShipsyFooter } from './ShipsyFooter';
 import { landingDesks, landingFaqs } from '../content/landing';
@@ -67,10 +69,14 @@ function SectionHeading({ eyebrow, title, copy, id }: { eyebrow: string; title: 
 }
 
 export function LandingPage() {
-  return <div className={styles.page}>
-    <a href="#main-content" className={styles.skipLink}>Skip to content</a>
-    <LandingNavigation variant="horizon" />
-    <main id="main-content">
+  return (
+    <div className={styles.page}>
+      <a href="#main-content" className={styles.skipLink}>
+        Skip to content
+      </a>
+      <LandingAnnouncementBar />
+      <LandingNavigation variant="horizon" />
+      <main id="main-content">
       <LandingHero />
       <section className={styles.statStrip} aria-labelledby="outcomes-title">
         <div className="site-shell">
@@ -191,6 +197,7 @@ export function LandingPage() {
           </div>
         </div>
       </section>
+      <IntelligenceLayer />
       <section id="customers" className={`${styles.section} ${styles.customersSection}`} aria-labelledby="customers-title">
         <div className="site-shell">
           <SectionHeading
@@ -210,5 +217,6 @@ export function LandingPage() {
       <LandingClosingCta />
     </main>
     <ShipsyFooter />
-  </div>;
+  </div>
+  );
 }

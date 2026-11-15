@@ -554,7 +554,7 @@ function AccountsLayoutPreview() {
       </div>
       <div className={s.window}>
         <div className={s.windowHeader}>
-          <span><Layers size={16} />Universal layout & OCR normalizer</span>
+          <span><Layers size={16} />Universal layout & document normalizer</span>
           <span className={s.pill}>50+ formats</span>
         </div>
         <div className={s.documentList}>
@@ -583,7 +583,7 @@ function AccountsLayoutPreview() {
         </div>
         <div className={s.windowFooter}>
           <FileCheck2 size={14} />
-          Intelligent OCR normalizes diverse supplier documents seamlessly
+          Intelligent Document AI normalizes diverse supplier documents seamlessly
           <ChevronRight size={14} />
         </div>
       </div>

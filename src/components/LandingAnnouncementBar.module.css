@@ -1,0 +1,181 @@
+/* ==========================================================================
+   Landing Announcement Bar: IICS 2026 Event Showcase
+   Clean White & Compact Slim Height
+   ========================================================================== */
+
+.announcementBar {
+  position: relative;
+  z-index: 55;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+  color: #1e293b;
+  padding: 4px 14px;
+  min-height: 30px;
+  font-family: inherit;
+  font-size: 11.5px;
+  line-height: 1.25;
+  transition: all 220ms ease;
+  user-select: none;
+}
+
+.shell {
+  width: min(100% - 24px, 1360px);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* Clickable Center Area */
+.linkWrapper {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+  transition: opacity 180ms ease;
+}
+
+.linkWrapper:hover .ctaText {
+  color: #059669;
+  text-decoration: underline;
+}
+
+.linkWrapper:hover .arrowIcon {
+  transform: translate(2px, -2px);
+  color: #059669;
+}
+
+/* Event Pill Tag */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 1.5px 7px;
+  border-radius: 9999px;
+  background: #ecfdf5;
+  border: 1px solid rgba(17, 138, 109, 0.25);
+  color: #0d9466;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.pulseDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: barPulse 2s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+@keyframes barPulse {
+  to {
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+}
+
+/* Main Announcement Text */
+.announcementText {
+  font-weight: 500;
+  color: #475569;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 11.5px;
+}
+
+.strongText {
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.boothHighlight {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: #0d9466;
+  background: #ecfdf5;
+  border: 1px solid rgba(17, 138, 109, 0.25);
+  border-radius: 4px;
+  padding: 0.5px 5px;
+  margin-left: 3px;
+  font-size: 10px;
+}
+
+/* CTA Pill / Link */
+.ctaGroup {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.ctaText {
+  font-size: 11px;
+  font-weight: 700;
+  color: #0d9466;
+  transition: color 150ms ease;
+}
+
+.arrowIcon {
+  color: #0d9466;
+  transition: transform 180ms ease, color 150ms ease;
+}
+
+/* Dismiss Button */
+.dismissBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 160ms ease;
+  flex-shrink: 0;
+}
+
+.dismissBtn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+/* Responsive collapse on mobile */
+@media (max-width: 768px) {
+  .shell {
+    width: 100%;
+    gap: 6px;
+  }
+
+  .announcementBar {
+    padding: 3px 10px;
+  }
+
+  .announcementText {
+    font-size: 10.5px;
+  }
+
+  .badge {
+    padding: 1px 6px;
+    font-size: 9px;
+  }
+}
+
+@media (max-width: 540px) {
+  .announcementText span.extraCopy {
+    display: none;
+  }
+}

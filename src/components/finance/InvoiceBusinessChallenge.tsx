@@ -117,7 +117,7 @@ function LayoutsPreview() {
         <div className={s.documentList}>
           {[
             { label: 'Digital Tax Invoice', format: 'Standard 2-column table · 100% matched', tag: 'Ready' },
-            { label: 'Scanned Hardcopy Bill', format: 'OCR text recognition & skew corrected', tag: 'Parsed' },
+            { label: 'Scanned Hardcopy Bill', format: 'AI text recognition & skew corrected', tag: 'Parsed' },
             { label: 'Vendor Email Attachment', format: 'PDF + email metadata combined', tag: 'Ready' },
           ].map(({ label, format, tag }, i) => (
             <div className={s.documentRow} key={label} style={{ animationDelay: `${i * 100}ms` }}>
@@ -177,7 +177,7 @@ function TaxChecksPreview() {
         <div className={s.checkRows}>
           {[
             ['GSTIN format & status', 'Active & verified'],
-            ['HSN code 8482.10 rate', '18% rate confirmed'],
+            ['HSN code 8482.10 Tax rate', '18% rate confirmed'],
             ['IGST calculation ₹11,295', 'Reconciled to line items'],
           ].map(([label, status], i) => (
             <div key={label} style={{ animationDelay: `${i * 120}ms` }}>

@@ -244,7 +244,7 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
       {
         tag: 'BATCH AUTOMATION',
         title: 'Automated Invoice Intake & Routing',
-        description: 'Incoming emails with PDF attachments are ingested, OCR-extracted, and assigned to the right cost center queue automatically.',
+        description: 'Incoming emails with PDF attachments are ingested, AI-extracted, and assigned to the right cost center queue automatically.',
       },
       {
         tag: 'GOVERNANCE',
@@ -275,7 +275,7 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
     processEyebrow: 'STRUCTURED AP WORKFLOW',
     processTitle: 'From vendor invoice to ledger posting in 4 controlled steps.',
     processDescription: 'Full visibility at every milestone so no invoice ever slips through the cracks or gets delayed.',
-    processSteps: ['Central Inbox Ingestion', 'AI OCR & Line-Item Check', 'Departmental Approval', 'Automated TallyPrime Posting'],
+    processSteps: ['Central Inbox Ingestion', 'AI Extraction & Line-Item Check', 'Departmental Approval', 'Automated TallyPrime Posting'],
     proofLabel: 'LOGISTICS BENCHMARK',
     proofTitle: 'FT Logistics',
     proofMetricFrom: '2 hrs',

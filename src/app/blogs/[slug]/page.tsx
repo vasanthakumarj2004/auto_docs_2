@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getAllBlogs, getBlogBySlug, getRelatedBlogs } from '@/src/content/blogs';
 import { LandingNavigation } from '@/src/components/LandingNavigation';
-import { FinanceFooter } from '@/src/components/FinanceFooter';
+import { ShipsyFooter } from '@/src/components/ShipsyFooter';
 import { BlogPostView } from '@/src/components/blogs/BlogPostView';
 import base from '@/src/components/LandingPage.module.css';
 
@@ -66,7 +66,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       <main id="main-content">
         <BlogPostView post={post} related={related} />
       </main>
-      <FinanceFooter />
+      <ShipsyFooter />
     </div>
   );
 }
