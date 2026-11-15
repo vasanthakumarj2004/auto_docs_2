@@ -2,10 +2,12 @@ import { ConsentCategories, ConsentPreferences, ConsentStatus } from '@/src/type
 import {
   getSavedConsentCookie,
   saveConsentCookie,
+  deleteCookie,
   purgeFunctionalLocalStorage,
   purgeFunctionalSessionStorage,
   purgeMarketingData,
 } from './consent-storage';
+import { COOKIE_NAME } from './consent-config';
 import { createConsentPreferences, getPresetPreferences } from './consent-validation';
 import { updateAnalyticsConsent } from '../integrations/analytics';
 import { updateMarketingConsent } from '../integrations/marketing';
@@ -71,6 +73,27 @@ export function acceptAllConsent(): ConsentPreferences {
 export function rejectAllConsent(): ConsentPreferences {
   const prefs = getPresetPreferences('reject_all');
   return applyConsent(prefs);
+}
+
+/**
+ * Clear consent handler:
+ * Deletes the consent cookie and purges stored data so that consent is requested again on page reload.
+ */
+export function clearConsent(): void {
+  deleteCookie(COOKIE_NAME);
+  updateAnalyticsConsent(false);
+  updateMarketingConsent(false);
+  purgeFunctionalLocalStorage();
+  purgeFunctionalSessionStorage();
+  purgeMarketingData();
+
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(
+      new CustomEvent('docsynecx:consent-changed', {
+        detail: null,
+      })
+    );
+  }
 }
 
 /**

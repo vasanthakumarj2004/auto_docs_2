@@ -3,7 +3,7 @@ export const demoHref = '/demo/#demo-form';
 export const interestHref = '/finance-desk/accounts-payable/#register-interest';
 
 export const financeCapabilities = [
-  { slug: 'invoice-automation', title: 'Invoice Automation', label: 'Document automation', description: 'Turn supplier invoices into structured, reviewable data for your accounting workflow.', bullets: ['AI-powered invoice data extraction', 'GST, HSN and line-item capture', 'Human-in-the-loop validation', 'Duplicate detection and batch processing', 'TallyPrime integration'], link: 'Explore invoice automation' },
+  { slug: 'invoice-automation', title: 'Invoice Automation', label: 'Document automation', description: 'Post supplier invoices into structured, reviewable data for your accounting workflow.', bullets: ['AI-powered invoice data extraction', 'GST, HSN and line-item capture', 'Human-in-the-loop validation', 'Duplicate detection and batch processing', 'TallyPrime integration'], link: 'Explore invoice automation' },
   { slug: 'banking-reconciliation', title: 'Banking & Reconciliation', label: 'Banking', description: 'Process bank statements, support bookkeeping and review reconciliation inside TallyPrime.', bullets: ['Bank statement intake', 'Transaction extraction and categorisation', 'Entries posted to TallyPrime', 'Matched and unmatched review', 'Reviewer controls'], link: 'Explore banking & reconciliation' },
   { slug: 'payment-reminders', title: 'Payment Reminders', label: 'Receivables', description: 'Keep outstanding invoices visible and follow up with customers before and after due dates.', bullets: ['Track invoice due dates', 'Identify pending and overdue payments', 'Send or schedule reminders', 'Follow-up visibility', 'More consistent collections'], link: 'Explore payment reminders' },
   { slug: 'accounts-payable', title: 'Accounts Payable', label: 'Payables', description: 'Planned workflows for supplier invoices, payment review and payables visibility.', bullets: ['Supplier invoice and payable information', 'Payment due-date management', 'Review and approval workflows', 'Payables reporting', 'Finance-system integration, subject to scope'], link: 'Register interest' },
@@ -71,7 +71,7 @@ export const financePageCopy = {
     ctaEyebrow: 'DOCSYNECX FINANCE DESK', ctaTitle: 'Bring your finance workflows into one connected workspace.', ctaCopy: "Tell us about your documents, accounting system and reporting needs, and we’ll help identify a practical starting point.",
   },
   'invoice-automation': {
-    eyebrow: 'FINANCE DESK / INVOICE AUTOMATION', headline: 'Turn supplier invoices', accent: 'into structured data.',
+    eyebrow: 'FINANCE DESK / INVOICE AUTOMATION', headline: 'Post supplier invoices', accent: 'into tally.',
     description: 'Automate invoice data capture, validation and accounting workflows with AI-powered document processing. Keep your team in control with human review before information moves into your accounting system.',
     primary: 'Book a Demo', microline: 'Finance Desk · Structured data · Review-led workflow',
     visualTitle: 'PRODUCT EXPERIENCE', visualLabel: 'FINANCE DESK', tiles: [['Automation', 'Invoice Automation'], ['Workspace', 'Finance Desk']], chip: 'AI-powered · Human-guided · Connected',

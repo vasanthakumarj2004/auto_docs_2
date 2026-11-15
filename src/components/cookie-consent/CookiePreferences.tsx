@@ -9,15 +9,20 @@ import styles from './CookieConsent.module.css';
 export const CookiePreferences: React.FC = () => {
   const { preferences, saveCustom, acceptAll, rejectAll, closeCustomizing, closeBanner } = useConsent();
 
-  const [functional, setFunctional] = useState(preferences ? preferences.functional : false);
-  const [analytics, setAnalytics] = useState(preferences ? preferences.analytics : false);
-  const [marketing, setMarketing] = useState(preferences ? preferences.marketing : false);
+  const [functional, setFunctional] = useState(preferences?.functional ?? true);
+  const [analytics, setAnalytics] = useState(preferences?.analytics ?? true);
+  const [marketing, setMarketing] = useState(preferences?.marketing ?? true);
 
   useEffect(() => {
-    if (preferences) {
+    if (preferences && preferences.consentStatus === 'custom') {
       setFunctional(preferences.functional);
       setAnalytics(preferences.analytics);
       setMarketing(preferences.marketing);
+    } else {
+      // Default all checkboxes to ticked (true) when customizing preferences
+      setFunctional(true);
+      setAnalytics(true);
+      setMarketing(true);
     }
   }, [preferences]);
 

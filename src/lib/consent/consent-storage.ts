@@ -32,7 +32,15 @@ export function getCookie(name: string): string | null {
  */
 export function deleteCookie(name: string): void {
   if (typeof document === 'undefined') return;
-  // Overwrite with immediate expiry across standard domain paths
+  const isSecureContext =
+    typeof window !== 'undefined' &&
+    (window.location.protocol === 'https:' ||
+      window.location.hostname === 'localhost' ||
+      window.location.hostname === '127.0.0.1');
+  const secureFlag = isSecureContext ? '; Secure' : '';
+
+  // Overwrite with immediate expiry across standard domain paths (both secure and plain)
+  document.cookie = `${encodeURIComponent(name)}=; max-age=0; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax${secureFlag}`;
   document.cookie = `${encodeURIComponent(name)}=; max-age=0; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax`;
 }
 
