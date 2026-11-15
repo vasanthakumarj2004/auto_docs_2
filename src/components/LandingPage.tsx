@@ -7,6 +7,7 @@ import { LandingHero } from './LandingHero';
 import { SharedFaqAccordion } from './SharedFaqAccordion';
 import { LandingNavigation } from './LandingNavigation';
 import { CustomerReviewSlider } from './CustomerReviewSlider';
+import { IntelligenceLayer } from './IntelligenceLayer';
 import { LandingClosingCta } from './LandingClosingCta';
 import { ShipsyFooter } from './ShipsyFooter';
 import { landingDesks, landingFaqs } from '../content/landing';
@@ -191,6 +192,10 @@ export function LandingPage() {
           </div>
         </div>
       </section>
+
+      {/* Intelligence Layer Section */}
+      <IntelligenceLayer />
+
       <section id="customers" className={`${styles.section} ${styles.customersSection}`} aria-labelledby="customers-title">
         <div className="site-shell">
           <SectionHeading
