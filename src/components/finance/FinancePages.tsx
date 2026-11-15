@@ -11,7 +11,6 @@ import { FinanceWorkflow } from './FinanceWorkflow';
 import { FinanceHeroVisual } from './FinanceHeroVisual';
 import { InvoiceBusinessChallenge } from './InvoiceBusinessChallenge';
 import { InvoiceHowItWorks } from './InvoiceHowItWorks';
-import { InvoiceScaleBenchmark } from './InvoiceScaleBenchmark';
 import { BankingWhyItMatters } from './BankingWhyItMatters';
 import { BankingWorkflowOverview } from './BankingWorkflowOverview';
 import { PayableWorkingTowards } from './PayableWorkingTowards';
@@ -119,7 +118,7 @@ function Invoice() {
       'AI-powered invoice data extraction', 'Supplier, invoice number and date capture', 'GST and HSN extraction', 'Line-item and tax detail capture', 'Credit note and debit note processing', 'Human-in-the-loop validation and confidence review', 'Duplicate detection and batch processing', 'TallyPrime integration',
     ]} /></div><Features items={invoiceFeatures} /><p className={base.bottomDescription}>Start with the needs that matter most to your team. Scope and available workflows can be confirmed during a product walkthrough.</p></Section>
     <InvoiceHowItWorks />
-    <InvoiceScaleBenchmark />
+    <Related slugs={['banking-reconciliation', 'payment-reminders', 'docsynecx-intelligence']} />
   </>;
 }
 

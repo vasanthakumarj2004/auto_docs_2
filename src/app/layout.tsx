@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import React from 'react';
+import Script from 'next/script';
 import '@/src/index.css';
 import { ThemeSwitcher } from '@/src/components/ThemeSwitcher';
 import { LandingLayoutProvider } from '@/src/components/LandingLayoutProvider';
@@ -117,7 +118,11 @@ export default function RootLayout({
   return (
     <html lang="en" data-theme="logo" suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: darkThemeInitScript }} />
+        <Script
+          id="dark-theme-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: darkThemeInitScript }}
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -134,7 +139,9 @@ export default function RootLayout({
             __html: JSON.stringify(organizationSchema),
           }}
         />
-        <script
+        <Script
+          id="theme-custom-init"
+          strategy="beforeInteractive"
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var bg=localStorage.getItem('autodocs-bg-color');if(bg&&bg.indexOf('#')===0){var st=document.documentElement.style;st.setProperty('--color-hero-bg',bg);st.setProperty('--landing-bg',bg);st.setProperty('--color-paper',bg);}var t=localStorage.getItem('autodocs-theme')||'logo';if(t==='current')t='logo';var bHex=localStorage.getItem('autodocs-brand-hex');var op=localStorage.getItem('autodocs-theme-opacity');var a=op?Math.max(0.05,Math.min(1,Number(op)/100)):1;var isCustomTheme=t==='custom'||(t&&t.indexOf('custom')===0)||(bHex&&!['logo','violet','green','light-green','sea-green','red','blue','yellow','orange'].includes(t));if(isCustomTheme&&bHex&&bHex.indexOf('#')===0){document.documentElement.setAttribute('data-theme','custom');var hex=bHex.slice(1);if(hex.length===3)hex=hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];var r=parseInt(hex.substring(0,2),16);var g=parseInt(hex.substring(2,4),16);var b=parseInt(hex.substring(4,6),16);if(!isNaN(r)&&!isNaN(g)&&!isNaN(b)){var s=document.documentElement.style;var brandRgba='rgba('+r+','+g+','+b+','+a+')';var strongR=Math.max(0,Math.round(r*0.85));var strongG=Math.max(0,Math.round(g*0.85));var strongB=Math.max(0,Math.round(b*0.85));var strongRgba='rgba('+strongR+','+strongG+','+strongB+','+a+')';var softRgba='rgba('+r+','+g+','+b+','+Math.min(1,a*0.12)+')';var borderRgba='rgba('+r+','+g+','+b+','+(a*0.35+0.1)+')';s.setProperty('--color-brand',brandRgba);s.setProperty('--color-brand-500',brandRgba);s.setProperty('--color-brand-strong',strongRgba);s.setProperty('--color-brand-soft',softRgba);s.setProperty('--color-brand-border',borderRgba);s.setProperty('--color-brand-text',bHex);s.setProperty('--color-brand-50',softRgba);s.setProperty('--color-brand-100','rgba('+r+','+g+','+b+',0.18)');s.setProperty('--color-brand-200','rgba('+r+','+g+','+b+',0.32)');s.setProperty('--color-brand-400','rgba('+r+','+g+','+b+',0.70)');s.setProperty('--color-brand-800',strongRgba);s.setProperty('--color-brand-900','rgba('+Math.round(r*0.6)+','+Math.round(g*0.6)+','+Math.round(b*0.6)+','+a+')');s.setProperty('--landing-green',brandRgba);}}else if(['logo','violet','green','light-green','sea-green','red','blue','yellow','orange'].includes(t)){document.documentElement.setAttribute('data-theme',t);}else{document.documentElement.setAttribute('data-theme','logo');}}catch(e){}})();`,
           }}

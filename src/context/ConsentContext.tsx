@@ -7,6 +7,7 @@ import {
   rejectAllConsent,
   saveCustomConsent,
   initializeConsentState,
+  clearConsent,
 } from '@/src/lib/consent/consent-manager';
 import { getSavedConsentCookie } from '@/src/lib/consent/consent-storage';
 
@@ -91,14 +92,12 @@ export const ConsentProvider: React.FC<ConsentProviderProps> = ({ children }) =>
   }, []);
 
   const closeBanner = useCallback(() => {
-    // If user has not yet consented, rejecting or closing should preserve essential only
-    if (!preferences) {
-      handleRejectAll();
-    } else {
-      setIsBannerOpen(false);
-      setIsCustomizing(false);
-    }
-  }, [preferences, handleRejectAll]);
+    // Dismiss banner/preferences without saving consent so user is prompted again on page reload
+    clearConsent();
+    setPreferences(null);
+    setIsBannerOpen(false);
+    setIsCustomizing(false);
+  }, []);
 
   const openCustomizing = useCallback(() => {
     setIsCustomizing(true);

@@ -128,7 +128,7 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
     integrationsHeading: 'Integrations',
     integrationsLinks: [
       { title: 'Cargowise', href: '/#integrations' },
-      { title: 'Custom ERP', href: '/#integrations' },
+      { title: 'Custom ERP/TMS', href: '/#integrations' },
     ],
   },
   'Resources': {
@@ -452,7 +452,7 @@ export function LandingNavigation({ variant = 'compact' }: { variant?: 'default'
             })}
 
             <Link
-              href="/demo/"
+              href="/demo/#demo-form"
               className={`${styles.demoButton} ${styles.navDemo} ${styles.mobileDemo}`}
               onClick={close}
             >
@@ -461,7 +461,7 @@ export function LandingNavigation({ variant = 'compact' }: { variant?: 'default'
           </nav>
 
           <Link
-            href="/demo/"
+            href="/demo/#demo-form"
             className={`${styles.demoButton} ${styles.navDemo} ${styles.desktopDemo}`}
             onClick={close}
           >
