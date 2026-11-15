@@ -40,11 +40,11 @@ interface MegaMenuData {
 }
 
 const MEGA_MENUS: Record<string, MegaMenuData> = {
-  'Finance': {
-    label: 'Finance',
+  'Finance Desk': {
+    label: 'Finance Desk',
     eyebrow: 'Automate Finance Operations',
     overviewHref: '/finance-desk/',
-    exploreLabel: 'Explore Finance',
+    exploreLabel: 'Explore Finance Desk',
     overviewLinks: [],
     featureLinks: [
       {
@@ -87,87 +87,48 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
     ],
   },
   'Logistics Desk': {
-    label: 'Logistics',
-    eyebrow: 'Docsynecx Logistics Modules',
-    overviewHref: '/#platform',
-    exploreLabel: 'Explore Logistics Platform',
+    label: 'Logistics Desk',
+    eyebrow: 'Automate Freight Operations',
+    overviewHref: '/logistics/',
+    exploreLabel: 'Explore Logistics Desk',
     overviewLinks: [],
     featureLinks: [
       {
         sno: '01',
         title: 'Email-to-Booking',
-        description: 'Move freight enquiries from inbox to customer quotation and booking.',
+        description: 'Connect customer enquiries, quotes and freight bookings.',
         href: '/logistics/email-to-booking/',
       },
       {
         sno: '02',
-        title: 'Shipment Operations Automation',
-        description: 'Connect booking details, documents and shipment workflows.',
-        href: '/logistics-desk/shipment-operations/',
+        title: 'Shipment Operations',
+        description: 'Bring shipment operations into one connected workspace.',
+        href: '/logistics/shipment-operations/',
       },
       {
         sno: '03',
         title: 'Shipment Tracking',
-        description: 'Make shipment milestones and delays easy to see and manage.',
-        href: '/logistics-desk/shipment-tracking/',
+        description: 'Keep shipment milestones and status updates in view.',
+        href: '/logistics/shipment-tracking/',
       },
       {
         sno: '04',
         title: 'Freight Intelligence',
         description: 'Build a clearer view of shipment costs, margins and performance.',
-        href: '/logistics-desk/freight-intelligence/',
+        href: '/logistics/freight-intelligence/',
       },
     ],
     whoHeading: "Who it's for",
     whoLinks: [
-      { title: 'Freight Forwarders', href: '/logistics-desk/' },
-      { title: 'Operations Teams', href: '/logistics-desk/' },
-      { title: 'Pricing & Sourcing', href: '/logistics-desk/' },
-      { title: 'Logistics Leadership', href: '/logistics-desk/' },
+      { title: 'Freight Forwarders', href: '/logistics/email-to-booking/' },
+      { title: 'Operations Teams', href: '/logistics/shipment-operations/' },
+      { title: 'Pricing & Sourcing', href: '/logistics/freight-intelligence/' },
+      { title: 'Logistics Leadership', href: '/logistics/shipment-operations/' },
     ],
     integrationsHeading: 'Integrations',
     integrationsLinks: [
-      { title: 'CargoWise', href: '/#integrations' },
+      { title: 'Cargowise', href: '/#integrations' },
       { title: 'Custom ERP', href: '/#integrations' },
-    ],
-  },
-  'Solutions': {
-    label: 'Solutions',
-    eyebrow: 'BY INDUSTRIES',
-    overviewHref: '/solutions',
-    exploreLabel: 'Explore all solutions',
-    overviewLinks: [],
-    featureLinks: [
-      {
-        sno: '01',
-        title: 'Automotive Industry',
-        description: 'Purchase invoices, spare parts and service documentation.',
-        href: '/solutions#automotive',
-      },
-      {
-        sno: '02',
-        title: 'Manufacturing',
-        description: 'Supplier invoices, material receipts and operational records.',
-        href: '/solutions#manufacturing',
-      },
-      {
-        sno: '03',
-        title: 'Textile & Garments',
-        description: 'Supplier and purchase documentation with rapid ledger posting.',
-        href: '/solutions#textile',
-      },
-      {
-        sno: '04',
-        title: 'Retail & Distribution',
-        description: 'High-volume invoice auditing and multi-vendor document workflows.',
-        href: '/solutions#retail',
-      },
-      {
-        sno: '05',
-        title: 'Logistics & Freight Forwarders',
-        description: 'RFQ, shipments, container tracking and trade documents.',
-        href: '/solutions#logistics',
-      },
     ],
   },
   'Resources': {
@@ -180,7 +141,7 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
       {
         sno: '01',
         title: 'Blogs',
-        description: 'Explore articles, guides, and insights on AI document intelligence.',
+        description: 'Calculate monthly hours, error reduction and financial savings.',
         href: '/blogs',
       },
       {
@@ -206,11 +167,11 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
 };
 
 type NavItem =
-  | { type: 'menu'; key: 'Finance' | 'Logistics Desk' | 'Solutions' | 'Resources' }
+  | { type: 'menu'; key: 'Finance Desk' | 'Logistics Desk' | 'Resources' }
   | { type: 'link'; label: string; href: string };
 
 const NAV_ITEMS: NavItem[] = [
-  { type: 'menu', key: 'Finance' },
+  { type: 'menu', key: 'Finance Desk' },
   { type: 'menu', key: 'Logistics Desk' },
   { type: 'link', label: 'Solutions', href: '/solutions' },
   { type: 'link', label: 'Pricing', href: '/pricing' },
@@ -262,7 +223,8 @@ function NavbarMenuCard({ menu, onNavigate }: { menu: MegaMenuData; onNavigate: 
     </aside>
   </div>;
 }
-export function LandingNavigation({ variant = 'default' }: { variant?: 'default' | 'horizon' }) {
+
+export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default' | 'horizon' }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement>(null);
@@ -329,7 +291,9 @@ export function LandingNavigation({ variant = 'default' }: { variant?: 'default'
       // A small dead zone prevents flickering near the top during touch scrolling.
       setIsCompact((compact) => window.scrollY > (compact ? 8 : 32));
       setIsScrolled(variant === 'horizon'
-        ? Boolean(hero && header && hero.getBoundingClientRect().bottom <= header.getBoundingClientRect().bottom)
+        ? hero
+          ? Boolean(header && hero.getBoundingClientRect().bottom <= header.getBoundingClientRect().bottom)
+          : true
         : window.scrollY > 8);
     };
     const handleScroll = () => {
@@ -355,7 +319,7 @@ export function LandingNavigation({ variant = 'default' }: { variant?: 'default'
         ref={headerRef}
         className={styles.header}
         data-variant={variant}
-        data-scrolled={isCompact ? 'true' : 'false'}
+        data-scrolled={isScrolled ? 'true' : 'false'}
         data-compact={isCompact ? 'true' : 'false'}
         data-past-hero={isScrolled ? 'true' : 'false'}
         onMouseLeave={handleMouseLeave}
@@ -416,7 +380,7 @@ export function LandingNavigation({ variant = 'default' }: { variant?: 'default'
                     aria-controls="landing-mega-menu"
                     onClick={() => setOpenMenu(openMenu === item.key ? null : item.key)}
                   >
-                    {MEGA_MENUS[item.key]?.label || item.key}
+                    {item.key}
                     <ChevronDown
                       size={13}
                       aria-hidden="true"
@@ -510,175 +474,7 @@ export function LandingNavigation({ variant = 'default' }: { variant?: 'default'
             }}
             onMouseLeave={handleMouseLeave}
           >
-            {variant === 'horizon' ? <NavbarMenuCard key={openMenu} menu={activeMega} onNavigate={close} /> : <div className="site-shell">
-              <div
-                className={styles.megaDropdownContent}
-                data-layout={activeMega.whoLinks ? 'four-col' : 'standard'}
-              >
-                {/* Left Area: 3 Columns for Finance/Shipment, or standard 2-column feature grid */}
-                <div className={styles.megaLeft}>
-                  {activeMega.whoLinks && activeMega.integrationsLinks ? (
-                    <div className={styles.megaThreeColGrid}>
-                      {/* Column 1: Current contents (with SNO numbers) */}
-                      <div className={styles.megaCol}>
-                        <div className={styles.megaEyebrow}>{activeMega.eyebrow}</div>
-                        <div className={styles.megaColStack}>
-                          {activeMega.featureLinks.map((linkItem) => (
-                            <Link
-                              key={linkItem.title}
-                              href={linkItem.href}
-                              onClick={close}
-                              className={styles.megaFeatureItem}
-                            >
-                              <div className={styles.megaItemTitle}>
-                                {linkItem.sno && (
-                                  <span className={styles.megaItemNumber}>{linkItem.sno}</span>
-                                )}
-                                <span>{linkItem.title}</span>
-                              </div>
-                              {linkItem.description && (
-                                <p className={styles.megaItemDesc}>{linkItem.description}</p>
-                              )}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Column 2: Who it's for (NO SNO numbers) */}
-                      <div className={`${styles.megaCol} ${styles.megaBorderCol}`}>
-                        <div className={styles.megaEyebrow}>
-                          {activeMega.whoHeading || "Who it's for"}
-                        </div>
-                        <ul className={styles.megaSimpleList}>
-                          {activeMega.whoLinks.map((linkItem) => (
-                            <li key={linkItem.title}>
-                              <Link
-                                href={linkItem.href}
-                                onClick={close}
-                                className={styles.megaSimpleLink}
-                              >
-                                <span>{linkItem.title}</span>
-                                <ArrowRight
-                                  size={12}
-                                  className={styles.megaSimpleArrow}
-                                  aria-hidden="true"
-                                />
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* Column 3: Integrations (NO SNO numbers) */}
-                      <div className={`${styles.megaCol} ${styles.megaBorderCol}`}>
-                        <div className={styles.megaEyebrow}>
-                          {activeMega.integrationsHeading || 'Integrations'}
-                        </div>
-                        <ul className={styles.megaSimpleList}>
-                          {activeMega.integrationsLinks.map((linkItem) => (
-                            <li key={linkItem.title}>
-                              <Link
-                                href={linkItem.href}
-                                onClick={close}
-                                className={styles.megaSimpleLink}
-                              >
-                                <span>{linkItem.title}</span>
-                                <ArrowRight
-                                  size={12}
-                                  className={styles.megaSimpleArrow}
-                                  aria-hidden="true"
-                                />
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  ) : (
-                    <>
-                      <div className={styles.megaEyebrow}>{activeMega.eyebrow}</div>
-
-                      {/* Top Overview / Primary Links (if configured) */}
-                      {activeMega.overviewLinks.length > 0 && (
-                        <>
-                          <div className={styles.megaTopGrid}>
-                            {activeMega.overviewLinks.map((linkItem) => (
-                              <Link
-                                key={linkItem.title}
-                                href={linkItem.href}
-                                onClick={close}
-                                className={styles.megaOverviewItem}
-                              >
-                                <div className={styles.megaItemTitle}>
-                                  <span>{linkItem.title}</span>
-                                  <ArrowRight
-                                    size={13}
-                                    className={styles.megaArrow}
-                                    aria-hidden="true"
-                                  />
-                                </div>
-                                {linkItem.description && (
-                                  <p className={styles.megaItemDesc}>{linkItem.description}</p>
-                                )}
-                              </Link>
-                            ))}
-                          </div>
-                          <div className={styles.megaDivider} />
-                        </>
-                      )}
-
-                      {/* Feature / Capabilities Grid (2 columns) */}
-                      <div className={styles.megaFeatureGrid}>
-                        {activeMega.featureLinks.map((linkItem) => (
-                          <Link
-                            key={linkItem.title}
-                            href={linkItem.href}
-                            onClick={close}
-                            className={styles.megaFeatureItem}
-                          >
-                            <div className={styles.megaItemTitle}>
-                              {linkItem.sno && (
-                                <span className={styles.megaItemNumber}>{linkItem.sno}</span>
-                              )}
-                              <span>{linkItem.title}</span>
-                            </div>
-                            {linkItem.description && (
-                              <p className={styles.megaItemDesc}>{linkItem.description}</p>
-                            )}
-                          </Link>
-                        ))}
-                      </div>
-                    </>
-                  )}
-                </div>
-
-                {/* Right Column: Signature Hero Callout (Green Div) */}
-                <div className={styles.megaRight}>
-                  <div className={styles.megaRightTop}>
-                    <span className={styles.megaRightEyebrow}>THE DOCSYNECX PLATFORM</span>
-                    <h3 className={styles.megaRightTitle}>
-                      Every document, email and invoice. One platform.
-                    </h3>
-                    <Link
-                      href={activeMega.overviewHref}
-                      onClick={close}
-                      className={styles.megaRightExplore}
-                    >
-                      <span>{activeMega.exploreLabel}</span>
-                      <ArrowRight size={13} aria-hidden="true" />
-                    </Link>
-                  </div>
-
-                  <div className={styles.megaRightBottom}>
-                    <p className={styles.megaRightCaption}>See it on your own documents.</p>
-                    <Link href="/demo/" onClick={close} className={styles.megaRightCta}>
-                      <span>Book a demo</span>
-                      <ArrowRight size={13} aria-hidden="true" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>}
+            <NavbarMenuCard key={openMenu} menu={activeMega} onNavigate={close} />
           </div>
         )}
       </header>
@@ -686,7 +482,7 @@ export function LandingNavigation({ variant = 'default' }: { variant?: 'default'
 
   return (
     <>
-      <AnnouncementBarV2 />
+      {variant === 'default' && <AnnouncementBarV2 />}
       {variant === 'horizon'
         ? <div className={styles.horizonNavFrame}>{navigation}</div>
         : navigation}

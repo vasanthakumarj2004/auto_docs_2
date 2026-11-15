@@ -1,220 +1,359 @@
-export const logisticsRoot = '/logistics-desk/';
-export const demoHref = '/demo/#demo-form';
+export type LogisticsSlug =
+  | 'email-to-booking'
+  | 'shipment-operations'
+  | 'shipment-tracking'
+  | 'freight-intelligence';
 
-export const logisticsModules = [
-  {
-    slug: 'email-to-booking',
-    title: 'Email-to-Booking Automation',
-    label: 'Enquiry-to-quote',
-    description: 'Move freight enquiries from inbox to customer quotation and booking. Use AI-assisted workflows to read customer enquiries, gather vendor rates, compare options and prepare customer quotations.',
-    bullets: [
-      'Capture customer enquiries from email and attachments',
-      'Automated vendor rate requests and rate card lookups',
-      'Side-by-side carrier rate and transit time comparison',
-      'Instant customer quote generation with margin control',
-      'Direct booking creation and CargoWise handoff',
-    ],
-    link: 'Explore Email-to-Booking',
-  },
-  {
-    slug: 'shipment-operations',
-    title: 'Shipment Operations Automation',
-    label: 'Operations & documents',
-    description: 'Connect booking details, shipment documents and job workflows. Support the operational handoff from accepted quotation to shipment job. Extract and validate shipment information.',
-    bullets: [
-      'Operational handoff from accepted quote to job',
-      'Extract B/L, shipping orders and packing lists',
-      'Cross-check container numbers, weights and seals',
-      'Human-in-the-loop exception review and approvals',
-      'Seamless data sync with CargoWise and custom ERPs',
-    ],
-    link: 'Explore Shipment Operations',
-  },
-  {
-    slug: 'shipment-tracking',
-    title: 'Shipment Tracking',
-    label: 'Visibility & tracking',
-    description: 'Make shipment milestones and delays easier to see. Bring shipment status information into a more visible operational workflow. Track ocean and road movements.',
-    bullets: [
-      'Carrier and transporter milestone updates',
-      'Real-time container status and transshipment alerts',
-      'Automated delay notifications for operations teams',
-      'Centralised tracking dashboard across all active jobs',
-      'Customer-facing milestone visibility links',
-    ],
-    link: 'Explore Shipment Tracking',
-  },
-  {
-    slug: 'freight-intelligence',
-    title: 'Freight Intelligence',
-    label: 'Analytics & performance',
-    badge: 'Roadmap',
-    description: 'Build a clearer view of shipment costs, margins and performance. Freight Intelligence is the analytics layer planned to help forwarders understand shipment profitability, customer margins and operational performance.',
-    bullets: [
-      'Shipment profitability and gross margin analysis',
-      'Carrier cost variance and detention/demurrage trends',
-      'Trade-lane volume and container utilization insights',
-      'Customer profitability and quotation conversion rates',
-      'Automated management MIS and operational reporting',
-    ],
-    link: 'Explore Freight Intelligence',
-  },
-] as const;
+export interface CapabilityItem {
+  prefix: string;
+  text: string;
+}
 
-export type LogisticsSlug = typeof logisticsModules[number]['slug'];
-export type Feature = readonly [tag: string, title: string, description: string];
+export interface StepItem {
+  number: string;
+  title: string;
+  description: string;
+}
 
-export const emailToBookingFeatures: Feature[] = [
-  ['ENQUIRY CAPTURE', 'Inbox & attachment reading', 'Read customer freight enquiries directly from email threads, PDFs, Excel sheets and packing lists.'],
-  ['RATE SOURCING', 'Vendor rate gathering', 'Automatically request and pull rates from shipping lines, truckers, and saved contract rate cards.'],
-  ['RATE COMPARISON', 'Compare carrier options', 'Evaluate rates, transit times, demurrage free days, and reliability across multiple carriers side-by-side.'],
-  ['MARGIN CONTROLS', 'Quotation preparation', 'Apply pre-configured margin rules and generate branded PDF and email quotations in minutes.'],
-  ['BOOKING HANDOFF', 'One-click booking', 'Turn accepted quotations directly into confirmed freight bookings with shipping line confirmation.'],
-  ['HUMAN OVERSIGHT', 'Review when needed', 'Keep pricing managers in control of special discounts, commodity surcharges, and exception handling.'],
-];
+export interface FaqItem {
+  question: string;
+  answer?: string;
+}
 
-export const shipmentOperationsFeatures: Feature[] = [
-  ['JOB CREATION', 'Accepted quote to job handoff', 'Automatically create operational shipment files in CargoWise or custom ERPs from confirmed bookings.'],
-  ['DOCUMENT INTAKE', 'Extract bills of lading & manifests', 'Capture data from bills of lading, commercial invoices, packing lists, and customs declarations.'],
-  ['VALIDATION', 'Container & seal verification', 'Verify container numbers, tare weights, seal numbers and piece counts against booking instructions.'],
-  ['EXCEPTION CONTROL', 'Discrepancy alerts', 'Flag weight mismatches, missing HSN codes, and documentation discrepancies before vessel departure.'],
-  ['CARGOWISE INTEGRATION', 'Bi-directional sync', 'Keep CargoWise milestones, document archives, and operational tasks updated without manual typing.'],
-  ['AUDIT TRAIL', 'Full operational visibility', 'Track who reviewed, edited, and approved each document and milestone along the forwarding chain.'],
-];
+export interface LogisticsModuleData {
+  slug: LogisticsSlug;
+  breadcrumb: string;
+  moduleName: string;
+  iconName: 'envelope' | 'square' | 'crosshair' | 'diamond';
+  eyebrow: string;
+  heroTitle: string;
+  heroDescription: string;
+  primaryCtaText: string;
+  secondaryCtaText: string;
+  cardBadges: string[];
+  capabilities: CapabilityItem[];
+  workflowSteps: StepItem[];
+  integrationsCopy: string;
+  scopingNeeds: string;
+  closingTitle: string;
+}
 
-export const shipmentTrackingFeatures: Feature[] = [
-  ['OCEAN TRACKING', 'Shipping line milestones', 'Connect direct vessel and container tracking across 50+ ocean carriers, tracking vessel departure, arrival, and discharge.'],
-  ['ROAD & FIRST-MILE', 'Transporter visibility', 'Track container trailer movement from shipper factory to port gates with GPS and milestone check-ins.'],
-  ['EXCEPTION ALERTS', 'Early delay detection', 'Get notified about roll-overs, port congestion, customs holds, and ETA revisions before customers ask.'],
-  ['CLIENT PORTAL', 'Self-service milestone links', 'Provide shippers and consignees with branded tracking links, reducing status update phone calls and emails.'],
-  ['INTEGRATED TIMELINE', 'Single view across all jobs', 'See all active import and export shipments on one unified operational map and dashboard.'],
-];
+export const sharedLogisticsCopy = {
+  capabilitiesEyebrow: 'WHAT IT HELPS YOUR TEAM DO',
+  capabilitiesTitle: 'Purpose-built capabilities for everyday operations.',
+  capabilitiesCopy:
+    'Configure the workflow around your document types, business rules, review process and connected systems.',
 
-export const freightIntelligenceFeatures: Feature[] = [
-  ['PROFITABILITY', 'Shipment margin analysis', 'Compare quoted revenue against actual carrier and vendor invoices to spot margin slippage.'],
-  ['COST VARIANCE', 'Detention & demurrage alerts', 'Identify detention, demurrage, and unexpected terminal charges before they erode shipment profits.'],
-  ['CARRIER PERFORMANCE', 'On-time delivery benchmarks', 'Evaluate shipping line schedule reliability, transit time accuracy, and vendor performance.'],
-  ['TRADE LANES', 'Volume & equipment utilization', 'Analyze freight volumes, TEUs shipped, and route profitability across major origins and destinations.'],
-  ['MANAGEMENT MIS', 'Automated executive reporting', 'Schedule weekly forwarding summaries, revenue reports, and quote conversion analytics for management.'],
-];
+  workflowEyebrow: 'HOW IT WORKS',
+  workflowTitle: 'A clear workflow, with people in control.',
+  workflowCopy:
+    'Typical process flow. Exact steps are finalized during implementation discovery.',
+  workflowStepDescription:
+    'Information moves to the next stage with visibility and review checkpoints.',
 
-export const logisticsFaqs = [
-  {
-    question: 'Does Logistics Desk integrate with CargoWise and custom ERPs?',
-    answer: 'Yes. Logistics Desk is built to connect with CargoWise, custom forwarding ERPs, transport management systems (TMS), and email inboxes. Data moves directly into your operating systems without manual re-entry.',
-  },
-  {
-    question: 'Can Logistics Desk replace human freight forwarders?',
-    answer: 'No. Logistics Desk is an AI operating platform designed to assist operators by eliminating repetitive typing and document extraction. Human review, exception handling, and final approvals always remain firmly with your team.',
-  },
-  {
-    question: 'Can we start with only one module like Email-to-Booking?',
-    answer: 'Yes. Flexible adoption allows you to start with Email-to-Booking to accelerate quotation turnaround, and add Shipment Operations, Tracking, or Freight Intelligence as your operations scale.',
-  },
-  {
-    question: 'How does Email-to-Booking handle messy customer emails and attachments?',
-    answer: 'Our intelligent document models parse complex customer emails, PDFs, Excel sheets, and packing lists to identify origin, destination, cargo dimensions, weight, commodity, and timeline requirements accurately.',
-  },
-  {
-    question: 'Will our team still review quotes and bookings before sending?',
-    answer: 'Yes. Your team stays in complete control. Every quote, rate comparison, and booking can be reviewed and approved before moving forward.',
-  },
-];
+  integrationsEyebrow: 'INTEGRATIONS & DEPLOYMENT',
+  integrationsTitle: 'Designed to work with your existing systems.',
+  integrationsWarning:
+    'Integration availability, data access, automation scope and deployment approach are confirmed during technical discovery. Not every external system or data source is available out of the box.',
 
-export const logisticsPageCopy = {
-  overview: {
-    eyebrow: 'DOCSYNECX / LOGISTICS DESK',
-    headline: 'The AI operating platform for',
-    accent: 'freight forwarders.',
-    description: 'Connect customer enquiries, vendor rates, quotations, bookings, shipment documents and tracking through AI-assisted freight workflows.',
-    primary: 'Book a Logistics Demo',
-    secondary: 'Explore modules',
-    microline: 'Freight operations · Enquiry-to-booking · CargoWise & ERP workflows',
-    visualTitle: 'LOGISTICS DESK',
-    visualLabel: 'LIVE FREIGHT WORKSPACE',
-    tiles: [
-      ['Workflow', 'Freight operations'],
-      ['Status', 'Enquiry-to-booking'],
-    ],
-    chip: 'Capture · Quote · Book · Track',
-    ctaEyebrow: 'DOCSYNECX LOGISTICS DESK',
-    ctaTitle: 'Make every freight workflow work harder.',
-    ctaCopy: 'Show us how your team manages enquiries, bookings and shipment operations today, and we’ll show you Docsynecx on your own trade workflows.',
-  },
+  scopingEyebrow: "LET'S SCOPE YOUR WORKFLOW",
+  scopingTitle: 'What we need to understand',
+  scopingButtonText: 'Request a consultation ↗',
+
+  faqEyebrow: 'FREQUENTLY ASKED QUESTIONS',
+  faqTitle: 'Before you get started.',
+  faqs: [
+    {
+      question: 'Can this be configured for our existing process?',
+      answer:
+        'Yes. We begin by understanding your current workflow, document formats, business rules and exception handling. The final scope is agreed before implementation.',
+    },
+    {
+      question: 'Does it work with our current ERP or operating system?',
+      answer:
+        'Integration availability, data access, automation scope and system connectivity are assessed during technical discovery to align with your ERP, TMS, or freight operating software.',
+    },
+    {
+      question: 'Will the system run without human review?',
+      answer:
+        'No. Human review and review checkpoints remain built in at key stages so your operations team maintains complete visibility and control over all customer and shipment actions.',
+    },
+  ] as FaqItem[],
+
+  closingCopy: 'Share your current process and document volume with our team.',
+  closingButtonText: 'Book a discussion ↗',
+};
+
+export const logisticsModules: Record<LogisticsSlug, LogisticsModuleData> = {
   'email-to-booking': {
-    eyebrow: 'LOGISTICS DESK / EMAIL-TO-BOOKING',
-    headline: 'Move freight enquiries from inbox',
-    accent: 'to confirmed booking.',
-    description: 'Capture customer requirements from email, gather vendor rates, compare options and prepare customer quotations in minutes.',
-    primary: 'Book a Logistics Demo',
-    secondary: 'Explore modules',
-    microline: 'Logistics Desk · Inbox reading · Rapid quoting · CargoWise booking',
-    visualTitle: 'EMAIL-TO-BOOKING WORKSPACE',
-    visualLabel: 'LOGISTICS DESK',
-    tiles: [
-      ['Enquiries', '148 processed'],
-      ['Quotes sent', '92 prepared'],
+    slug: 'email-to-booking',
+    breadcrumb: 'Docsynecx Logistics / Email-to-Booking Automation',
+    moduleName: 'Email-to-Booking Automation',
+    iconName: 'envelope',
+    eyebrow: 'DOCSYNECX LOGISTICS · MODULE',
+    heroTitle: 'Move freight enquiries from inbox to customer quotation and booking.',
+    heroDescription:
+      'Use AI-assisted workflows to read customer enquiries, gather vendor rates, compare options and prepare customer quotations — helping freight teams reduce repetitive email coordination.',
+    primaryCtaText: 'Discuss this module ↗',
+    secondaryCtaText: 'Explore Logistics platform',
+    cardBadges: ['AI-assisted', 'Workflow status', 'Review ready'],
+    capabilities: [
+      {
+        prefix: 'Read incoming',
+        text: 'Read incoming customer enquiry emails and supported attachments',
+      },
+      {
+        prefix: 'Identify shipment',
+        text: 'Identify shipment details and information gaps',
+      },
+      {
+        prefix: 'Prepare vendor',
+        text: 'Prepare vendor rate request emails using configured templates',
+      },
+      {
+        prefix: 'Compare vendor',
+        text: 'Compare vendor rates, transit times and response details',
+      },
+      {
+        prefix: 'Support vendor',
+        text: 'Support vendor recommendations and email negotiation workflows',
+      },
+      {
+        prefix: 'Prepare customer',
+        text: 'Prepare customer quotations with configured margin inputs',
+      },
+      {
+        prefix: 'Draft customer',
+        text: 'Draft customer acknowledgement and booking-related emails',
+      },
     ],
-    chip: 'Enquiry · Rates · Quote · Book',
-    ctaEyebrow: 'DOCSYNECX LOGISTICS DESK',
-    ctaTitle: 'Turn customer enquiries into faster quotes.',
-    ctaCopy: 'Let’s look at how your team handles freight inquiries today and see how much time Docsynecx can save your operators.',
+    workflowSteps: [
+      {
+        number: 'STEP 01',
+        title: 'Customer enquiry arrives by email.',
+        description: sharedLogisticsCopy.workflowStepDescription,
+      },
+      {
+        number: 'STEP 02',
+        title: 'AI reads details and prepares vendor RFQs.',
+        description: sharedLogisticsCopy.workflowStepDescription,
+      },
+      {
+        number: 'STEP 03',
+        title: 'Rates are compared and a quote is prepared.',
+        description: sharedLogisticsCopy.workflowStepDescription,
+      },
+      {
+        number: 'STEP 04',
+        title: 'Customer confirmation is received and booking is coordinated.',
+        description: sharedLogisticsCopy.workflowStepDescription,
+      },
+    ],
+    integrationsCopy:
+      "Email-based workflow; integration with freight systems can be assessed for the customer's process.",
+    scopingNeeds:
+      'Modes handled, enquiry volume, vendor network, rate formats, margin rules, email platform and booking process.',
+    closingTitle: 'See how Email-to-Booking Automation can fit your workflow.',
   },
+
   'shipment-operations': {
-    eyebrow: 'LOGISTICS DESK / SHIPMENT OPERATIONS',
-    headline: 'Connect booking details, documents',
-    accent: 'and shipment workflows.',
-    description: 'Support the operational handoff from accepted quotation to shipment job. Extract, validate and sync shipping documents with CargoWise and custom ERPs.',
-    primary: 'Book a Logistics Demo',
-    secondary: 'Explore modules',
-    microline: 'Logistics Desk · B/L extraction · Job creation · CargoWise sync',
-    visualTitle: 'SHIPMENT OPERATIONS',
-    visualLabel: 'LOGISTICS DESK',
-    tiles: [
-      ['Jobs active', '37 shipments'],
-      ['Documents checked', '100% verified'],
+    slug: 'shipment-operations',
+    breadcrumb: 'Docsynecx Logistics / Shipment Operations Automation',
+    moduleName: 'Shipment Operations Automation',
+    iconName: 'square',
+    eyebrow: 'DOCSYNECX LOGISTICS · MODULE',
+    heroTitle: 'Connect booking details, shipment documents and job workflows.',
+    heroDescription:
+      "Support the operational handoff from accepted quotation to shipment job. Extract and validate shipment information from key documents and prepare structured data for the forwarder's operating system.",
+    primaryCtaText: 'Discuss this module ↗',
+    secondaryCtaText: 'Explore Logistics platform',
+    cardBadges: ['AI-assisted', 'Workflow status', 'Review ready'],
+    capabilities: [
+      {
+        prefix: 'Convert accepted',
+        text: 'Convert accepted quotation details into shipment or job records',
+      },
+      {
+        prefix: 'Maintain standalone',
+        text: 'Maintain standalone Docsynecx shipment records or integrate with CargoWise subject to scope',
+      },
+      {
+        prefix: 'Extract information',
+        text: 'Extract information from Bill of Lading, Packing List and Commercial Invoice',
+      },
+      {
+        prefix: 'Compare key',
+        text: 'Compare key shipment fields across documents and flag mismatches',
+      },
+      {
+        prefix: 'Prepare customs',
+        text: 'Prepare customs declaration data for review; direct filing is not implied',
+      },
+      {
+        prefix: 'Extract supplier',
+        text: 'Extract supplier and carrier invoices for downstream reconciliation',
+      },
     ],
-    chip: 'B/L · Packing lists · CargoWise sync',
-    ctaEyebrow: 'DOCSYNECX LOGISTICS DESK',
-    ctaTitle: 'Eliminate duplicate data entry across shipment files.',
-    ctaCopy: 'Discuss your operational document workflows and system integrations with our logistics team.',
+    workflowSteps: [
+      {
+        number: 'STEP 01',
+        title: 'Accepted quote or booking is received.',
+        description: sharedLogisticsCopy.workflowStepDescription,
+      },
+      {
+        number: 'STEP 02',
+        title: 'Job data is created or passed to the connected system.',
+        description: sharedLogisticsCopy.workflowStepDescription,
+      },
+      {
+        number: 'STEP 03',
+        title: 'Shipment documents are extracted and cross-checked.',
+        description: sharedLogisticsCopy.workflowStepDescription,
+      },
+      {
+        number: 'STEP 04',
+        title: 'Exceptions are reviewed and operational data is completed.',
+        description: sharedLogisticsCopy.workflowStepDescription,
+      },
+    ],
+    integrationsCopy:
+      'Standalone workflow or CargoWise integration; other TMS/ERP connectivity assessed individually.',
+    scopingNeeds:
+      'TMS or CargoWise setup, document types, job creation rules, customs data requirements and AP workflow.',
+    closingTitle: 'See how Shipment Operations Automation can fit your workflow.',
   },
+
   'shipment-tracking': {
-    eyebrow: 'LOGISTICS DESK / SHIPMENT TRACKING',
-    headline: 'Make shipment milestones and delays',
-    accent: 'easy to see and manage.',
-    description: 'Bring ocean carrier and road milestone updates into one visible operational workflow with automated exception alerts.',
-    primary: 'Book a Logistics Demo',
-    secondary: 'Explore modules',
-    microline: 'Logistics Desk · 50+ ocean carriers · Road milestone tracking',
-    visualTitle: 'SHIPMENT TRACKING',
-    visualLabel: 'LOGISTICS DESK',
-    tiles: [
-      ['Ocean shipments', '24 on water'],
-      ['Road consignments', '13 in transit'],
+    slug: 'shipment-tracking',
+    breadcrumb: 'Docsynecx Logistics / Shipment Tracking',
+    moduleName: 'Shipment Tracking',
+    iconName: 'crosshair',
+    eyebrow: 'DOCSYNECX LOGISTICS · MODULE',
+    heroTitle: 'Make shipment milestones and delays easier to see.',
+    heroDescription:
+      'Bring shipment status information into a more visible operational workflow. Track ocean and road movements using supported carrier or transporter data sources, with milestone and ETA updates where available.',
+    primaryCtaText: 'Discuss this module ↗',
+    secondaryCtaText: 'Explore Logistics platform',
+    cardBadges: ['AI-assisted', 'Workflow status', 'Review ready'],
+    capabilities: [
+      {
+        prefix: 'Ocean vessel',
+        text: 'Ocean vessel and container tracking through supported data sources',
+      },
+      {
+        prefix: 'Road shipment',
+        text: 'Road shipment tracking using available transporter updates',
+      },
+      {
+        prefix: 'Milestone visibility',
+        text: 'Milestone visibility across agreed shipment stages',
+      },
+      {
+        prefix: 'ETA updates',
+        text: 'ETA updates when supplied by connected sources',
+      },
+      {
+        prefix: 'Alerts and',
+        text: 'Alerts and notifications for selected status changes',
+      },
+      {
+        prefix: 'Centralized shipment',
+        text: 'Centralized shipment status view for operations teams',
+      },
     ],
-    chip: 'Milestones · Exception alerts · Customer links',
-    ctaEyebrow: 'DOCSYNECX LOGISTICS DESK',
-    ctaTitle: 'Proactive milestone visibility for your forwarding desk.',
-    ctaCopy: 'See how automated carrier milestone updates reduce inquiry emails and keep operations running on time.',
+    workflowSteps: [
+      {
+        number: 'STEP 01',
+        title: 'Shipment or container reference is captured.',
+        description: sharedLogisticsCopy.workflowStepDescription,
+      },
+      {
+        number: 'STEP 02',
+        title: 'Tracking source is queried or updates are received.',
+        description: sharedLogisticsCopy.workflowStepDescription,
+      },
+      {
+        number: 'STEP 03',
+        title: 'Milestones and ETA are refreshed.',
+        description: sharedLogisticsCopy.workflowStepDescription,
+      },
+      {
+        number: 'STEP 04',
+        title: 'Teams receive relevant status alerts.',
+        description: sharedLogisticsCopy.workflowStepDescription,
+      },
+    ],
+    integrationsCopy:
+      'Carrier APIs and transporter update connectivity depend on provider availability, credentials and coverage.',
+    scopingNeeds:
+      'Carriers, transporters, trade lanes, shipment volume, identifiers, milestone definitions and alert preferences.',
+    closingTitle: 'See how Shipment Tracking can fit your workflow.',
   },
+
   'freight-intelligence': {
-    eyebrow: 'LOGISTICS DESK / FREIGHT INTELLIGENCE',
-    headline: 'Understand shipment profitability,',
-    accent: 'costs and performance.',
-    description: 'Freight Intelligence is the analytics layer designed to help forwarders analyze shipment margins, carrier variances and commercial performance.',
-    primary: 'Book a Logistics Demo',
-    secondary: 'Explore modules',
-    microline: 'Roadmap preview · Profitability · Cost variance · Performance MIS',
-    visualTitle: 'FREIGHT INTELLIGENCE',
-    visualLabel: 'IN DEVELOPMENT',
-    tiles: [
-      ['Margin analysis', 'Planned analytics'],
-      ['Carrier variance', 'Roadmap preview'],
+    slug: 'freight-intelligence',
+    breadcrumb: 'Docsynecx Logistics / Freight Intelligence',
+    moduleName: 'Freight Intelligence',
+    iconName: 'diamond',
+    eyebrow: 'DOCSYNECX LOGISTICS · MODULE',
+    heroTitle: 'Build a clearer view of shipment costs, margins and performance.',
+    heroDescription:
+      'Freight Intelligence is the analytics layer planned to help forwarders understand shipment profitability, customer and carrier performance, cost variance and potential margin leakage. Scope and availability should be confirmed for each engagement.',
+    primaryCtaText: 'Discuss this module ↗',
+    secondaryCtaText: 'Explore Logistics platform',
+    cardBadges: ['AI-assisted', 'Workflow status', 'Review ready'],
+    capabilities: [
+      {
+        prefix: 'Shipment-level profitability',
+        text: 'Shipment-level profitability and margin views',
+      },
+      {
+        prefix: 'Quoted versus',
+        text: 'Quoted versus actual cost variance analysis',
+      },
+      {
+        prefix: 'Customer and',
+        text: 'Customer and carrier performance insights',
+      },
+      {
+        prefix: 'Operational trends',
+        text: 'Operational trends across shipment and trade-lane data',
+      },
+      {
+        prefix: 'Potential margin',
+        text: 'Potential margin leakage indicators',
+      },
+      {
+        prefix: 'Management reporting',
+        text: 'Management reporting built from connected operational and financial data',
+      },
     ],
-    chip: 'Shipment margins · Demurrage insights · Reporting',
-    ctaEyebrow: 'SHAPE THE ROADMAP',
-    ctaTitle: 'Interested in Freight Intelligence?',
-    ctaCopy: 'Tell us about your forwarding volumes, margin analysis needs and management reporting. We welcome conversations with forwarders interested in this capability.',
+    workflowSteps: [
+      {
+        number: 'STEP 01',
+        title: 'Collect available quotation, shipment and cost data.',
+        description: sharedLogisticsCopy.workflowStepDescription,
+      },
+      {
+        number: 'STEP 02',
+        title: 'Normalize key customer, carrier and shipment dimensions.',
+        description: sharedLogisticsCopy.workflowStepDescription,
+      },
+      {
+        number: 'STEP 03',
+        title: 'Calculate agreed performance and profitability measures.',
+        description: sharedLogisticsCopy.workflowStepDescription,
+      },
+      {
+        number: 'STEP 04',
+        title: 'Review trends and exceptions through management reports.',
+        description: sharedLogisticsCopy.workflowStepDescription,
+      },
+    ],
+    integrationsCopy:
+      'Depends on the availability and quality of quotation, shipment, carrier and invoice data across connected systems.',
+    scopingNeeds:
+      'Data sources, cost components, margin model, customer/carrier dimensions, reporting cadence and required dashboards.',
+    closingTitle: 'See how Freight Intelligence can fit your workflow.',
   },
-} as const;
+};

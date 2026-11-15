@@ -1,7 +1,7 @@
-import { LogisticsPage } from '@/src/components/logistics/LogisticsPages';
-import { logisticsMetadata } from '@/src/lib/logisticsMetadata';
+import { LogisticsOverviewPage } from '@/src/components/logistics/LogisticsOverviewPage';
+import { logisticsMetadata } from '@/src/lib/logisticsOverviewMetadata';
 
 export const metadata = logisticsMetadata('overview');
 export default function LegacyLogisticsPage() {
-  return <LogisticsPage page="overview" />;
+  return <LogisticsOverviewPage page="overview" />;
 }

@@ -625,7 +625,7 @@ export function LogisticsSectionHowItWorks({ slug }: LogisticsSectionHowItWorksP
   return (
     <section
       id="how-it-works"
-      className={`${s.section}${slug === 'email-to-booking' ? ` ${s.darkTheme}` : ''}`}
+      className={`${s.section} ${s.darkTheme}`}
       aria-labelledby="how-it-works-title"
     >
       <div className="site-shell">
