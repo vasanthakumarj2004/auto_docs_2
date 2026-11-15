@@ -101,33 +101,33 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
       },
       {
         sno: '02',
-        title: 'Shipment Operations',
-        description: 'Connect booking details, shipment documents and job workflows.',
-        href: '/logistics/shipment-operations/',
+        title: 'Shipment Operations Automation',
+        description: 'Connect booking details, documents and shipment workflows.',
+        href: '/logistics-desk/shipment-operations/',
       },
       {
         sno: '03',
         title: 'Shipment Tracking',
-        description: 'Make shipment milestones and delays easier to see.',
-        href: '/logistics/shipment-tracking/',
+        description: 'Make shipment milestones and delays easy to see and manage.',
+        href: '/logistics-desk/shipment-tracking/',
       },
       {
         sno: '04',
         title: 'Freight Intelligence',
         description: 'Build a clearer view of shipment costs, margins and performance.',
-        href: '/logistics/freight-intelligence/',
+        href: '/logistics-desk/freight-intelligence/',
       },
     ],
     whoHeading: "Who it's for",
     whoLinks: [
-      { title: 'Business Owners', href: '/finance-desk/business-owners/' },
-      { title: 'Finance Teams', href: '/finance-desk/finance-teams/' },
-      { title: 'Accounts Teams', href: '/finance-desk/accounts-teams/' },
-      { title: 'CA firms', href: '/finance-desk/ca-firms/' },
+      { title: 'Freight Forwarders', href: '/logistics-desk/' },
+      { title: 'Operations Teams', href: '/logistics-desk/' },
+      { title: 'Pricing & Sourcing', href: '/logistics-desk/' },
+      { title: 'Logistics Leadership', href: '/logistics-desk/' },
     ],
     integrationsHeading: 'Integrations',
     integrationsLinks: [
-      { title: 'Cargowise', href: '/#integrations' },
+      { title: 'CargoWise', href: '/#integrations' },
       { title: 'Custom ERP', href: '/#integrations' },
     ],
   },
@@ -180,8 +180,8 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
       {
         sno: '01',
         title: 'Blogs',
-        description: 'Calculate monthly hours, error reduction and financial savings.',
-        href: '/#why-docsynecx',
+        description: 'Explore articles, guides, and insights on AI document intelligence.',
+        href: '/blogs',
       },
       {
         sno: '02',
@@ -262,7 +262,6 @@ function NavbarMenuCard({ menu, onNavigate }: { menu: MegaMenuData; onNavigate: 
     </aside>
   </div>;
 }
-
 export function LandingNavigation({ variant = 'default' }: { variant?: 'default' | 'horizon' }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
@@ -356,8 +355,9 @@ export function LandingNavigation({ variant = 'default' }: { variant?: 'default'
         ref={headerRef}
         className={styles.header}
         data-variant={variant}
-        data-scrolled={isScrolled ? 'true' : 'false'}
+        data-scrolled={isCompact ? 'true' : 'false'}
         data-compact={isCompact ? 'true' : 'false'}
+        data-past-hero={isScrolled ? 'true' : 'false'}
         onMouseLeave={handleMouseLeave}
       >
         <div className={`site-shell ${styles.navbar}`}>
@@ -686,7 +686,7 @@ export function LandingNavigation({ variant = 'default' }: { variant?: 'default'
 
   return (
     <>
-      {variant === 'default' && <AnnouncementBarV2 />}
+      <AnnouncementBarV2 />
       {variant === 'horizon'
         ? <div className={styles.horizonNavFrame}>{navigation}</div>
         : navigation}

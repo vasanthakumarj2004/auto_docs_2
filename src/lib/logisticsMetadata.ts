@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
-import { logisticsModules, type LogisticsSlug } from '../content/logistics';
+import { logisticsModules, logisticsPageCopy, logisticsRoot, type LogisticsSlug } from '../content/logistics';
 
-export function logisticsMetadata(slug: LogisticsSlug): Metadata {
-  const mod = logisticsModules[slug];
-  const title = `${mod.moduleName} | Docsynecx Logistics`;
-  const description = mod.heroDescription;
-  const url = `https://docsynecx.com/logistics/${slug}/`;
-
+export function logisticsMetadata(page: 'overview' | LogisticsSlug): Metadata {
+  const label = page === 'overview' ? 'Logistics Desk' : logisticsModules.find(item => item.slug === page)!.title;
+  const isRoadmap = page === 'freight-intelligence';
+  const title = `${label}${isRoadmap ? ' — Roadmap Preview' : ''} | Docsynecx`;
+  const description = logisticsPageCopy[page].description;
+  const url = `https://docsynecx.com${logisticsRoot}${page === 'overview' ? '' : `${page}/`}`;
   return {
     metadataBase: new URL('https://docsynecx.com'),
     title: { absolute: title },
@@ -15,17 +15,7 @@ export function logisticsMetadata(slug: LogisticsSlug): Metadata {
     creator: 'Docsynecx',
     publisher: 'SynecX AI Labs Private Limited',
     alternates: { canonical: url },
-    openGraph: {
-      title,
-      description,
-      url,
-      siteName: 'Docsynecx',
-      type: 'website',
-    },
-    twitter: {
-      title,
-      description,
-      card: 'summary_large_image',
-    },
+    openGraph: { title, description, url, siteName: 'Docsynecx', type: 'website' },
+    twitter: { title, description },
   };
 }
