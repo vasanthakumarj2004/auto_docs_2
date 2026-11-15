@@ -95,7 +95,7 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
     featureLinks: [
       {
         sno: '01',
-        title: 'Email-to-Booking',
+        title: 'RFQ-to-Booking',
         description: 'Connect customer enquiries, quotes and freight bookings.',
         href: '/logistics/email-to-booking/',
       },

@@ -3,6 +3,7 @@
 import React from 'react';
 import layoutStyles from '../LandingPage.module.css';
 import styles from './InvoiceWhoItIsFor.module.css';
+export { InvoiceScaleBenchmark } from './InvoiceScaleBenchmark';
 
 export interface InvoiceIndustryItem {
   id: string;

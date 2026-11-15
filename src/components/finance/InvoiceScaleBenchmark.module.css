@@ -1,0 +1,187 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(72px, 8vh, 104px);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 50%, #ffffff 100%);
+  border-block: 1px solid rgba(226, 232, 240, 0.85);
+  color: var(--landing-ink, #0f172a);
+}
+
+.ambientGlow {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(720px, 90vw);
+  height: 340px;
+  background: radial-gradient(ellipse at center, rgba(24, 203, 150, 0.08), rgba(13, 148, 102, 0.03), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.shell {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 4vw, 36px);
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-brand-text, #0d9466);
+  background: var(--color-brand-soft, #f0fdf9);
+  border: 1px solid var(--color-brand-border, rgba(24, 203, 150, 0.28));
+  border-radius: 999px;
+  padding: 5px 14px;
+  margin-bottom: 22px;
+}
+
+.title {
+  font-size: clamp(32px, 3.6vw, 48px);
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.04em;
+  color: var(--landing-ink, #0f172a);
+  max-width: 820px;
+  margin-inline: auto;
+}
+
+.accent {
+  color: var(--color-brand-text, #0d9466);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.description {
+  max-width: 660px;
+  margin: 18px auto 46px;
+  font-size: clamp(14px, 1.1vw, 16px);
+  line-height: 1.75;
+  color: var(--landing-muted, #586579);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(14px, 1.8vw, 24px);
+  max-width: 1120px;
+  margin-inline: auto;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  border-radius: 18px;
+  padding: clamp(24px, 3vw, 34px) 20px clamp(22px, 2.8vw, 30px);
+  box-shadow:
+    0 10px 30px -8px rgba(15, 23, 42, 0.05),
+    0 2px 6px rgba(15, 23, 42, 0.02),
+    inset 0 1px 0 #ffffff;
+  transition: transform 220ms cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(24, 203, 150, 0.45);
+  box-shadow:
+    0 20px 42px -10px rgba(15, 23, 42, 0.08),
+    0 4px 12px rgba(15, 23, 42, 0.03),
+    0 0 0 1px rgba(24, 203, 150, 0.15),
+    inset 0 1px 0 #ffffff;
+}
+
+.cardLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin-bottom: 14px;
+}
+
+.cardStat {
+  font-size: clamp(34px, 3.4vw, 44px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  color: var(--color-brand-text, #0d9466);
+  margin-bottom: 14px;
+}
+
+.cardDelta {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.ctaWrapper {
+  margin-top: 42px;
+}
+
+.ctaLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14.5px;
+  font-weight: 650;
+  color: var(--color-brand-text, #0d9466);
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 999px;
+  transition: color 180ms ease, transform 180ms ease, background 180ms ease;
+}
+
+.ctaLink:hover {
+  color: var(--color-brand-strong, #0f8562);
+  background: var(--color-brand-soft, #f0fdf9);
+}
+
+.ctaLink svg {
+  transition: transform 200ms ease;
+}
+
+.ctaLink:hover svg {
+  transform: translateX(4px);
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .section {
+    padding-block: 56px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .card {
+    padding: 24px 18px;
+  }
+  .title {
+    font-size: clamp(26px, 7vw, 34px);
+  }
+  .description {
+    margin-bottom: 32px;
+  }
+}
