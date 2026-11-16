@@ -146,7 +146,9 @@ export function BlogListing({ initialPosts }: BlogListingProps) {
                 <button
                   key={category}
                   type="button"
-                  onClick={() => setActiveCategory(category)}
+                  onClick={() =>
+                    setActiveCategory(activeCategory === category ? 'All' : category)
+                  }
                   className={`${styles.filterButton} ${
                     isActive ? styles.filterButtonActive : ''
                   }`}

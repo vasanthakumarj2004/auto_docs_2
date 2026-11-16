@@ -66,7 +66,7 @@ export const financePageCopy = {
   overview: {
     eyebrow: 'DOCSYNECX / FINANCE DESK', headline: 'Automate finance.', accent: 'Unlock intelligence.',
     description: 'Go beyond invoice automation. Bring intelligent document processing, financial intelligence, business intelligence and AI-powered insights into one connected finance workspace.',
-    primary: 'Book a Finance Desk Demo', microline: 'Invoice workflows · Financial visibility · Business insights',
+    primary: 'Book a Demo', microline: 'Invoice workflows · Financial visibility · Business insights',
     visualTitle: 'FINANCE DESK', visualLabel: 'ILLUSTRATIVE PRODUCT VIEW', tiles: [['Document workflow', 'Invoice review'], ['Business view', 'Financial insights']], chip: 'Extract · Validate · Understand',
     ctaEyebrow: 'DOCSYNECX FINANCE DESK', ctaTitle: 'Bring your finance workflows into one connected workspace.', ctaCopy: "Tell us about your documents, accounting system and reporting needs, and we’ll help identify a practical starting point.",
   },
@@ -80,14 +80,14 @@ export const financePageCopy = {
   'banking-reconciliation': {
     eyebrow: 'FINANCE DESK / BANKING & RECONCILIATION', headline: 'Bank statements, organised.', accent: 'Reconciliation made clearer.',
     description: 'Process bank statement data, support bookkeeping and review reconciliation in TallyPrime, with your accounting team in control.',
-    primary: 'Talk to Docsynecx', microline: 'Finance Desk · Bookkeeping · Reconciliation review',
+    primary: 'Book a Demo', microline: 'Finance Desk · Bookkeeping · Reconciliation review',
     visualTitle: 'BANK STATEMENT WORKSPACE', visualLabel: 'FINANCE DESK', tiles: [['Statement data', 'Structured transactions'], ['Review', 'Match & verify']], chip: 'Statement · Match · Review',
     ctaEyebrow: 'LET’S TALK', ctaTitle: 'Explore bank statement and reconciliation workflows.', ctaCopy: "Tell us about your bank formats, accounting system and reconciliation process. We’ll discuss a suitable scope and implementation approach.",
   },
   'payment-reminders': {
     eyebrow: 'FINANCE DESK / PAYMENT REMINDERS', headline: 'Stay on top of collections with', accent: 'Payment Reminders.',
     description: 'Keep outstanding invoices visible and help your team follow up with customers before and after payment due dates.',
-    primary: 'Talk to Docsynecx', microline: 'Finance Desk · Receivables visibility · Follow-up workflow',
+    primary: 'Book a Demo', microline: 'Finance Desk · Receivables visibility · Follow-up workflow',
     visualTitle: 'PAYMENT FOLLOW-UP', visualLabel: 'FINANCE DESK', tiles: [['Payment due', 'Track due dates'], ['Follow-up', 'Stay consistent']], chip: 'Due dates · Reminders · Follow-ups',
     ctaEyebrow: 'LET’S TALK', ctaTitle: 'Bring more structure to payment follow-ups.', ctaCopy: 'Discuss your current receivables process, customer communication needs and payment reminder workflow with our team.',
   },
@@ -101,7 +101,7 @@ export const financePageCopy = {
   'docsynecx-intelligence': {
     eyebrow: 'DOCSYNECX / FINANCE DESK / INTELLIGENCE', headline: 'Understand business performance.', accent: 'See the bigger picture.',
     description: 'Docsynecx Intelligence brings financial and business information into clearer view, helping teams review performance, understand key movements and ask better questions.',
-    primary: 'Explore Intelligence', microline: 'Decision support, not a replacement for accounting controls or management judgement.',
+    primary: 'Book a Demo', microline: 'Decision support, not a replacement for accounting controls or management judgement.',
     visualTitle: 'DOCSYNECX INTELLIGENCE', visualLabel: 'BUSINESS PERFORMANCE', tiles: [['Financial', 'Overview'], ['Business', 'Performance']], chip: 'Insights · Comparisons · AI-assisted',
     ctaEyebrow: 'MAKE YOUR DATA MORE USEFUL', ctaTitle: 'Bring business performance into focus.', ctaCopy: 'Discuss your reporting needs, source data and the questions your team wants to answer.',
   },

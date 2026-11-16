@@ -63,7 +63,7 @@ export function IntelligenceLayer() {
       <div className="site-shell">
         {/* Header: Left-aligned and styled like "Why Docsynecx" */}
         <div className={s.header}>
-          <p className={s.eyebrow}>Intelligence layer</p>
+          <p className={s.eyebrow}>Docsynecx Intelligence layer</p>
           <h2 id="intelligence-layer-heading" className={s.title}>
             AI that works with your <br />
             <span className={s.titleHighlight}>business processes.</span>

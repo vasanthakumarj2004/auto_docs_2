@@ -15,6 +15,15 @@ export interface PersonaFaq {
   answer: string;
 }
 
+export interface ProcessStepItem {
+  number: string;
+  phase: string;
+  title: string;
+  description: string;
+  output: string;
+  iconName: 'Inbox' | 'Sparkles' | 'ShieldCheck' | 'CheckCheck';
+}
+
 export interface PersonaData {
   slug: 'business-owners' | 'finance-teams' | 'accounts-teams' | 'ca-firms';
   navTitle: string;
@@ -44,6 +53,7 @@ export interface PersonaData {
   processTitle: string;
   processDescription: string;
   processSteps: string[];
+  processFlow?: ProcessStepItem[];
   proofLabel: string;
   proofTitle: string;
   proofMetricFrom: string;
@@ -70,7 +80,7 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
     headline: 'Complete financial clarity.',
     accent: 'Zero guesswork.',
     description: 'Stop waiting for month-end accounting reports to understand cash flow and supplier commitments. Docsynecx brings invoice approvals, spending visibility, and financial intelligence into a unified workspace.',
-    primaryCta: 'Book an Owner Walkthrough',
+    primaryCta: 'Book a Demo',
     secondaryCta: 'Explore capabilities',
     microline: 'Real-time visibility · Automated approvals · Works with your existing TallyPrime',
     visualTitle: 'EXECUTIVE OVERVIEW',
@@ -152,6 +162,40 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
     processTitle: 'How business owners maintain control effortlessly.',
     processDescription: 'A streamlined workflow that frees your executive time while keeping financial safeguards airtight.',
     processSteps: ['Bills captured from emails & scans', 'AI verifies GST & duplicates', 'Owner reviews high-value items', 'Voucher auto-posts to TallyPrime'],
+    processFlow: [
+      {
+        number: '01',
+        phase: 'Intake & Ingestion',
+        title: 'Bills captured from emails & scans',
+        description: 'Invoices, branch bills, and utility receipts drop directly into your central inbox from any email or upload.',
+        output: 'Raw files captured & centralized',
+        iconName: 'Inbox',
+      },
+      {
+        number: '02',
+        phase: 'Intelligent Validation',
+        title: 'AI verifies GST & duplicates',
+        description: 'Docsynecx extracts item-level data, checks GST compliance, verifies arithmetic totals, and flags duplicate billings.',
+        output: 'Line items & tax rates verified',
+        iconName: 'Sparkles',
+      },
+      {
+        number: '03',
+        phase: 'Executive Oversight',
+        title: 'Owner reviews high-value items',
+        description: 'High-ticket purchases and exceptional variances surface for quick, one-click signoff with complete confidence.',
+        output: 'Threshold sign-off & audit logged',
+        iconName: 'ShieldCheck',
+      },
+      {
+        number: '04',
+        phase: 'Automated Posting',
+        title: 'Voucher auto-posts to TallyPrime',
+        description: 'Approved entries automatically create synchronized purchase vouchers in TallyPrime with source invoices attached.',
+        output: 'Permanent Tally voucher linked',
+        iconName: 'CheckCheck',
+      },
+    ],
     proofLabel: 'CUSTOMER SPOTLIGHT',
     proofTitle: 'Rajadurai E-Vehicles',
     proofMetricFrom: 'Days',
@@ -194,7 +238,7 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
     headline: 'Automate invoice cycles.',
     accent: 'Accelerate month-end.',
     description: 'Give your finance team an intelligent workspace to process thousands of supplier invoices, route multi-level approvals, enforce GST compliance, and close books days earlier.',
-    primaryCta: 'Book a Finance Team Demo',
+    primaryCta: 'Book a Demo',
     secondaryCta: 'Explore capabilities',
     microline: 'High-volume batching · Exception management · End-to-end audit compliance',
     visualTitle: 'FINANCE WORKBENCH',
@@ -274,8 +318,42 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
     ],
     processEyebrow: 'STRUCTURED AP WORKFLOW',
     processTitle: 'From vendor invoice to ledger posting in 4 controlled steps.',
-    processDescription: 'Full visibility at every milestone so no invoice ever slips through the cracks or gets delayed.',
+    processDescription: '',
     processSteps: ['Central Inbox Ingestion', 'AI Extraction & Line-Item Check', 'Departmental Approval', 'Automated TallyPrime Posting'],
+    processFlow: [
+      {
+        number: '01',
+        phase: 'Central Ingestion',
+        title: 'Central Inbox Ingestion',
+        description: 'Consolidate invoices from vendor emails, branches, ERP portals, and scanners into a single structured AP intake queue.',
+        output: 'Centralized multi-channel intake',
+        iconName: 'Inbox',
+      },
+      {
+        number: '02',
+        phase: 'Extraction & Match',
+        title: 'AI Extraction & Line-Item Check',
+        description: 'Optical models parse complex tables, item descriptions, and HSN codes, performing instant 2-way and 3-way matching.',
+        output: 'Line items & PO matched',
+        iconName: 'Sparkles',
+      },
+      {
+        number: '03',
+        phase: 'Approval Matrix',
+        title: 'Departmental Approval',
+        description: 'Rule-based approval workflows automatically route documents to budget holders with automated escalations and audit trails.',
+        output: 'Multi-tier departmental approval',
+        iconName: 'ShieldCheck',
+      },
+      {
+        number: '04',
+        phase: 'Direct Posting',
+        title: 'Automated TallyPrime Posting',
+        description: 'Approved bills post straight into respective creditor and expense ledgers, maintaining real-time AP visibility.',
+        output: 'Reconciled AP ledger voucher',
+        iconName: 'CheckCheck',
+      },
+    ],
     proofLabel: 'LOGISTICS BENCHMARK',
     proofTitle: 'FT Logistics',
     proofMetricFrom: '2 hrs',
@@ -306,7 +384,7 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
     ctaEyebrow: 'SCALE FINANCE OPERATIONS',
     ctaTitle: 'Free your finance team from repetitive invoice data entry.',
     ctaDescription: 'Explore how Docsynecx streamlines approval bottlenecks, enforces tax checks, and automates posting into TallyPrime.',
-    ctaButtonText: 'Book a Finance Team Demo',
+    ctaButtonText: 'Book a Demo',
   },
 
   'accounts-teams': {
@@ -318,7 +396,7 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
     headline: 'Stop manual retyping.',
     accent: 'Post bills in one click.',
     description: 'Accounts executives spend up to 70% of their workday keying vendor bills, part numbers, and tax splits into Tally. Docsynecx automates the data extraction, ledger mapping, and voucher creation so you can focus on review.',
-    primaryCta: 'Book an Accounts Demo',
+    primaryCta: 'Book a Demo',
     secondaryCta: 'Explore capabilities',
     microline: 'Zero manual typing · Line items & HSN · 1-Click TallyPrime voucher creation',
     visualTitle: 'VOUCHER AUTOMATION',
@@ -400,6 +478,40 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
     processTitle: 'Your new everyday accounts routine.',
     processDescription: 'Move from chaotic paper stacks to a clean, stress-free digital review desk.',
     processSteps: ['Upload PDF or Scan', 'Review Fields Side-by-Side', 'Confirm Suggested Ledgers', 'Push Voucher to TallyPrime'],
+    processFlow: [
+      {
+        number: '01',
+        phase: 'Fast Upload',
+        title: 'Upload PDF or Scan',
+        description: 'Drop single bills or bulk multi-page invoice batches into the review desk — no tedious file naming or sorting required.',
+        output: 'Batch uploaded in seconds',
+        iconName: 'Inbox',
+      },
+      {
+        number: '02',
+        phase: 'Side-by-Side Check',
+        title: 'Review Fields Side-by-Side',
+        description: 'Verify extracted supplier details, GSTIN, dates, and amounts directly against the highlighted source document.',
+        output: '99.8% field extraction precision',
+        iconName: 'Sparkles',
+      },
+      {
+        number: '03',
+        phase: 'Ledger Mapping',
+        title: 'Confirm Suggested Ledgers',
+        description: 'Docsynecx remembers supplier accounting history to auto-suggest the exact purchase and expense ledgers in Tally.',
+        output: 'Tally masters auto-mapped',
+        iconName: 'ShieldCheck',
+      },
+      {
+        number: '04',
+        phase: 'One-Click Post',
+        title: 'Push Voucher to TallyPrime',
+        description: 'Send clean, validated vouchers directly into Tally with zero manual typing, ready for instant GST return preparation.',
+        output: 'Instant purchase entry in Tally',
+        iconName: 'CheckCheck',
+      },
+    ],
     proofLabel: 'EFFICIENCY BENCHMARK',
     proofTitle: 'Arishfirma Operations',
     proofMetricFrom: 'Hours',
@@ -442,7 +554,7 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
     headline: 'High-speed client bookkeeping.',
     accent: 'Flawless GST compliance.',
     description: 'Chartered Accountants and tax practitioners handle hundreds of messy client documents every month. Docsynecx automates client bill intake, tax extraction, and TallyPrime voucher creation across all your client companies.',
-    primaryCta: 'Book a CA Practice Demo',
+    primaryCta: 'Book a Demo',
     secondaryCta: 'Explore capabilities',
     microline: 'Multi-client workspace · GSTR-2B validation · Fast turnaround for audit & filing',
     visualTitle: 'PRACTICE SUITE',
@@ -524,6 +636,40 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
     processTitle: 'From client document dump to reconciled books in minutes.',
     processDescription: 'Standardised, stress-free client accounting built for peak tax season volume.',
     processSteps: ['Client Drops Bills & Statements', 'AI Extracts Lines, HSN & GST', 'Article Reviews & Approves', 'Vouchers Sync to Client Tally'],
+    processFlow: [
+      {
+        number: '01',
+        phase: 'Client Intake',
+        title: 'Client Drops Bills & Statements',
+        description: 'Clients dump messy receipts, invoices, and bank statements directly into dedicated, secure client folders.',
+        output: 'Structured client drop folder',
+        iconName: 'Inbox',
+      },
+      {
+        number: '02',
+        phase: 'AI Tax Structuring',
+        title: 'AI Extracts Lines, HSN & GST',
+        description: 'Extracts itemized tables, auto-determines inter/intra-state tax classifications, and tags HSN codes for GSTR-2B matching.',
+        output: 'Compliant tax & line data',
+        iconName: 'Sparkles',
+      },
+      {
+        number: '03',
+        phase: 'Article Verification',
+        title: 'Article Reviews & Approves',
+        description: 'Audit assistants and articles rapidly review suggested ledger groupings and exception flags in high-speed batch mode.',
+        output: 'Quick staff verification',
+        iconName: 'ShieldCheck',
+      },
+      {
+        number: '04',
+        phase: 'Multi-Company Sync',
+        title: 'Vouchers Sync to Client Tally',
+        description: 'Synchronizes thousands of reconciled vouchers directly into each respective client’s Tally company file.',
+        output: 'Reconciled, audit-ready client books',
+        iconName: 'CheckCheck',
+      },
+    ],
     proofLabel: 'PRACTICE IMPACT',
     proofTitle: 'Turnaround Time',
     proofMetricFrom: 'Days',
@@ -554,6 +700,6 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
     ctaEyebrow: 'TRANSFORM YOUR CA PRACTICE',
     ctaTitle: 'Scale your firm’s client capacity and eliminate tax season crunch.',
     ctaDescription: 'See a live demonstration of multi-client document processing and Tally voucher automation built specifically for CA firms.',
-    ctaButtonText: 'Book a CA Practice Demo',
+    ctaButtonText: 'Book a Demo',
   },
 };

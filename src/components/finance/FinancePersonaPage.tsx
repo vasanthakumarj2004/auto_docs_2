@@ -2,7 +2,18 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowDown, ArrowRight, ArrowUpRight, Check, Building2 } from 'lucide-react';
+import {
+  ArrowDown,
+  ArrowRight,
+  ArrowUpRight,
+  Check,
+  CheckCheck,
+  CheckCircle2,
+  Building2,
+  Inbox,
+  ShieldCheck,
+  Sparkles,
+} from 'lucide-react';
 import { LandingNavigation } from '../LandingNavigation';
 import { LandingClosingCta } from '../LandingClosingCta';
 import { ShipsyFooter } from '../ShipsyFooter';
@@ -15,6 +26,16 @@ import { PersonaBusinessChallenge } from './PersonaBusinessChallenge';
 interface FinancePersonaPageProps {
   persona: PersonaData['slug'];
 }
+
+const STEP_ICONS: Record<
+  string,
+  React.ComponentType<{ size?: number; className?: string; 'aria-hidden'?: boolean | 'true' | 'false' }>
+> = {
+  Inbox,
+  Sparkles,
+  ShieldCheck,
+  CheckCheck,
+};
 
 export function FinancePersonaPage({ persona }: FinancePersonaPageProps) {
   const data = financePersonas[persona];
@@ -121,27 +142,84 @@ export function FinancePersonaPage({ persona }: FinancePersonaPageProps) {
           </div>
         </section>
 
-        {/* 4. STEP-BY-STEP PROCESS */}
-        <section className={s.section} aria-labelledby="process-title">
+        {/* 4. STEP-BY-STEP PROCESS / WORKFLOW PIPELINE */}
+        <section className={s.processSection} aria-labelledby="process-title">
           <div className="site-shell">
             <div className={s.sectionHeading}>
               <div>
                 <p className={s.eyebrow}>{data.processEyebrow}</p>
                 <h2 id="process-title">{data.processTitle}</h2>
               </div>
+              <p className={s.sectionCopy}>{data.processDescription}</p>
             </div>
 
-            <ol className={s.process}>
-              {data.processSteps.map((step, index) => (
-                <li key={step}>
-                  <span>{step}</span>
-                  {index < data.processSteps.length - 1 && (
-                    <ArrowRight size={18} aria-hidden="true" />
-                  )}
-                </li>
-              ))}
-            </ol>
-            <p className={layoutStyles.bottomDescription}>{data.processDescription}</p>
+            {/* Workflow Pipeline */}
+            <div className={s.flowPipeline}>
+              <div className={s.flowGrid}>
+                {((data.processFlow && data.processFlow.length > 0)
+                  ? data.processFlow
+                  : data.processSteps.map((step, index) => ({
+                      number: `0${index + 1}`,
+                      phase: `Stage 0${index + 1}`,
+                      title: step,
+                      description: 'Streamlined operational step in your accounting and invoice workflow.',
+                      output: 'Validated & processed',
+                      iconName: (['Inbox', 'Sparkles', 'ShieldCheck', 'CheckCheck'][index] || 'Sparkles') as any,
+                    }))
+                ).map((step, index, arr) => {
+                  const IconComponent = STEP_ICONS[step.iconName] || Sparkles;
+                  const isLast = index === arr.length - 1;
+
+                  return (
+                    <div key={step.number} className={s.flowColumn}>
+                      {/* Milestone Track (Node + Directional Connector) */}
+                      <div className={s.flowMilestone}>
+                        <div className={`${s.flowNode} ${isLast ? s.flowNodeFinal : ''}`}>
+                          <span>{step.number}</span>
+                        </div>
+                        {!isLast && (
+                          <div className={s.flowConnector} aria-hidden="true">
+                            <span className={s.flowConnectorLine} />
+                            <ArrowRight size={13} className={s.flowConnectorArrow} />
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Step Card */}
+                      <div className={`${s.flowCard} ${isLast ? s.flowCardFinal : ''}`}>
+                        <div className={s.flowCardHeader}>
+                          <div className={s.flowIconBox}>
+                            <IconComponent size={20} aria-hidden="true" />
+                          </div>
+                          <span className={s.flowPhaseTag}>{step.phase}</span>
+                        </div>
+
+                        <h3 className={s.flowCardTitle}>{step.title}</h3>
+                        <p className={s.flowCardDescription}>{step.description}</p>
+
+                        <div className={s.flowCardOutput}>
+                          <Check size={12} className={s.flowOutputCheck} aria-hidden="true" />
+                          <span>{step.output}</span>
+                        </div>
+                      </div>
+
+                      {/* Mobile Step Downward Arrow */}
+                      {!isLast && (
+                        <div className={s.flowMobileArrow} aria-hidden="true">
+                          <ArrowDown size={14} />
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Trust & Review Assurance Note */}
+              <p className={s.flowNote}>
+                <ShieldCheck size={16} aria-hidden="true" />
+                <span>Complete control at every stage — human review, audit trail, and zero changes to your existing Tally setup.</span>
+              </p>
+            </div>
           </div>
         </section>
 

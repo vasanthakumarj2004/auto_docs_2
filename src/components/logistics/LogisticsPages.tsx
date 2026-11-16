@@ -91,6 +91,7 @@ export function LogisticsPage({ slug }: LogisticsPageProps) {
                   className={`button-primary ${base.heroButton}`}
                 >
                   <span>{moduleData.primaryCtaText}</span>
+                  <ArrowUpRight size={16} aria-hidden="true" />
                 </Link>
 
                 <Link

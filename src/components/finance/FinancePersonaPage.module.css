@@ -7,15 +7,12 @@
   position: relative;
   isolation: isolate;
   --landing-bg: var(--color-paper, #fafafa);
+  --hero-bg: var(--color-hero-bg, #f7f5f0);
   --landing-alt: #f6f5f9;
   --landing-ink: var(--color-ink, #0f172a);
   --landing-muted: #586579;
   --landing-line: #dde1e9;
-  --color-brand: #18cb96;
-  --color-brand-strong: #0f8562;
-  --color-brand-text: #0d9466;
-  --color-brand-soft: #f0fdf9;
-  --color-brand-border: rgba(24, 203, 150, 0.25);
+  --landing-green: var(--color-brand);
   background: var(--landing-bg);
   color: var(--landing-ink);
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
@@ -237,7 +234,7 @@
 }
 
 .productTiles > div:hover {
-  border-color: rgba(24, 203, 150, 0.4);
+  border-color: var(--color-brand);
   transform: translateY(-1px);
 }
 
@@ -283,12 +280,12 @@
   align-items: center;
   padding: 8px 12px;
   border-radius: 8px;
-  background: rgba(240, 253, 249, 0.95);
+  background: var(--color-brand-soft);
   color: var(--color-brand-text);
   font-size: 10px;
   font-weight: 650;
-  border: 1px solid rgba(24, 203, 150, 0.3);
-  box-shadow: 0 2px 8px rgba(24, 203, 150, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--color-brand-border);
+  box-shadow: 0 2px 8px var(--color-brand-100), inset 0 1px 0 rgba(255, 255, 255, 0.8);
   letter-spacing: 0.01em;
 }
 
@@ -355,7 +352,7 @@
 }
 
 .dark .eyebrow {
-  color: #34d399;
+  color: var(--color-brand);
 }
 
 .problems {
@@ -374,12 +371,12 @@
 
 .problems article:hover {
   transform: translateY(-2px);
-  border-color: rgba(24, 203, 150, 0.3);
+  border-color: var(--color-brand);
 }
 
 .problems span {
   display: inline-block;
-  color: #34d399;
+  color: var(--color-brand);
   font-family: 'JetBrains Mono', monospace;
   font-size: 13px;
   font-weight: 700;
@@ -458,7 +455,7 @@
 
 .featureGrid article:hover {
   transform: translateY(-2px);
-  border-color: rgba(24, 203, 150, 0.35);
+  border-color: var(--color-brand);
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
 }
 
@@ -493,37 +490,248 @@
 }
 
 /* ==========================================================================
-   5. PROCESS STRIP
+   5. WORKFLOW PIPELINE & STEP FLOW
    ========================================================================== */
-.process {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 14px;
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.processSection {
+  padding-block: clamp(64px, 7vh, 96px);
+  position: relative;
+  background: #f7f5f0;
+  border-bottom: 1px solid var(--landing-line);
 }
 
-.process li {
-  display: flex;
-  align-items: center;
-  gap: 14px;
+.flowPipeline {
+  margin-top: 48px;
 }
 
-.process li > span {
-  border: 1px solid var(--landing-line);
-  padding: 14px 22px;
-  border-radius: 10px;
-  background: #fff;
-  color: var(--landing-ink);
+.flowGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  position: relative;
+}
+
+.flowColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.flowMilestone {
+  display: flex;
+  align-items: center;
+  position: relative;
+  min-height: 38px;
+}
+
+.flowNode {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid #dde1e9;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', monospace;
   font-size: 13px;
-  font-weight: 600;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+  font-weight: 700;
+  color: var(--landing-ink);
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+  transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease, color 200ms ease;
+  z-index: 2;
 }
 
-.process svg {
-  color: var(--color-brand-strong);
+.flowColumn:hover .flowNode {
+  border-color: var(--color-brand);
+  color: var(--color-brand-text, var(--color-brand));
+  transform: scale(1.08);
+  box-shadow: 0 4px 12px var(--color-brand-200, rgba(46, 139, 87, 0.25));
+}
+
+.flowNodeFinal {
+  border-color: var(--color-brand);
+  background: var(--color-brand);
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px var(--color-brand-200, rgba(46, 139, 87, 0.35));
+}
+
+.flowNodeFinal span {
+  color: #ffffff !important;
+}
+
+.flowColumn:hover .flowNodeFinal,
+.flowNodeFinal:hover {
+  color: #ffffff !important;
+  background: var(--color-brand-strong, var(--color-brand));
+  border-color: var(--color-brand-strong, var(--color-brand));
+  transform: scale(1.1);
+  box-shadow: 0 6px 18px var(--color-brand-400, rgba(46, 139, 87, 0.5));
+}
+
+.flowConnector {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin-left: 12px;
+  margin-right: -24px;
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.flowConnectorLine {
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, var(--color-brand) 0%, #cbd5e1 100%);
+  opacity: 0.75;
+}
+
+.flowConnectorArrow {
+  color: var(--color-brand);
+  flex-shrink: 0;
+  margin-left: -4px;
+  margin-right: 2px;
+}
+
+.flowCard {
+  background: #ffffff;
+  border: 1px solid var(--landing-line, #dde1e9);
+  border-radius: 18px;
+  padding: 24px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  height: 100%;
+}
+
+.flowColumn:hover .flowCard {
+  transform: translateY(-4px);
+  border-color: var(--color-brand);
+  box-shadow: 0 14px 30px -8px rgba(15, 23, 42, 0.09);
+}
+
+.flowCardFinal {
+  border-color: var(--color-brand-border, var(--color-brand));
+  background: #ffffff;
+}
+
+.flowColumn:hover .flowCardFinal {
+  border-color: var(--color-brand-strong, var(--color-brand));
+}
+
+.flowCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.flowIconBox {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  background: var(--color-brand-soft, #eaf6f0);
+  border: 1px solid var(--color-brand-border, #97cbae);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-brand-text, var(--color-brand));
+  transition: transform 200ms ease, background-color 200ms ease, border-color 200ms ease;
+}
+
+.flowColumn:hover .flowIconBox {
+  transform: scale(1.06);
+  background: var(--color-brand-100, var(--color-brand-soft));
+  border-color: var(--color-brand);
+}
+
+.flowCardFinal .flowIconBox {
+  background: var(--color-brand-soft, #eaf6f0);
+  border-color: var(--color-brand-border, #97cbae);
+  color: var(--color-brand-text, var(--color-brand));
+}
+
+.flowPhaseTag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-brand-text, var(--color-brand));
+  background: var(--color-brand-soft, #eaf6f0);
+  border: 1px solid var(--color-brand-border, #97cbae);
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+
+.flowCardFinal .flowPhaseTag {
+  background: var(--color-brand);
+  border-color: var(--color-brand);
+  color: #ffffff;
+}
+
+.flowCardTitle {
+  font-size: 15.5px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  color: var(--landing-ink);
+  margin: 0 0 10px;
+}
+
+.flowCardDescription {
+  font-size: 13px;
+  line-height: 1.62;
+  color: var(--landing-muted);
+  margin: 0 0 18px;
+  flex-grow: 1;
+}
+
+.flowCardOutput {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 9px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #334155;
+  margin-top: auto;
+}
+
+.flowCardFinal .flowCardOutput {
+  background: var(--color-brand-soft, #eaf6f0);
+  border-color: var(--color-brand-border, #97cbae);
+  color: var(--color-brand-text, var(--color-brand));
+}
+
+.flowOutputCheck {
+  color: var(--color-brand);
+  flex-shrink: 0;
+}
+
+.flowMobileArrow {
+  display: none;
+}
+
+.flowNote {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  margin-top: 36px;
+  font-size: 13px;
+  color: var(--landing-muted);
+  text-align: center;
+}
+
+.flowNote svg {
+  color: var(--color-brand);
+  flex-shrink: 0;
 }
 
 /* ==========================================================================
@@ -541,7 +749,7 @@
   min-height: 320px;
   border: 1px solid var(--color-brand-border);
   border-radius: 20px;
-  background: radial-gradient(ellipse at bottom right, rgba(24, 203, 150, 0.12), transparent 75%), var(--color-brand-soft);
+  background: radial-gradient(ellipse at bottom right, var(--color-brand-100), transparent 75%), var(--color-brand-soft);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -679,6 +887,16 @@
     align-items: flex-start;
     padding: 32px;
   }
+  .flowGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px 20px;
+  }
+  .flowConnector {
+    margin-right: -20px;
+  }
+  .flowColumn:nth-child(2) .flowConnector {
+    display: none;
+  }
 }
 
 @media (max-width: 640px) {
@@ -694,18 +912,27 @@
   .featureGrid {
     grid-template-columns: 1fr;
   }
-  .process {
+  .flowGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .flowConnector {
+    display: none;
+  }
+  .flowMobileArrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-brand);
+    padding-top: 8px;
+  }
+  .flowCard {
+    padding: 20px 18px 18px;
+  }
+  .flowNote {
     flex-direction: column;
-    align-items: stretch;
-  }
-  .process li {
-    flex-direction: column;
-  }
-  .process li > span {
-    width: 100%;
-    text-align: center;
-  }
-  .process svg {
-    transform: rotate(90deg);
+    gap: 6px;
+    font-size: 12px;
+    margin-top: 24px;
   }
 }

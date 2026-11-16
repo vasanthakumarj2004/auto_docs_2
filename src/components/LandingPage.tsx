@@ -28,7 +28,7 @@ const benefits = [
 ];
 const BENEFIT_ITEMS = [
   { icon: Zap, tag: 'Autonomous Flow' },
-  { icon: ShieldCheck, tag: 'Human Review Gate' },
+  { icon: ShieldCheck, tag: 'Human Review Loop' },
   { icon: ArrowLeftRight, tag: 'Two-Way System Sync' },
   { icon: TrendingUp, tag: 'Actionable Visibility' },
 ];
@@ -48,7 +48,7 @@ interface CustomerStoryOutcome {
 }
 
 const stories: CustomerStoryOutcome[] = [
-  { tag: 'Logistics', name: 'FreightForwarders', metric: '2 hrs → 2 min', summary: 'email to CargoWise', copy: 'A specific email-to-CargoWise document workflow reduced from around two hours to approximately two minutes.', href: '/#customers' },
+  { tag: 'Logistics', name: 'Freight Forwarders', metric: '2 hrs → 2 min', summary: 'email to CargoWise', copy: 'A specific email-to-CargoWise document workflow reduced from around two hours to approximately two minutes.', href: '/#customers' },
   { tag: 'Automotive & EV', name: 'Automotive Industries', metric: 'Days → hours', summary: 'document workflow', copy: 'Manual document workload reduced from days to hours through an AI-assisted workflow.', href: '/#customers' },
   { tag: 'Business operations', name: 'Manufacturing', metric: 'In daily use', summary: 'assets & purchase bills', copy: 'Regular operational use for asset and purchase bill workflows with zero manual re-entry.' },
   { tag: 'Retail & Distribution', name: 'OmniRetail Networks', metric: '94% automated', summary: 'multi-vendor invoicing', copy: 'High-volume invoice auditing and trade documents posted directly without error delays.' },

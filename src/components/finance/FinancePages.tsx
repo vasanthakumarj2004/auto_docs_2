@@ -71,8 +71,22 @@ function Hero({ page }: { page: PageKey }) {
         <h1 id="finance-title" className={s.heroTitle}>{copy.headline}<br /><span>{copy.accent}</span></h1>
         <p className={base.heroDescription}>{copy.description}</p>
         <div className={base.heroActions}>
-          <Link href={upcoming ? '#register-interest' : intelligence ? '#capabilities' : demoHref} className={`button-primary ${base.heroButton}`}>{copy.primary}{intelligence ? <ArrowRight size={16} aria-hidden="true" /> : <ArrowUpRight size={16} aria-hidden="true" />}</Link>
-          <Link href={upcoming ? financeRoot : intelligence ? demoHref : '#capabilities'} className={`button-secondary ${base.heroButton}`}>{upcoming ? 'Explore Finance Desk' : intelligence ? 'Book a demo' : 'Explore capabilities'}{!upcoming && !intelligence && <ArrowDown size={16} aria-hidden="true" />}</Link>
+          <Link
+            href={upcoming ? '#register-interest' : demoHref}
+            className={`button-primary ${base.heroButton}`}
+          >
+            {copy.primary}
+            <ArrowUpRight size={16} aria-hidden="true" />
+          </Link>
+          {!intelligence && (
+            <Link
+              href={upcoming ? financeRoot : '#capabilities'}
+              className={`button-secondary ${base.heroButton}`}
+            >
+              {upcoming ? 'Explore Finance Desk' : 'Explore capabilities'}
+              {!upcoming && <ArrowDown size={16} aria-hidden="true" />}
+            </Link>
+          )}
         </div>
         <p className={`${base.trust} ${s.heroTrust}`}>{intelligence ? <><strong>Decision support, not a replacement</strong> for accounting controls or management judgement.</> : copy.microline}</p>
       </div>
@@ -114,9 +128,11 @@ function Overview() {
 function Invoice() {
   return <>
     <InvoiceBusinessChallenge />
-    <Section id="capabilities"><Heading eyebrow="WHAT YOU CAN DO" title="Make the information work harder for you." /><div className={s.panel}><Checklist items={[
-      'AI-powered invoice data extraction', 'Supplier, invoice number and date capture', 'GST and HSN extraction', 'Line-item and tax detail capture', 'Credit note and debit note processing', 'Human-in-the-loop validation and confidence review', 'Duplicate detection and batch processing', 'TallyPrime integration',
-    ]} /></div><Features items={invoiceFeatures} /><p className={base.bottomDescription}>Start with the needs that matter most to your team. Scope and available workflows can be confirmed during a product walkthrough.</p></Section>
+    <Section id="capabilities"><Heading eyebrow="WHAT YOU CAN DO" title="Make the information work harder for you." /><div className={s.panel}><div className={s.checklistColumns}><Checklist items={[
+      'AI-powered invoice data extraction', 'Supplier, invoice number and date capture', 'GST and HSN extraction', 'Line-item and tax detail capture',
+    ]} /><Checklist items={[
+      'Credit note and debit note processing', 'Human-in-the-loop validation and confidence review', 'Duplicate detection and batch processing', 'TallyPrime integration',
+    ]} /></div></div><Features items={invoiceFeatures} /><p className={base.bottomDescription}>Start with the needs that matter most to your team. Scope and available workflows can be confirmed during a product walkthrough.</p></Section>
     <InvoiceHowItWorks />
     <Related slugs={['banking-reconciliation', 'payment-reminders', 'docsynecx-intelligence']} />
   </>;
