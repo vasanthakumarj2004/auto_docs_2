@@ -56,7 +56,7 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
               <DocsynecxLogo variant="footer" className={styles.logo} />
             </Link>
             <p className={styles.brandTagline}>
-              AI-powered platforms that simplify complex workflows across Finance and Logistics.
+              AI-powered platforms that simplify complex workflows across Finance and Freight Forwarders.
             </p>
 
             <div className={styles.socialRow} aria-label="Docsynecx social channels">
@@ -102,16 +102,16 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
 
           {/* Column 2: Platforms */}
           <div className={styles.navCol}>
-            <span className={styles.colHeader}>Platforms</span>
+            <h4 className={styles.colHeader}>Platforms</h4>
             <ul className={styles.linkList}>
               <li>
                 <Link href="/finance-desk/" className={styles.footerLink}>
-                  Docsynecx Finance
+                  Docsynecx  Finance
                 </Link>
               </li>
               <li>
                 <Link href="/#platform" className={styles.footerLink}>
-                  Docsynecx Logistics
+                  Docsynecx  Freight Forwarders
                 </Link>
               </li>
             </ul>
@@ -119,7 +119,7 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
 
           {/* Column 3: Solutions by Use Case */}
           <div className={styles.navCol}>
-            <span className={styles.colHeader}>Solutions by Use Case</span>
+            <h4 className={styles.colHeader}>Solutions by Use Case</h4>
             <ul className={styles.linkList}>
               <li>
                 <Link href="/solutions#automotive" className={styles.footerLink}>
@@ -151,7 +151,7 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
 
           {/* Column 4: Finance Modules */}
           <div className={styles.navCol}>
-            <span className={styles.colHeader}>Finance Modules</span>
+            <h4 className={styles.colHeader}>Finance Modules</h4>
             <ul className={styles.linkList}>
               <li>
                 <Link href="/finance-desk/invoice-automation/" className={styles.footerLink}>
@@ -178,11 +178,11 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
 
           {/* Column 5: Logistics Modules */}
           <div className={styles.navCol}>
-            <span className={styles.colHeader}>Logistics Modules</span>
+            <h4 className={styles.colHeader}>Logistics Modules</h4>
             <ul className={styles.linkList}>
               <li>
                 <Link href="/logistics/email-to-booking/" className={styles.footerLink}>
-                  Email-to-Booking
+                  RFQ-to-Booking
                 </Link>
               </li>
               <li>
@@ -203,27 +203,57 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
             </ul>
           </div>
 
-          {/* Column 6: Company */}
+          {/* Column 6: Resources */}
           <div className={styles.navCol}>
-            <span className={styles.colHeader}>Company</span>
+            <h4 className={styles.colHeader}>Resources</h4>
             <ul className={styles.linkList}>
               <li>
-                <Link href="/#faq" className={styles.footerLink}>
+                <Link href="/blogs" className={styles.footerLink}>
+                  Blogs
+                </Link>
+              </li>
+              <li>
+                <Link href="/#customers" className={styles.footerLink}>
+                  Case Studies
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className={styles.footerLink}>
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/events/iics-2026/" className={styles.footerLink}>
+                  Events
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 7: Company */}
+          <div className={styles.navCol}>
+            <h4 className={styles.colHeader}>Company</h4>
+            <ul className={styles.linkList}>
+              <li>
+                <Link href="/privacy-policy" className={styles.footerLink}>
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/#faq" className={styles.footerLink}>
-                  Terms and Conditions
+                <Link href="/terms-of-service" className={styles.footerLink}>
+                  Terms of Service
+                </Link>
+              </li>
+              
+              <li>
+                <Link href="/contact" className={styles.footerLink}>
+                  Contact Us
                 </Link>
               </li>
               <li>
-                <CookieSettingsButton
-                  className={styles.footerLink}
-                  showIcon={false}
-                  label="Cookie Settings"
-                />
+               
               </li>
+           
             </ul>
           </div>
         </div>
@@ -236,11 +266,11 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
           <div className={styles.bottomContent}>
             <div className={styles.bottomMeta}>
               <span className={styles.brandLocation}>
-                SynecX AI Labs Private Limited &middot; Coimbatore, Tamil Nadu, India
+                Built by SynecX AI Labs Private Limited &middot; Coimbatore, Tamil Nadu, India
               </span>
             </div>
             <span className={styles.copyright}>
-              &copy; powered by Synecx AI Labs Private Limited. All rights reserved. 
+              &copy; Powered by Synecx AI Labs Private Limited. All rights reserved. 
             </span>
           </div>
         </div>

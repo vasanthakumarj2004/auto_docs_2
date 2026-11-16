@@ -7,7 +7,7 @@ import styles from './LandingPage.module.css';
 
 export function LandingClosingCta({
   primaryHref = '/demo/#demo-form',
-  secondaryHref = '/#platform',
+  secondaryHref,
 }: {
   primaryHref?: string;
   secondaryHref?: string;
@@ -32,9 +32,11 @@ export function LandingClosingCta({
                 Book a demo
                 <ArrowRight size={16} aria-hidden="true" />
               </Link>
-              <Link href={secondaryHref} className={`${styles.demoButton} ${styles.closingSecondaryBtn}`}>
-                Explore platform
-              </Link>
+              {secondaryHref && (
+                <Link href={secondaryHref} className={`${styles.demoButton} ${styles.closingSecondaryBtn}`}>
+                  Explore platform
+                </Link>
+              )}
             </div>
           </div>
         </div>

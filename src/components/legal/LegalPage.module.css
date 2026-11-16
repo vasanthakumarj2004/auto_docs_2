@@ -1,0 +1,144 @@
+.pageWrapper {
+  background-color: #ffffff;
+  color: #1f2937;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContainer {
+  flex: 1;
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  padding: 48px 16px 80px;
+  box-sizing: border-box;
+}
+
+@media (min-width: 640px) {
+  .mainContainer {
+    padding: 64px 32px 96px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mainContainer {
+    padding: 80px 32px 112px;
+  }
+}
+
+.legalPage {
+  max-width: 1024px; /* max-w-5xl */
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.pageTitle {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 700;
+  color: #111827;
+  text-align: center;
+  margin: 0 0 40px;
+  letter-spacing: -0.02em;
+}
+
+.contentFlow {
+  text-align: left;
+  color: #1f2937;
+  font-size: 16px;
+  line-height: 1.75;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.contentFlow h2 {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin: 48px 0 16px;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+}
+
+.contentFlow h2:first-of-type {
+  margin-top: 0;
+}
+
+.contentFlow h3 {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+  margin: 32px 0 12px;
+  line-height: 1.4;
+}
+
+.contentFlow h4 {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  margin: 24px 0 10px;
+}
+
+.contentFlow p {
+  margin: 0 0 18px;
+  color: #1f2937;
+}
+
+.contentFlow ul,
+.contentFlow ol {
+  list-style-type: disc;
+  padding-left: 24px;
+  margin: 0 0 24px;
+}
+
+.contentFlow li {
+  margin-bottom: 8px;
+  color: #1f2937;
+  line-height: 1.7;
+}
+
+.contentFlow a {
+  color: var(--color-brand-strong, #15b886);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+  transition: color 150ms ease;
+}
+
+.contentFlow a:hover {
+  color: var(--color-brand, #18cb96);
+}
+
+.metaHeader {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #f1f5f9;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #374151;
+}
+
+.metaHeader strong {
+  color: #111827;
+}
+
+.noticeBox {
+  margin: 20px 0 24px;
+  padding: 18px 20px;
+  background-color: #f8fafc;
+  border-left: 4px solid var(--color-brand, #18cb96);
+  border-radius: 0 8px 8px 0;
+}
+
+.noticeBox p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #1e293b;
+}

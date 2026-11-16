@@ -154,7 +154,7 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
         sno: '03',
         title: 'About Us',
         description: 'End-to-end bill ingestion, validation and automated voucher posting.',
-        href: '/#why-docsynecx',
+        href: '/about',
       },
       {
         sno: '04',
