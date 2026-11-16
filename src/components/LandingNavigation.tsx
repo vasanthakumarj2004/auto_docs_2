@@ -456,7 +456,8 @@ export function LandingNavigation({ variant = 'compact' }: { variant?: 'default'
               className={`${styles.demoButton} ${styles.navDemo} ${styles.mobileDemo}`}
               onClick={close}
             >
-              Book a Demo
+              <span>Book a Demo</span>
+              <ArrowUpRight size={14} aria-hidden="true" />
             </Link>
           </nav>
 
@@ -465,7 +466,8 @@ export function LandingNavigation({ variant = 'compact' }: { variant?: 'default'
             className={`${styles.demoButton} ${styles.navDemo} ${styles.desktopDemo}`}
             onClick={close}
           >
-            Book a Demo
+            <span>Book a Demo</span>
+            <ArrowUpRight size={14} aria-hidden="true" />
           </Link>
         </div>
 

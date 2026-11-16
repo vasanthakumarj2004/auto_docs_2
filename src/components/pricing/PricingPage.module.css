@@ -1,12 +1,12 @@
 /* ==========================================================================
-   Pricing Page Stylesheet — Docsynecx Design System
-   Exact visual parity with website typography, green brand palette, and layout.
+   Pricing Page Stylesheet — Docsynecx Standard Design System
+   Exact visual alignment with website components, typography & liquid buttons.
    ========================================================================== */
 
 .page {
   position: relative;
   isolation: isolate;
-  background-color: var(--color-paper, #fafafa);
+  background-color: #f7f5f0;
   color: var(--landing-ink, #0f172a);
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   min-height: 100vh;
@@ -35,798 +35,407 @@
   flex: 1;
 }
 
-/* ── 1. Hero & Pricing Plans Combined Section ── */
+/* ── Breadcrumb ── */
+.breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--landing-muted, #586579);
+  margin-bottom: clamp(16px, 2.5vh, 24px);
+}
+
+.breadcrumbLink {
+  color: var(--landing-muted, #586579);
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.breadcrumbLink:hover {
+  color: var(--color-brand-text, #18cb96);
+}
+
+.breadcrumbSeparator {
+  color: #cbd5e1;
+  font-size: 12px;
+}
+
+.breadcrumbCurrent {
+  color: var(--landing-ink, #0f172a);
+  font-weight: 600;
+}
+
+/* ── Hero Section ── */
 .heroSection {
   position: relative;
   background: #f7f5f0;
-  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
-  padding-top: clamp(48px, 6vh, 68px);
-  padding-bottom: clamp(64px, 8vh, 88px);
-  overflow: hidden;
-}
-
-.heroSection::before {
-  display: none;
+  padding-top: clamp(36px, 5vh, 52px);
+  padding-bottom: clamp(44px, 6vh, 60px);
+  text-align: center;
+  border-bottom: 1px solid var(--landing-line, #dde1e9);
 }
 
 .heroWrapper {
-  position: relative;
-  max-width: 820px;
-  margin: 0 auto clamp(28px, 4vh, 36px);
-  text-align: center;
+  max-width: 840px;
+  margin: 0 auto;
+}
+
+/* ── Eyebrow (Website Signature Pattern) ── */
+.eyebrowWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 14px;
 }
 
 .eyebrow {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--color-brand-strong, #0d9466);
-  margin-bottom: 14px;
-}
-
-.eyebrow::before,
-.eyebrow::after {
-  content: '';
-  width: 18px;
-  height: 2px;
-  background: var(--color-brand, #18cb96);
-}
-
-.heroTitle {
-  font-size: clamp(32px, 3.8vw, 48px);
-  font-weight: 750;
-  line-height: 1.15;
-  letter-spacing: -0.04em;
-  color: var(--landing-ink, #0f172a);
-  margin: 0 0 14px;
-}
-
-.heroTitle span {
-  color: var(--color-brand-strong, #0d9466);
-}
-
-.heroSubtitle {
-  font-size: clamp(14.5px, 1.15vw, 16px);
-  line-height: 1.6;
-  color: var(--landing-muted, #586579);
-  max-width: 620px;
-  margin: 0 auto 18px;
-}
-
-.trialPill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 16px;
-  border-radius: 9999px;
-  background: #ffffff;
-  border: 1px solid #dde1e9;
-  color: var(--color-brand-strong, #0d9466);
-  font-size: 12.5px;
-  font-weight: 600;
-  box-shadow: 0 1px 4px rgba(15, 23, 42, 0.04);
-  margin-bottom: 0;
-}
-
-.sparkleIcon {
-  color: var(--color-brand, #18cb96);
-}
-
-/* ── Metrics Row ── */
-.metricsRow {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-  max-width: 1040px;
-  margin: 0 auto clamp(36px, 5vh, 48px);
-  text-align: left;
-}
-
-.metricCard {
-  background: #ffffff;
-  border: 1px solid var(--landing-line, #dde1e9);
-  border-radius: 14px;
-  padding: 16px 20px;
-  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
-  transition: transform 200ms ease, box-shadow 200ms ease;
-}
-
-.metricCard:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
-}
-
-.metricCardAccent {
-  border-color: var(--landing-line, #dde1e9);
-  background: #ffffff;
-}
-
-.metricHeader {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
-}
-
-.metricIcon {
-  color: var(--color-brand, #18cb96);
-}
-
-.metricIconAccent {
-  color: var(--color-brand-strong, #0d9466);
-}
-
-.metricNumber {
-  font-size: clamp(22px, 2.2vw, 26px);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: var(--landing-ink, #0f172a);
-}
-
-.metricNumberAccent {
-  font-size: clamp(18px, 1.8vw, 20px);
-  font-weight: 750;
-  letter-spacing: -0.02em;
-  color: var(--color-brand-strong, #0d9466);
-}
-
-.metricLabel {
-  font-size: 12.5px;
-  line-height: 1.5;
-  color: var(--landing-muted, #586579);
+  color: var(--color-brand-text, #18cb96);
   margin: 0;
 }
 
-/* ── 2. Pricing Plans Cards Grid ── */
-.cardsGrid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-  align-items: stretch;
-  max-width: 1040px;
-  margin: 0 auto;
-  position: relative;
+.eyebrow::before {
+  content: '';
+  width: 22px;
+  height: 2px;
+  background: var(--color-brand, #18cb96);
+  flex-shrink: 0;
 }
 
+.heroTitle {
+  font-size: clamp(34px, 4vw, 50px);
+  font-weight: 750;
+  line-height: 1.15;
+  letter-spacing: -0.045em;
+  color: var(--landing-ink, #0f172a);
+  margin: 0 0 16px;
+  text-wrap: balance;
+}
+
+.heroSubtitle {
+  font-size: clamp(15px, 1.2vw, 16.5px);
+  line-height: 1.65;
+  color: var(--landing-muted, #586579);
+  max-width: 680px;
+  margin: 0 auto clamp(26px, 3.5vh, 36px);
+  text-wrap: pretty;
+}
+
+/* ── Sub-navigation Tab Switcher ── */
+.tabSwitcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 1px solid var(--landing-line, #dde1e9);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.04);
+}
+
+.tabButton {
+  padding: 8px 22px;
+  border-radius: 9999px;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  cursor: pointer;
+  transition: all 180ms ease;
+  white-space: nowrap;
+}
+
+.tabButton:hover {
+  color: var(--landing-ink, #0f172a);
+  background: #f1f5f9;
+}
+
+.tabButtonActive {
+  background: var(--color-brand, #18cb96) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(24, 203, 150, 0.3);
+}
+
+/* ── Section Headers (Website Shared Style) ── */
+.sectionHeader {
+  text-align: center;
+  max-width: 740px;
+  margin: 0 auto clamp(38px, 5vh, 52px);
+}
+
+.sectionTitle {
+  font-size: clamp(28px, 3.2vw, 40px);
+  font-weight: 750;
+  line-height: 1.2;
+  letter-spacing: -0.04em;
+  color: var(--landing-ink, #0f172a);
+  margin: 0 0 14px;
+  text-wrap: balance;
+}
+
+.sectionSubtitle {
+  font-size: clamp(14.5px, 1.15vw, 16px);
+  line-height: 1.62;
+  color: var(--landing-muted, #586579);
+  margin: 0 auto;
+  max-width: 640px;
+}
+
+/* ── 1. Finance Section ── */
+.financeSection {
+  position: relative;
+  background: #f7f5f0;
+  padding-block: clamp(60px, 7.5vh, 88px);
+}
+
+.financeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  max-width: 960px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+/* Plan Card */
 .planCard {
   position: relative;
   background: #ffffff;
   border: 1px solid var(--landing-line, #dde1e9);
-  border-radius: 18px;
-  padding: 22px 20px 18px;
+  border-radius: 20px;
+  padding: 34px 30px 28px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 4px 18px -2px rgba(15, 23, 42, 0.04);
   transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
 }
 
 .planCard:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.07);
-}
-
-/* Highlighted Popular Card */
-.popularCard {
-  border: 2px solid #2E8B57 !important;
-  background: #ffffff !important;
-  box-shadow: 0 20px 40px -12px rgba(15, 23, 42, 0.12),
-    0 8px 18px -4px rgba(15, 23, 42, 0.06),
-    0 0 0 1px rgba(15, 23, 42, 0.04) !important;
   transform: translateY(-4px);
+  border-color: #cbd5e1;
+  box-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.09);
 }
 
-.popularCard:hover {
-  transform: translateY(-6px);
+/* Highlighted Professional Card */
+.planCardAdvanced {
+  border: 2px solid var(--color-brand, #18cb96) !important;
+  box-shadow: 0 20px 42px -12px rgba(15, 23, 42, 0.12),
+    0 0 0 1px rgba(24, 203, 150, 0.15) !important;
+}
+
+.planCardAdvanced:hover {
+  transform: translateY(-5px);
   box-shadow: 0 28px 52px -12px rgba(15, 23, 42, 0.16),
-    0 12px 24px -4px rgba(15, 23, 42, 0.08),
-    0 0 0 1px rgba(15, 23, 42, 0.04) !important;
+    0 0 0 1px rgba(24, 203, 150, 0.25) !important;
 }
 
-.popularFloatingBadge {
-  position: absolute;
-  top: -12px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--color-brand, #18cb96);
-  color: #ffffff;
-  padding: 3.5px 12px;
-  border-radius: 9999px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.03em;
+.cardTop {
+  margin-bottom: 20px;
+}
+
+.planBadge {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
-  white-space: nowrap;
-}
-
-.cardHeader {
-  margin-bottom: 12px;
-}
-
-.planTag {
-  display: inline-block;
-  font-size: 10.5px;
+  gap: 6px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: #64748b;
-  margin-bottom: 3px;
+  color: var(--landing-muted, #586579);
+  background: #f1f5f9;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  margin-bottom: 14px;
 }
 
-.planTagPopular {
-  color: var(--color-brand-strong, #0d9466);
+.badgeDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #94a3b8;
+}
+
+.planBadgeAdvanced {
+  color: #065f46;
+  background: var(--color-brand-soft, #e8faf4);
+  border: 1px solid var(--color-brand-border, #99ebd1);
+}
+
+.planBadgeAdvanced .badgeDot {
+  background: var(--color-brand, #18cb96);
 }
 
 .planName {
-  font-size: 21px;
+  font-size: clamp(24px, 2.2vw, 28px);
   font-weight: 750;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.035em;
   color: var(--landing-ink, #0f172a);
-  margin: 0 0 3px;
+  margin: 0 0 10px;
 }
 
-.planSubtitle {
-  font-size: 12px;
-  line-height: 1.4;
+.planDescription {
+  font-size: 14px;
+  line-height: 1.62;
   color: var(--landing-muted, #586579);
   margin: 0;
-  min-height: 32px;
+  min-height: 44px;
 }
 
-.priceBox {
-  margin-bottom: 12px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--landing-line, #e2e8f0);
+.featuresDivider {
+  height: 1px;
+  background: var(--landing-line, #dde1e9);
+  margin-block: 8px 24px;
 }
 
-.priceAmount {
-  font-size: 26px;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  color: var(--landing-ink, #0f172a);
-  line-height: 1.15;
-}
-
-.bestFor {
-  font-size: 11.5px;
-  color: var(--landing-muted, #586579);
-  margin-top: 3px;
-  line-height: 1.38;
-}
-
-.featuresContainer {
-  flex: 1;
-  margin-bottom: 16px;
-}
-
+/* Feature List (Checklist) */
 .featureList {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 6.5px;
+  gap: 14px;
+  flex: 1;
 }
 
 .featureItem {
   display: flex;
   align-items: flex-start;
-  gap: 7px;
-  font-size: 12px;
-  color: var(--landing-ink, #1e293b);
-  line-height: 1.38;
+  gap: 12px;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #334155;
 }
 
-.checkIcon {
-  color: var(--color-brand, #18cb96);
-  flex-shrink: 0;
-  margin-top: 1.5px;
-}
-
-.featureItemDisabled {
-  color: #94a3b8;
-}
-
-.crossIcon {
-  color: #cbd5e1;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-.cardFooter {
-  margin-top: auto;
-}
-
-/* Plan Button: Solid brand green at rest with upward solid white liquid fill on hover */
-.planCtaButton {
-  --color-brand: var(--landing-green, #18cb96);
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
+.checkBadge {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  width: 100%;
-  min-height: 38px !important;
-  height: 38px !important;
-  padding: 0 18px !important;
-  border-radius: 15px !important;
-  background-color: var(--landing-green, #18cb96) !important;
-  border: 1px solid var(--landing-green, #18cb96) !important;
-  color: #ffffff !important;
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 12px !important;
-  font-weight: 600 !important;
-  text-decoration: none;
-  white-space: nowrap;
-  box-shadow: 0 1px 3px rgb(15 23 42 / 4%);
-  cursor: pointer;
-  box-sizing: border-box;
-  transition: color 220ms ease-in-out, border-color 200ms ease, box-shadow 200ms ease, transform 160ms ease !important;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-brand-soft, #e8faf4);
+  border: 1px solid var(--color-brand-border, #99ebd1);
+  color: var(--color-brand-text, #18cb96);
+  flex-shrink: 0;
+  margin-top: 1px;
 }
 
-.planCtaButton::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-color: #ffffff !important;
-  clip-path: ellipse(0% 0% at 50% 100%);
-  transition: none;
+.checkIcon {
+  stroke-width: 2.6;
 }
 
-@media (hover: hover) {
-  .planCtaButton:hover {
-    color: var(--landing-green, #18cb96) !important;
-    border-color: var(--landing-green, #18cb96) !important;
-    box-shadow: 0 4px 14px rgb(15 23 42 / 12%) !important;
-    transform: translateY(-1px);
-    transition: color 220ms ease-in-out, border-color 200ms ease, box-shadow 200ms ease, transform 160ms ease !important;
-  }
-
-  .planCtaButton:hover::before {
-    clip-path: ellipse(80% 150% at 50% 100%) !important;
-    transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
-  }
+/* Plan Footer */
+.planFooter {
+  margin-top: 32px;
 }
 
-.planCtaButton:focus-visible::before,
-.planCtaButton:active::before {
-  clip-path: ellipse(80% 150% at 50% 100%) !important;
-  transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.planCtaButton:active {
-  color: var(--landing-green, #18cb96) !important;
-  transform: scale(0.98);
-}
-
-/* ── 3. Advanced Automation Modules Section ── */
-.modulesSection {
-  padding-top: clamp(56px, 7vh, 88px);
-  padding-bottom: clamp(60px, 8vh, 96px);
-  background: #ffffff;
+/* ── 2. Logistics Section ── */
+.logisticsSection {
+  position: relative;
+  background: #f8fafc;
   border-top: 1px solid var(--landing-line, #dde1e9);
-  border-bottom: 1px solid var(--landing-line, #dde1e9);
-}
-
-.sectionHeaderCenter {
-  text-align: center;
-  max-width: 760px;
-  margin: 0 auto clamp(36px, 5vh, 52px);
-}
-
-.sectionTitle {
-  font-size: clamp(28px, 3.2vw, 42px);
-  font-weight: 750;
-  letter-spacing: -0.035em;
-  color: var(--landing-ink, #0f172a);
-  margin: 0 0 14px;
-  line-height: 1.2;
-}
-
-.sectionSubtitle {
-  font-size: clamp(15px, 1.2vw, 17px);
-  line-height: 1.65;
-  color: var(--landing-muted, #586579);
-  margin: 0;
+  padding-block: clamp(60px, 7.5vh, 88px);
 }
 
 .modulesGrid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 28px;
-  max-width: 980px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 1080px;
   margin: 0 auto;
 }
 
 .moduleCard {
   background: #ffffff;
   border: 1px solid var(--landing-line, #dde1e9);
-  border-radius: 20px;
-  padding: 36px 32px;
+  border-radius: 18px;
+  padding: 26px 22px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 22px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.03);
   transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
 }
 
 .moduleCard:hover {
   transform: translateY(-3px);
-  border-color: #cbd5e1;
-  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.07);
+  border-color: rgba(24, 203, 150, 0.45);
+  box-shadow: 0 12px 28px -6px rgba(15, 23, 42, 0.08);
 }
 
-.enterpriseTag {
+.moduleCardHeader {
+  margin-bottom: 12px;
+}
+
+.moduleBadge {
   display: inline-block;
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-brand-strong, #0d9466);
-  background: #ffffff;
-  border: 1px solid #dde1e9;
-  padding: 4px 10px;
-  border-radius: 6px;
+  color: var(--color-brand-strong, #15b886);
+  background: var(--color-brand-soft, #e8faf4);
+  border: 1px solid var(--color-brand-border, #99ebd1);
+  padding: 3px 10px;
+  border-radius: 9999px;
   margin-bottom: 12px;
 }
 
 .moduleTitle {
-  font-size: 23px;
-  font-weight: 750;
+  font-size: 18px;
+  font-weight: 700;
   letter-spacing: -0.025em;
   color: var(--landing-ink, #0f172a);
-  margin: 0 0 6px;
+  margin: 0;
 }
 
-.moduleSubtitle {
-  font-size: 14px;
-  color: var(--landing-muted, #586579);
-  margin: 0 0 20px;
-  line-height: 1.5;
-}
-
-.modulePricingBox {
-  background: #f8fafc;
-  border: 1px solid var(--landing-line, #e2e8f0);
-  border-radius: 12px;
-  padding: 14px 18px;
-  margin-bottom: 22px;
-}
-
-.modulePricingAmount {
-  font-size: 19px;
-  font-weight: 750;
-  color: var(--landing-ink, #0f172a);
-  letter-spacing: -0.02em;
-}
-
-.modulePricingSubtext {
-  font-size: 12px;
-  color: var(--landing-muted, #586579);
-  margin-top: 3px;
-}
-
-.moduleFeaturesList {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 11px;
-  flex: 1;
-}
-
-.moduleFeatureItem {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
+.moduleDescription {
   font-size: 13.5px;
-  color: var(--landing-ink, #1e293b);
-  line-height: 1.5;
-}
-
-.moduleFooter {
-  margin-top: auto;
-}
-
-.moduleCtaButton {
-  --color-brand: var(--landing-green, #18cb96);
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  min-height: 38px !important;
-  height: 38px !important;
-  padding: 0 18px !important;
-  border-radius: 15px !important;
-  background-color: var(--landing-green, #18cb96) !important;
-  border: 1px solid var(--landing-green, #18cb96) !important;
-  color: #ffffff !important;
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 12px !important;
-  font-weight: 600 !important;
-  text-decoration: none;
-  white-space: nowrap;
-  box-shadow: 0 1px 3px rgb(15 23 42 / 4%);
-  cursor: pointer;
-  box-sizing: border-box;
-  transition: color 220ms ease-in-out, border-color 200ms ease, box-shadow 200ms ease, transform 160ms ease !important;
-}
-
-.moduleCtaButton::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background-color: #ffffff !important;
-  clip-path: ellipse(0% 0% at 50% 100%);
-  transition: none;
-}
-
-@media (hover: hover) {
-  .moduleCtaButton:hover {
-    color: var(--landing-green, #18cb96) !important;
-    border-color: var(--landing-green, #18cb96) !important;
-    box-shadow: 0 4px 14px rgb(15 23 42 / 12%) !important;
-    transform: translateY(-1px);
-    transition: color 220ms ease-in-out, border-color 200ms ease, box-shadow 200ms ease, transform 160ms ease !important;
-  }
-
-  .moduleCtaButton:hover::before {
-    clip-path: ellipse(80% 150% at 50% 100%) !important;
-    transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
-  }
-}
-
-.moduleCtaButton:focus-visible::before,
-.moduleCtaButton:active::before {
-  clip-path: ellipse(80% 150% at 50% 100%) !important;
-  transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.moduleCtaButton:active {
-  color: var(--landing-green, #18cb96) !important;
-  transform: scale(0.98);
-}
-
-/* ── 4. Feature Comparison Table ── */
-.comparisonSection {
-  padding-top: clamp(60px, 8vh, 96px);
-  padding-bottom: clamp(60px, 8vh, 96px);
-  background: #f8fafc;
-}
-
-.tableCard {
-  max-width: 1080px;
-  margin: 0 auto;
-  background: #ffffff;
-  border: 1px solid var(--landing-line, #dde1e9);
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.05);
-}
-
-.tableScroll {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.comparisonTable {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: left;
-  font-size: 14px;
-}
-
-.featureColHead {
-  padding: 22px 24px;
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #64748b;
-  background: #f8fafc;
-  border-bottom: 1px solid var(--landing-line, #dde1e9);
-  width: 34%;
-}
-
-.planColHead {
-  padding: 22px 20px;
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--landing-ink, #0f172a);
-  background: #f8fafc;
-  border-bottom: 1px solid var(--landing-line, #dde1e9);
-  text-align: center;
-  width: 22%;
-  position: relative;
-}
-
-.popularColHead {
-  background: #f8fafc !important;
-  color: var(--color-brand-strong, #0d9466);
-  border-left: 1px solid #e2e8f0;
-  border-right: 1px solid #e2e8f0;
-}
-
-.tablePopularBadge {
-  display: block;
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--color-brand-strong, #0d9466);
-  margin-bottom: 4px;
-}
-
-.rowEven {
-  background: #ffffff;
-}
-
-.rowOdd {
-  background: #fcfdfd;
-}
-
-.featureNameCell {
-  padding: 16px 24px;
-  font-weight: 600;
-  color: var(--landing-ink, #1e293b);
-  border-bottom: 1px solid var(--landing-line, #f1f5f9);
-}
-
-.cellValue {
-  padding: 16px 20px;
-  text-align: center;
-  border-bottom: 1px solid var(--landing-line, #f1f5f9);
-  vertical-align: middle;
-}
-
-.popularCell {
-  background: #ffffff;
-  border-left: 1px solid #e2e8f0;
-  border-right: 1px solid #e2e8f0;
-}
-
-.tableCheck {
-  color: var(--color-brand, #18cb96);
-  margin: 0 auto;
-  display: block;
-}
-
-.tableDash {
-  color: #cbd5e1;
-  font-weight: 400;
-}
-
-.valueText {
+  line-height: 1.62;
   color: var(--landing-muted, #586579);
-  font-weight: 500;
+  margin: 0;
 }
 
-.valueTextHighlight {
-  color: var(--color-brand-strong, #0d9466);
-  font-weight: 650;
-}
-
-.trialGuarantee {
-  text-align: center;
-  font-size: 14.5px;
-  color: var(--landing-muted, #586579);
-  margin-top: 24px;
-}
-
-.trialGuarantee strong {
-  color: var(--color-brand-strong, #0d9466);
-}
-
-/* ── 5. Final Call to Action (Light Card Design) ── */
-.closingSection {
-  padding: 30px 0 84px;
-  background: #f8fafc;
-}
-
-.closingCard {
-  position: relative;
-  overflow: hidden;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 26px;
-  padding: clamp(52px, 6vw, 68px) clamp(24px, 4vw, 44px);
-  text-align: center;
-  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.08);
-  max-width: 980px;
-  margin: 0 auto;
-}
-
-/* Background visual SVG pattern */
-.closingBgPattern {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  opacity: 0.85;
-  z-index: 0;
-}
-
-.closingCard::before {
-  display: none;
-}
-
-.closingInner {
-  position: relative;
-  z-index: 2;
-  max-width: 640px;
-  margin: 0 auto;
-}
-
-.ctaEyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  margin-bottom: 20px;
-  padding: 5px 14px;
-  border-radius: 999px;
-  background: #f1f5f9;
-  border: 1px solid #e2e8f0;
-  color: #475569;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11.5px;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-.ctaEyebrowDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--color-brand, #18cb96);
-  box-shadow: none;
-}
-
-.ctaHeadline {
-  color: #0f172a !important;
-  font-size: clamp(28px, 3.8vw, 44px);
-  font-weight: 750;
-  line-height: 1.2;
-  letter-spacing: -0.025em;
-  max-width: 24ch;
-  margin: 0 auto 16px;
-}
-
-.ctaSub {
-  color: #475569;
-  font-size: clamp(14.5px, 1.2vw, 16px);
-  line-height: 1.65;
-  max-width: 58ch;
-  margin: 0 auto 32px;
-}
-
-.ctaActions {
+.logisticsActionWrapper {
   display: flex;
-  align-items: center;
   justify-content: center;
-  gap: 14px;
-  flex-wrap: wrap;
+  margin-top: clamp(34px, 4.5vh, 46px);
 }
 
-.brandButton,
-.ctaPrimaryBtn {
+/* ── Footnote / Disclaimers (Matching .bottomDescription Pattern) ── */
+.commercialDisclaimer,
+.roadmapNote {
+  margin: 32px auto 0;
+  max-width: 720px;
+  text-align: center;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--landing-muted, #586579);
+}
+
+.roadmapNote {
+  margin-top: 20px;
+  font-style: italic;
+}
+
+/* ==========================================================================
+   STANDARDIZED WEBSITE BUTTONS — UPWARD LIQUID FILL
+   100% Visual Parity with Navbar, Hero, and Closing CTA Buttons
+   ========================================================================== */
+
+.buttonPrimary,
+.buttonSecondary {
   --color-brand: var(--landing-green, #18cb96);
   position: relative;
   isolation: isolate;
@@ -835,25 +444,29 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 38px !important;
-  height: 38px !important;
-  padding: 0 18px !important;
+  min-height: 44px;
+  height: 44px;
+  padding: 0 24px;
   border-radius: 15px !important;
-  background-color: var(--landing-green, #18cb96) !important;
-  border: 1px solid var(--landing-green, #18cb96) !important;
-  color: #ffffff !important;
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 12px !important;
-  font-weight: 600 !important;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
-  box-shadow: 0 1px 3px rgb(15 23 42 / 4%);
   cursor: pointer;
   transition: color 220ms ease-in-out, border-color 200ms ease, box-shadow 200ms ease, transform 160ms ease !important;
 }
 
-.brandButton::before,
-.ctaPrimaryBtn::before {
+/* ── Primary Button (Solid Brand Green with Solid White Upward Liquid Fill) ── */
+.buttonPrimary {
+  width: 100%;
+  background-color: var(--landing-green, #18cb96) !important;
+  border: 1px solid var(--landing-green, #18cb96) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgb(15 23 42 / 8%) !important;
+}
+
+.buttonPrimary::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -865,8 +478,7 @@
 }
 
 @media (hover: hover) {
-  .brandButton:hover,
-  .ctaPrimaryBtn:hover {
+  .buttonPrimary:hover {
     color: var(--landing-green, #18cb96) !important;
     border-color: var(--landing-green, #18cb96) !important;
     box-shadow: 0 4px 14px rgb(15 23 42 / 12%) !important;
@@ -874,159 +486,125 @@
     transition: color 220ms ease-in-out, border-color 200ms ease, box-shadow 200ms ease, transform 160ms ease !important;
   }
 
-  .brandButton:hover::before,
-  .ctaPrimaryBtn:hover::before {
+  .buttonPrimary:hover::before {
     clip-path: ellipse(80% 150% at 50% 100%) !important;
     transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
 }
 
-.brandButton:focus-visible::before,
-.ctaPrimaryBtn:focus-visible::before,
-.brandButton:active::before,
-.ctaPrimaryBtn:active::before {
+.buttonPrimary:focus-visible,
+.buttonPrimary:active {
+  color: var(--landing-green, #18cb96) !important;
+}
+
+.buttonPrimary:focus-visible::before,
+.buttonPrimary:active::before {
   clip-path: ellipse(80% 150% at 50% 100%) !important;
   transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
-.brandButton:active,
-.ctaPrimaryBtn:active {
-  color: var(--landing-green, #18cb96) !important;
+.buttonPrimary:active {
   transform: scale(0.98);
 }
 
-.secondaryButton,
-.ctaSecondaryBtn {
-  --color-brand: var(--landing-green, #18cb96);
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  min-height: 38px !important;
-  height: 38px !important;
-  padding: 0 18px !important;
-  border-radius: 15px !important;
-  background-color: transparent !important;
-  border: 1px solid var(--landing-green, #18cb96) !important;
-  color: var(--landing-green, #18cb96) !important;
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 12px !important;
-  font-weight: 600 !important;
-  text-decoration: none;
-  white-space: nowrap;
-  box-shadow: 0 1px 3px rgb(15 23 42 / 4%);
-  cursor: pointer;
-  transition: color 220ms ease-in-out, border-color 200ms ease, box-shadow 200ms ease, transform 160ms ease !important;
+/* ── Secondary Button (White Button with Green Upward Liquid Fill) ── */
+.buttonSecondary {
+  width: 100%;
+  background-color: #ffffff !important;
+  border: 1px solid var(--landing-line, #dde1e9) !important;
+  color: var(--landing-ink, #0f172a) !important;
+  box-shadow: 0 1px 3px rgb(15 23 42 / 4%) !important;
 }
 
-.secondaryButton::before,
-.ctaSecondaryBtn::before {
+.buttonSecondary::before {
   content: '';
   position: absolute;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: var(--landing-green, #18cb96) !important;
+  background-color: var(--landing-green, #18cb96) !important;
   clip-path: ellipse(0% 0% at 50% 100%);
   transition: none;
 }
 
 @media (hover: hover) {
-  .secondaryButton:hover,
-  .ctaSecondaryBtn:hover {
+  .buttonSecondary:hover {
     color: #ffffff !important;
     border-color: var(--landing-green, #18cb96) !important;
-    box-shadow: 0 4px 14px rgb(24 203 150 / 30%) !important;
+    box-shadow: 0 4px 14px rgb(24 203, 150 / 30%) !important;
     transform: translateY(-1px);
     transition: color 220ms ease-in-out, border-color 200ms ease, box-shadow 200ms ease, transform 160ms ease !important;
   }
 
-  .secondaryButton:hover::before,
-  .ctaSecondaryBtn:hover::before {
+  .buttonSecondary:hover::before {
     clip-path: ellipse(80% 150% at 50% 100%) !important;
     transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
   }
 }
 
-.secondaryButton:focus-visible::before,
-.ctaSecondaryBtn:focus-visible::before,
-.secondaryButton:active::before,
-.ctaSecondaryBtn:active::before {
+.buttonSecondary:focus-visible,
+.buttonSecondary:active {
+  color: #ffffff !important;
+}
+
+.buttonSecondary:focus-visible::before,
+.buttonSecondary:active::before {
   clip-path: ellipse(80% 150% at 50% 100%) !important;
   transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
-.secondaryButton:active,
-.ctaSecondaryBtn:active {
-  color: #ffffff !important;
+.buttonSecondary:active {
   transform: scale(0.98);
 }
 
-/* ── Responsive Queries ── */
-@media (max-width: 1024px) {
-  .cardsGrid {
-    grid-template-columns: 1fr;
-    max-width: 480px;
-    gap: 36px;
-  }
+/* Logistics Action Center Button Override */
+.logisticsActionWrapper .buttonPrimary {
+  width: auto;
+  min-width: 250px;
+}
 
-  .popularCard {
-    transform: none;
-  }
-
-  .popularCard:hover {
-    transform: translateY(-4px);
-  }
-
-  .metricsRow {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .modulesGrid {
+/* ── Responsive Rules ── */
+@media (max-width: 960px) {
+  .financeGrid {
     grid-template-columns: 1fr;
     max-width: 520px;
   }
 
-  .featureColHead,
-  .featureNameCell {
-    width: auto;
+  .modulesGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 680px;
   }
 }
 
 @media (max-width: 640px) {
-  .planCard {
-    padding: 30px 20px 24px;
+  .heroSection {
+    padding-top: 28px;
+    padding-bottom: 36px;
   }
 
-  .moduleCard {
-    padding: 28px 20px;
-  }
-
-  .closingCard {
-    padding: 36px 20px;
-    border-radius: 18px;
-  }
-
-  .ctaActions {
-    flex-direction: column;
+  .tabSwitcher {
     width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
+    max-width: 320px;
   }
 
-  .brandButton,
-  .secondaryButton,
-  .ctaPrimaryBtn,
-  .ctaSecondaryBtn {
-    width: 100%;
-  }
-
-  .trialPill {
+  .tabButton {
+    flex: 1;
+    padding-inline: 12px;
     font-size: 12.5px;
-    padding: 6px 14px;
+  }
+
+  .modulesGrid {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+
+  .planCard {
+    padding: 26px 20px;
+  }
+
+  .logisticsActionWrapper .buttonPrimary {
+    width: 100%;
+    min-width: 0;
+    max-width: 280px;
   }
 }

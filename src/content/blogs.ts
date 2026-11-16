@@ -1,19 +1,9 @@
-export type BlogCategory =
-  | 'Logistics Automation'
-  | 'Automation'
-  | 'Enterprise'
-  | 'Integration'
-  | 'Technology'
-  | 'Finance';
+export type BlogCategory = 'Finance' | 'Logistics';
 
 export const BLOG_CATEGORIES: ('All' | BlogCategory)[] = [
   'All',
-  'Logistics Automation',
-  'Automation',
-  'Enterprise',
-  'Integration',
-  'Technology',
   'Finance',
+  'Logistics',
 ];
 
 export type BlogSection =
@@ -53,20 +43,12 @@ export const BLOG_POSTS: BlogPost[] = [
     slug: 'ai-logistics-document-verification-impact-2026',
     title: 'The Impact of AI Logistics Document Verification in 2026: Why Traditional Processing Can No Longer Keep Up',
     subtitle: 'How automated classification, computer vision, and HITL verification are eliminating manual bottlenecks across global freight operations.',
-    category: 'Logistics Automation',
+    category: 'Logistics',
     readTime: '8 min read',
     date: 'July 10, 2026',
     image: '/images/blogs/blog1.png',
     imageAlt: 'Docsynecx AI Logistics Document Verification Impact 2026',
-    tags: [
-      'AI Logistics',
-      'Document Verification',
-      'Supply Chain',
-      'CargoWise',
-      'TMS',
-      'Automation',
-      'Logistics Technology',
-    ],
+    tags: ['Logistics'],
     excerpt:
       'The logistics and supply chain industry is evolving faster than ever. In 2026, businesses are managing higher shipment volumes, tighter delivery timelines, and increasingly complex compliance requirements. Processing documents quickly and accurately has become essential for efficient logistics operations.',
     author: {
@@ -332,19 +314,12 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     slug: 'manual-vs-ai-document-processing-cost-time-accuracy-comparison',
     title: 'Manual vs AI Document Processing: Cost, Time & Accuracy Comparison',
-    category: 'Automation',
+    category: 'Finance',
     readTime: '10 min read',
     date: 'June 30, 2026',
     image: '/images/blogs/blog2.png',
     imageAlt: 'Manual vs AI Document Processing: Cost, Time & Accuracy Comparison',
-    tags: [
-      'Invoice Processing',
-      'Manual Entry Risks',
-      'Automation Benefits',
-      'GST Compliance',
-      'Tally',
-      'ERP',
-    ],
+    tags: ['Finance'],
     content: [
       {
         type: 'paragraph',
@@ -596,19 +571,12 @@ export const BLOG_POSTS: BlogPost[] = [
   slug: 'why-manual-invoice-entry-fails-at-scale',
   title: 'Why Manual Invoice Entry Fails at Scale: A Deep Dive into Cost, Accuracy, and Compliance Risks',
   subtitle: 'Explore why manual invoice processing becomes unsustainable as businesses grow—uncovering hidden costs, accuracy issues, productivity losses, and serious compliance risks.',
-  category: 'Automation',
+  category: 'Finance',
   readTime: '10 min read',
   date: 'December 23, 2025',
   image: '/images/blogs/blog3.png',
   imageAlt: 'Why Manual Invoice Entry Fails at Scale',
-  tags: [
-    'Invoice Processing',
-    'Manual Entry Risks',
-    'Automation Benefits',
-    'GST Compliance',
-    'Tally',
-    'ERP',
-  ],
+  tags: ['Finance'],
   content: [
     {
       type: 'paragraph',
@@ -684,19 +652,12 @@ export const BLOG_POSTS: BlogPost[] = [
   slug: 'from-raw-invoices-to-erp-ready-data-intelligent-invoice-structuring',
   title: 'From Raw Invoices to ERP-Ready Data: The Real Power of Intelligent Invoice Structuring',
   subtitle: 'Discover how intelligent invoice structuring transforms unstructured invoice data into clean, accurate, ERP-ready information for seamless integration with Tally and SAP.',
-  category: 'Automation',
+  category: 'Finance',
   readTime: '8 min read',
   date: 'December 7, 2025',
   image: '/images/blogs/blog4.png',
   imageAlt: 'From Raw Invoices to ERP-Ready Data: The Real Power of Intelligent Invoice Structuring',
-  tags: [
-    'Invoice Automation',
-    'Intelligent Structuring',
-    'OCR',
-    'ERP Integration',
-    'Tally',
-    'SAP',
-  ],
+  tags: ['Finance'],
   content: [
     {
       type: 'paragraph',
@@ -762,17 +723,12 @@ export const BLOG_POSTS: BlogPost[] = [
   slug: 'tally-workflow-automation-pdf-image-invoices-to-tally-entries',
   title: 'Tally Workflow Automation: How Docsynecx Transforms PDF & Image Invoices into Fully Synced Tally Entries',
   subtitle: 'Docsynecx eliminates repetitive data entry by converting PDF and image invoices directly into Tally-ready entries with AI-driven accuracy and seamless integration.',
-  category: 'Automation',
+  category: 'Finance',
   readTime: '9 min read',
   date: 'November 26, 2025',
   image: '/images/blogs/blog5.png',
   imageAlt: 'Tally Workflow Automation: How Docsynecx Transforms PDF & Image Invoices into Fully Synced Tally Entries',
-  tags: [
-    'Tally Automation',
-    'PDF to Tally',
-    'OCR',
-    'Accounting',
-  ],
+  tags: ['Finance'],
   content: [
     {
       type: 'paragraph',
@@ -841,18 +797,12 @@ export const BLOG_POSTS: BlogPost[] = [
   slug: 'accurate-data-extraction-at-scale-bulk-document-uploads-enterprise-workloads',
   title: 'Accurate Data Extraction at Scale: How Docsynecx Handles Bulk Document Uploads for Enterprise Workloads',
   subtitle: 'Docsynecx eliminates limitations by offering AI-driven bulk document processing that transforms scattered, high-volume paperwork into clean, structured, and validated data.',
-  category: 'Enterprise',
+  category: 'Logistics',
   readTime: '9 min read',
   date: 'November 12, 2025',
   image: '/images/blogs/blog6.png',
   imageAlt: 'Accurate Data Extraction at Scale: How Docsynecx Handles Bulk Document Uploads for Enterprise Workloads',
-  tags: [
-    'Bulk Processing',
-    'Enterprise',
-    'AI',
-    'Docsynecx',
-    'Scalability',
-  ],
+  tags: ['Logistics'],
   content: [
     {
       type: 'paragraph',
@@ -924,17 +874,12 @@ export const BLOG_POSTS: BlogPost[] = [
   slug: 'seamless-tally-data-sync-automated-accounting-workflows',
   title: 'Seamless Tally Data Sync: The Future of Automated Accounting Workflows',
   subtitle: 'Docsynecx introduces a new era of automation through seamless Tally data synchronization, transforming accounting workflows into fast, reliable, error-free processes.',
-  category: 'Integration',
+  category: 'Finance',
   readTime: '10 min read',
   date: 'November 7, 2025',
   image: '/images/blogs/blog7.png',
   imageAlt: 'Seamless Tally Data Sync: The Future of Automated Accounting Workflows',
-  tags: [
-    'Tally Automation',
-    'Accounting',
-    'ERP Integration',
-    'Docsynecx',
-  ],
+  tags: ['Finance'],
   content: [
     {
       type: 'paragraph',
@@ -1002,17 +947,12 @@ export const BLOG_POSTS: BlogPost[] = [
   slug: 'ai-driven-invoice-intelligence-end-to-end-invoice-processing-docsynecx',
   title: 'AI-Driven Invoice Intelligence: Transforming End-to-End Invoice Processing with Docsynecx',
   subtitle: 'Modern organizations receive invoices from countless sources. Docsynecx brings a new standard of automation through AI-driven invoice intelligence.',
-  category: 'Technology',
+  category: 'Finance',
   readTime: '8 min read',
   date: 'October 24, 2025',
   image: '/images/blogs/blog8.png',
   imageAlt: 'AI-Driven Invoice Intelligence: Transforming End-to-End Invoice Processing with Docsynecx',
-  tags: [
-    'Invoice Processing',
-    'AI',
-    'Automation',
-    'Docsynecx',
-  ],
+  tags: ['Finance'],
   content: [
     {
       type: 'paragraph',
@@ -1099,17 +1039,12 @@ export const BLOG_POSTS: BlogPost[] = [
   slug: 'measuring-roi-from-document-ai-transforming-document-workflows-strategic-advantage',
   title: 'Measuring ROI from Document AI: Transforming Document Workflows into Strategic Advantage',
   subtitle: 'Explore how ROI analysis reveals the tangible benefits of implementing Document AI in transforming document-heavy workflows into strategic assets.',
-  category: 'Technology',
+  category: 'Logistics',
   readTime: '9 min read',
   date: 'July 10, 2025',
   image: '/images/blogs/blog9.png',
   imageAlt: 'Measuring ROI from Document AI: Transforming Document Workflows into Strategic Advantage',
-  tags: [
-    'Document AI',
-    'ROI',
-    'Automation',
-    'API Development',
-  ],
+  tags: ['Logistics'],
   content: [
     {
       type: 'heading2',
@@ -1423,17 +1358,12 @@ export const BLOG_POSTS: BlogPost[] = [
   slug: 'ocr-vs-idp-differences-and-why-it-matters-for-your-business',
   title: 'OCR vs IDP: What’s the Difference, and Why It Matters for Your Business',
   subtitle: 'Learn the differences between OCR and IDP, and how they can transform your document processing workflows for greater operational efficiency and compliance.',
-  category: 'Technology',
+  category: 'Finance',
   readTime: '8 min read',
   date: 'July 4, 2025',
   image: '/images/blogs/blog10.png',
   imageAlt: 'OCR vs IDP: What’s the Difference, and Why It Matters for Your Business',
-  tags: [
-    'OCR',
-    'IDP',
-    'Automation',
-    'Document Processing',
-  ],
+  tags: ['Finance'],
   content: [
     {
       type: 'paragraph',
@@ -1591,17 +1521,12 @@ export const BLOG_POSTS: BlogPost[] = [
   slug: 'erp-integration-best-practices-sap-tally-and-beyond',
   title: 'ERP Integration Best Practices: SAP, Tally, and Beyond',
   subtitle: 'Master the art of integrating document AI platforms with enterprise systems including SAP, Tally, and other ERP solutions.',
-  category: 'Integration',
+  category: 'Finance',
   readTime: '15 min read',
   date: 'June 27, 2025',
   image: '/images/blogs/blog11.png',
   imageAlt: 'ERP Integration Best Practices: SAP, Tally, and Beyond',
-  tags: [
-    'ERP Integration',
-    'SAP',
-    'Tally',
-    'Enterprise'
-  ],
+  tags: ['Finance'],
   content: [
     {
       type: 'paragraph',
@@ -1812,16 +1737,12 @@ export const BLOG_POSTS: BlogPost[] = [
   slug: 'future-of-ocr-ai-powered-document-processing-revolution',
   title: 'The Future of OCR: AI-Powered Document Processing Revolution',
   subtitle: 'Discover how advanced OCR technologies and AI-powered document processing are transforming business workflows across industries.',
-  category: 'Technology',
+  category: 'Logistics',
   readTime: '8 min read',
   date: 'June 19, 2025',
   image: '/images/blogs/blog12.png',
   imageAlt: 'The Future of OCR: AI-Powered Document Processing Revolution',
-  tags: [
-    'OCR AI',
-    'Document Processing',
-    'Automation'
-  ],
+  tags: ['Logistics'],
   content: [
     {
       type: 'paragraph',
@@ -1978,12 +1899,7 @@ export const BLOG_POSTS: BlogPost[] = [
   date: 'June 2, 2025',
   image: '/images/blogs/blog13.png',
   imageAlt: 'Complete Guide to Invoice Processing Automation',
-  tags: [
-    'AI',
-    'Invoice Automation',
-    'Finance',
-    'OCR'
-  ],
+  tags: ['Finance'],
   content: [
     {
       type: 'heading2',
@@ -2355,17 +2271,12 @@ export const BLOG_POSTS: BlogPost[] = [
   slug: 'intelligent-document-processing-future-of-automated-document-workflows',
   title: 'Intelligent Document Processing: The Future of Automated Document Workflows',
   subtitle: 'Discover how Intelligent Document Processing (IDP) is transforming business operations by automating the extraction, classification, and processing of documents using AI and machine learning.',
-  category: 'Technology',
+  category: 'Logistics',
   readTime: '10 min read',
   date: 'May 13, 2025',
   image: '/images/blogs/blog14.png',
   imageAlt: 'Intelligent Document Processing: The Future of Automated Document Workflows',
-  tags: [
-    'Document Processing',
-    'AI',
-    'Automation',
-    'IDP'
-  ],
+  tags: ['Logistics'],
   content: [
     {
       type: 'heading2',
@@ -2561,17 +2472,12 @@ export const BLOG_POSTS: BlogPost[] = [
   slug: 'api-first-document-processing-developers-complete-guide',
   title: "API-First Document Processing: Developer's Complete Guide",
   subtitle: 'Everything developers need to know about implementing OCR API and document processing APIs in their applications.',
-  category: 'Technology',
+  category: 'Logistics',
   readTime: '9 min read',
   date: 'January 15, 2025',
   image: '/images/blogs/blog15.png',
   imageAlt: "API-First Document Processing: Developer's Complete Guide",
-  tags: [
-    'OCR API',
-    'Document Processing',
-    'API Integration',
-    'Automation'
-  ],
+  tags: ['Logistics'],
   content: [
     {
       type: 'heading2',

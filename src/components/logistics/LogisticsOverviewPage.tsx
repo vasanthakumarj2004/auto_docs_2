@@ -8,6 +8,7 @@ import { LogisticsHeroCollage } from './LogisticsHeroCollage';
 import { ConnectedLogisticsWorkspace } from './ConnectedLogisticsWorkspace';
 import { LogisticsWorkflow } from './LogisticsWorkflow';
 import { LogisticsGetStarted } from './LogisticsGetStarted';
+import { LandingClosingCta } from '../LandingClosingCta';
 import {
   demoHref,
   logisticsModules,
@@ -256,19 +257,7 @@ export function LogisticsOverviewPage({ page = 'overview' }: { page?: PageKey })
         {page === 'freight-intelligence' && <FreightIntelligence />}
 
         {/* Closing CTA Banner */}
-        <Section>
-          <div className={`${base.closingCard} ${s.closingCard}`}>
-            <div>
-              <Eyebrow>{copy.ctaEyebrow}</Eyebrow>
-              <h2>{copy.ctaTitle}</h2>
-              <p>{copy.ctaCopy}</p>
-            </div>
-            <Link className={`button-primary ${base.closingButton}`} href={demoHref}>
-              Book a Logistics Demo
-              <ArrowUpRight size={16} aria-hidden="true" />
-            </Link>
-          </div>
-        </Section>
+        <LandingClosingCta primaryHref={demoHref} secondaryHref="/#platform" />
       </main>
       <ShipsyFooter />
     </div>

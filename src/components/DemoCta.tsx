@@ -55,9 +55,10 @@ export const DemoCta: React.FC<{ intent?: 'demo' | 'accounts-payable' }> = ({ in
         {!interest && <div className="mt-7 flex flex-wrap justify-center gap-3">
           <a
             href="#demo-form"
-            className="button-primary transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md active:translate-y-0"
+            className="button-primary inline-flex items-center justify-center gap-2 transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md active:translate-y-0"
           >
-            Book a demo
+            <span>Book a demo</span>
+            <ArrowRight size={15} aria-hidden="true" />
           </a>
           <button
             onClick={() => navigate('/calculator')}

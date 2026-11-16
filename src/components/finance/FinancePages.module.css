@@ -197,6 +197,10 @@
 .capabilityGrid .checklist { gap: 12px; margin-block: 20px 24px; }
 .panel { padding: 30px; background: #fff; border: 1px solid var(--landing-line); border-radius: 16px; }
 .panel h3 { font-size: 18px; font-weight: 650; margin-bottom: 24px; letter-spacing: -.025em; color: var(--landing-ink, #0f172a); }
+.checklistColumns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 48px; }
+@media (max-width: 680px) {
+  .checklistColumns { grid-template-columns: 1fr; gap: 13px; }
+}
 .featureGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 32px; }
 .featureGrid article { display: flex; flex-direction: column; align-items: flex-start; padding: 28px; background: #fff; border: 1px solid var(--landing-line); border-radius: 16px; }
 .featureGrid h3 { margin-block: 20px 12px; font-size: 18px; font-weight: 650; line-height: 1.4; letter-spacing: -.025em; color: var(--landing-ink, #0f172a); }
