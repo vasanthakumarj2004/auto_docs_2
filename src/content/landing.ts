@@ -18,7 +18,7 @@ export const landingDesks = [
   {
     id: 'logistics', title: 'Logistics', tag: 'Freight & logistics operations', href: '/#platform',
     copy: 'Connect freight operations from customer enquiry and booking to shipment management, tracking and document automation.',
-    features: ['RFQ to Booking', 'Shipment Management', 'Shipment Tracking', 'Document Automation'],
+    features: ['RFQ to Booking', 'Shipment Operations', 'Shipment Tracking', 'Freight Intelligence'],
   },
 ];
 

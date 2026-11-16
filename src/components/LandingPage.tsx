@@ -48,11 +48,11 @@ interface CustomerStoryOutcome {
 }
 
 const stories: CustomerStoryOutcome[] = [
-  { tag: 'Logistics', name: 'Freight Forwarders', metric: '2 hrs → 2 min', summary: 'email to CargoWise', copy: 'A specific email-to-CargoWise document workflow reduced from around two hours to approximately two minutes.', href: '/#customers' },
-  { tag: 'Automotive & EV', name: 'Automotive Industries', metric: 'Days → hours', summary: 'document workflow', copy: 'Manual document workload reduced from days to hours through an AI-assisted workflow.', href: '/#customers' },
-  { tag: 'Business operations', name: 'Manufacturing', metric: 'In daily use', summary: 'assets & purchase bills', copy: 'Regular operational use for asset and purchase bill workflows with zero manual re-entry.' },
-  { tag: 'Retail & Distribution', name: 'OmniRetail Networks', metric: '94% automated', summary: 'multi-vendor invoicing', copy: 'High-volume invoice auditing and trade documents posted directly without error delays.' },
-  { tag: 'Textile & Garments', name: 'Global Fabrics Ltd', metric: '3x faster sync', summary: 'supplier & export manifests', copy: 'Complex supplier bills and export manifests reconciled in minutes instead of days.' },
+  { tag: 'Logistics', name: 'Freight Forwarders', metric: '2 hrs → 2 min', summary: 'Email to CargoWise', copy: 'A specific email-to-CargoWise document workflow reduced from around two hours to approximately two minutes.', href: '/#customers' },
+  { tag: 'Automotive & EV', name: 'Automotive Industries', metric: 'Days → hours', summary: 'Document Workflow', copy: 'Manual document workload reduced from days to hours through an AI-assisted workflow.', href: '/#customers' },
+  { tag: 'Business operations', name: 'Manufacturing', metric: 'In daily use', summary: 'Assets & Purchase Bills', copy: 'Regular operational use for asset and purchase bill workflows with zero manual re-entry.' },
+  { tag: 'Retail & Distribution', name: 'OmniRetail Networks', metric: '94% automated', summary: 'Multi-Vendor Invoicing', copy: 'High-volume invoice auditing and trade documents posted directly without error delays.' },
+  { tag: 'Textile & Garments', name: 'Global Fabrics Ltd', metric: '3x faster sync', summary: 'Supplier & Export Manifests', copy: 'Complex supplier bills and export manifests reconciled in minutes instead of days.' },
 ];
 const integrations = [
   ['TallyPrime', 'Finance integration'], ['CargoWise', 'Logistics integration'],
