@@ -298,7 +298,7 @@ export const logisticsModules: Record<LogisticsSlug, LogisticsModuleData> = {
     eyebrow: 'DOCSYNECX LOGISTICS · MODULE',
     heroTitle: 'Build a clearer view of shipment costs, margins and performance.',
     heroDescription:
-      'Freight Intelligence is the analytics layer planned to help forwarders understand shipment profitability, customer and carrier performance, cost variance and potential margin leakage. Scope and availability should be confirmed for each engagement.',
+      'Freight Intelligence is the analytics layer designed to help forwarders understand shipment profitability, customer and carrier performance, cost variance and potential margin leakage. Scope and availability should be confirmed for each engagement.',
     primaryCtaText: 'Book a Demo',
     secondaryCtaText: 'Explore Logistics platform',
     cardBadges: ['AI-assisted', 'Workflow status', 'Review ready'],

@@ -308,7 +308,7 @@ export function InvoiceHowItWorks() {
               </div>
             </div>
             <p className={s.caption}>
-              <span>Illustrative product view · Sample invoice data</span>
+              <span>product view · Sample invoice data</span>
               <span>0{active + 1} / 04</span>
             </p>
           </div>

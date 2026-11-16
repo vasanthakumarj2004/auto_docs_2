@@ -6,7 +6,7 @@ export const financeCapabilities = [
   { slug: 'invoice-automation', title: 'Invoice Automation', label: 'Document automation', description: 'Post supplier invoices into structured, reviewable data for your accounting workflow.', bullets: ['AI-powered invoice data extraction', 'GST, HSN and line-item capture', 'Human-in-the-loop validation', 'Duplicate detection and batch processing', 'TallyPrime integration'], link: 'Explore invoice automation' },
   { slug: 'banking-reconciliation', title: 'Banking & Reconciliation', label: 'Banking', description: 'Process bank statements, support bookkeeping and review reconciliation inside TallyPrime.', bullets: ['Bank statement intake', 'Transaction extraction and categorisation', 'Entries posted to TallyPrime', 'Matched and unmatched review', 'Reviewer controls'], link: 'Explore banking & reconciliation' },
   { slug: 'payment-reminders', title: 'Payment Reminders', label: 'Receivables', description: 'Keep outstanding invoices visible and follow up with customers before and after due dates.', bullets: ['Track invoice due dates', 'Identify pending and overdue payments', 'Send or schedule reminders', 'Follow-up visibility', 'More consistent collections'], link: 'Explore payment reminders' },
-  { slug: 'accounts-payable', title: 'Accounts Payable', label: 'Payables', description: 'Planned workflows for supplier invoices, payment review and payables visibility.', bullets: ['Supplier invoice and payable information', 'Payment due-date management', 'Review and approval workflows', 'Payables reporting', 'Finance-system integration, subject to scope'], link: 'Register interest' },
+  { slug: 'accounts-payable', title: 'Accounts Payable', label: 'Payables', description: 'Upcoming workflows for supplier invoices, payment review and payables visibility.', bullets: ['Supplier invoice and payable information', 'Payment due-date management', 'Review and approval workflows', 'Payables reporting', 'Finance-system integration, subject to scope'], link: 'Register interest' },
   { slug: 'docsynecx-intelligence', title: 'Docsynecx Intelligence', label: 'Business performance', description: 'Six connected views of financial and business performance in one place.', bullets: ['Financial Intelligence', 'Business Intelligence', 'Working Capital Intelligence', 'Operations Intelligence', 'Management and AI Intelligence'], link: 'Explore Docsynecx Intelligence' },
 ] as const;
 
@@ -38,11 +38,11 @@ export const bankingFeatures: Feature[] = [
 ];
 
 export const payableFeatures: Feature[] = [
-  ['PLANNED', 'Supplier invoice management', 'Organise supplier invoice and payable information in one place.'],
-  ['PLANNED', 'Payment due-date management', 'Help teams review upcoming supplier due dates and prioritise payment obligations.'],
-  ['PLANNED', 'Approval workflows', 'Configurable review and approval steps for supplier invoices and payable actions, subject to product design.'],
-  ['PLANNED', 'Payables reporting', 'Reports for supplier balances, due amounts, ageing and payable trends.'],
-  ['UNDER DEVELOPMENT', 'Roadmap preview', 'Accounts Payable is under development. Scope, release timing and supported integrations will be confirmed as the product roadmap is finalised.'],
+  ['INVOICE MANAGEMENT', 'Supplier invoice management', 'Organise supplier invoice and payable information in one place.'],
+  ['DUE-DATE TRACKING', 'Payment due-date management', 'Help teams review upcoming supplier due dates and prioritise payment obligations.'],
+  ['APPROVAL WORKFLOWS', 'Approval workflows', 'Configurable review and approval steps for supplier invoices and payable actions, subject to product design.'],
+  ['PAYABLES REPORTING', 'Payables reporting', 'Reports for supplier balances, due amounts, ageing and payable trends.'],
+  ['IN PROGRESS', 'Roadmap preview', 'Accounts Payable is in progress. Scope, release timing and supported integrations will be confirmed as the product roadmap is finalised.'],
 ];
 
 export const intelligenceCapabilities = [
@@ -58,7 +58,7 @@ export const financeFaqs = [
   { question: 'Does Finance Desk support TallyPrime?', answer: 'Yes. Approved supplier invoice information can move into the configured TallyPrime company. Banking and reconciliation workflows can also support TallyPrime bookkeeping. The exact integration and posting scope is confirmed during discovery.' },
   { question: 'Can Finance Desk replace manual finance information work?', answer: 'Finance Desk helps reduce repetitive document entry and organise financial information. Human review, accounting controls and management judgement remain part of the workflow.' },
   { question: 'Is Finance Desk only an invoice automation product?', answer: 'Invoice Automation is one of five connected capabilities, alongside Banking & Reconciliation, Payment Reminders, the upcoming Accounts Payable capability and Docsynecx Intelligence. Intelligence brings six views of financial and business performance into one place.' },
-  { question: 'Can we start with only one capability?', answer: 'Yes. Start with a focused use case, validate it with your documents and systems, and expand based on agreed scope. Accounts Payable is under development and is not yet available for deployment.' },
+  { question: 'Can we start with only one capability?', answer: 'Yes. Start with a focused use case, validate it with your documents and systems, and expand based on agreed scope. Accounts Payable is in progress and is not yet available for deployment.' },
   { question: 'Will people still review and approve documents?', answer: 'Yes. Your team reviews extracted information, corrects exceptions and approves information before it moves into the configured accounting workflow.' },
 ];
 
@@ -94,8 +94,8 @@ export const financePageCopy = {
   'accounts-payable': {
     eyebrow: 'FINANCE DESK / ACCOUNTS PAYABLE', headline: 'Accounts Payable,', accent: 'with intelligent workflows.',
     description: 'Accounts Payable is being designed to bring greater structure and visibility to supplier invoice processing and payable workflows.',
-    primary: 'Register Your Interest', microline: 'Under development · Not yet available for deployment',
-    visualTitle: 'ACCOUNTS PAYABLE', visualLabel: 'IN DEVELOPMENT', tiles: [['Supplier workflows', 'In development'], ['Payable visibility', 'Planned capability']], chip: 'Building the next finance workflow',
+    primary: 'Register Your Interest', microline: 'In Progress · Not yet available for deployment',
+    visualTitle: 'ACCOUNTS PAYABLE', visualLabel: 'IN DEVELOPMENT', tiles: [['Supplier workflows', 'On the Roadmap'], ['Payable visibility', 'Upcoming capability']], chip: 'Building the next finance workflow',
     ctaEyebrow: 'SHAPE THE ROADMAP', ctaTitle: 'Interested in Accounts Payable?', ctaCopy: 'Tell us about your supplier invoice volumes, approval process and accounting system. We welcome conversations with businesses interested in this upcoming capability.',
   },
   'docsynecx-intelligence': {

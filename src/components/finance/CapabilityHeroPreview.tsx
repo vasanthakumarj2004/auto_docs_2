@@ -84,11 +84,11 @@ function IntelligencePreview() {
 function PayablePreview() {
   return <>
     <div className={s.sectionHeading}><div><span className={s.kicker}>A LOOK AT WHAT’S NEXT</span><h2>Supplier bills. A connected flow.</h2></div><span className={s.largeIcon}><GitBranch size={21} aria-hidden="true" /></span></div>
-    <div className={s.development}><LockKeyhole size={15} aria-hidden="true" /><span><strong>Under development</strong> · Planned workflow preview</span></div>
+    <div className={s.development}><LockKeyhole size={15} aria-hidden="true" /><span><strong>In Progress</strong> · Roadmap workflow preview</span></div>
     <ol className={s.approvalFlow}>{[{ icon: FileText, title: 'Capture' }, { icon: ShieldCheck, title: 'Approve' }, { icon: Clock3, title: 'Track' }].map(({ icon: Icon, title }, i) => <li key={title}><span className={s.flowIcon}><Icon size={19} aria-hidden="true" /></span><strong>{title}</strong><span>0{i + 1}</span></li>)}</ol>
     <div className={s.billCard}><div className={s.billTitle}><span className={s.billIcon}><FileText size={19} aria-hidden="true" /></span><div><strong>Sample Supplies Co.</strong><span>Supplier invoice · INV-2048</span></div><strong>₹56,640</strong></div>
-      <div className={s.approvalRow}><span>Finance review</span><span className={s.plannedPill}>Planned approval step</span></div>
-      <div className={s.approvalRow}><span>Payment visibility</span><span className={s.plannedPill}>Planned tracking</span></div>
+      <div className={s.approvalRow}><span>Finance review</span><span className={s.plannedPill}>Upcoming approval step</span></div>
+      <div className={s.approvalRow}><span>Payment visibility</span><span className={s.plannedPill}>Upcoming tracking</span></div>
     </div>
     <div className={s.roadmap}><span><CheckCheck size={15} aria-hidden="true" />Supplier workflows</span><span><Layers3 size={15} aria-hidden="true" />Payable visibility</span></div>
     <p className={s.footnote}>Concept illustration · Not yet available for deployment.</p>
@@ -97,7 +97,7 @@ function PayablePreview() {
 
 export function CapabilityHeroPreview({ page }: { page: PreviewCapability }) {
   return <div className={s.stage}>
-    <div className={s.preview} role="group" aria-label={`${titles[page]}: illustrative product preview with sample data`}>
+    <div className={s.preview} role="group" aria-label={`${titles[page]}: product preview with sample data`}>
       <div className={s.toolbar}><span className={s.appIcon}><Layers3 size={15} aria-hidden="true" /></span><strong>Finance Desk</strong><span className={s.toolbarSlash}>/</span><span>{titles[page]}</span><span className={s.sampleBadge}>{page === 'accounts-payable' ? 'Upcoming' : 'Sample data'}</span></div>
       <div className={s.body}>
         {page === 'invoice-automation' && <InvoicePreview />}

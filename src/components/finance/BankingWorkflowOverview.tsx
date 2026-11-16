@@ -340,7 +340,7 @@ export function BankingWorkflowOverview() {
               </div>
             </div>
             <div className={s.caption}>
-              <span>Illustrative product view · Bank statement & reconciliation</span>
+              <span>product view · Bank statement & reconciliation</span>
               <span>0{activeStep + 1} / 04</span>
             </div>
           </div>

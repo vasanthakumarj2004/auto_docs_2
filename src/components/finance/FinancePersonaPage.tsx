@@ -75,7 +75,7 @@ export function FinancePersonaPage({ persona }: FinancePersonaPageProps) {
               <p className={s.heroTrust}>{data.microline}</p>
             </div>
 
-            <div className={s.heroVisual} aria-label="Illustrative product view">
+            <div className={s.heroVisual} aria-label="product view">
               <div className={s.product}>
                 <div className={s.productHeader}>
                   <strong>{data.visualTitle}</strong>
@@ -100,7 +100,7 @@ export function FinancePersonaPage({ persona }: FinancePersonaPageProps) {
                   {data.chip}
                 </div>
               </div>
-              <p className={s.visualCaption}>Illustrative product view · Configured around your workflow</p>
+              <p className={s.visualCaption}>product view · Configured around your workflow</p>
             </div>
           </div>
         </section>

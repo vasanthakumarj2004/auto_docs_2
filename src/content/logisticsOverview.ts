@@ -49,7 +49,7 @@ export const logisticsModules = [
     title: 'Freight Intelligence',
     label: 'Analytics & performance',
     badge: 'Roadmap',
-    description: 'Build a clearer view of shipment costs, margins and performance. Freight Intelligence is the analytics layer planned to help forwarders understand shipment profitability, customer margins and operational performance.',
+    description: 'Build a clearer view of shipment costs, margins and performance. Freight Intelligence is the analytics layer designed to help forwarders understand shipment profitability, customer margins and operational performance.',
     bullets: [
       'Shipment profitability and gross margin analysis',
       'Carrier cost variance and detention/demurrage trends',
@@ -209,7 +209,7 @@ export const logisticsPageCopy = {
     visualTitle: 'FREIGHT INTELLIGENCE',
     visualLabel: 'IN DEVELOPMENT',
     tiles: [
-      ['Margin analysis', 'Planned analytics'],
+      ['Margin analysis', 'Upcoming analytics'],
       ['Carrier variance', 'Roadmap preview'],
     ],
     chip: 'Shipment margins · Demurrage insights · Reporting',

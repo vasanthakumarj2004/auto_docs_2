@@ -47,7 +47,7 @@ function UnderstandPreview() {
     <div className={s.window}>
       <div className={s.windowHeader}><span><BarChart3 size={16} />Finance overview</span><span className={s.pill}>This month</span></div>
       <div className={s.metrics}><div><small>Invoice value</small><strong>₹12.8L</strong><span>Across 48 invoices</span></div><div><small>Awaiting review</small><strong>06</strong><span>In your team's queue</span></div></div>
-      <div className={s.chart}><div className={s.chartHeading}><strong>Spend by week</strong><span><i />Invoice value</span></div><div className={s.bars} aria-label="Illustrative weekly invoice values: 2.1, 3.2, 2.8 and 4.7 lakh rupees">{[45, 68, 60, 100].map((height, i) => <div key={i}><div style={{ height: `${height}%`, animationDelay: `${i * 90}ms` }}><span>{['₹2.1L', '₹3.2L', '₹2.8L', '₹4.7L'][i]}</span></div><small>Week {i + 1}</small></div>)}</div></div>
+      <div className={s.chart}><div className={s.chartHeading}><strong>Spend by week</strong><span><i />Invoice value</span></div><div className={s.bars} aria-label="weekly invoice values: 2.1, 3.2, 2.8 and 4.7 lakh rupees">{[45, 68, 60, 100].map((height, i) => <div key={i}><div style={{ height: `${height}%`, animationDelay: `${i * 90}ms` }}><span>{['₹2.1L', '₹3.2L', '₹2.8L', '₹4.7L'][i]}</span></div><small>Week {i + 1}</small></div>)}</div></div>
       <div className={s.windowFooter}><FileText size={14} />Every number connected to its source<ChevronRight size={14} /></div>
     </div>
     <div className={s.result}><BarChart3 size={15} />See the details behind the bigger picture.</div>

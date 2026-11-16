@@ -93,7 +93,7 @@ export function FinanceWorkbench() {
             <div className={s.journal}><div><span>Ledger</span><span>Debit</span><span>Credit</span></div><div><strong>Purchase — components</strong><span>₹62,750</span><span>—</span></div><div><strong>Input IGST</strong><span>₹11,295</span><span>—</span></div><div><strong>Prime Components</strong><span>—</span><span>₹74,045</span></div><div><strong>Balanced entry</strong><b>₹74,045</b><b>₹74,045</b></div></div>
             <button className={s.disclosureButton} type="button" aria-expanded={auditOpen} aria-controls="finance-audit-details" onClick={() => setAuditOpen(!auditOpen)}><span><History size={16} />{auditOpen ? 'Hide audit trail' : 'Show audit trail'}</span><ChevronDown size={16} style={{ transform: auditOpen ? 'rotate(180deg)' : undefined }} /></button>
             {auditOpen && <ol id="finance-audit-details" className={s.auditTrail}><li><span>10:42</span>Bill received and fields captured</li><li><span>10:43</span>Checks completed; approval recorded</li><li><span>10:44</span>Voucher reference linked to source bill</li></ol>}
-            <p className={s.previewNote}>Illustrative posting. No live Tally connection is used in this preview.</p>
+            <p className={s.previewNote}>posting. No live Tally connection is used in this preview.</p>
           </div>}
         </div>
         <div className={s.windowFooter}><ShieldCheck size={13} /><span>Your rules. Your approvals. One connected record.</span><span>0{active + 1} / 04</span></div>

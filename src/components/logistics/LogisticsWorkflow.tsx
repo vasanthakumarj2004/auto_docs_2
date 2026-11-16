@@ -202,7 +202,7 @@ function VisibilityView() {
         <div
           className={s.bars}
           role="img"
-          aria-label="Illustrative shipment milestones: week one 18, week two 26, week three 24, week four 42 shipments."
+          aria-label="shipment milestones: week one 18, week two 26, week three 24, week four 42 shipments."
         >
           {[45, 68, 60, 100].map((height, index) => (
             <div key={index}>
@@ -337,7 +337,7 @@ export function LogisticsWorkflow() {
               </div>
             </div>
             <p className={s.caption}>
-              <span>Illustrative product view · Sample freight data</span>
+              <span>product view · Sample freight data</span>
               <span>0{active + 1} / 04</span>
             </p>
           </div>

@@ -52,7 +52,7 @@ function Accounting() {
 function Reporting() {
   return <>
     <div className={s.metrics}><div><small>Invoice value</small><strong>₹12.8L</strong><span>48 invoices this month</span></div><div><small>Awaiting review</small><strong>06</strong><span>In your team's queue</span></div></div>
-    <div className={s.chart}><div><strong>Weekly invoice value</strong><span>This month</span></div><div className={s.bars} role="img" aria-label="Illustrative invoice values: week one 2.1 lakh, week two 3.2 lakh, week three 2.8 lakh, week four 4.7 lakh rupees.">{[45, 68, 60, 100].map((height, index) => <div key={index}><div style={{ height: `${height}%` }}><span>{['₹2.1L', '₹3.2L', '₹2.8L', '₹4.7L'][index]}</span></div><small>W{index + 1}</small></div>)}</div></div>
+    <div className={s.chart}><div><strong>Weekly invoice value</strong><span>This month</span></div><div className={s.bars} role="img" aria-label="invoice values: week one 2.1 lakh, week two 3.2 lakh, week three 2.8 lakh, week four 4.7 lakh rupees.">{[45, 68, 60, 100].map((height, index) => <div key={index}><div style={{ height: `${height}%` }}><span>{['₹2.1L', '₹3.2L', '₹2.8L', '₹4.7L'][index]}</span></div><small>W{index + 1}</small></div>)}</div></div>
     <div className={s.note}><FileText size={14} /><span>Follow each summary back to the underlying documents.</span></div>
   </>;
 }
@@ -97,7 +97,7 @@ export function FinanceWorkflow() {
               <div className={s.panelArea}>{views.map((View, index) => <div role="tabpanel" key={index} id={`workflow-panel-${index}`} aria-labelledby={`workflow-tab-${index}`} hidden={active !== index} tabIndex={0} className={s.panel}>{active === index && <div className={s.panelContent}><div className={s.panelHeading}><h3>{steps[index].heading}</h3><span>{steps[index].label}</span></div><View /></div>}</div>)}</div>
             </div>
           </div>
-          <p className={s.caption}><span>Illustrative product view · Sample data</span><span>0{active + 1} / 04</span></p>
+          <p className={s.caption}><span>product view · Sample data</span><span>0{active + 1} / 04</span></p>
         </div>
       </div>
     </div>

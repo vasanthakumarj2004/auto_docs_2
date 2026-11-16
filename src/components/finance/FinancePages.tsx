@@ -91,14 +91,14 @@ function Hero({ page }: { page: PageKey }) {
         <p className={`${base.trust} ${s.heroTrust}`}>{intelligence ? <><strong>Decision support, not a replacement</strong> for accounting controls or management judgement.</> : copy.microline}</p>
       </div>
       {restorePreviousVisual ? (
-        <div className={base.heroVisual} aria-label="Illustrative product view">
+        <div className={base.heroVisual} aria-label="product view">
           <div className={`${base.visualPanel} ${s.product}`}>
             <div className={s.productHeader}><strong>{copy.visualTitle}</strong><span>{copy.visualLabel}</span></div>
             <div className={s.productTiles}>{copy.tiles.map(([label, title]) => <div key={label}><span>{label}</span><strong>{title}</strong></div>)}</div>
             <div className={s.skeleton} aria-hidden="true"><span /><span /><span /><span /></div>
             <div className={s.productChip}><Check size={12} aria-hidden="true" />{copy.chip}</div>
           </div>
-          <p className={base.visualCaption}>Illustrative product view{upcoming ? ' · Under development' : ' · Configured around your workflow'}</p>
+          <p className={base.visualCaption}>product view{upcoming ? ' · in progress' : ' · Configured around your workflow'}</p>
         </div>
       ) : (
         <div className={s.heroImageWrapper}>
@@ -160,7 +160,7 @@ function Reminders() {
 function Payable() {
   return <>
     <PayableWorkingTowards />
-    <Section id="capabilities"><Heading eyebrow="PLANNED CAPABILITIES" title="A preview of what’s ahead." /><Features items={payableFeatures} showTags={false} /><p className={base.bottomDescription}>Accounts Payable is under development. These planned areas describe the product direction, not currently available workflows.</p></Section>
+    <Section id="capabilities"><Heading eyebrow="UPCOMING CAPABILITIES" title="A preview of what’s ahead." /><Features items={payableFeatures} /><p className={base.bottomDescription}>Accounts Payable is in progress. These upcoming capabilities describe the product direction, not currently available workflows.</p></Section>
   </>;
 }
 
