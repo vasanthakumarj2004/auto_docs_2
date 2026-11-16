@@ -9,7 +9,6 @@ import {
   Diamond,
   Check,
   ArrowUpRight,
-  AlertTriangle,
   ArrowRight,
   Sparkles,
   ShieldCheck,
@@ -26,6 +25,7 @@ import {
 } from '../../content/logistics';
 import { LogisticsCapabilitiesSection } from './LogisticsCapabilitiesSection';
 import { LogisticsSectionHowItWorks } from './LogisticsSectionHowItWorks';
+import { LogisticsScaleBenchmark } from './LogisticsScaleBenchmark';
 import base from '../LandingPage.module.css';
 import s from './LogisticsPages.module.css';
 
@@ -162,45 +162,8 @@ export function LogisticsPage({ slug }: LogisticsPageProps) {
         {/* SECTION 2: HOW IT WORKS */}
         <LogisticsSectionHowItWorks slug={slug} />
 
-        {/* SECTION 3: INTEGRATIONS & DEPLOYMENT */}
-        <section id="integrations" className={base.section}>
-          <div className="site-shell">
-            <div className={base.sectionHeading}>
-              <div>
-                <p className={s.eyebrow}>{sharedLogisticsCopy.integrationsEyebrow}</p>
-                <h2>{sharedLogisticsCopy.integrationsTitle}</h2>
-              </div>
-            </div>
-
-            <div className={s.integrationsGrid}>
-              {/* Left Column: System Connectivity & Warning Box */}
-              <div>
-                <p className={base.sectionCopy} style={{ fontSize: '16px', lineHeight: 1.7 }}>
-                  {moduleData.integrationsCopy}
-                </p>
-
-                {/* Integrations Warning Box */}
-                <div className={s.warningBox} role="note">
-                  <AlertTriangle size={20} className={s.warningIcon} aria-hidden="true" />
-                  <p>{sharedLogisticsCopy.integrationsWarning}</p>
-                </div>
-              </div>
-
-              {/* Right Column: Scoping Card */}
-              <div id="scope" className={s.scopingCard}>
-                <p className={s.eyebrow}>{sharedLogisticsCopy.scopingEyebrow}</p>
-                <h3>{sharedLogisticsCopy.scopingTitle}</h3>
-                <p>{moduleData.scopingNeeds}</p>
-                <Link
-                  href="/demo/#demo-form"
-                  className={`button-primary ${s.buttonPrimary}`}
-                >
-                  <span>{sharedLogisticsCopy.scopingButtonText}</span>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* SECTION 3: SCALE BENCHMARK (Replaces Integration & Deployment) */}
+        <LogisticsScaleBenchmark slug={slug} />
 
         {/* SECTION 4: FREQUENTLY ASKED QUESTIONS */}
         <section id="faq" className={`${base.section} ${base.alternate}`}>

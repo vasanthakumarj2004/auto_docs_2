@@ -170,7 +170,7 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
               </li>
               <li>
                 <Link href="/finance-desk/docsynecx-intelligence/" className={styles.footerLink}>
-                  Financial Intelligence
+                  Docsynecx Intelligence
                 </Link>
               </li>
             </ul>

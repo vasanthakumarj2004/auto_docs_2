@@ -71,7 +71,7 @@ export const financePageCopy = {
     ctaEyebrow: 'DOCSYNECX FINANCE DESK', ctaTitle: 'Bring your finance workflows into one connected workspace.', ctaCopy: "Tell us about your documents, accounting system and reporting needs, and we’ll help identify a practical starting point.",
   },
   'invoice-automation': {
-    eyebrow: 'FINANCE DESK / INVOICE AUTOMATION', headline: 'Post supplier invoices', accent: 'into tally.',
+    eyebrow: 'FINANCE DESK / INVOICE AUTOMATION', headline: 'Post supplier invoices', accent: 'into Tally.',
     description: 'Automate invoice data capture, validation and accounting workflows with AI-powered document processing. Keep your team in control with human review before information moves into your accounting system.',
     primary: 'Book a Demo', microline: 'Finance Desk · Structured data · Review-led workflow',
     visualTitle: 'PRODUCT EXPERIENCE', visualLabel: 'FINANCE DESK', tiles: [['Automation', 'Invoice Automation'], ['Workspace', 'Finance Desk']], chip: 'AI-powered · Human-guided · Connected',

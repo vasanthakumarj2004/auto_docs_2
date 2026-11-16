@@ -87,7 +87,7 @@ export const sharedLogisticsCopy = {
 export const logisticsModules: Record<LogisticsSlug, LogisticsModuleData> = {
   'email-to-booking': {
     slug: 'email-to-booking',
-    breadcrumb: 'Docsynecx Logistics / Email-to-Booking Automation',
+    breadcrumb: 'Docsynecx Logistics / RFQ-to-Booking Automation',
     moduleName: 'Email-to-Booking Automation',
     iconName: 'envelope',
     eyebrow: 'DOCSYNECX LOGISTICS · MODULE',
