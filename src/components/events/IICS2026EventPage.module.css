@@ -274,15 +274,15 @@
   transform: rotateY(0deg);
   z-index: 2;
   background:
-    radial-gradient(circle at 85% 12%, rgba(255, 255, 255, 0.24) 0%, transparent 45%),
-    radial-gradient(circle at 15% 85%, rgba(18, 140, 130, 0.3) 0%, transparent 50%),
-    linear-gradient(168deg, #20a89d 0%, #179691 32%, #147985 70%, #104b58 100%);
+    radial-gradient(ellipse 90% 65% at 20% 18%, rgba(20, 185, 175, 0.35) 0%, transparent 65%),
+    radial-gradient(ellipse 80% 55% at 85% 80%, rgba(10, 65, 75, 0.45) 0%, transparent 70%),
+    linear-gradient(172deg, #0ba39c 0%, #089692 26%, #0b787f 60%, #0a4853 92%, #083c46 100%);
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.32);
   box-shadow:
-    0 24px 60px -12px rgba(16, 75, 88, 0.45),
-    0 2px 10px rgba(0, 0, 0, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    0 24px 60px -12px rgba(20, 75, 86, 0.5),
+    0 2px 10px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
   display: flex;
   flex-direction: column;
 }
@@ -298,18 +298,20 @@
   z-index: 3;
 }
 
-/* Real Physical Invitation Card Die-Cut Notch */
+/* Real Physical Invitation Card Die-Cut Notch at Top Edge */
 .thumbNotch {
   position: absolute;
-  top: 50%;
-  right: -15px;
-  transform: translateY(-50%);
-  width: 30px;
-  height: 60px;
+  top: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 72px;
+  height: 18px;
   background: var(--color-paper, #fafafa);
-  border-radius: 30px 0 0 30px;
-  border-left: 1.5px solid rgba(255, 255, 255, 0.35);
-  box-shadow: inset 3px 0 6px rgba(0, 0, 0, 0.25);
+  border-radius: 0 0 36px 36px;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.45);
+  box-shadow:
+    inset 0 3px 6px rgba(0, 0, 0, 0.16),
+    0 1px 2px rgba(0, 0, 0, 0.08);
   z-index: 6;
   pointer-events: none;
 }
@@ -381,18 +383,18 @@
 
 /* Elegant Gold Script "You're Invited" */
 .scriptInvited {
-  font-family: 'Amsterdam Four', 'Amsterdam 4', 'Allura', 'Pinyon Script', 'Great Vibes', 'Alex Brush', cursive, serif;
+  font-family: 'Amsterdam Four', 'Amsterdam 4', 'Amsterdam', 'Allura', 'Great Vibes', 'Alex Brush', cursive, serif;
   font-style: normal;
-  font-size: clamp(34px, 4.2vw, 46px);
+  font-size: clamp(36px, 4.4vw, 48px);
   font-weight: 400;
   text-align: center;
-  line-height: 1.1;
-  margin: 6px 0 12px 0;
-  letter-spacing: 0.02em;
+  line-height: 1.15;
+  margin: 6px 0 14px 0;
+  letter-spacing: 0.01em;
   background: linear-gradient(135deg, #fffbeb 0%, #fde08b 22%, #e5b94c 50%, #c49326 78%, #fef3c7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.55)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.45)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 /* Centerpiece Circular Medallion */
@@ -406,8 +408,8 @@
 }
 
 .circularMedallion {
-  width: 160px;
-  height: 160px;
+  width: 164px;
+  height: 164px;
   border-radius: 50%;
   background: radial-gradient(circle, #ffffff 60%, #f8fafc 100%);
   box-shadow:
@@ -631,20 +633,122 @@
   line-height: 1.45;
 }
 
-/* Pass Button - Luxury High-Contrast Action Button on Turquoise */
-/* Pass Button - Same behavior & design as Solution Page Button */
-.passButton {
-  width: 100%;
-  min-height: 44px !important;
-  height: 44px !important;
-  padding: 0 22px !important;
+/* ========================================================================== */
+/* Signature Docsynecx Liquid Button System (Same as Solution Page Button)   */
+/* ========================================================================== */
+.demoButton {
+  --color-brand: var(--landing-green, #18cb96);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px !important;
+  height: 42px !important;
+  padding: 0 20px !important;
+  padding-inline: 20px !important;
   border-radius: 15px !important;
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
-  font-size: 13.5px !important;
+  font-size: 13px !important;
   font-weight: 600 !important;
+  text-decoration: none !important;
+  white-space: nowrap;
+  box-shadow: 0 1px 3px rgb(15 23 42 / 4%);
   cursor: pointer !important;
+  border: 1px solid transparent !important;
+  outline: none !important;
+  transition: color 220ms ease-in-out, border-color 200ms ease, box-shadow 200ms ease, transform 160ms ease !important;
+}
+
+.demoButton::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: #ffffff !important;
+  clip-path: ellipse(0% 0% at 50% 100%);
+  transition: none;
+}
+
+.demoButton:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgb(15 23 42 / 12%) !important;
+  transition: color 220ms ease-in-out, border-color 200ms ease, box-shadow 200ms ease, transform 160ms ease !important;
+}
+
+.demoButton:hover::before {
+  clip-path: ellipse(80% 150% at 50% 100%) !important;
+  transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.demoButton:focus-visible::before,
+.demoButton:active::before {
+  clip-path: ellipse(80% 150% at 50% 100%) !important;
+  transition: clip-path 500ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.demoButton:active {
+  transform: scale(0.98);
+}
+
+.demoButton svg {
+  transition: transform 200ms ease;
+  flex-shrink: 0;
+}
+
+.demoButton:hover svg {
+  transform: translate(2px, -2px);
+}
+
+/* Primary Green Button Variant (Brand Green fill with Liquid White Ripple) */
+.primaryBtn {
+  background-color: var(--landing-green, #18cb96) !important;
+  border: 1px solid var(--landing-green, #18cb96) !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 10px rgba(24, 203, 150, 0.32) !important;
+}
+
+.primaryBtn:hover {
+  color: var(--landing-green, #18cb96) !important;
+  border-color: var(--landing-green, #18cb96) !important;
+  box-shadow: 0 6px 20px rgba(24, 203, 150, 0.42) !important;
+}
+
+.primaryBtn:focus-visible,
+.primaryBtn:active {
+  color: var(--landing-green, #18cb96) !important;
+  transform: scale(0.98);
+}
+
+/* Pass Front Action Button: "Plan Your Visit · Book Meeting" */
+.passLiquidBtn {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  min-height: 44px !important;
+  height: 44px !important;
+  background-color: var(--landing-green, #18cb96) !important;
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  color: #ffffff !important;
+  box-shadow:
+    0 8px 24px -4px rgba(0, 0, 0, 0.35),
+    0 2px 8px rgba(24, 203, 150, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+  font-size: 13px !important;
+  font-weight: 650 !important;
   position: relative;
   z-index: 4;
+}
+
+.passLiquidBtn:hover {
+  color: #0b7c80 !important;
+  border-color: #ffffff !important;
+  box-shadow:
+    0 10px 28px -4px rgba(0, 0, 0, 0.45),
+    0 4px 14px rgba(255, 255, 255, 0.25) !important;
 }
 
 /* Bottom Mumbai Skyline Illustration & Mumbai Edition */
@@ -783,14 +887,35 @@
 
 .meetSubmitButton {
   width: 100%;
-  min-height: 42px !important;
-  height: 42px !important;
-  padding: 0 20px !important;
-  border-radius: 15px !important;
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+  min-height: 44px !important;
+  height: 44px !important;
+  border-radius: 14px !important;
   font-size: 13.5px !important;
-  font-weight: 600 !important;
-  cursor: pointer !important;
+  font-weight: 650 !important;
+}
+
+.backOrganizerNote {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px dashed #e2e8f0;
+  text-align: center;
+}
+
+.backOrganizerTitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+  margin: 0 0 2px 0;
+}
+
+.backOrganizerAddress {
+  font-size: 9.5px;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.35;
 }
 
 /* Success State on Back */

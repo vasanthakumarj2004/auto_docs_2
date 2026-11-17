@@ -122,7 +122,7 @@ export function IICS2026EventPage() {
                 <button
                   type="button"
                   onClick={handleFlipToggle}
-                  className={`button-primary ${s.primaryCta}`}
+                  className={`${s.demoButton} ${s.primaryBtn} ${s.primaryCta}`}
                   aria-expanded={isFlipped}
                 >
                   <span>{isFlipped ? 'View Exhibitor Pass' : `Book a Meeting at Booth ${event.booth}`}</span>
@@ -155,9 +155,11 @@ export function IICS2026EventPage() {
 
                     <div className={s.cargoLogoCapsule}>
                       <img
-                        src="/images/events/iics_cargo_logo.png"
+                        src="/images/events/cargo_show_2026_logo.png"
                         alt="India International Cargo Show 2026"
                         className={s.cargoLogoImg}
+                        width={160}
+                        height={48}
                       />
                     </div>
                   </div>
@@ -208,7 +210,7 @@ export function IICS2026EventPage() {
                   <button
                     type="button"
                     onClick={() => setIsFlipped(true)}
-                    className={`button-primary ${s.passButton}`}
+                    className={`${s.demoButton} ${s.passLiquidBtn}`}
                   >
                     <span>Plan Your Visit · Book Meeting</span>
                     <ArrowUpRight size={15} aria-hidden="true" />
@@ -412,10 +414,16 @@ export function IICS2026EventPage() {
                       </div>
 
                       <div className={s.backFormActions}>
-                        <button type="submit" className={`button-primary ${s.meetSubmitButton}`}>
+                        <button type="submit" className={`${s.demoButton} ${s.primaryBtn} ${s.meetSubmitButton}`}>
                           <span>Meet us</span>
                           <ArrowUpRight size={15} aria-hidden="true" />
                         </button>
+                      </div>
+
+                      {/* Organizer return address matching physical back sleeve */}
+                      <div className={s.backOrganizerNote}>
+                        <p className={s.backOrganizerTitle}>India International Cargo Show 2026 Secretariat</p>
+                        <p className={s.backOrganizerAddress}>Jio World Convention Centre, Bandra Kurla Complex (BKC), Mumbai</p>
                       </div>
                     </form>
                   )}

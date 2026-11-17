@@ -1578,7 +1578,7 @@ export const BLOG_POSTS: BlogPost[] = [
     },
     {
       type: 'image',
-      src: '/images/blogs/blog11 1.png',
+      src: '/images/blogs/blog11_integration.png',
       alt: 'Best Practices for ERP Integration with Document AI'
     },
     {
@@ -2003,7 +2003,7 @@ export const BLOG_POSTS: BlogPost[] = [
     },
     {
       type: 'image',
-      src: '/images/blogs/blog13 1.png',
+      src: '/images/blogs/blog13_benefits.png',
       alt: 'The Transformative Benefits of Invoice Processing Automation'
     },
     {
@@ -2072,7 +2072,7 @@ export const BLOG_POSTS: BlogPost[] = [
     },
     {
       type: 'image',
-      src: '/images/blogs/blog13 2.png',
+      src: '/images/blogs/blog13_workflow.png',
       alt: 'Step-by-Step: How Invoice Processing Automation Works'
     },
     {
@@ -2533,7 +2533,7 @@ export const BLOG_POSTS: BlogPost[] = [
     },
     {
       type: 'image',
-      src: '/images/blogs/blog15 1.png',
+      src: '/images/blogs/blog15_architecture.png',
       alt: 'Why Developers Should Choose API-First for Document Processing'
     },
     {

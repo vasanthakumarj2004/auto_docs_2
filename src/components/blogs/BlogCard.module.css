@@ -46,13 +46,19 @@
 .imageOverlay {
   position: absolute;
   inset: 0;
+  /* Signature Docsynecx green overlay with 12-15% opacity */
   background: linear-gradient(
     180deg,
-    rgba(15, 23, 42, 0.2) 0%,
-    transparent 40%,
-    rgba(15, 23, 42, 0.4) 100%
+    rgba(24, 203, 150, 0.15) 0%,
+    rgba(16, 185, 129, 0.12) 50%,
+    rgba(24, 203, 150, 0.15) 100%
   );
   pointer-events: none;
+  transition: opacity 240ms ease;
+}
+
+.card:hover .imageOverlay {
+  opacity: 0.75;
 }
 
 .categoryBadge {
