@@ -120,7 +120,7 @@ function Overview() {
     <Section id="capabilities"><Heading eyebrow="Start with invoices. Add the rest when you're ready." title={<>Five tools,<br /><span>one finance desk.</span></>} />
       <div className={s.capabilityGrid}>{financeCapabilities.map((item, index) => <article className={base.desk} key={item.slug}>
         <div className={s.cardTop}>
-          <span>{item.tag || `${number(index)} · ${item.label}`}</span>
+          <span>{item.tag}</span>
           {item.badge ? <span className={s.badge}>{item.badge}</span> : null}
         </div>
         <h3><Link href={`${financeRoot}${item.slug}/`}>{item.title}</Link></h3><p className={base.deskCopy}>{item.description}</p><Checklist items={item.bullets} />

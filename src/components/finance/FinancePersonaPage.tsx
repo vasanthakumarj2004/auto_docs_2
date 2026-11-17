@@ -13,6 +13,7 @@ import {
   Inbox,
   ShieldCheck,
   Sparkles,
+  type LucideIcon,
 } from 'lucide-react';
 import { LandingNavigation } from '../LandingNavigation';
 import { LandingClosingCta } from '../LandingClosingCta';
@@ -27,10 +28,7 @@ interface FinancePersonaPageProps {
   persona: PersonaData['slug'];
 }
 
-const STEP_ICONS: Record<
-  string,
-  React.ComponentType<{ size?: number; className?: string; 'aria-hidden'?: boolean | 'true' | 'false' }>
-> = {
+const STEP_ICONS: Record<string, LucideIcon> = {
   Inbox,
   Sparkles,
   ShieldCheck,

@@ -1,14 +1,14 @@
 'use client';
 
 import React from 'react';
-import { Clock, FileCheck2, ShieldCheck, ArrowUpRight } from 'lucide-react';
+import { Clock, FileCheck2, ShieldCheck, ArrowUpRight, type LucideIcon } from 'lucide-react';
 import Link from 'next/link';
 import styles from './FinanceStatStrip.module.css';
 
 interface FinanceStatItem {
   metric: string;
   copy: string;
-  icon: React.ComponentType<{ size?: number; className?: string; 'aria-hidden'?: boolean | 'true' | 'false' }>;
+  icon: LucideIcon;
   href?: string;
 }
 
