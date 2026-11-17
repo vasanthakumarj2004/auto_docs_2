@@ -76,7 +76,7 @@ function IntelligencePreview() {
         {revenue.map(({ month, value }, i) => <div key={month} className={s.barColumn} aria-hidden="true"><span>{value.toFixed(1)}</span><div className={s.bar} data-current={i === 5 || undefined} style={{ height: `${value / 12.4 * 96}px` }} /><span>{month}</span></div>)}
       </div>
     </figure>
-    <div className={s.insight}><span className={s.insightIcon}><Sparkles size={17} aria-hidden="true" /></span><div><span className={s.kicker}>ILLUSTRATIVE INSIGHT</span><strong>Revenue grew by ₹1.2L from October.</strong><p>Explore the underlying movements in your connected data.</p></div></div>
+    <div className={s.insight}><span className={s.insightIcon}><Sparkles size={17} aria-hidden="true" /></span><div><span className={s.kicker}>INSIGHT</span><strong>Revenue grew by ₹1.2L from October.</strong><p>Explore the underlying movements in your connected data.</p></div></div>
     <p className={s.footnote}>Sample figures · Decision support with human judgement.</p>
   </>;
 }

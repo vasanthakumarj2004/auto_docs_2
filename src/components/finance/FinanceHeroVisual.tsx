@@ -1,6 +1,7 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
+import { Check, CheckCircle2, RotateCcw, ShieldCheck } from 'lucide-react';
 import styles from './FinanceHeroVisual.module.css';
 
 interface FinanceHeroVisualProps {
@@ -11,52 +12,156 @@ interface FinanceHeroVisualProps {
 
 export function FinanceHeroVisual({
   className = '',
-  showCaption = true,
+  showCaption = false,
   captionText = 'Docsynecx financial operations · Connected ledger, intelligence & analytics',
 }: FinanceHeroVisualProps) {
+  const [isApproved, setIsApproved] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleApprove = () => {
+    setIsApproved((prev) => !prev);
+  };
+
+  const handleEdit = () => {
+    setIsEditing((prev) => !prev);
+  };
+
   return (
     <div
-      className={`${styles.heroImageCard} ${className}`}
-      aria-label="Docsynecx connected ledger and financial analytics visual"
+      className={`${styles.heroVisualContainer} ${className}`}
+      aria-label="Docsynecx purchase invoice extraction and approval visual"
     >
-      {/* Clipped container with exact pencil-sketch shape */}
-      <div className={styles.visualFrame}>
-        <img
-          src="/images/finance-desk-hero.jpg"
-          alt="Financial growth chart, coins and glowing digital market trends"
-          className={styles.singleImg}
-          loading="eager"
-        />
-        <div className={styles.imageOverlay} aria-hidden="true" />
+      {/* Layered 3D Depth Backdrop Glow & Ghost Card */}
+      <div className={styles.ambientGlow} aria-hidden="true" />
+      <div className={styles.ghostCardBehind} aria-hidden="true" />
+
+      {/* Main Dark Invoice Review Card */}
+      <div className={styles.mainCard}>
+        {/* Top Header Row */}
+        <div className={styles.topRow}>
+          <div className={styles.topTitleGroup}>
+            <span className={styles.typeEyebrow}>Purchase invoice</span>
+            <span className={styles.metaDot} aria-hidden="true">·</span>
+            <span className={styles.supplierName}>Prime Components</span>
+          </div>
+
+          <div
+            className={`${styles.statusBadge} ${isApproved ? styles.statusBadgeApproved : ''}`}
+            role="status"
+          >
+            <span>{isApproved ? 'POSTED TO TALLY' : 'READY TO APPROVE'}</span>
+          </div>
+        </div>
+
+        {/* Invoice ID and Date */}
+        <div className={styles.invoiceMetaSection}>
+          <div className={styles.invoiceIdRow}>
+            <h3 className={styles.invoiceId}>INV-4821</h3>
+            <span className={styles.metaDot} aria-hidden="true">·</span>
+            <span className={styles.invoiceDate}>12 Nov 2026</span>
+          </div>
+          <p className={styles.gstinSubtext}>
+            <span>GSTIN 33AABCP1234F1Z5</span>
+            <span className={styles.metaDot} aria-hidden="true">·</span>
+            <span>Coimbatore, Tamil Nadu</span>
+          </p>
+        </div>
+
+        {/* Line Items Table */}
+        <div className={styles.tableWrapper} role="region" aria-label="Invoice line items">
+          <table className={styles.itemsTable}>
+            <thead>
+              <tr>
+                <th scope="col" className={styles.colItem}>ITEM · HSN</th>
+                <th scope="col" className={styles.colQty}>QTY × RATE</th>
+                <th scope="col" className={styles.colAmount}>AMOUNT</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td className={styles.cellItem}>
+                  <span className={styles.itemName}>Ball bearings</span>
+                  <span className={styles.itemHsn}>· 8482</span>
+                </td>
+                <td className={styles.cellQty}>250 × ₹170</td>
+                <td className={styles.cellAmount}>₹42,500</td>
+              </tr>
+              <tr>
+                <td className={styles.cellItem}>
+                  <span className={styles.itemName}>Rubber seals</span>
+                  <span className={styles.itemHsn}>· 4016</span>
+                </td>
+                <td className={styles.cellQty}>450 × ₹45</td>
+                <td className={styles.cellAmount}>₹20,250</td>
+              </tr>
+              <tr className={styles.taxRow}>
+                <td className={styles.cellItem}>
+                  <span className={styles.taxName}>CGST 9% + SGST 9%</span>
+                </td>
+                <td className={styles.cellQty} />
+                <td className={styles.cellAmount}>₹11,295</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        {/* Invoice Total Callout Box */}
+        <div className={styles.totalBox}>
+          <div className={styles.totalLabelGroup}>
+            <ShieldCheck size={16} className={styles.shieldIcon} aria-hidden="true" />
+            <span>Invoice total · tax checked</span>
+          </div>
+          <div className={styles.totalAmount}>₹74,045</div>
+        </div>
+
+        {/* Action Buttons Row */}
+        <div className={styles.actionRow}>
+          <button
+            type="button"
+            onClick={handleApprove}
+            className={`${styles.approveButton} ${isApproved ? styles.approvedState : ''}`}
+            aria-pressed={isApproved}
+          >
+            {isApproved ? (
+              <>
+                <CheckCircle2 size={16} aria-hidden="true" />
+                <span>Posted to TallyPrime · PUR-829</span>
+              </>
+            ) : (
+              <>
+                <Check size={16} aria-hidden="true" />
+                <span>Approve &amp; post to Tally</span>
+              </>
+            )}
+          </button>
+
+          <button
+            type="button"
+            onClick={handleEdit}
+            className={`${styles.editButton} ${isEditing ? styles.editingState : ''}`}
+            aria-pressed={isEditing}
+          >
+            {isEditing ? (
+              <>
+                <RotateCcw size={14} aria-hidden="true" />
+                <span>Reset</span>
+              </>
+            ) : (
+              <span>Edit</span>
+            )}
+          </button>
+        </div>
+
+        {/* Micro-line Footer */}
+        <div className={styles.cardFooter}>
+          <span>SAMPLE DATA</span>
+          <span className={styles.metaDot} aria-hidden="true">·</span>
+          <span className={styles.highlightBadge}>NO DUPLICATES FOUND</span>
+        </div>
       </div>
 
-      {/* SVG Outline matching the exact pencil sketch shape */}
-      <svg
-        viewBox="0 0 100 100"
-        preserveAspectRatio="none"
-        className={styles.shapeOutlineSvg}
-        aria-hidden="true"
-      >
-        <path
-          d="M 28, 2 L 95, 2 Q 99, 2 99, 6 L 99, 94 Q 99, 98 95, 98 L 8, 98 Q 3, 98 4, 93 L 23, 6 Q 24, 2 28, 2 Z"
-          fill="none"
-          stroke="rgba(24, 203, 150, 0.55)"
-          strokeWidth="1.8"
-          vectorEffect="non-scaling-stroke"
-        />
-      </svg>
-
-      {/* SVG Clip Path Definition for the Pencil-Sketched Hero Shape */}
-      <svg width="0" height="0" className={styles.clipSvgDef} aria-hidden="true">
-        <defs>
-          <clipPath id="financeSketchHeroShape" clipPathUnits="objectBoundingBox">
-            <path d="M 0.28, 0.02 L 0.95, 0.02 Q 0.99, 0.02 0.99, 0.06 L 0.99, 0.94 Q 0.99, 0.98 0.95, 0.98 L 0.08, 0.98 Q 0.03, 0.98 0.04, 0.93 L 0.23, 0.06 Q 0.24, 0.02 0.28, 0.02 Z" />
-          </clipPath>
-        </defs>
-      </svg>
-
-      {showCaption && (
-        <p className={styles.caption}>{captionText}</p>
+      {showCaption && captionText && (
+        <p className={styles.captionText}>{captionText}</p>
       )}
     </div>
   );

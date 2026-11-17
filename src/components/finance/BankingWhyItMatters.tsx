@@ -375,7 +375,7 @@ export function BankingWhyItMatters() {
               </div>
             ))}
             <div className={s.caption}>
-              <span>ILLUSTRATIVE PRODUCT VIEW</span>
+              <span>PRODUCT VIEW</span>
               <span>0{activeTab + 1} / 04</span>
             </div>
           </div>

@@ -1,5 +1,6 @@
 'use client';
 
+import type { ReactNode } from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { ClosingVisualBg } from './ClosingVisualBg';
@@ -14,7 +15,7 @@ export function LandingClosingCta({
 }: {
   primaryHref?: string;
   secondaryHref?: string;
-  title?: string;
+  title?: ReactNode;
   copy?: string;
   buttonText?: string;
 }) {

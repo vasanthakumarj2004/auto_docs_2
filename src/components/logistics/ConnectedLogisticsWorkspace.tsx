@@ -362,7 +362,7 @@ export function ConnectedLogisticsWorkspace() {
               </div>
             ))}
             <p className={s.caption}>
-              <span>ILLUSTRATIVE PRODUCT VIEW</span>
+              <span> PRODUCT VIEW</span>
               <span>0{active + 1} / 04</span>
             </p>
           </div>

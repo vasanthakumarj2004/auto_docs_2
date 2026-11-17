@@ -6,43 +6,43 @@ type WorkflowStep = { icon: LucideIcon; title: string; detail: string; emphasis?
 const stages: { title: string; description: string; steps: WorkflowStep[]; outcome: string }[] = [
   {
     title: 'Discover',
-    description: 'Understand document volumes, systems and reporting needs.',
+    description: 'Your documents, your team and where to start.',
     steps: [
       { icon: FileText, title: 'Your documents', detail: 'Types, formats and volumes' },
-      { icon: Users, title: 'Your team', detail: 'Roles and review responsibilities' },
-      { icon: ClipboardList, title: 'Define the use case', detail: 'Agree on priorities and scope', emphasis: true },
+      { icon: Users, title: 'Your team', detail: 'Who reviews and who approves' },
+      { icon: ClipboardList, title: 'Where to start', detail: 'Usually supplier invoices', emphasis: true },
     ],
-    outcome: 'A shared starting point',
+    outcome: 'We agree where to start',
   },
   {
     title: 'Configure',
-    description: 'Set up the selected workflows and integrations.',
+    description: 'Connect TallyPrime and set your rules.',
     steps: [
-      { icon: Layers, title: 'Workflow mapping', detail: 'From document intake to output' },
-      { icon: Plug, title: 'Connect your systems', detail: 'TallyPrime and agreed integrations', emphasis: true },
+      { icon: Layers, title: 'Connect TallyPrime', detail: 'Your company and ledgers' },
+      { icon: Plug, title: 'Map the workflow', detail: 'From inbox to posted entry', emphasis: true },
       { icon: SlidersHorizontal, title: 'Review rules', detail: 'Fields, checks and team access' },
     ],
-    outcome: 'A workflow built around you',
+    outcome: 'Set up around your Tally company',
   },
   {
-    title: 'Validate',
-    description: 'Test with sample documents and review outputs.',
+    title: 'Test',
+    description: 'Run it on your own invoices.',
     steps: [
-      { icon: FileText, title: 'Sample documents', detail: 'Use your everyday business files' },
-      { icon: FileCheck2, title: 'Review the results', detail: 'Check captured fields and outputs', emphasis: true },
-      { icon: ShieldCheck, title: 'Team sign-off', detail: 'Confirm the workflow is ready' },
+      { icon: FileText, title: 'Your own invoices', detail: 'Everyday business files' },
+      { icon: FileCheck2, title: 'Check the results', detail: 'Fields, tax and ledgers', emphasis: true },
+      { icon: ShieldCheck, title: 'Your team signs off', detail: 'Before anything posts' },
     ],
-    outcome: 'Confidence before rollout',
+    outcome: 'Tested on your own invoices first',
   },
   {
     title: 'Go live',
-    description: 'Roll out and expand based on agreed scope.',
+    description: 'Approve your first real invoices into Tally.',
     steps: [
-      { icon: ListChecks, title: 'Rollout checklist', detail: 'Confirm access and team readiness' },
-      { icon: Rocket, title: 'Launch the workflow', detail: 'Start with your agreed use case', emphasis: true },
-      { icon: CircleCheck, title: 'Review and expand', detail: 'Build on what works for your team' },
+      { icon: ListChecks, title: 'Team ready', detail: 'Logins and permissions' },
+      { icon: CircleCheck, title: 'Start approving', detail: 'Your first real invoices', emphasis: true },
+      { icon: Rocket, title: 'Grow when ready', detail: 'Add banking, reminders, reports' },
     ],
-    outcome: 'A focused path forward',
+    outcome: 'Your team stops typing invoices',
   },
 ];
 
@@ -51,9 +51,9 @@ export function FinanceGetStarted() {
     <div className="site-shell">
       <div className={s.heading}>
         <div>
-          <p className={`${base.eyebrow} ${s.eyebrow}`}>GET STARTED</p>
-          <h2 id="finance-get-started-title">Start with a focused<br />finance use case.</h2>
-          <p className={s.intro}>Discovery, workflow mapping, configuration, validation and rollout based on your systems and business needs.</p>
+          <p className={`${base.eyebrow} ${s.eyebrow}`}>Live in minutes</p>
+          <h2 id="finance-get-started-title">Connect TallyPrime immediately.<br /><span>Approve your first invoice in minutes.</span></h2>
+          <p className={s.intro}>We set it up around your TallyPrime company, your ledgers and who approves what. You test it on your own invoices before anything is posted.</p>
         </div>
         <div className={s.overview} aria-hidden="true">
           {[ClipboardList, Settings2, ShieldCheck, Rocket].map((Icon, index) => <div key={index}><span><Icon size={22} strokeWidth={1.5} /></span>{index < 3 && <i />}</div>)}

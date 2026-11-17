@@ -9,6 +9,8 @@ import { ConnectedFinanceWorkspace } from './ConnectedFinanceWorkspace';
 import { FinanceGetStarted } from './FinanceGetStarted';
 import { FinanceWorkflow } from './FinanceWorkflow';
 import { FinanceHeroVisual } from './FinanceHeroVisual';
+import { FinanceStatStrip } from './FinanceStatStrip';
+import { MonthEndComparison } from './MonthEndComparison';
 import { InvoiceBusinessChallenge } from './InvoiceBusinessChallenge';
 import { InvoiceHowItWorks } from './InvoiceHowItWorks';
 import { BankingWhyItMatters } from './BankingWhyItMatters';
@@ -107,21 +109,27 @@ function Hero({ page }: { page: PageKey }) {
       )}
     </div>
   </section>;
+  
 }
 
 function Overview() {
   return <>
+    <FinanceStatStrip />
+    <MonthEndComparison />
     <ConnectedFinanceWorkspace />
-    <Section id="capabilities"><Heading eyebrow="FIVE CONNECTED CAPABILITIES" title="Finance operations, made more intelligent." />
+    <Section id="capabilities"><Heading eyebrow="Start with invoices. Add the rest when you're ready." title={<>Five tools,<br /><span>one finance desk.</span></>} />
       <div className={s.capabilityGrid}>{financeCapabilities.map((item, index) => <article className={base.desk} key={item.slug}>
-        <div className={s.cardTop}><span>{number(index)} / {item.label}</span>{item.slug === 'accounts-payable' && <span className={s.badge}>Upcoming</span>}</div>
+        <div className={s.cardTop}>
+          <span>{item.tag || `${number(index)} · ${item.label}`}</span>
+          {item.badge ? <span className={s.badge}>{item.badge}</span> : null}
+        </div>
         <h3><Link href={`${financeRoot}${item.slug}/`}>{item.title}</Link></h3><p className={base.deskCopy}>{item.description}</p><Checklist items={item.bullets} />
         <Link className={base.deskLink} href={item.slug === 'accounts-payable' ? interestHref : `${financeRoot}${item.slug}/`}>{item.link}<ArrowRight size={16} aria-hidden="true" /></Link>
-      </article>)}</div><p className={base.bottomDescription}>Explore the capabilities within Finance Desk. Each can address a distinct need while contributing to a connected finance environment.</p>
+      </article>)}</div><p className={base.bottomDescription}>Most teams start with invoice automation, then add banking, reminders and reporting.</p>
     </Section>
     <FinanceWorkflow />
     <FinanceGetStarted />
-    <Section id="faq" alternate><div className={base.faqLayout}><Heading eyebrow="COMMON QUESTIONS" title="Finance Desk FAQ" /><SharedFaqAccordion items={financeFaqs} defaultOpenIndex={0} toggleStyle="plus" /></div></Section>
+    <Section id="faq" alternate><div className={base.faqLayout}><Heading eyebrow="COMMON QUESTIONS" title="What accounts teams ask us first." /><SharedFaqAccordion items={financeFaqs} defaultOpenIndex={0} toggleStyle="plus" /></div></Section>
   </>;
 }
 
@@ -188,7 +196,20 @@ export function FinancePage({ page = 'overview' }: { page?: PageKey }) {
       {page === 'payment-reminders' && <Reminders />}
       {upcoming && <Payable />}
       {page === 'docsynecx-intelligence' && <Intelligence />}
-      {!upcoming && <LandingClosingCta primaryHref={demoHref} secondaryHref="/#platform" />}
+      {!upcoming && (
+        <LandingClosingCta
+          primaryHref={demoHref}
+          secondaryHref="/#platform"
+          title={
+            page === 'overview' ? (
+              <>
+                Bring ten invoices.<br />We&apos;ll show you them in Tally.
+              </>
+            ) : undefined
+          }
+          copy={page === 'overview' ? "Send us a few real supplier invoices. In the demo you'll see them read, checked and ready to approve into TallyPrime. Connect Tally and approve your first invoice in minutes." : undefined}
+        />
+      )}
       {page === 'docsynecx-intelligence' && <p className={s.disclaimer}>Financial and business intelligence capabilities are scoped to available connected data. Current financial and business reporting pages describe analysis using TallyPrime data. Confirm data availability and configured scope during discovery.</p>}
       {upcoming && <div id="register-interest" className={s.interestForm}><DemoCta intent="accounts-payable" /></div>}
     </main>

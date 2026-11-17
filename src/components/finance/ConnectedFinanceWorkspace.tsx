@@ -1,73 +1,222 @@
 'use client';
 
 import { useRef, useState, type KeyboardEvent } from 'react';
-import { ArrowDownLeft, ArrowUpRight, BarChart3, Check, CheckCheck, ChevronRight, FileCheck2, FileText, Inbox, Mail, ShieldCheck, Sparkles } from 'lucide-react';
 import base from '../LandingPage.module.css';
 import s from './ConnectedFinanceWorkspace.module.css';
 
-const steps = [
-  { name: 'Capture', title: 'Every document. One starting point.', description: 'Bring invoices, PDFs and business documents together. Capture the details without entering them again.', icon: Inbox },
-  { name: 'Validate', title: 'Confidence before the next step.', description: 'Review extracted fields, tax details and potential duplicates. Keep your team in control of exceptions.', icon: ShieldCheck },
-  { name: 'Understand', title: 'Turn finance data into a clearer view.', description: 'Explore your financial information in context, from supplier balances to spending patterns.', icon: BarChart3 },
-  { name: 'Act', title: 'Move forward with the full picture.', description: 'Use connected reports and insights to support decisions, with the source information close at hand.', icon: ArrowUpRight },
+interface FinanceStep {
+  step: number;
+  title: string;
+  description: string;
+}
+
+const steps: FinanceStep[] = [
+  {
+    step: 1,
+    title: 'Read the invoice',
+    description:
+      'PDFs, scans and email attachments in one inbox. Supplier, GSTIN, HSN, line items, tax and total picked up without retyping.',
+  },
+  {
+    step: 2,
+    title: 'Check it',
+    description:
+      'Tax totals checked against line items, and possible duplicates flagged. Your team reviews anything that looks off.',
+  },
+  {
+    step: 3,
+    title: 'Approve into TallyPrime',
+    description:
+      'Once approved, the entry goes to the right ledgers in your TallyPrime company.',
+  },
+  {
+    step: 4,
+    title: 'See the numbers',
+    description:
+      'Spend, supplier balances and tax summaries, with every figure one click from the invoice it came from.',
+  },
 ];
 
-function CapturePreview() {
-  return <>
-    <div className={`${s.floatingFile} ${s.fileOne}`}><FileText size={14} />Invoice.pdf</div>
-    <div className={`${s.floatingFile} ${s.fileTwo}`}><Mail size={14} />Vendor email</div>
+/* ── Preview 1: Read the invoice ── */
+function ReadInvoicePreview() {
+  return (
     <div className={s.window}>
-      <div className={s.windowHeader}><span><Inbox size={16} />Document inbox</span><span className={s.pill}>3 documents</span></div>
-      <div className={s.documentList}>
-        {['Prime Components', 'Metro Supplies', 'Apex Services'].map((name, i) => <div className={s.documentRow} key={name} style={{ animationDelay: `${i * 100}ms` }}><span className={s.documentIcon}><FileText size={20} /></span><div><strong>{name}</strong><small>{['INV-4821 · PDF invoice', 'INV-1068 · Email attachment', 'INV-0294 · Scanned invoice'][i]}</small></div><Check size={15} /></div>)}
+      <div className={s.windowHeader}>
+        <span className={s.windowHeaderTitle}>Invoice inbox</span>
+        <span className={s.headerBadge}>3 NEW TODAY</span>
       </div>
-      <div className={s.extraction}><div><Sparkles size={15} /><strong>Invoice details captured</strong><span>Complete</span></div><div className={s.progress}><span /></div><p>Supplier · Line items · Tax details · Total</p></div>
-      <div className={s.windowFooter}><FileCheck2 size={14} />Ready for your team to review<ChevronRight size={14} /></div>
+
+      <div className={s.itemList}>
+        <div className={s.itemCard}>
+          <div className={s.itemMain}>
+            <strong className={s.itemTitle}>Prime Components</strong>
+            <span className={s.itemMeta}>INV-4821 · PDF · ₹74,045</span>
+          </div>
+          <span className={s.statusBadge}>READY TO APPROVE</span>
+        </div>
+
+        <div className={s.itemCard}>
+          <div className={s.itemMain}>
+            <strong className={s.itemTitle}>Metro Supplies</strong>
+            <span className={s.itemMeta}>INV-1068 · Email · ₹32,450</span>
+          </div>
+          <span className={s.statusBadge}>POSSIBLE DUPLICATE</span>
+        </div>
+
+        <div className={s.itemCard}>
+          <div className={s.itemMain}>
+            <strong className={s.itemTitle}>Apex Services</strong>
+            <span className={s.itemMeta}>INV-0294 · Scan · ₹17,970</span>
+          </div>
+          <span className={s.statusBadge}>GST DOESN&apos;T MATCH</span>
+        </div>
+      </div>
+
+      <div className={s.windowFooter}>
+        <span>Less retyping. More time for review.</span>
+      </div>
     </div>
-    <div className={s.result}><CheckCheck size={15} />Less retyping. More time for review.</div>
-  </>;
+  );
 }
 
-function ValidatePreview() {
-  return <>
-    <div className={`${s.floatingFile} ${s.fileOne}`}><FileText size={14} />Source linked</div>
+/* ── Preview 2: Check it ── */
+function CheckItPreview() {
+  return (
     <div className={s.window}>
-      <div className={s.windowHeader}><span><ShieldCheck size={16} />Invoice review</span><span className={s.pill}>INV-4821</span></div>
-      <div className={s.invoiceSummary}><div><small>Prime Components</small><strong>₹74,045<span>.00</span></strong></div><span className={s.documentIcon}><FileCheck2 size={26} /></span></div>
-      <div className={s.checkRows}>{[['Invoice fields', 'Captured'], ['Tax totals', 'Matched'], ['Duplicate check', 'No match found']].map(([label, status], i) => <div key={label} style={{ animationDelay: `${i * 120}ms` }}><Check size={15} /><span>{label}</span><strong>{status}</strong></div>)}</div>
-      <div className={s.reviewNote}><span className={s.reviewDot} /><div><strong>Your review stays in the loop</strong><p>Confirm the ledger before posting.</p></div><ChevronRight size={15} /></div>
+      <div className={s.windowHeader}>
+        <span className={s.windowHeaderTitle}>Checks · 2 to review</span>
+        <span className={s.headerBadge}>WAITING FOR YOU</span>
+      </div>
+
+      <div className={s.itemList}>
+        <div className={s.itemCard}>
+          <div className={s.itemMain}>
+            <strong className={s.itemTitle}>Metro Supplies · INV-1068</strong>
+            <p className={s.itemDesc}>
+              Same supplier, amount and date as INV-1061, entered 3 Nov
+            </p>
+          </div>
+          <span className={s.statusBadge}>POSSIBLE DUPLICATE</span>
+        </div>
+
+        <div className={s.itemCard}>
+          <div className={s.itemMain}>
+            <strong className={s.itemTitle}>Apex Services · INV-0294</strong>
+            <p className={s.itemDesc}>
+              Lines on ₹15,000 at 18% give ₹2,700 GST. Invoice says ₹2,970
+            </p>
+          </div>
+          <span className={s.statusBadge}>TAX MISMATCH</span>
+        </div>
+      </div>
+
+      <div className={s.windowFooter}>
+        <span>
+          Caught before it reaches your books. Your team decides what to do with each one.
+        </span>
+      </div>
     </div>
-    <div className={s.result}><ShieldCheck size={15} />Your checks. Your final approval.</div>
-  </>;
+  );
 }
 
-function UnderstandPreview() {
-  return <>
-    <div className={`${s.floatingFile} ${s.fileTwo}`}><BarChart3 size={14} />Connected data</div>
+/* ── Preview 3: Approve into TallyPrime ── */
+function ApproveTallyPreview() {
+  return (
     <div className={s.window}>
-      <div className={s.windowHeader}><span><BarChart3 size={16} />Finance overview</span><span className={s.pill}>This month</span></div>
-      <div className={s.metrics}><div><small>Invoice value</small><strong>₹12.8L</strong><span>Across 48 invoices</span></div><div><small>Awaiting review</small><strong>06</strong><span>In your team's queue</span></div></div>
-      <div className={s.chart}><div className={s.chartHeading}><strong>Spend by week</strong><span><i />Invoice value</span></div><div className={s.bars} aria-label="weekly invoice values: 2.1, 3.2, 2.8 and 4.7 lakh rupees">{[45, 68, 60, 100].map((height, i) => <div key={i}><div style={{ height: `${height}%`, animationDelay: `${i * 90}ms` }}><span>{['₹2.1L', '₹3.2L', '₹2.8L', '₹4.7L'][i]}</span></div><small>Week {i + 1}</small></div>)}</div></div>
-      <div className={s.windowFooter}><FileText size={14} />Every number connected to its source<ChevronRight size={14} /></div>
+      <div className={s.windowHeader}>
+        <span className={s.windowHeaderTitle}>Post to TallyPrime · INV-4821</span>
+        <span className={s.headerBadge}>APPROVED</span>
+      </div>
+
+      <div className={s.tableWrap}>
+        <table className={s.ledgerTable}>
+          <thead>
+            <tr>
+              <th className={s.thLedger}>LEDGER</th>
+              <th className={s.thDrCr}>DR / CR</th>
+              <th className={s.thAmount}>AMOUNT</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td className={s.tdLedger}>Purchase @ 18%</td>
+              <td className={s.tdDrCr}>Dr</td>
+              <td className={s.tdAmount}>₹62,750</td>
+            </tr>
+            <tr>
+              <td className={s.tdLedger}>Input CGST 9%</td>
+              <td className={s.tdDrCr}>Dr</td>
+              <td className={s.tdAmount}>₹5,647.50</td>
+            </tr>
+            <tr>
+              <td className={s.tdLedger}>Input SGST 9%</td>
+              <td className={s.tdDrCr}>Dr</td>
+              <td className={s.tdAmount}>₹5,647.50</td>
+            </tr>
+            <tr>
+              <td className={s.tdLedger}>Prime Components</td>
+              <td className={s.tdDrCr}>Cr</td>
+              <td className={s.tdAmount}>₹74,045</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div className={s.windowFooter}>
+        <span>Posted to your TallyPrime company after approval, with the right ledgers.</span>
+      </div>
     </div>
-    <div className={s.result}><BarChart3 size={15} />See the details behind the bigger picture.</div>
-  </>;
+  );
 }
 
-function ActPreview() {
-  return <>
-    <div className={`${s.floatingFile} ${s.fileOne}`}><FileText size={14} />Monthly report</div>
+/* ── Preview 4: See the numbers ── */
+function SeeNumbersPreview() {
+  return (
     <div className={s.window}>
-      <div className={s.windowHeader}><span><Sparkles size={16} />Insights & next steps</span><span className={s.pill}>Finance Desk</span></div>
-      <div className={s.insight}><span className={s.documentIcon}><ArrowDownLeft size={23} /></span><div><small>SUPPLIER SPEND</small><strong>A clearer view of your commitments.</strong><p>Review supplier balances alongside the documents that explain them.</p></div></div>
-      <div className={s.reportRows}>{[['Supplier summary', 'Balances and linked invoices'], ['Monthly finance report', 'Spending and review status'], ['Accounting handoff', 'Reviewed information for TallyPrime']].map(([title, copy], i) => <div key={title} style={{ animationDelay: `${i * 100}ms` }}><FileText size={16} /><div><strong>{title}</strong><small>{copy}</small></div><ArrowUpRight size={15} /></div>)}</div>
-      <div className={s.windowFooter}><CheckCheck size={14} />Better context for your next decision<ChevronRight size={14} /></div>
+      <div className={s.windowHeader}>
+        <span className={s.windowHeaderTitle}>Spend by supplier · November</span>
+        <span className={s.headerBadge}>FROM TALLY</span>
+      </div>
+
+      <div className={s.itemList}>
+        <div className={s.itemCard}>
+          <div className={s.itemMain}>
+            <strong className={s.itemTitle}>Prime Components</strong>
+            <span className={s.itemMeta}>14 invoices · click to see each one</span>
+          </div>
+          <span className={s.supplierAmount}>₹6.8 L</span>
+        </div>
+
+        <div className={s.itemCard}>
+          <div className={s.itemMain}>
+            <strong className={s.itemTitle}>Metro Supplies</strong>
+            <span className={s.itemMeta}>9 invoices</span>
+          </div>
+          <span className={s.supplierAmount}>₹3.2 L</span>
+        </div>
+
+        <div className={s.itemCard}>
+          <div className={s.itemMain}>
+            <strong className={s.itemTitle}>Apex Services</strong>
+            <span className={s.itemMeta}>6 invoices</span>
+          </div>
+          <span className={s.supplierAmount}>₹1.1 L</span>
+        </div>
+      </div>
+
+      <div className={s.windowFooter}>
+        <span>Every number traces back to the invoice it came from.</span>
+      </div>
     </div>
-    <div className={s.result}><Sparkles size={15} />From business documents to useful insights.</div>
-  </>;
+  );
 }
 
-const previews = [CapturePreview, ValidatePreview, UnderstandPreview, ActPreview];
+const previews = [
+  ReadInvoicePreview,
+  CheckItPreview,
+  ApproveTallyPreview,
+  SeeNumbersPreview,
+];
 
 export function ConnectedFinanceWorkspace() {
   const [active, setActive] = useState(0);
@@ -85,21 +234,81 @@ export function ConnectedFinanceWorkspace() {
     tabs.current[next]?.focus();
   }
 
-  return <section className={`${base.section} ${base.alternate} ${s.section}`} aria-labelledby="connected-finance-title" id="connected-finance-workspace">
-    <div className="site-shell">
-      <div className={s.heading}><p className={`${base.eyebrow} ${s.eyebrow}`}>ONE CONNECTED FINANCE WORKSPACE</p><h2 id="connected-finance-title">From documents<br />to better decisions.</h2><p className={s.intro}>Finance teams need more than data entry. Connect invoice automation with financial and business intelligence, and make more of the information you already have.</p></div>
-      <div className={s.workspace}>
-        <div className={s.steps} role="tablist" aria-label="Explore the finance workflow" aria-orientation="vertical">
-          {steps.map(({ name, title, description, icon: Icon }, index) => <button key={name} type="button" role="tab" id={`finance-step-${index}`} aria-controls={`finance-preview-${index}`} aria-selected={active === index} tabIndex={active === index ? 0 : -1} ref={element => { tabs.current[index] = element; }} onClick={() => setActive(index)} onKeyDown={event => handleKeyDown(event, index)} className={s.step}>
-            <span className={s.stepNumber}>0{index + 1}</span><span className={s.stepCopy}><span className={s.stepLabel}><Icon size={15} />{name}</span><strong>{title}</strong><span className={s.description}>{description}</span></span><ChevronRight className={s.stepArrow} size={16} />
-          </button>)}
+  return (
+    <section
+      className={`${base.section} ${base.alternate} ${s.section}`}
+      aria-labelledby="connected-finance-title"
+      id="connected-finance-workspace"
+    >
+      <div className="site-shell">
+        <div className={s.heading}>
+          <p className={`${base.eyebrow} ${s.eyebrow}`}>How it works</p>
+          <h2 id="connected-finance-title">
+            From supplier invoice<br /><span>to TallyPrime, in four steps.</span>
+          </h2>
+          <p className={s.intro}>
+            Your team checks and approves at every step that touches your books.
+          </p>
         </div>
-        <div className={s.stage}>
-          <div className={s.glow} aria-hidden="true" />
-          {previews.map((Preview, index) => <div key={index} role="tabpanel" id={`finance-preview-${index}`} aria-labelledby={`finance-step-${index}`} hidden={active !== index} tabIndex={0} className={s.preview}>{active === index && <Preview />}</div>)}
-          <p className={s.caption}>ILLUSTRATIVE PRODUCT VIEW <span>0{active + 1} / 04</span></p>
+
+        <div className={s.workspace}>
+          {/* Left Column: 4 Step Tabs */}
+          <div
+            className={s.steps}
+            role="tablist"
+            aria-label="Explore the finance workflow"
+            aria-orientation="vertical"
+          >
+            {steps.map(({ step, title, description }, index) => {
+              const isSelected = active === index;
+              return (
+                <button
+                  key={step}
+                  type="button"
+                  role="tab"
+                  id={`finance-step-${index}`}
+                  aria-controls={`finance-preview-${index}`}
+                  aria-selected={isSelected}
+                  tabIndex={isSelected ? 0 : -1}
+                  ref={(element) => {
+                    tabs.current[index] = element;
+                  }}
+                  onClick={() => setActive(index)}
+                  onKeyDown={(event) => handleKeyDown(event, index)}
+                  className={`${s.step} ${isSelected ? s.stepActive : ''}`}
+                >
+                  <span className={s.stepNumberBadge}>{step}</span>
+                  <div className={s.stepCopy}>
+                    <strong className={s.stepTitle}>{title}</strong>
+                    <span className={s.description}>{description}</span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Right Column: Interactive Window Preview */}
+          <div className={s.stage}>
+            <div className={s.ambientGlow} aria-hidden="true" />
+            {previews.map((Preview, index) => (
+              <div
+                key={index}
+                role="tabpanel"
+                id={`finance-preview-${index}`}
+                aria-labelledby={`finance-step-${index}`}
+                hidden={active !== index}
+                tabIndex={0}
+                className={s.preview}
+              >
+                {active === index && <Preview />}
+              </div>
+            ))}
+            <div className={s.microCaption}>
+              SAMPLE DATA · EXAMPLE PRODUCT VIEW
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>;
+    </section>
+  );
 }

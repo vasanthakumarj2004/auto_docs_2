@@ -3,11 +3,85 @@ export const demoHref = '/demo/#demo-form';
 export const interestHref = '/finance-desk/accounts-payable/#register-interest';
 
 export const financeCapabilities = [
-  { slug: 'invoice-automation', title: 'Invoice Automation', label: 'Document automation', description: 'Post supplier invoices into structured, reviewable data for your accounting workflow.', bullets: ['AI-powered invoice data extraction', 'GST, HSN and line-item capture', 'Human-in-the-loop validation', 'Duplicate detection and batch processing', 'TallyPrime integration'], link: 'Explore invoice automation' },
-  { slug: 'banking-reconciliation', title: 'Banking & Reconciliation', label: 'Banking', description: 'Process bank statements, support bookkeeping and review reconciliation inside TallyPrime.', bullets: ['Bank statement intake', 'Transaction extraction and categorisation', 'Entries posted to TallyPrime', 'Matched and unmatched review', 'Reviewer controls'], link: 'Explore banking & reconciliation' },
-  { slug: 'payment-reminders', title: 'Payment Reminders', label: 'Receivables', description: 'Keep outstanding invoices visible and follow up with customers before and after due dates.', bullets: ['Track invoice due dates', 'Identify pending and overdue payments', 'Send or schedule reminders', 'Follow-up visibility', 'More consistent collections'], link: 'Explore payment reminders' },
-  { slug: 'accounts-payable', title: 'Accounts Payable', label: 'Payables', description: 'Upcoming workflows for supplier invoices, payment review and payables visibility.', bullets: ['Supplier invoice and payable information', 'Payment due-date management', 'Review and approval workflows', 'Payables reporting', 'Finance-system integration, subject to scope'], link: 'Register interest' },
-  { slug: 'docsynecx-intelligence', title: 'Docsynecx Intelligence', label: 'Business performance', description: 'Six connected views of financial and business performance in one place.', bullets: ['Financial Intelligence', 'Business Intelligence', 'Working Capital Intelligence', 'Operations Intelligence', 'Management and AI Intelligence'], link: 'Explore Docsynecx Intelligence' },
+  {
+    slug: 'invoice-automation',
+    tag: '01 · Invoices',
+    badge: 'Most teams start here',
+    title: 'Invoice Automation',
+    label: 'Invoices',
+    description: 'Supplier invoices into TallyPrime, without the typing.',
+    bullets: [
+      'Reads PDFs, scans and email attachments',
+      'Captures GSTIN, HSN, line items and tax',
+      'Flags possible duplicates',
+      'Your team reviews and approves',
+      'Posts to your TallyPrime company',
+    ],
+    link: 'See Invoice Automation',
+  },
+  {
+    slug: 'banking-reconciliation',
+    tag: '02 · Banking',
+    badge: '',
+    title: 'Banking & Reconciliation',
+    label: 'Banking',
+    description: 'Bank statements into Tally, matched and ready to review.',
+    bullets: [
+      'Reads your bank statements',
+      'Sorts each transaction into the right ledger',
+      'Posts entries to TallyPrime after review',
+      'Shows what\'s matched and what isn\'t',
+      'You decide who can approve',
+    ],
+    link: 'See Banking & Reconciliation',
+  },
+  {
+    slug: 'payment-reminders',
+    tag: '03 · Receivables',
+    badge: '',
+    title: 'Payment Reminders',
+    label: 'Receivables',
+    description: 'Get paid on time, without the awkward phone calls.',
+    bullets: [
+      'Tracks every invoice\'s due date',
+      'Shows what\'s pending and what\'s overdue',
+      'Drafts reminders, and your team approves before they go',
+      'Schedule approved reminders for before or after the due date',
+      'Shows who\'s been followed up and when',
+    ],
+    link: 'See Payment Reminders',
+  },
+  {
+    slug: 'docsynecx-intelligence',
+    tag: '04 · Reports',
+    badge: '',
+    title: 'Docsynecx Intelligence',
+    label: 'Reports',
+    description: 'Your Tally numbers, in six views your owners can read.',
+    bullets: [
+      'P&L, balance sheet, cash and bank',
+      'Sales, purchases, customers and suppliers',
+      'Who owes you, what you owe, what\'s overdue',
+      'Stock movement and ageing',
+      'Ask a question, see why a number moved',
+      'Monthly MIS, KPIs and scheduled reports',
+    ],
+    link: 'See the six views',
+  },
+  {
+    slug: 'accounts-payable',
+    tag: '05 · Payables',
+    badge: 'Coming soon',
+    title: 'Accounts Payable',
+    label: 'Payables',
+    description: 'Know what you owe, and when.',
+    bullets: [
+      'Every supplier bill and its due date',
+      'Approvals before anything is paid',
+      'A payables report you can trust',
+    ],
+    link: 'Register interest',
+  },
 ] as const;
 
 export type FinanceSlug = typeof financeCapabilities[number]['slug'];
@@ -55,19 +129,48 @@ export const intelligenceCapabilities = [
 ] as const;
 
 export const financeFaqs = [
-  { question: 'Does Finance Desk support TallyPrime?', answer: 'Yes. Approved supplier invoice information can move into the configured TallyPrime company. Banking and reconciliation workflows can also support TallyPrime bookkeeping. The exact integration and posting scope is confirmed during discovery.' },
-  { question: 'Can Finance Desk replace manual finance information work?', answer: 'Finance Desk helps reduce repetitive document entry and organise financial information. Human review, accounting controls and management judgement remain part of the workflow.' },
-  { question: 'Is Finance Desk only an invoice automation product?', answer: 'Invoice Automation is one of five connected capabilities, alongside Banking & Reconciliation, Payment Reminders, the upcoming Accounts Payable capability and Docsynecx Intelligence. Intelligence brings six views of financial and business performance into one place.' },
-  { question: 'Can we start with only one capability?', answer: 'Yes. Start with a focused use case, validate it with your documents and systems, and expand based on agreed scope. Accounts Payable is in progress and is not yet available for deployment.' },
-  { question: 'Will people still review and approve documents?', answer: 'Yes. Your team reviews extracted information, corrects exceptions and approves information before it moves into the configured accounting workflow.' },
+  {
+    question: 'Does anything post to Tally without our approval?',
+    answer:
+      'No. Every invoice and bank entry waits for someone on your team to approve it. You decide who can approve what.',
+  },
+  {
+    question: 'Does it work with TallyPrime?',
+    answer:
+      'Yes. Approved invoices post to your TallyPrime company, and bank entries can post there too. We confirm exactly what gets posted, and to which ledgers, during setup. Using a different ERP? Docsynecx can post there too. Tell us which one when you book the demo.',
+  },
+  {
+    question: 'How long does setup take?',
+    answer:
+      'Connect TallyPrime straight away and approve your first invoice in minutes. You test it on your own invoices before anything is posted.',
+  },
+  {
+    question: 'Can we start with just invoices?',
+    answer: "Yes, and most teams do. Add banking, reminders and reporting whenever you're ready.",
+  },
+  {
+    question: 'What about scanned or messy invoices?',
+    answer:
+      "It reads PDFs, scans and email attachments. Anything it isn't sure about is flagged for your team to check before approval.",
+  },
+  {
+    question: 'Do payment reminders go out on their own?',
+    answer:
+      'No. Reminders are drafted for your team to approve. Once approved, you can send them now or schedule them for before or after the due date.',
+  },
+  {
+    question: 'Does this replace our accountant?',
+    answer:
+      'No. It does the typing and first checks. Your accountant still reviews, approves and owns the books, and gets time back for the work only they can do.',
+  },
 ];
 
 export const financePageCopy = {
   overview: {
-    eyebrow: 'DOCSYNECX / FINANCE DESK', headline: 'Automate finance.', accent: 'Unlock intelligence.',
-    description: 'Go beyond invoice automation. Bring intelligent document processing, financial intelligence, business intelligence and AI-powered insights into one connected finance workspace.',
+    eyebrow: 'FINANCE DESK - BUILT FOR TALLY PRIME', headline: 'Supplier invoices into TallyPrime.', accent: 'Without the typing.',
+    description: 'Typing invoices into Tally. Checking GST line by line. Matching the bank statement. Chasing overdue payments. Docsynecx reads the invoice, captures GSTIN, HSN and tax, flags duplicates, and your team approves it into TallyPrime.',
     primary: 'Book a Demo', microline: 'Invoice workflows · Financial visibility · Business insights',
-    visualTitle: 'FINANCE DESK', visualLabel: 'ILLUSTRATIVE PRODUCT VIEW', tiles: [['Document workflow', 'Invoice review'], ['Business view', 'Financial insights']], chip: 'Extract · Validate · Understand',
+    visualTitle: 'FINANCE DESK', visualLabel: ' PRODUCT VIEW', tiles: [['Document workflow', 'Invoice review'], ['Business view', 'Financial insights']], chip: 'Extract · Validate · Understand',
     ctaEyebrow: 'DOCSYNECX FINANCE DESK', ctaTitle: 'Bring your finance workflows into one connected workspace.', ctaCopy: "Tell us about your documents, accounting system and reporting needs, and we’ll help identify a practical starting point.",
   },
   'invoice-automation': {

@@ -1164,7 +1164,7 @@ export function PersonaBusinessChallenge({ persona }: PersonaBusinessChallengePr
               </div>
             ))}
             <p className={s.caption}>
-              ILLUSTRATIVE PRODUCT VIEW <span>0{active + 1} / 04</span>
+               PRODUCT VIEW <span>0{active + 1} / 04</span>
             </p>
           </div>
         </div>

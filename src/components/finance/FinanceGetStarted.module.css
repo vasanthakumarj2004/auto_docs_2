@@ -4,6 +4,7 @@
 .eyebrow { display: flex; align-items: center; gap: 10px; }
 .eyebrow::before { content: ''; width: 22px; height: 2px; background: var(--color-brand); }
 .heading h2 { font-size: clamp(35px, 3.6vw, 50px); font-weight: 700; letter-spacing: -.055em; line-height: 1.12; }
+.heading h2 span { color: var(--color-brand-text, #18cb96); }
 .intro { max-width: 580px; margin-top: 22px; color: var(--landing-muted); font-size: 14px; line-height: 1.8; }
 .overview { display: flex; align-items: center; flex-shrink: 0; padding-right: 8px; }
 .overview > div { display: flex; align-items: center; }

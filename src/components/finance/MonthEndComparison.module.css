@@ -1,0 +1,235 @@
+/* ── Section Container: Clean #fafafa background ── */
+.section {
+  padding: 80px 0 92px;
+  background-color: #fafafa;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  color: #0f172a;
+}
+
+/* ── Section Header ── */
+.header {
+  margin-bottom: 44px;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  line-height: 1.6;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-brand-strong, #15b886);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 22px;
+  height: 2px;
+  background: var(--color-brand, #18cb96);
+  flex-shrink: 0;
+}
+
+.headline {
+  margin: 0 0 14px;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: clamp(32px, 3.4vw, 46px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  color: #0f172a;
+}
+
+.headline span {
+  color: var(--color-brand-text, #18cb96);
+}
+
+.subtitle {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: clamp(16px, 1.35vw, 19px);
+  line-height: 1.55;
+  color: #475569;
+  max-width: 660px;
+  font-weight: 500;
+}
+
+/* ── 2-Column Comparison Grid ── */
+.comparisonGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  align-items: stretch;
+}
+
+/* ── Cards: Clean White Without Glow ── */
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 30px;
+  background: #ffffff;
+  border: 1px solid var(--landing-line, #dde1e9);
+  border-radius: 20px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04), 0 4px 14px -2px rgba(15, 23, 42, 0.03);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: #cbd5e1;
+  box-shadow: 0 10px 24px -4px rgba(15, 23, 42, 0.07);
+}
+
+.cardAutomated {
+  border-color: rgba(24, 203, 150, 0.45);
+}
+
+.cardAutomated:hover {
+  border-color: var(--landing-green, #18cb96);
+}
+
+/* ── Card Headers ── */
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f1f5f9;
+  margin-bottom: 6px;
+}
+
+.cardTitle {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: clamp(19px, 1.6vw, 22px);
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+}
+
+/* ── Badges ── */
+.manualBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 11px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #64748b;
+  flex-shrink: 0;
+}
+
+.reviewBadge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  background: transparent;
+  border: 1px solid var(--landing-green, #18cb96);
+  border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--landing-green, #18cb96);
+  flex-shrink: 0;
+}
+
+/* ── Step List: Clean Unboxed Rows ── */
+.stepList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.stepItem {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 15px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.stepItemLast {
+  border-bottom: none;
+  padding-bottom: 6px;
+}
+
+/* Left Card (Manual) Typography */
+.stepNumberManual {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  flex-shrink: 0;
+  min-width: 52px;
+}
+
+.stepDescription {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #475569;
+  font-weight: 500;
+}
+
+/* Right Card (Automated) Typography with Website Green */
+.stepLead {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  min-width: 72px;
+}
+
+.checkIcon {
+  color: var(--landing-green, #18cb96);
+  stroke-width: 2.4;
+  flex-shrink: 0;
+}
+
+.stepNumberAutomated {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--landing-green, #18cb96);
+}
+
+.stepDescriptionAutomated {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #0f172a;
+  font-weight: 550;
+}
+
+/* ── Responsive Behavior ── */
+@media (max-width: 900px) {
+  .comparisonGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .card {
+    padding: 24px 20px;
+  }
+}
