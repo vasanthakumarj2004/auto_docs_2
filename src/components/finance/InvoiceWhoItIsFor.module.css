@@ -29,14 +29,6 @@
   margin-bottom: 14px;
 }
 
-.eyebrow::before {
-  content: '';
-  display: inline-block;
-  width: 14px;
-  height: 2px;
-  background: currentColor;
-}
-
 .title {
   font-size: clamp(35px, 3.6vw, 50px);
   font-weight: 700;

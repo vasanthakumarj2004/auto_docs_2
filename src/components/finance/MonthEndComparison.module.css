@@ -13,9 +13,7 @@
 }
 
 .eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  display: block;
   margin: 0 0 16px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 10.5px;
@@ -24,14 +22,6 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--color-brand-strong, #15b886);
-}
-
-.eyebrow::before {
-  content: '';
-  width: 22px;
-  height: 2px;
-  background: var(--color-brand, #18cb96);
-  flex-shrink: 0;
 }
 
 .headline {

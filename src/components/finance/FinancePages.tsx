@@ -8,6 +8,8 @@ import { DemoCta } from '../DemoCta';
 import { ConnectedFinanceWorkspace } from './ConnectedFinanceWorkspace';
 import { FinanceGetStarted } from './FinanceGetStarted';
 import { FinanceWorkflow } from './FinanceWorkflow';
+import { FinanceIntegrations } from './FinanceIntegrations';
+import { FinanceClosingCta } from './FinanceClosingCta';
 import { FinanceHeroVisual } from './FinanceHeroVisual';
 import { FinanceStatStrip } from './FinanceStatStrip';
 import { MonthEndComparison } from './MonthEndComparison';
@@ -17,7 +19,7 @@ import { BankingWhyItMatters } from './BankingWhyItMatters';
 import { BankingWorkflowOverview } from './BankingWorkflowOverview';
 import { PayableWorkingTowards } from './PayableWorkingTowards';
 import { LandingClosingCta } from '../LandingClosingCta';
-import { bankingFeatures, demoHref, financeCapabilities, financeFaqs, financePageCopy, financeRoot, intelligenceCapabilities, interestHref, invoiceFeatures, payableFeatures, type Feature, type FinanceSlug } from '../../content/finance';
+import { bankingFeatures, demoHref, financeCapabilities, financeFaqCopy, financeFaqs, financePageCopy, financeRoot, intelligenceCapabilities, interestHref, invoiceFeatures, payableFeatures, type Feature, type FinanceSlug } from '../../content/finance';
 import base from '../LandingPage.module.css';
 import s from './FinancePages.module.css';
 
@@ -27,8 +29,16 @@ const number = (index: number) => String(index + 1).padStart(2, '0');
 function Eyebrow({ children }: { children: ReactNode }) {
   return <p className={`${base.eyebrow} ${s.eyebrow}`}>{children}</p>;
 }
-function Heading({ eyebrow, title }: { eyebrow: string; title: ReactNode }) {
-  return <div className={base.sectionHeading}><div><Eyebrow>{eyebrow}</Eyebrow><h2>{title}</h2></div></div>;
+function Heading({ eyebrow, title, description }: { eyebrow: string; title: ReactNode; description?: ReactNode }) {
+  return (
+    <div className={base.sectionHeading}>
+      <div>
+        <Eyebrow>{eyebrow}</Eyebrow>
+        <h2>{title}</h2>
+        {description && <p className={s.headingDescription}>{description}</p>}
+      </div>
+    </div>
+  );
 }
 function Section({ children, id, alternate = false, dark = false }: { children: ReactNode; id?: string; alternate?: boolean; dark?: boolean }) {
   return <section id={id} className={`${base.section} ${alternate ? base.alternate : ''} ${dark ? s.dark : ''}`}><div className="site-shell">{children}</div></section>;
@@ -60,6 +70,7 @@ function Hero({ page }: { page: PageKey }) {
   const copy = financePageCopy[page];
   const upcoming = page === 'accounts-payable';
   const intelligence = page === 'docsynecx-intelligence';
+  const isOverview = page === 'overview';
   const restorePreviousVisual =
     page === 'invoice-automation' ||
     page === 'banking-reconciliation' ||
@@ -82,15 +93,30 @@ function Hero({ page }: { page: PageKey }) {
           </Link>
           {!intelligence && (
             <Link
-              href={upcoming ? financeRoot : '#capabilities'}
+              href={upcoming ? financeRoot : isOverview ? '#how' : '#capabilities'}
               className={`button-secondary ${base.heroButton}`}
             >
-              {upcoming ? 'Explore Finance Desk' : 'Explore capabilities'}
+              {upcoming ? 'Explore Finance Desk' : isOverview ? 'See how it works' : 'Explore capabilities'}
               {!upcoming && <ArrowDown size={16} aria-hidden="true" />}
             </Link>
           )}
         </div>
-        <p className={`${base.trust} ${s.heroTrust}`}>{intelligence ? <><strong>Decision support, not a replacement</strong> for accounting controls or management judgement.</> : copy.microline}</p>
+        {isOverview ? (
+          <>
+            <p className={s.promise}>
+              <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
+                <circle cx="10" cy="10" r="9" fill="none" stroke="currentColor" strokeWidth="2"/>
+                <path d="M6 10.5l2.5 2.5L14 7.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <span>{'promise' in copy ? copy.promise : 'Nothing is posted to TallyPrime until your team approves it.'}</span>
+            </p>
+            <p className={`${base.trust} ${s.heroTrust}`}>
+              Built for <strong>TallyPrime</strong>, works with your ERP too · GST, HSN and line items captured · <strong>Connect Tally in minutes</strong>
+            </p>
+          </>
+        ) : (
+          <p className={`${base.trust} ${s.heroTrust}`}>{intelligence ? <><strong>Decision support, not a replacement</strong> for accounting controls or management judgement.</> : copy.microline}</p>
+        )}
       </div>
       {restorePreviousVisual ? (
         <div className={base.heroVisual} aria-label="product view">
@@ -109,7 +135,6 @@ function Hero({ page }: { page: PageKey }) {
       )}
     </div>
   </section>;
-  
 }
 
 function Overview() {
@@ -117,7 +142,7 @@ function Overview() {
     <FinanceStatStrip />
     <MonthEndComparison />
     <ConnectedFinanceWorkspace />
-    <Section id="capabilities"><Heading eyebrow="Start with invoices. Add the rest when you're ready." title={<>Five tools,<br /><span>one finance desk.</span></>} />
+    <Section id="tools"><Heading eyebrow="Start with invoices. Add the rest when you're ready." title={<>Five tools,<br /><span>one finance desk.</span></>} />
       <div className={s.capabilityGrid}>{financeCapabilities.map((item, index) => <article className={base.desk} key={item.slug}>
         <div className={s.cardTop}>
           <span>{item.tag}</span>
@@ -128,8 +153,19 @@ function Overview() {
       </article>)}</div><p className={base.bottomDescription}>Most teams start with invoice automation, then add banking, reminders and reporting.</p>
     </Section>
     <FinanceWorkflow />
+    <FinanceIntegrations />
     <FinanceGetStarted />
-    <Section id="faq" alternate><div className={base.faqLayout}><Heading eyebrow="COMMON QUESTIONS" title="What accounts teams ask us first." /><SharedFaqAccordion items={financeFaqs} defaultOpenIndex={0} toggleStyle="plus" /></div></Section>
+    <Section id="faq" alternate>
+      <div className={base.faqLayout}>
+        <Heading
+          eyebrow={financeFaqCopy.eyebrow}
+          title={financeFaqCopy.headline}
+          description={financeFaqCopy.description}
+        />
+        <SharedFaqAccordion items={financeFaqs} defaultOpenIndex={0} toggleStyle="plus" />
+      </div>
+    </Section>
+    <FinanceClosingCta />
   </>;
 }
 
@@ -196,18 +232,10 @@ export function FinancePage({ page = 'overview' }: { page?: PageKey }) {
       {page === 'payment-reminders' && <Reminders />}
       {upcoming && <Payable />}
       {page === 'docsynecx-intelligence' && <Intelligence />}
-      {!upcoming && (
+      {!upcoming && page !== 'overview' && (
         <LandingClosingCta
           primaryHref={demoHref}
           secondaryHref="/#platform"
-          title={
-            page === 'overview' ? (
-              <>
-                Bring ten invoices.<br />We&apos;ll show you them in Tally.
-              </>
-            ) : undefined
-          }
-          copy={page === 'overview' ? "Send us a few real supplier invoices. In the demo you'll see them read, checked and ready to approve into TallyPrime. Connect Tally and approve your first invoice in minutes." : undefined}
         />
       )}
       {page === 'docsynecx-intelligence' && <p className={s.disclaimer}>Financial and business intelligence capabilities are scoped to available connected data. Current financial and business reporting pages describe analysis using TallyPrime data. Confirm data availability and configured scope during discovery.</p>}

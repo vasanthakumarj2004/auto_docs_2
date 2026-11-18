@@ -22,14 +22,6 @@
   margin-bottom: 24px;
 }
 
-.eyebrow::before {
-  content: '';
-  width: 22px;
-  height: 2px;
-  background: var(--color-brand, #18cb96);
-  flex-shrink: 0;
-}
-
 .stats {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

@@ -1,41 +1,12 @@
 'use client';
 
-import { useRef, useState, type KeyboardEvent } from 'react';
+import { useRef, type KeyboardEvent } from 'react';
+import { useAutoCycle } from '@/src/hooks/useAutoCycle';
+import { financeHowItWorks } from '../../content/finance';
 import base from '../LandingPage.module.css';
 import s from './ConnectedFinanceWorkspace.module.css';
 
-interface FinanceStep {
-  step: number;
-  title: string;
-  description: string;
-}
-
-const steps: FinanceStep[] = [
-  {
-    step: 1,
-    title: 'Read the invoice',
-    description:
-      'PDFs, scans and email attachments in one inbox. Supplier, GSTIN, HSN, line items, tax and total picked up without retyping.',
-  },
-  {
-    step: 2,
-    title: 'Check it',
-    description:
-      'Tax totals checked against line items, and possible duplicates flagged. Your team reviews anything that looks off.',
-  },
-  {
-    step: 3,
-    title: 'Approve into TallyPrime',
-    description:
-      'Once approved, the entry goes to the right ledgers in your TallyPrime company.',
-  },
-  {
-    step: 4,
-    title: 'See the numbers',
-    description:
-      'Spend, supplier balances and tax summaries, with every figure one click from the invoice it came from.',
-  },
-];
+const steps = financeHowItWorks.steps;
 
 /* ── Preview 1: Read the invoice ── */
 function ReadInvoicePreview() {
@@ -219,8 +190,13 @@ const previews = [
 ];
 
 export function ConnectedFinanceWorkspace() {
-  const [active, setActive] = useState(0);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  const { active, goTo, pause, containerProps } = useAutoCycle({
+    itemCount: steps.length,
+    interval: 3500,
+    resumeDelay: 5000,
+  });
 
   function handleKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
     let next = index;
@@ -230,28 +206,28 @@ export function ConnectedFinanceWorkspace() {
     else if (event.key === 'End') next = steps.length - 1;
     else return;
     event.preventDefault();
-    setActive(next);
+    goTo(next);
     tabs.current[next]?.focus();
   }
 
   return (
     <section
       className={`${base.section} ${base.alternate} ${s.section}`}
-      aria-labelledby="connected-finance-title"
-      id="connected-finance-workspace"
+      aria-labelledby="how-h"
+      id="how"
     >
       <div className="site-shell">
         <div className={s.heading}>
-          <p className={`${base.eyebrow} ${s.eyebrow}`}>How it works</p>
-          <h2 id="connected-finance-title">
+          <p className={`${base.eyebrow} ${s.eyebrow}`}>{financeHowItWorks.eyebrow}</p>
+          <h2 id="how-h">
             From supplier invoice<br /><span>to TallyPrime, in four steps.</span>
           </h2>
           <p className={s.intro}>
-            Your team checks and approves at every step that touches your books.
+            {financeHowItWorks.subtitle}
           </p>
         </div>
 
-        <div className={s.workspace}>
+        <div className={s.workspace} {...containerProps}>
           {/* Left Column: 4 Step Tabs */}
           <div
             className={s.steps}
@@ -273,7 +249,8 @@ export function ConnectedFinanceWorkspace() {
                   ref={(element) => {
                     tabs.current[index] = element;
                   }}
-                  onClick={() => setActive(index)}
+                  onClick={() => goTo(index)}
+                  onMouseEnter={pause}
                   onKeyDown={(event) => handleKeyDown(event, index)}
                   className={`${s.step} ${isSelected ? s.stepActive : ''}`}
                 >

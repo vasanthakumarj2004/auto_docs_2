@@ -46,8 +46,7 @@
   box-shadow: none !important;
 }
 .page :is(summary, input, textarea):focus-visible { outline: 2px solid var(--color-brand-text); outline-offset: 5px; }
-.eyebrow { display: flex; align-items: center; gap: 10px; color: var(--color-brand-text); }
-.eyebrow::before { content: ''; width: 22px; height: 2px; background: var(--color-brand); flex-shrink: 0; }
+.eyebrow { display: block; color: var(--color-brand-text); }
 .heroTitle {
   font-size: clamp(40px, 4.1vw, 62px);
   line-height: 1.12;
@@ -340,3 +339,40 @@
   .intelligenceCard h3 { font-size: 23px; }
   .intelligenceCard .eyebrow { font-size: 8px; }
 }
+
+.headingDescription {
+  margin: 12px 0 0;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: clamp(14.5px, 1.2vw, 16px);
+  line-height: 1.6;
+  color: var(--landing-muted, #586579);
+}
+
+:global([data-theme="dark"]) .headingDescription {
+  color: #94a3b8;
+}
+
+.promise {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 0.96rem;
+  font-weight: 600;
+  color: var(--landing-ink, #0f172a);
+  margin: 18px 0 6px;
+}
+
+.promise svg {
+  color: #2b7a46;
+  flex-shrink: 0;
+}
+
+:global([data-theme="dark"]) .promise {
+  color: #e2e8f0;
+}
+
+:global([data-theme="dark"]) .promise svg {
+  color: #78cf96;
+}
+

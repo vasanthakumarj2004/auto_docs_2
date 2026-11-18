@@ -80,15 +80,6 @@
   margin-bottom: 16px;
 }
 
-.eyebrow::before {
-  content: '';
-  display: inline-block;
-  width: 18px;
-  height: 2px;
-  background: var(--color-brand);
-  flex-shrink: 0;
-}
-
 .heroTitle {
   font-size: clamp(38px, 4vw, 58px);
   line-height: 1.12;

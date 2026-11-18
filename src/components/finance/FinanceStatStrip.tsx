@@ -3,35 +3,10 @@
 import React from 'react';
 import { Clock, FileCheck2, ShieldCheck, ArrowUpRight, type LucideIcon } from 'lucide-react';
 import Link from 'next/link';
+import { financeStats } from '../../content/finance';
 import styles from './FinanceStatStrip.module.css';
 
-interface FinanceStatItem {
-  metric: string;
-  copy: string;
-  icon: LucideIcon;
-  href?: string;
-}
-
-const financeStats: FinanceStatItem[] = [
-  {
-    metric: 'Minutes',
-    copy: 'from connecting Tally to your first approved invoice',
-    icon: Clock,
-    href: '/finance-desk/invoice-automation/',
-  },
-  {
-    metric: 'GSTIN · HSN · tax',
-    copy: 'captured from PDFs, scans and email',
-    icon: FileCheck2,
-    href: '/finance-desk/invoice-automation/',
-  },
-  {
-    metric: 'Your approval',
-    copy: 'before anything posts to TallyPrime',
-    icon: ShieldCheck,
-    href: '/finance-desk/invoice-automation/',
-  },
-];
+const statIcons: LucideIcon[] = [Clock, FileCheck2, ShieldCheck];
 
 export function FinanceStatStrip() {
   return (
@@ -41,8 +16,8 @@ export function FinanceStatStrip() {
           Finance Desk at a glance
         </h2>
         <div className={styles.stats}>
-          {financeStats.map((stat) => {
-            const Icon = stat.icon;
+          {financeStats.map((stat, idx) => {
+            const Icon = statIcons[idx % statIcons.length];
             return (
               <div key={stat.metric} className={styles.outcomeCard}>
                 <div className={styles.outcomeCardTop}>
