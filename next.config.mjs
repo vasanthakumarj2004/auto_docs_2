@@ -5,7 +5,7 @@ const nextConfig = {
     unoptimized: true,
   },
   reactStrictMode: true,
-  allowedDevOrigins: ['100.97.139.98','192.168.206.1'],
+  allowedDevOrigins: ['100.97.139.98','192.168.206.1', '192.168.0.100/'],
   async redirects() {
     return [
       {

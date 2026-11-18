@@ -199,9 +199,9 @@ export function InvoiceAutomationPage() {
               </p>
 
               <h1 id="hero-title" className={s.heroTitle}>
-                Stop typing supplier invoices
+                Stop typing supplier
                 <br />
-                <span>into Tally.</span>
+                invoices <span>into Tally.</span>
               </h1>
 
               <p className={s.heroSub}>
