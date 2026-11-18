@@ -1279,6 +1279,74 @@
   border-color: rgba(255, 255, 255, 0.8);
 }
 
+/* ── Customer Story Box ── */
+.storyCard {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 40px;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid var(--border-subtle, #e2e8f0);
+  border-radius: 18px;
+  padding: 40px;
+  box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.04);
+}
+
+.storyCopy h2 {
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 800;
+  color: var(--text-primary, #0f172a);
+  line-height: 1.25;
+  margin-top: 10px;
+  margin-bottom: 14px;
+}
+
+.storyCopy p {
+  color: var(--text-secondary, #475569);
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 54ch;
+  margin: 0;
+}
+
+.storyFacts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.storyFactItem {
+  display: grid;
+  gap: 4px;
+  padding: 16px 20px;
+  border-radius: 12px;
+  background: var(--landing-alt, #f8fafc);
+  border: 1px solid var(--border-subtle, #e2e8f0);
+  border-left: 4px solid var(--landing-green, #18cb96);
+}
+
+.storyFactBold {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary, #0f172a);
+}
+
+.storyFactDesc {
+  color: var(--text-secondary, #64748b);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+  .storyCard {
+    grid-template-columns: 1fr;
+    padding: 24px;
+    gap: 28px;
+  }
+}
+
 /* ── Responsive Queries ── */
 @media (max-width: 1024px) {
   .heroGrid {
