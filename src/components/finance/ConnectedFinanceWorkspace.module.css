@@ -1,8 +1,9 @@
 .section {
   overflow: hidden;
   padding-block: 88px 96px;
-  background: #0d1726;
-  color: #ffffff;
+  background: #0d1726 !important;
+  color: #ffffff !important;
+  scroll-margin-top: 90px;
 }
 
 .heading {

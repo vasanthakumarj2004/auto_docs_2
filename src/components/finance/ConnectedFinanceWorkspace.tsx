@@ -212,7 +212,7 @@ export function ConnectedFinanceWorkspace() {
 
   return (
     <section
-      className={`${base.section} ${base.alternate} ${s.section}`}
+      className={`${base.section} ${s.section}`}
       aria-labelledby="how-h"
       id="how"
     >

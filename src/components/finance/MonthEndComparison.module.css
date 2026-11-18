@@ -35,6 +35,10 @@
 }
 
 .headline span {
+  color: var(--color-brand-text, #0d9466);
+}
+
+:global([data-theme="dark"]) .headline span {
   color: var(--color-brand-text, #18cb96);
 }
 

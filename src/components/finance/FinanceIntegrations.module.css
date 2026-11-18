@@ -21,7 +21,7 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-brand-strong, #0f6a8f);
+  color: var(--color-brand-text, #0d9466);
   margin-bottom: 12px;
 }
 
@@ -35,8 +35,16 @@
   color: var(--text-primary, #0f172a);
 }
 
+.headline span {
+  color: var(--color-brand-text, #0d9466);
+}
+
 :global([data-theme="dark"]) .headline {
   color: #ffffff;
+}
+
+:global([data-theme="dark"]) .headline span {
+  color: var(--color-brand-text, #18cb96);
 }
 
 .subtitle {

@@ -17,6 +17,12 @@ export function FinanceIntegrations() {
           <p className={styles.eyebrow}>{financeIntegrations.eyebrow}</p>
           <h2 id="integrations-title" className={styles.headline}>
             {financeIntegrations.headline}
+            {'accent' in financeIntegrations && (
+              <>
+                <br />
+                <span>{financeIntegrations.accent}</span>
+              </>
+            )}
           </h2>
           <p className={styles.subtitle}>{financeIntegrations.description}</p>
         </div>

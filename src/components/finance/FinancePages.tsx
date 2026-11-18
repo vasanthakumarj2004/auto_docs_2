@@ -1,3 +1,5 @@
+'use client';
+
 import type { ReactNode } from 'react';
 import Link from 'next/link';
 import { ArrowDown, ArrowRight, ArrowUpRight, Check } from 'lucide-react';
@@ -40,8 +42,36 @@ function Heading({ eyebrow, title, description }: { eyebrow: string; title: Reac
     </div>
   );
 }
-function Section({ children, id, alternate = false, dark = false }: { children: ReactNode; id?: string; alternate?: boolean; dark?: boolean }) {
-  return <section id={id} className={`${base.section} ${alternate ? base.alternate : ''} ${dark ? s.dark : ''}`}><div className="site-shell">{children}</div></section>;
+interface SectionProps {
+  children: ReactNode;
+  id?: string;
+  eyebrow?: string;
+  title?: ReactNode;
+  description?: ReactNode;
+  alternate?: boolean;
+  dark?: boolean;
+  className?: string;
+}
+
+function Section({
+  children,
+  id,
+  eyebrow,
+  title,
+  description,
+  alternate = false,
+  dark = false,
+  className = '',
+}: SectionProps) {
+  const hasHeading = Boolean(eyebrow || title);
+  return (
+    <section id={id} className={`${base.section} ${alternate ? base.alternate : ''} ${dark ? s.dark : ''} ${className}`}>
+      <div className="site-shell">
+        {hasHeading && <Heading eyebrow={eyebrow!} title={title} description={description} />}
+        {children}
+      </div>
+    </section>
+  );
 }
 function Checklist({ items }: { items: readonly string[] }) {
   return <ul className={s.checklist}>{items.map(item => <li key={item}><Check size={15} aria-hidden="true" /><span>{item}</span></li>)}</ul>;
@@ -95,6 +125,16 @@ function Hero({ page }: { page: PageKey }) {
             <Link
               href={upcoming ? financeRoot : isOverview ? '#how' : '#capabilities'}
               className={`button-secondary ${base.heroButton}`}
+              onClick={(e) => {
+                if (isOverview) {
+                  const target = document.getElementById('how');
+                  if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    window.history.pushState(null, '', '#how');
+                  }
+                }
+              }}
             >
               {upcoming ? 'Explore Finance Desk' : isOverview ? 'See how it works' : 'Explore capabilities'}
               {!upcoming && <ArrowDown size={16} aria-hidden="true" />}
@@ -142,7 +182,12 @@ function Overview() {
     <FinanceStatStrip />
     <MonthEndComparison />
     <ConnectedFinanceWorkspace />
-    <Section id="tools"><Heading eyebrow="Start with invoices. Add the rest when you're ready." title={<>Five tools,<br /><span>one finance desk.</span></>} />
+    <Section id="tools">
+      <Heading
+        eyebrow="Start with invoices. Add the rest when you're ready."
+        title={<>Five tools,<br /><span>one finance desk.</span></>}
+        description="Most teams start with invoice automation, then add banking, reminders and reporting."
+      />
       <div className={s.capabilityGrid}>{financeCapabilities.map((item, index) => <article className={base.desk} key={item.slug}>
         <div className={s.cardTop}>
           <span>{item.tag}</span>
@@ -150,7 +195,7 @@ function Overview() {
         </div>
         <h3><Link href={`${financeRoot}${item.slug}/`}>{item.title}</Link></h3><p className={base.deskCopy}>{item.description}</p><Checklist items={item.bullets} />
         <Link className={base.deskLink} href={item.slug === 'accounts-payable' ? interestHref : `${financeRoot}${item.slug}/`}>{item.link}<ArrowRight size={16} aria-hidden="true" /></Link>
-      </article>)}</div><p className={base.bottomDescription}>Most teams start with invoice automation, then add banking, reminders and reporting.</p>
+      </article>)}</div>
     </Section>
     <FinanceWorkflow />
     <FinanceIntegrations />

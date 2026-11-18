@@ -1,9 +1,29 @@
 .section { background: var(--landing-bg); border-block: 1px solid var(--landing-line); }
-.heading { display: flex; justify-content: space-between; align-items: center; gap: 48px; margin-bottom: 38px; }
-.heading > div:first-child { max-width: 650px; }
+.heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 36px; margin-bottom: 38px; }
+.heading > div:first-child { max-width: 860px; }
 .eyebrow { display: block; }
-.heading h2 { font-size: clamp(35px, 3.6vw, 50px); font-weight: 700; letter-spacing: -.055em; line-height: 1.12; }
-.heading h2 span { color: var(--color-brand-text, #18cb96); }
+.heading h2 {
+  font-size: clamp(28px, 2.9vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+  margin: 0;
+}
+.line {
+  display: inline-block;
+  white-space: normal;
+}
+@media (min-width: 768px) {
+  .line {
+    white-space: nowrap;
+  }
+}
+.accentLine {
+  color: var(--color-brand-text, #0d9466);
+}
+:global([data-theme="dark"]) .accentLine {
+  color: var(--color-brand-text, #18cb96);
+}
 .intro { max-width: 580px; margin-top: 22px; color: var(--landing-muted); font-size: 14px; line-height: 1.8; }
 .overview { display: flex; align-items: center; flex-shrink: 0; padding-right: 8px; }
 .overview > div { display: flex; align-items: center; }

@@ -109,7 +109,8 @@ export const financeStats = [
 /* ── Problem Comparison (Where month-end goes) ── */
 export const financeProblem = {
   eyebrow: 'Where month-end goes',
-  headline: "Your team spends the month typing. Then there's no time to look at the numbers.",
+  headline: 'Your team spends the month typing.',
+  accent: "Then there's no time to look at the numbers.",
   manualTitle: 'A typical invoice today',
   manualTag: 'by hand',
   manualSteps: [
@@ -225,7 +226,8 @@ export const financeIntelligenceBottom = {
 /* ── Integrations ── */
 export const financeIntegrations = {
   eyebrow: 'Integrations',
-  headline: 'Works with the accounting system you already use.',
+  headline: 'Works with the accounting system',
+  accent: 'you already use.',
   description: 'Docsynecx does the reading, checking and matching. Approved entries go straight into your books.',
   items: [
     {
@@ -277,7 +279,8 @@ export const financeIntegrations = {
 /* ── Live in minutes (Setup) ── */
 export const financeSetup = {
   eyebrow: 'Live in minutes',
-  headline: 'Connect TallyPrime immediately. Approve your first invoice in minutes.',
+  headline: 'Connect TallyPrime immediately.',
+  accent: 'Approve your first invoice in minutes.',
   description:
     'We set it up around your TallyPrime company, your ledgers and who approves what. You test it on your own invoices before anything is posted.',
   stages: [

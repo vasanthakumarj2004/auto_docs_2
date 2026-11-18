@@ -18,7 +18,13 @@ export function FinanceGetStarted() {
           <div>
             <p className={`${base.eyebrow} ${s.eyebrow}`}>{financeSetup.eyebrow}</p>
             <h2 id="setup-h">
-              {financeSetup.headline}
+              <span className={s.line}>{financeSetup.headline}</span>
+              {'accent' in financeSetup && (
+                <>
+                  <br />
+                  <span className={`${s.line} ${s.accentLine}`}>{financeSetup.accent}</span>
+                </>
+              )}
             </h2>
             <p className={s.intro}>{financeSetup.description}</p>
           </div>

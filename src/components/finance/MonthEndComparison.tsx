@@ -21,6 +21,12 @@ export function MonthEndComparison() {
           </p>
           <h2 id="problem-h" className={styles.headline}>
             {financeProblem.headline}
+            {'accent' in financeProblem && (
+              <>
+                <br />
+                <span>{financeProblem.accent}</span>
+              </>
+            )}
           </h2>
         </div>
 
