@@ -19,13 +19,11 @@ export function FinanceStatStrip() {
             const Icon = statIcons[idx % statIcons.length];
             return (
               <div key={stat.metric} className={styles.outcomeCard}>
-                <div className={styles.outcomeCardTop}>
+                <span className={styles.outcomeIconBadge} aria-hidden="true">
+                  <Icon size={20} className="stroke-[2.2]" />
+                </span>
+                <div className={styles.outcomeCardContent}>
                   <p className={styles.statValue}>{stat.metric}</p>
-                  <span className={styles.outcomeIconBadge} aria-hidden="true">
-                    <Icon size={16} className="stroke-[2.2]" />
-                  </span>
-                </div>
-                <div className={styles.outcomeCardBody}>
                   <p className={styles.outcomeCopy}>{stat.copy}</p>
                 </div>
               </div>

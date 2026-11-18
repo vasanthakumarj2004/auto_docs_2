@@ -9,6 +9,7 @@ import {
   CheckCircle2,
   Clock,
   FileSpreadsheet,
+  FileText,
   Landmark,
 } from 'lucide-react';
 import { useAutoCycle } from '@/src/hooks/useAutoCycle';
@@ -84,7 +85,7 @@ const howSteps = [
         type: 'wait',
       },
     ],
-    actions: ['Confirm probable', 'Investigate unmatched', 'Push matched'],
+    // actions: ['Confirm probable', 'Investigate unmatched', 'Push matched'],
     foot: 'Every suggestion shows why, so confirming takes a glance.',
   },
   {
@@ -148,7 +149,7 @@ const proofStats = [
   {
     title: 'PDF · Excel · scan',
     copy: 'Sent by portal, email or WhatsApp',
-    icon: FileSpreadsheet,
+    icon: FileText,
   },
   {
     title: 'Every bank account',
@@ -164,6 +165,7 @@ const proofStats = [
     title: 'One click to approve',
     copy: 'Your team checks, Docsynecx matches',
     icon: CheckCircle2,
+    highlight: true,
   },
 ];
 
@@ -303,13 +305,14 @@ export function BankingReconciliationPage() {
               const Icon = item.icon;
               return (
                 <div key={item.title} className={s.outcomeCard}>
-                  <div className={s.outcomeCardTop}>
+                  <span
+                    className={`${s.outcomeIconBadge} ${item.highlight ? s.outcomeIconBadgeHl : ''}`}
+                    aria-hidden="true"
+                  >
+                    <Icon size={20} className="stroke-[2.2]" />
+                  </span>
+                  <div className={s.outcomeCardContent}>
                     <p className={s.statValue}>{item.title}</p>
-                    <span className={s.outcomeIconBadge} aria-hidden="true">
-                      <Icon size={16} className="stroke-[2.2]" />
-                    </span>
-                  </div>
-                  <div className={s.outcomeCardBody}>
                     <p className={s.outcomeCopy}>{item.copy}</p>
                   </div>
                 </div>
@@ -516,7 +519,7 @@ export function BankingReconciliationPage() {
                     </div>
                   )}
 
-                  {activeStep.actions && (
+                  {/* {activeStep.actions && (
                     <div className={s.qactionsDark}>
                       {activeStep.actions.map((act, i) => (
                         <button
@@ -528,7 +531,7 @@ export function BankingReconciliationPage() {
                         </button>
                       ))}
                     </div>
-                  )}
+                  )} */}
                 </div>
 
                 <p className={s.panelFootDark}>

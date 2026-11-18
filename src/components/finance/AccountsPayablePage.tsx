@@ -8,8 +8,10 @@ import {
   ArrowUpRight,
   BarChart3,
   CalendarClock,
-  MousePointerClick,
+  CheckCircle2,
   FileText,
+  MousePointerClick,
+  TrendingUp,
 } from 'lucide-react';
 import { useAutoCycle } from '@/src/hooks/useAutoCycle';
 import { DemoCta } from '../DemoCta';
@@ -166,12 +168,13 @@ const proofStats = [
   {
     title: 'Ageing and balances',
     copy: 'What you owe, to whom, and when',
-    icon: BarChart3,
+    icon: TrendingUp,
   },
   {
     title: 'Multi-level approval',
     copy: 'The right sign-off, every step logged',
-    icon: MousePointerClick,
+    icon: CheckCircle2,
+    highlight: true,
   },
 ];
 
@@ -312,13 +315,14 @@ export function AccountsPayablePage() {
               const Icon = item.icon;
               return (
                 <div key={item.title} className={s.outcomeCard}>
-                  <div className={s.outcomeCardTop}>
+                  <span
+                    className={`${s.outcomeIconBadge} ${item.highlight ? s.outcomeIconBadgeHl : ''}`}
+                    aria-hidden="true"
+                  >
+                    <Icon size={20} className="stroke-[2.2]" />
+                  </span>
+                  <div className={s.outcomeCardContent}>
                     <p className={s.statValue}>{item.title}</p>
-                    <span className={s.outcomeIconBadge} aria-hidden="true">
-                      <Icon size={16} className="stroke-[2.2]" />
-                    </span>
-                  </div>
-                  <div className={s.outcomeCardBody}>
                     <p className={s.outcomeCopy}>{item.copy}</p>
                   </div>
                 </div>

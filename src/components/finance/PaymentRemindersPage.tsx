@@ -176,6 +176,7 @@ const proofStats = [
     title: 'One click to approve',
     copy: 'Docsynecx drafts, your team sends',
     icon: MousePointerClick,
+    highlight: true,
   },
 ];
 
@@ -315,13 +316,14 @@ export function PaymentRemindersPage() {
               const Icon = item.icon;
               return (
                 <div key={item.title} className={s.outcomeCard}>
-                  <div className={s.outcomeCardTop}>
+                  <span
+                    className={`${s.outcomeIconBadge} ${item.highlight ? s.outcomeIconBadgeHl : ''}`}
+                    aria-hidden="true"
+                  >
+                    <Icon size={20} className="stroke-[2.2]" />
+                  </span>
+                  <div className={s.outcomeCardContent}>
                     <p className={s.statValue}>{item.title}</p>
-                    <span className={s.outcomeIconBadge} aria-hidden="true">
-                      <Icon size={16} className="stroke-[2.2]" />
-                    </span>
-                  </div>
-                  <div className={s.outcomeCardBody}>
                     <p className={s.outcomeCopy}>{item.copy}</p>
                   </div>
                 </div>

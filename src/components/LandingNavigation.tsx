@@ -78,7 +78,7 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
         href: '/finance-desk/accounts-payable/',
       },
     ],
-    whoHeading: "Who it's for",
+    whoHeading: "By Role",
     whoLinks: [
       { title: 'Business Owners', href: '/finance-desk/business-owners/' },
       { title: 'Finance Teams', href: '/finance-desk/finance-teams/' },

@@ -9,6 +9,7 @@ import {
   CheckCircle2,
   Clock,
   Inbox,
+  Layers,
   UploadCloud,
 } from 'lucide-react';
 import { useAutoCycle } from '@/src/hooks/useAutoCycle';
@@ -83,7 +84,7 @@ const howSteps = [
         type: 'wait',
       },
     ],
-    actions: ['Fix tax split', 'Confirm date', 'Merge or reject'],
+    // actions: ['Fix tax split', 'Confirm date', 'Merge or reject'],
     foot: 'You see why each one was flagged, before you approve.',
   },
   {
@@ -146,7 +147,7 @@ const faqItems = [
   // },
 ];
 
-/* ── Proof stats matching FinanceStatStrip in FinancePages ── */
+/* ── Proof stats matching modern tile strip ── */
 const proofStats = [
   {
     title: 'Portal · email · WhatsApp',
@@ -156,7 +157,7 @@ const proofStats = [
   {
     title: 'Bulk upload',
     copy: 'Send a month of invoices in one go',
-    icon: UploadCloud,
+    icon: Layers,
   },
   {
     title: 'Hours back every week',
@@ -167,6 +168,7 @@ const proofStats = [
     title: 'One click to approve',
     copy: 'Your team checks, Docsynecx types',
     icon: CheckCircle2,
+    highlight: true,
   },
 ];
 
@@ -308,13 +310,14 @@ export function InvoiceAutomationPage() {
               const Icon = item.icon;
               return (
                 <div key={item.title} className={s.outcomeCard}>
-                  <div className={s.outcomeCardTop}>
+                  <span
+                    className={`${s.outcomeIconBadge} ${item.highlight ? s.outcomeIconBadgeHl : ''}`}
+                    aria-hidden="true"
+                  >
+                    <Icon size={20} className="stroke-[2.2]" />
+                  </span>
+                  <div className={s.outcomeCardContent}>
                     <p className={s.statValue}>{item.title}</p>
-                    <span className={s.outcomeIconBadge} aria-hidden="true">
-                      <Icon size={16} className="stroke-[2.2]" />
-                    </span>
-                  </div>
-                  <div className={s.outcomeCardBody}>
                     <p className={s.outcomeCopy}>{item.copy}</p>
                   </div>
                 </div>
@@ -503,7 +506,7 @@ export function InvoiceAutomationPage() {
                     </div>
                   )}
 
-                  {activeStep.actions && (
+                  {/* {activeStep.actions && (
                     <div className={s.qactionsDark}>
                       {activeStep.actions.map((act, i) => (
                         <button
@@ -515,7 +518,7 @@ export function InvoiceAutomationPage() {
                         </button>
                       ))}
                     </div>
-                  )}
+                  )} */}
                 </div>
 
                 <p className={s.panelFootDark}>

@@ -9,6 +9,7 @@ import {
   Bell,
   FileSpreadsheet,
   LayoutGrid,
+  MessageSquare,
   Sparkles,
 } from 'lucide-react';
 import { useAutoCycle } from '@/src/hooks/useAutoCycle';
@@ -218,7 +219,7 @@ const proofStats = [
   {
     title: 'Ask in plain words',
     copy: 'Answers come with the numbers behind them',
-    icon: Sparkles,
+    icon: MessageSquare,
   },
   {
     title: 'MIS on schedule',
@@ -229,6 +230,7 @@ const proofStats = [
     title: 'Alerts that matter',
     copy: 'Told when a number crosses your line',
     icon: Bell,
+    highlight: true,
   },
 ];
 
@@ -365,13 +367,14 @@ export function DocsynecxIntelligencePage() {
               const Icon = item.icon;
               return (
                 <div key={item.title} className={s.outcomeCard}>
-                  <div className={s.outcomeCardTop}>
+                  <span
+                    className={`${s.outcomeIconBadge} ${item.highlight ? s.outcomeIconBadgeHl : ''}`}
+                    aria-hidden="true"
+                  >
+                    <Icon size={20} className="stroke-[2.2]" />
+                  </span>
+                  <div className={s.outcomeCardContent}>
                     <p className={s.statValue}>{item.title}</p>
-                    <span className={s.outcomeIconBadge} aria-hidden="true">
-                      <Icon size={16} className="stroke-[2.2]" />
-                    </span>
-                  </div>
-                  <div className={s.outcomeCardBody}>
                     <p className={s.outcomeCopy}>{item.copy}</p>
                   </div>
                 </div>

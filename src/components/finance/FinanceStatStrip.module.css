@@ -28,12 +28,13 @@
   gap: 20px;
 }
 
-/* ── Stats Card: #f8f6f1 background as requested ── */
+/* ── Stats Card: #f8f6f1 background matching AccountsPayablePage ── */
 .outcomeCard {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 26px 24px;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 22px 20px;
   background: #f8f6f1;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 20px;
@@ -53,47 +54,47 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.95);
 }
 
-.outcomeCardTop {
+.outcomeIconBadge {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 14px;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-brand-soft, #e8faf4);
+  color: var(--color-brand-strong, #15b886);
+  border: 1px solid var(--color-brand-border, rgba(21, 184, 134, 0.28));
+  box-shadow: 0 2px 6px rgba(21, 184, 134, 0.1);
+}
+
+.outcomeCardContent {
+  flex: 1;
+  min-width: 0;
 }
 
 .statValue {
+  display: block;
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: clamp(22px, 2.1vw, 28px);
+  font-size: 1.05rem;
   font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: -0.03em;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
   color: #0f172a;
-}
-
-.outcomeIconBadge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: rgba(24, 203, 150, 0.14);
-  border: 1px solid rgba(24, 203, 150, 0.35);
-  color: var(--landing-green, #18cb96);
-  flex-shrink: 0;
-  box-shadow: 0 2px 6px rgba(24, 203, 150, 0.12);
+  margin: 0 0 4px 0;
 }
 
 .outcomeCardBody {
-  margin-top: 18px;
+  margin: 0;
   flex-grow: 1;
 }
 
 .outcomeCopy {
   margin: 0;
-  font-size: 13.5px;
-  line-height: 1.6;
+  font-size: 0.92rem;
+  line-height: 1.45;
   color: #475569;
-  font-weight: 500;
+  font-weight: 450;
 }
 
 .outcomeLink {
