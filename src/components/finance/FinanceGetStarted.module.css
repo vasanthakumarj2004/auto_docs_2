@@ -19,10 +19,10 @@
   }
 }
 .accentLine {
-  color: var(--color-brand-text, #0d9466);
+  color: var(--color-brand-text, #0d9466) !important;
 }
 :global([data-theme="dark"]) .accentLine {
-  color: var(--color-brand-text, #18cb96);
+  color: var(--color-brand-text, #18cb96) !important;
 }
 .intro { max-width: 580px; margin-top: 22px; color: var(--landing-muted); font-size: 14px; line-height: 1.8; }
 .overview { display: flex; align-items: center; flex-shrink: 0; padding-right: 8px; }

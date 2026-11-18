@@ -36,7 +36,7 @@
 }
 
 .headline span {
-  color: var(--color-brand-text, #0d9466);
+  color: var(--color-brand-text, #0d9466) !important;
 }
 
 :global([data-theme="dark"]) .headline {
@@ -44,7 +44,7 @@
 }
 
 :global([data-theme="dark"]) .headline span {
-  color: var(--color-brand-text, #18cb96);
+  color: var(--color-brand-text, #18cb96) !important;
 }
 
 .subtitle {
@@ -90,13 +90,13 @@
 }
 
 .cardMain {
-  border-color: #0f6a8f;
-  box-shadow: 0 14px 34px -20px rgba(15, 31, 46, 0.25);
+  border-color: var(--color-brand-text, #0d9466);
+  box-shadow: 0 14px 34px -20px rgba(13, 148, 102, 0.25);
 }
 
 :global([data-theme="dark"]) .cardMain {
-  border-color: rgba(95, 180, 216, 0.45);
-  box-shadow: 0 14px 34px -20px rgba(0, 0, 0, 0.5);
+  border-color: var(--color-brand, #18cb96);
+  box-shadow: 0 14px 34px -20px rgba(24, 203, 150, 0.35);
 }
 
 .card:hover {
@@ -117,25 +117,25 @@
   border-radius: 12px;
   display: grid;
   place-items: center;
-  background: #e2eff5;
-  color: #0f6a8f;
+  background: var(--color-brand-soft, #e8faf4);
+  color: var(--color-brand-text, #0d9466);
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   font-weight: 800;
   font-size: 1.25rem;
 }
 
 :global([data-theme="dark"]) .mark {
-  background: rgba(15, 106, 143, 0.25);
-  color: #5fb4d8;
+  background: rgba(24, 203, 150, 0.15);
+  color: var(--color-brand, #18cb96);
 }
 
 .cardMain .mark {
-  background: #0f6a8f;
+  background: var(--color-brand-text, #0d9466);
   color: #ffffff;
 }
 
 :global([data-theme="dark"]) .cardMain .mark {
-  background: #5fb4d8;
+  background: var(--color-brand, #18cb96);
   color: #08131c;
 }
 
@@ -208,13 +208,13 @@
   top: 0.45em;
   width: 9px;
   height: 5px;
-  border-left: 2px solid #2b7a46;
-  border-bottom: 2px solid #2b7a46;
+  border-left: 2px solid var(--color-brand-text, #0d9466);
+  border-bottom: 2px solid var(--color-brand-text, #0d9466);
   transform: rotate(-45deg);
 }
 
 :global([data-theme="dark"]) .bulletList li::before {
-  border-color: #78cf96;
+  border-color: var(--color-brand, #18cb96);
 }
 
 .note {
@@ -233,10 +233,10 @@
 }
 
 .note svg {
-  color: #2b7a46;
+  color: var(--color-brand-text, #0d9466);
   flex-shrink: 0;
 }
 
 :global([data-theme="dark"]) .note svg {
-  color: #78cf96;
+  color: var(--color-brand, #18cb96);
 }

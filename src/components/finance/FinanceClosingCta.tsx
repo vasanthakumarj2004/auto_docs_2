@@ -7,7 +7,19 @@ import { ClosingVisualBg } from '../ClosingVisualBg';
 import { financeClosing } from '../../content/finance';
 import styles from './FinanceClosingCta.module.css';
 
-export function FinanceClosingCta() {
+interface FinanceClosingCtaProps {
+  eyebrow?: string;
+  secondaryHref?: string;
+  secondaryText?: string;
+}
+
+export function FinanceClosingCta({
+  eyebrow,
+  secondaryHref = '/finance-desk/#tools',
+  secondaryText,
+}: FinanceClosingCtaProps = {}) {
+  const resolvedEyebrow = eyebrow ?? financeClosing.eyebrow;
+  const resolvedSecondaryText = secondaryText ?? financeClosing.secondaryText;
   return (
     <section id="contact" className={styles.closing} aria-labelledby="closing-title">
       <div className="site-shell">
@@ -17,8 +29,11 @@ export function FinanceClosingCta() {
           </div>
 
           <div className={styles.closingContent}>
+            {resolvedEyebrow && (
+              <p className={styles.closingEyebrow}>{resolvedEyebrow}</p>
+            )}
             <h2 id="closing-title" className={styles.closingTitle}>
-              Bring ten invoices.<br />We&apos;ll show you them in Tally.
+              Bring ten invoices.<br /><span>We&apos;ll show you them in Tally.</span>
             </h2>
 
             <p className={styles.closingCopy}>
@@ -45,10 +60,10 @@ export function FinanceClosingCta() {
                 <ArrowRight size={17} aria-hidden="true" />
               </Link>
               <Link
-                href={financeClosing.secondaryHref}
+                href={secondaryHref}
                 className={styles.secondaryBtn}
               >
-                {financeClosing.secondaryText}
+                {resolvedSecondaryText}
               </Link>
             </div>
           </div>
