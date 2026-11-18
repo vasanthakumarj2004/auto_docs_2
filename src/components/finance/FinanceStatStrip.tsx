@@ -1,8 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Clock, FileCheck2, ShieldCheck, ArrowUpRight, type LucideIcon } from 'lucide-react';
-import Link from 'next/link';
+import { Clock, FileCheck2, ShieldCheck, type LucideIcon } from 'lucide-react';
 import { financeStats } from '../../content/finance';
 import styles from './FinanceStatStrip.module.css';
 
@@ -29,12 +28,6 @@ export function FinanceStatStrip() {
                 <div className={styles.outcomeCardBody}>
                   <p className={styles.outcomeCopy}>{stat.copy}</p>
                 </div>
-                {stat.href && (
-                  <Link href={stat.href} className={styles.outcomeLink}>
-                    <span>Explore invoice automation</span>
-                    <ArrowUpRight size={13} aria-hidden="true" />
-                  </Link>
-                )}
               </div>
             );
           })}

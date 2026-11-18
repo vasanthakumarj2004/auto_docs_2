@@ -18,6 +18,10 @@ import { MonthEndComparison } from './MonthEndComparison';
 import { InvoiceBusinessChallenge } from './InvoiceBusinessChallenge';
 import { InvoiceHowItWorks } from './InvoiceHowItWorks';
 import { InvoiceAutomationPage } from './InvoiceAutomationPage';
+import { BankingReconciliationPage } from './BankingReconciliationPage';
+import { AccountsPayablePage } from './AccountsPayablePage';
+import { PaymentRemindersPage } from './PaymentRemindersPage';
+import { DocsynecxIntelligencePage } from './DocsynecxIntelligencePage';
 import { BankingWhyItMatters } from './BankingWhyItMatters';
 import { BankingWorkflowOverview } from './BankingWorkflowOverview';
 import { PayableWorkingTowards } from './PayableWorkingTowards';
@@ -269,27 +273,67 @@ export function FinancePage({ page = 'overview' }: { page?: PageKey }) {
     );
   }
 
-  const copy = financePageCopy[page];
-  const upcoming = page === 'accounts-payable';
-  return <div className={`${base.page} ${s.page}`}>
-    <a href="#main-content" className={base.skipLink}>Skip to content</a>
-    <LandingNavigation />
-    <main id="main-content">
-      <Hero page={page} />
-      {page === 'overview' && <Overview />}
-      {page === 'banking-reconciliation' && <Banking />}
-      {page === 'payment-reminders' && <Reminders />}
-      {upcoming && <Payable />}
-      {page === 'docsynecx-intelligence' && <Intelligence />}
-      {!upcoming && page !== 'overview' && (
-        <LandingClosingCta
-          primaryHref={demoHref}
-          secondaryHref="/#platform"
-        />
-      )}
-      {page === 'docsynecx-intelligence' && <p className={s.disclaimer}>Financial and business intelligence capabilities are scoped to available connected data. Current financial and business reporting pages describe analysis using TallyPrime data. Confirm data availability and configured scope during discovery.</p>}
-      {upcoming && <div id="register-interest" className={s.interestForm}><DemoCta intent="accounts-payable" /></div>}
-    </main>
-    <ShipsyFooter />
-  </div>;
+  if (page === 'banking-reconciliation') {
+    return (
+      <div className={`${base.page} ${s.page}`}>
+        <a href="#main-content" className={base.skipLink}>Skip to content</a>
+        <LandingNavigation />
+        <main id="main-content">
+          <BankingReconciliationPage />
+        </main>
+        <ShipsyFooter />
+      </div>
+    );
+  }
+
+  if (page === 'accounts-payable') {
+    return (
+      <div className={`${base.page} ${s.page}`}>
+        <a href="#main-content" className={base.skipLink}>Skip to content</a>
+        <LandingNavigation />
+        <main id="main-content">
+          <AccountsPayablePage />
+        </main>
+        <ShipsyFooter />
+      </div>
+    );
+  }
+
+  if (page === 'payment-reminders') {
+    return (
+      <div className={`${base.page} ${s.page}`}>
+        <a href="#main-content" className={base.skipLink}>Skip to content</a>
+        <LandingNavigation />
+        <main id="main-content">
+          <PaymentRemindersPage />
+        </main>
+        <ShipsyFooter />
+      </div>
+    );
+  }
+
+  if (page === 'docsynecx-intelligence') {
+    return (
+      <div className={`${base.page} ${s.page}`}>
+        <a href="#main-content" className={base.skipLink}>Skip to content</a>
+        <LandingNavigation />
+        <main id="main-content">
+          <DocsynecxIntelligencePage />
+        </main>
+        <ShipsyFooter />
+      </div>
+    );
+  }
+
+  return (
+    <div className={`${base.page} ${s.page}`}>
+      <a href="#main-content" className={base.skipLink}>Skip to content</a>
+      <LandingNavigation />
+      <main id="main-content">
+        <Hero page={page} />
+        <Overview />
+      </main>
+      <ShipsyFooter />
+    </div>
+  );
 }

@@ -357,6 +357,32 @@
   gap: 20px;
 }
 
+.proofGrid4 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.proofGrid4 .outcomeCard {
+  padding: 22px 20px;
+}
+
+.proofGrid4 .statValue {
+  font-size: clamp(18px, 1.4vw, 22px);
+}
+
+@media (max-width: 1024px) {
+  .proofGrid4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .proofGrid4 {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ── Stats Card: #f8f6f1 background matching FinanceStatStrip ── */
 .outcomeCard {
   display: flex;
@@ -410,6 +436,13 @@
   color: var(--landing-green, #18cb96);
   flex-shrink: 0;
   box-shadow: 0 2px 6px rgba(24, 203, 150, 0.12);
+}
+
+.outcomeIconBadgeHl {
+  background: #e2580e !important;
+  border-color: #e2580e !important;
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(226, 88, 14, 0.35);
 }
 
 .outcomeCardBody {
@@ -844,6 +877,42 @@
 .actionBtnSecondaryDark:hover {
   background: #f8fafc;
   border-color: #94a3b8;
+}
+
+.mailBoxDark {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.84375rem;
+  color: #334155;
+  line-height: 1.55;
+  margin-bottom: 14px;
+}
+
+.mailBoxDark strong {
+  color: #0f172a;
+}
+
+.chipsListDark {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.chipDark {
+  font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  font-size: 0.71875rem;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(24, 203, 150, 0.12);
+  color: #0d9466;
+  font-weight: 600;
+  border: 1px solid rgba(24, 203, 150, 0.25);
 }
 
 .panelFootDark {

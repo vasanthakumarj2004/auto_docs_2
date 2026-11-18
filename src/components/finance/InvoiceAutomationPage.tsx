@@ -6,6 +6,7 @@ import {
   ArrowDown,
   ArrowRight,
   ArrowUpRight,
+  CheckCircle2,
   Clock,
   Inbox,
   UploadCloud,
@@ -151,22 +152,21 @@ const proofStats = [
     title: 'Portal · email · WhatsApp',
     copy: 'Every invoice in one inbox',
     icon: Inbox,
-    href: '#how',
-    linkText: 'See how it works',
   },
   {
     title: 'Bulk upload',
     copy: 'Send a month of invoices in one go',
     icon: UploadCloud,
-    href: '#how',
-    linkText: 'See how it works',
   },
   {
     title: 'Hours back every week',
     copy: 'Your team stops typing invoices into Tally',
     icon: Clock,
-    href: '#handles',
-    linkText: 'Explore what it handles',
+  },
+  {
+    title: 'One click to approve',
+    copy: 'Your team checks, Docsynecx types',
+    icon: CheckCircle2,
   },
 ];
 
@@ -303,7 +303,7 @@ export function InvoiceAutomationPage() {
           <h2 id="invoice-stats-title" className={s.proofEyebrow}>
             Invoice Automation at a glance
           </h2>
-          <div className={s.proofGrid}>
+          <div className={s.proofGrid4}>
             {proofStats.map((item) => {
               const Icon = item.icon;
               return (
@@ -317,10 +317,6 @@ export function InvoiceAutomationPage() {
                   <div className={s.outcomeCardBody}>
                     <p className={s.outcomeCopy}>{item.copy}</p>
                   </div>
-                  <Link href={item.href} className={s.outcomeLink}>
-                    <span>{item.linkText}</span>
-                    <ArrowUpRight size={13} aria-hidden="true" />
-                  </Link>
                 </div>
               );
             })}
