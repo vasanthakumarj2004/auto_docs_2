@@ -25,7 +25,7 @@
   top: 16px;
 }
 
-/* ── 1. Hero Section (Warm Paper Gradient matching Logistics Desk) ── */
+/* ── 1. Hero Section (Clean Light Gradient matching Invoice Automation) ── */
 .viewportHero {
   --logistics-header-height: 81px;
   min-height: calc(100vh - var(--logistics-header-height));
@@ -35,7 +35,7 @@
   justify-content: center;
   padding-top: clamp(40px, 5vh, 64px);
   padding-bottom: clamp(36px, 4.5vh, 56px);
-  background: linear-gradient(165deg, #f7f5f0 0%, #fafafa 55%, #f4fbf8 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
   border-bottom: 1px solid var(--landing-line, #dde1e9);
   color: var(--landing-ink, #0f172a);
   position: relative;
@@ -518,7 +518,7 @@
   align-items: flex-start;
   gap: 14px;
   padding: 22px 20px;
-  background: #f8f6f1;
+  background: #ffffff;
   border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: 20px;
   box-shadow:
@@ -1557,10 +1557,10 @@
   color: #94a3b8;
 }
 
-/* ── 5. Customer Story Section (Warm Paper Gradient) ── */
+/* ── 5. Customer Story Section (Clean Light Gradient) ── */
 .storySection {
   padding: 88px 0;
-  background: linear-gradient(165deg, #f7f5f0 0%, #fafafa 55%, #f4fbf8 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
   border-bottom: 1px solid var(--landing-line, #dde1e9);
   color: var(--landing-ink, #0f172a);
 }

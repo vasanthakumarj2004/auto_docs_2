@@ -4,7 +4,7 @@
 
 /* ── 1. Top Title Section (Hero Gradient Background) ── */
 .titleSection {
-  background: linear-gradient(165deg, #f7f5f0 0%, #fafafa 55%, #f4fbf8 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
   border-bottom: 1px solid var(--landing-line, #dde1e9);
   padding-top: clamp(36px, 4.5vh, 52px);
   padding-bottom: clamp(36px, 4.5vh, 48px);

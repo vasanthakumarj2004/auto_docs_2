@@ -48,7 +48,7 @@
   justify-content: center;
   padding-top: clamp(40px, 5vh, 64px);
   padding-bottom: clamp(36px, 4.5vh, 56px);
-  background: linear-gradient(165deg, #f7f5f0 0%, #fafafa 55%, #f4fbf8 100%);
+  background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
   border-bottom: 1px solid var(--landing-line);
   position: relative;
   overflow: hidden;
@@ -486,7 +486,7 @@
 .processSection {
   padding-block: clamp(64px, 7vh, 96px);
   position: relative;
-  background: #f7f5f0;
+  background: var(--landing-alt, #f7f9fa);
   border-bottom: 1px solid var(--landing-line);
 }
 
