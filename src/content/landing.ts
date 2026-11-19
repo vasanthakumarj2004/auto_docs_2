@@ -1,6 +1,6 @@
 export const landingFaqs = [
   { question: 'What is Docsynecx?', answer: 'Docsynecx is an AI-powered workflow platform for document-heavy finance and logistics teams. It has two desks: Finance Desk for invoice automation and Bank Statement & Reconcilation, and Logistics Desk for RFQ to booking, shipment management, tracking and document automation.' },
-  { question: 'Which systems does it integrate with?', answer: 'It connects with TallyPrime and CargoWise, and also supports email-based workflows and API connectivity, so validated data moves into the tools your team already uses.' },
+  { question: 'Which systems does it integrate with?', answer: 'It connects with Tally Prime and CargoWise, and also supports email-based workflows and API connectivity, so validated data moves into the tools your team already uses.' },
   { question: 'Do we need to replace our current software?', answer: 'No. Docsynecx sits alongside your existing accounting, ERP or freight systems and feeds them validated data.' },
   { question: 'Will people still review and approve documents?', answer: 'Yes. Human review and approval stay part of important workflows, so your team remains in control of what gets posted.' },
   { question: 'How long does it take to get started?', answer: 'We start small: understand your process, configure the workflow, validate it with your own documents, then scale. The timeline depends on your document types, volumes and integrations; a demo will give you a realistic estimate.' },

@@ -68,7 +68,7 @@ export function SolutionsPage() {
 
                 <p className={styles.heroDescription}>
                   Every industry handles documents differently. Docsynecx connects to your existing
-                  TallyPrime, SAP, or CargoWise environments to eliminate manual line-item typing,
+                  Tally Prime, SAP, or CargoWise environments to eliminate manual line-item typing,
                   catch reconciliation discrepancies, and accelerate ledger postings.
                 </p>
 
@@ -85,7 +85,7 @@ export function SolutionsPage() {
                 <p className={styles.trust}>
                   <CheckCircle2 size={13} className={styles.trustCheckIcon} aria-hidden="true" />
                   <span>
-                    <strong>Built for businesses</strong> that run on TallyPrime, SAP, or CargoWise.
+                    <strong>Built for businesses</strong> that run on Tally Prime, SAP, or CargoWise.
                   </span>
                 </p>
               </div>

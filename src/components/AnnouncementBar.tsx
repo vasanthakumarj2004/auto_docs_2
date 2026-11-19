@@ -23,7 +23,7 @@ const ANNOUNCEMENTS: AnnouncementItem[] = [
   {
     id: 'connectors',
     tag: 'Docsynecx 2.0',
-    text: 'Live TallyPrime XML & CargoWise eAdaptor connectors are live',
+    text: 'Live Tally Prime XML & CargoWise eAdaptor connectors are live',
     cta: 'See live connectors',
     href: '/#integrations',
   },
@@ -55,7 +55,7 @@ export function AnnouncementBarV2() {
       if (isDismissed === 'true') {
         setDismissed(true);
       }
-    } catch {}
+    } catch { }
   }, []);
 
   useEffect(() => {
@@ -86,7 +86,7 @@ export function AnnouncementBarV2() {
     setDismissed(true);
     try {
       sessionStorage.setItem('docsynecx-announcement-v3-dismissed', 'true');
-    } catch {}
+    } catch { }
   };
 
   if (dismissed) return null;

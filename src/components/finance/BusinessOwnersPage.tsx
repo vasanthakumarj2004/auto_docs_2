@@ -173,7 +173,7 @@ const howSteps: HowStep[] = [
     num: 4,
     title: 'Posted to Tally',
     desc: 'A purchase voucher, with the bill and your approval linked.',
-    panelBar: 'Step 4 of 4 · TallyPrime',
+    panelBar: 'Step 4 of 4 · Tally Prime',
     panelStatus: 'Voucher created',
     statusType: 'ok',
     rows: [
@@ -194,7 +194,7 @@ const storyFacts = [
 /* ── 6. Owner FAQs ── */
 const faqItems = [
   {
-    question: 'Do we have to stop using TallyPrime?',
+    question: 'Do we have to stop using Tally Prime?',
     answer:
       'No. Docsynecx works with your existing Tally company and ledgers. Your team keeps working in Tally as they do today.',
   },
@@ -216,7 +216,7 @@ const faqItems = [
   {
     question: 'How long does it take to get started?',
     answer:
-      'The first-time setup with TallyPrime takes minutes. Then we test with your own bills and train your team in a single session.',
+      'The first-time setup with Tally Prime takes minutes. Then we test with your own bills and train your team in a single session.',
   },
 ];
 
@@ -276,7 +276,7 @@ export function BusinessOwnersPage() {
               </h1>
 
               <p className={s.heroSub}>
-                See your cash, what you owe and what you&apos;re owed. Sign off the bills that matter in one click, and ask your numbers questions in plain words. All from the TallyPrime your team already uses.
+                See your cash, what you owe and what you&apos;re owed. Sign off the bills that matter in one click, and ask your numbers questions in plain words. All from the Tally Prime your team already uses.
               </p>
 
               <div className={s.heroActions}>
@@ -649,7 +649,7 @@ export function BusinessOwnersPage() {
         copy="Bring the question you always ask your accounts team. We'll answer it from your books in the demo."
         steps={[
           'Book a 30-minute demo',
-          'Connect TallyPrime or bring a few bills',
+          'Connect Tally Prime or bring a few bills',
           'See your cash, dues and approvals in one view',
         ]}
         primaryHref="/demo/#demo-form"

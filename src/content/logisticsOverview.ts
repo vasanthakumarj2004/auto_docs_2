@@ -4,65 +4,192 @@ export const demoHref = '/demo/#demo-form';
 export const logisticsModules = [
   {
     slug: 'email-to-booking',
-    title: 'Email-to-Booking Automation',
-    label: 'Enquiry-to-quote',
-    description: 'Move freight enquiries from inbox to customer quotation and booking. Use AI-assisted workflows to read customer enquiries, gather vendor rates, compare options and prepare customer quotations.',
+    title: 'Email-to-Booking',
+    label: '01 · Enquiry to quote',
+    badge: 'Most teams start here',
+    lead: 'Turn every enquiry into a ready-to-send quote.',
+    description: 'Turn every enquiry into a ready-to-send quote. Reads enquiries and attachments from your inbox, gathers vendor rates, compares options side by side and drafts the quote with your margin.',
     bullets: [
-      'Capture customer enquiries from email and attachments',
-      'Automated vendor rate requests and rate card lookups',
-      'Side-by-side carrier rate and transit time comparison',
-      'Instant customer quote generation with margin control',
-      'Direct booking creation and CargoWise handoff',
+      'Reads enquiries and attachments from your inbox',
+      'Sends rate requests to your vendors and checks your rate cards',
+      'Compares rates and transit times side by side',
+      'Drafts the quote with your margin, for you to approve',
+      'Creates the booking in CargoWise once the customer says yes',
     ],
-    link: 'Explore Email-to-Booking',
+    link: 'See Email-to-Booking',
   },
   {
     slug: 'shipment-operations',
-    title: 'Shipment Operations Automation',
-    label: 'Operations & documents',
-    description: 'Connect booking details, shipment documents and job workflows. Support the operational handoff from accepted quotation to shipment job. Extract and validate shipment information.',
+    title: 'Shipment Operations',
+    label: '02 · Jobs and documents',
+    lead: 'Catch document mistakes before customs does.',
+    description: 'Catch document mistakes before customs does. The accepted quote becomes the job with no retyping from sales to ops. Checks container numbers, weights and seals across documents.',
     bullets: [
-      'Operational handoff from accepted quote to job',
-      'Extract B/L, shipping orders and packing lists',
-      'Cross-check container numbers, weights and seals',
-      'Human-in-the-loop exception review and approvals',
-      'Seamless data sync with CargoWise and custom ERPs',
+      'The accepted quote becomes the job, with no retyping from sales to ops',
+      'Reads the B/L, shipping order and packing list',
+      'Checks container numbers, weights and seals match across documents',
+      'Anything that doesn\'t match waits for your ops team to clear',
+      'Updates CargoWise or your own ERP',
     ],
-    link: 'Explore Shipment Operations',
+    link: 'See Shipment Operations',
   },
   {
     slug: 'shipment-tracking',
     title: 'Shipment Tracking',
-    label: 'Visibility & tracking',
-    description: 'Make shipment milestones and delays easier to see. Bring shipment status information into a more visible operational workflow. Track ocean and road movements.',
+    label: '03 · Tracking',
+    lead: 'Hear about a delay before your customer calls you.',
+    description: 'Hear about a delay before your customer calls you. Milestones from ocean carriers and transporters in one screen for every active job, with tracking links you can share.',
     bullets: [
-      'Carrier and transporter milestone updates',
-      'Real-time container status and transshipment alerts',
-      'Automated delay notifications for operations teams',
-      'Centralised tracking dashboard across all active jobs',
-      'Customer-facing milestone visibility links',
+      'Milestones from carriers and your transporters',
+      'Alerts for delays and transshipment changes',
+      'One screen for every active job',
+      'A tracking link you can share with your customer',
     ],
-    link: 'Explore Shipment Tracking',
+    link: 'See Shipment Tracking',
   },
   {
     slug: 'freight-intelligence',
     title: 'Freight Intelligence',
-    label: 'Analytics & performance',
-    badge: 'Roadmap',
-    description: 'Build a clearer view of shipment costs, margins and performance. Freight Intelligence is the analytics layer designed to help forwarders understand shipment profitability, customer margins and operational performance.',
+    label: '04 · Profit and performance',
+    badge: 'Coming soon',
+    lead: 'See which jobs, customers and lanes make you money.',
+    description: 'See which jobs, customers and lanes make you money. Profit on every job, quoted vs actual cost with detention/demurrage trends, and monthly management reports ready on day one.',
     bullets: [
-      'Shipment profitability and gross margin analysis',
-      'Carrier cost variance and detention/demurrage trends',
-      'Trade-lane volume and container utilization insights',
-      'Customer profitability and quotation conversion rates',
-      'Automated management MIS and operational reporting',
+      'Profit on every job',
+      'Quoted vs actual cost, with detention and demurrage trends',
+      'Volume by lane and container type',
+      'Which customers convert, and which ones earn',
+      'A monthly management report, ready on day one',
     ],
-    link: 'Explore Freight Intelligence',
+    link: 'Join early access',
   },
 ] as const;
 
 export type LogisticsSlug = typeof logisticsModules[number]['slug'];
 export type Feature = readonly [tag: string, title: string, description: string];
+
+export const logisticsStats = [
+  { metric: '60+ min → 15 min', copy: 'to send a customer quote' },
+  { metric: '120 → 225', copy: 'quotes a day, same team' },
+  { metric: '65% fewer', copy: '"where is my cargo?" emails' },
+] as const;
+
+export const logisticsStatsSource = 'Results from a freight rate desk, UAE & India, over 12 months.';
+
+export const logisticsProblem = {
+  eyebrow: 'Why quotes go out late',
+  headline: 'The customer asked four forwarders.',
+  accent: 'The fastest good quote wins.',
+  manualTitle: 'One enquiry today',
+  manualTag: '≈ 60+ min',
+  manualSteps: [
+    { time: '09:02', description: 'Enquiry lands with a PDF and a packing list' },
+    { time: '09:15', description: 'Ports, weight and cargo copied into a sheet by hand' },
+    { time: '09:20', description: 'Rate requests emailed to vendors, one by one' },
+    { time: '09:50', description: 'Chasing the two who haven\'t replied' },
+    { time: '10:05', description: 'Quote rebuilt in Excel, margin added, sent' },
+  ],
+  automatedTitle: 'With Docsynecx',
+  automatedTag: '≈ 15 min',
+  automatedSteps: [
+    { time: '09:02', description: 'Enquiry read. Ports, equipment and weight picked up' },
+    { time: '09:03', description: 'Rate requests drafted to your vendors on that lane' },
+    { time: '09:12', description: 'Replies lined up side by side as they come in' },
+    { time: '09:14', description: 'Quote drafted with your margin' },
+    { time: '09:17', description: 'You check it and send it' },
+  ],
+  note: 'Docsynecx does the copying and chasing, so your team spends that hour pricing and winning.',
+};
+
+export const logisticsHowItWorks = {
+  eyebrow: 'How it works',
+  headline: 'From first email',
+  accent: 'to delivered container.',
+  description:
+    'Four steps, with your team in control at each one. Your operators stay in charge, your data gets checked, and your customers stay informed.',
+  steps: [
+    {
+      number: 1,
+      title: 'Read the enquiry',
+      description:
+        'Ports, equipment, weight and cargo are picked up from the email, PDF or packing list. Nobody retypes them.',
+      panelTitle: 'Freight enquiry inbox',
+      panelBadge: '3 new today',
+      panelFoot:
+        'No retyping. Every enquiry becomes a quote draft in minutes. Missing details get a question drafted back to the customer.',
+      items: [
+        {
+          who: 'Kaveri Textiles Pvt Ltd',
+          what: 'INNSA → AEJEA · 1×40\' HC · 18,200 kg',
+          status: 'Quote ready',
+          statusType: 'wait',
+        },
+        {
+          who: 'Gulf Home Furnishings LLC',
+          what: 'CNSHA → AEJEA · 2×40\' HC · 24,500 kg',
+          status: 'Rates: 3 of 4 in',
+          statusType: 'info',
+        },
+        {
+          who: 'Rhein Machine Parts GmbH',
+          what: 'DEHAM → INMAA · 4 pallets · 1,850 kg',
+          status: 'Missing: Incoterm',
+          statusType: 'wait',
+        },
+      ],
+    },
+    {
+      number: 2,
+      title: 'Get rates and quote',
+      description:
+        'Rate requests go to your vendors, replies are lined up side by side, and the quote is drafted with your margin. You approve it before it goes.',
+      panelTitle: 'Rates · CNSHA → AEJEA · 2×40\' HC',
+      panelBadge: 'Waiting for you',
+      panelFoot: 'You approve and send. Nothing goes out until you do.',
+      rates: [
+        { vendor: 'Carrier A', transit: '18 days', freeDays: '14', rate: '$1,180', best: true },
+        { vendor: 'Agent B', transit: '20 days', freeDays: '10', rate: '$1,225', best: false },
+        { vendor: 'Carrier C', transit: '16 days', freeDays: '7', rate: '$1,310', best: false },
+        { vendor: 'Carrier D', transit: 'Reminder sent', freeDays: '-', rate: '-', reminder: true },
+      ],
+      quoteTotal: '$2,840',
+      quoteTotalLabel: 'Quote with your margin, 2 boxes',
+    },
+    {
+      number: 3,
+      title: 'Open the job',
+      description:
+        'The accepted quote becomes a job in CargoWise. The B/L, invoice and packing list are checked against each other, and mismatches are flagged.',
+      panelTitle: 'Job JOB-2026-8812 · Document check',
+      panelBadge: '1 to clear',
+      panelFoot:
+        'Weight doesn\'t match. Flagged for your ops team before the B/L is final. The job is already in CargoWise.',
+      checks: [
+        { field: 'Container no.', bl: 'MSCU8921045', pl: 'MSCU8921045', match: true },
+        { field: 'Seal no.', bl: 'ML-448120', pl: 'ML-448120', match: true },
+        { field: 'Gross weight', bl: '18,400 kg', pl: '18,040 kg', match: false },
+        { field: 'Packages', bl: '640 cartons', pl: '640 cartons', match: true },
+      ],
+    },
+    {
+      number: 4,
+      title: 'Track to delivery',
+      description:
+        'Containers at sea and trucks on the road in one view. Your team hears about delays first, and customers get a tracking link.',
+      panelTitle: 'MSCU8921045 · CNSHA → AEJEA',
+      panelBadge: 'Delay flagged',
+      panelFoot:
+        'Your team heard first. The customer\'s tracking link already shows the new ETA.',
+      milestones: [
+        { label: 'Gate-in, Shanghai', date: '08 Nov', status: 'done' },
+        { label: 'Loaded and sailed', date: '10 Nov', status: 'done' },
+        { label: 'Transshipment, Colombo. Vessel running late', date: 'ETA +2 days', status: 'late' },
+        { label: 'Arrival, Jebel Ali', date: '30 Nov', status: 'pending' },
+        { label: 'Delivered by truck', date: '02 Dec', status: 'pending' },
+      ],
+    },
+  ],
+};
 
 export const emailToBookingFeatures: Feature[] = [
   ['ENQUIRY CAPTURE', 'Inbox & attachment reading', 'Read customer freight enquiries directly from email threads, PDFs, Excel sheets and packing lists.'],
@@ -100,35 +227,43 @@ export const freightIntelligenceFeatures: Feature[] = [
 
 export const logisticsFaqs = [
   {
-    question: 'Does Logistics Desk integrate with CargoWise and custom ERPs?',
-    answer: 'Yes. Logistics Desk is built to connect with CargoWise, custom forwarding ERPs, transport management systems (TMS), and email inboxes. Data moves directly into your operating systems without manual re-entry.',
+    question: 'Do we check everything before it\'s sent?',
+    answer:
+      'Yes. Every rate request, quote and booking waits for someone on your team to approve it. Nothing reaches a customer or vendor on its own. You can also set approval limits, for example so quotes under a certain margin need a manager.',
   },
   {
-    question: 'Can Logistics Desk replace human freight forwarders?',
-    answer: 'No. Logistics Desk is an AI operating platform designed to assist operators by eliminating repetitive typing and document extraction. Human review, exception handling, and final approvals always remain firmly with your team.',
+    question: 'Can we start with just Email-to-Booking?',
+    answer:
+      'Yes, and most teams do. It\'s live in about a week. Add operations and tracking whenever you\'re ready, with no re-setup.',
   },
   {
-    question: 'Can we start with only one module like Email-to-Booking?',
-    answer: 'Yes. Flexible adoption allows you to start with Email-to-Booking to accelerate quotation turnaround, and add Shipment Operations, Tracking, or Freight Intelligence as your operations scale.',
+    question: 'Does it work with CargoWise or our own system?',
+    answer:
+      'Yes. Bookings and jobs go straight into CargoWise or your own ERP, so nobody types them in twice. No system? It works from your email inbox on its own.',
   },
   {
-    question: 'How does Email-to-Booking handle messy customer emails and attachments?',
-    answer: 'Our intelligent document models parse complex customer emails, PDFs, Excel sheets, and packing lists to identify origin, destination, cargo dimensions, weight, commodity, and timeline requirements accurately.',
+    question: 'What about messy emails and attachments?',
+    answer:
+      'That\'s normal freight email, and it\'s what Docsynecx is built for. It reads the email body, PDFs and packing lists, and pulls out ports, equipment, weight and cargo. If something\'s missing, like the weight or the Incoterm, it flags it and drafts the question back to the customer.',
   },
   {
-    question: 'Will our team still review quotes and bookings before sending?',
-    answer: 'Yes. Your team stays in complete control. Every quote, rate comparison, and booking can be reviewed and approved before moving forward.',
+    question: 'Does this replace my sales or ops team?',
+    answer:
+      'No. It does the copying, chasing and first drafts. Your people still price, negotiate and look after the customer, and they get through more enquiries in a day.',
   },
 ];
 
 export const logisticsPageCopy = {
   overview: {
-    eyebrow: 'DOCSYNECX / LOGISTICS ',
-    headline: 'The AI operating platform for',
-    accent: 'freight forwarders.',
-    description: 'Connect customer enquiries, vendor rates, quotations, bookings, shipment documents and tracking through AI-assisted freight workflows.',
-    primary: 'Book a Demo',
-    secondary: 'Explore modules',
+    eyebrow: 'AI rate desk for freight forwarders',
+    headline: 'Quote faster. Win more loads.',
+    accent: 'Straight from your inbox.',
+    description:
+      'Docsynecx reads every customer enquiry as it lands, asks your vendors for rates, lines them up side by side and drafts the quote. Your team checks it and sends it.',
+    primary: 'Book a demo',
+    secondary: 'See how it works',
+    promise: 'Nothing goes to a customer or vendor until your team approves it.',
+    trust: 'Works with CargoWise, your own ERP, or just your email inbox. Live in about a week.',
     microline: 'Freight operations · Enquiry-to-booking · CargoWise & ERP workflows',
     visualTitle: 'LOGISTICS DESK',
     visualLabel: 'LIVE FREIGHT WORKSPACE',
@@ -137,9 +272,15 @@ export const logisticsPageCopy = {
       ['Status', 'Enquiry-to-booking'],
     ],
     chip: 'Capture · Quote · Book · Track',
-    ctaEyebrow: 'DOCSYNECX LOGISTICS DESK',
-    ctaTitle: 'Make every freight workflow work harder.',
-    ctaCopy: 'Show us how your team manages enquiries, bookings and shipment operations today, and we’ll show you Docsynecx on your own trade workflows.',
+    ctaEyebrow: 'See it on your own enquiries',
+    ctaTitle: 'Bring last week\'s enquiries. We\'ll show you the quotes.',
+    ctaCopy:
+      'Send us a few real enquiries from last week. In the demo we\'ll show you the quotes Docsynecx would have drafted, and how fast. You could be live in about a week.',
+    ctaSteps: [
+      'Book a 30-minute demo',
+      'Share a few recent enquiries',
+      'See the drafted quotes, side by side with yours',
+    ],
   },
   'email-to-booking': {
     eyebrow: 'LOGISTICS DESK / EMAIL-TO-BOOKING',

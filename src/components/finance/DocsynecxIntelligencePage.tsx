@@ -185,7 +185,7 @@ const faqItems = [
   {
     question: 'Where do the numbers come from?',
     answer:
-      "From your TallyPrime company. What each view shows depends on what's recorded in Tally, for example stock views need inventory kept in Tally.",
+      "From your Tally Prime company. What each view shows depends on what's recorded in Tally, for example stock views need inventory kept in Tally.",
   },
   {
     question: 'Do we need to change how we use Tally?',
@@ -304,7 +304,7 @@ export function DocsynecxIntelligencePage() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span>Built from the data already in your TallyPrime.</span>
+                <span>Built from the data already in your Tally Prime.</span>
               </p>
             </div>
 

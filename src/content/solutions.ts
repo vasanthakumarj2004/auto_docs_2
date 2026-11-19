@@ -48,7 +48,7 @@ export const SOLUTIONS_DATA: SolutionSubtopic[] = [
       },
     ],
     documents: ['Vendor Tax Invoices', 'Delivery Challans (DC)', 'Parts Manifests', 'GRN Vouchers', 'OEM Credit Notes'],
-    systems: ['TallyPrime', 'SAP S/4HANA', 'Zoho Books', 'Oracle ERP'],
+    systems: ['Tally Prime', 'SAP S/4HANA', 'Zoho Books', 'Oracle ERP'],
     sampleUseCase: {
       quote: 'Manual document workload reduced from days to hours through an AI-assisted workflow with 100% audit confidence.',
       author: 'Rajadurai E-Vehicles',
@@ -79,7 +79,7 @@ export const SOLUTIONS_DATA: SolutionSubtopic[] = [
       },
     ],
     documents: ['Raw Material Invoices', 'Weighbridge Slips', 'Gate Inward Passes', 'Store Goods Receipts', 'Capex Asset Bills'],
-    systems: ['TallyPrime', 'SAP', 'Microsoft Dynamics 365', 'Infor ERP'],
+    systems: ['Tally Prime', 'SAP', 'Microsoft Dynamics 365', 'Infor ERP'],
     sampleUseCase: {
       quote: 'Regular operational use for asset and purchase bill workflows with zero manual re-entry and complete plant visibility.',
       author: 'Arishfirma',
@@ -110,7 +110,7 @@ export const SOLUTIONS_DATA: SolutionSubtopic[] = [
       },
     ],
     documents: ['Fabric Purchase Bills', 'Job-Work Challans', 'Commercial Invoices', 'Packing Lists', 'Shipping Bills'],
-    systems: ['TallyPrime', 'Custom Apparel ERP', 'SAP', 'CargoWise'],
+    systems: ['Tally Prime', 'Custom Apparel ERP', 'SAP', 'CargoWise'],
     sampleUseCase: {
       quote: 'Export manifests and multi-currency supplier bills reconciled in minutes instead of days, keeping shipments on schedule.',
       author: 'Global Fabrics Ltd',
@@ -141,7 +141,7 @@ export const SOLUTIONS_DATA: SolutionSubtopic[] = [
       },
     ],
     documents: ['Distributor Invoices', 'Store Delivery Receipts', 'Promotional Credit Notes', 'RTV Return Memos', 'Proof of Delivery'],
-    systems: ['TallyPrime', 'Retail POS ERP', 'SAP Business One', 'Zoho Books'],
+    systems: ['Tally Prime', 'Retail POS ERP', 'SAP Business One', 'Zoho Books'],
     sampleUseCase: {
       quote: 'With hundreds of vendors billing us daily across locations, Docsynecx matches invoices against POs and posts with 94% automation.',
       author: 'OmniRetail Networks',
@@ -172,7 +172,7 @@ export const SOLUTIONS_DATA: SolutionSubtopic[] = [
       },
     ],
     documents: ['Carrier Arrival Notices', 'Master / House BL (MBL/HBL)', 'Air Waybills (AWB)', 'Ocean Freight Invoices', 'Detention Slips'],
-    systems: ['CargoWise (WiseTech Global)', 'TallyPrime', 'SAP Logistics', 'FreightSoft'],
+    systems: ['CargoWise (WiseTech Global)', 'Tally Prime', 'SAP Logistics', 'FreightSoft'],
     sampleUseCase: {
       quote: 'A specific email-to-CargoWise document workflow reduced from around two hours to approximately two minutes with zero errors.',
       author: 'FT Logistics',

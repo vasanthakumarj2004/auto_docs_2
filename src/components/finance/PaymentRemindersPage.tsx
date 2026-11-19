@@ -137,7 +137,7 @@ const faqItems = [
   {
     question: 'Where do the unpaid invoices come from?',
     answer:
-      'From your sales invoices in TallyPrime, with the due dates already there. Nobody has to keep a separate list.',
+      'From your sales invoices in Tally Prime, with the due dates already there. Nobody has to keep a separate list.',
   },
   {
     question: 'Can we change the wording?',
@@ -151,7 +151,7 @@ const faqItems = [
   {
     question: 'How long does setup take?',
     answer:
-      'Connect TallyPrime straight away. Your unpaid invoices show up in minutes, with the first reminders ready to approve.',
+      'Connect Tally Prime straight away. Your unpaid invoices show up in minutes, with the first reminders ready to approve.',
   },
 ];
 
@@ -448,13 +448,12 @@ export function PaymentRemindersPage() {
                 <div className={s.panelBarDark}>
                   <span>{activeStep.panelBar}</span>
                   <span
-                    className={`${s.statusBadge} ${
-                      activeStep.statusType === 'ok'
+                    className={`${s.statusBadge} ${activeStep.statusType === 'ok'
                         ? s.ok
                         : activeStep.statusType === 'wait'
-                        ? s.wait
-                        : s.info
-                    }`}
+                          ? s.wait
+                          : s.info
+                      }`}
                   >
                     {activeStep.panelStatus}
                   </span>
@@ -511,9 +510,8 @@ export function PaymentRemindersPage() {
                           <span className={s.rowWhoDark}>{row.who}</span>
                           <span className={s.rowWhatDark}>{row.what}</span>
                           <span
-                            className={`${s.statusBadge} ${
-                              row.type === 'ok' ? s.ok : row.type === 'wait' ? s.wait : s.info
-                            }`}
+                            className={`${s.statusBadge} ${row.type === 'ok' ? s.ok : row.type === 'wait' ? s.wait : s.info
+                              }`}
                           >
                             {row.status}
                           </span>
@@ -703,7 +701,7 @@ export function PaymentRemindersPage() {
         copy="In the demo you'll see your unpaid invoices from Tally, sorted by risk, with reminders ready for your team to approve."
         steps={[
           'Book a 30-minute demo',
-          'Connect TallyPrime or share your outstanding list',
+          'Connect Tally Prime or share your outstanding list',
           'See reminders drafted and ready to approve',
         ]}
         secondaryHref="/finance-desk/"

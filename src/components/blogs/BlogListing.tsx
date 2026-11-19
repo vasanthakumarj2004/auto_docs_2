@@ -117,7 +117,7 @@ export function BlogListing({ initialPosts }: BlogListingProps) {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search articles by title, keyword, or topic (e.g. CargoWise, TallyPrime, B/L)..."
+              placeholder="Search articles by title, keyword, or topic (e.g. CargoWise, Tally Prime, B/L)..."
               className={styles.searchInput}
               aria-label="Search articles"
             />
@@ -149,9 +149,8 @@ export function BlogListing({ initialPosts }: BlogListingProps) {
                   onClick={() =>
                     setActiveCategory(activeCategory === category ? 'All' : category)
                   }
-                  className={`${styles.filterButton} ${
-                    isActive ? styles.filterButtonActive : ''
-                  }`}
+                  className={`${styles.filterButton} ${isActive ? styles.filterButtonActive : ''
+                    }`}
                   aria-pressed={isActive}
                 >
                   <span>{category}</span>
@@ -221,9 +220,8 @@ export function BlogListing({ initialPosts }: BlogListingProps) {
                       key={num}
                       type="button"
                       onClick={() => handlePageChange(num)}
-                      className={`${styles.pageButton} ${
-                        isActive ? styles.pageButtonActive : ''
-                      }`}
+                      className={`${styles.pageButton} ${isActive ? styles.pageButtonActive : ''
+                        }`}
                       aria-label={`Go to slide ${num}`}
                       aria-current={isActive ? 'page' : undefined}
                     >

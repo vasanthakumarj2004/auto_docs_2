@@ -189,7 +189,7 @@ const faqItems = [
   {
     question: 'How long does it take to get started?',
     answer:
-      'The first-time setup with TallyPrime takes minutes. Then add clients one by one, starting with your busiest.',
+      'The first-time setup with Tally Prime takes minutes. Then add clients one by one, starting with your busiest.',
   },
 ];
 

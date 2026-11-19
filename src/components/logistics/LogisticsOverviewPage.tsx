@@ -5,9 +5,12 @@ import { LandingNavigation } from '../LandingNavigation';
 import { ShipsyFooter } from '../ShipsyFooter';
 import { SharedFaqAccordion } from '../SharedFaqAccordion';
 import { LogisticsHeroCollage } from './LogisticsHeroCollage';
-import { ConnectedLogisticsWorkspace } from './ConnectedLogisticsWorkspace';
-import { LogisticsWorkflow } from './LogisticsWorkflow';
+import { LogisticsHeroVisual } from './LogisticsHeroVisual';
+import { LogisticsStatStrip } from './LogisticsStatStrip';
+import { LogisticsProblemComparison } from './LogisticsProblemComparison';
+import { LogisticsHowItWorks } from './LogisticsHowItWorks';
 import { LogisticsGetStarted } from './LogisticsGetStarted';
+import { LogisticsClosingCta } from './LogisticsClosingCta';
 import { LandingClosingCta } from '../LandingClosingCta';
 import {
   demoHref,
@@ -57,12 +60,10 @@ function Eyebrow({ children }: { children: ReactNode }) {
 
 function Heading({ eyebrow, title, copy }: { eyebrow: string; title: ReactNode; copy?: string }) {
   return (
-    <div className={base.sectionHeading}>
-      <div>
-        <Eyebrow>{eyebrow}</Eyebrow>
-        <h2>{title}</h2>
-      </div>
-      {copy && <p className={base.sectionCopy}>{copy}</p>}
+    <div className={s.secHead}>
+      <Eyebrow>{eyebrow}</Eyebrow>
+      <h2 className={s.headline}>{title}</h2>
+      {copy && <p className={s.lead}>{copy}</p>}
     </div>
   );
 }
@@ -121,17 +122,34 @@ function Hero({ page }: { page: PageKey }) {
               {copy.primary}
               <ArrowUpRight size={16} aria-hidden="true" />
             </Link>
-            <Link href={isOverview ? '#modules' : logisticsRoot} className={`button-secondary ${base.heroButton}`}>
+            <Link href={isOverview ? '#how' : logisticsRoot} className={`button-secondary ${base.heroButton}`}>
               {copy.secondary}
               {isOverview ? <ArrowDown size={16} aria-hidden="true" /> : <ArrowRight size={16} aria-hidden="true" />}
             </Link>
           </div>
-          <p className={`${base.trust} ${s.heroTrust}`}>
-            <strong>Built for businesses that run on CargoWise</strong>, custom ERPs, and email workflows.
-          </p>
+          {isOverview ? (
+            <>
+              {'promise' in copy && copy.promise && (
+                <p className={s.promise}>
+                  <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
+                    <circle cx="10" cy="10" r="9" fill="none" stroke="currentColor" strokeWidth="2" />
+                    <path d="M6 10.5l2.5 2.5L14 7.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                  <span>{copy.promise}</span>
+                </p>
+              )}
+              <p className={`${base.trust} ${s.heroTrust}`}>
+                Works with <strong>CargoWise</strong>, your own ERP, or just your email inbox. <strong>Live in about a week.</strong>
+              </p>
+            </>
+          ) : (
+            <p className={`${base.trust} ${s.heroTrust}`}>
+              <strong>Built for businesses that run on CargoWise</strong>, custom ERPs, and email workflows.
+            </p>
+          )}
         </div>
-        <div className={s.heroCollageWrapper}>
-          <LogisticsHeroCollage />
+        <div className={isOverview ? s.heroVisualWrapper : s.heroCollageWrapper}>
+          {isOverview ? <LogisticsHeroVisual /> : <LogisticsHeroCollage />}
         </div>
       </div>
     </section>
@@ -141,27 +159,33 @@ function Hero({ page }: { page: PageKey }) {
 function Overview() {
   return (
     <>
-      {/* Interactive Freight Workflow */}
-      <ConnectedLogisticsWorkspace />
+      {/* Proof / Results stat strip */}
+      <LogisticsStatStrip />
 
-      {/* Logistics Modules */}
+      {/* Problem / Enquiry Comparison */}
+      <LogisticsProblemComparison />
+
+      {/* How it works: 4 steps with interactive tab panel */}
+      <LogisticsHowItWorks />
+
+      {/* Four Modules */}
       <Section id="modules">
         <Heading
-          eyebrow="FOUR CONNECTED MODULES"
-          title="Bring disconnected freight workflows into one operating flow."
-          copy="Choose the modules that fit your operations. Implementation scope and integrations are agreed around your systems and trade processes."
+          eyebrow="START WITH ONE. ADD THE REST WHEN YOU'RE READY."
+          title={<>Four modules,<br /><span>one desk.</span></>}
+          copy="Most teams start with Email-to-Booking and add operations and tracking later. We set each one up around how your desk already works."
         />
         <div className={s.capabilityGrid}>
-          {logisticsModules.map((item, index) => (
+          {logisticsModules.map((item) => (
             <article className={base.desk} key={item.slug}>
               <div className={s.cardTop}>
-                <span>{number(index)} / {item.label}</span>
+                <span>{item.label}</span>
                 {'badge' in item && item.badge && <span className={s.badge}>{item.badge}</span>}
               </div>
               <h3>
                 <Link href={`${logisticsRoot}${item.slug}/`}>{item.title}</Link>
               </h3>
-              <p className={base.deskCopy}>{item.description}</p>
+              <p className={base.deskCopy}>{item.lead}</p>
               <Checklist items={item.bullets} />
               <Link className={base.deskLink} href={`${logisticsRoot}${item.slug}/`}>
                 {item.link}
@@ -172,19 +196,29 @@ function Overview() {
         </div>
       </Section>
 
-      {/* Freight Operating Workflow (Console layout) */}
-      <LogisticsWorkflow />
-
-      {/* Flexible Adoption (Discover, Configure, Validate, Go Live) */}
+      {/* Live in about a week (Discover, Configure, Test, Go live) */}
       <LogisticsGetStarted />
 
       {/* FAQ */}
       <Section id="faq" alternate>
-        <div className={base.faqLayout}>
-          <Heading eyebrow="COMMON QUESTIONS" title="Logistics Desk FAQ" />
+        <div className={s.faqLayout}>
+          <div className={s.faqHeading}>
+            <div>
+              <p className={s.faqEyebrow}>COMMON QUESTIONS</p>
+              <h2 id="faq-h" className={s.faqTitle}>
+                What forwarders ask us first.
+              </h2>
+              <p className={s.faqDescription}>
+                Something else on your mind? Ask us in the demo.
+              </p>
+            </div>
+          </div>
           <SharedFaqAccordion items={logisticsFaqs} defaultOpenIndex={0} toggleStyle="plus" />
         </div>
       </Section>
+
+      {/* Closing CTA */}
+      <LogisticsClosingCta />
     </>
   );
 }
@@ -256,8 +290,10 @@ export function LogisticsOverviewPage({ page = 'overview' }: { page?: PageKey })
         {page === 'shipment-tracking' && <ShipmentTracking />}
         {page === 'freight-intelligence' && <FreightIntelligence />}
 
-        {/* Closing CTA Banner */}
-        <LandingClosingCta primaryHref={demoHref} secondaryHref="/#platform" />
+        {/* Closing CTA Banner for individual sub-pages */}
+        {page !== 'overview' && (
+          <LandingClosingCta primaryHref={demoHref} secondaryHref="/#platform" />
+        )}
       </main>
       <ShipsyFooter />
     </div>

@@ -159,9 +159,9 @@ const howSteps = [
   },
   {
     num: 4,
-    title: 'Post to TallyPrime',
+    title: 'Post to Tally Prime',
     desc: 'One click. A purchase voucher with the bill attached.',
-    panelBar: 'Step 4 of 4 · TallyPrime',
+    panelBar: 'Step 4 of 4 · Tally Prime',
     panelStatus: 'PUR-829 posted',
     statusType: 'ok' as const,
     table: {
@@ -188,7 +188,7 @@ const storyFacts = [
 /* ── 6. Accounts FAQs ── */
 const faqItems = [
   {
-    question: 'Does it create real vouchers in TallyPrime?',
+    question: 'Does it create real vouchers in Tally Prime?',
     answer:
       'Yes. Purchase vouchers in your Tally company, using your own ledger names, with the bill attached.',
   },
@@ -210,7 +210,7 @@ const faqItems = [
   {
     question: 'How long does it take to get started?',
     answer:
-      'The first-time setup with TallyPrime takes minutes. Then we test it with your own bills.',
+      'The first-time setup with Tally Prime takes minutes. Then we test it with your own bills.',
   },
 ];
 
@@ -270,7 +270,7 @@ export function AccountsTeamsPage() {
               </h1>
 
               <p className={s.heroSub}>
-                Docsynecx reads every line of the bill, item, HSN, quantity, rate and tax, suggests the right ledgers and drafts the voucher. You check it against the bill and post it to TallyPrime in one click.
+                Docsynecx reads every line of the bill, item, HSN, quantity, rate and tax, suggests the right ledgers and drafts the voucher. You check it against the bill and post it to Tally Prime in one click.
               </p>
 
               <div className={s.heroActions}>
@@ -446,7 +446,7 @@ export function AccountsTeamsPage() {
               <span>Confirm. Post.</span>
             </h2>
             <p className={s.lead}>
-              One supplier bill, from a PDF to a purchase voucher in TallyPrime.
+              One supplier bill, from a PDF to a purchase voucher in Tally Prime.
             </p>
           </div>
 
@@ -662,7 +662,7 @@ export function AccountsTeamsPage() {
             <span>We&apos;ll post it with you.</span>
           </>
         }
-        copy="Two pages, rotated, handwritten, fifty lines. In the demo you'll see it read, checked and ready to post to TallyPrime."
+        copy="Two pages, rotated, handwritten, fifty lines. In the demo you'll see it read, checked and ready to post to Tally Prime."
         steps={[
           'Book a 30-minute demo',
           'Bring a few bills you hate typing',

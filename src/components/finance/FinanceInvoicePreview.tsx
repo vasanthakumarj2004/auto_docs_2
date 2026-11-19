@@ -8,7 +8,7 @@ const items = [
 ];
 
 export function FinanceInvoicePreview() {
-  return <div className={s.preview} aria-label="invoice extraction and TallyPrime posting with sample data">
+  return <div className={s.preview} aria-label="invoice extraction and Tally Prime posting with sample data">
     <div className={s.header}><span><FileCheck2 size={16} aria-hidden="true" /><strong>Finance Desk</strong><span className={s.headerDivider}>/</span>Invoice review</span><span className={s.confidence}><ShieldCheck size={12} aria-hidden="true" />High confidence</span></div>
     <div className={s.workspace}>
       <div className={s.document}>

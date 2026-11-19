@@ -89,9 +89,9 @@ const howSteps = [
   },
   {
     num: 4,
-    title: 'Posted to TallyPrime',
+    title: 'Posted to Tally Prime',
     desc: 'A purchase voucher in your Tally company, with the invoice PDF linked.',
-    panelBar: 'Step 4 of 4 · TallyPrime',
+    panelBar: 'Step 4 of 4 · Tally Prime',
     panelStatus: 'Voucher created',
     statusType: 'ok',
     table: {
@@ -113,7 +113,7 @@ const faqItems = [
   {
     question: 'Does anything post to Tally without our approval?',
     answer:
-      "No. Every invoice waits for someone on your team to review and approve it before it's posted to TallyPrime.",
+      "No. Every invoice waits for someone on your team to review and approve it before it's posted to Tally Prime.",
   },
   {
     question: 'What if the scan is faint or the layout is unusual?',
@@ -133,12 +133,12 @@ const faqItems = [
   {
     question: 'How long does setup take?',
     answer:
-      'Connect TallyPrime straight away and approve your first invoice in minutes. You test it on your own invoices before anything is posted.',
+      'Connect Tally Prime straight away and approve your first invoice in minutes. You test it on your own invoices before anything is posted.',
   },
   // {
-  //   question: 'Does it work with our TallyPrime?',
+  //   question: 'Does it work with our Tally Prime?',
   //   answer:
-  //     'Yes. Approved invoices post to your TallyPrime company as purchase vouchers, with the source invoice PDF linked. We set up your ledgers and tax accounts with you during onboarding.',
+  //     'Yes. Approved invoices post to your Tally Prime company as purchase vouchers, with the source invoice PDF linked. We set up your ledgers and tax accounts with you during onboarding.',
   // },
   // {
   //   question: 'Can we start with just invoices and add banking later?',
@@ -207,7 +207,7 @@ export function InvoiceAutomationPage() {
               <p className={s.heroSub}>
                 Upload the invoice in the portal, email it, or send it on WhatsApp. Docsynecx reads
                 the supplier, GSTIN, HSN, line items and tax, checks the GST and looks for
-                duplicates. Your team reviews it and posts it to TallyPrime.
+                duplicates. Your team reviews it and posts it to Tally Prime.
               </p>
 
               <div className={s.heroActions}>
@@ -244,7 +244,7 @@ export function InvoiceAutomationPage() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span>Nothing is posted to TallyPrime until your team approves it.</span>
+                <span>Nothing is posted to Tally Prime until your team approves it.</span>
               </p>
             </div>
 
@@ -401,7 +401,7 @@ export function InvoiceAutomationPage() {
               <span>Post.</span>
             </h2>
             <p className={s.lead}>
-              One supplier invoice, from your inbox to a purchase voucher in TallyPrime.
+              One supplier invoice, from your inbox to a purchase voucher in Tally Prime.
             </p>
           </div>
 
@@ -600,9 +600,9 @@ export function InvoiceAutomationPage() {
             </article>
 
             <article className={s.handleCard}>
-              <span className={s.handleTag}>TallyPrime</span>
+              <span className={s.handleTag}>Tally Prime</span>
               <h3>Posted as a purchase voucher</h3>
-              <p>Approved invoices go to your TallyPrime company, with the PDF linked.</p>
+              <p>Approved invoices go to your Tally Prime company, with the PDF linked.</p>
             </article>
           </div>
         </div>

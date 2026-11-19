@@ -39,8 +39,8 @@ const invoiceIndustries: InvoiceIndustryItem[] = [
   },
   {
     id: 'tallyprime-users',
-    title: 'TallyPrime users',
-    copy: 'Validated accounting information and automatic voucher creation direct to TallyPrime.',
+    title: 'Tally Prime users',
+    copy: 'Validated accounting information and automatic voucher creation direct to Tally Prime.',
     image: '/images/finance-tallyprime-users.jpg',
   },
 ];
@@ -50,7 +50,7 @@ const defaultWorkflowChips = [
   'Recurring Supplier Invoices',
   'GST & HSN Tax Checks',
   'Line-Item Data Extraction',
-  'TallyPrime Voucher Posting',
+  'Tally Prime Voucher Posting',
 ];
 
 interface InvoiceWhoItIsForProps {

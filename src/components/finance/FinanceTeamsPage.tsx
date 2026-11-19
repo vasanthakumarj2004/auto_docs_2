@@ -155,9 +155,9 @@ const howSteps = [
   },
   {
     num: 4,
-    title: 'Posted to TallyPrime',
+    title: 'Posted to Tally Prime',
     desc: 'Purchase vouchers to the right ledgers, bill attached.',
-    panelBar: 'Step 4 of 4 · TallyPrime',
+    panelBar: 'Step 4 of 4 · Tally Prime',
     panelStatus: 'Vouchers created',
     statusType: 'ok' as const,
     table: {
@@ -186,7 +186,7 @@ const faqItems = [
   {
     question: 'Will our accountants still check entries before posting?',
     answer:
-      'Yes. Nothing goes to TallyPrime until your team approves it. Unclear fields and flagged invoices are shown first.',
+      'Yes. Nothing goes to Tally Prime until your team approves it. Unclear fields and flagged invoices are shown first.',
   },
   {
     question: 'Can we set approval rules by department or amount?',
@@ -206,7 +206,7 @@ const faqItems = [
   {
     question: 'How long does it take to get started?',
     answer:
-      'The first-time setup with TallyPrime takes minutes. Then we test with your own invoices and train your team in a single session.',
+      'The first-time setup with Tally Prime takes minutes. Then we test with your own invoices and train your team in a single session.',
   },
 ];
 
@@ -266,7 +266,7 @@ export function FinanceTeamsPage() {
               </h1>
 
               <p className={s.heroSub}>
-                Every supplier invoice in one queue. GST and duplicates checked automatically. Approved by your team and posted to TallyPrime with the bill attached. Your team reviews the exceptions, not every line.
+                Every supplier invoice in one queue. GST and duplicates checked automatically. Approved by your team and posted to Tally Prime with the bill attached. Your team reviews the exceptions, not every line.
               </p>
 
               <div className={s.heroActions}>
@@ -303,7 +303,7 @@ export function FinanceTeamsPage() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span>Nothing is posted to TallyPrime until your team approves it.</span>
+                <span>Nothing is posted to Tally Prime until your team approves it.</span>
               </p>
             </div>
 
@@ -654,7 +654,7 @@ export function FinanceTeamsPage() {
             <span>We&apos;ll run them with you.</span>
           </>
         }
-        copy="Share a batch of real supplier invoices. In the demo you'll see them read, checked and the exceptions sorted, ready to approve into TallyPrime."
+        copy="Share a batch of real supplier invoices. In the demo you'll see them read, checked and the exceptions sorted, ready to approve into Tally Prime."
         steps={[
           'Book a 30-minute demo',
           'Share a batch of recent invoices',

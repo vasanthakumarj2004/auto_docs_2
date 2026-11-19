@@ -91,9 +91,9 @@ const howSteps = [
   {
     num: 4,
     title: 'Review and push to Tally',
-    desc: 'Review every transaction, confirm the probable ones, and push to TallyPrime in minutes.',
+    desc: 'Review every transaction, confirm the probable ones, and push to Tally Prime in minutes.',
     panelBar: 'Step 4 of 4 · Review and push',
-    panelStatus: 'Pushed to TallyPrime',
+    panelStatus: 'Pushed to Tally Prime',
     statusType: 'ok',
     rows: [
       { who: '198 matched', what: 'Reviewed and accepted', status: 'Reconciled', type: 'ok' },
@@ -110,7 +110,7 @@ const howSteps = [
         type: 'wait',
       },
     ],
-    total: { meta: 'Pushed to TallyPrime · 207 entries', big: 'Minutes' },
+    total: { meta: 'Pushed to Tally Prime · 207 entries', big: 'Minutes' },
     foot: "Nothing goes to Tally until you've reviewed it. Open items stay on your list.",
   },
 ];
@@ -120,7 +120,7 @@ const faqItems = [
   {
     question: 'Does anything post to Tally without our approval?',
     answer:
-      'No. Every new entry waits for someone on your team to review and approve it before it is posted to TallyPrime.',
+      'No. Every new entry waits for someone on your team to review and approve it before it is posted to Tally Prime.',
   },
   {
     question: 'Which banks and formats work?',
@@ -140,7 +140,7 @@ const faqItems = [
   {
     question: 'How long does setup take?',
     answer:
-      'Connect TallyPrime straight away, send your first statement, and push to Tally in minutes. You review every transaction before anything is posted.',
+      'Connect Tally Prime straight away, send your first statement, and push to Tally in minutes. You review every transaction before anything is posted.',
   },
 ];
 
@@ -239,7 +239,7 @@ export function BankingReconciliationPage() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span>Nothing is posted to TallyPrime until your team approves it.</span>
+                <span>Nothing is posted to Tally Prime until your team approves it.</span>
               </p>
             </div>
 
@@ -399,7 +399,7 @@ export function BankingReconciliationPage() {
               <span>Push.</span>
             </h2>
             <p className={s.lead}>
-              One month&apos;s bank statement, from upload to reconciled in TallyPrime.
+              One month&apos;s bank statement, from upload to reconciled in Tally Prime.
             </p>
           </div>
 
@@ -613,9 +613,9 @@ export function BankingReconciliationPage() {
             </article>
 
             <article className={s.handleCard}>
-              <span className={s.handleTag}>TallyPrime</span>
+              <span className={s.handleTag}>Tally Prime</span>
               <h3>Review, then push</h3>
-              <p>Review every transaction, then push to TallyPrime in minutes.</p>
+              <p>Review every transaction, then push to Tally Prime in minutes.</p>
             </article>
           </div>
         </div>

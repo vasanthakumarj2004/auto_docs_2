@@ -191,7 +191,7 @@ function TaxChecksPreview() {
           <span className={s.reviewDot} />
           <div>
             <strong>Tax compliance guaranteed</strong>
-            <p>Calculations verified before posting to TallyPrime.</p>
+            <p>Calculations verified before posting to Tally Prime.</p>
           </div>
           <ChevronRight size={15} />
         </div>
@@ -339,7 +339,7 @@ export function InvoiceBusinessChallenge() {
               </div>
             ))}
             <p className={s.caption}>
-               PRODUCT VIEW <span>0{active + 1} / 04</span>
+              PRODUCT VIEW <span>0{active + 1} / 04</span>
             </p>
           </div>
         </div>

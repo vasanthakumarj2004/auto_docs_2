@@ -150,13 +150,13 @@ function Hero({ page }: { page: PageKey }) {
           <>
             <p className={s.promise}>
               <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
-                <circle cx="10" cy="10" r="9" fill="none" stroke="currentColor" strokeWidth="2"/>
-                <path d="M6 10.5l2.5 2.5L14 7.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <circle cx="10" cy="10" r="9" fill="none" stroke="currentColor" strokeWidth="2" />
+                <path d="M6 10.5l2.5 2.5L14 7.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-              <span>{'promise' in copy ? copy.promise : 'Nothing is posted to TallyPrime until your team approves it.'}</span>
+              <span>{'promise' in copy ? copy.promise : 'Nothing is posted to Tally Prime until your team approves it.'}</span>
             </p>
             <p className={`${base.trust} ${s.heroTrust}`}>
-              Built for <strong>TallyPrime</strong>, works with your ERP too · GST, HSN and line items captured · <strong>Connect Tally in minutes</strong>
+              Built for <strong>Tally Prime</strong>, works with your ERP too · GST, HSN and line items captured · <strong>Connect Tally in minutes</strong>
             </p>
           </>
         ) : (
@@ -226,7 +226,7 @@ function Invoice() {
 function Banking() {
   return <>
     <BankingWhyItMatters />
-    <Section id="capabilities"><Heading eyebrow="BANK STATEMENT & RECONCILIATION CAPABILITIES" title="From bank statement to TallyPrime bookkeeping and reconciliation." /><Features items={bankingFeatures} /><p className={base.bottomDescription}>Docsynecx processes bank statement information, supports bookkeeping and reconciliation, and posts the resulting entries into TallyPrime. Exact formats and workflow steps depend on the implementation configuration.</p></Section>
+    <Section id="capabilities"><Heading eyebrow="BANK STATEMENT & RECONCILIATION CAPABILITIES" title="From bank statement to Tally Prime bookkeeping and reconciliation." /><Features items={bankingFeatures} /><p className={base.bottomDescription}>Docsynecx processes bank statement information, supports bookkeeping and reconciliation, and posts the resulting entries into Tally Prime. Exact formats and workflow steps depend on the implementation configuration.</p></Section>
     <BankingWorkflowOverview />
     <Related slugs={['invoice-automation', 'payment-reminders', 'docsynecx-intelligence']} />
   </>;

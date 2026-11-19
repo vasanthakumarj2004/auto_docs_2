@@ -80,7 +80,7 @@ function OwnerCashPreview() {
         </div>
         <div className={s.windowFooter}>
           <FileCheck2 size={14} />
-          Direct connection with live TallyPrime balances
+          Direct connection with live Tally Prime balances
           <ChevronRight size={14} />
         </div>
       </div>
@@ -191,7 +191,7 @@ function OwnerApprovalPreview() {
             <strong>Ready for 1-tap sign-off</strong>
             <span>One tap</span>
           </div>
-          <p>Tap approve from your phone to post the voucher straight into TallyPrime</p>
+          <p>Tap approve from your phone to post the voucher straight into Tally Prime</p>
         </div>
         <div className={s.windowFooter}>
           <CheckCircle2 size={14} />
@@ -1164,7 +1164,7 @@ export function PersonaBusinessChallenge({ persona }: PersonaBusinessChallengePr
               </div>
             ))}
             <p className={s.caption}>
-               PRODUCT VIEW <span>0{active + 1} / 04</span>
+              PRODUCT VIEW <span>0{active + 1} / 04</span>
             </p>
           </div>
         </div>

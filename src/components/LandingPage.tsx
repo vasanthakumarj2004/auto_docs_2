@@ -55,7 +55,7 @@ const stories: CustomerStoryOutcome[] = [
   { tag: 'Textile & Garments', name: 'Global Fabrics Ltd', metric: '3x faster sync', summary: 'Supplier & Export Manifests', copy: 'Complex supplier bills and export manifests reconciled in minutes instead of days.' },
 ];
 const integrations = [
-  ['TallyPrime', 'Finance integration'], ['CargoWise', 'Logistics integration'],
+  ['Tally Prime', 'Finance integration'], ['CargoWise', 'Logistics integration'],
   ['Email workflows', 'Document intake'], ['API connectivity', 'Connected workflows'],
   ['Zoho Books', 'Finance integration'], ['SAP', 'Enterprise resource planning'],
   ['Oracle ERP', 'Cloud ERP & financial'], ['Microsoft Dynamics', 'Business applications'],
@@ -77,146 +77,146 @@ export function LandingPage() {
       <LandingAnnouncementBar />
       <LandingNavigation variant="horizon" />
       <main id="main-content">
-      <LandingHero />
-      <section className={styles.statStrip} aria-labelledby="outcomes-title">
-        <div className="site-shell">
-          <h2 id="outcomes-title" className={styles.eyebrow}>Selected customer outcomes</h2>
-          <div className={styles.stats}>
-            {stories.slice(0, 3).map((story, index) => {
-              const Icon = index === 0 ? Zap : index === 1 ? ShieldCheck : CheckCircle2;
-              return (
-                <div key={story.name} className={styles.outcomeCard}>
-                  <div className={styles.outcomeCardTop}>
-                    <p className={styles.statValue}>{story.metric}</p>
-                    <span className={styles.outcomeIconBadge} aria-hidden="true">
-                      <Icon size={15} className="stroke-[2.2]" />
-                    </span>
-                  </div>
-                  <div className={styles.outcomeCardBody}>
-                    <h3 className={styles.outcomeTitle}>{story.name}</h3>
-                    <p className={styles.outcomeSummary}>{story.summary}</p>
-                    <p className={styles.outcomeCopy}>{story.copy}</p>
-                  </div>
-                  {story.href && (
-                    <Link href={story.href} className={styles.outcomeLink}>
-                      <span>Read customer story</span>
-                      <ArrowUpRight size={13} aria-hidden="true" />
-                    </Link>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-      <section id="platform" className={`${styles.section} ${styles.platformSection}`} aria-labelledby="platform-title">
-        <div className="site-shell">
-          <SectionHeading id="platform-title" eyebrow="One platform. Two desks." title={<>One Platform.<br /><span>Endless Opportunities.</span></>} />
-          <div className={styles.desks}>
-            {landingDesks.map((desk, index) => {
-              const imageSrc = DESK_IMAGES[desk.id] || (index === 0 ? '/images/624dcd31-e7ca-4c2f-b804-e87bb521192e.png' : '/images/e38389f2-4afd-4f87-86dd-6210a3100071.png');
-              return (
-                <article key={desk.id} id={desk.id} className={styles.desk} data-desk={desk.id} tabIndex={0}>
-                  <div className={styles.deskImageWrapper}>
-                    <img
-                      src={imageSrc}
-                      alt={`${desk.title} background`}
-                      className={styles.deskImage}
-                      loading="lazy"
-                    />
-                    <div className={styles.deskScrim} />
-                  </div>
-
-                  <div className={styles.deskCenterView}>
-                    <h3 className={styles.deskCenterTitle}>{desk.title}</h3>
-                  </div>
-
-                  <div className={styles.deskHoverView}>
-                    <div className={styles.deskHoverTop}>
-                      <span className={styles.deskHoverEyebrow}>{desk.tag}</span>
-                      <span className={styles.deskHoverIcon}>
-                        {index === 0 ? <FileText size={20} aria-hidden="true" /> : <ArrowLeftRight size={20} aria-hidden="true" />}
+        <LandingHero />
+        <section className={styles.statStrip} aria-labelledby="outcomes-title">
+          <div className="site-shell">
+            <h2 id="outcomes-title" className={styles.eyebrow}>Selected customer outcomes</h2>
+            <div className={styles.stats}>
+              {stories.slice(0, 3).map((story, index) => {
+                const Icon = index === 0 ? Zap : index === 1 ? ShieldCheck : CheckCircle2;
+                return (
+                  <div key={story.name} className={styles.outcomeCard}>
+                    <div className={styles.outcomeCardTop}>
+                      <p className={styles.statValue}>{story.metric}</p>
+                      <span className={styles.outcomeIconBadge} aria-hidden="true">
+                        <Icon size={15} className="stroke-[2.2]" />
                       </span>
                     </div>
-
-                    <div className={styles.deskHoverBody}>
-                      <h3 className={styles.deskHoverTitle}>{desk.title}</h3>
-                      <p className={styles.deskHoverCopy}>{desk.copy}</p>
-                      <ul className={styles.deskHoverChips}>
-                        {desk.features.map(feature => (
-                          <li key={feature}>{feature}</li>
-                        ))}
-                      </ul>
+                    <div className={styles.outcomeCardBody}>
+                      <h3 className={styles.outcomeTitle}>{story.name}</h3>
+                      <p className={styles.outcomeSummary}>{story.summary}</p>
+                      <p className={styles.outcomeCopy}>{story.copy}</p>
                     </div>
-
-                    <div className={styles.deskHoverFooter}>
-                      <Link href={desk.href} className={styles.deskHoverLink}>
-                        Explore {desk.title}
-                        <ArrowRight size={16} aria-hidden="true" />
+                    {story.href && (
+                      <Link href={story.href} className={styles.outcomeLink}>
+                        <span>Read customer story</span>
+                        <ArrowUpRight size={13} aria-hidden="true" />
                       </Link>
-                    </div>
+                    )}
                   </div>
-                </article>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-          <p className={styles.deskText}>Start with the workflow that takes the most effort today. Expand as your teams are ready.</p>
-        </div>
-      </section>
-      <section id="why-docsynecx" className={`${styles.section} ${styles.whySection}`} aria-labelledby="why-title">
-        <div className="site-shell">
-          <SectionHeading id="why-title" eyebrow="Why Docsynecx" title={<>Less manual effort.<br /><span>More operational clarity.</span></>} />
-          <div className={styles.benefits}>
-            {benefits.map(([title, copy], index) => {
-              const item = BENEFIT_ITEMS[index] || BENEFIT_ITEMS[0];
-              const IconComponent = item.icon;
-              return (
-                <article key={title} className={styles.benefitCard}>
-                  <div className={styles.benefitVisual}>
-                    <div className={styles.benefitIconBox}>
-                      <div className={styles.benefitRingOuter} />
-                      <div className={styles.benefitRingInner} />
-                      <span className={styles.benefitIconBadge}>
-                        <IconComponent size={26} strokeWidth={2.2} aria-hidden="true" />
-                      </span>
-                      <span className={styles.benefitTag}>
-                        <span className={styles.benefitDot} />
-                        {item.tag}
-                      </span>
+        </section>
+        <section id="platform" className={`${styles.section} ${styles.platformSection}`} aria-labelledby="platform-title">
+          <div className="site-shell">
+            <SectionHeading id="platform-title" eyebrow="One platform. Two desks." title={<>One Platform.<br /><span>Endless Opportunities.</span></>} />
+            <div className={styles.desks}>
+              {landingDesks.map((desk, index) => {
+                const imageSrc = DESK_IMAGES[desk.id] || (index === 0 ? '/images/624dcd31-e7ca-4c2f-b804-e87bb521192e.png' : '/images/e38389f2-4afd-4f87-86dd-6210a3100071.png');
+                return (
+                  <article key={desk.id} id={desk.id} className={styles.desk} data-desk={desk.id} tabIndex={0}>
+                    <div className={styles.deskImageWrapper}>
+                      <img
+                        src={imageSrc}
+                        alt={`${desk.title} background`}
+                        className={styles.deskImage}
+                        loading="lazy"
+                      />
+                      <div className={styles.deskScrim} />
                     </div>
-                  </div>
 
-                  <div className={styles.benefitContent}>
-                    <span className={styles.benefitNumber}>0{index + 1}</span>
-                    <h3 className={styles.benefitTitle}>{title}</h3>
-                    <p className={styles.benefitCopy}>{copy}</p>
-                  </div>
-                </article>
-              );
-            })}
+                    <div className={styles.deskCenterView}>
+                      <h3 className={styles.deskCenterTitle}>{desk.title}</h3>
+                    </div>
+
+                    <div className={styles.deskHoverView}>
+                      <div className={styles.deskHoverTop}>
+                        <span className={styles.deskHoverEyebrow}>{desk.tag}</span>
+                        <span className={styles.deskHoverIcon}>
+                          {index === 0 ? <FileText size={20} aria-hidden="true" /> : <ArrowLeftRight size={20} aria-hidden="true" />}
+                        </span>
+                      </div>
+
+                      <div className={styles.deskHoverBody}>
+                        <h3 className={styles.deskHoverTitle}>{desk.title}</h3>
+                        <p className={styles.deskHoverCopy}>{desk.copy}</p>
+                        <ul className={styles.deskHoverChips}>
+                          {desk.features.map(feature => (
+                            <li key={feature}>{feature}</li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div className={styles.deskHoverFooter}>
+                        <Link href={desk.href} className={styles.deskHoverLink}>
+                          Explore {desk.title}
+                          <ArrowRight size={16} aria-hidden="true" />
+                        </Link>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+            <p className={styles.deskText}>Start with the workflow that takes the most effort today. Expand as your teams are ready.</p>
           </div>
-        </div>
-      </section>
-      <IntelligenceLayer />
-      <section id="customers" className={`${styles.section} ${styles.customersSection}`} aria-labelledby="customers-title">
-        <div className="site-shell">
-          <SectionHeading
-            id="customers-title"
-            eyebrow="Testimonials"
-            title={<>Real workflows.<br /><span>Meaningful time saved.</span></>}
-          />
-          <CustomerReviewSlider />
-        </div>
-      </section>
-      <section id="faq" className={`${styles.section} ${styles.faqSection}`} aria-labelledby="faq-title">
-        <div className={`site-shell ${styles.faqLayout}`}>
-          <h2 id="faq-title" className="sr-only">Frequently asked questions</h2>
-          <SharedFaqAccordion items={landingFaqs} defaultOpenIndex={0} toggleStyle="plus" />
-        </div>
-      </section>
-      <LandingClosingCta />
-    </main>
-    <ShipsyFooter />
-  </div>
+        </section>
+        <section id="why-docsynecx" className={`${styles.section} ${styles.whySection}`} aria-labelledby="why-title">
+          <div className="site-shell">
+            <SectionHeading id="why-title" eyebrow="Why Docsynecx" title={<>Less manual effort.<br /><span>More operational clarity.</span></>} />
+            <div className={styles.benefits}>
+              {benefits.map(([title, copy], index) => {
+                const item = BENEFIT_ITEMS[index] || BENEFIT_ITEMS[0];
+                const IconComponent = item.icon;
+                return (
+                  <article key={title} className={styles.benefitCard}>
+                    <div className={styles.benefitVisual}>
+                      <div className={styles.benefitIconBox}>
+                        <div className={styles.benefitRingOuter} />
+                        <div className={styles.benefitRingInner} />
+                        <span className={styles.benefitIconBadge}>
+                          <IconComponent size={26} strokeWidth={2.2} aria-hidden="true" />
+                        </span>
+                        <span className={styles.benefitTag}>
+                          <span className={styles.benefitDot} />
+                          {item.tag}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className={styles.benefitContent}>
+                      <span className={styles.benefitNumber}>0{index + 1}</span>
+                      <h3 className={styles.benefitTitle}>{title}</h3>
+                      <p className={styles.benefitCopy}>{copy}</p>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+        <IntelligenceLayer />
+        <section id="customers" className={`${styles.section} ${styles.customersSection}`} aria-labelledby="customers-title">
+          <div className="site-shell">
+            <SectionHeading
+              id="customers-title"
+              eyebrow="Testimonials"
+              title={<>Real workflows.<br /><span>Meaningful time saved.</span></>}
+            />
+            <CustomerReviewSlider />
+          </div>
+        </section>
+        <section id="faq" className={`${styles.section} ${styles.faqSection}`} aria-labelledby="faq-title">
+          <div className={`site-shell ${styles.faqLayout}`}>
+            <h2 id="faq-title" className="sr-only">Frequently asked questions</h2>
+            <SharedFaqAccordion items={landingFaqs} defaultOpenIndex={0} toggleStyle="plus" />
+          </div>
+        </section>
+        <LandingClosingCta />
+      </main>
+      <ShipsyFooter />
+    </div>
   );
 }

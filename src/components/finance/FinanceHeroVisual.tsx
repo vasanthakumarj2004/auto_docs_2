@@ -125,7 +125,7 @@ export function FinanceHeroVisual({
             {isApproved ? (
               <>
                 <CheckCircle2 size={16} aria-hidden="true" />
-                <span>Posted to TallyPrime · PUR-829</span>
+                <span>Posted to Tally Prime · PUR-829</span>
               </>
             ) : (
               <>

@@ -50,7 +50,7 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
       {
         sno: '01',
         title: 'Invoice Automation',
-        description: 'Supplier invoices into TallyPrime, without typing.',
+        description: 'Supplier invoices into Tally Prime, without typing.',
         href: '/finance-desk/invoice-automation/',
       },
       {
@@ -58,7 +58,7 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
         title: 'Banking & Reconciliation',
         description: 'Statements categorised and reconciled.',
         href: '/finance-desk/banking-reconciliation/',
-      }, 
+      },
       {
         sno: '03',
         title: 'Payment Reminders',
@@ -87,7 +87,7 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
     ],
     integrationsHeading: 'Integrations',
     integrationsLinks: [
-      { title: 'TallyPrime', href: '/finance-desk/#integrations' },
+      { title: 'Tally Prime', href: '/finance-desk/#integrations' },
       { title: 'Zoho Books', href: '/finance-desk/#integrations' },
       { title: 'Custom ERP', href: '/finance-desk/#integrations' },
     ],
@@ -133,8 +133,8 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
     ],
     integrationsHeading: 'Integrations',
     integrationsLinks: [
-      { title: 'CargoWise', href: '/#integrations' },
-      { title: 'Custom ERP/TMS', href: '/#integrations' },
+      { title: 'CargoWise & Custom ERP/TMS', href: '/#integrations' },
+      // { title: 'Custom ERP/TMS', href: '/#integrations' },
     ],
   },
   'Resources': {
@@ -329,172 +329,171 @@ export function LandingNavigation({ variant = 'compact' }: { variant?: 'default'
   const headerVariant = variant === 'compact' ? 'horizon' : variant;
 
   const navigation = (
-      <header
-        ref={headerRef}
-        className={styles.header}
-        data-variant={headerVariant}
-        data-scrolled={isScrolled ? 'true' : 'false'}
-        data-compact={isCompact ? 'true' : 'false'}
-        data-past-hero={isScrolled ? 'true' : 'false'}
-        data-static={variant === 'compact' ? 'true' : 'false'}
-        onMouseLeave={handleMouseLeave}
-      >
-        <div className={`site-shell ${styles.navbar}`}>
-          <Link href="/" className={styles.brand} aria-label="Docsynecx home" onClick={close}>
-            <DocsynecxLogo variant={variant === 'horizon' && !isScrolled ? 'footer' : 'header'} className={styles.logo} />
-            {/* <span>Intelligent workflows</span> */}
-          </Link>
+    <header
+      ref={headerRef}
+      className={styles.header}
+      data-variant={headerVariant}
+      data-scrolled={isScrolled ? 'true' : 'false'}
+      data-compact={isCompact ? 'true' : 'false'}
+      data-past-hero={isScrolled ? 'true' : 'false'}
+      data-static={variant === 'compact' ? 'true' : 'false'}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div className={`site-shell ${styles.navbar}`}>
+        <Link href="/" className={styles.brand} aria-label="Docsynecx home" onClick={close}>
+          <DocsynecxLogo variant={variant === 'horizon' && !isScrolled ? 'footer' : 'header'} className={styles.logo} />
+          {/* <span>Intelligent workflows</span> */}
+        </Link>
 
-          <button
-            ref={mobileTrigger}
-            type="button"
-            className={styles.mobileToggle}
-            aria-expanded={mobileOpen}
-            aria-controls="landing-navigation"
-            aria-label={mobileOpen ? 'Close navigation' : 'Open navigation'}
-            onClick={() => {
-              setMobileOpen(!mobileOpen);
-              setOpenMenu(null);
-            }}
-          >
-            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
+        <button
+          ref={mobileTrigger}
+          type="button"
+          className={styles.mobileToggle}
+          aria-expanded={mobileOpen}
+          aria-controls="landing-navigation"
+          aria-label={mobileOpen ? 'Close navigation' : 'Open navigation'}
+          onClick={() => {
+            setMobileOpen(!mobileOpen);
+            setOpenMenu(null);
+          }}
+        >
+          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
 
-          <nav
-            id="landing-navigation"
-            className={styles.navigation}
-            data-open={mobileOpen}
-            aria-label="Main navigation"
-          >
-            {NAV_ITEMS.map((item) => {
-              if (item.type === 'link') {
-                return (
-                  <Link
-                    key={item.label}
-                    className={styles.customersLink}
-                    href={item.href}
-                    onClick={close}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              }
-
+        <nav
+          id="landing-navigation"
+          className={styles.navigation}
+          data-open={mobileOpen}
+          aria-label="Main navigation"
+        >
+          {NAV_ITEMS.map((item) => {
+            if (item.type === 'link') {
               return (
-                <div
-                  key={item.key}
-                  className={styles.dropdown}
-                  onMouseEnter={() => handleMouseEnter(item.key)}
+                <Link
+                  key={item.label}
+                  className={styles.customersLink}
+                  href={item.href}
+                  onClick={close}
                 >
-                  <button
-                    ref={(node) => {
-                      menuTriggers.current[item.key] = node;
-                    }}
-                    type="button"
-                    aria-expanded={openMenu === item.key}
-                    aria-controls="landing-mega-menu"
-                    onClick={() => setOpenMenu(openMenu === item.key ? null : item.key)}
-                  >
-                    {MEGA_MENUS[item.key]?.label || item.key}
-                    <ChevronDown
-                      size={13}
-                      aria-hidden="true"
-                      className={`transition-transform duration-200 ${
-                        openMenu === item.key ? 'rotate-180' : ''
-                      }`}
-                    />
-                  </button>
-
-                  {/* Mobile Drawer Accordion ONLY rendered on mobile */}
-                  {mobileOpen && openMenu === item.key && (
-                    <ul className={styles.mobileDropdownList}>
-                      {MEGA_MENUS[item.key]?.overviewLinks.map((link) => (
-                        <li key={link.title}>
-                          <Link href={link.href} onClick={close}>
-                            <strong>{link.title}</strong>
-                            {link.description && <span>{link.description}</span>}
-                          </Link>
-                        </li>
-                      ))}
-                      {MEGA_MENUS[item.key]?.featureLinks.map((link) => (
-                        <li key={link.title}>
-                          <Link href={link.href} onClick={close}>
-                            {link.sno && (
-                              <span className={styles.megaItemNumber}>{link.sno}</span>
-                            )}
-                            <strong>{link.title}</strong>
-                            {link.description && <span>{link.description}</span>}
-                          </Link>
-                        </li>
-                      ))}
-                      {MEGA_MENUS[item.key]?.whoLinks && (
-                        <li className={styles.mobileSectionHeading}>
-                          <span>{MEGA_MENUS[item.key]?.whoHeading || "Who it's for"}</span>
-                        </li>
-                      )}
-                      {MEGA_MENUS[item.key]?.whoLinks?.map((link) => (
-                        <li key={link.title}>
-                          <Link href={link.href} onClick={close}>
-                            <strong>{link.title}</strong>
-                          </Link>
-                        </li>
-                      ))}
-                      {MEGA_MENUS[item.key]?.integrationsLinks && (
-                        <li className={styles.mobileSectionHeading}>
-                          <span>{MEGA_MENUS[item.key]?.integrationsHeading || 'Integrations'}</span>
-                        </li>
-                      )}
-                      {MEGA_MENUS[item.key]?.integrationsLinks?.map((link) => (
-                        <li key={link.title}>
-                          <Link href={link.href} onClick={close}>
-                            <strong>{link.title}</strong>
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
+                  {item.label}
+                </Link>
               );
-            })}
+            }
 
-            <Link
-              href="/demo/#demo-form"
-              className={`${styles.demoButton} ${styles.navDemo} ${styles.mobileDemo}`}
-              onClick={close}
-            >
-              <span>Book a Demo</span>
-              <ArrowUpRight size={14} aria-hidden="true" />
-            </Link>
-          </nav>
+            return (
+              <div
+                key={item.key}
+                className={styles.dropdown}
+                onMouseEnter={() => handleMouseEnter(item.key)}
+              >
+                <button
+                  ref={(node) => {
+                    menuTriggers.current[item.key] = node;
+                  }}
+                  type="button"
+                  aria-expanded={openMenu === item.key}
+                  aria-controls="landing-mega-menu"
+                  onClick={() => setOpenMenu(openMenu === item.key ? null : item.key)}
+                >
+                  {MEGA_MENUS[item.key]?.label || item.key}
+                  <ChevronDown
+                    size={13}
+                    aria-hidden="true"
+                    className={`transition-transform duration-200 ${openMenu === item.key ? 'rotate-180' : ''
+                      }`}
+                  />
+                </button>
+
+                {/* Mobile Drawer Accordion ONLY rendered on mobile */}
+                {mobileOpen && openMenu === item.key && (
+                  <ul className={styles.mobileDropdownList}>
+                    {MEGA_MENUS[item.key]?.overviewLinks.map((link) => (
+                      <li key={link.title}>
+                        <Link href={link.href} onClick={close}>
+                          <strong>{link.title}</strong>
+                          {link.description && <span>{link.description}</span>}
+                        </Link>
+                      </li>
+                    ))}
+                    {MEGA_MENUS[item.key]?.featureLinks.map((link) => (
+                      <li key={link.title}>
+                        <Link href={link.href} onClick={close}>
+                          {link.sno && (
+                            <span className={styles.megaItemNumber}>{link.sno}</span>
+                          )}
+                          <strong>{link.title}</strong>
+                          {link.description && <span>{link.description}</span>}
+                        </Link>
+                      </li>
+                    ))}
+                    {MEGA_MENUS[item.key]?.whoLinks && (
+                      <li className={styles.mobileSectionHeading}>
+                        <span>{MEGA_MENUS[item.key]?.whoHeading || "Who it's for"}</span>
+                      </li>
+                    )}
+                    {MEGA_MENUS[item.key]?.whoLinks?.map((link) => (
+                      <li key={link.title}>
+                        <Link href={link.href} onClick={close}>
+                          <strong>{link.title}</strong>
+                        </Link>
+                      </li>
+                    ))}
+                    {MEGA_MENUS[item.key]?.integrationsLinks && (
+                      <li className={styles.mobileSectionHeading}>
+                        <span>{MEGA_MENUS[item.key]?.integrationsHeading || 'Integrations'}</span>
+                      </li>
+                    )}
+                    {MEGA_MENUS[item.key]?.integrationsLinks?.map((link) => (
+                      <li key={link.title}>
+                        <Link href={link.href} onClick={close}>
+                          <strong>{link.title}</strong>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            );
+          })}
 
           <Link
             href="/demo/#demo-form"
-            className={`${styles.demoButton} ${styles.navDemo} ${styles.desktopDemo}`}
+            className={`${styles.demoButton} ${styles.navDemo} ${styles.mobileDemo}`}
             onClick={close}
           >
             <span>Book a Demo</span>
             <ArrowUpRight size={14} aria-hidden="true" />
           </Link>
-        </div>
+        </nav>
 
-        {/* ==================================================================== */}
-        {/* DESKTOP MEGA DROPDOWN (Matches Image 2, floats below header)         */}
-        {/* ==================================================================== */}
-        {activeMega && !mobileOpen && (
-          <div
-            id="landing-mega-menu"
-            role="region"
-            aria-label={`${activeMega.label} menu`}
-            className={styles.megaDropdown}
-            onMouseEnter={() => {
-              if (timeoutRef.current) clearTimeout(timeoutRef.current);
-            }}
-            onMouseLeave={handleMouseLeave}
-          >
-            <NavbarMenuCard key={openMenu} menu={activeMega} onNavigate={close} />
-          </div>
-        )}
-      </header>
+        <Link
+          href="/demo/#demo-form"
+          className={`${styles.demoButton} ${styles.navDemo} ${styles.desktopDemo}`}
+          onClick={close}
+        >
+          <span>Book a Demo</span>
+          <ArrowUpRight size={14} aria-hidden="true" />
+        </Link>
+      </div>
+
+      {/* ==================================================================== */}
+      {/* DESKTOP MEGA DROPDOWN (Matches Image 2, floats below header)         */}
+      {/* ==================================================================== */}
+      {activeMega && !mobileOpen && (
+        <div
+          id="landing-mega-menu"
+          role="region"
+          aria-label={`${activeMega.label} menu`}
+          className={styles.megaDropdown}
+          onMouseEnter={() => {
+            if (timeoutRef.current) clearTimeout(timeoutRef.current);
+          }}
+          onMouseLeave={handleMouseLeave}
+        >
+          <NavbarMenuCard key={openMenu} menu={activeMega} onNavigate={close} />
+        </div>
+      )}
+    </header>
   );
 
   return (

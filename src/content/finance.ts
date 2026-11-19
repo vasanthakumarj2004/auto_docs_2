@@ -9,13 +9,13 @@ export const financeCapabilities = [
     badge: 'Most teams start here',
     title: 'Invoice Automation',
     label: 'Invoices',
-    description: 'Supplier invoices into TallyPrime, without the typing.',
+    description: 'Supplier invoices into Tally Prime, without the typing.',
     bullets: [
       'Reads PDFs, scans and email attachments',
       'Captures GSTIN, HSN, line items and tax',
       'Flags possible duplicates',
       'Your team reviews and approves',
-      'Posts to your TallyPrime company',
+      'Posts to your Tally Prime company',
     ],
     link: 'See Invoice Automation',
   },
@@ -29,7 +29,7 @@ export const financeCapabilities = [
     bullets: [
       'Reads your bank statements',
       'Sorts each transaction into the right ledger',
-      'Posts entries to TallyPrime after review',
+      'Posts entries to Tally Prime after review',
       'Shows what\'s matched and what isn\'t',
       'You decide who can approve',
     ],
@@ -101,7 +101,7 @@ export const financeStats = [
   },
   {
     metric: 'Your approval',
-    copy: 'before anything posts to TallyPrime',
+    copy: 'before anything posts to Tally Prime',
     href: '/finance-desk/invoice-automation/',
   },
 ] as const;
@@ -127,7 +127,7 @@ export const financeProblem = {
     { step: 'Step 2', description: 'Supplier, GSTIN, HSN, items and tax picked up' },
     { step: 'Step 3', description: 'Tax totals checked against the line items' },
     { step: 'Step 4', description: 'Possible duplicates flagged for you' },
-    { step: 'Step 5', description: 'You approve, and it posts to TallyPrime' },
+    { step: 'Step 5', description: 'You approve, and it posts to Tally Prime' },
   ],
   note: 'Docsynecx does the typing and checking. Your team reviews, approves and finally has time to read the reports.',
 } as const;
@@ -135,7 +135,7 @@ export const financeProblem = {
 /* ── Four Steps (How it works) ── */
 export const financeHowItWorks = {
   eyebrow: 'How it works',
-  headline: 'From supplier invoice to TallyPrime, in four steps.',
+  headline: 'From supplier invoice to Tally Prime, in four steps.',
   subtitle: 'Your team checks and approves at every step that touches your books.',
   steps: [
     {
@@ -152,9 +152,9 @@ export const financeHowItWorks = {
     },
     {
       step: 3,
-      title: 'Approve into TallyPrime',
+      title: 'Approve into Tally Prime',
       description:
-        'Once approved, the entry goes to the right ledgers in your TallyPrime company.',
+        'Once approved, the entry goes to the right ledgers in your Tally Prime company.',
     },
     {
       step: 4,
@@ -218,7 +218,7 @@ export const financeIntelligenceViews = [
 ] as const;
 
 export const financeIntelligenceBottom = {
-  note: "Built from your own TallyPrime data. What each view shows depends on what's recorded in Tally. In the demo we'll show you all six on your own books.",
+  note: "Built from your own Tally Prime data. What each view shows depends on what's recorded in Tally. In the demo we'll show you all six on your own books.",
   buttonText: 'See your own numbers',
   buttonHref: '/demo/#demo-form',
 } as const;
@@ -235,7 +235,7 @@ export const financeIntegrations = {
       mark: 'T',
       badge: 'Most teams start here',
       isMain: true,
-      title: 'TallyPrime',
+      title: 'Tally Prime',
       description:
         'Connect in minutes. Purchase vouchers, bank entries and new ledgers go into your Tally company, and Intelligence reads your Tally data.',
       bullets: [
@@ -279,10 +279,10 @@ export const financeIntegrations = {
 /* ── Live in minutes (Setup) ── */
 export const financeSetup = {
   eyebrow: 'Live in minutes',
-  headline: 'Connect TallyPrime immediately.',
+  headline: 'Connect Tally Prime immediately.',
   accent: 'Approve your first invoice in minutes.',
   description:
-    'We set it up around your TallyPrime company, your ledgers and who approves what. You test it on your own invoices before anything is posted.',
+    'We set it up around your Tally Prime company, your ledgers and who approves what. You test it on your own invoices before anything is posted.',
   stages: [
     {
       step: 'Step 1',
@@ -298,9 +298,9 @@ export const financeSetup = {
     {
       step: 'Step 2',
       title: 'Configure',
-      description: 'Connect TallyPrime and set your rules.',
+      description: 'Connect Tally Prime and set your rules.',
       items: [
-        { label: 'Connect TallyPrime', detail: 'Your company and ledgers' },
+        { label: 'Connect Tally Prime', detail: 'Your company and ledgers' },
         { label: 'Map the workflow', detail: 'From inbox to posted entry' },
         { label: 'Review rules', detail: 'Fields, checks and team access' },
       ],
@@ -335,7 +335,7 @@ export const financeSetup = {
 export const financeClosing = {
   eyebrow: 'See it on your own invoices',
   title: "Bring ten invoices. We'll show you them in Tally.",
-  copy: "Send us a few real supplier invoices. In the demo you'll see them read, checked and ready to approve into TallyPrime. Connect Tally and approve your first invoice in minutes.",
+  copy: "Send us a few real supplier invoices. In the demo you'll see them read, checked and ready to approve into Tally Prime. Connect Tally and approve your first invoice in minutes.",
   steps: [
     'Book a 30-minute demo',
     'Share a few recent supplier invoices',
@@ -357,14 +357,14 @@ export const invoiceFeatures: Feature[] = [
   ['QUALITY CONTROL', 'Confidence review and exception handling', 'Use extraction confidence indicators to help teams prioritise fields that need closer checking.'],
   ['DUPLICATE CHECKS', 'Duplicate detection', 'Identify potential duplicate invoices to help prevent repeated accounting entry.'],
   ['BATCH WORKFLOW', 'Batch invoice processing', 'Process multiple supplier invoices through a structured workflow rather than entering them individually.'],
-  ['ACCOUNTING INTEGRATION', 'TallyPrime integration', 'Send approved supplier invoice information to the configured TallyPrime company, reducing manual re-entry.'],
+  ['ACCOUNTING INTEGRATION', 'Tally Prime integration', 'Send approved supplier invoice information to the configured Tally Prime company, reducing manual re-entry.'],
 ];
 
 export const bankingFeatures: Feature[] = [
   ['STATEMENT PROCESSING', 'Bank statement intake', 'Bring bank statement files into the Docsynecx workflow for processing.'],
   ['DATA CAPTURE', 'Transaction extraction', 'Capture transaction dates, descriptions, debit and credit amounts, and balances from supported statement formats.'],
   ['BOOKKEEPING', 'Transaction categorisation', 'Organise statement transactions into relevant bookkeeping categories for review and posting.'],
-  ['TALLYPRIME POSTING', 'Bookkeeping entries in TallyPrime', 'Create the corresponding bank and bookkeeping entries in TallyPrime through the configured workflow.'],
+  ['TALLYPRIME POSTING', 'Bookkeeping entries in Tally Prime', 'Create the corresponding bank and bookkeeping entries in Tally Prime through the configured workflow.'],
   ['RECONCILIATION', 'Bank reconciliation', 'Reconcile statement transactions with accounting entries and review matched and unmatched items.'],
   ['EXCEPTION REVIEW', 'Unmatched transaction review', 'Identify transactions that require attention and support investigation before finalising the reconciliation.'],
   ['HUMAN REVIEW', 'Validation and controls', 'Keep the accounting team involved in reviewing extracted information, categorisation and reconciliation exceptions.'],
@@ -380,7 +380,7 @@ export const payableFeatures: Feature[] = [
 ];
 
 export const intelligenceCapabilities = [
-  { id: 'financial', label: 'Financial performance', title: 'Financial Intelligence', description: 'Understand the financial health of your business through a clear view of performance, profitability and cash position.', chips: ['Profit & Loss (P&L)', 'Balance Sheet', 'Profitability', 'Revenue', 'Expenses', 'Cash & Bank'], detail: 'Review revenue and expenses alongside profitability, balance-sheet information and cash positions. Available reports depend on the connected TallyPrime data and agreed reporting scope.' },
+  { id: 'financial', label: 'Financial performance', title: 'Financial Intelligence', description: 'Understand the financial health of your business through a clear view of performance, profitability and cash position.', chips: ['Profit & Loss (P&L)', 'Balance Sheet', 'Profitability', 'Revenue', 'Expenses', 'Cash & Bank'], detail: 'Review revenue and expenses alongside profitability, balance-sheet information and cash positions. Available reports depend on the connected Tally Prime data and agreed reporting scope.' },
   { id: 'business', label: 'Business performance', title: 'Business Intelligence', description: 'Review the key commercial drivers of your business across sales, purchases, customers, suppliers and products.', chips: ['Sales', 'Purchases', 'Customers', 'Suppliers', 'Products', 'Inventory'], detail: 'Explore how sales, purchasing and product activity relate to customer and supplier performance. The depth of each view depends on the records available from your connected systems.' },
   { id: 'working-capital', label: 'Cash flow & liquidity', title: 'Working Capital Intelligence', description: 'Understand how receivables, payables and overdue obligations influence liquidity and the cash cycle.', chips: ['Receivables', 'Payables', 'Overdue Bills', 'Liquidity', 'Cash Cycle'], detail: 'Bring outstanding receivables and payables into the same review, including overdue obligations. Discuss ageing periods and cash-cycle reporting requirements during discovery.' },
   { id: 'operations', label: 'Inventory & supplier operations', title: 'Operations Intelligence', description: 'Identify operational patterns across stock movement, ageing, purchasing and supplier performance.', chips: ['Inventory Movement', 'Stock Ageing', 'Purchase Patterns', 'Supplier Performance'], detail: 'Review inventory movements and ageing alongside purchase patterns and supplier information. Available measures depend on the quality and detail of connected inventory and purchase records.' },
@@ -401,14 +401,14 @@ export const financeFaqs = [
       'No. Every invoice and bank entry waits for someone on your team to approve it. You decide who can approve what.',
   },
   {
-    question: 'Does it work with TallyPrime?',
+    question: 'Does it work with Tally Prime?',
     answer:
-      'Yes. Approved invoices post to your TallyPrime company, and bank entries can post there too. We confirm exactly what gets posted, and to which ledgers, during setup. Using a different ERP? Docsynecx can post there too. Tell us which one when you book the demo.',
+      'Yes. Approved invoices post to your Tally Prime company, and bank entries can post there too. We confirm exactly what gets posted, and to which ledgers, during setup. Using a different ERP? Docsynecx can post there too. Tell us which one when you book the demo.',
   },
   {
     question: 'How long does setup take?',
     answer:
-      'Connect TallyPrime straight away and approve your first invoice in minutes. You test it on your own invoices before anything is posted.',
+      'Connect Tally Prime straight away and approve your first invoice in minutes. You test it on your own invoices before anything is posted.',
   },
   {
     question: 'Can we start with just invoices?',
@@ -433,17 +433,17 @@ export const financeFaqs = [
 
 export const financePageCopy = {
   overview: {
-    eyebrow: 'Finance Desk · Built for TallyPrime',
-    headline: 'Supplier invoices into TallyPrime.',
+    eyebrow: 'Finance Desk · Built for Tally Prime',
+    headline: 'Supplier invoices into Tally Prime.',
     accent: 'Without the typing.',
     description:
-      'Typing invoices into Tally. Checking GST line by line. Matching the bank statement. Chasing overdue payments. Docsynecx reads the invoice, captures GSTIN, HSN and tax, flags duplicates, and your team approves it into TallyPrime.',
+      'Typing invoices into Tally. Checking GST line by line. Matching the bank statement. Chasing overdue payments. Docsynecx reads the invoice, captures GSTIN, HSN and tax, flags duplicates, and your team approves it into Tally Prime.',
     primary: 'Book a demo',
     secondary: 'See how it works',
     secondaryHref: '#how',
-    promise: 'Nothing is posted to TallyPrime until your team approves it.',
-    trust: 'Built for TallyPrime, works with your ERP too · GST, HSN and line items captured · Connect Tally in minutes',
-    microline: 'Built for TallyPrime, works with your ERP too · GST, HSN and line items captured · Connect Tally in minutes',
+    promise: 'Nothing is posted to Tally Prime until your team approves it.',
+    trust: 'Built for Tally Prime, works with your ERP too · GST, HSN and line items captured · Connect Tally in minutes',
+    microline: 'Built for Tally Prime, works with your ERP too · GST, HSN and line items captured · Connect Tally in minutes',
     visualTitle: 'FINANCE DESK',
     visualLabel: 'PRODUCT VIEW',
     tiles: [['Document workflow', 'Invoice review'], ['Business view', 'Financial insights']],
@@ -451,7 +451,7 @@ export const financePageCopy = {
     ctaEyebrow: 'See it on your own invoices',
     ctaTitle: "Bring ten invoices. We'll show you them in Tally.",
     ctaCopy:
-      "Send us a few real supplier invoices. In the demo you'll see them read, checked and ready to approve into TallyPrime. Connect Tally and approve your first invoice in minutes.",
+      "Send us a few real supplier invoices. In the demo you'll see them read, checked and ready to approve into Tally Prime. Connect Tally and approve your first invoice in minutes.",
     ctaSteps: [
       'Book a 30-minute demo',
       'Share a few recent supplier invoices',
@@ -465,24 +465,24 @@ export const financePageCopy = {
     headline: 'Stop typing supplier invoices',
     accent: 'into Tally.',
     description:
-      'Upload the invoice in the portal, email it, or send it on WhatsApp. Docsynecx reads the supplier, GSTIN, HSN, line items and tax, checks the GST and looks for duplicates. Your team reviews it and posts it to TallyPrime.',
+      'Upload the invoice in the portal, email it, or send it on WhatsApp. Docsynecx reads the supplier, GSTIN, HSN, line items and tax, checks the GST and looks for duplicates. Your team reviews it and posts it to Tally Prime.',
     primary: 'Book a demo',
-    microline: 'Nothing is posted to TallyPrime until your team approves it.',
+    microline: 'Nothing is posted to Tally Prime until your team approves it.',
     visualTitle: 'INVOICE INBOX',
     visualLabel: 'FINANCE DESK',
-    tiles: [['Intake', 'Portal, email & WhatsApp'], ['TallyPrime', 'Purchase vouchers']],
+    tiles: [['Intake', 'Portal, email & WhatsApp'], ['Tally Prime', 'Purchase vouchers']],
     chip: 'Read · Validate · Post',
     ctaEyebrow: 'See it on your own invoices',
     ctaTitle: "Bring ten invoices. We'll show you them in Tally.",
     ctaCopy:
-      "Send us a few real supplier invoices, the messier the better. In the demo you'll see them read, checked and ready to approve into TallyPrime.",
+      "Send us a few real supplier invoices, the messier the better. In the demo you'll see them read, checked and ready to approve into Tally Prime.",
   },
   'banking-reconciliation': {
     eyebrow: 'FINANCE DESK / BANKING & RECONCILIATION',
     headline: 'Bank statements, organised.',
     accent: 'Reconciliation made clearer.',
     description:
-      'Process bank statement data, support bookkeeping and review reconciliation in TallyPrime, with your accounting team in control.',
+      'Process bank statement data, support bookkeeping and review reconciliation in Tally Prime, with your accounting team in control.',
     primary: 'Book a Demo',
     microline: 'Finance Desk · Bookkeeping · Reconciliation review',
     visualTitle: 'BANK STATEMENT WORKSPACE',
