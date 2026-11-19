@@ -227,3 +227,19 @@
     padding: 24px 20px;
   }
 }
+
+/* ── Narrative Note (Left Aligned) ── */
+.noteDescription {
+  margin: 28px 0 0;
+  max-width: 760px;
+  text-align: left;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.65;
+  color: var(--landing-muted, #586579);
+}
+
+:global([data-theme="dark"]) .noteDescription {
+  color: #94a3b8;
+}

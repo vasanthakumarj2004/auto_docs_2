@@ -1,8 +1,12 @@
-export type LogisticsSlug =
+export type LogisticsModuleSlug =
   | 'email-to-booking'
   | 'shipment-operations'
   | 'shipment-tracking'
   | 'freight-intelligence';
+
+export type LogisticsSlug =
+  | LogisticsModuleSlug
+  | 'integrations';
 
 export interface CapabilityItem {
   prefix: string;
@@ -355,5 +359,69 @@ export const logisticsModules: Record<LogisticsSlug, LogisticsModuleData> = {
     scopingNeeds:
       'Data sources, cost components, margin model, customer/carrier dimensions, reporting cadence and required dashboards.',
     closingTitle: 'See how Freight Intelligence can fit your workflow.',
+  },
+  integrations: {
+    slug: 'integrations',
+    breadcrumb: 'Docsynecx Logistics / Integrations',
+    moduleName: 'Integrations',
+    iconName: 'diamond',
+    eyebrow: 'INTEGRATIONS · CARGOWISE, TMS AND ERP',
+    heroTitle: 'Works with the system your team already uses.',
+    heroDescription:
+      'CargoWise, another TMS, your own ERP, or just your email inbox. Docsynecx does the reading, checking and drafting, then pushes jobs and bookings into your system. Nobody types anything twice.',
+    primaryCtaText: 'Book a demo',
+    secondaryCtaText: 'See how it connects',
+    cardBadges: ['CargoWise eAdaptor', 'Custom TMS/ERP', 'Email-only mode'],
+    capabilities: [
+      {
+        prefix: 'CargoWise sync',
+        text: 'Confirmed bookings and jobs created with parties matched to your existing records',
+      },
+      {
+        prefix: 'Custom ERP and TMS',
+        text: 'Pushes jobs and bookings in the exact format your internal system accepts',
+      },
+      {
+        prefix: 'Standalone desk',
+        text: 'Run end-to-end from your email inbox with no TMS needed',
+      },
+      {
+        prefix: 'Zero duplicate records',
+        text: 'Shipper, consignee, and forwarder accounts deduplicated against your master data',
+      },
+      {
+        prefix: 'Human-in-the-loop control',
+        text: 'Bookings only post after operator review and customer acceptance',
+      },
+      {
+        prefix: 'One-week setup',
+        text: 'Configured and tested on real sample jobs in the same week you go live',
+      },
+    ],
+    workflowSteps: [
+      {
+        number: 'STEP 01',
+        title: 'Review your system connectivity and API/eAdaptor interfaces.',
+        description: 'Analyze what your system can send and receive.',
+      },
+      {
+        number: 'STEP 02',
+        title: 'Agree field mappings and party matching rules.',
+        description: 'Decide which fields go into bookings and jobs, eliminating double-entry.',
+      },
+      {
+        number: 'STEP 03',
+        title: 'Test end-to-end data flow on sample jobs.',
+        description: 'Verify pushed bookings in your sandbox before going live.',
+      },
+      {
+        number: 'STEP 04',
+        title: 'Go live with automated job creation.',
+        description: 'Live bookings flow seamlessly into CargoWise or your ERP.',
+      },
+    ],
+    integrationsCopy: 'Direct CargoWise eAdaptor, REST APIs, SFTP, Webhooks, and email-based data drop.',
+    scopingNeeds: 'System name, version, connection method (API/file/eAdaptor), document types, and field mapping rules.',
+    closingTitle: 'Tell us what you run. We’ll show you how it connects.',
   },
 };

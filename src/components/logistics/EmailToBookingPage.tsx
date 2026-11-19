@@ -431,8 +431,8 @@ export function EmailToBookingPage() {
 
         {/* 4. CONTROL SECTION (Clean Light Paper) */}
         <section className={s.controlSection} aria-labelledby="ctrl-h">
-          <div className={`site-shell ${s.controlGrid}`}>
-            <div className={s.secHead} style={{ marginBottom: 0 }}>
+          <div className="site-shell">
+            <div className={s.controlHead}>
               <p className={s.eyebrow}>YOU STAY IN CHARGE</p>
               <h2 id="ctrl-h" className={s.headline}>
                 Docsynecx does the legwork. <em>Your team makes the calls.</em>
@@ -710,7 +710,10 @@ export function EmailToBookingPage() {
         </section>
 
         {/* 7. CLOSING CTA SECTION (Shared Logistics Closing CTA) */}
-        <LogisticsClosingCta />
+        <LogisticsClosingCta
+          secondaryHref="/logistics-desk/"
+          secondaryText="Back to Freight Desk"
+        />
       </main>
 
       {/* Global Footer */}

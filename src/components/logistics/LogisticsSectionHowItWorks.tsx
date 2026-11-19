@@ -25,7 +25,7 @@ import {
   AlertTriangle,
   type LucideIcon,
 } from 'lucide-react';
-import { type LogisticsSlug } from '../../content/logistics';
+import { type LogisticsModuleSlug } from '../../content/logistics';
 import s from './EmailToBookingHowItWorks.module.css';
 
 interface WorkflowStepConfig {
@@ -52,7 +52,7 @@ interface WorkflowStepConfig {
   resultCallout: string;
 }
 
-const MODULE_WORKFLOWS: Record<LogisticsSlug, WorkflowStepConfig[]> = {
+const MODULE_WORKFLOWS: Record<LogisticsModuleSlug, WorkflowStepConfig[]> = {
   'email-to-booking': [
     {
       stepNumber: '01',
@@ -594,7 +594,7 @@ const MODULE_WORKFLOWS: Record<LogisticsSlug, WorkflowStepConfig[]> = {
 };
 
 interface LogisticsSectionHowItWorksProps {
-  slug: LogisticsSlug;
+  slug: LogisticsModuleSlug;
 }
 
 export function LogisticsSectionHowItWorks({ slug }: LogisticsSectionHowItWorksProps) {

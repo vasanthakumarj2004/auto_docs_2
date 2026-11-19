@@ -76,8 +76,8 @@ export function MonthEndComparison() {
           </article>
         </div>
 
-        {/* Narrative Description matching .bottomDescription pattern */}
-        <p className={base.bottomDescription}>
+        {/* Narrative Description (Left-aligned) */}
+        <p className={styles.noteDescription}>
           {financeProblem.note}
         </p>
       </div>

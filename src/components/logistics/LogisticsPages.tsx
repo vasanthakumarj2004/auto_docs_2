@@ -27,6 +27,10 @@ import { LogisticsCapabilitiesSection } from './LogisticsCapabilitiesSection';
 import { LogisticsSectionHowItWorks } from './LogisticsSectionHowItWorks';
 import { LogisticsScaleBenchmark } from './LogisticsScaleBenchmark';
 import { EmailToBookingPage } from './EmailToBookingPage';
+import { ShipmentOperationsPage } from './ShipmentOperationsPage';
+import { ShipmentTrackingPage } from './ShipmentTrackingPage';
+import { FreightIntelligencePage } from './FreightIntelligencePage';
+import { LogisticsIntegrationsPage } from './LogisticsIntegrationsPage';
 import base from '../LandingPage.module.css';
 import s from './LogisticsPages.module.css';
 
@@ -38,8 +42,20 @@ export function LogisticsPage({ slug }: LogisticsPageProps) {
   if (slug === 'email-to-booking') {
     return <EmailToBookingPage />;
   }
+  if (slug === 'shipment-operations') {
+    return <ShipmentOperationsPage />;
+  }
+  if (slug === 'shipment-tracking') {
+    return <ShipmentTrackingPage />;
+  }
+  if (slug === 'freight-intelligence') {
+    return <FreightIntelligencePage />;
+  }
+  if (slug === 'integrations') {
+    return <LogisticsIntegrationsPage />;
+  }
 
-  const moduleData = logisticsModules[slug];
+  const moduleData = (logisticsModules as Record<string, any>)[slug];
 
   if (!moduleData) {
     return null;
@@ -128,14 +144,16 @@ export function LogisticsPage({ slug }: LogisticsPageProps) {
 
                 {/* Status Badges */}
                 <div className={s.heroBadgesRow}>
-                  {moduleData.cardBadges.map((badge, idx) => (
-                    <span key={badge} className={s.badge}>
-                      {idx === 0 && <Sparkles size={12} aria-hidden="true" />}
-                      {idx === 1 && <ShieldCheck size={12} aria-hidden="true" />}
-                      {idx === 2 && <CheckCircle2 size={12} aria-hidden="true" />}
-                      {badge}
-                    </span>
-                  ))}
+                    {
+                      moduleData.cardBadges?.map((badge: string, idx: number) => (
+                        <span key={badge} className={s.badge}>
+                          {idx === 0 && <Sparkles size={12} aria-hidden="true" />}
+                          {idx === 1 && <ShieldCheck size={12} aria-hidden="true" />}
+                          {idx === 2 && <CheckCircle2 size={12} aria-hidden="true" />}
+                          {badge}
+                        </span>
+                      ))
+                    }
                 </div>
 
                 {/* Simulated Workflow Status Snapshot */}

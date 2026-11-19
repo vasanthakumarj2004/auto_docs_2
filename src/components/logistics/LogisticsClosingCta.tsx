@@ -7,12 +7,36 @@ import { ClosingVisualBg } from '../ClosingVisualBg';
 import { demoHref } from '../../content/logisticsOverview';
 import styles from '../finance/FinanceClosingCta.module.css';
 
-export function LogisticsClosingCta() {
-  const steps = [
+interface LogisticsClosingCtaProps {
+  secondaryHref?: string;
+  secondaryText?: string;
+  eyebrow?: string;
+  title?: React.ReactNode;
+  copy?: string;
+  steps?: string[];
+  primaryHref?: string;
+  primaryText?: string;
+}
+
+export function LogisticsClosingCta({
+  secondaryHref = '#how',
+  secondaryText = 'See how it works',
+  eyebrow = 'SEE IT ON YOUR OWN ENQUIRIES',
+  title = (
+    <>
+      Bring last week&apos;s enquiries.<br />
+      <span>We&apos;ll show you the quotes.</span>
+    </>
+  ),
+  copy = 'Send us a few real enquiries from last week. In the demo we\'ll show you the quotes Docsynecx would have drafted, and how fast. You could be live in about a week.',
+  steps = [
     'Book a 30-minute demo',
     'Share a few recent enquiries',
     'See the drafted quotes, side by side with yours',
-  ];
+  ],
+  primaryHref = demoHref,
+  primaryText = 'Book a demo',
+}: LogisticsClosingCtaProps = {}) {
 
   return (
     <section id="contact" className={styles.closing} aria-labelledby="closing-title">
@@ -23,15 +47,13 @@ export function LogisticsClosingCta() {
           </div>
 
           <div className={styles.closingContent}>
-            <p className={styles.closingEyebrow}>SEE IT ON YOUR OWN ENQUIRIES</p>
+            <p className={styles.closingEyebrow}>{eyebrow}</p>
             <h2 id="closing-title" className={styles.closingTitle}>
-              Bring last week&apos;s enquiries.<br />
-              <span>We&apos;ll show you the quotes.</span>
+              {title}
             </h2>
 
             <p className={styles.closingCopy}>
-              Send us a few real enquiries from last week. In the demo we&apos;ll show you the
-              quotes Docsynecx would have drafted, and how fast. You could be live in about a week.
+              {copy}
             </p>
 
             <ol className={styles.stepList} aria-label="Demo onboarding steps">
@@ -44,12 +66,12 @@ export function LogisticsClosingCta() {
             </ol>
 
             <div className={styles.closingActions}>
-              <Link href={demoHref} className={styles.primaryBtn}>
-                <span>Book a demo</span>
+              <Link href={primaryHref} className={styles.primaryBtn}>
+                <span>{primaryText}</span>
                 <ArrowRight size={17} aria-hidden="true" />
               </Link>
-              <Link href="#how" className={styles.secondaryBtn}>
-                See how it works
+              <Link href={secondaryHref} className={styles.secondaryBtn}>
+                {secondaryText}
               </Link>
             </div>
           </div>

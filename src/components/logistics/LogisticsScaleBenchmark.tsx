@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import type { LogisticsSlug } from '../../content/logistics';
+import type { LogisticsModuleSlug } from '../../content/logistics';
 import styles from './LogisticsScaleBenchmark.module.css';
 
 interface MetricCard {
@@ -22,7 +22,7 @@ interface BenchmarkData {
   ctaText: string;
 }
 
-const benchmarkContent: Record<LogisticsSlug, BenchmarkData> = {
+const benchmarkContent: Record<LogisticsModuleSlug, BenchmarkData> = {
   'email-to-booking': {
     eyebrow: 'Same Loop · 12 Months · Freight Rate & RFQ Desk · UAE & India',
     headlinePrefix: 'Cascadia is one of ',
@@ -153,7 +153,7 @@ const benchmarkContent: Record<LogisticsSlug, BenchmarkData> = {
 };
 
 interface LogisticsScaleBenchmarkProps {
-  slug: LogisticsSlug;
+  slug: LogisticsModuleSlug;
 }
 
 export function LogisticsScaleBenchmark({ slug }: LogisticsScaleBenchmarkProps) {

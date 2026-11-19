@@ -133,8 +133,7 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
     ],
     integrationsHeading: 'Integrations',
     integrationsLinks: [
-      { title: 'CargoWise & Custom ERP/TMS', href: '/#integrations' },
-      // { title: 'Custom ERP/TMS', href: '/#integrations' },
+      { title: 'CargoWise & Custom ERP/TMS', href: '/logistics/integrations/' },
     ],
   },
   'Resources': {

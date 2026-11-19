@@ -200,6 +200,11 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
                   Freight Intelligence
                 </Link>
               </li>
+              <li>
+                <Link href="/logistics/integrations/" className={styles.footerLink}>
+                  Integrations
+                </Link>
+              </li>
             </ul>
           </div>
 

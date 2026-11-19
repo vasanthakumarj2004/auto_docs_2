@@ -24,7 +24,7 @@ import {
   DollarSign,
   type LucideIcon,
 } from 'lucide-react';
-import { type LogisticsSlug } from '../../content/logistics';
+import { type LogisticsModuleSlug } from '../../content/logistics';
 import styles from './EmailToBookingCapabilities.module.css';
 
 interface CapabilityTab {
@@ -49,7 +49,7 @@ interface CapabilityTab {
   };
 }
 
-const MODULE_CAPABILITIES: Record<LogisticsSlug, CapabilityTab[]> = {
+const MODULE_CAPABILITIES: Record<LogisticsModuleSlug, CapabilityTab[]> = {
   'email-to-booking': [
     {
       id: 'intake',
@@ -524,7 +524,7 @@ const MODULE_CAPABILITIES: Record<LogisticsSlug, CapabilityTab[]> = {
 };
 
 interface LogisticsSectionCapabilitiesProps {
-  slug: LogisticsSlug;
+  slug: LogisticsModuleSlug;
 }
 
 export function LogisticsSectionCapabilities({ slug }: LogisticsSectionCapabilitiesProps) {

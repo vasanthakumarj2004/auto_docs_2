@@ -28,7 +28,7 @@ import {
   Anchor,
   Compass,
 } from 'lucide-react';
-import { type LogisticsSlug } from '../../content/logistics';
+import { type LogisticsModuleSlug } from '../../content/logistics';
 import s from './LogisticsCapabilitiesSection.module.css';
 
 interface CapabilityStep {
@@ -47,7 +47,7 @@ interface LogisticsModuleCapabilities {
   steps: CapabilityStep[];
 }
 
-export const CAPABILITIES_DATA: Record<LogisticsSlug, LogisticsModuleCapabilities> = {
+export const CAPABILITIES_DATA: Record<LogisticsModuleSlug, LogisticsModuleCapabilities> = {
   'email-to-booking': {
     railHeader: 'ENQUIRY RECEIVED · QUOTE PENDING',
     eyebrow: 'WHAT IT HELPS YOUR TEAM DO',
@@ -290,7 +290,7 @@ export const CAPABILITIES_DATA: Record<LogisticsSlug, LogisticsModuleCapabilitie
 };
 
 interface LogisticsCapabilitiesSectionProps {
-  slug: LogisticsSlug;
+  slug: LogisticsModuleSlug;
 }
 
 export function LogisticsCapabilitiesSection({ slug }: LogisticsCapabilitiesSectionProps) {
