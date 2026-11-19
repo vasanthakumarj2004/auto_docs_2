@@ -87,16 +87,16 @@ export const sharedLogisticsCopy = {
 export const logisticsModules: Record<LogisticsSlug, LogisticsModuleData> = {
   'email-to-booking': {
     slug: 'email-to-booking',
-    breadcrumb: 'Docsynecx Logistics / RFQ-to-Booking Automation',
-    moduleName: 'Email-to-Booking Automation',
+    breadcrumb: 'Docsynecx Freight Desk / Email-to-Booking',
+    moduleName: 'Email-to-Booking · Docsynecx Freight Desk',
     iconName: 'envelope',
-    eyebrow: 'DOCSYNECX LOGISTICS · MODULE',
-    heroTitle: 'Move freight enquiries from inbox to customer quotation and booking.',
+    eyebrow: 'Email-to-Booking · Most teams start here',
+    heroTitle: 'Turn every customer enquiry into a ready-to-send quote in minutes.',
     heroDescription:
-      'Use agentic workflows to read customer enquiries, gather vendor rates, compare options and prepare customer quotations — helping freight teams reduce repetitive email coordination.',
-    primaryCtaText: 'Book a Demo',
-    secondaryCtaText: 'Explore Logistics platform',
-    cardBadges: ['AI-assisted', 'Workflow status', 'Review ready'],
+      'Turn every freight enquiry into a ready-to-send quote in minutes. Docsynecx reads the email, gets vendor rates, compares them and drafts the quote for your team to approve.',
+    primaryCtaText: 'Book a demo',
+    secondaryCtaText: 'See the 8 steps',
+    cardBadges: ['12 enquiries', '8 quotes drafted', '3 waiting for rates'],
     capabilities: [
       {
         prefix: 'Read incoming',

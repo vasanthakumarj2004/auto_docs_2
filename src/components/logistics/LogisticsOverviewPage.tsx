@@ -12,6 +12,7 @@ import { LogisticsHowItWorks } from './LogisticsHowItWorks';
 import { LogisticsGetStarted } from './LogisticsGetStarted';
 import { LogisticsClosingCta } from './LogisticsClosingCta';
 import { LandingClosingCta } from '../LandingClosingCta';
+import { EmailToBookingPage } from './EmailToBookingPage';
 import {
   demoHref,
   logisticsModules,
@@ -276,6 +277,10 @@ function FreightIntelligence() {
 }
 
 export function LogisticsOverviewPage({ page = 'overview' }: { page?: PageKey }) {
+  if (page === 'email-to-booking') {
+    return <EmailToBookingPage />;
+  }
+
   const copy = logisticsPageCopy[page] || logisticsPageCopy.overview;
 
   return (
@@ -285,7 +290,6 @@ export function LogisticsOverviewPage({ page = 'overview' }: { page?: PageKey })
       <main id="main-content">
         <Hero page={page} />
         {page === 'overview' && <Overview />}
-        {page === 'email-to-booking' && <EmailToBooking />}
         {page === 'shipment-operations' && <ShipmentOperations />}
         {page === 'shipment-tracking' && <ShipmentTracking />}
         {page === 'freight-intelligence' && <FreightIntelligence />}

@@ -26,6 +26,7 @@ import {
 import { LogisticsCapabilitiesSection } from './LogisticsCapabilitiesSection';
 import { LogisticsSectionHowItWorks } from './LogisticsSectionHowItWorks';
 import { LogisticsScaleBenchmark } from './LogisticsScaleBenchmark';
+import { EmailToBookingPage } from './EmailToBookingPage';
 import base from '../LandingPage.module.css';
 import s from './LogisticsPages.module.css';
 
@@ -34,6 +35,10 @@ interface LogisticsPageProps {
 }
 
 export function LogisticsPage({ slug }: LogisticsPageProps) {
+  if (slug === 'email-to-booking') {
+    return <EmailToBookingPage />;
+  }
+
   const moduleData = logisticsModules[slug];
 
   if (!moduleData) {

@@ -311,6 +311,7 @@
 .rowWhat {
   color: var(--text-secondary, #475569);
   flex: 1;
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
