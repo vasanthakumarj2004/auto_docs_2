@@ -6,6 +6,7 @@ import {
   ArrowDown,
   ArrowRight,
   ArrowUpRight,
+  Check,
   CheckCircle2,
   Clock,
   Layers,
@@ -307,52 +308,74 @@ export function FinanceTeamsPage() {
               </p>
             </div>
 
-            {/* Live Mock Preview Card */}
-            <div
-              className={s.qcard}
-              role="img"
-              aria-label="Example month-end queue: 412 invoices, 386 ready to approve, 26 need a look"
-            >
-              <div className={s.qcardTop}>
-                <span>
-                  <strong>Month-end queue</strong> · Nov 2026
-                </span>
-                <span className={`${s.statusBadge} ${s.wait}`}>26 exceptions</span>
-              </div>
-              <div className={s.qcardBody}>
-                <div className={s.deskStats}>
-                  <div>
-                    <span className={s.statVal}>412</span>
-                    <span className={s.statLabel}>invoices this month</span>
+            {/* Live Mock Preview Card with 3D Depth Backdrop & Ghost Card */}
+            <div className={s.heroVisualWrapper}>
+              <div className={s.ambientGlow} aria-hidden="true" />
+              <div className={s.ghostCardBehind} aria-hidden="true" />
+
+              <div
+                className={s.qcard}
+                role="region"
+                aria-label="Example month-end queue: 412 invoices, 386 ready to approve, 26 need a look"
+              >
+                <div className={s.qcardTop}>
+                  <span>
+                    <strong>Month-end queue</strong> · Nov 2026
+                  </span>
+                  <span className={`${s.statusBadge} ${s.wait}`}>26 exceptions</span>
+                </div>
+                <div className={s.qcardBody}>
+                  <div className={s.deskStats}>
+                    <div>
+                      <span className={s.statVal}>412</span>
+                      <span className={s.statLabel}>invoices this month</span>
+                    </div>
+                    <div>
+                      <span className={s.statVal}>386</span>
+                      <span className={s.statLabel}>ready to approve</span>
+                    </div>
+                    <div>
+                      <span className={s.statVal}>26</span>
+                      <span className={s.statLabel}>need a look</span>
+                    </div>
                   </div>
-                  <div>
-                    <span className={s.statVal}>386</span>
-                    <span className={s.statLabel}>ready to approve</span>
+                  <div className={s.qcardRows}>
+                    <div className={s.qcardRow}>
+                      <span className={s.rowWho}>Prime Components</span>
+                      <span className={s.rowWhat}>INV-4821 · ₹74,045 · checks passed</span>
+                      <span className={`${s.statusBadge} ${s.ok}`}>Ready</span>
+                    </div>
+                    <div className={s.qcardRow}>
+                      <span className={s.rowWho}>Metro Supplies</span>
+                      <span className={s.rowWhat}>INV-1068 · same as INV-1061?</span>
+                      <span className={`${s.statusBadge} ${s.wait}`}>Duplicate?</span>
+                    </div>
+                    <div className={s.qcardRow}>
+                      <span className={s.rowWho}>Apex Services</span>
+                      <span className={s.rowWhat}>INV-0294 · GST ₹2,970, lines give ₹2,700</span>
+                      <span className={`${s.statusBadge} ${s.wait}`}>GST mismatch</span>
+                    </div>
                   </div>
-                  <div>
-                    <span className={s.statVal}>26</span>
-                    <span className={s.statLabel}>need a look</span>
+
+                  {/* Interactive Action Row matching Image 1 */}
+                  <div className={s.heroActionRow}>
+                    <button
+                      type="button"
+                      className={s.heroApproveBtn}
+                    >
+                      <Check size={16} aria-hidden="true" />
+                      <span>Post 386 verified invoices to Tally</span>
+                    </button>
+                    <button
+                      type="button"
+                      className={s.heroEditBtn}
+                    >
+                      Resolve 26
+                    </button>
                   </div>
                 </div>
-                <div className={s.qcardRows}>
-                  <div className={s.qcardRow}>
-                    <span className={s.rowWho}>Prime Components</span>
-                    <span className={s.rowWhat}>INV-4821 · ₹74,045 · checks passed</span>
-                    <span className={`${s.statusBadge} ${s.ok}`}>Ready</span>
-                  </div>
-                  <div className={s.qcardRow}>
-                    <span className={s.rowWho}>Metro Supplies</span>
-                    <span className={s.rowWhat}>INV-1068 · same as INV-1061?</span>
-                    <span className={`${s.statusBadge} ${s.wait}`}>Duplicate?</span>
-                  </div>
-                  <div className={s.qcardRow}>
-                    <span className={s.rowWho}>Apex Services</span>
-                    <span className={s.rowWhat}>INV-0294 · GST ₹2,970, lines give ₹2,700</span>
-                    <span className={`${s.statusBadge} ${s.wait}`}>GST mismatch</span>
-                  </div>
-                </div>
+                <p className={s.sampleNote}>Sample data</p>
               </div>
-              <p className={s.sampleNote}>Sample data</p>
             </div>
           </div>
         </div>

@@ -7,6 +7,7 @@ import {
   ArrowRight,
   ArrowUpRight,
   CalendarClock,
+  Check,
   CheckCircle2,
   MessageSquare,
   MousePointerClick,
@@ -254,52 +255,74 @@ export function PaymentRemindersPage() {
               </p>
             </div>
 
-            {/* Live Mock Preview Card */}
-            <div
-              className={s.qcard}
-              role="img"
-              aria-label="Example collections view: 18.6 lakh outstanding, 6.4 lakh overdue, 4 reminders to approve"
-            >
-              <div className={s.qcardTop}>
-                <span>
-                  <strong>Collections</strong> · 17 Nov 2026
-                </span>
-                <span className={`${s.statusBadge} ${s.wait}`}>4 to approve</span>
-              </div>
-              <div className={s.qcardBody}>
-                <div className={s.deskStats}>
-                  <div>
-                    <span className={s.statVal}>₹18.6L</span>
-                    <span className={s.statLabel}>outstanding</span>
+            {/* Live Mock Preview Card with 3D Depth Backdrop & Ghost Card */}
+            <div className={s.heroVisualWrapper}>
+              <div className={s.ambientGlow} aria-hidden="true" />
+              <div className={s.ghostCardBehind} aria-hidden="true" />
+
+              <div
+                className={s.qcard}
+                role="region"
+                aria-label="Example collections view: 18.6 lakh outstanding, 6.4 lakh overdue, 4 reminders to approve"
+              >
+                <div className={s.qcardTop}>
+                  <span>
+                    <strong>Collections</strong> · 17 Nov 2026
+                  </span>
+                  <span className={`${s.statusBadge} ${s.wait}`}>4 to approve</span>
+                </div>
+                <div className={s.qcardBody}>
+                  <div className={s.deskStats}>
+                    <div>
+                      <span className={s.statVal}>₹18.6L</span>
+                      <span className={s.statLabel}>outstanding</span>
+                    </div>
+                    <div>
+                      <span className={s.statVal}>₹6.4L</span>
+                      <span className={s.statLabel}>overdue</span>
+                    </div>
+                    <div>
+                      <span className={s.statVal}>4</span>
+                      <span className={s.statLabel}>reminders to approve</span>
+                    </div>
                   </div>
-                  <div>
-                    <span className={s.statVal}>₹6.4L</span>
-                    <span className={s.statLabel}>overdue</span>
+                  <div className={s.qcardRows}>
+                    <div className={s.qcardRow}>
+                      <span className={s.rowWho}>Kiran Retail</span>
+                      <span className={s.rowWhat}>₹3,20,000 · over 45 days late</span>
+                      <span className={`${s.statusBadge} ${s.wait}`}>To approve</span>
+                    </div>
+                    <div className={s.qcardRow}>
+                      <span className={s.rowWho}>Sharma Textiles</span>
+                      <span className={s.rowWhat}>₹1,20,000 · due in 3 days</span>
+                      <span className={`${s.statusBadge} ${s.info}`}>Scheduled</span>
+                    </div>
+                    <div className={s.qcardRow}>
+                      <span className={s.rowWho}>Patel &amp; Sons</span>
+                      <span className={s.rowWhat}>₹54,500 · 12 days late</span>
+                      <span className={`${s.statusBadge} ${s.ok}`}>2nd sent</span>
+                    </div>
                   </div>
-                  <div>
-                    <span className={s.statVal}>4</span>
-                    <span className={s.statLabel}>reminders to approve</span>
+
+                  {/* Interactive Action Row matching Image 1 */}
+                  <div className={s.heroActionRow}>
+                    <button
+                      type="button"
+                      className={s.heroApproveBtn}
+                    >
+                      <Check size={16} aria-hidden="true" />
+                      <span>Send 4 approved reminders</span>
+                    </button>
+                    <button
+                      type="button"
+                      className={s.heroEditBtn}
+                    >
+                      Customize
+                    </button>
                   </div>
                 </div>
-                <div className={s.qcardRows}>
-                  <div className={s.qcardRow}>
-                    <span className={s.rowWho}>Kiran Retail</span>
-                    <span className={s.rowWhat}>₹3,20,000 · over 45 days late</span>
-                    <span className={`${s.statusBadge} ${s.wait}`}>To approve</span>
-                  </div>
-                  <div className={s.qcardRow}>
-                    <span className={s.rowWho}>Sharma Textiles</span>
-                    <span className={s.rowWhat}>₹1,20,000 · due in 3 days</span>
-                    <span className={`${s.statusBadge} ${s.info}`}>Scheduled</span>
-                  </div>
-                  <div className={s.qcardRow}>
-                    <span className={s.rowWho}>Patel &amp; Sons</span>
-                    <span className={s.rowWhat}>₹54,500 · 12 days late</span>
-                    <span className={`${s.statusBadge} ${s.ok}`}>2nd sent</span>
-                  </div>
-                </div>
+                <p className={s.sampleNote}>Sample data</p>
               </div>
-              <p className={s.sampleNote}>Sample data</p>
             </div>
           </div>
         </div>

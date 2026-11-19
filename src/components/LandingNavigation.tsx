@@ -124,7 +124,7 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
         href: '/logistics/freight-intelligence/',
       },
     ],
-    whoHeading: "Who it's for",
+    whoHeading: "By Role",
     whoLinks: [
       { title: 'Freight Forwarders', href: '/logistics/email-to-booking/' },
       { title: 'Operations Teams', href: '/logistics/shipment-operations/' },

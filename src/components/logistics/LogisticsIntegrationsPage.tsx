@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight, ArrowDown, CheckCircle2, Clock, TrendingUp, ShieldCheck } from 'lucide-react';
+import { ArrowRight, ArrowDown, CheckCircle2, Clock, TrendingUp, ShieldCheck, ArrowUpRight } from 'lucide-react';
 import { LandingNavigation } from '../LandingNavigation';
 import { ShipsyFooter } from '../ShipsyFooter';
 import { SharedFaqAccordion } from '../SharedFaqAccordion';
@@ -221,7 +221,7 @@ export function LogisticsIntegrationsPage() {
               <div className={s.heroActions}>
                 <Link href="/demo/#demo-form" className="button-primary">
                   <span>Book a demo</span>
-                  <ArrowRight size={17} aria-hidden="true" />
+                  <ArrowUpRight size={17} aria-hidden="true" />
                 </Link>
                 <a href="#ways" className="button-secondary">
                   <span>See how it connects</span>

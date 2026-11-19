@@ -164,7 +164,9 @@ function Hero({ page }: { page: PageKey }) {
         )}
       </div>
       {restorePreviousVisual ? (
-        <div className={base.heroVisual} aria-label="product view">
+        <div className={s.heroVisualWrapper} aria-label="product view">
+          <div className={s.ambientGlow} aria-hidden="true" />
+          <div className={s.ghostCardBehind} aria-hidden="true" />
           <div className={`${base.visualPanel} ${s.product}`}>
             <div className={s.productHeader}><strong>{copy.visualTitle}</strong><span>{copy.visualLabel}</span></div>
             <div className={s.productTiles}>{copy.tiles.map(([label, title]) => <div key={label}><span>{label}</span><strong>{title}</strong></div>)}</div>

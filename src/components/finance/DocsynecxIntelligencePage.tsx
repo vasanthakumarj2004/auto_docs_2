@@ -7,6 +7,7 @@ import {
   ArrowRight,
   ArrowUpRight,
   Bell,
+  Check,
   FileSpreadsheet,
   LayoutGrid,
   MessageSquare,
@@ -308,49 +309,71 @@ export function DocsynecxIntelligencePage() {
               </p>
             </div>
 
-            {/* Live Mock Preview Card */}
-            <div
-              className={s.qcard}
-              role="img"
-              aria-label="Example November summary: sales 48.2 lakh up 12 percent, gross margin 31 percent, 6.4 lakh overdue, with a question about why cash is down"
-            >
-              <div className={s.qcardTop}>
-                <span>
-                  <strong>This month</strong> · Nov 2026
-                </span>
-                <span className={`${s.statusBadge} ${s.info}`}>vs Oct</span>
-              </div>
-              <div className={s.qcardBody}>
-                <div className={s.deskStats}>
-                  <div>
-                    <span className={s.statVal}>₹48.2L</span>
-                    <span className={s.statLabel}>sales, up 12%</span>
+            {/* Live Mock Preview Card with 3D Depth Backdrop & Ghost Card */}
+            <div className={s.heroVisualWrapper}>
+              <div className={s.ambientGlow} aria-hidden="true" />
+              <div className={s.ghostCardBehind} aria-hidden="true" />
+
+              <div
+                className={s.qcard}
+                role="region"
+                aria-label="Example November summary: sales 48.2 lakh up 12 percent, gross margin 31 percent, 6.4 lakh overdue, with a question about why cash is down"
+              >
+                <div className={s.qcardTop}>
+                  <span>
+                    <strong>This month</strong> · Nov 2026
+                  </span>
+                  <span className={`${s.statusBadge} ${s.info}`}>vs Oct</span>
+                </div>
+                <div className={s.qcardBody}>
+                  <div className={s.deskStats}>
+                    <div>
+                      <span className={s.statVal}>₹48.2L</span>
+                      <span className={s.statLabel}>sales, up 12%</span>
+                    </div>
+                    <div>
+                      <span className={s.statVal}>31%</span>
+                      <span className={s.statLabel}>gross margin</span>
+                    </div>
+                    <div>
+                      <span className={s.statVal}>₹6.4L</span>
+                      <span className={s.statLabel}>overdue</span>
+                    </div>
                   </div>
-                  <div>
-                    <span className={s.statVal}>31%</span>
-                    <span className={s.statLabel}>gross margin</span>
+                  <div className={s.qcardRows}>
+                    <div className={s.qcardRow}>
+                      <span className={s.rowWho}>You asked</span>
+                      <span className={s.rowWhat}>Why is cash down ₹3.8L when sales are up?</span>
+                      <span className={`${s.statusBadge} ${s.info}`}>AI</span>
+                    </div>
+                    <div className={s.qcardRow}>
+                      <span className={s.rowWho}>Answer</span>
+                      <span className={s.rowWhat}>
+                        ₹4.6L more is waiting with customers, and stock buying rose ₹2.1L
+                      </span>
+                      <span className={`${s.statusBadge} ${s.ok}`}>Sources</span>
+                    </div>
                   </div>
-                  <div>
-                    <span className={s.statVal}>₹6.4L</span>
-                    <span className={s.statLabel}>overdue</span>
+
+                  {/* Interactive Action Row matching Image 1 */}
+                  <div className={s.heroActionRow}>
+                    <button
+                      type="button"
+                      className={s.heroApproveBtn}
+                    >
+                      <Sparkles size={16} aria-hidden="true" />
+                      <span>Ask follow-up question</span>
+                    </button>
+                    <button
+                      type="button"
+                      className={s.heroEditBtn}
+                    >
+                      View MIS
+                    </button>
                   </div>
                 </div>
-                <div className={s.qcardRows}>
-                  <div className={s.qcardRow}>
-                    <span className={s.rowWho}>You asked</span>
-                    <span className={s.rowWhat}>Why is cash down ₹3.8L when sales are up?</span>
-                    <span className={`${s.statusBadge} ${s.info}`}>AI</span>
-                  </div>
-                  <div className={s.qcardRow}>
-                    <span className={s.rowWho}>Answer</span>
-                    <span className={s.rowWhat}>
-                      ₹4.6L more is waiting with customers, and stock buying rose ₹2.1L
-                    </span>
-                    <span className={`${s.statusBadge} ${s.ok}`}>Sources</span>
-                  </div>
-                </div>
+                <p className={s.sampleNote}>Sample data</p>
               </div>
-              <p className={s.sampleNote}>Sample data</p>
             </div>
           </div>
         </div>

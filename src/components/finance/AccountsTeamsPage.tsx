@@ -7,6 +7,7 @@ import {
   ArrowDown,
   ArrowRight,
   ArrowUpRight,
+  Check,
   CheckCircle2,
   FileText,
   ShieldCheck,
@@ -311,43 +312,65 @@ export function AccountsTeamsPage() {
               </p>
             </div>
 
-            {/* Live Mock Preview Card */}
-            <div
-              className={s.qcard}
-              role="img"
-              aria-label="Example bill: Bharat Fasteners INV-7312 with 3 items totaling 40,651"
-            >
-              <div className={s.qcardTop}>
-                <span>
-                  <strong>Bharat Fasteners</strong> · INV-7312
-                </span>
-                <span className={`${s.statusBadge} ${s.ok}`}>Ready to post</span>
-              </div>
-              <div className={s.qcardBody}>
-                <div className={s.qcardRows}>
-                  <div className={s.qcardRow}>
-                    <span className={s.rowWho}>Flange bolt M12</span>
-                    <span className={s.rowWhat}>500 × ₹42.00 · HSN 7318 · 18%</span>
-                    <span className={`${s.statusBadge} ${s.ok}`}>Read</span>
-                  </div>
-                  <div className={s.qcardRow}>
-                    <span className={s.rowWho}>Hex nut M12</span>
-                    <span className={s.rowWhat}>500 × ₹18.50 · HSN 7318 · 18%</span>
-                    <span className={`${s.statusBadge} ${s.ok}`}>Read</span>
-                  </div>
-                  <div className={s.qcardRow}>
-                    <span className={s.rowWho}>Spring washer SS</span>
-                    <span className={s.rowWhat}>1,000 × ₹4.20 · HSN 7318 · 18%</span>
-                    <span className={`${s.statusBadge} ${s.ok}`}>Read</span>
-                  </div>
-                </div>
+            {/* Live Mock Preview Card with 3D Depth Backdrop & Ghost Card */}
+            <div className={s.heroVisualWrapper}>
+              <div className={s.ambientGlow} aria-hidden="true" />
+              <div className={s.ghostCardBehind} aria-hidden="true" />
 
-                <div className={s.qtotalDark} style={{ marginTop: 16 }}>
-                  <span className={s.totalMetaDark}>Total · tax and round-off check out</span>
-                  <span className={s.totalBigDark}>₹40,651</span>
+              <div
+                className={s.qcard}
+                role="region"
+                aria-label="Example bill: Bharat Fasteners INV-7312 with 3 items totaling 40,651"
+              >
+                <div className={s.qcardTop}>
+                  <span>
+                    <strong>Bharat Fasteners</strong> · INV-7312
+                  </span>
+                  <span className={`${s.statusBadge} ${s.ok}`}>Ready to post</span>
                 </div>
+                <div className={s.qcardBody}>
+                  <div className={s.qcardRows}>
+                    <div className={s.qcardRow}>
+                      <span className={s.rowWho}>Flange bolt M12</span>
+                      <span className={s.rowWhat}>500 × ₹42.00 · HSN 7318 · 18%</span>
+                      <span className={`${s.statusBadge} ${s.ok}`}>Read</span>
+                    </div>
+                    <div className={s.qcardRow}>
+                      <span className={s.rowWho}>Hex nut M12</span>
+                      <span className={s.rowWhat}>500 × ₹18.50 · HSN 7318 · 18%</span>
+                      <span className={`${s.statusBadge} ${s.ok}`}>Read</span>
+                    </div>
+                    <div className={s.qcardRow}>
+                      <span className={s.rowWho}>Spring washer SS</span>
+                      <span className={s.rowWhat}>1,000 × ₹4.20 · HSN 7318 · 18%</span>
+                      <span className={`${s.statusBadge} ${s.ok}`}>Read</span>
+                    </div>
+                  </div>
+
+                  <div className={s.qtotalDark} style={{ margin: '14px 20px 14px' }}>
+                    <span className={s.totalMetaDark}>Total · tax and round-off check out</span>
+                    <span className={s.totalBigDark}>₹40,651</span>
+                  </div>
+
+                  {/* Interactive Action Row matching Image 1 */}
+                  <div className={s.heroActionRow}>
+                    <button
+                      type="button"
+                      className={s.heroApproveBtn}
+                    >
+                      <Check size={16} aria-hidden="true" />
+                      <span>Post to Tally · PUR-7312</span>
+                    </button>
+                    <button
+                      type="button"
+                      className={s.heroEditBtn}
+                    >
+                      Edit
+                    </button>
+                  </div>
+                </div>
+                <p className={s.sampleNote}>Sample data</p>
               </div>
-              <p className={s.sampleNote}>Sample data</p>
             </div>
           </div>
         </div>

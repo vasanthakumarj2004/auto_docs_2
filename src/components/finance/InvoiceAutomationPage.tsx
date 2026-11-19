@@ -1,15 +1,17 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import {
   ArrowDown,
   ArrowRight,
   ArrowUpRight,
+  Check,
   CheckCircle2,
   Clock,
   Inbox,
   Layers,
+  RotateCcw,
   UploadCloud,
 } from 'lucide-react';
 import { useAutoCycle } from '@/src/hooks/useAutoCycle';
@@ -173,6 +175,17 @@ const proofStats = [
 ];
 
 export function InvoiceAutomationPage() {
+  const [isApproved, setIsApproved] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+
+  const handleApprove = () => {
+    setIsApproved((prev) => !prev);
+  };
+
+  const handleEdit = () => {
+    setIsEditing((prev) => !prev);
+  };
+
   const { active, goTo, containerProps } = useAutoCycle({
     itemCount: howSteps.length,
     interval: 3500,
@@ -248,52 +261,96 @@ export function InvoiceAutomationPage() {
               </p>
             </div>
 
-            {/* Live Mock Preview Card */}
-            <div
-              className={s.qcard}
-              role="img"
-              aria-label="Example invoice inbox with three supplier invoices: one ready to approve, one possible duplicate, one GST mismatch"
-            >
-              <div className={s.qcardTop}>
-                <span>
-                  <strong>Invoice inbox</strong> · Today
-                </span>
-                <span className={`${s.statusBadge} ${s.info}`}>3 to review</span>
-              </div>
-              <div className={s.qcardBody}>
-                <div className={s.deskStats}>
-                  <div>
-                    <span className={s.statVal}>1</span>
-                    <span className={s.statLabel}>ready to approve</span>
+            {/* Live Mock Preview Card with 3D Depth Backdrop & Ghost Card matching Image 1 */}
+            <div className={s.heroVisualWrapper}>
+              <div className={s.ambientGlow} aria-hidden="true" />
+              <div className={s.ghostCardBehind} aria-hidden="true" />
+
+              <div
+                className={s.qcard}
+                role="region"
+                aria-label="Example invoice inbox with three supplier invoices: one ready to approve, one possible duplicate, one GST mismatch"
+              >
+                <div className={s.qcardTop}>
+                  <span>
+                    <strong>Invoice inbox</strong> · Today
+                  </span>
+                  <span className={`${s.statusBadge} ${s.info}`}>
+                    {isApproved ? 'All approved' : '3 to review'}
+                  </span>
+                </div>
+                <div className={s.qcardBody}>
+                  <div className={s.deskStats}>
+                    <div>
+                      <span className={s.statVal}>{isApproved ? '0' : '1'}</span>
+                      <span className={s.statLabel}>ready to approve</span>
+                    </div>
+                    <div>
+                      <span className={s.statVal}>1</span>
+                      <span className={s.statLabel}>possible duplicate</span>
+                    </div>
+                    <div>
+                      <span className={s.statVal}>1</span>
+                      <span className={s.statLabel}>GST to check</span>
+                    </div>
                   </div>
-                  <div>
-                    <span className={s.statVal}>1</span>
-                    <span className={s.statLabel}>possible duplicate</span>
+                  <div className={s.qcardRows}>
+                    <div className={s.qcardRow}>
+                      <span className={s.rowWho}>Prime Components</span>
+                      <span className={s.rowWhat}>INV-4821 · PDF · ₹74,045</span>
+                      <span className={`${s.statusBadge} ${s.ok}`}>Ready</span>
+                    </div>
+                    <div className={s.qcardRow}>
+                      <span className={s.rowWho}>Metro Supplies</span>
+                      <span className={s.rowWhat}>INV-1068 · Email · ₹32,450</span>
+                      <span className={`${s.statusBadge} ${s.wait}`}>Duplicate?</span>
+                    </div>
+                    <div className={s.qcardRow}>
+                      <span className={s.rowWho}>Apex Services</span>
+                      <span className={s.rowWhat}>INV-0294 · Scan · ₹17,970</span>
+                      <span className={`${s.statusBadge} ${s.wait}`}>GST mismatch</span>
+                    </div>
                   </div>
-                  <div>
-                    <span className={s.statVal}>1</span>
-                    <span className={s.statLabel}>GST to check</span>
+
+                  {/* Interactive Action Row matching Image 1 */}
+                  <div className={s.heroActionRow}>
+                    <button
+                      type="button"
+                      onClick={handleApprove}
+                      className={`${s.heroApproveBtn} ${isApproved ? s.heroApprovedState : ''}`}
+                      aria-pressed={isApproved}
+                    >
+                      {isApproved ? (
+                        <>
+                          <CheckCircle2 size={16} aria-hidden="true" />
+                          <span>Posted to Tally Prime · PUR-829</span>
+                        </>
+                      ) : (
+                        <>
+                          <Check size={16} aria-hidden="true" />
+                          <span>Approve &amp; post to Tally</span>
+                        </>
+                      )}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleEdit}
+                      className={s.heroEditBtn}
+                      aria-pressed={isEditing}
+                    >
+                      {isEditing ? (
+                        <>
+                          <RotateCcw size={14} aria-hidden="true" />
+                          <span style={{ marginLeft: 6 }}>Reset</span>
+                        </>
+                      ) : (
+                        <span>Edit</span>
+                      )}
+                    </button>
                   </div>
                 </div>
-                <div className={s.qcardRows}>
-                  <div className={s.qcardRow}>
-                    <span className={s.rowWho}>Prime Components</span>
-                    <span className={s.rowWhat}>INV-4821 · PDF · ₹74,045</span>
-                    <span className={`${s.statusBadge} ${s.ok}`}>Ready</span>
-                  </div>
-                  <div className={s.qcardRow}>
-                    <span className={s.rowWho}>Metro Supplies</span>
-                    <span className={s.rowWhat}>INV-1068 · Email · ₹32,450</span>
-                    <span className={`${s.statusBadge} ${s.wait}`}>Duplicate?</span>
-                  </div>
-                  <div className={s.qcardRow}>
-                    <span className={s.rowWho}>Apex Services</span>
-                    <span className={s.rowWhat}>INV-0294 · Scan · ₹17,970</span>
-                    <span className={`${s.statusBadge} ${s.wait}`}>GST mismatch</span>
-                  </div>
-                </div>
+                <p className={s.sampleNote}>Sample data</p>
               </div>
-              <p className={s.sampleNote}>Sample data</p>
             </div>
           </div>
         </div>

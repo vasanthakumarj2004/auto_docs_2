@@ -6,6 +6,7 @@ import {
   ArrowDown,
   ArrowRight,
   ArrowUpRight,
+  Check,
   CheckCircle2,
   Clock,
   FileSpreadsheet,
@@ -243,52 +244,74 @@ export function BankingReconciliationPage() {
               </p>
             </div>
 
-            {/* Live Mock Preview Card */}
-            <div
-              className={s.qcard}
-              role="img"
-              aria-label="Example October bank statement with 214 lines: 198 matched, 9 probable matches, 7 with no match"
-            >
-              <div className={s.qcardTop}>
-                <span>
-                  <strong>HDFC Bank ••5020</strong> · Oct 2026
-                </span>
-                <span className={`${s.statusBadge} ${s.info}`}>214 lines</span>
-              </div>
-              <div className={s.qcardBody}>
-                <div className={s.deskStats}>
-                  <div>
-                    <span className={s.statVal}>198</span>
-                    <span className={s.statLabel}>matched</span>
+            {/* Live Mock Preview Card with 3D Depth Backdrop & Ghost Card */}
+            <div className={s.heroVisualWrapper}>
+              <div className={s.ambientGlow} aria-hidden="true" />
+              <div className={s.ghostCardBehind} aria-hidden="true" />
+
+              <div
+                className={s.qcard}
+                role="region"
+                aria-label="Example October bank statement with 214 lines: 198 matched, 9 probable matches, 7 with no match"
+              >
+                <div className={s.qcardTop}>
+                  <span>
+                    <strong>HDFC Bank ••5020</strong> · Oct 2026
+                  </span>
+                  <span className={`${s.statusBadge} ${s.info}`}>214 lines</span>
+                </div>
+                <div className={s.qcardBody}>
+                  <div className={s.deskStats}>
+                    <div>
+                      <span className={s.statVal}>198</span>
+                      <span className={s.statLabel}>matched</span>
+                    </div>
+                    <div>
+                      <span className={s.statVal}>9</span>
+                      <span className={s.statLabel}>probable match</span>
+                    </div>
+                    <div>
+                      <span className={s.statVal}>7</span>
+                      <span className={s.statLabel}>no match</span>
+                    </div>
                   </div>
-                  <div>
-                    <span className={s.statVal}>9</span>
-                    <span className={s.statLabel}>probable match</span>
+                  <div className={s.qcardRows}>
+                    <div className={s.qcardRow}>
+                      <span className={s.rowWho}>Sharma Textiles</span>
+                      <span className={s.rowWhat}>+₹1,45,200 · Sales INV-9281</span>
+                      <span className={`${s.statusBadge} ${s.ok}`}>Matched</span>
+                    </div>
+                    <div className={s.qcardRow}>
+                      <span className={s.rowWho}>Metro Supplies</span>
+                      <span className={s.rowWhat}>−₹82,450 · 2 purchase bills</span>
+                      <span className={`${s.statusBadge} ${s.info}`}>Probable</span>
+                    </div>
+                    <div className={s.qcardRow}>
+                      <span className={s.rowWho}>Raj Enterprises</span>
+                      <span className={s.rowWhat}>+₹25,000 · no reference</span>
+                      <span className={`${s.statusBadge} ${s.wait}`}>No match</span>
+                    </div>
                   </div>
-                  <div>
-                    <span className={s.statVal}>7</span>
-                    <span className={s.statLabel}>no match</span>
+
+                  {/* Interactive Action Row matching Image 1 */}
+                  <div className={s.heroActionRow}>
+                    <button
+                      type="button"
+                      className={s.heroApproveBtn}
+                    >
+                      <Check size={16} aria-hidden="true" />
+                      <span>Reconcile 198 entries · Post to Tally</span>
+                    </button>
+                    <button
+                      type="button"
+                      className={s.heroEditBtn}
+                    >
+                      Review
+                    </button>
                   </div>
                 </div>
-                <div className={s.qcardRows}>
-                  <div className={s.qcardRow}>
-                    <span className={s.rowWho}>Sharma Textiles</span>
-                    <span className={s.rowWhat}>+₹1,45,200 · Sales INV-9281</span>
-                    <span className={`${s.statusBadge} ${s.ok}`}>Matched</span>
-                  </div>
-                  <div className={s.qcardRow}>
-                    <span className={s.rowWho}>Metro Supplies</span>
-                    <span className={s.rowWhat}>−₹82,450 · 2 purchase bills</span>
-                    <span className={`${s.statusBadge} ${s.info}`}>Probable</span>
-                  </div>
-                  <div className={s.qcardRow}>
-                    <span className={s.rowWho}>Raj Enterprises</span>
-                    <span className={s.rowWhat}>+₹25,000 · no reference</span>
-                    <span className={`${s.statusBadge} ${s.wait}`}>No match</span>
-                  </div>
-                </div>
+                <p className={s.sampleNote}>Sample data</p>
               </div>
-              <p className={s.sampleNote}>Sample data</p>
             </div>
           </div>
         </div>

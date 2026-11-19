@@ -8,6 +8,7 @@ import {
   ArrowUpRight,
   BarChart3,
   CalendarClock,
+  Check,
   CheckCircle2,
   FileText,
   MousePointerClick,
@@ -253,52 +254,74 @@ export function AccountsPayablePage() {
               </p>
             </div>
 
-            {/* Live Mock Preview Card */}
-            <div
-              className={s.qcard}
-              role="img"
-              aria-label="Example payables view: 2.52 lakh due this week, 1 bill waiting for approval, 1 overdue"
-            >
-              <div className={s.qcardTop}>
-                <span>
-                  <strong>Payables</strong> · This week
-                </span>
-                <span className={`${s.statusBadge} ${s.info}`}>3 bills</span>
-              </div>
-              <div className={s.qcardBody}>
-                <div className={s.deskStats}>
-                  <div>
-                    <span className={s.statVal}>₹2.52L</span>
-                    <span className={s.statLabel}>due this week</span>
+            {/* Live Mock Preview Card with 3D Depth Backdrop & Ghost Card */}
+            <div className={s.heroVisualWrapper}>
+              <div className={s.ambientGlow} aria-hidden="true" />
+              <div className={s.ghostCardBehind} aria-hidden="true" />
+
+              <div
+                className={s.qcard}
+                role="region"
+                aria-label="Example payables view: 2.52 lakh due this week, 1 bill waiting for approval, 1 overdue"
+              >
+                <div className={s.qcardTop}>
+                  <span>
+                    <strong>Payables</strong> · This week
+                  </span>
+                  <span className={`${s.statusBadge} ${s.info}`}>3 bills</span>
+                </div>
+                <div className={s.qcardBody}>
+                  <div className={s.deskStats}>
+                    <div>
+                      <span className={s.statVal}>₹2.52L</span>
+                      <span className={s.statLabel}>due this week</span>
+                    </div>
+                    <div>
+                      <span className={s.statVal}>1</span>
+                      <span className={s.statLabel}>waiting approval</span>
+                    </div>
+                    <div>
+                      <span className={s.statVal}>1</span>
+                      <span className={s.statLabel}>overdue</span>
+                    </div>
                   </div>
-                  <div>
-                    <span className={s.statVal}>1</span>
-                    <span className={s.statLabel}>waiting approval</span>
+                  <div className={s.qcardRows}>
+                    <div className={s.qcardRow}>
+                      <span className={s.rowWho}>Prime Components</span>
+                      <span className={s.rowWhat}>INV-9021 · ₹1,45,200 · due 20 Nov</span>
+                      <span className={`${s.statusBadge} ${s.ok}`}>Approved</span>
+                    </div>
+                    <div className={s.qcardRow}>
+                      <span className={s.rowWho}>Metro Supplies</span>
+                      <span className={s.rowWhat}>INV-4491 · ₹82,450 · due 19 Nov</span>
+                      <span className={`${s.statusBadge} ${s.info}`}>With finance</span>
+                    </div>
+                    <div className={s.qcardRow}>
+                      <span className={s.rowWho}>Apex Services</span>
+                      <span className={s.rowWhat}>INV-0194 · ₹24,800 · 2 days late</span>
+                      <span className={`${s.statusBadge} ${s.wait}`}>Overdue</span>
+                    </div>
                   </div>
-                  <div>
-                    <span className={s.statVal}>1</span>
-                    <span className={s.statLabel}>overdue</span>
+
+                  {/* Interactive Action Row matching Image 1 */}
+                  <div className={s.heroActionRow}>
+                    <button
+                      type="button"
+                      className={s.heroApproveBtn}
+                    >
+                      <Check size={16} aria-hidden="true" />
+                      <span>Schedule payment · ₹1,45,200</span>
+                    </button>
+                    <button
+                      type="button"
+                      className={s.heroEditBtn}
+                    >
+                      Details
+                    </button>
                   </div>
                 </div>
-                <div className={s.qcardRows}>
-                  <div className={s.qcardRow}>
-                    <span className={s.rowWho}>Prime Components</span>
-                    <span className={s.rowWhat}>INV-9021 · ₹1,45,200 · due 20 Nov</span>
-                    <span className={`${s.statusBadge} ${s.ok}`}>Approved</span>
-                  </div>
-                  <div className={s.qcardRow}>
-                    <span className={s.rowWho}>Metro Supplies</span>
-                    <span className={s.rowWhat}>INV-4491 · ₹82,450 · due 19 Nov</span>
-                    <span className={`${s.statusBadge} ${s.info}`}>With finance</span>
-                  </div>
-                  <div className={s.qcardRow}>
-                    <span className={s.rowWho}>Apex Services</span>
-                    <span className={s.rowWhat}>INV-0194 · ₹24,800 · 2 days late</span>
-                    <span className={`${s.statusBadge} ${s.wait}`}>Overdue</span>
-                  </div>
-                </div>
+                <p className={s.sampleNote}>Sample data</p>
               </div>
-              <p className={s.sampleNote}>Sample data</p>
             </div>
           </div>
         </div>

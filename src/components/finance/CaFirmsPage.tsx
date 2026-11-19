@@ -7,6 +7,7 @@ import {
   ArrowRight,
   ArrowUpRight,
   Building2,
+  Check,
   CheckCircle2,
   ShieldCheck,
   UploadCloud,
@@ -290,52 +291,74 @@ export function CaFirmsPage() {
               </p>
             </div>
 
-            {/* Live Mock Preview Card */}
-            <div
-              className={s.qcard}
-              role="img"
-              aria-label="Example your clients view: 12 companies, 98 bills received, 89 ready to approve, 9 need a look"
-            >
-              <div className={s.qcardTop}>
-                <span>
-                  <strong>Your clients</strong> · This week
-                </span>
-                <span className={`${s.statusBadge} ${s.info}`}>12 companies</span>
-              </div>
-              <div className={s.qcardBody}>
-                <div className={s.deskStats}>
-                  <div>
-                    <span className={s.statVal}>98</span>
-                    <span className={s.statLabel}>bills received</span>
+            {/* Live Mock Preview Card with 3D Depth Backdrop & Ghost Card */}
+            <div className={s.heroVisualWrapper}>
+              <div className={s.ambientGlow} aria-hidden="true" />
+              <div className={s.ghostCardBehind} aria-hidden="true" />
+
+              <div
+                className={s.qcard}
+                role="region"
+                aria-label="Example your clients view: 12 companies, 98 bills received, 89 ready to approve, 9 need a look"
+              >
+                <div className={s.qcardTop}>
+                  <span>
+                    <strong>Your clients</strong> · This week
+                  </span>
+                  <span className={`${s.statusBadge} ${s.info}`}>12 companies</span>
+                </div>
+                <div className={s.qcardBody}>
+                  <div className={s.deskStats}>
+                    <div>
+                      <span className={s.statVal}>98</span>
+                      <span className={s.statLabel}>bills received</span>
+                    </div>
+                    <div>
+                      <span className={s.statVal}>89</span>
+                      <span className={s.statLabel}>ready to approve</span>
+                    </div>
+                    <div>
+                      <span className={s.statVal}>9</span>
+                      <span className={s.statLabel}>need a look</span>
+                    </div>
                   </div>
-                  <div>
-                    <span className={s.statVal}>89</span>
-                    <span className={s.statLabel}>ready to approve</span>
+                  <div className={s.qcardRows}>
+                    <div className={s.qcardRow}>
+                      <span className={s.rowWho}>Apex Engineering Pvt Ltd</span>
+                      <span className={s.rowWhat}>48 bills · by email</span>
+                      <span className={`${s.statusBadge} ${s.ok}`}>Read</span>
+                    </div>
+                    <div className={s.qcardRow}>
+                      <span className={s.rowWho}>Kovai Textiles</span>
+                      <span className={s.rowWhat}>32 bills · uploaded</span>
+                      <span className={`${s.statusBadge} ${s.wait}`}>5 to check</span>
+                    </div>
+                    <div className={s.qcardRow}>
+                      <span className={s.rowWho}>Sri Lakshmi Traders</span>
+                      <span className={s.rowWhat}>18 bills · WhatsApp photos</span>
+                      <span className={`${s.statusBadge} ${s.wait}`}>4 to check</span>
+                    </div>
                   </div>
-                  <div>
-                    <span className={s.statVal}>9</span>
-                    <span className={s.statLabel}>need a look</span>
+
+                  {/* Interactive Action Row matching Image 1 */}
+                  <div className={s.heroActionRow}>
+                    <button
+                      type="button"
+                      className={s.heroApproveBtn}
+                    >
+                      <Check size={16} aria-hidden="true" />
+                      <span>Post 89 approved bills to Tally</span>
+                    </button>
+                    <button
+                      type="button"
+                      className={s.heroEditBtn}
+                    >
+                      Review
+                    </button>
                   </div>
                 </div>
-                <div className={s.qcardRows}>
-                  <div className={s.qcardRow}>
-                    <span className={s.rowWho}>Apex Engineering Pvt Ltd</span>
-                    <span className={s.rowWhat}>48 bills · by email</span>
-                    <span className={`${s.statusBadge} ${s.ok}`}>Read</span>
-                  </div>
-                  <div className={s.qcardRow}>
-                    <span className={s.rowWho}>Kovai Textiles</span>
-                    <span className={s.rowWhat}>32 bills · uploaded</span>
-                    <span className={`${s.statusBadge} ${s.wait}`}>5 to check</span>
-                  </div>
-                  <div className={s.qcardRow}>
-                    <span className={s.rowWho}>Sri Lakshmi Traders</span>
-                    <span className={s.rowWhat}>18 bills · WhatsApp photos</span>
-                    <span className={`${s.statusBadge} ${s.wait}`}>4 to check</span>
-                  </div>
-                </div>
+                <p className={s.sampleNote}>Sample data</p>
               </div>
-              <p className={s.sampleNote}>Sample data</p>
             </div>
           </div>
         </div>

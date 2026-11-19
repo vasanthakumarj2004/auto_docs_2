@@ -6,6 +6,7 @@ import {
   ArrowDown,
   ArrowRight,
   ArrowUpRight,
+  Check,
   CheckCircle2,
   MessageSquare,
   ShieldCheck,
@@ -317,52 +318,74 @@ export function BusinessOwnersPage() {
               </p>
             </div>
 
-            {/* Live Mock Preview Card */}
-            <div
-              className={s.qcard}
-              role="img"
-              aria-label="Example owner view: 21.7 lakh cash and bank, 2.52 lakh due to suppliers this week, 6.4 lakh overdue from customers"
-            >
-              <div className={s.qcardTop}>
-                <span>
-                  <strong>Owner view</strong> · This week
-                </span>
-                <span className={`${s.statusBadge} ${s.wait}`}>1 for you</span>
-              </div>
-              <div className={s.qcardBody}>
-                <div className={s.deskStats}>
-                  <div>
-                    <span className={s.statVal}>₹21.7L</span>
-                    <span className={s.statLabel}>cash and bank</span>
+            {/* Live Mock Preview Card with 3D Depth Backdrop & Ghost Card */}
+            <div className={s.heroVisualWrapper}>
+              <div className={s.ambientGlow} aria-hidden="true" />
+              <div className={s.ghostCardBehind} aria-hidden="true" />
+
+              <div
+                className={s.qcard}
+                role="region"
+                aria-label="Example owner view: 21.7 lakh cash and bank, 2.52 lakh due to suppliers this week, 6.4 lakh overdue from customers"
+              >
+                <div className={s.qcardTop}>
+                  <span>
+                    <strong>Owner view</strong> · This week
+                  </span>
+                  <span className={`${s.statusBadge} ${s.wait}`}>1 for you</span>
+                </div>
+                <div className={s.qcardBody}>
+                  <div className={s.deskStats}>
+                    <div>
+                      <span className={s.statVal}>₹21.7L</span>
+                      <span className={s.statLabel}>cash and bank</span>
+                    </div>
+                    <div>
+                      <span className={s.statVal}>₹2.52L</span>
+                      <span className={s.statLabel}>due to suppliers</span>
+                    </div>
+                    <div>
+                      <span className={s.statVal}>₹6.4L</span>
+                      <span className={s.statLabel}>overdue from customers</span>
+                    </div>
                   </div>
-                  <div>
-                    <span className={s.statVal}>₹2.52L</span>
-                    <span className={s.statLabel}>due to suppliers</span>
+                  <div className={s.qcardRows}>
+                    <div className={s.qcardRow}>
+                      <span className={s.rowWho}>Metro Supplies</span>
+                      <span className={s.rowWhat}>INV-4491 · ₹82,450 · PDF attached</span>
+                      <span className={`${s.statusBadge} ${s.wait}`}>Your sign-off</span>
+                    </div>
+                    <div className={s.qcardRow}>
+                      <span className={s.rowWho}>Prime Components</span>
+                      <span className={s.rowWhat}>Ball bearings ₹170, last PO ₹160</span>
+                      <span className={`${s.statusBadge} ${s.info}`}>Price up 6%</span>
+                    </div>
+                    <div className={s.qcardRow}>
+                      <span className={s.rowWho}>Kiran Retail</span>
+                      <span className={s.rowWhat}>₹3,20,000 · 46 days late</span>
+                      <span className={`${s.statusBadge} ${s.ok}`}>Reminder sent</span>
+                    </div>
                   </div>
-                  <div>
-                    <span className={s.statVal}>₹6.4L</span>
-                    <span className={s.statLabel}>overdue from customers</span>
+
+                  {/* Interactive Action Row matching Image 1 */}
+                  <div className={s.heroActionRow}>
+                    <button
+                      type="button"
+                      className={s.heroApproveBtn}
+                    >
+                      <Check size={16} aria-hidden="true" />
+                      <span>Approve ₹82,450 for payment</span>
+                    </button>
+                    <button
+                      type="button"
+                      className={s.heroEditBtn}
+                    >
+                      Review
+                    </button>
                   </div>
                 </div>
-                <div className={s.qcardRows}>
-                  <div className={s.qcardRow}>
-                    <span className={s.rowWho}>Metro Supplies</span>
-                    <span className={s.rowWhat}>INV-4491 · ₹82,450 · PDF attached</span>
-                    <span className={`${s.statusBadge} ${s.wait}`}>Your sign-off</span>
-                  </div>
-                  <div className={s.qcardRow}>
-                    <span className={s.rowWho}>Prime Components</span>
-                    <span className={s.rowWhat}>Ball bearings ₹170, last PO ₹160</span>
-                    <span className={`${s.statusBadge} ${s.info}`}>Price up 6%</span>
-                  </div>
-                  <div className={s.qcardRow}>
-                    <span className={s.rowWho}>Kiran Retail</span>
-                    <span className={s.rowWhat}>₹3,20,000 · 46 days late</span>
-                    <span className={`${s.statusBadge} ${s.ok}`}>Reminder sent</span>
-                  </div>
-                </div>
+                <p className={s.sampleNote}>Sample data</p>
               </div>
-              <p className={s.sampleNote}>Sample data</p>
             </div>
           </div>
         </div>
