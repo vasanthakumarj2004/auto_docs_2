@@ -2,8 +2,6 @@
 .section {
   padding: 80px 0 92px;
   background-color: #fafafa;
-  border-top: 1px solid #e2e8f0;
-  border-bottom: 1px solid #e2e8f0;
   color: #0f172a;
 }
 
@@ -39,7 +37,7 @@
 }
 
 :global([data-theme="dark"]) .headline span {
-  color: var(--color-brand-text, #18cb96);
+  color: var(--color-brand-text, #2E8B57);
 }
 
 .subtitle {

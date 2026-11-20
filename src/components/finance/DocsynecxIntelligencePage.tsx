@@ -355,22 +355,7 @@ export function DocsynecxIntelligencePage() {
                     </div>
                   </div>
 
-                  {/* Interactive Action Row matching Image 1 */}
-                  <div className={s.heroActionRow}>
-                    <button
-                      type="button"
-                      className={s.heroApproveBtn}
-                    >
-                      <Sparkles size={16} aria-hidden="true" />
-                      <span>Ask follow-up question</span>
-                    </button>
-                    <button
-                      type="button"
-                      className={s.heroEditBtn}
-                    >
-                      View MIS
-                    </button>
-                  </div>
+                  
                 </div>
                 <p className={s.sampleNote}>Sample data</p>
               </div>

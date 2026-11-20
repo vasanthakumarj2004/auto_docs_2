@@ -617,15 +617,15 @@ export function EmailToBookingPage() {
                       </div>
                     )}
 
-                    {/* Step 7 Actions */}
+                    {/* Step 7 Actions (Static UI Mockup) */}
                     {activeStep.actions && (
-                      <div className={s.panelActionsDark}>
-                        <button type="button" className={s.approveBtn}>
+                      <div className={s.panelActionsDark} aria-hidden="true">
+                        <div className={s.approveBtn}>
                           {activeStep.actions.approveText}
-                        </button>
-                        <button type="button" className={s.editBtn}>
+                        </div>
+                        <div className={s.editBtn}>
                           {activeStep.actions.editText}
-                        </button>
+                        </div>
                       </div>
                     )}
                   </div>

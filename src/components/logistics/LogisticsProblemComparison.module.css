@@ -1,15 +1,11 @@
 .section {
   padding: 80px 0 92px;
   background-color: #fafbfc;
-  border-top: 1px solid #e2e8f0;
-  border-bottom: 1px solid #e2e8f0;
   color: #0f172a;
 }
 
 :global([data-theme="dark"]) .section {
   background-color: #0b131c;
-  border-top-color: #1e2c3a;
-  border-bottom-color: #1e2c3a;
   color: #f1f5f9;
 }
 

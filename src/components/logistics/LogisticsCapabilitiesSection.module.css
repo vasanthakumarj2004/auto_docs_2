@@ -2,8 +2,6 @@
   background-color: #f8fafc;
   color: #0f172a;
   padding-block: clamp(48px, 6vw, 88px);
-  border-top: 1px solid #e2e8f0;
-  border-bottom: 1px solid #e2e8f0;
   position: relative;
   overflow: visible;
 }

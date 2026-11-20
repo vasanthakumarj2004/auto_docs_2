@@ -2,7 +2,6 @@
   padding-block: 88px 96px;
   background: #0d1726;
   color: #ffffff;
-  border-block: 1px solid rgba(255, 255, 255, 0.08);
   overflow: hidden;
 }
 
@@ -34,7 +33,7 @@
 }
 
 .headline span {
-  color: var(--color-brand-text, #18cb96);
+  color: var(--color-brand-text, #2E8B57);
 }
 
 .intro {

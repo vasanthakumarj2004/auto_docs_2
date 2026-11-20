@@ -1,4 +1,4 @@
-.section { background: var(--landing-bg); border-block: 1px solid var(--landing-line); }
+.section { background: var(--landing-bg); }
 .heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 36px; margin-bottom: 38px; }
 .heading > div:first-child { max-width: 860px; }
 .eyebrow { display: block; }
@@ -8,6 +8,9 @@
   letter-spacing: -0.035em;
   line-height: 1.2;
   margin: 0;
+}
+.heading h2 span {
+  color: var(--color-brand-text, #2E8B57);
 }
 .line {
   display: inline-block;

@@ -367,22 +367,7 @@ export function BusinessOwnersPage() {
                     </div>
                   </div>
 
-                  {/* Interactive Action Row matching Image 1 */}
-                  <div className={s.heroActionRow}>
-                    <button
-                      type="button"
-                      className={s.heroApproveBtn}
-                    >
-                      <Check size={16} aria-hidden="true" />
-                      <span>Approve ₹82,450 for payment</span>
-                    </button>
-                    <button
-                      type="button"
-                      className={s.heroEditBtn}
-                    >
-                      Review
-                    </button>
-                  </div>
+                  
                 </div>
                 <p className={s.sampleNote}>Sample data</p>
               </div>

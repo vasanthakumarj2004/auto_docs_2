@@ -304,22 +304,7 @@ export function PaymentRemindersPage() {
                     </div>
                   </div>
 
-                  {/* Interactive Action Row matching Image 1 */}
-                  <div className={s.heroActionRow}>
-                    <button
-                      type="button"
-                      className={s.heroApproveBtn}
-                    >
-                      <Check size={16} aria-hidden="true" />
-                      <span>Send 4 approved reminders</span>
-                    </button>
-                    <button
-                      type="button"
-                      className={s.heroEditBtn}
-                    >
-                      Customize
-                    </button>
-                  </div>
+                  
                 </div>
                 <p className={s.sampleNote}>Sample data</p>
               </div>

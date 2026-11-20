@@ -1,4 +1,4 @@
-.section { background: var(--landing-bg, #fafafa); border-block: 1px solid var(--landing-line, #dde1e9); }
+.section { background: var(--landing-bg, #fafafa); }
 .heading { display: flex; justify-content: space-between; align-items: center; gap: 48px; margin-bottom: 38px; }
 .heading > div:first-child { max-width: 650px; }
 .eyebrow {

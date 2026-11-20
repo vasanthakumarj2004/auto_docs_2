@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { ArrowUpRight, X } from 'lucide-react';
 import s from './LandingAnnouncementBar.module.css';
@@ -9,22 +9,54 @@ const STORAGE_KEY = 'docsynecx-iics-2026-announcement-dismissed';
 
 export function LandingAnnouncementBar() {
   const [dismissed, setDismissed] = useState(true); // default true for SSR to avoid layout shift
+  const barRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     try {
       const isDismissed = sessionStorage.getItem(STORAGE_KEY);
       if (isDismissed !== 'true') {
         setDismissed(false);
+      } else {
+        document.documentElement.style.setProperty('--announcement-bar-height', '0px');
       }
     } catch {
       setDismissed(false);
     }
   }, []);
 
+  useEffect(() => {
+    if (dismissed) {
+      document.documentElement.style.setProperty('--announcement-bar-height', '0px');
+      return;
+    }
+
+    const updateHeight = () => {
+      if (barRef.current) {
+        const rect = barRef.current.getBoundingClientRect();
+        document.documentElement.style.setProperty('--announcement-bar-height', `${Math.ceil(rect.height)}px`);
+      }
+    };
+
+    updateHeight();
+
+    let ro: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== 'undefined' && barRef.current) {
+      ro = new ResizeObserver(updateHeight);
+      ro.observe(barRef.current);
+    }
+    window.addEventListener('resize', updateHeight);
+
+    return () => {
+      if (ro) ro.disconnect();
+      window.removeEventListener('resize', updateHeight);
+    };
+  }, [dismissed]);
+
   function handleDismiss(e: React.MouseEvent) {
     e.preventDefault();
     e.stopPropagation();
     setDismissed(true);
+    document.documentElement.style.setProperty('--announcement-bar-height', '0px');
     try {
       sessionStorage.setItem(STORAGE_KEY, 'true');
     } catch {}
@@ -34,6 +66,7 @@ export function LandingAnnouncementBar() {
 
   return (
     <aside
+      ref={barRef}
       role="banner"
       aria-label="IICS 2026 Event Announcement"
       className={s.announcementBar}

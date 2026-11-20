@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { ChevronDown, Menu, X, ArrowRight, ArrowUpRight, Workflow } from 'lucide-react';
 import { DocsynecxLogo } from './DocsynecxLogo';
@@ -229,7 +230,9 @@ function NavbarMenuCard({ menu, onNavigate }: { menu: MegaMenuData; onNavigate: 
   </div>;
 }
 
-export function LandingNavigation({ variant = 'compact' }: { variant?: 'default' | 'horizon' | 'compact' }) {
+export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default' | 'horizon' | 'compact' }) {
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement>(null);
@@ -283,64 +286,49 @@ export function LandingNavigation({ variant = 'compact' }: { variant?: 'default'
     }, 180);
   };
 
-  const isCompactDefault = variant === 'compact';
-  const [isScrolled, setIsScrolled] = useState(isCompactDefault);
-  const [isCompact, setIsCompact] = useState(isCompactDefault);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isCompact, setIsCompact] = useState(false);
 
   useEffect(() => {
-    if (variant === 'compact') {
-      setIsScrolled(true);
-      setIsCompact(true);
-      return;
-    }
-
-    const hero = variant === 'horizon' ? document.getElementById('top') : null;
     let frame = 0;
     const updateNavigation = () => {
       frame = 0;
-      const header = headerRef.current;
-      // Separate the early contraction from the color change at the hero's edge.
-      // A small dead zone prevents flickering near the top during touch scrolling.
-      setIsCompact((compact) => window.scrollY > (compact ? 8 : 32));
-      setIsScrolled(variant === 'horizon'
-        ? hero
-          ? Boolean(header && hero.getBoundingClientRect().bottom <= header.getBoundingClientRect().bottom)
-          : true
-        : window.scrollY > 8);
+      const scrollY = window.scrollY;
+      // Smooth contraction when scrolling begins
+      setIsCompact((compact) => scrollY > (compact ? 8 : 32));
+      setIsScrolled(scrollY > 8);
     };
     const handleScroll = () => {
       if (!frame) frame = window.requestAnimationFrame(updateNavigation);
     };
-    const observer = hero ? new ResizeObserver(handleScroll) : null;
-    if (hero) observer?.observe(hero);
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleScroll);
     updateNavigation();
     return () => {
       window.cancelAnimationFrame(frame);
-      observer?.disconnect();
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleScroll);
     };
-  }, [variant]);
+  }, [pathname]);
 
   const activeMega = openMenu ? MEGA_MENUS[openMenu] : null;
-  const headerVariant = variant === 'compact' ? 'horizon' : variant;
+  const headerVariant = variant === 'default' ? 'default' : 'horizon';
 
   const navigation = (
     <header
       ref={headerRef}
       className={styles.header}
       data-variant={headerVariant}
+      data-theme={isHomePage ? 'dark' : 'light'}
       data-scrolled={isScrolled ? 'true' : 'false'}
       data-compact={isCompact ? 'true' : 'false'}
       data-past-hero={isScrolled ? 'true' : 'false'}
-      data-static={variant === 'compact' ? 'true' : 'false'}
+      data-static="false"
       onMouseLeave={handleMouseLeave}
     >
       <div className={`site-shell ${styles.navbar}`}>
         <Link href="/" className={styles.brand} aria-label="Docsynecx home" onClick={close}>
-          <DocsynecxLogo variant={variant === 'horizon' && !isScrolled ? 'footer' : 'header'} className={styles.logo} />
+          <DocsynecxLogo variant={isHomePage && !isScrolled ? 'footer' : 'header'} className={styles.logo} />
           {/* <span>Intelligent workflows</span> */}
         </Link>
 
@@ -379,29 +367,85 @@ export function LandingNavigation({ variant = 'compact' }: { variant?: 'default'
               );
             }
 
+            const isClickableDesk = item.key === 'Finance Desk' || item.key === 'Logistics Desk';
+            const deskHref = item.key === 'Finance Desk' ? '/finance-desk/' : '/logistics/';
+
             return (
               <div
                 key={item.key}
                 className={styles.dropdown}
                 onMouseEnter={() => handleMouseEnter(item.key)}
               >
-                <button
-                  ref={(node) => {
-                    menuTriggers.current[item.key] = node;
-                  }}
-                  type="button"
-                  aria-expanded={openMenu === item.key}
-                  aria-controls="landing-mega-menu"
-                  onClick={() => setOpenMenu(openMenu === item.key ? null : item.key)}
-                >
-                  {MEGA_MENUS[item.key]?.label || item.key}
-                  <ChevronDown
-                    size={13}
-                    aria-hidden="true"
-                    className={`transition-transform duration-200 ${openMenu === item.key ? 'rotate-180' : ''
+                {isClickableDesk ? (
+                  !mobileOpen ? (
+                    <Link
+                      href={deskHref}
+                      ref={(node) => {
+                        menuTriggers.current[item.key] = node as unknown as HTMLButtonElement;
+                      }}
+                      className={styles.dropdownTrigger}
+                      aria-expanded={openMenu === item.key}
+                      aria-controls="landing-mega-menu"
+                      onClick={close}
+                    >
+                      {MEGA_MENUS[item.key]?.label || item.key}
+                      <ChevronDown
+                        size={13}
+                        aria-hidden="true"
+                        className={`transition-transform duration-200 ${
+                          openMenu === item.key ? 'rotate-180' : ''
+                        }`}
+                      />
+                    </Link>
+                  ) : (
+                    <div className={styles.mobileDropdownTriggerRow}>
+                      <Link
+                        href={deskHref}
+                        className={styles.mobileDropdownLink}
+                        onClick={close}
+                      >
+                        {MEGA_MENUS[item.key]?.label || item.key}
+                      </Link>
+                      <button
+                        ref={(node) => {
+                          menuTriggers.current[item.key] = node;
+                        }}
+                        type="button"
+                        className={styles.mobileDropdownChevron}
+                        aria-expanded={openMenu === item.key}
+                        aria-label={`Toggle ${MEGA_MENUS[item.key]?.label || item.key} menu`}
+                        onClick={() => setOpenMenu(openMenu === item.key ? null : item.key)}
+                      >
+                        <ChevronDown
+                          size={15}
+                          aria-hidden="true"
+                          className={`transition-transform duration-200 ${
+                            openMenu === item.key ? 'rotate-180' : ''
+                          }`}
+                        />
+                      </button>
+                    </div>
+                  )
+                ) : (
+                  <button
+                    ref={(node) => {
+                      menuTriggers.current[item.key] = node;
+                    }}
+                    type="button"
+                    aria-expanded={openMenu === item.key}
+                    aria-controls="landing-mega-menu"
+                    onClick={() => setOpenMenu(openMenu === item.key ? null : item.key)}
+                  >
+                    {MEGA_MENUS[item.key]?.label || item.key}
+                    <ChevronDown
+                      size={13}
+                      aria-hidden="true"
+                      className={`transition-transform duration-200 ${
+                        openMenu === item.key ? 'rotate-180' : ''
                       }`}
-                  />
-                </button>
+                    />
+                  </button>
+                )}
 
                 {/* Mobile Drawer Accordion ONLY rendered on mobile */}
                 {mobileOpen && openMenu === item.key && (

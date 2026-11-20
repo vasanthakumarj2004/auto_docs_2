@@ -135,7 +135,7 @@ export const financeProblem = {
 /* ── Four Steps (How it works) ── */
 export const financeHowItWorks = {
   eyebrow: 'How it works',
-  headline: 'From supplier invoice to Tally Prime, in four steps.',
+  headline: 'From supplier invoice to TallyPrime, in four steps.',
   subtitle: 'Your team checks and approves at every step that touches your books.',
   steps: [
     {
@@ -152,9 +152,9 @@ export const financeHowItWorks = {
     },
     {
       step: 3,
-      title: 'Approve into Tally Prime',
+      title: 'Approve into TallyPrime',
       description:
-        'Once approved, the entry goes to the right ledgers in your Tally Prime company.',
+        'Once approved, the entry goes to the right ledgers in your TallyPrime company.',
     },
     {
       step: 4,

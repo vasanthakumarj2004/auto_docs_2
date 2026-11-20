@@ -3,8 +3,6 @@
   background:
     radial-gradient(ellipse 80% 50% at 50% 15%, rgba(30, 41, 59, 0.45) 0%, transparent 70%),
     linear-gradient(180deg, #0d1726 0%, #09101a 100%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
   color: #ffffff;
 }
 

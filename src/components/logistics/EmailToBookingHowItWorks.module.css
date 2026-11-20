@@ -2,8 +2,6 @@
   background: #f8fafc;
   color: var(--landing-ink, #0f172a);
   padding-block: clamp(64px, 8vh, 100px);
-  border-top: 1px solid var(--landing-line, #dde1e9);
-  border-bottom: 1px solid var(--landing-line, #dde1e9);
   position: relative;
   overflow: hidden;
 }

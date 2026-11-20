@@ -2,7 +2,6 @@
   position: relative;
   padding-block: clamp(70px, 8.5vh, 100px);
   background: var(--landing-bg, #fafafa);
-  border-bottom: 1px solid var(--landing-line, #dde1e9);
 }
 
 .sectionHeading {

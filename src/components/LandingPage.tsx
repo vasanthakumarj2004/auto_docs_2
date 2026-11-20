@@ -76,7 +76,7 @@ export function LandingPage() {
       </a>
       <LandingAnnouncementBar />
       <LandingNavigation variant="horizon" />
-      <main id="main-content">
+      <main id="main-content" className={styles.mainContent}>
         <LandingHero />
         <section className={styles.statStrip} aria-labelledby="outcomes-title">
           <div className="site-shell">

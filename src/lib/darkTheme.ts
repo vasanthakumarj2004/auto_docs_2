@@ -1,10 +1,10 @@
 // Dark surfaces have their own palette. Accent colors remain in --color-brand-*.
 export const DARK_THEME_KEY = 'autodocs-dark-theme';
 export type DarkTheme = { id: string; hue: number };
-export const DEFAULT_DARK_THEME: DarkTheme = { id: 'current', hue: 267 };
+export const DEFAULT_DARK_THEME: DarkTheme = { id: 'sea-green', hue: 146 };
 // Exact arrow color in public/Docsynecx-Logo.svg and its footer variant.
-export const LOGO_GREEN = '#18CB96';
-export const LOGO_DARK_THEME: DarkTheme = { id: 'logo', hue: 162.2346368715084 };
+export const LOGO_GREEN = '#2E8B57';
+export const LOGO_DARK_THEME: DarkTheme = { id: 'logo', hue: 146 };
 
 // Fixed saturation/lightness keeps all background hues dark enough for white text.
 const surfaces: Record<string, [number, number]> = {

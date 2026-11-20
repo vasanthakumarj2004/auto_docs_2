@@ -13,7 +13,7 @@ export const landingDesks = [
   {
     id: 'finance', title: 'Finance', tag: 'Finance automation & intelligence', href: '/finance-desk/',
     copy: 'Move beyond invoice entry. Automate supplier documents and bring Bank Statement & Reconcilation, business reporting and AI insights into one workspace.',
-    features: ['Invoice Automation', 'Bank Statement & Reconcilation', 'Accounts Payable'],
+    features: ['Invoice Automation', 'Banking & Reconcilation', 'Payment Reminders','Docsynecx Intelligence','Accounts Payable'],
   },
   {
     id: 'logistics', title: 'Logistics', tag: 'Freight & logistics operations', href: '/#platform',

@@ -5,8 +5,7 @@
 /* ── 1. Top Title Section (Hero Gradient Background) ── */
 .titleSection {
   background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
-  border-bottom: 1px solid var(--landing-line, #dde1e9);
-  padding-top: clamp(36px, 4.5vh, 52px);
+  padding-top: calc(80px + clamp(36px, 4vh, 44px));
   padding-bottom: clamp(36px, 4.5vh, 48px);
 }
 
@@ -27,7 +26,7 @@
 }
 
 .breadcrumb a:hover {
-  color: var(--color-brand-strong, #0d9466);
+  color: var(--color-brand-strong, #236B43);
 }
 
 .breadcrumbCurrent {
@@ -423,7 +422,6 @@
 .faqSection {
   margin-top: clamp(40px, 6vh, 56px);
   padding-top: clamp(32px, 5vh, 48px);
-  border-top: 1px solid var(--landing-line, #dde1e9);
 }
 
 .faqHeader {
@@ -461,7 +459,6 @@
   padding-top: clamp(48px, 6vh, 72px);
   padding-bottom: clamp(60px, 8vh, 96px);
   background: #ffffff;
-  border-top: 1px solid var(--landing-line, #dde1e9);
 }
 
 .relatedHeading {

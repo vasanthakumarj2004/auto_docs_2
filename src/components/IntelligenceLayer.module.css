@@ -11,8 +11,6 @@
     radial-gradient(ellipse 80% 60% at 50% 0%, #0d1e3d 0%, #070d1d 80%);
   color: #ffffff;
   padding-block: clamp(56px, 7vh, 80px);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   overflow: hidden;
 }
 
