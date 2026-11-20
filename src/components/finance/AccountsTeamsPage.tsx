@@ -638,7 +638,8 @@ export function AccountsTeamsPage() {
                   What accounts teams ask about daily use.
                 </h2>
                 <p className={s.faqDescription}>
-                  Something else on your mind? Ask us in the demo.
+                  Something else on your mind?{' '}
+                  <Link href="/demo/#demo-form">Ask us in the demo.</Link>
                 </p>
               </div>
             </div>

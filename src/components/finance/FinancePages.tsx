@@ -212,7 +212,12 @@ function Overview() {
         <Heading
           eyebrow={financeFaqCopy.eyebrow}
           title={financeFaqCopy.headline}
-          description={financeFaqCopy.description}
+          description={
+            <>
+              Something else on your mind?{' '}
+              <Link href="/demo/#demo-form">Ask us in the demo.</Link>
+            </>
+          }
         />
         <SharedFaqAccordion items={financeFaqs} defaultOpenIndex={0} toggleStyle="plus" />
       </div>
