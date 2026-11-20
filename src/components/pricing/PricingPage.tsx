@@ -248,15 +248,7 @@ export function PricingPage() {
                     )}
                   </div>
 
-                  <div className={s.heroActionRow}>
-                    <Link href="/demo/#demo-form" className={s.heroApproveBtn}>
-                      <Check size={16} aria-hidden="true" />
-                      <span>Get your proposal</span>
-                    </Link>
-                    <a href="#estimate" className={s.heroEditBtn}>
-                      <span>Is it worth it?</span>
-                    </a>
-                  </div>
+                  
 
                   <p className={s.sampleNote}>Sample overview · Everything verified before posting</p>
                 </div>

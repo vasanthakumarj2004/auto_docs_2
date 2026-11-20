@@ -52,12 +52,10 @@
 
 .sectionAlternate {
   background: var(--landing-alt, #f6f5f9);
-  border-block: 1px solid var(--landing-line, #dde1e9);
 }
 
 :global([data-theme="dark"]) .sectionAlternate {
   background: #0d1726;
-  border-block-color: rgba(255, 255, 255, 0.08);
 }
 
 .secHead {
@@ -144,23 +142,21 @@
 
 /* ── 1. Hero Section ── */
 .viewportHero {
-  --finance-header-height: 81px;
-  min-height: calc(100vh - var(--finance-header-height));
-  min-height: calc(100dvh - var(--finance-header-height));
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: clamp(40px, 5vh, 64px);
-  padding-bottom: clamp(40px, 5vh, 64px);
+  padding-top: calc(80px + clamp(36px, 4.5vh, 60px));
+  padding-bottom: clamp(36px, 4.5vh, 56px);
   background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
-  border-bottom: 1px solid var(--landing-line, #dde1e9);
   color: var(--landing-ink, #0f172a);
   position: relative;
+  box-sizing: border-box;
 }
 
 :global([data-theme="dark"]) .viewportHero {
   background: linear-gradient(180deg, #0d1726 0%, #070d18 100%);
-  border-bottom-color: rgba(255, 255, 255, 0.08);
   color: #ffffff;
 }
 
@@ -1655,12 +1651,10 @@
 .closingSection {
   padding-block: clamp(64px, 8vh, 88px);
   background: #ffffff;
-  border-top: 1px solid var(--landing-line, #dde1e9);
 }
 
 :global([data-theme="dark"]) .closingSection {
   background: #08131c;
-  border-top-color: rgba(255, 255, 255, 0.08);
 }
 
 .closingCard {
