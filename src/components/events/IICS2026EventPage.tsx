@@ -1,16 +1,10 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
-import Link from 'next/link';
+import React, { useState } from 'react';
 import {
-  Check,
   MapPin,
-  Building2,
   ArrowUpRight,
-  ArrowRight,
   Radio,
-  Layers,
-  ShieldCheck,
   RotateCcw,
   CheckCircle2,
 } from 'lucide-react';
@@ -32,14 +26,6 @@ export function IICS2026EventPage() {
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
-  const passContainerRef = useRef<HTMLDivElement>(null);
-
-  const handleFlipToggle = () => {
-    setIsFlipped((prev) => !prev);
-    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
-      passContainerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  };
 
   const validate = () => {
     const errors: Record<string, string> = {};
@@ -78,73 +64,25 @@ export function IICS2026EventPage() {
         <div className={s.bgAmbientGlow} aria-hidden="true" />
 
         <div className="site-shell">
-          <div className={s.viewportGrid}>
-            {/* ============================================================= */}
-            {/* LEFT COLUMN: Event Headline, Highlights & Direct Action       */}
-            {/* ============================================================= */}
-            <div className={s.pitchColumn}>
-              {/* Eyebrow with Dash (same design as DOCSYNECX / FINANCE DESK) */}
-              <p className={s.eyebrow}>
-                {event.shortName} / EXHIBITOR
-              </p>
+          <div className={s.centerHeroWrapper}>
+            {/* Centered Headline Section */}
+            <div className={s.headlineBlock}>
+              <div className={s.eyebrowBadge}>
+                <span className={s.pulseDot} aria-hidden="true" />
+                <span>{event.shortName} · EXHIBITOR BOOTH {event.booth}</span>
+              </div>
 
-              {/* Main Headline */}
               <h1 className={s.headline}>
-                Meet Docsynecx at <span className={s.accent}>{event.shortName}</span>
+                <span className={s.headlineLine}>Meet Docsynecx at</span>
+                <span className={`${s.headlineLine} ${s.accentNowrap}`}>{event.shortName}</span>
               </h1>
-
-              {/* Event Positioning Pill */}
-              <div className={s.positioningPill}>
-                <Layers size={14} aria-hidden="true" />
-                <span>{event.positioning}</span>
-              </div>
-
-              {/* Concise Summary Description */}
-              <p className={s.summary}>{event.summary}</p>
-
-              {/* Crisp Bento Highlights */}
-              <div className={s.highlightsGrid}>
-                {event.highlights.map((item) => (
-                  <div key={item.title} className={s.highlightCard}>
-                    <div className={s.checkIconBox} aria-hidden="true">
-                      <Check size={14} strokeWidth={2.8} />
-                    </div>
-                    <div className={s.highlightContent}>
-                      <h4>{item.title}</h4>
-                      <p>{item.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Direct CTAs */}
-              <div className={s.actionRow}>
-                <button
-                  type="button"
-                  onClick={handleFlipToggle}
-                  className={`${s.demoButton} ${s.primaryBtn} ${s.primaryCta}`}
-                  aria-expanded={isFlipped}
-                >
-                  <span>{isFlipped ? 'View Exhibitor Pass' : `Book a Meeting at Booth ${event.booth}`}</span>
-                  <ArrowUpRight size={16} aria-hidden="true" />
-                </button>
-
-                <Link href="/contact/" className={`button-secondary ${s.secondaryCta}`}>
-                  <span>Contact Our Team</span>
-                </Link>
-              </div>
             </div>
 
-            {/* ============================================================= */}
-            {/* RIGHT COLUMN: 3D Flip Exhibitor Pass & Meeting Form Card      */}
-            {/* ============================================================= */}
-            <div ref={passContainerRef} className={s.passContainer}>
+            {/* Centered 3D Flip Exhibitor Pass & Meeting Form Card */}
+            <div className={s.passContainer}>
               <div className={`${s.passFlipper} ${isFlipped ? s.isFlipped : ''}`}>
                 {/* ---------------- FRONT FACE: OFFICIAL EXHIBITOR INVITATION PASS (DARK BLUE) ---------------- */}
                 <div className={`${s.passCard} ${s.passFront}`} role="region" aria-label="IICS 2026 Exhibitor Invitation Pass">
-                  {/* Real Physical Card Slipcase Notch */}
-                  <div className={s.thumbNotch} aria-hidden="true" />
-
                   {/* Top Row: Dates/Venue on Left, Cargo Show Logo on Right */}
                   <div className={s.invitationTopRow}>
                     <div className={s.invitationDatesBlock}>

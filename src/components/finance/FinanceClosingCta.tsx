@@ -35,7 +35,7 @@ export function FinanceClosingCta({
     </>
   );
   const resolvedCopy = copy ?? financeClosing.copy;
-  const resolvedSteps = steps ?? financeClosing.steps;
+  // const resolvedSteps = steps ?? financeClosing.steps;
   const resolvedPrimaryHref = primaryHref ?? financeClosing.primaryHref;
   const resolvedPrimaryText = primaryText ?? financeClosing.primaryText;
   const resolvedSecondaryText = secondaryText ?? financeClosing.secondaryText;
@@ -60,16 +60,16 @@ export function FinanceClosingCta({
             </p>
 
             {/* 3 Steps */}
-            <ol className={styles.stepList} aria-label="Demo onboarding steps">
+            {/* <ol className={styles.stepList} aria-label="Demo onboarding steps">
               {resolvedSteps.map((step, idx) => (
                 <li key={step} className={styles.stepItem}>
                   <span className={styles.stepNum}>{idx + 1}</span>
                   <span>{step}</span>
                 </li>
               ))}
-            </ol>
+            </ol> */}
 
-            {/* 2 Buttons */}
+            {/* Action Buttons */}
             <div className={styles.closingActions}>
               <Link
                 href={resolvedPrimaryHref}
@@ -78,12 +78,14 @@ export function FinanceClosingCta({
                 <span>{resolvedPrimaryText}</span>
                 <ArrowRight size={17} aria-hidden="true" />
               </Link>
-              <Link
-                href={secondaryHref}
-                className={styles.secondaryBtn}
-              >
-                {resolvedSecondaryText}
-              </Link>
+              {/* {secondaryText && (
+                <Link
+                  href={secondaryHref}
+                  className={styles.secondaryBtn}
+                >
+                  {secondaryText}
+                </Link>
+              )} */}
             </div>
           </div>
         </div>

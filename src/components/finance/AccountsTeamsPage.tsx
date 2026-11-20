@@ -672,11 +672,11 @@ export function AccountsTeamsPage() {
           </>
         }
         copy="Two pages, rotated, handwritten, fifty lines. In the demo you'll see it read, checked and ready to post to Tally Prime."
-        steps={[
-          'Book a 30-minute demo',
-          'Bring a few bills you hate typing',
-          'See them ready to post in Tally',
-        ]}
+        // steps={[
+        //   'Book a 30-minute demo',
+        //   'Bring a few bills you hate typing',
+        //   'See them ready to post in Tally',
+        // ]}
         primaryHref="/demo/#demo-form"
         primaryText="Book a demo"
         secondaryHref="/finance-desk/"

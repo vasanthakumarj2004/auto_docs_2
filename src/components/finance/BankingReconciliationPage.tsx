@@ -712,11 +712,11 @@ export function BankingReconciliationPage() {
           </>
         }
         copy="Share one month from your main bank account. In the demo you'll see every line categorised, checked against your books, and sorted into matched, probable and no match."
-        steps={[
-          'Book a 30-minute demo',
-          'Share one recent bank statement',
-          'See it categorised and reconciled',
-        ]}
+        // steps={[
+        //   'Book a 30-minute demo',
+        //   'Share one recent bank statement',
+        //   'See it categorised and reconciled',
+        // ]}
         secondaryHref="/finance-desk/"
         secondaryText="Back to Finance Desk"
       />

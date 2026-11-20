@@ -457,10 +457,10 @@ export function PaymentRemindersPage() {
                   <span>{activeStep.panelBar}</span>
                   <span
                     className={`${s.statusBadge} ${activeStep.statusType === 'ok'
-                        ? s.ok
-                        : activeStep.statusType === 'wait'
-                          ? s.wait
-                          : s.info
+                      ? s.ok
+                      : activeStep.statusType === 'wait'
+                        ? s.wait
+                        : s.info
                       }`}
                   >
                     {activeStep.panelStatus}
@@ -708,11 +708,11 @@ export function PaymentRemindersPage() {
           </>
         }
         copy="In the demo you'll see your unpaid invoices from Tally, sorted by risk, with reminders ready for your team to approve."
-        steps={[
-          'Book a 30-minute demo',
-          'Connect Tally Prime or share your outstanding list',
-          'See reminders drafted and ready to approve',
-        ]}
+        // steps={[
+        //   'Book a 30-minute demo',
+        //   'Connect Tally Prime or share your outstanding list',
+        //   'See reminders drafted and ready to approve',
+        // ]}
         secondaryHref="/finance-desk/"
         secondaryText="Back to Finance Desk"
       />

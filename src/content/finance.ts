@@ -336,11 +336,11 @@ export const financeClosing = {
   eyebrow: 'See it on your own invoices',
   title: "Bring ten invoices. We'll show you them in Tally.",
   copy: "Send us a few real supplier invoices. In the demo you'll see them read, checked and ready to approve into Tally Prime. Connect Tally and approve your first invoice in minutes.",
-  steps: [
-    'Book a 30-minute demo',
-    'Share a few recent supplier invoices',
-    'See them checked and ready for Tally',
-  ],
+  // steps: [
+  //   'Book a 30-minute demo',
+  //   'Share a few recent supplier invoices',
+  //   'See them checked and ready for Tally',
+  // ],
   primaryText: 'Book a demo',
   primaryHref: '/demo/#demo-form',
   secondaryText: 'See all five tools',
@@ -452,11 +452,11 @@ export const financePageCopy = {
     ctaTitle: "Bring ten invoices. We'll show you them in Tally.",
     ctaCopy:
       "Send us a few real supplier invoices. In the demo you'll see them read, checked and ready to approve into Tally Prime. Connect Tally and approve your first invoice in minutes.",
-    ctaSteps: [
-      'Book a 30-minute demo',
-      'Share a few recent supplier invoices',
-      'See them checked and ready for Tally',
-    ],
+    // ctaSteps: [
+    //   'Book a 30-minute demo',
+    //   'Share a few recent supplier invoices',
+    //   'See them checked and ready for Tally',
+    // ],
     ctaPrimary: 'Book a demo',
     ctaSecondary: 'See all five tools',
   },
