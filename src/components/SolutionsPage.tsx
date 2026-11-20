@@ -99,10 +99,13 @@ export function SolutionsPage() {
         </section>
 
         {/* ==================================================================
-            2. KEY FACTS / PROOF TILES STRIP
+            2. KEY FACTS / PROOF TILES STRIP (Matching Image 2 dark navy strip)
             ================================================================== */}
-        <section className={styles.proofTiles} aria-label="Key facts">
+        <section className={styles.proofTiles} aria-labelledby="solutions-glance-title">
           <div className="site-shell">
+            <p id="solutions-glance-title" className={styles.proofEyebrow}>
+              Document workflows at a glance
+            </p>
             <ul className={styles.tileRow}>
               <li className={styles.tile}>
                 <span className={styles.tileIcon} aria-hidden="true">
@@ -134,9 +137,9 @@ export function SolutionsPage() {
                 </div>
               </li>
 
-              <li className={`${styles.tile} ${styles.tileHighlight}`}>
+              <li className={styles.tile}>
                 <span className={styles.tileIcon} aria-hidden="true">
-                  <MousePointerClick size={20} strokeWidth={2.4} />
+                  <MousePointerClick size={20} strokeWidth={2.2} />
                 </span>
                 <div className={styles.tileContent}>
                   <strong className={styles.tileTitle}>One click to approve</strong>
@@ -260,11 +263,11 @@ export function SolutionsPage() {
             </>
           }
           copy="Tell us which documents eat your team's day. We'll show you a practical place to start, using your own bills."
-          steps={[
-            'Book a 30-minute demo',
-            'Bring a few of your real documents',
-            'See them read, checked and ready to approve',
-          ]}
+          // steps={[
+          //   'Book a 30-minute demo',
+          //   'Bring a few of your real documents',
+          //   'See them read, checked and ready to approve',
+          // ]}
           primaryHref="/demo/#demo-form"
           primaryText="Book a demo"
           secondaryHref="/finance-desk/"

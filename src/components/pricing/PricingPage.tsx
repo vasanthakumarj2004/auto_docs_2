@@ -940,11 +940,11 @@ export function PricingPage() {
               ? 'Thirty minutes, a few of your own bills, and a proposal sized to how your accounts team actually works.'
               : 'Thirty minutes, a few of your own shipment emails, and a proposal sized to how your operation actually runs.'
           }
-          steps={[
-            'Book a 30-minute demo',
-            'See your own work handled',
-            'Get a written proposal',
-          ]}
+          // steps={[
+          //   'Book a 30-minute demo',
+          //   'See your own work handled',
+          //   'Get a written proposal',
+          // ]}
           primaryHref="/demo/#demo-form"
           primaryText="Get your proposal"
           secondaryHref={desk === 'finance' ? '/finance-desk/' : '/logistics/'}

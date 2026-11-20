@@ -345,17 +345,41 @@
 }
 
 /* ==========================================================================
-   2. Proof / Key Facts Tiles Strip
+   2. Proof / Key Facts Tiles Strip (Dark Navy Background matching Image 2)
    ========================================================================== */
 .proofTiles {
-  background: var(--landing-bg);
-  border-bottom: 1px solid var(--landing-line);
-  padding-block: 28px;
+  padding: 48px 0 56px;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 15%, rgba(30, 41, 59, 0.45) 0%, transparent 70%),
+    linear-gradient(180deg, #0d1726 0%, #09101a 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+:global([data-theme="dark"]) .proofTiles {
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 15%, rgba(30, 41, 59, 0.45) 0%, transparent 70%),
+    linear-gradient(180deg, #0d1726 0%, #09101a 100%);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.proofEyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  margin: 0 0 24px;
 }
 
 .tileRow {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
   list-style: none;
   margin: 0;
@@ -364,7 +388,7 @@
 
 @media (max-width: 1040px) {
   .tileRow {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -380,10 +404,10 @@
   gap: 14px;
   align-items: flex-start;
   background: #ffffff;
-  border: 1px solid var(--landing-line);
+  border: 1px solid #dbe2e8;
   border-radius: 16px;
   padding: 20px 18px;
-  box-shadow: 0 2px 8px -2px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 1px 2px rgba(15, 31, 46, 0.04), 0 8px 24px -16px rgba(15, 31, 46, 0.18);
   transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
 }
 
@@ -394,18 +418,8 @@
 
 .tile:hover {
   transform: translateY(-2px);
-  border-color: rgba(24, 203, 150, 0.4);
-  box-shadow: 0 8px 24px -6px rgba(15, 23, 42, 0.08);
-}
-
-.tileHighlight {
-  border-color: rgba(24, 203, 150, 0.35);
-  background: linear-gradient(180deg, #ffffff 0%, rgba(24, 203, 150, 0.04) 100%);
-}
-
-:global([data-theme="dark"]) .tileHighlight {
-  background: linear-gradient(180deg, #111e30 0%, rgba(24, 203, 150, 0.08) 100%);
-  border-color: rgba(24, 203, 150, 0.35);
+  border-color: var(--color-brand, #18cb96);
+  box-shadow: 0 8px 24px -6px rgba(15, 23, 42, 0.25);
 }
 
 .tileIcon {
@@ -424,15 +438,33 @@
   color: #18cb96;
 }
 
-.tileHighlight .tileIcon {
-  background: var(--color-brand, #18cb96);
-  color: #ffffff;
-}
-
 .tileContent {
   display: flex;
   flex-direction: column;
   gap: 3px;
+  min-width: 0;
+}
+
+.tileTitle {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: #0f172a;
+}
+
+:global([data-theme="dark"]) .tileTitle {
+  color: #ffffff;
+}
+
+.tileSubtitle {
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: #64748b;
+}
+
+:global([data-theme="dark"]) .tileSubtitle {
+  color: #94a3b8;
 }
 
 .tileTitle {

@@ -592,11 +592,11 @@ export function CaFirmsPage() {
           </>
         }
         copy="Pick the client whose bills you dread. In the demo you'll see them read, checked and ready to post to their Tally company."
-        steps={[
-          'Book a 30-minute demo',
-          "Bring one client's bills for a month",
-          'See them checked and ready to post',
-        ]}
+        // steps={[
+        //   'Book a 30-minute demo',
+        //   "Bring one client's bills for a month",
+        //   'See them checked and ready to post',
+        // ]}
         primaryHref="/demo/#demo-form"
         primaryText="Book a demo"
         secondaryHref="/finance-desk/"
