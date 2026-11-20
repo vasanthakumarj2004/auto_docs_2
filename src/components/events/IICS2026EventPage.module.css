@@ -48,62 +48,91 @@
 }
 
 /* ==========================================================================
-   VIEWPORT TWO-COLUMN GRID
+   CENTERED HERO LAYOUT
    ========================================================================== */
 
-.viewportGrid {
+.centerHeroWrapper {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: minmax(0, 1.14fr) minmax(0, 0.96fr);
-  gap: clamp(36px, 4.5vw, 64px);
-  align-items: center;
-}
-
-/* ==========================================================================
-   LEFT COLUMN: Value Proposition & What to Expect
-   ========================================================================== */
-
-.pitchColumn {
   display: flex;
   flex-direction: column;
-}
-
-/* Eyebrow with Dash (same design as DOCSYNECX / FINANCE DESK) */
-.eyebrow {
-  display: flex;
   align-items: center;
-  gap: 10px;
-  margin: 0 0 18px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10.5px;
-  font-weight: 600;
-  line-height: 1.6;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-brand-strong, #15b886);
+  max-width: 860px;
+  margin: 0 auto;
+  width: 100%;
 }
 
-.eyebrow::before {
-  content: '';
-  width: 22px;
-  height: 2px;
+.headlineBlock {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: clamp(32px, 5vh, 48px);
+  width: 100%;
+}
+
+/* Modern Capsule Eyebrow Badge with Pulse Dot */
+.eyebrowBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: var(--color-brand-soft, #e8faf4);
+  border: 1px solid var(--color-brand-border, #99ebd1);
+  color: var(--color-brand-strong, #15b886);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  box-shadow: 0 1px 3px rgba(24, 203, 150, 0.08);
+}
+
+.pulseDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
   background: var(--color-brand, #18cb96);
+  box-shadow: 0 0 0 0 rgba(24, 203, 150, 0.7);
+  animation: pulseDotAnim 2s infinite cubic-bezier(0.66, 0, 0, 1);
   flex-shrink: 0;
 }
 
+@keyframes pulseDotAnim {
+  0% {
+    box-shadow: 0 0 0 0 rgba(24, 203, 150, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(24, 203, 150, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(24, 203, 150, 0);
+  }
+}
+
 .headline {
-  font-size: clamp(34px, 3.8vw, 48px);
+  font-size: clamp(30px, 3.8vw, 46px);
   font-weight: 800;
-  line-height: 1.15;
+  line-height: 1.2;
   letter-spacing: -0.035em;
   color: var(--color-ink, #0f172a);
-  margin-bottom: 14px;
+  margin: 0;
+  text-align: center;
+  text-wrap: balance;
+  max-width: 820px;
 }
 
 .accent {
   color: var(--color-brand, #18cb96);
   display: inline;
+}
+
+.accentNowrap {
+  color: var(--color-brand, #18cb96);
+  white-space: nowrap;
+  display: inline-block;
 }
 
 .positioningPill {
@@ -228,6 +257,8 @@
   perspective: 1400px;
   position: relative;
   width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
 }
 
 .passFlipper {
