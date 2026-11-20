@@ -9,6 +9,7 @@ import {
   ShieldCheck,
   HeartHandshake,
   MapPin,
+  Sparkles,
 } from "lucide-react";
 import { LandingNavigation } from "../LandingNavigation";
 import { ShipsyFooter } from "../ShipsyFooter";
@@ -61,15 +62,25 @@ export function AboutPage() {
                 intelligent, connected and effortless.
               </p>
 
-              <div className={s.heroNotes}>
-                <div className={s.heroNoteItem}>
-                  <strong>Built with purpose</strong>
-                  <span>Practical AI for real work</span>
+              <div className={s.heroTrustRow}>
+                <div className={s.heroTrustCard}>
+                  <div className={s.trustIconBox} aria-hidden="true">
+                    <Sparkles size={17} strokeWidth={2.2} />
+                  </div>
+                  <div className={s.trustText}>
+                    <strong>Built with purpose</strong>
+                    <span>Practical AI for real work</span>
+                  </div>
                 </div>
-                <div className={s.heroNoteDivider} aria-hidden="true" />
-                <div className={s.heroNoteItem}>
-                  <strong>Rooted in Coimbatore</strong>
-                  <span>Building for businesses everywhere</span>
+
+                <div className={s.heroTrustCard}>
+                  <div className={s.trustIconBox} aria-hidden="true">
+                    <MapPin size={17} strokeWidth={2.2} />
+                  </div>
+                  <div className={s.trustText}>
+                    <strong>Rooted in Coimbatore</strong>
+                    <span>Building for businesses everywhere</span>
+                  </div>
                 </div>
               </div>
             </div>
