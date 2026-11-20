@@ -396,7 +396,8 @@ export function PricingPage() {
                 <div className={s.secHead}>
                   <span className={s.eyebrow}>Logistics Desk modules</span>
                   <h2>
-                    Take one module, <span>or all three.</span>
+                    Take one module, <br />
+                    <span>or all three.</span>
                   </h2>
                   <p>
                     Each one takes a job off your team. Together, an enquiry becomes a tracked shipment
@@ -487,7 +488,8 @@ export function PricingPage() {
                 <div className={s.secHead} style={{ marginBottom: 0 }}>
                   <span className={s.eyebrow}>Is it worth it?</span>
                   <h2 id="est-h">
-                    See what the manual work <span>costs you today.</span>
+                    See what the manual work <br />
+                    <span>costs you today.</span>
                   </h2>
                   <p>
                     Use your own numbers. If your plan costs less than this, it pays for itself, before
@@ -564,7 +566,8 @@ export function PricingPage() {
                 <div className={s.secHead}>
                   <span className={s.eyebrow}>Is it worth it?</span>
                   <h2 id="est-h">
-                    More quotes out. <span>More shipments won.</span>
+                    More quotes out. <br />
+                    <span>More shipments won.</span>
                   </h2>
                   <p>
                     Every enquiry you can&apos;t quote in time goes to someone else. Put in your sales
