@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Check, CheckCircle2, RotateCcw, ShieldCheck } from 'lucide-react';
+import React from 'react';
+import { Check, ShieldCheck } from 'lucide-react';
 import styles from './LogisticsHeroVisual.module.css';
 
 interface LogisticsHeroVisualProps {
@@ -9,17 +9,6 @@ interface LogisticsHeroVisualProps {
 }
 
 export function LogisticsHeroVisual({ className = '' }: LogisticsHeroVisualProps) {
-  const [isApproved, setIsApproved] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
-
-  const handleApprove = () => {
-    setIsApproved((prev) => !prev);
-  };
-
-  const handleEdit = () => {
-    setIsEditing((prev) => !prev);
-  };
-
   return (
     <div
       className={`${styles.heroVisualContainer} ${className}`}
@@ -40,10 +29,10 @@ export function LogisticsHeroVisual({ className = '' }: LogisticsHeroVisualProps
           </div>
 
           <div
-            className={`${styles.statusBadge} ${isApproved ? styles.statusBadgeApproved : ''}`}
+            className={styles.statusBadge}
             role="status"
           >
-            <span>{isApproved ? 'APPROVED & SENT' : 'WAITING FOR YOU'}</span>
+            <span>WAITING FOR YOU</span>
           </div>
         </div>
 
@@ -105,42 +94,16 @@ export function LogisticsHeroVisual({ className = '' }: LogisticsHeroVisualProps
           <div className={styles.totalAmount}>$785</div>
         </div>
 
-        {/* Action Buttons Row */}
-        <div className={styles.actionRow}>
-          <button
-            type="button"
-            onClick={handleApprove}
-            className={`${styles.approveButton} ${isApproved ? styles.approvedState : ''}`}
-            aria-pressed={isApproved}
-          >
-            {isApproved ? (
-              <>
-                <CheckCircle2 size={16} aria-hidden="true" />
-                <span>Approved · Quote Sent</span>
-              </>
-            ) : (
-              <>
-                <Check size={16} aria-hidden="true" />
-                <span>Approve &amp; send</span>
-              </>
-            )}
-          </button>
+        {/* Visual Action Row (Static UI Preview - Non-clickable) */}
+        <div className={styles.actionRow} aria-hidden="true">
+          <div className={styles.approveButton}>
+            <Check size={16} aria-hidden="true" />
+            <span>Approve &amp; send</span>
+          </div>
 
-          <button
-            type="button"
-            onClick={handleEdit}
-            className={`${styles.editButton} ${isEditing ? styles.editingState : ''}`}
-            aria-pressed={isEditing}
-          >
-            {isEditing ? (
-              <>
-                <RotateCcw size={14} aria-hidden="true" />
-                <span>Reset</span>
-              </>
-            ) : (
-              <span>Edit</span>
-            )}
-          </button>
+          <div className={styles.editButton}>
+            <span>Edit</span>
+          </div>
         </div>
 
         {/* Micro-line Footer */}

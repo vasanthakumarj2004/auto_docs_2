@@ -19,6 +19,7 @@
   background: #FAFAFA;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+  --announcement-bar-height: 0px;
 }
 
 :root[data-theme="violet"] {
@@ -432,8 +433,6 @@ button, input, textarea, select {
 }
 
 .cta-section {
-  border-top: 1px solid var(--color-brand-border, #e9e3f2);
-  border-bottom: 1px solid var(--color-brand-border, #e9e3f2);
   background: radial-gradient(ellipse at 50% 0%, var(--color-brand-soft, #f4edfb), transparent 70%), #fafafa;
   padding-block: 84px;
 }

@@ -30,7 +30,7 @@
 @media (hover: hover) {
   .secondaryButton:hover { background: var(--color-brand-soft); border-color: var(--color-brand-border); }
 }
-.hero { padding-top: 68px; overflow: hidden; background: radial-gradient(ellipse at 83% 29%, var(--color-brand-soft), transparent 58%), #fafafa; border-bottom: 1px solid var(--finance-line); }
+.hero { padding-top: 68px; overflow: hidden; background: radial-gradient(ellipse at 83% 29%, var(--color-brand-soft), transparent 58%), #fafafa; }
 .heroGrid { display: grid; grid-template-columns: 1.08fr 1fr; gap: 60px; align-items: center; padding-bottom: 60px; }
 .heroCopy { padding-block: 20px; }
 .heroCopy h1 { font-size: clamp(39px, 3.85vw, 56px); line-height: 1.11; letter-spacing: -.055em; font-weight: 750; }
@@ -78,7 +78,7 @@
 .sourceCard small { font-size: 8px; color: var(--finance-muted); margin-top: 3px; }
 .sourceCard > svg { color: var(--color-brand); margin-left: 8px; }
 .approvalChip { position: absolute; bottom: -19px; right: 12px; display: flex; gap: 7px; align-items: center; padding: 7px 12px; border-radius: 20px; background: #fff; border: 1px solid var(--color-brand-border); font-size: 8px; color: var(--color-brand-strong); }
-.proofStrip { display: flex; gap: 24px; align-items: center; border-top: 1px solid var(--finance-line); min-height: 98px; padding-block: 23px; font-size: 11px; }
+.proofStrip { display: flex; gap: 24px; align-items: center; min-height: 98px; padding-block: 23px; font-size: 11px; }
 .proofStrip > strong { font-size: 12px; font-weight: 650; }
 .proofStrip > span:nth-last-child(2) { color: var(--finance-muted); }
 .proofStrip > a { margin-left: auto; }
@@ -107,7 +107,7 @@
 .addOnCard .featureIcon { background: #ffffff08; color: #d8b4fe; border-color: #ffffff20; }
 .addOnCard .micro, .addOnCard .textLink { color: #d8b4fe; }
 .addOnCard p { color: #c5bacf; }
-.journeySection { border-bottom: 1px solid var(--finance-line); }
+.journeySection { position: relative; }
 .journey { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border: 1px solid var(--finance-line); border-radius: 16px; list-style: none; margin: 0; padding: 0; background: #fff; }
 .journey li { position: relative; padding: 26px; }
 .journey li + li { border-left: 1px solid var(--finance-line); }
@@ -210,7 +210,7 @@
 .capabilityGrid .micro { color: #b4a1c7; font-size: 8px; }
 .capabilityGrid h3 { font-size: 17px; font-weight: 600; line-height: 1.4; letter-spacing: -.02em; }
 .capabilityGrid p { font-size: 12px; line-height: 1.9; color: #bfb3c9; margin-top: 12px; }
-.storySection { border-bottom: 1px solid var(--finance-line); }
+.storySection { position: relative; }
 .storyGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
 .storyMetric { padding: 43px; min-height: 350px; border: 1px solid var(--color-brand-border); border-radius: 20px; background: radial-gradient(ellipse at bottom right, var(--color-brand-100), transparent 80%), var(--color-brand-soft); }
 .storyMetric > .micro { color: var(--color-brand-strong); }

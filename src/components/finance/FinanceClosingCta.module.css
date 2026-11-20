@@ -1,12 +1,10 @@
 .closing {
   padding: 80px 0 60px;
   background: #F8FAFC;
-  border-top: 1px solid var(--landing-line, #dde1e9);
 }
 
 :global([data-theme="dark"]) .closing {
   background: #0b1320;
-  border-top-color: rgba(255, 255, 255, 0.08);
 }
 
 .closingCard {

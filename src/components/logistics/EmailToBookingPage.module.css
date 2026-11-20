@@ -27,16 +27,14 @@
 
 /* ── 1. Hero Section (Clean Light Gradient matching Invoice Automation) ── */
 .viewportHero {
-  --logistics-header-height: 81px;
-  min-height: calc(100vh - var(--logistics-header-height));
-  min-height: calc(100dvh - var(--logistics-header-height));
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: clamp(40px, 5vh, 64px);
+  padding-top: calc(80px + clamp(36px, 4.5vh, 60px));
   padding-bottom: clamp(36px, 4.5vh, 56px);
   background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
-  border-bottom: 1px solid var(--landing-line, #dde1e9);
   color: var(--landing-ink, #0f172a);
   position: relative;
   overflow: hidden;
@@ -44,7 +42,6 @@
 
 :global([data-theme="dark"]) .viewportHero {
   background: linear-gradient(180deg, #0d1726 0%, #070d18 100%);
-  border-bottom-color: rgba(255, 255, 255, 0.08);
   color: #ffffff;
 }
 
@@ -481,8 +478,6 @@
   background:
     radial-gradient(ellipse 80% 50% at 50% 15%, rgba(30, 41, 59, 0.45) 0%, transparent 70%),
     linear-gradient(180deg, #0d1726 0%, #09101a 100%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
   color: #ffffff;
 }
 
@@ -608,7 +603,6 @@
   padding: 88px 0 100px;
   background: #111827;
   color: #ffffff;
-  border-block: 1px solid #1f2937;
   overflow: hidden;
 }
 
@@ -1024,45 +1018,59 @@
   color: var(--color-brand-strong, #15b886);
 }
 
-/* Action buttons — on white bg */
+/* Action row (Static UI Mockup — non-clickable) */
 .panelActionsDark {
   display: flex;
+  align-items: center;
   gap: 10px;
   margin-top: 4px;
+  width: 100%;
+  pointer-events: none;
+  user-select: none;
 }
 
 .approveBtn {
   flex: 1;
-  background: var(--color-brand-strong, #15b886);
+  min-width: 0;
+  background: var(--color-brand, #2E8B57);
   color: #ffffff;
-  border: none;
-  border-radius: 8px;
-  padding: 11px 16px;
-  font-weight: 700;
-  font-size: 0.875rem;
-  cursor: pointer;
-  transition: opacity 0.15s ease;
-}
-
-.approveBtn:hover {
-  opacity: 0.88;
+  border: 1px solid var(--color-brand, #2E8B57);
+  border-radius: 6px;
+  padding: 0 14px;
+  height: 36px;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 12.5px;
+  cursor: default;
+  pointer-events: none;
+  user-select: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
 }
 
 .editBtn {
-  background: #f8fafc;
-  color: #334155;
+  flex: 1;
+  min-width: 0;
+  background: #fefefe;
+  color: #0f172a;
   border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 11px 16px;
+  border-radius: 6px;
+  padding: 0 14px;
+  height: 36px;
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 600;
-  font-size: 0.875rem;
-  cursor: pointer;
-  transition: background 0.15s ease, border-color 0.15s ease;
-}
-
-.editBtn:hover {
-  background: #f1f5f9;
-  border-color: #cbd5e1;
+  font-size: 12.5px;
+  cursor: default;
+  pointer-events: none;
+  user-select: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  white-space: nowrap;
 }
 
 /* Panel footer — light border, muted text */
@@ -1446,13 +1454,11 @@
   padding: 88px 0;
   background: #ffffff;
   color: var(--landing-ink, #0f172a);
-  border-bottom: 1px solid var(--landing-line, #dde1e9);
 }
 
 :global([data-theme="dark"]) .controlSection {
   background: #0f172a;
   color: #f1f5f9;
-  border-bottom-color: #1e293b;
 }
 
 .controlHead {
@@ -1561,13 +1567,11 @@
 .storySection {
   padding: 88px 0;
   background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
-  border-bottom: 1px solid var(--landing-line, #dde1e9);
   color: var(--landing-ink, #0f172a);
 }
 
 :global([data-theme="dark"]) .storySection {
   background: #0b1320;
-  border-bottom-color: #1e293b;
   color: #ffffff;
 }
 
@@ -1640,13 +1644,11 @@
 .faqSection {
   padding: 88px 0;
   background: #ffffff;
-  border-bottom: 1px solid var(--landing-line, #dde1e9);
   color: var(--landing-ink, #0f172a);
 }
 
 :global([data-theme="dark"]) .faqSection {
   background: #0f172a;
-  border-bottom-color: #1e293b;
   color: #ffffff;
 }
 

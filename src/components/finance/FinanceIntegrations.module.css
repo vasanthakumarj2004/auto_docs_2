@@ -1,12 +1,10 @@
 .section {
   padding-block: 88px 96px;
   background: var(--surface-subtle, #f8fafc);
-  border-block: 1px solid var(--border-subtle, #e2e8f0);
 }
 
 :global([data-theme="dark"]) .section {
   background: #0d1726;
-  border-block: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .header {

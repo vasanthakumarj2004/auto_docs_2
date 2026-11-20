@@ -1,16 +1,13 @@
 .page { min-width: 0; }
 .page .viewportHero {
-  /* The shared navigation is 80px tall, plus its 1px bottom border. */
-  --finance-header-height: 81px;
-  min-height: calc(100vh - var(--finance-header-height));
-  min-height: calc(100dvh - var(--finance-header-height));
+  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-top: clamp(40px, 5vh, 64px);
+  padding-top: calc(80px + clamp(36px, 4.5vh, 60px));
   padding-bottom: clamp(36px, 4.5vh, 56px);
   background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
-  border-bottom: 1px solid var(--landing-line, #dde1e9);
   color: var(--landing-ink, #0f172a);
 }
 .heroGrid {

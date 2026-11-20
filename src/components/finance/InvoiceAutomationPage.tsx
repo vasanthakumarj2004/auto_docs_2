@@ -313,41 +313,7 @@ export function InvoiceAutomationPage() {
                   </div>
 
                   {/* Interactive Action Row matching Image 1 */}
-                  <div className={s.heroActionRow}>
-                    <button
-                      type="button"
-                      onClick={handleApprove}
-                      className={`${s.heroApproveBtn} ${isApproved ? s.heroApprovedState : ''}`}
-                      aria-pressed={isApproved}
-                    >
-                      {isApproved ? (
-                        <>
-                          <CheckCircle2 size={16} aria-hidden="true" />
-                          <span>Posted to Tally Prime · PUR-829</span>
-                        </>
-                      ) : (
-                        <>
-                          <Check size={16} aria-hidden="true" />
-                          <span>Approve &amp; post to Tally</span>
-                        </>
-                      )}
-                    </button>
-                    <button
-                      type="button"
-                      onClick={handleEdit}
-                      className={s.heroEditBtn}
-                      aria-pressed={isEditing}
-                    >
-                      {isEditing ? (
-                        <>
-                          <RotateCcw size={14} aria-hidden="true" />
-                          <span style={{ marginLeft: 6 }}>Reset</span>
-                        </>
-                      ) : (
-                        <span>Edit</span>
-                      )}
-                    </button>
-                  </div>
+                  
                 </div>
                 <p className={s.sampleNote}>Sample data</p>
               </div>

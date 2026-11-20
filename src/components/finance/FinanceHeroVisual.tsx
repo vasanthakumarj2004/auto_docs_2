@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
-import { Check, CheckCircle2, RotateCcw, ShieldCheck } from 'lucide-react';
+import React from 'react';
+import { Check, ShieldCheck } from 'lucide-react';
 import styles from './FinanceHeroVisual.module.css';
 
 interface FinanceHeroVisualProps {
@@ -15,16 +15,6 @@ export function FinanceHeroVisual({
   showCaption = false,
   captionText = 'Docsynecx financial operations · Connected ledger, intelligence & analytics',
 }: FinanceHeroVisualProps) {
-  const [isApproved, setIsApproved] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
-
-  const handleApprove = () => {
-    setIsApproved((prev) => !prev);
-  };
-
-  const handleEdit = () => {
-    setIsEditing((prev) => !prev);
-  };
 
   return (
     <div
@@ -46,10 +36,10 @@ export function FinanceHeroVisual({
           </div>
 
           <div
-            className={`${styles.statusBadge} ${isApproved ? styles.statusBadgeApproved : ''}`}
+            className={styles.statusBadge}
             role="status"
           >
-            <span>{isApproved ? 'POSTED TO TALLY' : 'READY TO APPROVE'}</span>
+            <span>READY TO APPROVE</span>
           </div>
         </div>
 
@@ -114,42 +104,16 @@ export function FinanceHeroVisual({
           <div className={styles.totalAmount}>₹74,045</div>
         </div>
 
-        {/* Action Buttons Row */}
-        <div className={styles.actionRow}>
-          <button
-            type="button"
-            onClick={handleApprove}
-            className={`${styles.approveButton} ${isApproved ? styles.approvedState : ''}`}
-            aria-pressed={isApproved}
-          >
-            {isApproved ? (
-              <>
-                <CheckCircle2 size={16} aria-hidden="true" />
-                <span>Posted to Tally Prime · PUR-829</span>
-              </>
-            ) : (
-              <>
-                <Check size={16} aria-hidden="true" />
-                <span>Approve &amp; post to Tally</span>
-              </>
-            )}
-          </button>
+        {/* Action Row - Static UI Preview (Non-clickable) */}
+        <div className={styles.actionRow} aria-hidden="true">
+          <div className={styles.approveButton}>
+            <Check size={16} aria-hidden="true" />
+            <span>Approve &amp; post to Tally</span>
+          </div>
 
-          <button
-            type="button"
-            onClick={handleEdit}
-            className={`${styles.editButton} ${isEditing ? styles.editingState : ''}`}
-            aria-pressed={isEditing}
-          >
-            {isEditing ? (
-              <>
-                <RotateCcw size={14} aria-hidden="true" />
-                <span>Reset</span>
-              </>
-            ) : (
-              <span>Edit</span>
-            )}
-          </button>
+          <div className={styles.editButton}>
+            <span>Edit</span>
+          </div>
         </div>
 
         {/* Micro-line Footer */}

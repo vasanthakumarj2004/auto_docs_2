@@ -357,22 +357,7 @@ export function FinanceTeamsPage() {
                     </div>
                   </div>
 
-                  {/* Interactive Action Row matching Image 1 */}
-                  <div className={s.heroActionRow}>
-                    <button
-                      type="button"
-                      className={s.heroApproveBtn}
-                    >
-                      <Check size={16} aria-hidden="true" />
-                      <span>Post 386 verified invoices to Tally</span>
-                    </button>
-                    <button
-                      type="button"
-                      className={s.heroEditBtn}
-                    >
-                      Resolve 26
-                    </button>
-                  </div>
+                
                 </div>
                 <p className={s.sampleNote}>Sample data</p>
               </div>

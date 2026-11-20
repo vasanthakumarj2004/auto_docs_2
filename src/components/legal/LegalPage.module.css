@@ -12,19 +12,19 @@
   background-color: #ffffff;
   display: flex;
   justify-content: center;
-  padding: 48px 16px 80px;
+  padding: calc(80px + 40px) 16px 80px;
   box-sizing: border-box;
 }
 
 @media (min-width: 640px) {
   .mainContainer {
-    padding: 64px 32px 96px;
+    padding: calc(80px + 56px) 32px 96px;
   }
 }
 
 @media (min-width: 1024px) {
   .mainContainer {
-    padding: 80px 32px 112px;
+    padding: calc(80px + 64px) 32px 112px;
   }
 }
 

@@ -7,8 +7,6 @@
 
 .altSection {
   background: var(--landing-alt, #f7f9fa);
-  border-top: 1px solid var(--border-subtle, #e5e9ec);
-  border-bottom: 1px solid var(--border-subtle, #e5e9ec);
 }
 
 .secHead {
@@ -82,9 +80,8 @@
 
 /* ── Hero Section (White / Light theme) ── */
 .heroSection {
-  padding: 56px 0 72px;
+  padding: calc(80px + 40px) 0 72px;
   background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
-  border-bottom: 1px solid var(--border-subtle, #e5e9ec);
 }
 
 .heroGrid {
@@ -430,68 +427,67 @@
 .heroActionRow {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 4px 20px 16px;
+  gap: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 6px 20px 16px;
+  pointer-events: none;
+  user-select: none;
 }
 
 .heroApproveBtn {
   flex: 1;
+  min-width: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  height: 44px;
-  padding: 0 18px;
-  background: linear-gradient(180deg, #18cb96 0%, #10b981 100%);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10px;
+  gap: 6px;
+  height: 36px;
+  min-height: 36px;
+  padding: 0 14px;
+  background: var(--color-brand, #2E8B57);
+  border: 1px solid var(--color-brand, #2E8B57);
+  border-radius: 6px;
   color: #ffffff;
-  font-size: 0.875rem;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 4px 16px rgba(24, 203, 150, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.heroApproveBtn:hover {
-  background: linear-gradient(180deg, #1fe0a6 0%, #059669 100%);
-  box-shadow: 0 6px 22px rgba(24, 203, 150, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.35);
-  transform: translateY(-1px);
-}
-
-.heroApproveBtn:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 8px rgba(24, 203, 150, 0.3);
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: default;
+  pointer-events: none;
+  user-select: none;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  white-space: nowrap;
 }
 
 .heroApprovedState {
-  background: #0f172a !important;
-  border-color: rgba(24, 203, 150, 0.5) !important;
-  color: #18cb96 !important;
-  box-shadow: 0 0 16px rgba(24, 203, 150, 0.2) !important;
+  background: rgba(46, 139, 87, 0.15) !important;
+  border-color: var(--color-brand, #2E8B57) !important;
+  color: #35d5a6 !important;
+  box-shadow: none !important;
 }
 
 .heroEditBtn {
+  flex: 1;
+  min-width: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 44px;
-  padding: 0 20px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 10px;
-  color: #e2e8f0;
-  font-size: 0.875rem;
+  gap: 5px;
+  height: 36px;
+  min-height: 36px;
+  padding: 0 14px;
+  background: #fefefe;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  color: #0f172a;
+  font-family: inherit;
+  font-size: 12.5px;
   font-weight: 600;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.heroEditBtn:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
-  color: #ffffff;
-  transform: translateY(-1px);
+  cursor: default;
+  pointer-events: none;
+  user-select: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  white-space: nowrap;
 }
 
 .sampleNote {
@@ -514,8 +510,6 @@
   background:
     radial-gradient(ellipse 80% 50% at 50% 15%, rgba(30, 41, 59, 0.45) 0%, transparent 70%),
     linear-gradient(180deg, #0d1726 0%, #09101a 100%);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
   color: #ffffff;
 }
 
@@ -1238,8 +1232,6 @@
   background:
     radial-gradient(ellipse 80% 50% at 50% 15%, rgba(30, 41, 59, 0.45) 0%, transparent 70%),
     linear-gradient(180deg, #0d1726 0%, #09101a 100%) !important;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   color: #ffffff !important;
 }
 

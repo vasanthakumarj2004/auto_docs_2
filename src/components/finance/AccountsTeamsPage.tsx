@@ -352,22 +352,7 @@ export function AccountsTeamsPage() {
                     <span className={s.totalBigDark}>₹40,651</span>
                   </div>
 
-                  {/* Interactive Action Row matching Image 1 */}
-                  <div className={s.heroActionRow}>
-                    <button
-                      type="button"
-                      className={s.heroApproveBtn}
-                    >
-                      <Check size={16} aria-hidden="true" />
-                      <span>Post to Tally · PUR-7312</span>
-                    </button>
-                    <button
-                      type="button"
-                      className={s.heroEditBtn}
-                    >
-                      Edit
-                    </button>
-                  </div>
+                  
                 </div>
                 <p className={s.sampleNote}>Sample data</p>
               </div>

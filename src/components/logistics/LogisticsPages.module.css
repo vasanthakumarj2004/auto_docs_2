@@ -17,7 +17,6 @@
   padding-top: clamp(44px, 6vh, 72px);
   padding-bottom: clamp(40px, 5vh, 64px);
   background: linear-gradient(180deg, #ffffff 0%, #fafafa 100%);
-  border-bottom: 1px solid var(--landing-line, #dde1e9);
   color: var(--landing-ink, #0f172a);
 }
 

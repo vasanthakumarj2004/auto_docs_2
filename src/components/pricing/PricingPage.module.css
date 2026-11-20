@@ -70,10 +70,9 @@
 .heroSection {
   position: relative;
   background: #f7f5f0;
-  padding-top: clamp(36px, 5vh, 52px);
+  padding-top: calc(80px + clamp(32px, 4vh, 48px));
   padding-bottom: clamp(44px, 6vh, 60px);
   text-align: center;
-  border-bottom: 1px solid var(--landing-line, #dde1e9);
 }
 
 .heroWrapper {
@@ -343,7 +342,6 @@
 .logisticsSection {
   position: relative;
   background: #f8fafc;
-  border-top: 1px solid var(--landing-line, #dde1e9);
   padding-block: clamp(60px, 7.5vh, 88px);
 }
 
