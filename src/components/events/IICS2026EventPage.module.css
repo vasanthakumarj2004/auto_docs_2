@@ -115,13 +115,21 @@
 .headline {
   font-size: clamp(30px, 3.8vw, 46px);
   font-weight: 800;
-  line-height: 1.2;
+  line-height: 1.05;
   letter-spacing: -0.035em;
   color: var(--color-ink, #0f172a);
   margin: 0;
   text-align: center;
   text-wrap: balance;
   max-width: 820px;
+}
+
+.headlineLine {
+  display: block;
+}
+
+.headlineLine + .headlineLine {
+  margin-top: 12px;
 }
 
 .accent {

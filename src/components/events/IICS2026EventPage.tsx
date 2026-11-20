@@ -73,7 +73,8 @@ export function IICS2026EventPage() {
               </div>
 
               <h1 className={s.headline}>
-                Meet Docsynecx at <span className={s.accentNowrap}>{event.shortName}</span>
+                <span className={s.headlineLine}>Meet Docsynecx at</span>
+                <span className={`${s.headlineLine} ${s.accentNowrap}`}>{event.shortName}</span>
               </h1>
             </div>
 

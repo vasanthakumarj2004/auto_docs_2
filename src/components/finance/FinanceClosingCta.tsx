@@ -69,7 +69,7 @@ export function FinanceClosingCta({
               ))}
             </ol> */}
 
-            {/* 2 Buttons */}
+            {/* Action Buttons */}
             <div className={styles.closingActions}>
               <Link
                 href={resolvedPrimaryHref}
@@ -78,12 +78,14 @@ export function FinanceClosingCta({
                 <span>{resolvedPrimaryText}</span>
                 <ArrowRight size={17} aria-hidden="true" />
               </Link>
-              {/* <Link
-                href={secondaryHref}
-                className={styles.secondaryBtn}
-              >
-                {resolvedSecondaryText}
-              </Link> */}
+              {secondaryText && (
+                <Link
+                  href={secondaryHref}
+                  className={styles.secondaryBtn}
+                >
+                  {secondaryText}
+                </Link>
+              )}
             </div>
           </div>
         </div>
