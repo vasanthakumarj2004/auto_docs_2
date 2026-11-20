@@ -1583,12 +1583,11 @@
   border: 1px solid var(--landing-line, #dde1e9);
   border-radius: 14px;
   padding: 0;
-  transition: border-color 160ms ease;
   overflow: hidden;
 }
 
 .faqDetails[open] {
-  border-color: var(--color-brand, #18cb96);
+  border-color: var(--landing-line, #dde1e9);
 }
 
 :global([data-theme="dark"]) .faqDetails {
@@ -1597,7 +1596,7 @@
 }
 
 :global([data-theme="dark"]) .faqDetails[open] {
-  border-color: var(--color-brand, #18cb96);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 .faqSummary {
@@ -1628,11 +1627,16 @@
   transform: translateY(-50%);
   font-family: 'JetBrains Mono', monospace;
   font-size: 20px;
-  color: var(--color-brand-strong, #15b886);
+  color: var(--landing-muted, #64748b);
 }
 
 .faqDetails[open] .faqSummary::after {
   content: "\2212";
+  color: var(--landing-ink, #0f172a);
+}
+
+:global([data-theme="dark"]) .faqDetails[open] .faqSummary::after {
+  color: #ffffff;
 }
 
 .faqAnswer {

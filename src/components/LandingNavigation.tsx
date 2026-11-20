@@ -87,9 +87,9 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
     ],
     integrationsHeading: 'Integrations',
     integrationsLinks: [
-      { title: 'Tally Prime', href: '/finance-desk/#integrations' },
-      { title: 'Zoho Books', href: '/finance-desk/#integrations' },
-      { title: 'Custom ERP', href: '/finance-desk/#integrations' },
+      { title: 'Tally Prime', href: '/finance-desk/#integration-tally' },
+      { title: 'Zoho Books', href: '/finance-desk/#integration-zoho' },
+      { title: 'Custom ERP', href: '/finance-desk/#integration-erp' },
     ],
   },
   'Logistics Desk': {
@@ -124,13 +124,13 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
         href: '/logistics/freight-intelligence/',
       },
     ],
-    whoHeading: "By Role",
-    whoLinks: [
-      { title: 'Freight Forwarders', href: '/logistics/email-to-booking/' },
-      { title: 'Operations Teams', href: '/logistics/shipment-operations/' },
-      { title: 'Pricing & Sourcing', href: '/logistics/freight-intelligence/' },
-      { title: 'Logistics Leadership', href: '/logistics/shipment-operations/' },
-    ],
+    // whoHeading: "By Role",
+    // whoLinks: [
+    //   { title: 'Freight Forwarders', href: '/logistics/email-to-booking/' },
+    //   { title: 'Operations Teams', href: '/logistics/shipment-operations/' },
+    //   { title: 'Pricing & Sourcing', href: '/logistics/freight-intelligence/' },
+    //   { title: 'Logistics Leadership', href: '/logistics/shipment-operations/' },
+    // ],
     integrationsHeading: 'Integrations',
     integrationsLinks: [
       { title: 'CargoWise & Custom ERP/TMS', href: '/logistics/integrations/' },

@@ -11,6 +11,7 @@ import {
   Clock,
   Inbox,
   Layers,
+  MousePointerClick,
   RotateCcw,
   UploadCloud,
 } from 'lucide-react';
@@ -169,7 +170,7 @@ const proofStats = [
   {
     title: 'One click to approve',
     copy: 'Your team checks, Docsynecx types',
-    icon: CheckCircle2,
+    icon: MousePointerClick,
     highlight: true,
   },
 ];

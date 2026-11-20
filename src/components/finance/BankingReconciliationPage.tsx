@@ -7,11 +7,11 @@ import {
   ArrowRight,
   ArrowUpRight,
   Check,
-  CheckCircle2,
   Clock,
   FileSpreadsheet,
   FileText,
   Landmark,
+  MousePointerClick,
 } from 'lucide-react';
 import { useAutoCycle } from '@/src/hooks/useAutoCycle';
 import { SharedFaqAccordion } from '../SharedFaqAccordion';
@@ -165,7 +165,7 @@ const proofStats = [
   {
     title: 'One click to approve',
     copy: 'Your team checks, Docsynecx matches',
-    icon: CheckCircle2,
+    icon: MousePointerClick,
     highlight: true,
   },
 ];

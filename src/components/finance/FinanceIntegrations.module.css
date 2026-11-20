@@ -62,7 +62,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 }
 
@@ -82,6 +82,10 @@
   align-content: start;
   min-width: 0;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+  outline: none;
+  scroll-margin-top: 120px;
+  text-align: left;
 }
 
 :global([data-theme="dark"]) .card {
@@ -89,19 +93,32 @@
   border-color: rgba(255, 255, 255, 0.1);
 }
 
-.cardMain {
-  border-color: var(--color-brand-text, #0d9466);
-  box-shadow: 0 14px 34px -20px rgba(13, 148, 102, 0.25);
-}
-
-:global([data-theme="dark"]) .cardMain {
-  border-color: var(--color-brand, #18cb96);
-  box-shadow: 0 14px 34px -20px rgba(24, 203, 150, 0.35);
-}
-
 .card:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 28px -12px rgba(15, 23, 42, 0.12);
+  border-color: rgba(13, 148, 102, 0.4);
+}
+
+:global([data-theme="dark"]) .card:hover {
+  border-color: rgba(24, 203, 150, 0.4);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--color-brand, #18cb96);
+  outline-offset: 2px;
+}
+
+.cardMain,
+.cardSelected {
+  border-color: var(--color-brand-text, #0d9466) !important;
+  box-shadow: 0 0 0 1.5px var(--color-brand-text, #0d9466), 0 16px 36px -16px rgba(13, 148, 102, 0.28) !important;
+  transform: translateY(-2px);
+}
+
+:global([data-theme="dark"]) .cardMain,
+:global([data-theme="dark"]) .cardSelected {
+  border-color: var(--color-brand, #18cb96) !important;
+  box-shadow: 0 0 0 1.5px var(--color-brand, #18cb96), 0 16px 36px -16px rgba(24, 203, 150, 0.38) !important;
 }
 
 .topRow {
@@ -129,12 +146,14 @@
   color: var(--color-brand, #18cb96);
 }
 
-.cardMain .mark {
+.cardMain .mark,
+.cardSelected .mark {
   background: var(--color-brand-text, #0d9466);
   color: #ffffff;
 }
 
-:global([data-theme="dark"]) .cardMain .mark {
+:global([data-theme="dark"]) .cardMain .mark,
+:global([data-theme="dark"]) .cardSelected .mark {
   background: var(--color-brand, #18cb96);
   color: #08131c;
 }
@@ -225,7 +244,7 @@
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   font-weight: 600;
   font-size: 0.95rem;
-  color: var(--text-primary, #1e293b);
+  color: var(--color-brand-text, #0d9466);
 }
 
 :global([data-theme="dark"]) .note {

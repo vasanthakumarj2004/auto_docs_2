@@ -251,7 +251,7 @@ export function LogisticsIntegrationsPage() {
                 {/* Top bar */}
                 <div className={s.intelCardTop}>
                   <strong>How data moves</strong>
-                  <span className={s.marginLeakBadge} style={{ color: '#18cb96', borderColor: 'rgba(24, 203, 150, 0.35)', background: 'rgba(24, 203, 150, 0.12)' }}>
+                  <span className={s.marginLeakBadge} style={{ color: '#94a3b8', borderColor: 'rgba(255, 255, 255, 0.14)', background: 'rgba(255, 255, 255, 0.05)' }}>
                     One job
                   </span>
                 </div>
@@ -271,11 +271,11 @@ export function LogisticsIntegrationsPage() {
                       <ArrowDown size={18} aria-hidden="true" />
                     </div>
 
-                    {/* Node 2: Docsynecx (Highlighted Core) */}
-                    <div className={`${s.flowNode} ${s.flowNodeMid}`}>
+                    {/* Node 2: Docsynecx Core */}
+                    <div className={s.flowNode}>
                       <span className={s.flowNodeEyebrow}>Docsynecx Core</span>
                       <span className={s.flowNodeTitle}>Reads, checks, drafts</span>
-                      <span className={s.flowNodeSub} style={{ color: '#cbd5e1' }}>Your team approves</span>
+                      <span className={s.flowNodeSub}>Your team approves</span>
                     </div>
 
                     {/* Connector Arrow */}
