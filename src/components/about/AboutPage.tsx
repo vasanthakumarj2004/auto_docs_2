@@ -107,7 +107,7 @@ export function AboutPage() {
                 </p>
                 <p>
                   Across businesses, important work is often surrounded by
-                  repetitive tasks — reading documents, entering details,
+                  repetitive tasks  reading documents, entering details,
                   checking information and keeping different systems in sync.
                   These processes take time away from the decisions and
                   relationships that help a business grow.
@@ -238,7 +238,7 @@ export function AboutPage() {
                     Combining an engineering foundation with an MBA in Finance,
                     She brings a practical understanding of how businesses
                     operate and grow. At Docsynecx, he contributes to business
-                    strategy, operational development and growth — helping
+                    strategy, operational development and growth  helping
                     translate customer needs into meaningful business solutions.
                   </p>
 
