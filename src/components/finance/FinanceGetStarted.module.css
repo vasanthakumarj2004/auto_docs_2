@@ -9,6 +9,9 @@
   line-height: 1.2;
   margin: 0;
 }
+.heading h2 span {
+  color: var(--color-brand-text, #2E8B57);
+}
 .line {
   display: inline-block;
   white-space: normal;

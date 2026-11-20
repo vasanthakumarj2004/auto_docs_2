@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import { ChevronDown, Menu, X, ArrowRight, ArrowUpRight, Workflow } from 'lucide-react';
 import { DocsynecxLogo } from './DocsynecxLogo';
@@ -229,7 +230,9 @@ function NavbarMenuCard({ menu, onNavigate }: { menu: MegaMenuData; onNavigate: 
   </div>;
 }
 
-export function LandingNavigation({ variant = 'compact' }: { variant?: 'default' | 'horizon' | 'compact' }) {
+export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default' | 'horizon' | 'compact' }) {
+  const pathname = usePathname();
+  const isHomePage = pathname === '/';
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement>(null);
@@ -283,18 +286,11 @@ export function LandingNavigation({ variant = 'compact' }: { variant?: 'default'
     }, 180);
   };
 
-  const isCompactDefault = variant === 'compact';
-  const [isScrolled, setIsScrolled] = useState(isCompactDefault);
-  const [isCompact, setIsCompact] = useState(isCompactDefault);
+  const [isScrolled, setIsScrolled] = useState(!isHomePage);
+  const [isCompact, setIsCompact] = useState(false);
 
   useEffect(() => {
-    if (variant === 'compact') {
-      setIsScrolled(true);
-      setIsCompact(true);
-      return;
-    }
-
-    const hero = variant === 'horizon' ? document.getElementById('top') : null;
+    const hero = document.getElementById('top');
     let frame = 0;
     const updateNavigation = () => {
       frame = 0;
@@ -302,11 +298,11 @@ export function LandingNavigation({ variant = 'compact' }: { variant?: 'default'
       // Separate the early contraction from the color change at the hero's edge.
       // A small dead zone prevents flickering near the top during touch scrolling.
       setIsCompact((compact) => window.scrollY > (compact ? 8 : 32));
-      setIsScrolled(variant === 'horizon'
-        ? hero
+      setIsScrolled(
+        hero
           ? Boolean(header && hero.getBoundingClientRect().bottom <= header.getBoundingClientRect().bottom)
           : true
-        : window.scrollY > 8);
+      );
     };
     const handleScroll = () => {
       if (!frame) frame = window.requestAnimationFrame(updateNavigation);
@@ -322,10 +318,10 @@ export function LandingNavigation({ variant = 'compact' }: { variant?: 'default'
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleScroll);
     };
-  }, [variant]);
+  }, [pathname]);
 
   const activeMega = openMenu ? MEGA_MENUS[openMenu] : null;
-  const headerVariant = variant === 'compact' ? 'horizon' : variant;
+  const headerVariant = variant === 'default' ? 'default' : 'horizon';
 
   const navigation = (
     <header
@@ -335,12 +331,12 @@ export function LandingNavigation({ variant = 'compact' }: { variant?: 'default'
       data-scrolled={isScrolled ? 'true' : 'false'}
       data-compact={isCompact ? 'true' : 'false'}
       data-past-hero={isScrolled ? 'true' : 'false'}
-      data-static={variant === 'compact' ? 'true' : 'false'}
+      data-static="false"
       onMouseLeave={handleMouseLeave}
     >
       <div className={`site-shell ${styles.navbar}`}>
         <Link href="/" className={styles.brand} aria-label="Docsynecx home" onClick={close}>
-          <DocsynecxLogo variant={variant === 'horizon' && !isScrolled ? 'footer' : 'header'} className={styles.logo} />
+          <DocsynecxLogo variant={!isScrolled ? 'footer' : 'header'} className={styles.logo} />
           {/* <span>Intelligent workflows</span> */}
         </Link>
 

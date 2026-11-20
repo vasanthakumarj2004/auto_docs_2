@@ -95,7 +95,7 @@ function ApproveTallyPreview() {
   return (
     <div className={s.window}>
       <div className={s.windowHeader}>
-        <span className={s.windowHeaderTitle}>Post to Tally Prime · INV-4821</span>
+        <span className={s.windowHeaderTitle}>Post to TallyPrime · INV-4821</span>
         <span className={s.headerBadge}>APPROVED</span>
       </div>
 
@@ -134,7 +134,7 @@ function ApproveTallyPreview() {
       </div>
 
       <div className={s.windowFooter}>
-        <span>Posted to your Tally Prime company after approval, with the right ledgers.</span>
+        <span>Posted to your TallyPrime company after approval, with the right ledgers.</span>
       </div>
     </div>
   );
@@ -220,7 +220,7 @@ export function ConnectedFinanceWorkspace() {
         <div className={s.heading}>
           <p className={`${base.eyebrow} ${s.eyebrow}`}>{financeHowItWorks.eyebrow}</p>
           <h2 id="how-h">
-            From supplier invoice<br /><span>to Tally Prime, in four steps.</span>
+            From supplier invoice<br /><span>to TallyPrime, in four steps.</span>
           </h2>
           <p className={s.intro}>
             {financeHowItWorks.subtitle}

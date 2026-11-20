@@ -7,7 +7,7 @@
   --landing-ink: var(--color-ink, #0f172a);
   --landing-muted: #586579;
   --landing-line: #dde1e9;
-  --landing-green: var(--color-brand, #18cb96);
+  --landing-green: var(--color-brand, #2E8B57);
   background: var(--landing-bg);
   color: var(--landing-ink);
 }

@@ -56,11 +56,11 @@
   text-shadow: none !important;
 }
 .heroTitle span {
-  color: var(--color-brand-text, #0d9466) !important;
+  color: var(--color-brand-text, #2E8B57) !important;
   text-shadow: none !important;
 }
 .page :global([class*="sectionHeading"]) h2 span {
-  color: var(--color-brand-text, #18cb96) !important;
+  color: var(--color-brand-text, #2E8B57) !important;
 }
 .heroCopy :global([class*="heroDescription"]) {
   color: var(--landing-muted, #586579) !important;
