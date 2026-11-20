@@ -73,24 +73,16 @@
 }
 
 .heroEyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  margin: 0 auto 20px;
+  display: inline-block;
+  margin: 0 auto 18px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 11px;
   font-weight: 700;
   line-height: 1.6;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--color-brand-strong, #15b886);
-}
-
-.heroEyebrow::before {
-  width: 20px;
-  height: 2px;
-  background: var(--color-brand, #18cb96);
-  flex-shrink: 0;
+  text-align: center;
 }
 
 .heroTitle {
@@ -106,12 +98,13 @@
 
 .heroLead {
   font-family: 'Inter', system-ui, sans-serif;
-  font-size: clamp(16.5px, 1.35vw, 19px);
-  line-height: 1.72;
+  font-size: clamp(16.5px, 1.3vw, 19px);
+  line-height: 1.68;
   color: var(--landing-muted, #586579);
-  max-width: 660px;
+  max-width: 780px;
   margin: 0 auto 36px;
   text-wrap: balance;
+  text-align: center;
 }
 
 .heroTrustRow {

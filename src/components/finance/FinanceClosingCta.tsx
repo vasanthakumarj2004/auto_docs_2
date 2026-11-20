@@ -78,14 +78,14 @@ export function FinanceClosingCta({
                 <span>{resolvedPrimaryText}</span>
                 <ArrowRight size={17} aria-hidden="true" />
               </Link>
-              {secondaryText && (
+              {/* {secondaryText && (
                 <Link
                   href={secondaryHref}
                   className={styles.secondaryBtn}
                 >
                   {secondaryText}
                 </Link>
-              )}
+              )} */}
             </div>
           </div>
         </div>
