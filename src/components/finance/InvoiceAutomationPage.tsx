@@ -11,6 +11,7 @@ import {
   Clock,
   Inbox,
   Layers,
+  MousePointerClick,
   RotateCcw,
   UploadCloud,
 } from 'lucide-react';
@@ -169,7 +170,7 @@ const proofStats = [
   {
     title: 'One click to approve',
     copy: 'Your team checks, Docsynecx types',
-    icon: CheckCircle2,
+    icon: MousePointerClick,
     highlight: true,
   },
 ];
@@ -694,7 +695,8 @@ export function InvoiceAutomationPage() {
                   What accounts teams ask us first.
                 </h2>
                 <p className={s.faqDescription}>
-                  Something else on your mind? Ask us in the demo.
+                  Something else on your mind?{' '}
+                  <Link href="/demo/#demo-form">Ask us in the demo.</Link>
                 </p>
               </div>
             </div>

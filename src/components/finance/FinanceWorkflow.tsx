@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
 import { financeIntelligenceViews, financeIntelligenceBottom } from '../../content/finance';
 import base from '../LandingPage.module.css';
 import s from './FinanceWorkflow.module.css';
@@ -50,17 +49,15 @@ export function FinanceWorkflow() {
           ))}
         </div>
 
-        {/* Bottom Area */}
-        <div className={s.bottomArea}>
-          <p className={s.bottomNote}>
-            {financeIntelligenceBottom.note}
+        {/* Bottom Card Banner matching Image 1 */}
+        <div className={s.bottomBanner}>
+          <p className={s.bottomText}>
+            <strong>Built from your own TallyPrime data.</strong>{' '}
+            What each view shows depends on what&apos;s recorded in Tally. In the demo we&apos;ll show you all six on your own books.
           </p>
-          <div className={s.ctaWrap}>
-            <Link href={financeIntelligenceBottom.buttonHref} className={s.demoButton}>
-              <span>{financeIntelligenceBottom.buttonText}</span>
-              <ArrowRight size={16} aria-hidden="true" />
-            </Link>
-          </div>
+          <Link href={financeIntelligenceBottom.buttonHref} className={s.bottomButton}>
+            <span>{financeIntelligenceBottom.buttonText}</span>
+          </Link>
         </div>
       </div>
     </section>

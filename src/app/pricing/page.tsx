@@ -2,16 +2,16 @@ import type { Metadata } from 'next';
 import { PricingPage } from '@/src/components/pricing/PricingPage';
 
 export const metadata: Metadata = {
-  title: 'Pricing & Plans — Docsynecx Finance & Logistics Document Automation',
+  title: 'Pricing | Docsynecx',
   description:
-    'Explore scope-based plans and modules across Docsynecx Finance and Docsynecx Logistics. Transparent, tailored enterprise scoping for your intelligent document automation workflows.',
+    'Docsynecx Finance plans and Logistics modules, sized to your document volume. Pay for the hours you get back, with limits, modules and support written into your proposal.',
   alternates: {
     canonical: '/pricing',
   },
   openGraph: {
-    title: 'Pricing & Plans — Docsynecx Intelligent Business Automation',
+    title: 'Pricing | Docsynecx',
     description:
-      'Explore scope-based plans and modular configurations across Docsynecx Finance and Docsynecx Logistics.',
+      'Docsynecx Finance plans and Logistics modules, sized to your document volume. Pay for the hours you get back, with limits, modules and support written into your proposal.',
     url: 'https://docsynecx.com/pricing',
     siteName: 'Docsynecx',
   },

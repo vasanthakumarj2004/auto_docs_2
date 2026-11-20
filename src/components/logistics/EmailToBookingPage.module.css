@@ -1749,13 +1749,14 @@
 }
 
 .flowNodeMid {
-  background: rgba(24, 203, 150, 0.08);
-  border: 1px solid rgba(24, 203, 150, 0.38);
-  box-shadow: 0 0 24px -4px rgba(24, 203, 150, 0.22);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: none;
 }
 
 .flowNodeMid:hover {
-  border-color: rgba(24, 203, 150, 0.55);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 .flowNodeEyebrow {
@@ -1768,7 +1769,7 @@
 }
 
 .flowNodeMid .flowNodeEyebrow {
-  color: #18cb96;
+  color: #94a3b8;
 }
 
 .flowNodeTitle {
@@ -1788,7 +1789,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #18cb96;
+  color: #64748b;
   padding: 2px 0;
 }
 

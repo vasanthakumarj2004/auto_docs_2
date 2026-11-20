@@ -312,6 +312,20 @@
   color: var(--landing-muted, #586579);
 }
 
+.faqDescription a {
+  color: var(--color-brand-strong, #15b886);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.faqDescription a:hover {
+  text-decoration: underline;
+}
+
+:global([data-theme="dark"]) .faqDescription a {
+  color: var(--color-brand-text, #18cb96);
+}
+
 :global([data-theme="dark"]) .faqDescription {
   color: #94a3b8;
 }

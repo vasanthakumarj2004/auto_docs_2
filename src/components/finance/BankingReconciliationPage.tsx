@@ -7,11 +7,11 @@ import {
   ArrowRight,
   ArrowUpRight,
   Check,
-  CheckCircle2,
   Clock,
   FileSpreadsheet,
   FileText,
   Landmark,
+  MousePointerClick,
 } from 'lucide-react';
 import { useAutoCycle } from '@/src/hooks/useAutoCycle';
 import { SharedFaqAccordion } from '../SharedFaqAccordion';
@@ -165,7 +165,7 @@ const proofStats = [
   {
     title: 'One click to approve',
     copy: 'Your team checks, Docsynecx matches',
-    icon: CheckCircle2,
+    icon: MousePointerClick,
     highlight: true,
   },
 ];
@@ -691,7 +691,8 @@ export function BankingReconciliationPage() {
                   What accounts teams ask us first.
                 </h2>
                 <p className={s.faqDescription}>
-                  Something else on your mind? Ask us in the demo.
+                  Something else on your mind?{' '}
+                  <Link href="/demo/#demo-form">Ask us in the demo.</Link>
                 </p>
               </div>
             </div>
