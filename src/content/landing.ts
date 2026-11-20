@@ -16,7 +16,7 @@ export const landingDesks = [
     features: ['Invoice Automation', 'Banking & Reconcilation', 'Payment Reminders','Docsynecx Intelligence','Accounts Payable'],
   },
   {
-    id: 'logistics', title: 'Logistics', tag: 'Freight & logistics operations', href: '/#platform',
+    id: 'logistics', title: 'Logistics', tag: 'Freight & logistics operations', href: '/logistics-desk/',
     copy: 'Connect freight operations from customer enquiry and booking to shipment management, tracking and document automation.',
     features: ['RFQ to Booking', 'Shipment Operations', 'Shipment Tracking', 'Freight Intelligence'],
   },

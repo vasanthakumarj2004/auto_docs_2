@@ -147,7 +147,7 @@ export function LandingHero() {
         <p className={styles.description}>Bills read, checked, paid and posted to Tally. Emails become CargoWise jobs. Your team handles exceptions, not typing.</p>
         <div className={styles.deskLinks}>
           <Link href="/finance-desk/">I run a finance desk <ArrowUpRight size={17} aria-hidden="true" /></Link>
-          <Link href="/logistics/">I run a logistics desk <ArrowUpRight size={17} aria-hidden="true" /></Link>
+          <Link href="/logistics-desk/">I run a logistics desk <ArrowUpRight size={17} aria-hidden="true" /></Link>
         </div>
         <p className={styles.trust}>Built for businesses that run on <strong>Tally, an ERP or CargoWise.</strong></p>
       </div>

@@ -1,7 +1,5 @@
-import { LogisticsOverviewPage } from '@/src/components/logistics/LogisticsOverviewPage';
-import { logisticsMetadata } from '@/src/lib/logisticsOverviewMetadata';
+import { redirect } from 'next/navigation';
 
-export const metadata = logisticsMetadata('overview');
 export default function LegacyLogisticsPage() {
-  return <LogisticsOverviewPage page="overview" />;
+  redirect('/logistics-desk/');
 }

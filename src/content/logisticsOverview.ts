@@ -4,7 +4,7 @@ export const demoHref = '/demo/#demo-form';
 export const logisticsModules = [
   {
     slug: 'email-to-booking',
-    title: 'Email-to-Booking',
+    title: 'RFQ-to-Booking',
     label: '01 · Enquiry to quote',
     badge: 'Most teams start here',
     lead: 'Turn every enquiry into a ready-to-send quote.',
@@ -16,7 +16,7 @@ export const logisticsModules = [
       'Drafts the quote with your margin, for you to approve',
       'Creates the booking in CargoWise once the customer says yes',
     ],
-    link: 'See Email-to-Booking',
+    link: 'See RFQ-to-Booking',
   },
   {
     slug: 'shipment-operations',
@@ -232,7 +232,7 @@ export const logisticsFaqs = [
       'Yes. Every rate request, quote and booking waits for someone on your team to approve it. Nothing reaches a customer or vendor on its own. You can also set approval limits, for example so quotes under a certain margin need a manager.',
   },
   {
-    question: 'Can we start with just Email-to-Booking?',
+    question: 'Can we start with just RFQ-to-Booking?',
     answer:
       'Yes, and most teams do. It\'s live in about a week. Add operations and tracking whenever you\'re ready, with no re-setup.',
   },
@@ -263,7 +263,7 @@ export const logisticsPageCopy = {
     primary: 'Book a demo',
     secondary: 'See how it works',
     promise: 'Nothing goes to a customer or vendor until your team approves it.',
-    trust: 'Works with CargoWise, your own ERP, or just your email inbox. Live in about a week.',
+    trust: 'Works with Standalone or CargoWise, your own ERP, or just your email inbox. Live in about a week.',
     microline: 'Freight operations · Enquiry-to-booking · CargoWise & ERP workflows',
     visualTitle: 'LOGISTICS DESK',
     visualLabel: 'LIVE FREIGHT WORKSPACE',

@@ -9,6 +9,56 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/logistics',
+        destination: '/logistics-desk/',
+        permanent: true,
+      },
+      {
+        source: '/logistics/:path+',
+        destination: '/logistics-desk/:path+/',
+        permanent: true,
+      },
+      {
+        source: '/finance',
+        destination: '/finance-desk/',
+        permanent: true,
+      },
+      {
+        source: '/finance/:path+',
+        destination: '/finance-desk/:path+/',
+        permanent: true,
+      },
+      {
+        source: '/email-to-booking',
+        destination: '/logistics-desk/email-to-booking/',
+        permanent: true,
+      },
+      {
+        source: '/shipment-operations',
+        destination: '/logistics-desk/shipment-operations/',
+        permanent: true,
+      },
+      {
+        source: '/shipment-tracking',
+        destination: '/logistics-desk/shipment-tracking/',
+        permanent: true,
+      },
+      {
+        source: '/freight-intelligence',
+        destination: '/logistics-desk/freight-intelligence/',
+        permanent: true,
+      },
+      {
+        source: '/integrations',
+        destination: '/logistics-desk/integrations/',
+        permanent: true,
+      },
+      {
+        source: '/accounts-payable',
+        destination: '/finance-desk/accounts-payable/',
+        permanent: true,
+      },
+      {
         source: '/business-owners',
         destination: '/finance-desk/business-owners/',
         permanent: true,

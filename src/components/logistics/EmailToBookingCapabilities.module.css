@@ -15,12 +15,12 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: 'JetBrains Mono', monospace, ui-monospace, SFMono-Regular;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #059669;
+  color: var(--color-brand-strong, #15b886) !important;
   margin-bottom: 6px;
 }
 
@@ -613,7 +613,7 @@
   color: #64748b;
 }
 
-/* Roomier three-column composition, scoped to Email-to-Booking. */
+/* Roomier three-column composition, scoped to RFQ-to-Booking. */
 .emailBookingSection {
   padding-top: clamp(48px, 6vw, 88px);
   padding-bottom: clamp(48px, 6vw, 88px);

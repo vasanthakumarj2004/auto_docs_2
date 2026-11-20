@@ -5,7 +5,7 @@ export function logisticsMetadata(slug: LogisticsSlug): Metadata {
   const mod = logisticsModules[slug];
   const title = `${mod.moduleName} | Docsynecx Logistics`;
   const description = mod.heroDescription;
-  const url = `https://docsynecx.com/logistics/${slug}/`;
+  const url = `https://docsynecx.com/logistics-desk/${slug}/`;
 
   return {
     metadataBase: new URL('https://docsynecx.com'),

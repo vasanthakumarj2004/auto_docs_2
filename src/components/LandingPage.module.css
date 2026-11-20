@@ -678,7 +678,16 @@
   align-items: center;
 }
 .heroCopy, .heroVisual { min-width: 0; }
-.eyebrow { margin: 0 0 18px; font-size: 10px; font-weight: 600; line-height: 1.6; letter-spacing: .14em; text-transform: uppercase; color: var(--color-brand-text); }
+.eyebrow {
+  display: block;
+  margin: 0 0 16px;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-brand-strong, #15b886) !important;
+}
 .hero h1 {
   color: var(--landing-ink, #0f172a);
 }
@@ -934,7 +943,7 @@
   background: #F8FAFC;
 }
 .statStrip .eyebrow {
-  color: var(--landing-muted, #586579);
+  color: var(--color-brand-strong, #15b886) !important;
   margin-bottom: 24px;
 }
 .stats {
@@ -1049,7 +1058,7 @@
   padding: 84px 0 92px;
 }
 .customersSection .eyebrow {
-  color: var(--color-brand-text, #0f766e) !important;
+  color: var(--color-brand-strong, #15b886) !important;
 }
 .customersSection .sectionHeading h2 {
   color: var(--landing-ink, #0f172a) !important;

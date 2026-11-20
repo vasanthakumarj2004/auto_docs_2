@@ -56,64 +56,64 @@ const mappingData = [
     what: 'Customer enquiries',
     comesFrom: 'Your sales inbox',
     endsUpIn: 'Docsynecx, as a quote draft',
-    module: 'Email-to-Booking',
-    href: '/logistics/email-to-booking/',
+    module: 'RFQ-to-Booking',
+    href: '/logistics-desk/email-to-booking/',
   },
   {
     what: 'Vendor rates',
     comesFrom: 'Vendor emails and your rate cards',
     endsUpIn: 'Docsynecx, side by side',
-    module: 'Email-to-Booking',
-    href: '/logistics/email-to-booking/',
+    module: 'RFQ-to-Booking',
+    href: '/logistics-desk/email-to-booking/',
   },
   {
     what: 'Confirmed bookings',
     comesFrom: 'Docsynecx, after your approval',
     endsUpIn: 'CargoWise, TMS or ERP',
-    module: 'Email-to-Booking',
-    href: '/logistics/email-to-booking/',
+    module: 'RFQ-to-Booking',
+    href: '/logistics-desk/email-to-booking/',
   },
   {
     what: 'Jobs',
     comesFrom: 'The accepted quote',
     endsUpIn: 'CargoWise, TMS or ERP',
     module: 'Shipment Operations',
-    href: '/logistics/shipment-operations/',
+    href: '/logistics-desk/shipment-operations/',
   },
   {
     what: 'B/L, invoice, packing list',
     comesFrom: 'Email attachments',
     endsUpIn: 'Docsynecx, checked against each other',
     module: 'Shipment Operations',
-    href: '/logistics/shipment-operations/',
+    href: '/logistics-desk/shipment-operations/',
   },
   {
     what: 'Vendor invoices',
     comesFrom: 'Email attachments',
     endsUpIn: 'Docsynecx, checked against the agreed rate',
     module: 'Shipment Operations',
-    href: '/logistics/shipment-operations/',
+    href: '/logistics-desk/shipment-operations/',
   },
   {
     what: 'Container and LR numbers',
     comesFrom: 'The job',
     endsUpIn: 'Docsynecx tracking',
     module: 'Shipment Tracking',
-    href: '/logistics/shipment-tracking/',
+    href: '/logistics-desk/shipment-tracking/',
   },
   {
     what: 'Positions and milestones',
     comesFrom: 'Carrier data and transporter GPS',
     endsUpIn: "Docsynecx, and your customer's tracking link",
     module: 'Shipment Tracking',
-    href: '/logistics/shipment-tracking/',
+    href: '/logistics-desk/shipment-tracking/',
   },
   {
     what: 'Profit by job and lane',
     comesFrom: 'Quotes, jobs and vendor invoices',
     endsUpIn: 'Management reports',
     module: 'Freight Intelligence',
-    href: '/logistics/freight-intelligence/',
+    href: '/logistics-desk/freight-intelligence/',
     soon: true,
   },
 ];
@@ -195,13 +195,13 @@ export function LogisticsIntegrationsPage() {
       <LandingNavigation />
 
       <main id="main-content">
-        {/* 1. HERO SECTION (Warm Paper Gradient matching Email-to-Booking) */}
+        {/* 1. HERO SECTION (Warm Paper Gradient matching RFQ-to-Booking) */}
         <section className={s.viewportHero} aria-labelledby="hero-title">
           <div className={`site-shell ${s.heroGrid}`}>
             {/* Left Copy */}
             <div className={s.heroCopy}>
               <nav aria-label="Breadcrumb" className={s.breadcrumb}>
-                <Link href="/logistics-desk/">Freight Desk</Link>
+                <Link href="/logistics-desk/">Logistics Desk</Link>
                 <span className={s.breadcrumbSeparator}>/</span>
                 <span>Integrations</span>
               </nav>
@@ -234,11 +234,11 @@ export function LogisticsIntegrationsPage() {
               </p>
 
               <p className={s.heroTrust}>
-                Works with <strong>CargoWise</strong>, your own ERP, or just your email inbox. <strong>Live in about a week.</strong>
+                Works with <strong>Standalone or CargoWise</strong>, your own ERP, or just your email inbox. <strong>Live in about a week.</strong>
               </p>
             </div>
 
-            {/* Right Live Preview Card (Matching Email-to-Booking) */}
+            {/* Right Live Preview Card (Matching RFQ-to-Booking) */}
             <div className={s.heroVisualWrapper}>
               <div className={s.ambientGlow} aria-hidden="true" />
               <div className={s.ghostCardBehind} aria-hidden="true" />
@@ -334,7 +334,7 @@ export function LogisticsIntegrationsPage() {
           </div>
         </section>
 
-        {/* 3. WHAT MOVES WHERE TABLE SECTION (#map - Deep Navy Container like Steps in Email-to-Booking) */}
+        {/* 3. WHAT MOVES WHERE TABLE SECTION (#map - Deep Navy Container like Steps in RFQ-to-Booking) */}
         <section id="map" className={s.howSectionDark} aria-labelledby="map-h">
           <div className="site-shell">
             <div className={s.secHead}>
@@ -446,7 +446,7 @@ export function LogisticsIntegrationsPage() {
             'See a booking land in it, step by step',
           ]}
           secondaryHref="/logistics-desk/"
-          secondaryText="Back to Freight Desk"
+          secondaryText="Back to Logistics Desk"
         />
       </main>
 

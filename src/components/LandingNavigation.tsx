@@ -96,7 +96,7 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
   'Logistics Desk': {
     label: 'Logistics',
     eyebrow: 'Automate Freight Operations',
-    overviewHref: '/logistics/',
+    overviewHref: '/logistics-desk/',
     exploreLabel: 'Explore Logistics Desk',
     overviewLinks: [],
     featureLinks: [
@@ -104,37 +104,37 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
         sno: '01',
         title: 'RFQ-to-Booking',
         description: 'Connect customer enquiries, quotes and freight bookings.',
-        href: '/logistics/email-to-booking/',
+        href: '/logistics-desk/email-to-booking/',
       },
       {
         sno: '02',
         title: 'Shipment Operations',
         description: 'Bring shipment operations into one connected workspace.',
-        href: '/logistics/shipment-operations/',
+        href: '/logistics-desk/shipment-operations/',
       },
       {
         sno: '03',
         title: 'Shipment Tracking',
         description: 'Keep shipment milestones and status updates in view.',
-        href: '/logistics/shipment-tracking/',
+        href: '/logistics-desk/shipment-tracking/',
       },
       {
         sno: '04',
         title: 'Freight Intelligence',
         description: 'Build a clearer view of shipment costs, margins and performance.',
-        href: '/logistics/freight-intelligence/',
+        href: '/logistics-desk/freight-intelligence/',
       },
     ],
     // whoHeading: "By Role",
     // whoLinks: [
-    //   { title: 'Freight Forwarders', href: '/logistics/email-to-booking/' },
-    //   { title: 'Operations Teams', href: '/logistics/shipment-operations/' },
-    //   { title: 'Pricing & Sourcing', href: '/logistics/freight-intelligence/' },
-    //   { title: 'Logistics Leadership', href: '/logistics/shipment-operations/' },
+    //   { title: 'Freight Forwarders', href: '/logistics-desk/email-to-booking/' },
+    //   { title: 'Operations Teams', href: '/logistics-desk/shipment-operations/' },
+    //   { title: 'Pricing & Sourcing', href: '/logistics-desk/freight-intelligence/' },
+    //   { title: 'Logistics Leadership', href: '/logistics-desk/shipment-operations/' },
     // ],
     integrationsHeading: 'Integrations',
     integrationsLinks: [
-      { title: 'CargoWise & Custom ERP/TMS', href: '/logistics/integrations/' },
+      { title: 'CargoWise & Custom ERP/TMS', href: '/logistics-desk/integrations/' },
     ],
   },
   'Resources': {
@@ -150,12 +150,12 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
         description: 'Calculate monthly hours, error reduction and financial savings.',
         href: '/blogs',
       },
-      {
-        sno: '02',
-        title: 'Case Studies',
-        description: 'Answers about GST validation, security rules and human approvals.',
-        href: '/#customers',
-      },
+      // {
+      //   sno: '02',
+      //   title: 'Case Studies',
+      //   description: 'Answers about GST validation, security rules and human approvals.',
+      //   href: '/#customers',
+      // },
       {
         sno: '03',
         title: 'About Us',
@@ -368,7 +368,7 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
             }
 
             const isClickableDesk = item.key === 'Finance Desk' || item.key === 'Logistics Desk';
-            const deskHref = item.key === 'Finance Desk' ? '/finance-desk/' : '/logistics/';
+            const deskHref = item.key === 'Finance Desk' ? '/finance-desk/' : '/logistics-desk/';
 
             return (
               <div

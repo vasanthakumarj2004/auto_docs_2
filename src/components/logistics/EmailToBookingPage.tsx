@@ -286,12 +286,12 @@ export function EmailToBookingPage() {
             {/* Left Copy */}
             <div className={s.heroCopy}>
               <nav aria-label="Breadcrumb" className={s.breadcrumb}>
-                <Link href="/logistics-desk/">Freight Desk</Link>
+                <Link href="/logistics-desk/">Logistics Desk</Link>
                 <span className={s.breadcrumbSeparator}>/</span>
-                <span>Email-to-Booking</span>
+                <span>RFQ-to-Booking</span>
               </nav>
 
-              <p className={s.eyebrow}>EMAIL-TO-BOOKING · MOST TEAMS START HERE</p>
+              <p className={s.eyebrow}>RFQ-TO-BOOKING · MOST TEAMS START HERE</p>
 
               <h1 id="hero-title" className={s.heroTitle}>
                 Turn every customer enquiry into a <em>ready-to-send quote</em> in minutes.
@@ -322,7 +322,7 @@ export function EmailToBookingPage() {
               </p>
 
               <p className={s.heroTrust}>
-                Works with <strong>CargoWise</strong>, your own ERP, or just your email inbox. <strong>Live in about a week.</strong>
+                Works with <strong>Standalone or CargoWise</strong>, your own ERP, or just your email inbox. <strong>Live in about a week.</strong>
               </p>
             </div>
 
@@ -712,7 +712,7 @@ export function EmailToBookingPage() {
         {/* 7. CLOSING CTA SECTION (Shared Logistics Closing CTA) */}
         <LogisticsClosingCta
           secondaryHref="/logistics-desk/"
-          secondaryText="Back to Freight Desk"
+          secondaryText="Back to Logistics Desk"
         />
       </main>
 

@@ -43,7 +43,16 @@
   box-shadow: none !important;
 }
 .page :is(summary, input, textarea):focus-visible { outline: 2px solid var(--color-brand-text); outline-offset: 5px; }
-.eyebrow { display: block; color: var(--color-brand-text); }
+.eyebrow {
+  display: block;
+  margin: 0 0 16px;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-brand-strong, #15b886) !important;
+}
 .heroTitle {
   font-size: clamp(40px, 4.1vw, 62px);
   line-height: 1.12;

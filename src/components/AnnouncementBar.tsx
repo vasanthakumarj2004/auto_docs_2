@@ -39,7 +39,7 @@ const ANNOUNCEMENTS: AnnouncementItem[] = [
     tag: 'Logistics Desk',
     text: 'Real-time milestones, container tracking and carrier status updates',
     cta: 'Explore Logistics Desk',
-    href: '/logistics/',
+    href: '/logistics-desk/',
   },
 ];
 

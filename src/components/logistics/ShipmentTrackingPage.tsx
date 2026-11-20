@@ -223,7 +223,7 @@ export function ShipmentTrackingPage() {
             {/* Left Copy */}
             <div className={s.heroCopy}>
               <nav aria-label="Breadcrumb" className={s.breadcrumb}>
-                <Link href="/logistics-desk/">Freight Desk</Link>
+                <Link href="/logistics-desk/">Logistics Desk</Link>
                 <span className={s.breadcrumbSeparator}>/</span>
                 <span>Shipment Tracking</span>
               </nav>
@@ -258,7 +258,7 @@ export function ShipmentTrackingPage() {
               </p>
 
               <p className={s.heroTrust}>
-                Works with <strong>CargoWise</strong>, your own ERP, or just your email inbox.{' '}
+                Works with <strong>Standalone or CargoWise</strong>, your own ERP, or just your email inbox.{' '}
                 <strong>Live in about a week.</strong>
               </p>
             </div>
@@ -610,7 +610,7 @@ export function ShipmentTrackingPage() {
         {/* 7. CLOSING CTA SECTION */}
         <LogisticsClosingCta
           secondaryHref="/logistics-desk/"
-          secondaryText="Back to Freight Desk"
+          secondaryText="Back to Logistics Desk"
         />
       </main>
 

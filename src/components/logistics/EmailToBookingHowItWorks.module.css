@@ -15,12 +15,12 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: 'JetBrains Mono', monospace, ui-monospace, SFMono-Regular;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-brand-text, #0d9466);
+  color: var(--color-brand-strong, #15b886) !important;
   margin-bottom: 12px;
 }
 
@@ -477,7 +477,7 @@
   flex-shrink: 0;
 }
 
-/* Email-to-Booking uses the same dark canvas as ShipsyFooter. */
+/* RFQ-to-Booking uses the same dark canvas as ShipsyFooter. */
 .darkTheme {
   --landing-ink: #ffffff;
   --landing-muted: #b8c2d1;

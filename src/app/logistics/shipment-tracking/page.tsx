@@ -1,8 +1,5 @@
-import { LogisticsPage } from '@/src/components/logistics/LogisticsPages';
-import { logisticsMetadata } from '@/src/lib/logisticsMetadata';
-
-export const metadata = logisticsMetadata('shipment-tracking');
+import { redirect } from 'next/navigation';
 
 export default function ShipmentTrackingPage() {
-  return <LogisticsPage slug="shipment-tracking" />;
+  redirect('/logistics-desk/shipment-tracking/');
 }

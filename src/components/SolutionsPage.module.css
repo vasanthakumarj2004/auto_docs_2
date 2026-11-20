@@ -58,28 +58,30 @@
   align-items: center;
   gap: 8px;
   font-size: 0.8125rem;
-  color: var(--text-muted, #64748b);
+  color: var(--landing-muted, #586579);
+  font-weight: 500;
   margin-bottom: 12px;
 }
 
 .crumb a {
-  color: var(--color-brand-text, #0d9466);
+  color: var(--landing-ink, #0f172a);
   text-decoration: none;
   font-weight: 600;
-  transition: color 160ms ease;
+  transition: color 0.15s ease;
 }
 
 :global([data-theme="dark"]) .crumb a {
-  color: var(--color-brand-text, #18cb96);
+  color: #f1f5f9;
 }
 
 .crumb a:hover {
-  text-decoration: underline;
+  color: var(--color-brand-text, #18cb96);
+  text-decoration: none;
 }
 
 .crumbCurrent,
 .crumb span {
-  color: var(--text-muted, #64748b);
+  color: var(--landing-muted, #586579);
   font-weight: 400;
 }
 
@@ -91,28 +93,28 @@
 /* ── Eyebrow ── */
 .eyebrow {
   display: inline-block;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  font-weight: 700;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-brand-text, #0d9466);
-  margin-bottom: 8px;
+  color: var(--color-brand-strong, #15b886) !important;
+  margin-bottom: 12px;
 }
 
 :global([data-theme="dark"]) .eyebrow {
-  color: var(--color-brand-text, #18cb96);
+  color: var(--color-brand-strong, #15b886) !important;
 }
 
 .eyebrowLight {
   display: inline-block;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.75rem;
-  font-weight: 700;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #94a3b8;
-  margin-bottom: 8px;
+  color: var(--color-brand-strong, #15b886) !important;
+  margin-bottom: 12px;
 }
 
 /* ==========================================================================

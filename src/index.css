@@ -196,16 +196,59 @@ button, input, textarea, select {
 }
 
 .eyebrow {
+  display: block;
+  margin: 0 0 16px;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  color: var(--color-brand-strong, #15b886) !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  line-height: 1.5;
+}
+
+.breadcrumb,
+.crumb {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  border: 1px solid #E0CAFE;
-  border-radius: 999px;
-  background: #F8F3FF;
-  padding: 5px 12px;
-  color: #7022D1;
-  font-size: 11px;
-  font-weight: 700;
+  gap: 8px;
+  font-size: 0.8125rem;
+  color: var(--landing-muted, #586579);
+  font-weight: 500;
+  margin-bottom: 12px;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+
+.breadcrumb a,
+.crumb a {
+  color: var(--landing-ink, #0f172a);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.15s ease;
+}
+
+.breadcrumb a:hover,
+.crumb a:hover {
+  color: var(--color-brand-text, #18cb96);
+  text-decoration: none;
+}
+
+:global([data-theme="dark"]) .breadcrumb a,
+:global([data-theme="dark"]) .crumb a,
+[data-theme="dark"] .breadcrumb a,
+[data-theme="dark"] .crumb a {
+  color: #f1f5f9;
+}
+
+.breadcrumbSeparator,
+.breadcrumb span,
+.crumb span {
+  opacity: 0.7;
+  color: var(--landing-muted, #586579);
 }
 
 /* ========================================================

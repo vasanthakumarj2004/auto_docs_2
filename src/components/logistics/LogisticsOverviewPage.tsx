@@ -140,7 +140,7 @@ function Hero({ page }: { page: PageKey }) {
                 </p>
               )}
               <p className={`${base.trust} ${s.heroTrust}`}>
-                Works with <strong>CargoWise</strong>, your own ERP, or just your email inbox. <strong>Live in about a week.</strong>
+                Works with <strong>Standalone or CargoWise</strong>, your own ERP, or just your email inbox. <strong>Live in about a week.</strong>
               </p>
             </>
           ) : (
@@ -174,7 +174,7 @@ function Overview() {
         <Heading
           eyebrow="START WITH ONE. ADD THE REST WHEN YOU'RE READY."
           title={<>Four modules,<br /><span>one desk.</span></>}
-          copy="Most teams start with Email-to-Booking and add operations and tracking later. We set each one up around how your desk already works."
+          copy="Most teams start with RFQ-to-Booking and add operations and tracking later. We set each one up around how your desk already works."
         />
         <div className={s.capabilityGrid}>
           {logisticsModules.map((item) => (

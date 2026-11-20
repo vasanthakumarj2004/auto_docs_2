@@ -1,7 +1,16 @@
 .section { overflow: hidden; padding-block: 88px 92px; }
 .section.section { --landing-ink: #fff; --landing-muted: #c0c8d4; --landing-line: #ffffff26; background: #111827; color: var(--landing-ink); border-color: #1f2937; }
 .heading { max-width: 720px; }
-.eyebrow { display: block; }
+.eyebrow {
+  display: block;
+  margin: 0 0 16px;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-brand-strong, #15b886) !important;
+}
 .heading h2 { font-size: clamp(35px, 3.6vw, 50px); font-weight: 700; line-height: 1.12; letter-spacing: -.055em; }
 .intro { max-width: 620px; margin-top: 24px; font-size: 14px; line-height: 1.85; color: var(--landing-muted); }
 .workspace { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(40px, 7vw, 110px); margin-top: 48px; }

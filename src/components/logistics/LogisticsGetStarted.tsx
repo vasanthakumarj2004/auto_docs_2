@@ -39,7 +39,7 @@ const stages: { title: string; description: string; steps: WorkflowStep[]; outco
     description: 'Your desk starts using it, then you add branches and modules.',
     steps: [
       { icon: ListChecks, title: 'Team ready', detail: 'Logins, permissions and a walkthrough' },
-      { icon: Rocket, title: 'Start quoting', detail: 'Email-to-Booking or Operations first', emphasis: true },
+      { icon: Rocket, title: 'Start quoting', detail: 'RFQ-to-Booking or Operations first', emphasis: true },
       { icon: CircleCheck, title: 'Grow when ready', detail: 'Add tracking, then more desks' },
     ],
     outcome: 'Your desk is quoting faster',

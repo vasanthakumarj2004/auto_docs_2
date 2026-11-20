@@ -1,6 +1,5 @@
-import { FinancePage } from '@/src/components/finance/FinancePages';
-import { financeMetadata } from '@/src/lib/financeMetadata';
+import { redirect } from 'next/navigation';
 
-// Preserve existing bookmarks in the static export with the new canonical URL.
-export const metadata = financeMetadata('accounts-payable');
-export default function LegacyFinancePage() { return <FinancePage page="accounts-payable" />; }
+export default function LegacyAccountsPayablePage() {
+  redirect('/finance-desk/accounts-payable/');
+}

@@ -74,10 +74,10 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
   font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-brand-strong, #15b886) !important;
   margin: 0;
@@ -186,28 +186,30 @@
   align-items: center;
   gap: 8px;
   font-size: 0.8125rem;
-  color: var(--text-muted, #64748b);
-  margin-bottom: 4px;
+  color: var(--landing-muted, #586579);
+  font-weight: 500;
+  margin-bottom: 12px;
 }
 
 .breadcrumb a {
-  color: var(--color-brand-text, #0d9466);
+  color: var(--landing-ink, #0f172a);
   text-decoration: none;
   font-weight: 600;
-  transition: color 160ms ease;
+  transition: color 0.15s ease;
 }
 
 :global([data-theme="dark"]) .breadcrumb a {
-  color: var(--color-brand-text, #18cb96);
+  color: #f1f5f9;
 }
 
 .breadcrumb a:hover {
-  text-decoration: underline;
+  color: var(--color-brand-text, #18cb96);
+  text-decoration: none;
 }
 
 .breadcrumbCurrent,
 .breadcrumb span {
-  color: var(--text-muted, #64748b);
+  color: var(--landing-muted, #586579);
   font-weight: 400;
 }
 
@@ -1496,13 +1498,13 @@
 
 .faqEyebrow {
   margin: 0 0 18px;
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-size: 10px;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  font-size: 11px;
   font-weight: 600;
   line-height: 1.6;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--color-brand-text, #18cb96);
+  color: var(--color-brand-strong, #15b886) !important;
 }
 
 .faqTitle {

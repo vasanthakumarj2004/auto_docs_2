@@ -151,7 +151,7 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
 
           {/* Column 4: Finance Modules */}
           <div className={styles.navCol}>
-            <h4 className={styles.colHeader}>Finance Modules</h4>
+            <h4 className={styles.colHeader}>Finance</h4>
             <ul className={styles.linkList}>
               <li>
                 <Link href="/finance-desk/invoice-automation/" className={styles.footerLink}>
@@ -178,30 +178,30 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
 
           {/* Column 5: Logistics Modules */}
           <div className={styles.navCol}>
-            <h4 className={styles.colHeader}>Logistics Modules</h4>
+            <h4 className={styles.colHeader}>Logistics</h4>
             <ul className={styles.linkList}>
               <li>
-                <Link href="/logistics/email-to-booking/" className={styles.footerLink}>
+                <Link href="/logistics-desk/email-to-booking/" className={styles.footerLink}>
                   RFQ-to-Booking
                 </Link>
               </li>
               <li>
-                <Link href="/logistics/shipment-operations/" className={styles.footerLink}>
+                <Link href="/logistics-desk/shipment-operations/" className={styles.footerLink}>
                   Shipment Operations
                 </Link>
               </li>
               <li>
-                <Link href="/logistics/shipment-tracking/" className={styles.footerLink}>
+                <Link href="/logistics-desk/shipment-tracking/" className={styles.footerLink}>
                   Shipment Tracking
                 </Link>
               </li>
               <li>
-                <Link href="/logistics/freight-intelligence/" className={styles.footerLink}>
+                <Link href="/logistics-desk/freight-intelligence/" className={styles.footerLink}>
                   Freight Intelligence
                 </Link>
               </li>
               <li>
-                <Link href="/logistics/integrations/" className={styles.footerLink}>
+                <Link href="/logistics-desk/integrations/" className={styles.footerLink}>
                   Integrations
                 </Link>
               </li>

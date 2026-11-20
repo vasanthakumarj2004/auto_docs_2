@@ -1,8 +1,5 @@
-import { LogisticsPage } from '@/src/components/logistics/LogisticsPages';
-import { logisticsMetadata } from '@/src/lib/logisticsMetadata';
-
-export const metadata = logisticsMetadata('integrations');
+import { redirect } from 'next/navigation';
 
 export default function LogisticsIntegrationsRoute() {
-  return <LogisticsPage slug="integrations" />;
+  redirect('/logistics-desk/integrations/');
 }

@@ -1,8 +1,5 @@
-import { LogisticsPage } from '@/src/components/logistics/LogisticsPages';
-import { logisticsMetadata } from '@/src/lib/logisticsMetadata';
-
-export const metadata = logisticsMetadata('email-to-booking');
+import { redirect } from 'next/navigation';
 
 export default function EmailToBookingPage() {
-  return <LogisticsPage slug="email-to-booking" />;
+  redirect('/logistics-desk/email-to-booking/');
 }

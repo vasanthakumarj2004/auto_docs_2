@@ -223,7 +223,7 @@ export function FreightIntelligencePage() {
             {/* Left Copy */}
             <div className={s.heroCopy}>
               <nav aria-label="Breadcrumb" className={s.breadcrumb}>
-                <Link href="/logistics-desk/">Freight Desk</Link>
+                <Link href="/logistics-desk/">Logistics Desk</Link>
                 <span className={s.breadcrumbSeparator}>/</span>
                 <span>Freight Intelligence</span>
               </nav>
@@ -259,7 +259,7 @@ export function FreightIntelligencePage() {
               </p>
 
               <p className={s.heroTrust}>
-                Works with <strong>CargoWise</strong>, your own ERP, or just your email inbox.{' '}
+                Works with <strong>Standalone or CargoWise</strong>, your own ERP, or just your email inbox.{' '}
                 <strong>Early access now open.</strong>
               </p>
             </div>
@@ -345,7 +345,7 @@ export function FreightIntelligencePage() {
                 <div className={s.outcomeCardContent}>
                   <span className={s.outcomeStatValue}>Quotes</span>
                   <span className={s.outcomeStatLabel}>
-                    what you agreed with the customer, from Email-to-Booking
+                    what you agreed with the customer, from RFQ-to-Booking
                   </span>
                 </div>
               </div>
@@ -386,7 +386,7 @@ export function FreightIntelligencePage() {
                 No new data entry. <em>It uses what your desk already has.</em>
               </h2>
               <p className={s.lead}>
-                If you use Email-to-Booking and Shipment Operations, the numbers are already there.
+                If you use RFQ-to-Booking and Shipment Operations, the numbers are already there.
                 If you don&apos;t, we&apos;ll look at bringing them in from CargoWise or your ERP.
               </p>
             </div>
@@ -613,7 +613,7 @@ export function FreightIntelligencePage() {
         {/* 7. CLOSING CTA SECTION */}
         <LogisticsClosingCta
           secondaryHref="/logistics-desk/"
-          secondaryText="Back to Freight Desk"
+          secondaryText="Back to Logistics Desk"
         />
       </main>
 

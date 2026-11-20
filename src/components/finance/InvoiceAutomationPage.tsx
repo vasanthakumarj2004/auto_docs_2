@@ -202,15 +202,15 @@ export function InvoiceAutomationPage() {
         <div className="site-shell">
           <div className={s.heroGrid}>
             <div>
-              <div className={s.heroHeaderGroup}>
-                <nav className={s.crumb} aria-label="Breadcrumb">
-                  <Link href="/finance-desk/">Finance Desk</Link>
-                  <span className={s.crumbSeparator} aria-hidden="true">/</span>
-                  <span className={s.crumbCurrent}>Invoice Automation</span>
-                  <span className={s.crumbHighlight}>Most teams start here</span>
-                </nav>
-                <div className={s.crumbLine} aria-hidden="true" />
-              </div>
+              <nav className={s.crumb} aria-label="Breadcrumb">
+                <Link href="/finance-desk/">Finance Desk</Link>
+                <span aria-hidden="true">/</span>
+                <span>Invoice Automation</span>
+              </nav>
+
+              <p className={s.eyebrow}>
+                Invoice Automation <span className={s.badge}>Most teams start here</span>
+              </p>
 
               <h1 id="hero-title" className={s.heroTitle}>
                 Stop typing supplier

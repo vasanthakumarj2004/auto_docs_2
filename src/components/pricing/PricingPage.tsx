@@ -939,7 +939,7 @@ export function PricingPage() {
           ]}
           primaryHref="/demo/#demo-form"
           primaryText="Get your proposal"
-          secondaryHref={desk === 'finance' ? '/finance-desk/' : '/logistics/'}
+          secondaryHref={desk === 'finance' ? '/finance-desk/' : '/logistics-desk/'}
           secondaryText={desk === 'finance' ? 'Explore Finance Desk' : 'Explore Logistics Desk'}
         />
       </main>
