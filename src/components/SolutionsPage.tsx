@@ -10,6 +10,7 @@ import {
   CheckCircle2,
   FileText,
   Inbox,
+  MousePointerClick,
   ShieldCheck,
 } from 'lucide-react';
 import { LandingNavigation } from './LandingNavigation';
@@ -75,19 +76,24 @@ export function SolutionsPage() {
                 </p>
               </div>
 
-              {/* Right Column: Jump to your industry Navigation Card */}
-              <nav className={styles.indPick} aria-label="Jump to your industry">
-                <span className={styles.indPickHead}>Jump to your industry</span>
-                {SOLUTIONS_DATA.map((ind) => (
-                  <a key={ind.id} href={`#${ind.id}`} className={styles.indPickItem}>
-                    <span className={styles.mono}>{ind.sno}</span>
-                    <span className={styles.indPickName}>{ind.industry}</span>
-                    <span className={styles.indPickArrow} aria-hidden="true">
-                      →
-                    </span>
-                  </a>
-                ))}
-              </nav>
+              {/* Right Column: Jump to your industry Navigation Card with 3D Depth matching /pricing/ */}
+              <div className={styles.heroVisualWrapper}>
+                <div className={styles.ambientGlow} aria-hidden="true" />
+                <div className={styles.ghostCardBehind} aria-hidden="true" />
+
+                <nav className={styles.indPick} aria-label="Jump to your industry">
+                  <span className={styles.indPickHead}>Jump to your industry</span>
+                  {SOLUTIONS_DATA.map((ind) => (
+                    <a key={ind.id} href={`#${ind.id}`} className={styles.indPickItem}>
+                      <span className={styles.mono}>{ind.sno}</span>
+                      <span className={styles.indPickName}>{ind.industry}</span>
+                      <span className={styles.indPickArrow} aria-hidden="true">
+                        →
+                      </span>
+                    </a>
+                  ))}
+                </nav>
+              </div>
             </div>
           </div>
         </section>
@@ -130,7 +136,7 @@ export function SolutionsPage() {
 
               <li className={`${styles.tile} ${styles.tileHighlight}`}>
                 <span className={styles.tileIcon} aria-hidden="true">
-                  <CheckCircle2 size={20} strokeWidth={2.4} />
+                  <MousePointerClick size={20} strokeWidth={2.4} />
                 </span>
                 <div className={styles.tileContent}>
                   <strong className={styles.tileTitle}>One click to approve</strong>
