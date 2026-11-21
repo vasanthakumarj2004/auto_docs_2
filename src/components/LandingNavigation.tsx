@@ -351,6 +351,7 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
           id="landing-navigation"
           className={styles.navigation}
           data-open={mobileOpen}
+          data-finance-open={mobileOpen && openMenu === 'Finance Desk'}
           aria-label="Main navigation"
         >
           {NAV_ITEMS.map((item) => {
@@ -449,7 +450,7 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
 
                 {/* Mobile Drawer Accordion ONLY rendered on mobile */}
                 {mobileOpen && openMenu === item.key && (
-                  <ul className={styles.mobileDropdownList}>
+                  <ul className={`${styles.mobileDropdownList} ${item.key === 'Finance Desk' ? styles.financeMobileList : ''}`}>
                     {MEGA_MENUS[item.key]?.overviewLinks.map((link) => (
                       <li key={link.title}>
                         <Link href={link.href} onClick={close}>
@@ -464,8 +465,17 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
                           {link.sno && (
                             <span className={styles.megaItemNumber}>{link.sno}</span>
                           )}
-                          <strong>{link.title}</strong>
-                          {link.description && <span>{link.description}</span>}
+                          {item.key === 'Finance Desk' ? (
+                            <div className={styles.financeMobileCopy}>
+                              <strong>{link.title}</strong>
+                              {link.description && <span>{link.description}</span>}
+                            </div>
+                          ) : (
+                            <>
+                              <strong>{link.title}</strong>
+                              {link.description && <span>{link.description}</span>}
+                            </>
+                          )}
                         </Link>
                       </li>
                     ))}

@@ -13,6 +13,52 @@
 .heroGrid {
   align-items: center;
 }
+
+@media (max-width: 640px) {
+  .page .viewportHero.overviewHero {
+    min-height: auto;
+    padding-block: 112px 48px;
+  }
+
+  .overviewHero .heroGrid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .overviewHero .heroVisualWrapper {
+    min-width: 0;
+  }
+
+  .overviewHero .heroCopy :global([class*="heroDescription"]) {
+    margin: 20px 0 0;
+  }
+
+  .overviewHero :global([class*="heroActions"]) {
+    flex-direction: column;
+    align-items: stretch;
+    margin-top: 24px;
+    gap: 12px;
+  }
+
+  .overviewHero :global([class*="heroActions"]) > a {
+    width: 100%;
+    height: auto;
+    min-height: 44px;
+    margin-top: 0;
+    white-space: normal;
+    text-align: center;
+  }
+
+  .overviewHero .promise {
+    align-items: flex-start;
+    line-height: 1.6;
+    margin-top: 20px;
+  }
+
+  .overviewHero .promise svg {
+    margin-top: 3px;
+  }
+}
 .heroCopy {
   display: flex;
   flex-direction: column;

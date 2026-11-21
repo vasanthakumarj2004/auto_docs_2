@@ -244,3 +244,15 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 640px) {
+  .comparisonGrid {
+    gap: 20px;
+  }
+  .card {
+    padding: 24px 20px;
+  }
+  .cardHeader {
+    flex-wrap: wrap;
+  }
+}

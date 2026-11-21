@@ -103,6 +103,7 @@ export function LogisticsHowItWorks() {
                 {/* Step 2 View: Rate comparison table & total box */}
                 {active === 1 && 'rates' in currentStep && currentStep.rates && (
                   <>
+                    <div className={styles.tableScroll} role="region" aria-label="Vendor rate comparison" tabIndex={0}>
                     <table className={styles.dataTableDark}>
                       <thead>
                         <tr>
@@ -137,6 +138,7 @@ export function LogisticsHowItWorks() {
                         ))}
                       </tbody>
                     </table>
+                    </div>
 
                     {'quoteTotal' in currentStep && (
                       <div className={styles.qtotalDark}>
@@ -149,6 +151,7 @@ export function LogisticsHowItWorks() {
 
                 {/* Step 3 View: Document checks against B/L and Packing List */}
                 {active === 2 && 'checks' in currentStep && currentStep.checks && (
+                  <div className={styles.tableScroll} role="region" aria-label="Document comparison" tabIndex={0}>
                   <table className={styles.dataTableDark}>
                     <thead>
                       <tr>
@@ -191,6 +194,7 @@ export function LogisticsHowItWorks() {
                       ))}
                     </tbody>
                   </table>
+                  </div>
                 )}
 
                 {/* Step 4 View: Tracking milestones with connected status nodes */}
