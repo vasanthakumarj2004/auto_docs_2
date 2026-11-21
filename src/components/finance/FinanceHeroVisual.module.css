@@ -113,7 +113,6 @@
 }
 
 .statusBadge::before {
-  content: '';
   width: 18px;
   height: 2px;
   background: var(--color-brand, #18cb96);
