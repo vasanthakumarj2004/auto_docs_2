@@ -10,6 +10,12 @@ import {
   ShieldCheck,
   FileText,
   FileSpreadsheet,
+  Search,
+  FileCheck2,
+  CheckCheck,
+  Receipt,
+  AlertTriangle,
+  Check,
 } from 'lucide-react';
 import { LandingNavigation } from '../LandingNavigation';
 import { ShipsyFooter } from '../ShipsyFooter';
@@ -188,12 +194,32 @@ const faqItems = [
   },
 ];
 
-/* ── Control items ── */
+/* ── Control items from Section 4 ── */
 const controlDecisions = [
-  { bold: 'How to fix a mismatch', desc: 'and who to ask' },
-  { bold: 'When the B/L is final', desc: 'with the carrier' },
-  { bold: 'When the job is ready', desc: 'to move on' },
-  { bold: 'Whether to pay', desc: 'a vendor invoice' },
+  {
+    step: '01 · DISCREPANCY DETECTION',
+    title: 'Spot document mismatches',
+    desc: 'Compare shipment details across documents and flag differences for review.',
+    icon: Search,
+  },
+  {
+    step: '02 · DOCUMENT APPROVAL',
+    title: 'Review the final Bill of Lading',
+    desc: 'Check critical details and confirm the document before it is finalized.',
+    icon: FileCheck2,
+  },
+  {
+    step: '03 · JOB READINESS',
+    title: 'Check before the next operation',
+    desc: 'Verify required information and resolve open exceptions before handoff.',
+    icon: CheckCheck,
+  },
+  {
+    step: '04 · PAYMENT CONTROL',
+    title: 'Review vendor charges',
+    desc: 'Check vendor invoices and additional charges before payment approval.',
+    icon: Receipt,
+  },
 ];
 
 export function ShipmentOperationsPage() {
@@ -366,24 +392,120 @@ export function ShipmentOperationsPage() {
         <section className={s.controlSection} aria-labelledby="ctrl-h">
           <div className="site-shell">
             <div className={s.controlHead}>
-              <p className={s.eyebrow}>YOU STAY IN CHARGE</p>
+              <p className={s.eyebrow}>OPERATIONAL CONTROL</p>
               <h2 id="ctrl-h" className={s.headline}>
-                Docsynecx does the checking. <em>Your team makes the calls.</em>
+                Every document checked. <em>Every critical decision reviewed.</em>
               </h2>
               <p className={s.lead}>
-                Mismatches and extra charges always stop for a person. Nothing is finalised or paid
-                on its own.
+                AI validates shipment information, identifies mismatches and flags additional charges. Your operations team reviews exceptions before the shipment moves forward.
               </p>
             </div>
 
-            <ul className={s.decisionList}>
-              {controlDecisions.map((item) => (
-                <li key={item.bold} className={s.decisionCard}>
-                  <strong>{item.bold}</strong>
-                  <span>{item.desc}</span>
-                </li>
-              ))}
-            </ul>
+            <div className={s.controlLayoutWithMock}>
+              <div className={s.controlCardsCol}>
+                {controlDecisions.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <article key={item.step} className={s.controlCard}>
+                      <div className={s.controlCardIcon} aria-hidden="true">
+                        <Icon size={20} strokeWidth={1.8} />
+                      </div>
+                      <div>
+                        <small className={s.controlCardTag}>{item.step}</small>
+                        <h3 className={s.controlCardTitle}>{item.title}</h3>
+                        <p className={s.controlCardDesc}>{item.desc}</p>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+
+              <aside className={s.controlMock} aria-label="Document validation case review">
+                <div className={s.mockHeaderBar}>
+                  <div className={s.mockTitleGroup}>
+                    <span className={s.mockPulseDot} aria-hidden="true" />
+                    <span className={s.mockTitle}>Document validation engine</span>
+                  </div>
+                  <span className={s.mockBadge}>ILLUSTRATIVE · 1 CASE</span>
+                </div>
+
+                <div className={s.mockBody}>
+                  {/* Item 1: Verified B/L */}
+                  <div className={s.mockItem}>
+                    <div className={s.mockItemLeft}>
+                      <div className={s.mockItemIconWrap}>
+                        <FileText size={16} />
+                      </div>
+                      <div className={s.mockItemText}>
+                        <span className={s.mockItemTitle}>Bill of Lading</span>
+                        <span className={s.mockItemSub}>Container MSCU8921045 · Consignee verified</span>
+                      </div>
+                    </div>
+                    <span className={s.mockStatusChipOk}>
+                      <Check size={12} strokeWidth={2.5} />
+                      <span>Checked</span>
+                    </span>
+                  </div>
+
+                  {/* Item 2: Active Flagged Case */}
+                  <div className={`${s.mockItem} ${s.mockItemActive}`}>
+                    <div className={s.mockItemLeft}>
+                      <div className={`${s.mockItemIconWrap} ${s.mockItemIconWrapWarn}`}>
+                        <AlertTriangle size={16} />
+                      </div>
+                      <div className={s.mockItemText}>
+                        <span className={s.mockItemTitle}>Packing List</span>
+                        <span className={s.mockItemSub}>Gross weight variance detected</span>
+                      </div>
+                    </div>
+                    <span className={s.mockStatusChipWarn}>
+                      <Clock size={12} strokeWidth={2.5} />
+                      <span>Review case</span>
+                    </span>
+                  </div>
+
+                  {/* Active Case Review Detail Card */}
+                  <div className={s.mockCaseCard}>
+                    <div className={s.mockCaseHeader}>
+                      <span>DISCREPANCY FLAGGED</span>
+                      <span>PAUSED FOR REVIEW</span>
+                    </div>
+                    <p className={s.mockCaseDesc}>
+                      B/L declares <strong>18,400 kg</strong> vs Packing List <strong>18,040 kg</strong> (-360 kg). Exceeds carrier 2% tolerance threshold.
+                    </p>
+                    <div className={s.mockCaseActions}>
+                      <button type="button" className={s.mockBtnPrimary}>
+                        Approve with note
+                      </button>
+                      <button type="button" className={s.mockBtnSecondary}>
+                        Query shipper
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Item 3: Verified Vendor Invoice */}
+                  <div className={s.mockItem}>
+                    <div className={s.mockItemLeft}>
+                      <div className={s.mockItemIconWrap}>
+                        <Receipt size={16} />
+                      </div>
+                      <div className={s.mockItemText}>
+                        <span className={s.mockItemTitle}>Vendor Invoice</span>
+                        <span className={s.mockItemSub}>Charges matched to agreed carrier tariff ($2,840)</span>
+                      </div>
+                    </div>
+                    <span className={s.mockStatusChipOk}>
+                      <Check size={12} strokeWidth={2.5} />
+                      <span>Checked</span>
+                    </span>
+                  </div>
+                </div>
+
+                <div className={s.mockFooter}>
+                  Document checks automatically identify potential discrepancies. An authorized team member reviews the case and decides the next action.
+                </div>
+              </aside>
+            </div>
           </div>
         </section>
 

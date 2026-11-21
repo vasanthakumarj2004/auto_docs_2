@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import Link from 'next/link';
+import React, { useState } from "react";
+import Link from "next/link";
 import {
   ArrowDown,
   ArrowRight,
@@ -14,81 +14,96 @@ import {
   MousePointerClick,
   RotateCcw,
   UploadCloud,
-} from 'lucide-react';
-import { useAutoCycle } from '@/src/hooks/useAutoCycle';
-import { SharedFaqAccordion } from '../SharedFaqAccordion';
-import { FinanceClosingCta } from './FinanceClosingCta';
-import s from './InvoiceAutomationPage.module.css';
+} from "lucide-react";
+import { useAutoCycle } from "@/src/hooks/useAutoCycle";
+import { SharedFaqAccordion } from "../SharedFaqAccordion";
+import { FinanceClosingCta } from "./FinanceClosingCta";
+import s from "./InvoiceAutomationPage.module.css";
 
 /* ── Step definitions with full panel data ── */
 const howSteps = [
   {
     num: 1,
-    title: 'Send it in',
-    desc: 'Upload PDFs and scans in the portal, forward them by email, or send them on WhatsApp. Batches too.',
-    panelBar: 'Step 1 of 4 · Inbox',
-    panelStatus: '3 new',
-    statusType: 'info',
-    files: ['INV-4821.pdf', 'Fwd: Invoice 1068 (email)', 'scan_0294.jpg'],
+    title: "Send it in",
+    desc: "Upload PDFs and scans in the portal, forward them by email, or send them on WhatsApp. Batches too.",
+    panelBar: "Step 1 of 4 · Inbox",
+    panelStatus: "3 new",
+    statusType: "info",
+    files: ["INV-4821.pdf", "Fwd: Invoice 1068 (email)", "scan_0294.jpg"],
     rows: [
-      { who: 'Prime Components', what: 'Uploaded as PDF', status: 'Received', type: 'ok' },
-      { who: 'Metro Supplies', what: 'Forwarded by email', status: 'Received', type: 'ok' },
-      { who: 'Apex Services', what: 'Scanned paper bill', status: 'Received', type: 'ok' },
+      {
+        who: "Prime Components",
+        what: "Uploaded as PDF",
+        status: "Received",
+        type: "ok",
+      },
+      {
+        who: "Metro Supplies",
+        what: "Forwarded by email",
+        status: "Received",
+        type: "ok",
+      },
+      {
+        who: "Apex Services",
+        what: "Scanned paper bill",
+        status: "Received",
+        type: "ok",
+      },
     ],
-    foot: 'One inbox however the invoice arrives.',
+    foot: "One inbox however the invoice arrives.",
   },
   {
     num: 2,
-    title: 'It reads the invoice',
-    desc: 'Supplier, GSTIN, invoice number, date, line items, HSN and tax, picked up in seconds.',
-    panelBar: 'Step 2 of 4 · Prime Components · INV-4821',
-    panelStatus: 'Read',
-    statusType: 'ok',
+    title: "It reads the invoice",
+    desc: "Supplier, GSTIN, invoice number, date, line items, HSN and tax, picked up in seconds.",
+    panelBar: "Step 2 of 4 · Prime Components · INV-4821",
+    panelStatus: "Read",
+    statusType: "ok",
     fields: [
-      { label: 'Supplier', value: 'Prime Components' },
-      { label: 'GSTIN', value: '33AABCP1234F1Z5' },
-      { label: 'Invoice date', value: '12 Nov 2026' },
+      { label: "Supplier", value: "Prime Components" },
+      { label: "GSTIN", value: "33AABCP1234F1Z5" },
+      { label: "Invoice date", value: "12 Nov 2026" },
     ],
     table: {
-      headers: ['Item · HSN', 'Qty × Rate', 'Taxable'],
+      headers: ["Item · HSN", "Qty × Rate", "Taxable"],
       rows: [
-        ['Ball bearings · 8482', '250 × ₹170', '₹42,500'],
-        ['Rubber seals · 4016', '450 × ₹45', '₹20,250'],
-        ['CGST 9% + SGST 9%', '', '₹11,295'],
+        ["Ball bearings · 8482", "250 × ₹170", "₹42,500"],
+        ["Rubber seals · 4016", "450 × ₹45", "₹20,250"],
+        ["CGST 9% + SGST 9%", "", "₹11,295"],
       ],
     },
-    total: { meta: 'Total · tax matches the lines', big: '₹74,045' },
-    foot: 'Read in seconds, including every line item.',
+    total: { meta: "Total · tax matches the lines", big: "₹74,045" },
+    foot: "Read in seconds, including every line item.",
   },
   {
     num: 3,
-    title: 'Your team reviews it',
+    title: "Your team reviews it",
     desc: "Fields it isn't sure about are highlighted. Fix anything, then approve.",
-    panelBar: 'Step 3 of 4 · Review',
-    panelStatus: '2 need a look',
-    statusType: 'wait',
+    panelBar: "Step 3 of 4 · Review",
+    panelStatus: "2 need a look",
+    statusType: "wait",
     rows: [
       {
-        who: 'Apex Services · GST',
-        what: 'Lines on ₹15,000 at 18% give ₹2,700. Invoice says ₹2,970',
-        status: 'Tax mismatch',
-        type: 'wait',
+        who: "Apex Services · GST",
+        what: "Lines on ₹15,000 at 18% give ₹2,700. Invoice says ₹2,970",
+        status: "Tax mismatch",
+        type: "wait",
       },
       {
-        who: 'Apex Services · Invoice date',
-        what: 'Faint on the scan. Read as 08 Nov 2026',
-        status: 'Please check',
-        type: 'wait',
+        who: "Apex Services · Invoice date",
+        what: "Faint on the scan. Read as 08 Nov 2026",
+        status: "Please check",
+        type: "wait",
       },
       {
-        who: 'Metro Supplies · INV-1068',
-        what: 'Same supplier, amount and date as INV-1061',
-        status: 'Possible duplicate',
-        type: 'wait',
+        who: "Metro Supplies · INV-1068",
+        what: "Same supplier, amount and date as INV-1061",
+        status: "Possible duplicate",
+        type: "wait",
       },
     ],
     // actions: ['Fix tax split', 'Confirm date', 'Merge or reject'],
-    foot: 'You see why each one was flagged, before you approve.',
+    foot: "You see why each one was flagged, before you approve.",
   },
   {
     num: 4,
@@ -98,43 +113,43 @@ const howSteps = [
     panelStatus: 'Voucher created',
     statusType: 'ok',
     table: {
-      headers: ['Ledger', 'Dr / Cr', 'Amount'],
+      headers: ["Ledger", "Dr / Cr", "Amount"],
       rows: [
-        ['Purchase @ 18%', 'Dr', '₹62,750'],
-        ['Input CGST 9%', 'Dr', '₹5,647.50'],
-        ['Input SGST 9%', 'Dr', '₹5,647.50'],
-        ['Prime Components', 'Cr', '₹74,045'],
+        ["Purchase @ 18%", "Dr", "₹62,750"],
+        ["Input CGST 9%", "Dr", "₹5,647.50"],
+        ["Input SGST 9%", "Dr", "₹5,647.50"],
+        ["Prime Components", "Cr", "₹74,045"],
       ],
     },
-    files: ['INV-4821.pdf linked to voucher'],
-    foot: 'Purchase voucher in your Tally company, with the source invoice one click away.',
+    files: ["INV-4821.pdf linked to voucher"],
+    foot: "Purchase voucher in your Tally company, with the source invoice one click away.",
   },
 ];
 
 /* ── FAQ items ── */
 const faqItems = [
   {
-    question: 'Does anything post to Tally without our approval?',
+    question: "Does anything post to Tally without our approval?",
     answer:
       "No. Every invoice waits for someone on your team to review and approve it before it's posted to TallyPrime.",
   },
   {
-    question: 'What if the scan is faint or the layout is unusual?',
+    question: "What if the scan is faint or the layout is unusual?",
     answer:
       "Fields it isn't sure about are highlighted, so your team knows exactly what to check. Nothing is guessed silently.",
   },
   {
-    question: 'Does it check GST?',
+    question: "Does it check GST?",
     answer:
       "Yes. It works out CGST, SGST or IGST from the line items and compares them with what's on the invoice. Any difference is flagged for review.",
   },
   {
-    question: 'How does it spot duplicates?',
+    question: "How does it spot duplicates?",
     answer:
-      'It compares each invoice with ones already received, by supplier, invoice number, amount and date, and flags anything that looks like a repeat.',
+      "It compares each invoice with ones already received, by supplier, invoice number, amount and date, and flags anything that looks like a repeat.",
   },
   {
-    question: 'How long does setup take?',
+    question: "How long does setup take?",
     answer:
       'Connect TallyPrime straight away and approve your first invoice in minutes. You test it on your own invoices before anything is posted.',
   },
@@ -153,23 +168,23 @@ const faqItems = [
 /* ── Proof stats matching modern tile strip ── */
 const proofStats = [
   {
-    title: 'Portal · email · WhatsApp',
-    copy: 'Every invoice in one inbox',
+    title: "Portal · Email · WhatsApp",
+    copy: "Every invoice in one inbox",
     icon: Inbox,
   },
   {
-    title: 'Bulk upload',
-    copy: 'Send a month of invoices in one go',
+    title: "Bulk upload",
+    copy: "Send a month of invoices in one go",
     icon: Layers,
   },
   {
-    title: 'Hours back every week',
-    copy: 'Your team stops typing invoices into Tally',
+    title: "Hours back every week",
+    copy: "Your team stops typing invoices into Tally",
     icon: Clock,
   },
   {
-    title: 'One click to approve',
-    copy: 'Your team checks, Docsynecx types',
+    title: "One click to approve",
+    copy: "Your team checks, Docsynecx types",
     icon: MousePointerClick,
     highlight: true,
   },
@@ -203,7 +218,8 @@ export function InvoiceAutomationPage() {
           <div className={s.heroGrid}>
             <div>
               <p className={s.eyebrow}>
-                Invoice Automation <span className={s.badge}>Most teams start here</span>
+                Invoice Automation{" "}
+                <span className={s.badge}>Most teams start here</span>
               </p>
 
               <h1 id="hero-title" className={s.heroTitle}>
@@ -227,11 +243,14 @@ export function InvoiceAutomationPage() {
                   href="#how"
                   className={s.secondaryBtn}
                   onClick={(e) => {
-                    const target = document.getElementById('how');
+                    const target = document.getElementById("how");
                     if (target) {
                       e.preventDefault();
-                      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                      window.history.pushState(null, '', '#how');
+                      target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                      });
+                      window.history.pushState(null, "", "#how");
                     }
                   }}
                 >
@@ -241,8 +260,20 @@ export function InvoiceAutomationPage() {
               </div>
 
               <p className={s.promise}>
-                <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
-                  <circle cx="10" cy="10" r="9" fill="none" stroke="currentColor" strokeWidth="2" />
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  aria-hidden="true"
+                >
+                  <circle
+                    cx="10"
+                    cy="10"
+                    r="9"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
                   <path
                     d="M6 10.5l2.5 2.5L14 7.5"
                     fill="none"
@@ -271,13 +302,15 @@ export function InvoiceAutomationPage() {
                     <strong>Invoice inbox</strong> · Today
                   </span>
                   <span className={`${s.statusBadge} ${s.info}`}>
-                    {isApproved ? 'All approved' : '3 to review'}
+                    {isApproved ? "All approved" : "3 to review"}
                   </span>
                 </div>
                 <div className={s.qcardBody}>
                   <div className={s.deskStats}>
                     <div>
-                      <span className={s.statVal}>{isApproved ? '0' : '1'}</span>
+                      <span className={s.statVal}>
+                        {isApproved ? "0" : "1"}
+                      </span>
                       <span className={s.statLabel}>ready to approve</span>
                     </div>
                     <div>
@@ -292,23 +325,32 @@ export function InvoiceAutomationPage() {
                   <div className={s.qcardRows}>
                     <div className={s.qcardRow}>
                       <span className={s.rowWho}>Prime Components</span>
-                      <span className={s.rowWhat}>INV-4821 · PDF · ₹74,045</span>
+                      <span className={s.rowWhat}>
+                        INV-4821 · PDF · ₹74,045
+                      </span>
                       <span className={`${s.statusBadge} ${s.ok}`}>Ready</span>
                     </div>
                     <div className={s.qcardRow}>
                       <span className={s.rowWho}>Metro Supplies</span>
-                      <span className={s.rowWhat}>INV-1068 · Email · ₹32,450</span>
-                      <span className={`${s.statusBadge} ${s.wait}`}>Duplicate?</span>
+                      <span className={s.rowWhat}>
+                        INV-1068 · Email · ₹32,450
+                      </span>
+                      <span className={`${s.statusBadge} ${s.wait}`}>
+                        Duplicate?
+                      </span>
                     </div>
                     <div className={s.qcardRow}>
                       <span className={s.rowWho}>Apex Services</span>
-                      <span className={s.rowWhat}>INV-0294 · Scan · ₹17,970</span>
-                      <span className={`${s.statusBadge} ${s.wait}`}>GST mismatch</span>
+                      <span className={s.rowWhat}>
+                        INV-0294 · Scan · ₹17,970
+                      </span>
+                      <span className={`${s.statusBadge} ${s.wait}`}>
+                        GST mismatch
+                      </span>
                     </div>
                   </div>
 
                   {/* Interactive Action Row matching Image 1 */}
-                  
                 </div>
                 <p className={s.sampleNote}>Sample data</p>
               </div>
@@ -329,7 +371,7 @@ export function InvoiceAutomationPage() {
               return (
                 <div key={item.title} className={s.outcomeCard}>
                   <span
-                    className={`${s.outcomeIconBadge} ${item.highlight ? s.outcomeIconBadgeHl : ''}`}
+                    className={`${s.outcomeIconBadge} ${item.highlight ? s.outcomeIconBadgeHl : ""}`}
                     aria-hidden="true"
                   >
                     <Icon size={20} className="stroke-[2.2]" />
@@ -356,7 +398,8 @@ export function InvoiceAutomationPage() {
               <span>does on every invoice.</span>
             </h2>
             <p className={s.lead}>
-              Docsynecx does the first draft of each one, so your team only checks and approves.
+              Docsynecx does the first draft of each one, so your team only
+              checks and approves.
             </p>
           </div>
 
@@ -365,10 +408,12 @@ export function InvoiceAutomationPage() {
               <span className={s.painMono}>01 · Typing</span>
               <h3>Keying every invoice by hand</h3>
               <p className={s.painWas}>
-                Supplier, invoice number, date and every line item, typed into Tally.
+                Supplier, invoice number, date and every line item, typed into
+                Tally.
               </p>
               <p className={s.painFix}>
-                <strong>Now:</strong> read from the invoice and filled in for you.
+                <strong>Now:</strong> read from the invoice and filled in for
+                you.
               </p>
             </article>
 
@@ -376,10 +421,12 @@ export function InvoiceAutomationPage() {
               <span className={s.painMono}>02 · Formats</span>
               <h3>Every supplier&apos;s invoice looks different</h3>
               <p className={s.painWas}>
-                Scanned paper, PDFs, Excel sheets and emails, each laid out its own way.
+                Scanned paper, PDFs, Excel sheets and emails, each laid out its
+                own way.
               </p>
               <p className={s.painFix}>
-                <strong>Now:</strong> all of them go into one inbox and are read the same way.
+                <strong>Now:</strong> all of them go into one inbox and are read
+                the same way.
               </p>
             </article>
 
@@ -387,10 +434,12 @@ export function InvoiceAutomationPage() {
               <span className={s.painMono}>03 · GST</span>
               <h3>Checking tax splits line by line</h3>
               <p className={s.painWas}>
-                CGST, SGST, IGST and HSN codes checked across long multi-item invoices.
+                CGST, SGST, IGST and HSN codes checked across long multi-item
+                invoices.
               </p>
               <p className={s.painFix}>
-                <strong>Now:</strong> tax worked out from the lines and compared with the invoice.
+                <strong>Now:</strong> tax worked out from the lines and compared
+                with the invoice.
               </p>
             </article>
 
@@ -401,7 +450,8 @@ export function InvoiceAutomationPage() {
                 A resent invoice slips into a batch and ends up paid twice.
               </p>
               <p className={s.painFix}>
-                <strong>Now:</strong> possible duplicates flagged before they reach your books.
+                <strong>Now:</strong> possible duplicates flagged before they
+                reach your books.
               </p>
             </article>
           </div>
@@ -409,7 +459,11 @@ export function InvoiceAutomationPage() {
       </section>
 
       {/* 4. HOW IT WORKS */}
-      <section id="how" className={`${s.section} ${s.howSectionDark}`} aria-labelledby="how-h">
+      <section
+        id="how"
+        className={`${s.section} ${s.howSectionDark}`}
+        aria-labelledby="how-h"
+      >
         <div className="site-shell">
           <div className={s.secHead}>
             <p className={s.eyebrow}>How it works</p>
@@ -435,7 +489,7 @@ export function InvoiceAutomationPage() {
                     id={`step-tab-${step.num}`}
                     aria-selected={isActive}
                     aria-controls={`step-panel-${step.num}`}
-                    className={`${s.stepButtonDark} ${isActive ? s.stepButtonDarkActive : ''}`}
+                    className={`${s.stepButtonDark} ${isActive ? s.stepButtonDarkActive : ""}`}
                     onClick={() => goTo(idx)}
                   >
                     <span className={s.stepNumDark}>{step.num}</span>
@@ -457,7 +511,9 @@ export function InvoiceAutomationPage() {
               >
                 <div className={s.panelBarDark}>
                   <span>{activeStep.panelBar}</span>
-                  <span className={`${s.statusBadge} ${s[activeStep.statusType]}`}>
+                  <span
+                    className={`${s.statusBadge} ${s[activeStep.statusType]}`}
+                  >
                     {activeStep.panelStatus}
                   </span>
                 </div>
@@ -490,7 +546,9 @@ export function InvoiceAutomationPage() {
                         <div key={i} className={s.qcardRowDark}>
                           <span className={s.rowWhoDark}>{row.who}</span>
                           <span className={s.rowWhatDark}>{row.what}</span>
-                          <span className={`${s.statusBadge} ${s[row.type]}`}>{row.status}</span>
+                          <span className={`${s.statusBadge} ${s[row.type]}`}>
+                            {row.status}
+                          </span>
                         </div>
                       ))}
                     </div>
@@ -519,8 +577,12 @@ export function InvoiceAutomationPage() {
 
                   {activeStep.total && (
                     <div className={s.qtotalDark}>
-                      <span className={s.totalMetaDark}>{activeStep.total.meta}</span>
-                      <span className={s.totalBigDark}>{activeStep.total.big}</span>
+                      <span className={s.totalMetaDark}>
+                        {activeStep.total.meta}
+                      </span>
+                      <span className={s.totalBigDark}>
+                        {activeStep.total.big}
+                      </span>
                     </div>
                   )}
 
@@ -540,11 +602,13 @@ export function InvoiceAutomationPage() {
                 </div>
 
                 <p className={s.panelFootDark}>
-                  <strong>{activeStep.foot.split('.')[0]}.</strong>{' '}
-                  {activeStep.foot.split('.').slice(1).join('.').trim()}
+                  <strong>{activeStep.foot.split(".")[0]}.</strong>{" "}
+                  {activeStep.foot.split(".").slice(1).join(".").trim()}
                 </p>
               </div>
-              <p className={s.howNoteDark}>Sample data · Example product view</p>
+              <p className={s.howNoteDark}>
+                Sample data · Example product view
+              </p>
             </div>
           </div>
         </div>
@@ -567,8 +631,8 @@ export function InvoiceAutomationPage() {
               <span className={s.handleTag}>Intake</span>
               <h3>Portal, email and WhatsApp</h3>
               <p>
-                Upload PDFs and scans in the portal, one at a time or in a batch, or send them by
-                email or WhatsApp.
+                Upload PDFs and scans in the portal, one at a time or in a
+                batch, or send them by email or WhatsApp.
               </p>
             </article>
 
@@ -581,13 +645,19 @@ export function InvoiceAutomationPage() {
             <article className={s.handleCard}>
               <span className={s.handleTag}>Tax</span>
               <h3>GSTIN, HSN, CGST, SGST and IGST</h3>
-              <p>Tax details read from the invoice and checked against the line items.</p>
+              <p>
+                Tax details read from the invoice and checked against the line
+                items.
+              </p>
             </article>
 
             <article className={s.handleCard}>
               <span className={s.handleTag}>Lines</span>
               <h3>Every line item</h3>
-              <p>Descriptions, quantities, rates, taxable values and tax for each line.</p>
+              <p>
+                Descriptions, quantities, rates, taxable values and tax for each
+                line.
+              </p>
             </article>
 
             <article className={s.handleCard}>
@@ -600,21 +670,26 @@ export function InvoiceAutomationPage() {
               <span className={s.handleTag}>Checks</span>
               <h3>Unsure fields and duplicates</h3>
               <p>
-                Anything it isn&apos;t confident about is highlighted, and possible duplicates are
-                flagged.
+                Anything it isn&apos;t confident about is highlighted, and
+                possible duplicates are flagged.
               </p>
             </article>
 
             <article className={s.handleCard}>
               <span className={s.handleTag}>Review</span>
               <h3>Your team approves</h3>
-              <p>Fix anything, then approve. You decide who can approve what.</p>
+              <p>
+                Fix anything, then approve. You decide who can approve what.
+              </p>
             </article>
 
             <article className={s.handleCard}>
               <span className={s.handleTag}>Batches</span>
               <h3>Month-end in one go</h3>
-              <p>Work through a pile of invoices together instead of one at a time.</p>
+              <p>
+                Work through a pile of invoices together instead of one at a
+                time.
+              </p>
             </article>
 
             <article className={s.handleCard}>
@@ -627,7 +702,10 @@ export function InvoiceAutomationPage() {
       </section>
 
       {/* 6. THE REST OF THE FINANCE DESK */}
-      <section className={`${s.section} ${s.moreSectionDark}`} aria-labelledby="more-h">
+      <section
+        className={`${s.section} ${s.moreSectionDark}`}
+        aria-labelledby="more-h"
+      >
         <div className="site-shell">
           <div className={s.secHead}>
             <p className={s.eyebrow}>Add when you&apos;re ready</p>
@@ -645,7 +723,10 @@ export function InvoiceAutomationPage() {
               <p className={s.moreLead}>
                 Bank statements into Tally, matched and ready to review.
               </p>
-              <Link href="/finance-desk/banking-reconciliation/" className={s.moreLink}>
+              <Link
+                href="/finance-desk/banking-reconciliation/"
+                className={s.moreLink}
+              >
                 <span>See Banking</span>
                 <ArrowRight size={15} aria-hidden="true" />
               </Link>
@@ -655,9 +736,13 @@ export function InvoiceAutomationPage() {
               <span className={s.moreTag}>Receivables</span>
               <h3>Payment Reminders</h3>
               <p className={s.moreLead}>
-                Reminders drafted for your team to approve, then sent or scheduled.
+                Reminders drafted for your team to approve, then sent or
+                scheduled.
               </p>
-              <Link href="/finance-desk/payment-reminders/" className={s.moreLink}>
+              <Link
+                href="/finance-desk/payment-reminders/"
+                className={s.moreLink}
+              >
                 <span>See Payment Reminders</span>
                 <ArrowRight size={15} aria-hidden="true" />
               </Link>
@@ -669,7 +754,10 @@ export function InvoiceAutomationPage() {
               <p className={s.moreLead}>
                 Six views of your Tally numbers that your owners can read.
               </p>
-              <Link href="/finance-desk/docsynecx-intelligence/" className={s.moreLink}>
+              <Link
+                href="/finance-desk/docsynecx-intelligence/"
+                className={s.moreLink}
+              >
                 <span>See the six views</span>
                 <ArrowRight size={15} aria-hidden="true" />
               </Link>
@@ -679,7 +767,11 @@ export function InvoiceAutomationPage() {
       </section>
 
       {/* 7. FAQ */}
-      <section id="faq" className={`${s.section} ${s.altSection}`} aria-labelledby="faq-h">
+      <section
+        id="faq"
+        className={`${s.section} ${s.altSection}`}
+        aria-labelledby="faq-h"
+      >
         <div className="site-shell">
           <div className={s.faqLayout}>
             <div className={s.faqHeading}>
@@ -689,7 +781,7 @@ export function InvoiceAutomationPage() {
                   What accounts teams ask us first.
                 </h2>
                 <p className={s.faqDescription}>
-                  Something else on your mind?{' '}
+                  Something else on your mind?{" "}
                   <Link href="/demo/#demo-form">Ask us in the demo.</Link>
                 </p>
               </div>
@@ -704,7 +796,10 @@ export function InvoiceAutomationPage() {
       </section>
 
       {/* 8. CLOSING CTA (Card view matching uploaded design) */}
-      <FinanceClosingCta secondaryHref="/finance-desk/" secondaryText="Back to Finance Desk" />
+      <FinanceClosingCta
+        secondaryHref="/finance-desk/"
+        secondaryText="Back to Finance Desk"
+      />
     </>
   );
 }

@@ -8,6 +8,12 @@ import {
   Clock,
   Radio,
   BellRing,
+  Bell,
+  Send,
+  Eye,
+  AlertTriangle,
+  Navigation,
+  Check,
 } from 'lucide-react';
 import { LandingNavigation } from '../LandingNavigation';
 import { ShipsyFooter } from '../ShipsyFooter';
@@ -190,12 +196,32 @@ const faqItems = [
   },
 ];
 
-/* ── Control items ── */
+/* ── Control items from Section 3 ── */
 const controlDecisions = [
-  { bold: 'Who gets which alerts', desc: 'by job, customer or lane' },
-  { bold: 'What the customer hears', desc: 'and when' },
-  { bold: 'Which customers get a link', desc: 'to track for themselves' },
-  { bold: 'What to do about a delay', desc: 'rebook the truck, call the carrier' },
+  {
+    step: '01 · SMART ALERTS',
+    title: 'Route updates to the right people',
+    desc: 'Direct shipment alerts to the team members responsible for each job, customer or lane.',
+    icon: Bell,
+  },
+  {
+    step: '02 · CUSTOMER UPDATES',
+    title: 'Review before you communicate',
+    desc: 'Prepare customer-facing updates for your team to review and approve.',
+    icon: Send,
+  },
+  {
+    step: '03 · SHIPMENT VISIBILITY',
+    title: 'Share tracking access selectively',
+    desc: 'Give selected customers access to shipment status where sharing is enabled.',
+    icon: Eye,
+  },
+  {
+    step: '04 · EXCEPTION HANDLING',
+    title: 'Decide what happens next',
+    desc: 'Identify delays and exceptions, then choose the operational action to take.',
+    icon: AlertTriangle,
+  },
 ];
 
 export function ShipmentTrackingPage() {
@@ -373,19 +399,115 @@ export function ShipmentTrackingPage() {
                 Docsynecx watches every shipment. <em>Your team talks to the customer.</em>
               </h2>
               <p className={s.lead}>
-                Alerts come to your team first. Notes to customers are drafts until someone on your
-                team sends them.
+                Shipment alerts come to your team first. Customer updates remain drafts until someone on your team reviews and sends them.
               </p>
             </div>
 
-            <ul className={s.decisionList}>
-              {controlDecisions.map((item) => (
-                <li key={item.bold} className={s.decisionCard}>
-                  <strong>{item.bold}</strong>
-                  <span>{item.desc}</span>
-                </li>
-              ))}
-            </ul>
+            <div className={s.controlLayoutWithMock}>
+              <div className={s.controlCardsCol}>
+                {controlDecisions.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <article key={item.step} className={s.controlCard}>
+                      <div className={s.controlCardIcon} aria-hidden="true">
+                        <Icon size={20} strokeWidth={1.8} />
+                      </div>
+                      <div>
+                        <small className={s.controlCardTag}>{item.step}</small>
+                        <h3 className={s.controlCardTitle}>{item.title}</h3>
+                        <p className={s.controlCardDesc}>{item.desc}</p>
+                      </div>
+                    </article>
+                  );
+                })}
+              </div>
+
+              <aside className={s.controlMock} aria-label="Shipment telemetry case review">
+                <div className={s.mockHeaderBar}>
+                  <div className={s.mockTitleGroup}>
+                    <span className={s.mockPulseDot} aria-hidden="true" />
+                    <span className={s.mockTitle}>Shipment telemetry monitor</span>
+                  </div>
+                  <span className={s.mockBadge}>ILLUSTRATIVE · 1 CASE</span>
+                </div>
+
+                <div className={s.mockBody}>
+                  {/* Item 1: On Schedule */}
+                  <div className={s.mockItem}>
+                    <div className={s.mockItemLeft}>
+                      <div className={s.mockItemIconWrap}>
+                        <Navigation size={16} />
+                      </div>
+                      <div className={s.mockItemText}>
+                        <span className={s.mockItemTitle}>DXC-2048 · Chennai → Singapore</span>
+                        <span className={s.mockItemSub}>Vessel underway · ETA on schedule (Oct 24)</span>
+                      </div>
+                    </div>
+                    <span className={s.mockStatusChipOk}>
+                      <Check size={12} strokeWidth={2.5} />
+                      <span>On schedule</span>
+                    </span>
+                  </div>
+
+                  {/* Item 2: Active Flagged Delay Case */}
+                  <div className={`${s.mockItem} ${s.mockItemActive}`}>
+                    <div className={s.mockItemLeft}>
+                      <div className={`${s.mockItemIconWrap} ${s.mockItemIconWrapWarn}`}>
+                        <AlertTriangle size={16} />
+                      </div>
+                      <div className={s.mockItemText}>
+                        <span className={s.mockItemTitle}>DXC-2051 · Mumbai → Rotterdam</span>
+                        <span className={s.mockItemSub}>Port congestion delay flagged</span>
+                      </div>
+                    </div>
+                    <span className={s.mockStatusChipWarn}>
+                      <Clock size={12} strokeWidth={2.5} />
+                      <span>Review case</span>
+                    </span>
+                  </div>
+
+                  {/* Active Case Review Detail Card */}
+                  <div className={s.mockCaseCard}>
+                    <div className={s.mockCaseHeader}>
+                      <span>DELAY FLAGGED (+48H)</span>
+                      <span>DRAFT READY</span>
+                    </div>
+                    <p className={s.mockCaseDesc}>
+                      Transshipment delay at Salalah. Automated draft email prepared for <strong>Gulf Home Furnishings</strong>.
+                    </p>
+                    <div className={s.mockCaseActions}>
+                      <button type="button" className={s.mockBtnPrimary}>
+                        Review &amp; send update
+                      </button>
+                      <button type="button" className={s.mockBtnSecondary}>
+                        Rebook haulage
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Item 3: On Schedule */}
+                  <div className={s.mockItem}>
+                    <div className={s.mockItemLeft}>
+                      <div className={s.mockItemIconWrap}>
+                        <CheckCircle2 size={16} />
+                      </div>
+                      <div className={s.mockItemText}>
+                        <span className={s.mockItemTitle}>DXC-2056 · Coimbatore → Dubai</span>
+                        <span className={s.mockItemSub}>Cleared customs at Jebel Ali</span>
+                      </div>
+                    </div>
+                    <span className={s.mockStatusChipOk}>
+                      <Check size={12} strokeWidth={2.5} />
+                      <span>On schedule</span>
+                    </span>
+                  </div>
+                </div>
+
+                <div className={s.mockFooter}>
+                  Illustrative interface only—not live shipment data. Alerts come to your team first, and customer communications remain drafts until your team sends them.
+                </div>
+              </aside>
+            </div>
           </div>
         </section>
 

@@ -104,7 +104,7 @@ export function SolutionsPage() {
                   <Inbox size={20} strokeWidth={2.2} />
                 </span>
                 <div className={styles.tileContent}>
-                  <strong className={styles.tileTitle}>Portal · email · WhatsApp</strong>
+                  <strong className={styles.tileTitle}>Portal · Email · WhatsApp</strong>
                   <span className={styles.tileSubtitle}>Send documents the way you already do</span>
                 </div>
               </li>

@@ -5,22 +5,28 @@ import Link from 'next/link';
 import {
   Mail,
   Phone,
-  MapPin,
   Send,
   RefreshCw,
   CheckCircle2,
-  Calendar,
   ArrowRight,
+  ArrowUpRight,
+  Compass,
+  ReceiptText,
+  Truck,
+  LifeBuoy,
   Sparkles,
   Clock,
-  Building2,
+  Calendar,
 } from 'lucide-react';
 import { LandingNavigation } from '../LandingNavigation';
 import { ShipsyFooter } from '../ShipsyFooter';
-import { trackContactSubmit, trackGenerateLead } from '@/src/lib/marketing-analytics';
+import { FinanceClosingCta } from '../finance/FinanceClosingCta';
 import s from './ContactPage.module.css';
 
 export function ContactPage() {
+  // Satellite toggle state for Google Map
+  const [isSat, setIsSat] = useState(false);
+
   // Math Captcha State
   const [num1, setNum1] = useState(4);
   const [num2, setNum2] = useState(4);
@@ -40,10 +46,9 @@ export function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // Generate random math captcha on mount
   const generateCaptcha = () => {
-    const a = Math.floor(Math.random() * 8) + 1; // 1-8
-    const b = Math.floor(Math.random() * 8) + 1; // 1-8
+    const a = Math.floor(Math.random() * 8) + 1;
+    const b = Math.floor(Math.random() * 8) + 1;
     setNum1(a);
     setNum2(b);
     setUserCaptcha('');
@@ -99,17 +104,10 @@ export function ContactPage() {
     trackContactSubmit('contact_page');
 
     setIsSubmitting(true);
-    // Simulate API submission
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
-
-      // Track generate_lead ONLY after confirmed 2xx server response
-      trackGenerateLead({
-        leadSource: 'contact_page',
-        formName: 'contact_us',
-      });
-    }, 800);
+    }, 700);
   };
 
   const handleReset = () => {
@@ -120,328 +118,311 @@ export function ContactPage() {
       company: '',
       description: '',
     });
-    setIsSubmitted(false);
+    setUserCaptcha('');
+    setCaptchaError('');
     generateCaptcha();
+    setIsSubmitted(false);
   };
 
   const scrollToForm = () => {
-    const el = document.getElementById('contact-form-section');
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+    const target = document.getElementById('contact-form');
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const reasonRoutes = [
+    {
+      no: '01',
+      title: 'Automate finance documents',
+      desc: 'Invoices, bank reconciliation, GST and posting to Tally or Zoho.',
+      href: '/demo/?track=finance',
+      meta: 'Opens demo booking',
+      metaIcon: Calendar,
+      cta: 'Book a finance demo',
+      icon: ReceiptText,
+      iconBg: '#E8F9F3',
+      iconColor: '#0B6B4E',
+      isExternal: false,
+    },
+    {
+      no: '02',
+      title: 'Automate freight operations',
+      desc: 'RFQ-to-booking, shipment ops and CargoWise jobs from email.',
+      href: '/demo/?track=logistics',
+      meta: 'Opens demo booking',
+      metaIcon: Calendar,
+      cta: 'Book a logistics demo',
+      icon: Truck,
+      iconBg: '#E0F2FE',
+      iconColor: '#0284C7',
+      isExternal: false,
+    },
+    {
+      no: '03',
+      title: 'I need support',
+      desc: 'Existing customer with a question or an issue to fix.',
+      href: 'mailto:success@docsynecx.com',
+      meta: 'Reply within 24 hours',
+      metaIcon: Clock,
+      cta: 'success@docsynecx.com',
+      icon: LifeBuoy,
+      iconBg: '#F3E8FF',
+      iconColor: '#7C3AED',
+      isExternal: true,
+    },
+    {
+      no: '04',
+      title: 'Something else',
+      desc: 'Partnerships, careers, press, or a plain question.',
+      href: 'mailto:hello@docsynecx.com',
+      meta: 'Reply within 24 hours',
+      metaIcon: Clock,
+      cta: 'hello@docsynecx.com',
+      icon: Sparkles,
+      iconBg: '#FEF3C7',
+      iconColor: '#D97706',
+      isExternal: true,
+    },
+  ];
 
   return (
     <div className={s.pageWrapper}>
       <LandingNavigation />
 
-      {/* Hero Header */}
+      {/* 1. Hero Section */}
       <section className={s.heroSection}>
         <div className={s.shell}>
-          <div className={s.badge}>
-            <Sparkles size={13} className={s.badgeIcon} />
-            <span>GET IN TOUCH</span>
-          </div>
-
-          <h1 className={s.heroTitle}>Contact Us</h1>
-
-          <p className={s.heroSubtitle}>
-            We&rsquo;re here to help. Whether you have questions about our AI solutions, need a
-            demo, or want to discuss your enterprise business needs.
-          </p>
-
-          <div className={s.heroActions}>
-            <button type="button" onClick={scrollToForm} className={s.primaryBtn}>
-              <span>Talk to Sales</span>
-              <Send size={15} />
-            </button>
-            <Link href="/demo/" className={s.secondaryBtn}>
-              <Calendar size={15} />
-              <span>Book A Demo</span>
-            </Link>
+          <div className={s.heroContent}>
+            <div className={s.eyebrow}>CONTACT</div>
+            <h1 className={s.heroTitle}>
+              Talk <span>to us.</span>
+            </h1>
+            <p className={s.heroSubtitle}>
+              Real people read every message and reply within 24 hours.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Main Grid: Form + Contact Info */}
-      <section id="contact-form-section" className={s.mainSection}>
+      {/* 2. Reach Out By Reason */}
+      <section className={s.reasonsSection}>
         <div className={s.shell}>
-          <div className={s.contactGrid}>
-            {/* Left Column: Form Card */}
-            <div className={s.formCard}>
-              {isSubmitted ? (
-                <div className={s.successBox}>
-                  <div className={s.successIconBox}>
-                    <CheckCircle2 size={40} className={s.successIcon} />
-                  </div>
-                  <h2 className={s.successTitle}>Thank You!</h2>
-                  <p className={s.successDesc}>
-                    Your message has been received. Our team will review your requirements and get
-                    back to you at <strong>{formData.email}</strong> within 24 hours.
-                  </p>
-                  <button type="button" onClick={handleReset} className={s.resetBtn}>
-                    Send Another Message
-                  </button>
-                </div>
-              ) : (
+          <div className={s.sectionHeader}>
+            <div className={s.eyebrow}>FIND YOUR WAY TO US</div>
+            <h2 className={s.sectionHeading}>
+              Choose the conversation{' '}
+              <span>that best fits your needs.</span>
+            </h2>
+            <p className={s.sectionLead}>
+              Choose the topic that best matches your needs, and we&apos;ll connect you with the right team.
+            </p>
+          </div>
+
+          <div className={s.cardsGrid}>
+            {reasonRoutes.map((r) => {
+              const IconComp = r.icon;
+              const MetaIconComp = r.metaIcon;
+
+              const cardContent = (
                 <>
-                  <div className={s.formHeader}>
-                    <h2 className={s.formTitle}>Send us a Message</h2>
-                    <p className={s.formSub}>
-                      Fill out the form and we&rsquo;ll get back to you within 24 hours.
-                    </p>
+                  <div>
+                    <div className={s.cardTopRow}>
+                      <div
+                        className={s.cardIconBadge}
+                        style={{ backgroundColor: r.iconBg, color: r.iconColor }}
+                      >
+                        <IconComp size={22} />
+                      </div>
+                      <div className={s.cardArrowCircle} aria-hidden="true">
+                        <ArrowUpRight size={17} />
+                      </div>
+                    </div>
+
+                    <div className={s.cardBody}>
+                      <h3 className={s.cardTitle}>{r.title}</h3>
+                      <p className={s.cardDesc}>{r.desc}</p>
+                    </div>
                   </div>
 
-                  <form onSubmit={handleSubmit} className={s.form} noValidate>
-                    <div className={s.fieldGroup}>
-                      <label htmlFor="fullName" className={s.label}>
-                        Full Name <span className={s.required}>*</span>
-                      </label>
-                      <input
-                        type="text"
-                        id="fullName"
-                        name="fullName"
-                        value={formData.fullName}
-                        onChange={handleChange}
-                        placeholder="e.g. Rahul Sharma"
-                        className={`${s.input} ${formErrors.fullName ? s.inputError : ''}`}
-                        required
-                      />
-                      {formErrors.fullName && (
-                        <span className={s.errorText}>{formErrors.fullName}</span>
-                      )}
+                  <div className={s.cardBottomMeta}>
+                    <div className={s.cardMetaTag}>
+                      <MetaIconComp size={14} />
+                      <span>{r.meta}</span>
                     </div>
-
-                    <div className={s.inputRow}>
-                      <div className={s.fieldGroup}>
-                        <label htmlFor="email" className={s.label}>
-                          Email Address <span className={s.required}>*</span>
-                        </label>
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          placeholder="name@company.com"
-                          className={`${s.input} ${formErrors.email ? s.inputError : ''}`}
-                          required
-                        />
-                        {formErrors.email && (
-                          <span className={s.errorText}>{formErrors.email}</span>
-                        )}
-                      </div>
-
-                      <div className={s.fieldGroup}>
-                        <label htmlFor="phone" className={s.label}>
-                          Phone Number <span className={s.required}>*</span>
-                        </label>
-                        <input
-                          type="tel"
-                          id="phone"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleChange}
-                          placeholder="+91 98765 43210"
-                          className={`${s.input} ${formErrors.phone ? s.inputError : ''}`}
-                          required
-                        />
-                        {formErrors.phone && (
-                          <span className={s.errorText}>{formErrors.phone}</span>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className={s.fieldGroup}>
-                      <label htmlFor="company" className={s.label}>
-                        Company Name <span className={s.required}>*</span>
-                      </label>
-                      <input
-                        type="text"
-                        id="company"
-                        name="company"
-                        value={formData.company}
-                        onChange={handleChange}
-                        placeholder="Your company or business name"
-                        className={`${s.input} ${formErrors.company ? s.inputError : ''}`}
-                        required
-                      />
-                      {formErrors.company && (
-                        <span className={s.errorText}>{formErrors.company}</span>
-                      )}
-                    </div>
-
-                    <div className={s.fieldGroup}>
-                      <label htmlFor="description" className={s.label}>
-                        Your Message <span className={s.required}>*</span>
-                      </label>
-                      <textarea
-                        id="description"
-                        name="description"
-                        rows={4}
-                        value={formData.description}
-                        onChange={handleChange}
-                        placeholder="Tell us about your document volume, current ERP, or automation goals..."
-                        className={`${s.textarea} ${formErrors.description ? s.inputError : ''}`}
-                        required
-                      />
-                      {formErrors.description && (
-                        <span className={s.errorText}>{formErrors.description}</span>
-                      )}
-                    </div>
-
-                    {/* Math Captcha Verification */}
-                    <div className={s.captchaGroup}>
-                      <label htmlFor="captchaAnswer" className={s.label}>
-                        Captcha Verification <span className={s.required}>*</span>
-                      </label>
-                      <div className={s.captchaRow}>
-                        <div className={s.captchaChallenge}>
-                          <span>{num1} + {num2} = ?</span>
-                          <button
-                            type="button"
-                            onClick={generateCaptcha}
-                            className={s.refreshCaptchaBtn}
-                            title="Generate new calculation"
-                            aria-label="Refresh Captcha"
-                          >
-                            <RefreshCw size={14} />
-                          </button>
-                        </div>
-                        <input
-                          type="text"
-                          id="captchaAnswer"
-                          value={userCaptcha}
-                          onChange={(e) => {
-                            setUserCaptcha(e.target.value);
-                            setCaptchaError('');
-                          }}
-                          placeholder="Enter Answer"
-                          className={`${s.input} ${s.captchaInput} ${captchaError ? s.inputError : ''}`}
-                          maxLength={3}
-                          required
-                        />
-                      </div>
-                      {captchaError && <span className={s.errorText}>{captchaError}</span>}
-                    </div>
-
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className={s.submitBtn}
-                    >
-                      {isSubmitting ? (
-                        <span>Submitting...</span>
-                      ) : (
-                        <>
-                          <span>Send Message</span>
-                          <Send size={16} />
-                        </>
-                      )}
-                    </button>
-                  </form>
+                    <span className={s.cardActionText}>
+                      <span>{r.cta}</span>
+                      <ArrowRight size={13} />
+                    </span>
+                  </div>
                 </>
-              )}
+              );
+
+              if (r.isExternal) {
+                return (
+                  <a
+                    key={r.no}
+                    href={r.href}
+                    className={s.reasonCard}
+                  >
+                    {cardContent}
+                  </a>
+                );
+              }
+
+              return (
+                <Link
+                  key={r.no}
+                  href={r.href}
+                  className={s.reasonCard}
+                >
+                  {cardContent}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Direct Contact & Company Details */}
+      <section className={s.infoSplitSection}>
+        <div className={s.shell}>
+          <div className={s.splitGrid}>
+            {/* Direct Card (Refined White Card UX) */}
+            <div className={s.directCard}>
+              <div className={s.directEyebrow}>REACH US DIRECTLY</div>
+              <h3 className={s.directTitle}>Email or call</h3>
+              <p className={s.directSubtitle}>
+                One inbox, real people on the other end.
+              </p>
+              <div className={s.directLinksList}>
+                <a href="mailto:hello@docsynecx.com" className={s.directLinkRow}>
+                  <div className={s.directIconWrap}>
+                    <Mail size={18} />
+                  </div>
+                  <div className={s.directLinkContent}>
+                    <span className={s.directLinkLabel}>Email us directly</span>
+                    <span className={s.directLinkValue}>hello@docsynecx.com</span>
+                  </div>
+                  <ArrowRight size={16} className={s.directLinkArrow} />
+                </a>
+
+                <a href="tel:+919344776623" className={s.directLinkRow}>
+                  <div className={s.directIconWrap}>
+                    <Phone size={18} />
+                  </div>
+                  <div className={s.directLinkContent}>
+                    <span className={s.directLinkLabel}>Call us (India)</span>
+                    <span className={s.directLinkValue}>+91 93447 76623</span>
+                  </div>
+                  <ArrowRight size={16} className={s.directLinkArrow} />
+                </a>
+              </div>
             </div>
 
-            {/* Right Column: Contact Details Card */}
-            <div className={s.infoCard}>
-              <div className={s.infoHeader}>
-                <span className={s.infoEyebrow}>Direct Support</span>
-                <h2 className={s.infoTitle}>Contact Information</h2>
-                <p className={s.infoSub}>
-                  Having any questions or want to learn more? Reach out to us anytime. We are always
-                  here to help you.
-                </p>
-              </div>
+            {/* Company Card (White) */}
+            <div className={s.companyCard}>
+              <div className={s.eyebrow}>COMPANY DETAILS</div>
+              <h3 className={s.companyTitle}>For your records</h3>
 
-              <div className={s.channelList}>
-                {/* Email Row */}
-                <div className={s.channelItem}>
-                  <div className={s.channelIconBox}>
-                    <Mail size={18} className={s.channelIcon} />
-                  </div>
-                  <div className={s.channelContent}>
-                    <span className={s.channelLabel}>Customer Success</span>
-                    <a href="mailto:success@docsynecx.com" className={s.channelLink}>
-                      success@docsynecx.com
-                    </a>
-                  </div>
+              <div className={s.detailsList}>
+                <div className={s.detailRow}>
+                  <span className={s.detailLabel}>Entity</span>
+                  <span className={s.detailValue}>
+                    SynecxAI Labs Private Limited
+                  </span>
                 </div>
 
-                <div className={s.channelItem}>
-                  <div className={s.channelIconBox}>
-                    <Mail size={18} className={s.channelIcon} />
-                  </div>
-                  <div className={s.channelContent}>
-                    <span className={s.channelLabel}>General Inquiries</span>
-                    <a href="mailto:hello@docsynecx.com" className={s.channelLink}>
-                      hello@docsynecx.com
-                    </a>
-                  </div>
+                <div className={s.detailRow}>
+                  <span className={s.detailLabel}>HQ</span>
+                  <span className={s.detailValue}>
+                    Coimbatore, Tamil Nadu, India
+                  </span>
                 </div>
 
-                {/* Phone Rows */}
-                <div className={s.channelItem}>
-                  <div className={s.channelIconBox}>
-                    <Phone size={18} className={s.channelIcon} />
-                  </div>
-                  <div className={s.channelContent}>
-                    <span className={s.channelLabel}>Desk Line</span>
-                    <a href="tel:04222212342" className={s.channelLink}>
-                      0422 221 2342
-                    </a>
-                  </div>
+                <div className={s.detailRow}>
+                  <span className={s.detailLabel}>GSTIN</span>
+                  <span className={s.detailValue}>
+                    33ABNCS3469C1Z9
+                  </span>
                 </div>
 
-                <div className={s.channelItem}>
-                  <div className={s.channelIconBox}>
-                    <Phone size={18} className={s.channelIcon} />
-                  </div>
-                  <div className={s.channelContent}>
-                    <span className={s.channelLabel}>Mobile / WhatsApp Support</span>
-                    <a href="tel:+919344776623" className={s.channelLink}>
-                      +91 93447 76623
-                    </a>
-                  </div>
+                <div className={s.detailRow}>
+                  <span className={s.detailLabel}>Web</span>
+                  <span className={s.detailValue}>
+                    docsynecx.com
+                  </span>
                 </div>
-
-                {/* Office Location */}
-                <div className={s.channelItem}>
-                  <div className={s.channelIconBox}>
-                    <MapPin size={18} className={s.channelIcon} />
-                  </div>
-                  <div className={s.channelContent}>
-                    <span className={s.channelLabel}>Corporate Headquarters</span>
-                    <p className={s.channelAddress}>
-                      SynecX AI Labs Private Limited<br />
-                      S.F.NO 497, Thadagam Main Road, Kanuvai,<br />
-                      Coimbatore, Tamil Nadu, India - 641108
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Book Demo Callout Card inside Info Card */}
-              <div className={s.demoCallout}>
-                <div className={s.demoCalloutHeader}>
-                  <Building2 size={20} className={s.demoCalloutIcon} />
-                  <div>
-                    <h3 className={s.demoCalloutTitle}>Looking for a live walkthrough?</h3>
-                    <p className={s.demoCalloutText}>
-                      See Docsynecx process your documents into Tally or CargoWise in real time.
-                    </p>
-                  </div>
-                </div>
-                <Link href="/demo/" className={s.demoCalloutBtn}>
-                  <span>Book A Demo</span>
-                  <ArrowRight size={15} />
-                </Link>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* 4. Find Us Section (Google Maps Layout) */}
+      <section className={s.findUsSection}>
+        <div className={s.shell}>
+          <div className={s.findUsHeader}>
+            <div className={s.eyebrow}>FIND US</div>
+            <h2 className={s.sectionHeading}>Coimbatore, Tamil Nadu.</h2>
+            <p className={s.sectionLead}>
+              Where the Docsynecx team builds. Visiting? Message us first so someone is there to meet you.
+            </p>
+          </div>
+
+          <div className={s.googleMapContainer}>
+            {/* Live Google Map Iframe with SynecX AI Labs pin & native place card */}
+            <iframe
+              src={`https://maps.google.com/maps?q=SynecX%20AI%20Labs%20Private%20Limited,%20Thadagam%20Main%20Road,%20Kanuvai,%20Coimbatore,%20Tamil%20Nadu%20641108&t=${isSat ? 'k' : 'm'}&z=15&ie=UTF8&iwloc=&output=embed`}
+              title="SynecX AI Labs Google Map Location"
+              className={s.googleMapIframe}
+              loading="lazy"
+              allowFullScreen
+            />
+
+            {/* Satellite / Street Map Mode Toggle Thumbnail */}
+            <button
+              type="button"
+              onClick={() => setIsSat((prev) => !prev)}
+              aria-label={isSat ? 'Switch to Map view' : 'Switch to Satellite view'}
+              className={s.gmSatThumbnailBtn}
+              style={{
+                backgroundImage: isSat
+                  ? 'url("https://maps.gstatic.com/tactile/layerswitcher/vector_1x.png")'
+                  : 'url("https://maps.gstatic.com/tactile/layerswitcher/satellite_1x.png")',
+                backgroundColor: isSat ? '#ffffff' : '#1e3a1e',
+              }}
+              title={isSat ? 'Switch to Default Map' : 'Switch to Satellite Imagery'}
+            />
+          </div>
+
+          <div style={{ textAlign: 'center' }}>
+            <a
+              href="https://www.google.com/maps/dir/?api=1&destination=SynecX+AI+Labs+Kanuvai+Coimbatore"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={s.getDirectionsBottom}
+            >
+              Get directions <ArrowRight size={15} />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Closing CTA Banner matching FinanceClosingCta design */}
+      <FinanceClosingCta
+        bg="white"
+        eyebrow="LET'S BUILD SOMETHING SMARTER."
+        title={
+          <>
+            Your documents. <br />
+            <span>Connected. Automated.</span>
+          </>
+        }
+        copy="See how Docsynecx transforms document processing into structured data and seamlessly syncs it with your ERP systems."
+        primaryHref="/demo/#demo-form"
+        primaryText="Book a demo"
+      />
 
       <ShipsyFooter />
     </div>

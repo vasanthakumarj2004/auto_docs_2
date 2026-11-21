@@ -11,6 +11,8 @@ import {
   Clock,
   TrendingUp,
   Zap,
+  Truck,
+  Send,
 } from 'lucide-react';
 import { LandingNavigation } from '../LandingNavigation';
 import { ShipsyFooter } from '../ShipsyFooter';
@@ -253,12 +255,32 @@ const faqItems = [
   },
 ];
 
-/* ── Control items ── */
+/* ── Control items from Section 1 ── */
 const controlDecisions = [
-  { bold: 'Which vendors', desc: 'get a rate request' },
-  { bold: 'Whether to push back', desc: 'on a rate' },
-  { bold: 'The final price', desc: 'and your margin' },
-  { bold: 'When the quote goes', desc: 'to the customer' },
+  {
+    step: '01 · VENDOR SELECTION',
+    title: 'Choose who gets a rate request',
+    desc: 'Select the carriers or vendors you want to approach for each shipment.',
+    icon: Truck,
+  },
+  {
+    step: '02 · RATE NEGOTIATION',
+    title: 'Decide when to negotiate',
+    desc: 'Review carrier offers and decide whether a rate needs to be challenged.',
+    icon: TrendingUp,
+  },
+  {
+    step: '03 · PRICING APPROVAL',
+    title: 'Set the final price and margin',
+    desc: 'Review the customer price, charges and margin before the quote is finalized.',
+    icon: FileText,
+  },
+  {
+    step: '04 · CUSTOMER COMMUNICATION',
+    title: 'Approve before it reaches the customer',
+    desc: 'Keep the final quotation under your team’s control before it is sent out.',
+    icon: Send,
+  },
 ];
 
 export function EmailToBookingPage() {
@@ -432,18 +454,27 @@ export function EmailToBookingPage() {
                 Docsynecx does the legwork. <em>Your team makes the calls.</em>
               </h2>
               <p className={s.lead}>
-                Nothing leaves your company without someone on your team approving it.
+                Your team stays in control of the commercial decisions. Docsynecx helps prepare the work; your people decide what gets approved and sent.
               </p>
             </div>
 
-            <ul className={s.decisionList}>
-              {controlDecisions.map((item) => (
-                <li key={item.bold} className={s.decisionCard}>
-                  <strong>{item.bold}</strong>
-                  <span>{item.desc}</span>
-                </li>
-              ))}
-            </ul>
+            <div className={s.controlCards}>
+              {controlDecisions.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <article key={item.step} className={s.controlCard}>
+                    <div className={s.controlCardIcon} aria-hidden="true">
+                      <Icon size={20} strokeWidth={1.8} />
+                    </div>
+                    <div>
+                      <small className={s.controlCardTag}>{item.step}</small>
+                      <h3 className={s.controlCardTitle}>{item.title}</h3>
+                      <p className={s.controlCardDesc}>{item.desc}</p>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
           </div>
         </section>
 

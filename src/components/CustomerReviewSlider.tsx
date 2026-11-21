@@ -13,10 +13,10 @@ interface CustomerReview {
 
 const REVIEWS: CustomerReview[] = [
   {
-    id: 'ft-logistics',
+    id: 'tri-connect-logistics',
     industry: 'Logistics',
-    company: 'FT Logistics',
-    copy: 'A specific email-to-CargoWise document workflow reduced from around two hours to approximately two minutes.',
+    company: 'TriConnect Logistics',
+    copy: 'Docsynecx simplifies our enquiry-to-booking process, reducing manual coordination and improving workflow efficiency',
   },
   {
     id: 'rajadurai-ev',
