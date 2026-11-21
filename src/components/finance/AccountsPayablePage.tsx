@@ -683,20 +683,17 @@ export function AccountsPayablePage() {
           <div style={{ maxWidth: 720, marginInline: 'auto' }}>
             <div className={s.secHead} style={{ textAlign: 'center', marginInline: 'auto', marginBottom: 36 }}>
               <p className={s.eyebrow} style={{ justifyContent: 'center' }}>
-                Register your interest
+                Accounts Payable · Early Access
               </p>
               <h2 id="register-h" className={s.headline}>
-                Be first to see
-                <br />
-                <span>Accounts Payable.</span>
+                Register your interest.
               </h2>
               <p className={s.lead}>
-                Tell us what your payables team needs. We&apos;ll show you Accounts Payable first, and
-                build it around how you work.
+                Tell us what your payables team needs. Accounts Payable is in progress and is not available yet.
               </p>
             </div>
 
-            <DemoCta intent="accounts-payable" />
+            <DemoCta intent="accounts-payable" hideHeader={true} />
           </div>
         </div>
       </section>

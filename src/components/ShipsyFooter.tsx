@@ -112,8 +112,8 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
                 </Link>
               </li>
               <li>
-                <Link href="/#platform" className={styles.footerLink}>
-                  Docsynecx  Freight Forwarders
+                <Link href="/logistics-desk" className={styles.footerLink}>
+                  Docsynecx  Logistics
                 </Link>
               </li>
             </ul>
@@ -163,6 +163,11 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
               <li>
                 <Link href="/finance-desk/banking-reconciliation/" className={styles.footerLink}>
                   Banking & Reconciliation
+                </Link>
+              </li>
+              <li>
+                <Link href="/finance-desk/payment-reminders/" className={styles.footerLink}>
+                  Payment Reminders
                 </Link>
               </li>
               <li>
