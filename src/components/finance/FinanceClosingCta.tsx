@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { ClosingVisualBg } from '../ClosingVisualBg';
-import { financeClosing } from '../../content/finance';
-import styles from './FinanceClosingCta.module.css';
+import React from "react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { ClosingVisualBg } from "../ClosingVisualBg";
+import { financeClosing } from "../../content/finance";
+import styles from "./FinanceClosingCta.module.css";
 
 interface FinanceClosingCtaProps {
   eyebrow?: string;
@@ -16,6 +16,8 @@ interface FinanceClosingCtaProps {
   primaryText?: string;
   secondaryHref?: string;
   secondaryText?: string;
+  bg?: "white" | "slate" | "transparent";
+  className?: string;
 }
 
 export function FinanceClosingCta({
@@ -25,13 +27,17 @@ export function FinanceClosingCta({
   steps,
   primaryHref,
   primaryText,
-  secondaryHref = '/finance-desk/#tools',
+  secondaryHref = "/finance-desk/#tools",
   secondaryText,
+  bg = "slate",
+  className,
 }: FinanceClosingCtaProps = {}) {
   const resolvedEyebrow = eyebrow ?? financeClosing.eyebrow;
   const resolvedTitle = title ?? (
     <>
-      Bring ten invoices.<br /><span>We&apos;ll show you them in Tally.</span>
+      Bring ten invoices.
+      <br />
+      <span>We&apos;ll show you them in Tally.</span>
     </>
   );
   const resolvedCopy = copy ?? financeClosing.copy;
@@ -40,7 +46,12 @@ export function FinanceClosingCta({
   const resolvedPrimaryText = primaryText ?? financeClosing.primaryText;
   const resolvedSecondaryText = secondaryText ?? financeClosing.secondaryText;
   return (
-    <section id="contact" className={styles.closing} aria-labelledby="closing-title">
+    <section
+      id="contact"
+      className={`${styles.closing} ${bg === 'white' ? styles.bgWhite : ''} ${bg === 'transparent' ? styles.bgTransparent : ''} ${className ?? ''}`}
+      data-bg={bg}
+      aria-labelledby="closing-title"
+    >
       <div className="site-shell">
         <div className={styles.closingCard}>
           <div className={styles.closingBgPattern} aria-hidden="true">
@@ -55,9 +66,7 @@ export function FinanceClosingCta({
               {resolvedTitle}
             </h2>
 
-            <p className={styles.closingCopy}>
-              {resolvedCopy}
-            </p>
+            <p className={styles.closingCopy}>{resolvedCopy}</p>
 
             {/* 3 Steps */}
             {/* <ol className={styles.stepList} aria-label="Demo onboarding steps">
@@ -71,14 +80,11 @@ export function FinanceClosingCta({
 
             {/* Action Buttons */}
             <div className={styles.closingActions}>
-              <Link
-                href={resolvedPrimaryHref}
-                className={styles.primaryBtn}
-              >
+              <Link href={resolvedPrimaryHref} className={styles.primaryBtn}>
                 <span>{resolvedPrimaryText}</span>
                 <ArrowRight size={17} aria-hidden="true" />
               </Link>
-              {secondaryText && (
+              {/* {secondaryText && (
                 <Link
                   href={secondaryHref}
                   className={styles.secondaryBtn}
@@ -86,7 +92,7 @@ export function FinanceClosingCta({
                   <span>{secondaryText}</span>
                   <ArrowRight size={17} aria-hidden="true" />
                 </Link>
-              )}
+              )} */}
             </div>
           </div>
         </div>

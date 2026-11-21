@@ -179,8 +179,7 @@ export function ContactPage() {
       icon: Sparkles,
       iconBg: '#FEF3C7',
       iconColor: '#D97706',
-      isExternal: false,
-      onClick: scrollToForm,
+      isExternal: true,
     },
   ];
 
@@ -256,20 +255,6 @@ export function ContactPage() {
                 </>
               );
 
-              if (r.onClick) {
-                return (
-                  <button
-                    key={r.no}
-                    type="button"
-                    onClick={r.onClick}
-                    className={s.reasonCard}
-                    style={{ textAlign: 'left' }}
-                  >
-                    {cardContent}
-                  </button>
-                );
-              }
-
               if (r.isExternal) {
                 return (
                   <a
@@ -336,18 +321,34 @@ export function ContactPage() {
             <div className={s.companyCard}>
               <div className={s.eyebrow}>COMPANY DETAILS</div>
               <h3 className={s.companyTitle}>For your records</h3>
+
               <div className={s.detailsList}>
                 <div className={s.detailRow}>
                   <span className={s.detailLabel}>Entity</span>
-                  <span className={s.detailValue}>SynecxAI Labs Private Limited</span>
+                  <span className={s.detailValue}>
+                    SynecxAI Labs Private Limited
+                  </span>
                 </div>
+
                 <div className={s.detailRow}>
                   <span className={s.detailLabel}>HQ</span>
-                  <span className={s.detailValue}>Coimbatore, Tamil Nadu, India</span>
+                  <span className={s.detailValue}>
+                    Coimbatore, Tamil Nadu, India
+                  </span>
                 </div>
+
+                <div className={s.detailRow}>
+                  <span className={s.detailLabel}>GSTIN</span>
+                  <span className={s.detailValue}>
+                    33ABNCS3469C1Z9
+                  </span>
+                </div>
+
                 <div className={s.detailRow}>
                   <span className={s.detailLabel}>Web</span>
-                  <span className={s.detailValue}>docsynecx.com</span>
+                  <span className={s.detailValue}>
+                    docsynecx.com
+                  </span>
                 </div>
               </div>
             </div>
@@ -407,14 +408,15 @@ export function ContactPage() {
 
       {/* 6. Closing CTA Banner matching FinanceClosingCta design */}
       <FinanceClosingCta
+        bg="white"
         eyebrow="LET'S BUILD SOMETHING SMARTER."
         title={
           <>
-            Skip the email. <br />
-            <span>Book a demo.</span>
+            Your documents. <br />
+            <span>Connected. Automated.</span>
           </>
         }
-        copy="See your documents flow into Tally or CargoWise in real time."
+        copy="See how Docsynecx transforms document processing into structured data and seamlessly syncs it with your ERP systems."
         primaryHref="/demo/#demo-form"
         primaryText="Book a demo"
       />

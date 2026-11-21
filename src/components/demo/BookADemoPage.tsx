@@ -121,8 +121,6 @@ export function BookADemoPage() {
       <LandingNavigation />
 
       <main className={s.mainContent}>
-        <div className={s.bgGlow} aria-hidden="true" />
-
         <div className="site-shell">
           <div className={s.heroGrid}>
             {/* ================================================================= */}
