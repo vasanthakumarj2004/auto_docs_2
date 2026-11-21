@@ -11,6 +11,8 @@ import {
 import { LandingNavigation } from '../LandingNavigation';
 import { ShipsyFooter } from '../ShipsyFooter';
 import { IICS_2026_EVENT } from '@/src/content/events';
+import { sendEventMeetingEmail } from '@/src/lib/emailjs';
+import { supabase } from '@/src/lib/supabase';
 import s from './IICS2026EventPage.module.css';
 
 export function IICS2026EventPage() {
@@ -26,6 +28,8 @@ export function IICS2026EventPage() {
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const validate = () => {
     const errors: Record<string, string> = {};
@@ -38,11 +42,13 @@ export function IICS2026EventPage() {
     }
     if (!formData.phone.trim()) {
       errors.phone = 'Please enter your phone number';
+    } else if (!/^\+?[0-9]{7,15}$/.test(formData.phone.trim())) {
+      errors.phone = 'Phone number must only contain digits and optional leading +';
     }
     return errors;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errors = validate();
     if (Object.keys(errors).length > 0) {
@@ -50,7 +56,44 @@ export function IICS2026EventPage() {
       return;
     }
     setFormErrors({});
-    setFormSubmitted(true);
+    setSubmitError(null);
+    setIsSubmitting(true);
+
+    try {
+      // 1. Record lead in Supabase
+      try {
+        await supabase.from('contact_submissions').insert({
+          submission_type: 'event_iics2026',
+          email: formData.email.trim(),
+          company: formData.company.trim() || null,
+          message: `[IICS 2026 Booth ${event.booth} Meeting Request] Name: ${formData.name.trim()} | Phone: ${formData.phone.trim()} | Notes: ${formData.message.trim() || 'N/A'}`,
+        });
+      } catch (dbErr) {
+        console.warn('Database lead insertion warning:', dbErr);
+      }
+
+      // 2. Send email notification via EmailJS
+      const emailRes = await sendEventMeetingEmail({
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        company: formData.company.trim(),
+        message: formData.message.trim(),
+        event: `${event.name} (${event.shortName})`,
+        booth: `Booth ${event.booth}`,
+      });
+
+      if (!emailRes.success) {
+        console.warn('EmailJS delivery warning:', emailRes.error);
+      }
+
+      setFormSubmitted(true);
+    } catch (err) {
+      console.error('Failed to submit meeting request:', err);
+      setSubmitError('Failed to send meeting request. Please try again or reach out to us directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -234,6 +277,7 @@ export function IICS2026EventPage() {
                           type="button"
                           onClick={() => {
                             setFormSubmitted(false);
+                            setSubmitError(null);
                             setFormData({ name: '', company: '', email: '', phone: '', message: '' });
                           }}
                           className={s.backResetBtn}
@@ -326,10 +370,11 @@ export function IICS2026EventPage() {
                             type="tel"
                             value={formData.phone}
                             onChange={(e) => {
-                              setFormData({ ...formData, phone: e.target.value });
+                              const sanitized = e.target.value.replace(/[^\d+]/g, '').replace(/(?!^)\+/g, '');
+                              setFormData({ ...formData, phone: sanitized });
                               if (formErrors.phone) setFormErrors({ ...formErrors, phone: '' });
                             }}
-                            placeholder="+91 98765 43210"
+                            placeholder="+919876543210"
                             className={`${s.passInput} ${formErrors.phone ? s.passInputError : ''}`}
                             required
                           />
@@ -351,10 +396,20 @@ export function IICS2026EventPage() {
                         </div>
                       </div>
 
+                      {submitError && (
+                        <p className={s.passErrorText} style={{ marginBottom: '12px', textAlign: 'center', color: '#ffb4b4' }}>
+                          {submitError}
+                        </p>
+                      )}
+
                       <div className={s.backFormActions}>
-                        <button type="submit" className={`${s.demoButton} ${s.primaryBtn} ${s.meetSubmitButton}`}>
-                          <span>Meet us</span>
-                          <ArrowUpRight size={15} aria-hidden="true" />
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className={`${s.demoButton} ${s.primaryBtn} ${s.meetSubmitButton}`}
+                        >
+                          <span>{isSubmitting ? 'Sending…' : 'Meet us'}</span>
+                          {!isSubmitting && <ArrowUpRight size={15} aria-hidden="true" />}
                         </button>
                       </div>
 

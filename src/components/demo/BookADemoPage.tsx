@@ -14,6 +14,7 @@ import { LandingNavigation } from '../LandingNavigation';
 import { ShipsyFooter } from '../ShipsyFooter';
 import { trackEvent } from '@/src/lib/analytics';
 import { EVENT_DEMO_REQUEST, EVENT_GENERATE_LEAD } from '@/src/lib/analytics-events';
+import { sendDemoEmail } from '@/src/lib/emailjs';
 import s from './BookADemoPage.module.css';
 
 interface FormData {
@@ -43,11 +44,17 @@ export function BookADemoPage() {
   const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   function handleChange(
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) {
     const { name, value } = e.target;
+
+    let finalValue = value;
+    if (name === 'phone') {
+      finalValue = value.replace(/[^\d+]/g, '').replace(/(?!^)\+/g, '');
+    }
 
     setFormData((prev) => {
       // If the user changes the platform, reset the conditional operationSoftware
@@ -60,7 +67,7 @@ export function BookADemoPage() {
       }
       return {
         ...prev,
-        [name]: value,
+        [name]: finalValue,
       };
     });
 
@@ -88,6 +95,8 @@ export function BookADemoPage() {
     }
     if (!formData.phone.trim()) {
       newErrors.phone = 'Phone number is required';
+    } else if (!/^\+?[0-9]{7,15}$/.test(formData.phone.trim())) {
+      newErrors.phone = 'Phone number must only contain digits and optional leading +';
     }
     if (!formData.platform) {
       newErrors.platform = 'Please select a platform';
@@ -97,31 +106,48 @@ export function BookADemoPage() {
     return Object.keys(newErrors).length === 0;
   }
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (!validate()) return;
 
-    // Track demo_request on form submit attempt
+    setSubmitError(null);
     trackEvent(EVENT_DEMO_REQUEST, { source: 'book_a_demo_page' });
 
     setIsSubmitting(true);
 
-    // Front-end demonstration simulation
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-
-      // Track generate_lead ONLY after confirmed 2xx server response (privacy-safe, NO PII)
-      trackEvent(EVENT_GENERATE_LEAD, {
-        lead_source: 'book_a_demo_page',
-        form_name: 'book_a_demo',
+    try {
+      const res = await sendDemoEmail({
+        name: formData.name,
+        company: formData.company,
+        email: formData.email,
+        phone: formData.phone,
+        platform: formData.platform,
+        operationSoftware: formData.operationSoftware,
+        moduleInterest: formData.moduleInterest,
+        requirements: formData.requirements,
       });
-    }, 600);
+
+      if (res.success) {
+        setIsSubmitted(true);
+        trackEvent(EVENT_GENERATE_LEAD, {
+          lead_source: 'book_a_demo_page',
+          form_name: 'book_a_demo',
+        });
+      } else {
+        setSubmitError('Failed to send demo request. Please try again or reach out to us directly.');
+      }
+    } catch (err) {
+      console.log('Demo request submission error:', err);
+      setSubmitError('Failed to send demo request. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   function handleReset() {
     setFormData(INITIAL_FORM);
     setErrors({});
+    setSubmitError(null);
     setIsSubmitted(false);
   }
 
@@ -188,7 +214,7 @@ export function BookADemoPage() {
               <div className={s.formHeader}>
                 <h2 className={s.cardTitle}>Request a demo</h2>
                 <p className={s.cardSubtext}>
-                  Complete the details below. This sample form is ready for CRM/backend connection.
+                  Tell us what you're looking to automate. Our team will help you find the right solution.
                 </p>
               </div>
 
@@ -410,6 +436,12 @@ export function BookADemoPage() {
                       rows={3}
                     />
                   </div>
+
+                  {submitError && (
+                    <div className={s.errorMessage} style={{ marginBottom: '1rem', display: 'block' }}>
+                      {submitError}
+                    </div>
+                  )}
 
                   {/* Submit Button */}
                   <button

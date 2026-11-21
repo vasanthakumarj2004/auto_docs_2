@@ -396,9 +396,8 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
                       <ChevronDown
                         size={13}
                         aria-hidden="true"
-                        className={`transition-transform duration-200 ${
-                          openMenu === item.key ? 'rotate-180' : ''
-                        }`}
+                        className={`transition-transform duration-200 ${openMenu === item.key ? 'rotate-180' : ''
+                          }`}
                       />
                     </Link>
                   ) : (
@@ -415,9 +414,8 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
                       <ChevronDown
                         size={13}
                         aria-hidden="true"
-                        className={`transition-transform duration-200 ${
-                          openMenu === item.key ? 'rotate-180' : ''
-                        }`}
+                        className={`transition-transform duration-200 ${openMenu === item.key ? 'rotate-180' : ''
+                          }`}
                       />
                     </button>
                   )
@@ -436,9 +434,8 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
                     <ChevronDown
                       size={16}
                       aria-hidden="true"
-                      className={`transition-transform duration-200 ${
-                        isMenuOpen ? 'rotate-180' : ''
-                      }`}
+                      className={`transition-transform duration-200 ${isMenuOpen ? 'rotate-180' : ''
+                        }`}
                     />
                   </button>
                 )}
