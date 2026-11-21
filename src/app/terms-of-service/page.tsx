@@ -3,23 +3,9 @@ import React from 'react';
 import Link from 'next/link';
 import { LegalPageLayout } from '@/src/components/legal/LegalPageLayout';
 import s from '@/src/components/legal/LegalPage.module.css';
+import { constructMetadata } from '@/src/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Terms of Service — Docsynecx Intelligent Automation Platform',
-  description:
-    'Terms of Service governing access and use of Docsynecx, operated by SynecxAI Labs Pvt Ltd. Understand our SaaS agreement, billing terms, and liability limits.',
-  alternates: {
-    canonical: '/terms-of-service',
-  },
-  openGraph: {
-    title: 'Terms of Service — Docsynecx Intelligent Automation Platform',
-    description:
-      'Official agreement defining terms of access, billing rules, data processing responsibilities, and client commitments.',
-    url: 'https://docsynecx.com/terms-of-service',
-    siteName: 'Docsynecx',
-    type: 'website',
-  },
-};
+export const metadata: Metadata = constructMetadata('/terms-of-service/');
 
 export default function TermsOfServicePage() {
   return (
@@ -28,7 +14,7 @@ export default function TermsOfServicePage() {
       <div className={s.metaHeader}>
         <p>
           <strong>Effective Date:</strong> 14-05-2025<br />
-          <strong>Company Name:</strong> SynecxAI Labs Pvt Ltd<br />
+          <strong>Company Name:</strong> SynecX AI Labs Pvt Ltd<br />
           <strong>Registered Address:</strong> S.F.NO 497, Thadagam Main Road, Kanuvai, Coimbatore,
           India-641108<br />
           <strong>Contact:</strong>{' '}
@@ -439,7 +425,7 @@ export default function TermsOfServicePage() {
       </ul>
       <p>
         <strong>Docsynecx&rsquo;s total liability under this Agreement is strictly limited to the
-        amount paid by the Client for the current Subscribed Plan.</strong>
+          amount paid by the Client for the current Subscribed Plan.</strong>
       </p>
 
       {/* 9. Termination */}

@@ -4,17 +4,9 @@ import { LandingNavigation } from '@/src/components/LandingNavigation';
 import { ShipsyFooter } from '@/src/components/ShipsyFooter';
 import { BlogListing } from '@/src/components/blogs/BlogListing';
 import base from '@/src/components/LandingPage.module.css';
+import { constructMetadata } from '@/src/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Blogs & Insights | Docsynecx Document AI',
-  description:
-    'Explore the latest insights, practical guides, and breakthroughs in AI document verification, logistics automation, enterprise compliance, and financial intelligence.',
-  openGraph: {
-    title: 'Blogs & Insights | Docsynecx Document AI',
-    description:
-      'Explore the latest insights, practical guides, and breakthroughs in AI document verification, logistics automation, enterprise compliance, and financial intelligence.',
-  },
-};
+export const metadata: Metadata = constructMetadata('/blogs/');
 
 export default function BlogsPage() {
   const posts = getAllBlogs();

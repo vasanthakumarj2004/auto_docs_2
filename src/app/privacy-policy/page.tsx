@@ -2,23 +2,9 @@ import type { Metadata } from 'next';
 import React from 'react';
 import Link from 'next/link';
 import { LegalPageLayout } from '@/src/components/legal/LegalPageLayout';
+import { constructMetadata } from '@/src/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Privacy Policy — Docsynecx AI Document Automation Platform',
-  description:
-    'Read Docsynecx’s Privacy Policy to understand how we collect, use, and protect your personal data, imported documents, and parsed content.',
-  alternates: {
-    canonical: '/privacy-policy',
-  },
-  openGraph: {
-    title: 'Privacy Policy — Docsynecx AI Document Automation Platform',
-    description:
-      'Learn about our data protection standards, processor vs controller roles, and security protocols.',
-    url: 'https://docsynecx.com/privacy-policy',
-    siteName: 'Docsynecx',
-    type: 'website',
-  },
-};
+export const metadata: Metadata = constructMetadata('/privacy-policy/');
 
 export default function PrivacyPolicyPage() {
   return (

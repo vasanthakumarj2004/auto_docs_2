@@ -15,28 +15,25 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://autodocs.com'),
+  metadataBase: new URL('https://docsynecx.com'),
   title: {
-    default: 'AutoDocs — Grow the business, not the data-entry desk',
-    template: '%s | AutoDocs',
+    default: 'AI Finance & Logistics Automation Platform - Docsynecx',
+    template: '%s',
   },
   description:
-    'Bills read, checked, paid and posted to Tally. Emails become CargoWise jobs. Your team handles exceptions, not typing.',
+    'Automate finance and freight workflows with Docsynecx. Process supplier invoices, reconcile bank statements, manage freight RFQs and shipment documents with human approval.',
   keywords: [
-    'AutoDocs',
-    'Tally automation',
+    'AI finance and logistics automation',
+    'invoice automation',
+    'freight forwarding automation',
+    'document processing software',
+    'workflow automation',
+    'TallyPrime automation',
     'CargoWise automation',
-    'AI document processing',
-    'accounts payable automation',
-    'logistics document extraction',
-    'automated voucher posting',
-    'GST reconciliation',
-    'Zoho Books automation',
-    'freight invoice audit',
   ],
-  authors: [{ name: 'AutoDocs', url: 'https://autodocs.com' }],
-  creator: 'AutoDocs',
-  publisher: 'AutoDocs',
+  authors: [{ name: 'Docsynecx', url: 'https://docsynecx.com' }],
+  creator: 'Docsynecx',
+  publisher: 'SynecX AI Labs Private Limited',
   formatDetection: {
     email: false,
     address: false,
@@ -46,11 +43,11 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   openGraph: {
-    title: 'AutoDocs — Grow the business, not the data-entry desk',
+    title: 'AI Finance & Logistics Automation Platform - Docsynecx',
     description:
-      'Bills read, checked, paid and posted to Tally. Emails become CargoWise jobs. Your team handles exceptions, not typing.',
-    url: 'https://autodocs.com/',
-    siteName: 'AutoDocs',
+      'Automate finance and freight workflows with Docsynecx. Process supplier invoices, reconcile bank statements, manage freight RFQs and shipment documents with human approval.',
+    url: 'https://docsynecx.com/',
+    siteName: 'Docsynecx',
     locale: 'en_US',
     type: 'website',
     images: [
@@ -58,15 +55,15 @@ export const metadata: Metadata = {
         url: '/Docsynecx-Logo.svg',
         width: 1200,
         height: 630,
-        alt: 'Docsynecx Document AI Platform',
+        alt: 'Docsynecx AI Finance & Logistics Automation Platform',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'AutoDocs — Grow the business, not the data-entry desk',
+    title: 'AI Finance & Logistics Automation Platform - Docsynecx',
     description:
-      'Bills read, checked, paid and posted to Tally. Emails become CargoWise jobs. Your team handles exceptions, not typing.',
+      'Automate finance and freight workflows with Docsynecx. Process supplier invoices, reconcile bank statements, manage freight RFQs and shipment documents with human approval.',
     images: ['/Docsynecx-Logo.svg'],
   },
   robots: {
@@ -106,7 +103,7 @@ const organizationSchema = {
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer support',
-    url: 'https://autodocs.com/demo/',
+    url: 'https://docsynecx.com/contact/',
   },
 };
 

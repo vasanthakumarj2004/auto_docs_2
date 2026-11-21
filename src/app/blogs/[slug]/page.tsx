@@ -5,6 +5,7 @@ import { LandingNavigation } from '@/src/components/LandingNavigation';
 import { ShipsyFooter } from '@/src/components/ShipsyFooter';
 import { BlogPostView } from '@/src/components/blogs/BlogPostView';
 import base from '@/src/components/LandingPage.module.css';
+import { constructMetadata, getSeoData } from '@/src/lib/seo';
 
 interface PageProps {
   params: Promise<{ slug: string }> | { slug: string };
@@ -20,14 +21,36 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
+  // Check if specific SEO sheet recommendation exists for this article
+  const blogUrl = `/blogs/${resolvedParams.slug}/`;
+  const specificSeo = getSeoData(blogUrl);
+  if (specificSeo) {
+    return constructMetadata(blogUrl, {
+      openGraph: {
+        images: [
+          {
+            url: post.image,
+            width: 1200,
+            height: 630,
+            alt: post.imageAlt || specificSeo.seoTitle,
+          },
+        ],
+      },
+    });
+  }
+
   const description = post.excerpt || post.subtitle || post.title;
 
-  return {
-    title: `${post.title} | Docsynecx Blog`,
+  return constructMetadata('/blogs/', {
+    title: { absolute: `${post.title} | Docsynecx Blog` },
     description,
+    alternates: {
+      canonical: blogUrl,
+    },
     openGraph: {
       title: `${post.title} | Docsynecx Blog`,
       description,
+      url: `https://docsynecx.com${blogUrl}`,
       images: [
         {
           url: post.image,
@@ -37,7 +60,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         },
       ],
     },
-  };
+  });
 }
 
 export function generateStaticParams() {

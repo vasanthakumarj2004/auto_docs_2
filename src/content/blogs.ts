@@ -2381,7 +2381,7 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        text: 'At SynecxAI Lab, we understand the challenges businesses face when it comes to managing documents efficiently. That’s why we created Docsynecx, an AI-powered document processing solution that brings the power of IDP directly to your fingertips.'
+        text: 'At SynecX AI Lab, we understand the challenges businesses face when it comes to managing documents efficiently. That’s why we created Docsynecx, an AI-powered document processing solution that brings the power of IDP directly to your fingertips.'
       },
       {
         type: 'paragraph',
@@ -2426,7 +2426,7 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       {
         type: 'paragraph',
-        text: 'The future of business operations lies in intelligent automation. With Docsynecx powered by SynecxAI Lab, you can embrace the power of IDP and transform your document workflows. Say goodbye to manual document handling, reduce errors, and experience a boost in operational efficiency.'
+        text: 'The future of business operations lies in intelligent automation. With Docsynecx powered by SynecX AI Lab, you can embrace the power of IDP and transform your document workflows. Say goodbye to manual document handling, reduce errors, and experience a boost in operational efficiency.'
       },
       {
         type: 'paragraph',
@@ -2448,7 +2448,7 @@ export const BLOG_POSTS: BlogPost[] = [
       },
       {
         question: 'How does Docsynecx enhance Intelligent Document Processing?',
-        answer: 'Docsynecx is our proprietary AI-powered IDP platform developed at SynecxAI Lab. It offers: Real-time document processing, Seamless integration with ERP, SAP, and financial systems, Self-learning models that improve with usage, 99%+ extraction accuracy across supported document types.',
+        answer: 'Docsynecx is our proprietary AI-powered IDP platform developed at SynecX AI Lab. It offers: Real-time document processing, Seamless integration with ERP, SAP, and financial systems, Self-learning models that improve with usage, 99%+ extraction accuracy across supported document types.',
       },
       {
         question: 'Is Docsynecx easy to integrate into existing workflows?',

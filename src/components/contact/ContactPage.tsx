@@ -330,7 +330,7 @@ export function ContactPage() {
                 <div className={s.detailRow}>
                   <span className={s.detailLabel}>Entity</span>
                   <span className={s.detailValue}>
-                    SynecxAI Labs Private Limited
+                    SynecX AI Labs Private Limited
                   </span>
                 </div>
 

@@ -1,54 +1,220 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- ═══ Core ══════════════════════════════════════════════════════════════ -->
   <url>
-    <loc>https://autodocs.com/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <loc>https://docsynecx.com/</loc>
+    <lastmod>2026-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <!-- ═══ Platform — Finance Desk ══════════════════════════════════════════ -->
   <url>
     <loc>https://docsynecx.com/finance-desk/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <lastmod>2026-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://autodocs.com/logistics/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <loc>https://docsynecx.com/finance-desk/invoice-automation/</loc>
+    <lastmod>2026-11-21</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://autodocs.com/calculator/</loc>
-    <lastmod>2026-10-16</lastmod>
-    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://autodocs.com/free-trial/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <loc>https://docsynecx.com/finance-desk/banking-reconciliation/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/finance-desk/payment-reminders/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/finance-desk/accounts-payable/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/finance-desk/docsynecx-intelligence/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Finance Desk — Persona pages -->
+  <url>
+    <loc>https://docsynecx.com/finance-desk/business-owners/</loc>
+    <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://autodocs.com/customers/rajadurai/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <loc>https://docsynecx.com/finance-desk/finance-teams/</loc>
+    <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://autodocs.com/customers/ft-logistics/</loc>
-    <lastmod>2026-10-16</lastmod>
+    <loc>https://docsynecx.com/finance-desk/accounts-teams/</loc>
+    <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url><loc>https://docsynecx.com/finance-desk/invoice-automation/</loc></url>
-  <url><loc>https://docsynecx.com/finance-desk/banking-reconciliation/</loc></url>
-  <url><loc>https://docsynecx.com/finance-desk/payment-reminders/</loc></url>
-  <url><loc>https://docsynecx.com/finance-desk/accounts-payable/</loc></url>
-  <url><loc>https://docsynecx.com/finance-desk/docsynecx-intelligence/</loc></url>
-  <url><loc>https://docsynecx.com/finance-desk/business-owners/</loc></url>
-  <url><loc>https://docsynecx.com/finance-desk/finance-teams/</loc></url>
-  <url><loc>https://docsynecx.com/finance-desk/accounts-teams/</loc></url>
-  <url><loc>https://docsynecx.com/finance-desk/ca-firms/</loc></url>
+  <url>
+    <loc>https://docsynecx.com/finance-desk/ca-firms/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- ═══ Platform — Logistics Desk ════════════════════════════════════════ -->
+  <url>
+    <loc>https://docsynecx.com/logistics-desk/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/logistics-desk/email-to-booking/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/logistics-desk/shipment-operations/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/logistics-desk/shipment-tracking/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/logistics-desk/freight-intelligence/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/logistics-desk/integrations/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ═══ Industry Solutions ════════════════════════════════════════════════ -->
+  <url>
+    <loc>https://docsynecx.com/solutions/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/solutions/automotive-ev/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/solutions/industrial-manufacturing/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/solutions/textile-garments/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/solutions/retail-distribution/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/solutions/freight-logistics/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- ═══ Commercial ════════════════════════════════════════════════════════ -->
+  <url>
+    <loc>https://docsynecx.com/pricing/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ═══ Company ══════════════════════════════════════════════════════════ -->
+  <url>
+    <loc>https://docsynecx.com/about/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/contact/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/events/iics-2026/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- ═══ Blog ══════════════════════════════════════════════════════════════ -->
+  <url>
+    <loc>https://docsynecx.com/blogs/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/blogs/ai-logistics-document-verification-impact-2026/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/blogs/manual-vs-ai-document-processing-cost-time-accuracy-comparison/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/blogs/why-manual-invoice-entry-fails-at-scale/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- ═══ Legal ═════════════════════════════════════════════════════════════ -->
+  <url>
+    <loc>https://docsynecx.com/privacy-policy/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/terms-of-service/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
 </urlset>
