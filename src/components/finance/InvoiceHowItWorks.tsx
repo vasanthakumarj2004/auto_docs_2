@@ -42,9 +42,9 @@ const steps = [
   },
   {
     name: 'Post',
-    description: 'Approved information moves into Tally Prime or ERP, creating vouchers with source documents linked.',
+    description: 'Approved information moves into TallyPrime or ERP, creating vouchers with source documents linked.',
     icon: Building2,
-    heading: 'Direct posting to Tally Prime',
+    heading: 'Direct posting to TallyPrime',
     label: 'Voucher synced',
   },
 ];
@@ -172,7 +172,7 @@ function PostView() {
       <div className={s.mappingHeader}>
         <span><FileCheck2 size={15} />Approved Invoice</span>
         <ArrowRight size={14} />
-        <span><Building2 size={15} />Tally Prime</span>
+        <span><Building2 size={15} />TallyPrime</span>
       </div>
       <dl className={s.ledger}>
         <div><dt>Supplier ledger</dt><dd>Prime Components Pvt Ltd</dd></div>
@@ -182,7 +182,7 @@ function PostView() {
       <div className={s.posted}>
         <span><CheckCheck size={23} /></span>
         <div>
-          <strong>Purchase voucher created in Tally Prime</strong>
+          <strong>Purchase voucher created in TallyPrime</strong>
           <p>PUR-829 · Source invoice PDF permanently linked</p>
         </div>
         <Check size={16} />
@@ -223,7 +223,7 @@ export function InvoiceHowItWorks() {
             <span>Review. Post.</span>
           </h2>
           <p className={s.intro}>
-            Follow a supplier invoice from initial intake to final Tally Prime voucher creation.
+            Follow a supplier invoice from initial intake to final TallyPrime voucher creation.
             Every step keeps the data, the verification rules, and your finance team connected.
           </p>
         </div>

@@ -38,14 +38,6 @@ export function SolutionsPage() {
             <div className={styles.heroGrid}>
               {/* Left Column: Copy, Actions & Trust Promise */}
               <div className={styles.heroCopy}>
-                <nav className={styles.crumb} aria-label="Breadcrumb">
-                  <Link href="/finance-desk/">Finance Desk</Link>
-                  <span aria-hidden="true">/</span>
-                  <span className={styles.crumbCurrent} aria-current="page">
-                    Industries
-                  </span>
-                </nav>
-
                 <span className={styles.eyebrow}>Industries</span>
 
                 <h1 id="solutions-hero-title" className={styles.heroTitle}>

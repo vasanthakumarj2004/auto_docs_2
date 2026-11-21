@@ -57,21 +57,21 @@ const mappingData = [
     comesFrom: 'Your sales inbox',
     endsUpIn: 'Docsynecx, as a quote draft',
     module: 'RFQ-to-Booking',
-    href: '/logistics-desk/email-to-booking/',
+    href: '/logistics-desk/RFQ-to-booking/',
   },
   {
     what: 'Vendor rates',
     comesFrom: 'Vendor emails and your rate cards',
     endsUpIn: 'Docsynecx, side by side',
     module: 'RFQ-to-Booking',
-    href: '/logistics-desk/email-to-booking/',
+    href: '/logistics-desk/RFQ-to-booking/',
   },
   {
     what: 'Confirmed bookings',
     comesFrom: 'Docsynecx, after your approval',
     endsUpIn: 'CargoWise, TMS or ERP',
     module: 'RFQ-to-Booking',
-    href: '/logistics-desk/email-to-booking/',
+    href: '/logistics-desk/RFQ-to-booking/',
   },
   {
     what: 'Jobs',
@@ -200,12 +200,6 @@ export function LogisticsIntegrationsPage() {
           <div className={`site-shell ${s.heroGrid}`}>
             {/* Left Copy */}
             <div className={s.heroCopy}>
-              <nav aria-label="Breadcrumb" className={s.breadcrumb}>
-                <Link href="/logistics-desk/">Logistics Desk</Link>
-                <span className={s.breadcrumbSeparator}>/</span>
-                <span>Integrations</span>
-              </nav>
-
               <p className={s.eyebrow}>INTEGRATIONS · CARGOWISE, TMS AND ERP</p>
 
               <h1 id="hero-title" className={s.heroTitle}>
@@ -251,9 +245,7 @@ export function LogisticsIntegrationsPage() {
                 {/* Top bar */}
                 <div className={s.intelCardTop}>
                   <strong>How data moves</strong>
-                  <span className={s.marginLeakBadge} style={{ color: '#94a3b8', borderColor: 'rgba(255, 255, 255, 0.14)', background: 'rgba(255, 255, 255, 0.05)' }}>
-                    One job
-                  </span>
+                  <span className={s.flowBadge}>One job</span>
                 </div>
 
                 {/* Body with vertical 3-stage flow */}

@@ -51,7 +51,7 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
       {
         sno: '01',
         title: 'Invoice Automation',
-        description: 'Supplier invoices into Tally Prime, without typing.',
+        description: 'Supplier invoices into TallyPrime, without typing.',
         href: '/finance-desk/invoice-automation/',
       },
       {
@@ -88,7 +88,7 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
     ],
     integrationsHeading: 'Integrations',
     integrationsLinks: [
-      { title: 'Tally Prime', href: '/finance-desk/#integration-tally' },
+      { title: 'TallyPrime', href: '/finance-desk/#integration-tally' },
       { title: 'Zoho Books', href: '/finance-desk/#integration-zoho' },
       { title: 'Custom ERP', href: '/finance-desk/#integration-erp' },
     ],
@@ -104,7 +104,7 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
         sno: '01',
         title: 'RFQ-to-Booking',
         description: 'Connect customer enquiries, quotes and freight bookings.',
-        href: '/logistics-desk/email-to-booking/',
+        href: '/logistics-desk/RFQ-to-booking/',
       },
       {
         sno: '02',
@@ -127,7 +127,7 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
     ],
     // whoHeading: "By Role",
     // whoLinks: [
-    //   { title: 'Freight Forwarders', href: '/logistics-desk/email-to-booking/' },
+    //   { title: 'Freight Forwarders', href: '/logistics-desk/RFQ-to-booking/' },
     //   { title: 'Operations Teams', href: '/logistics-desk/shipment-operations/' },
     //   { title: 'Pricing & Sourcing', href: '/logistics-desk/freight-intelligence/' },
     //   { title: 'Logistics Leadership', href: '/logistics-desk/shipment-operations/' },

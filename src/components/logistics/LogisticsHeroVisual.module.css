@@ -23,28 +23,27 @@
   left: 10px;
   right: -10px;
   bottom: -10px;
-  background: rgba(11, 19, 32, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
   border-radius: 20px;
   pointer-events: none;
   z-index: 1;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.04);
 }
 
-/* Main Card */
+/* Main Card - Crisp White Theme for Logistics Overview Hero */
 .mainCard {
   position: relative;
   z-index: 2;
-  background:
-    radial-gradient(ellipse 90% 60% at 50% 0%, rgba(30, 41, 59, 0.4) 0%, transparent 70%),
-    linear-gradient(180deg, #0d1726 0%, #09101a 100%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   border-radius: 20px;
   padding: 24px 26px;
   box-shadow:
-    0 24px 60px -12px rgba(0, 0, 0, 0.55),
-    0 8px 24px -4px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  color: #ffffff;
+    0 20px 48px -12px rgba(15, 23, 42, 0.08),
+    0 8px 24px -4px rgba(15, 23, 42, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  color: #0f172a;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   transition: transform 300ms ease, box-shadow 300ms ease, border-color 300ms ease;
@@ -52,11 +51,11 @@
 
 .mainCard:hover {
   transform: translateY(-2px);
-  border-color: rgba(24, 203, 150, 0.3);
+  border-color: rgba(24, 203, 150, 0.4);
   box-shadow:
-    0 28px 68px -12px rgba(0, 0, 0, 0.65),
-    0 12px 28px -4px rgba(24, 203, 150, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    0 26px 56px -12px rgba(15, 23, 42, 0.12),
+    0 12px 28px -4px rgba(24, 203, 150, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
 }
 
 /* Top Row */
@@ -78,18 +77,18 @@
 
 .typeEyebrow {
   font-weight: 700;
-  color: #f8fafc;
+  color: #0f172a;
   letter-spacing: -0.01em;
 }
 
 .metaDot {
-  color: #64748b;
+  color: #94a3b8;
   font-weight: 700;
 }
 
 .shipperName {
-  font-weight: 500;
-  color: #94a3b8;
+  font-weight: 600;
+  color: #475569;
 }
 
 /* Status Tag in DOCSYNECX brand style */
@@ -113,6 +112,8 @@
 }
 
 .statusBadge::before {
+  content: '';
+  display: inline-block;
   width: 18px;
   height: 2px;
   background: var(--color-brand, #18cb96);
@@ -143,7 +144,7 @@
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   font-size: 22px;
   font-weight: 800;
-  color: #ffffff;
+  color: #0f172a;
   margin: 0;
   letter-spacing: -0.02em;
 }
@@ -151,12 +152,12 @@
 .laneArrow {
   font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
   font-size: 18px;
-  color: var(--landing-green, #18cb96);
+  color: var(--color-brand, #18cb96);
 }
 
 .laneSubtext {
   font-size: 12.5px;
-  color: #94a3b8;
+  color: #64748b;
   margin: 6px 0 0 0;
   font-weight: 500;
   line-height: 1.5;
@@ -175,7 +176,7 @@
 }
 
 .ratesTable thead tr {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid #e2e8f0;
 }
 
 .ratesTable th {
@@ -201,7 +202,7 @@
 }
 
 .ratesTable tbody tr {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid #f1f5f9;
 }
 
 .ratesTable tbody tr:last-child {
@@ -215,7 +216,7 @@
 }
 
 .vendorName {
-  color: #f8fafc;
+  color: #1e293b;
   font-weight: 600;
 }
 
@@ -226,9 +227,9 @@
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  background: rgba(24, 203, 150, 0.15);
-  color: #34d399;
-  border: 1px solid rgba(24, 203, 150, 0.3);
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
   padding: 1px 6px;
   border-radius: 4px;
   margin-left: 7px;
@@ -238,20 +239,20 @@
 .transitCell {
   font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
   text-align: center;
-  color: #cbd5e1;
+  color: #475569;
   font-size: 12.5px;
 }
 
 .buyRateCell {
   font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
   text-align: right;
-  color: #ffffff;
+  color: #0f172a;
   font-weight: 700;
   font-size: 13.5px;
 }
 
 .bestRateCell {
-  color: #34d399;
+  color: #0d9466;
   font-weight: 800;
 }
 
@@ -261,12 +262,12 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  background: #060c16;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
   border-radius: 12px;
   padding: 16px 20px;
   margin: 16px 0 18px 0;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 1px 2px rgba(15, 23, 42, 0.03);
 }
 
 .totalLabelGroup {
@@ -274,12 +275,12 @@
   align-items: center;
   gap: 8px;
   font-size: 13px;
-  color: #94a3b8;
+  color: #475569;
   font-weight: 500;
 }
 
 .shieldIcon {
-  color: var(--landing-green, #18cb96);
+  color: var(--color-brand-strong, #15b886);
   flex-shrink: 0;
 }
 
@@ -287,7 +288,7 @@
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   font-size: 26px;
   font-weight: 800;
-  color: #ffffff;
+  color: #0f172a;
   letter-spacing: -0.02em;
 }
 
@@ -360,7 +361,7 @@
 .cardFooter {
   margin-top: 16px;
   padding-top: 14px;
-  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+  border-top: 1px dashed #e2e8f0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -374,7 +375,7 @@
 }
 
 .highlightBadge {
-  color: var(--landing-green, #18cb96);
+  color: var(--color-brand-strong, #15b886);
 }
 
 @media (max-width: 640px) {

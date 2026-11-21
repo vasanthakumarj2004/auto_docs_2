@@ -414,7 +414,7 @@ export function ContactPage() {
                   <div className={s.channelContent}>
                     <span className={s.channelLabel}>Corporate Headquarters</span>
                     <p className={s.channelAddress}>
-                      SynecxAI Labs Private Limited<br />
+                      SynecX AI Labs Private Limited<br />
                       S.F.NO 497, Thadagam Main Road, Kanuvai,<br />
                       Coimbatore, Tamil Nadu, India - 641108
                     </p>

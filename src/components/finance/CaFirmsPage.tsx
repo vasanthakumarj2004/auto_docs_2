@@ -190,7 +190,7 @@ const faqItems = [
   {
     question: 'How long does it take to get started?',
     answer:
-      'The first-time setup with Tally Prime takes minutes. Then add clients one by one, starting with your busiest.',
+      'The first-time setup with TallyPrime takes minutes. Then add clients one by one, starting with your busiest.',
   },
 ];
 
@@ -235,12 +235,6 @@ export function CaFirmsPage() {
         <div className="site-shell">
           <div className={s.heroGrid}>
             <div>
-              <nav className={s.crumb} aria-label="Breadcrumb">
-                <Link href="/finance-desk/">Finance Desk</Link>
-                <span aria-hidden="true">/</span>
-                <span>For CA firms</span>
-              </nav>
-
               <p className={s.eyebrow}>For CA firms</p>
 
               <h1 id="hero-title" className={s.heroTitle}>

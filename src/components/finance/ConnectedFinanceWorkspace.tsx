@@ -90,7 +90,7 @@ function CheckItPreview() {
   );
 }
 
-/* ── Preview 3: Approve into Tally Prime ── */
+/* ── Preview 3: Approve into TallyPrime ── */
 function ApproveTallyPreview() {
   return (
     <div className={s.window}>

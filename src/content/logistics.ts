@@ -1,5 +1,5 @@
 export type LogisticsModuleSlug =
-  | 'email-to-booking'
+  | 'RFQ-to-booking'
   | 'shipment-operations'
   | 'shipment-tracking'
   | 'freight-intelligence';
@@ -89,8 +89,8 @@ export const sharedLogisticsCopy = {
 };
 
 export const logisticsModules: Record<LogisticsSlug, LogisticsModuleData> = {
-  'email-to-booking': {
-    slug: 'email-to-booking',
+  'RFQ-to-booking': {
+    slug: 'RFQ-to-booking',
     breadcrumb: 'Docsynecx Logistics Desk / RFQ-to-Booking',
     moduleName: 'RFQ-to-Booking · Docsynecx Logistics Desk',
     iconName: 'envelope',

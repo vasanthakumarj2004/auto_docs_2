@@ -225,35 +225,33 @@
   left: 10px;
   right: -10px;
   bottom: -10px;
-  background: rgba(11, 19, 32, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
   border-radius: 20px;
   pointer-events: none;
   z-index: 1;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.04);
 }
 
 :global([data-theme="dark"]) .ghostCardBehind {
   background: radial-gradient(ellipse at 60% 60%, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.25) 60%, transparent 80%);
 }
 
-/* Jump to your industry navigation card (matching /pricing/ .qcard) */
+/* Jump to your industry navigation card in crisp white theme matching Finance Desk */
 .indPick {
   position: relative;
   z-index: 2;
-  background:
-    radial-gradient(ellipse 90% 60% at 50% 0%, rgba(30, 41, 59, 0.4) 0%, transparent 70%),
-    linear-gradient(180deg, #0d1726 0%, #09101a 100%);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #e2e8f0;
   border-radius: 20px;
   padding: 18px;
   display: grid;
   gap: 8px;
   box-shadow:
-    0 24px 60px -12px rgba(0, 0, 0, 0.55),
-    0 8px 24px -4px rgba(0, 0, 0, 0.3),
-    0 0 40px -10px rgba(24, 203, 150, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    0 20px 48px -12px rgba(15, 23, 42, 0.08),
+    0 8px 24px -4px rgba(15, 23, 42, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
   width: 100%;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -262,12 +260,11 @@
 
 .indPick:hover {
   transform: translateY(-2px);
-  border-color: rgba(24, 203, 150, 0.3);
+  border-color: rgba(24, 203, 150, 0.4);
   box-shadow:
-    0 28px 68px -12px rgba(0, 0, 0, 0.65),
-    0 12px 28px -4px rgba(24, 203, 150, 0.22),
-    0 0 50px -5px rgba(24, 203, 150, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    0 26px 56px -12px rgba(15, 23, 42, 0.12),
+    0 12px 28px -4px rgba(24, 203, 150, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
 }
 
 :global([data-theme="dark"]) .indPick {
@@ -275,6 +272,7 @@
     radial-gradient(ellipse 90% 60% at 50% 0%, rgba(30, 41, 59, 0.4) 0%, transparent 70%),
     linear-gradient(180deg, #0d1726 0%, #09101a 100%);
   border-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
   box-shadow:
     0 24px 60px -12px rgba(0, 0, 0, 0.7),
     0 8px 24px -4px rgba(0, 0, 0, 0.4),
@@ -287,10 +285,14 @@
   font-size: 0.72rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #94a3b8;
+  color: #64748b;
   font-weight: 700;
   margin: 0;
   padding: 6px 12px 10px;
+}
+
+:global([data-theme="dark"]) .indPickHead {
+  color: #94a3b8;
 }
 
 .indPickItem {
@@ -301,19 +303,25 @@
   padding: 13px 16px;
   border-radius: 12px;
   text-decoration: none;
-  background: rgba(255, 255, 255, 0.035);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  color: #ffffff;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
   font-weight: 700;
   font-size: 1rem;
   transition: all 180ms ease;
 }
 
 .indPickItem:hover {
-  background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(255, 255, 255, 0.16);
-  color: #ffffff;
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #0f172a;
   transform: translateX(4px);
+}
+
+:global([data-theme="dark"]) .indPickItem {
+  background: rgba(255, 255, 255, 0.035);
+  border-color: rgba(255, 255, 255, 0.07);
+  color: #ffffff;
 }
 
 :global([data-theme="dark"]) .indPickItem:hover {
@@ -323,7 +331,7 @@
 }
 
 .indPickItem .mono {
-  color: var(--color-brand, #18cb96);
+  color: var(--color-brand-strong, #15b886);
   font-size: 0.85rem;
   font-weight: 700;
   font-family: 'JetBrains Mono', monospace;
@@ -334,11 +342,15 @@
 }
 
 .indPickName {
+  color: #0f172a;
+}
+
+:global([data-theme="dark"]) .indPickName {
   color: #ffffff;
 }
 
 .indPickArrow {
-  color: var(--color-brand, #18cb96);
+  color: var(--color-brand-strong, #15b886);
   font-size: 1.1rem;
   transition: transform 180ms ease;
 }

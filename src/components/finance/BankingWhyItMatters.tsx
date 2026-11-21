@@ -42,9 +42,9 @@ const challenges = [
     icon: AlertCircle,
   },
   {
-    name: 'Tally Prime Sync',
+    name: 'TallyPrime Sync',
     title: 'Eliminate double entry into your books.',
-    description: 'Approved bank transactions and reconciliation status post directly into Tally Prime, creating accurate vouchers with zero manual re-entry.',
+    description: 'Approved bank transactions and reconciliation status post directly into TallyPrime, creating accurate vouchers with zero manual re-entry.',
     icon: RefreshCw,
   },
 ];
@@ -221,14 +221,14 @@ function TallySyncPreview() {
   return (
     <>
       <div className={`${s.floatingFile} ${s.fileOne}`}>
-        <CheckCheck size={14} />Tally Prime Connected
+        <CheckCheck size={14} />TallyPrime Connected
       </div>
       <div className={`${s.floatingFile} ${s.fileTwo}`}>
         <RefreshCw size={14} />Direct Voucher Post
       </div>
       <div className={s.window}>
         <div className={s.windowHeader}>
-          <span><RefreshCw size={15} />Tally Prime automated bookkeeping</span>
+          <span><RefreshCw size={15} />TallyPrime automated bookkeeping</span>
           <span className={s.pill}>Sync active</span>
         </div>
         <div className={s.reportRows}>
@@ -260,7 +260,7 @@ function TallySyncPreview() {
         <div className={s.extraction}>
           <div>
             <ShieldCheck size={13} />
-            <strong>Direct bookkeeping into Tally Prime</strong>
+            <strong>Direct bookkeeping into TallyPrime</strong>
             <span>Audit ready</span>
           </div>
           <div className={s.progress}><span /></div>
@@ -369,7 +369,7 @@ export function BankingWhyItMatters() {
                     {index === 0 && 'Multi-bank statement ingestion with automatic narration parsing.'}
                     {index === 1 && 'Automated rules-based transaction matching against ledger accounts.'}
                     {index === 2 && 'Smart exception flags and assisted ledger categorization.'}
-                    {index === 3 && 'Direct, validated voucher creation in Tally Prime with audit trail.'}
+                    {index === 3 && 'Direct, validated voucher creation in TallyPrime with audit trail.'}
                   </span>
                 </div>
               </div>

@@ -37,8 +37,8 @@ const nextConfig = {
         permanent: true,
       },
       {
-        source: '/email-to-booking',
-        destination: '/logistics-desk/email-to-booking/',
+        source: '/RFQ-to-booking',
+        destination: '/logistics-desk/RFQ-to-booking/',
         permanent: true,
       },
       {

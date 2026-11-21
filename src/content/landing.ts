@@ -13,7 +13,7 @@ export const landingDesks = [
   {
     id: 'finance', title: 'Finance', tag: 'Finance automation & intelligence', href: '/finance-desk/',
     copy: 'Supplier bills read and checked, bank statements reconciled, customers reminded and your numbers explained, all ready in TallyPrime for your team to approve.',
-    features: ['Invoice Automation', 'Banking & Reconcilation', 'Payment Reminders','Docsynecx Intelligence','Accounts Payable'],
+    features: ['Invoice Automation', 'Banking & Reconciliation', 'Payment Reminders','Docsynecx Intelligence','Accounts Payable'],
   },
   {
     id: 'logistics', title: 'Logistics', tag: 'Freight & logistics operations', href: '/logistics-desk/',

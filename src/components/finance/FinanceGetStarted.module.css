@@ -8,13 +8,21 @@
   letter-spacing: -0.035em;
   line-height: 1.2;
   margin: 0;
+  color: var(--landing-ink, #0f172a);
 }
 .heading h2 span {
-  color: var(--color-brand-text, #2E8B57);
+  color: var(--landing-ink, #0f172a);
+}
+:global([data-theme="dark"]) .heading h2 span {
+  color: #ffffff;
 }
 .line {
   display: inline-block;
   white-space: normal;
+  color: var(--landing-ink, #0f172a);
+}
+:global([data-theme="dark"]) .line {
+  color: #ffffff;
 }
 @media (min-width: 768px) {
   .line {

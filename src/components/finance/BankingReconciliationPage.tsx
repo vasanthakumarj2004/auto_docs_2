@@ -92,9 +92,9 @@ const howSteps = [
   {
     num: 4,
     title: 'Review and push to Tally',
-    desc: 'Review every transaction, confirm the probable ones, and push to Tally Prime in minutes.',
+    desc: 'Review every transaction, confirm the probable ones, and push to TallyPrime in minutes.',
     panelBar: 'Step 4 of 4 · Review and push',
-    panelStatus: 'Pushed to Tally Prime',
+    panelStatus: 'Pushed to TallyPrime',
     statusType: 'ok',
     rows: [
       { who: '198 matched', what: 'Reviewed and accepted', status: 'Reconciled', type: 'ok' },
@@ -111,7 +111,7 @@ const howSteps = [
         type: 'wait',
       },
     ],
-    total: { meta: 'Pushed to Tally Prime · 207 entries', big: 'Minutes' },
+    total: { meta: 'Pushed to TallyPrime · 207 entries', big: 'Minutes' },
     foot: "Nothing goes to Tally until you've reviewed it. Open items stay on your list.",
   },
 ];
@@ -121,7 +121,7 @@ const faqItems = [
   {
     question: 'Does anything post to Tally without our approval?',
     answer:
-      'No. Every new entry waits for someone on your team to review and approve it before it is posted to Tally Prime.',
+      'No. Every new entry waits for someone on your team to review and approve it before it is posted to TallyPrime.',
   },
   {
     question: 'Which banks and formats work?',
@@ -141,7 +141,7 @@ const faqItems = [
   {
     question: 'How long does setup take?',
     answer:
-      'Connect Tally Prime straight away, send your first statement, and push to Tally in minutes. You review every transaction before anything is posted.',
+      'Connect TallyPrime straight away, send your first statement, and push to Tally in minutes. You review every transaction before anything is posted.',
   },
 ];
 
@@ -186,12 +186,6 @@ export function BankingReconciliationPage() {
         <div className="site-shell">
           <div className={s.heroGrid}>
             <div>
-              <nav className={s.crumb} aria-label="Breadcrumb">
-                <Link href="/finance-desk/">Finance Desk</Link>
-                <span aria-hidden="true">/</span>
-                <span>Banking &amp; Reconciliation</span>
-              </nav>
-
               <p className={s.eyebrow}>Banking &amp; Reconciliation</p>
 
               <h1 id="hero-title" className={s.heroTitle}>
@@ -240,7 +234,7 @@ export function BankingReconciliationPage() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span>Nothing is posted to Tally Prime until your team approves it.</span>
+                <span>Nothing is posted to TallyPrime until your team approves it.</span>
               </p>
             </div>
 
@@ -406,7 +400,7 @@ export function BankingReconciliationPage() {
               <span>Push.</span>
             </h2>
             <p className={s.lead}>
-              One month&apos;s bank statement, from upload to reconciled in Tally Prime.
+              One month&apos;s bank statement, from upload to reconciled in TallyPrime.
             </p>
           </div>
 
@@ -597,7 +591,7 @@ export function BankingReconciliationPage() {
               <h3>Mapped, or created for you</h3>
               <p>
                 Lines go to the ledger you already have. If there isn&apos;t one, it&apos;s created
-                instantly.
+                once you approve.
               </p>
             </article>
 
@@ -620,9 +614,9 @@ export function BankingReconciliationPage() {
             </article>
 
             <article className={s.handleCard}>
-              <span className={s.handleTag}>Tally Prime</span>
+              <span className={s.handleTag}>TallyPrime</span>
               <h3>Review, then push</h3>
-              <p>Review every transaction, then push to Tally Prime in minutes.</p>
+              <p>Review every transaction, then push to TallyPrime in minutes.</p>
             </article>
           </div>
         </div>

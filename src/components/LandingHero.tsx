@@ -14,7 +14,7 @@ const workflows = {
       { icon: ShieldCheck, title: 'Review', detail: 'Human approval' },
       { icon: Check, title: 'Tally', detail: 'Validated posting' },
     ],
-    systems: ['Tally Prime', 'Zoho Books', 'Custom ERP'],
+    systems: ['TallyPrime', 'Zoho Books', 'Custom ERP'],
     capabilities: ['Invoice Automation', 'Bank Statement & Reconciliation'],
   },
   logistics: {

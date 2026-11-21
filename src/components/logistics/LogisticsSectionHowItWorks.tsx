@@ -53,7 +53,7 @@ interface WorkflowStepConfig {
 }
 
 const MODULE_WORKFLOWS: Record<LogisticsModuleSlug, WorkflowStepConfig[]> = {
-  'email-to-booking': [
+  'RFQ-to-booking': [
     {
       stepNumber: '01',
       name: 'Enquiry Arrival',
@@ -598,7 +598,7 @@ interface LogisticsSectionHowItWorksProps {
 }
 
 export function LogisticsSectionHowItWorks({ slug }: LogisticsSectionHowItWorksProps) {
-  const steps = MODULE_WORKFLOWS[slug] || MODULE_WORKFLOWS['email-to-booking'];
+  const steps = MODULE_WORKFLOWS[slug] || MODULE_WORKFLOWS['RFQ-to-booking'];
   const [active, setActive] = useState(0);
   const tabs = useRef<(HTMLButtonElement | null)[]>([]);
 

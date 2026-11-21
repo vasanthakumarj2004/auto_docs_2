@@ -23,7 +23,7 @@ export function FinanceWorkflow() {
             Six questions your owners ask.<br /><span>Answered from your own books.</span>
           </h2>
           <p className={s.intro}>
-            Each view is built from your Tally Prime data, and every figure links back to the entries behind it.
+            Each view is built from your TallyPrime data, and every figure links back to the entries behind it.
           </p>
         </div>
 

@@ -160,7 +160,7 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
               </li>
               <li>
                 <Link href="/finance-desk/banking-reconciliation/" className={styles.footerLink}>
-                  Bank Reconciliation
+                  Banking & Reconciliation
                 </Link>
               </li>
               <li>
@@ -181,7 +181,7 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
             <h4 className={styles.colHeader}>Logistics</h4>
             <ul className={styles.linkList}>
               <li>
-                <Link href="/logistics-desk/email-to-booking/" className={styles.footerLink}>
+                <Link href="/logistics-desk/RFQ-to-booking/" className={styles.footerLink}>
                   RFQ-to-Booking
                 </Link>
               </li>
@@ -275,7 +275,7 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
               </span>
             </div>
             <span className={styles.copyright}>
-              &copy; Powered by Synecx AI Labs Private Limited. All rights reserved. 
+              &copy; Powered by SynecX AI Labs Private Limited. All rights reserved. 
             </span>
           </div>
         </div>

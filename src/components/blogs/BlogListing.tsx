@@ -117,7 +117,7 @@ export function BlogListing({ initialPosts }: BlogListingProps) {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search articles by title, keyword, or topic (e.g. CargoWise, Tally Prime, B/L)..."
+              placeholder="Search articles by title, keyword, or topic (e.g. CargoWise, TallyPrime, B/L)..."
               className={styles.searchInput}
               aria-label="Search articles"
             />

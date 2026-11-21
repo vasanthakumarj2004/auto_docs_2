@@ -45,9 +45,9 @@ const steps = [
   },
   {
     name: 'Post',
-    description: 'Approved and reconciled entries post directly into Tally Prime, creating bank vouchers with audit trail.',
+    description: 'Approved and reconciled entries post directly into TallyPrime, creating bank vouchers with audit trail.',
     icon: Building2,
-    heading: 'Direct posting to Tally Prime',
+    heading: 'Direct posting to TallyPrime',
     label: 'Vouchers synced',
   },
 ];
@@ -187,7 +187,7 @@ function PostView() {
       <div className={s.mappingHeader}>
         <span><FileCheck2 size={15} />Reconciled statement</span>
         <ArrowRight size={14} />
-        <span><Building2 size={15} />Tally Prime</span>
+        <span><Building2 size={15} />TallyPrime</span>
       </div>
       <dl className={s.ledger}>
         <div>
@@ -210,7 +210,7 @@ function PostView() {
       <div className={s.posted}>
         <span><CheckCheck size={23} /></span>
         <div>
-          <strong>Tally Prime vouchers created</strong>
+          <strong>TallyPrime vouchers created</strong>
           <p>Bank ledgers reconciled · Source transaction IDs linked</p>
         </div>
         <Check size={16} />
@@ -264,7 +264,7 @@ export function BankingWorkflowOverview() {
             <span>reconciled books.</span>
           </h2>
           <p className={s.intro}>
-            Follow statement data from initial intake to automated matching, exception review, and final Tally Prime voucher creation. Every step keeps your records and finance team in control.
+            Follow statement data from initial intake to automated matching, exception review, and final TallyPrime voucher creation. Every step keeps your records and finance team in control.
           </p>
         </div>
 

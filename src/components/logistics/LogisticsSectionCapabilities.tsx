@@ -50,7 +50,7 @@ interface CapabilityTab {
 }
 
 const MODULE_CAPABILITIES: Record<LogisticsModuleSlug, CapabilityTab[]> = {
-  'email-to-booking': [
+  'RFQ-to-booking': [
     {
       id: 'intake',
       title: 'Enquiry & Intake',
@@ -528,7 +528,7 @@ interface LogisticsSectionCapabilitiesProps {
 }
 
 export function LogisticsSectionCapabilities({ slug }: LogisticsSectionCapabilitiesProps) {
-  const tabs = MODULE_CAPABILITIES[slug] || MODULE_CAPABILITIES['email-to-booking'];
+  const tabs = MODULE_CAPABILITIES[slug] || MODULE_CAPABILITIES['RFQ-to-booking'];
   const [activeTabId, setActiveTabId] = useState<string>(tabs[0].id);
   const [showAll, setShowAll] = useState(false);
 

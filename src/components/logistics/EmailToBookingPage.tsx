@@ -285,12 +285,6 @@ export function EmailToBookingPage() {
           <div className={`site-shell ${s.heroGrid}`}>
             {/* Left Copy */}
             <div className={s.heroCopy}>
-              <nav aria-label="Breadcrumb" className={s.breadcrumb}>
-                <Link href="/logistics-desk/">Logistics Desk</Link>
-                <span className={s.breadcrumbSeparator}>/</span>
-                <span>RFQ-to-Booking</span>
-              </nav>
-
               <p className={s.eyebrow}>RFQ-TO-BOOKING · MOST TEAMS START HERE</p>
 
               <h1 id="hero-title" className={s.heroTitle}>

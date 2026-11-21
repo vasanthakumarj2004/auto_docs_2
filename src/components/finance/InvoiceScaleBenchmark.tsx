@@ -30,7 +30,7 @@ const metrics: MetricCard[] = [
   {
     label: 'Touchless Posting',
     stat: '84%',
-    delta: 'Direct to Tally Prime',
+    delta: 'Direct to TallyPrime',
   },
 ];
 
@@ -61,7 +61,7 @@ export function InvoiceScaleBenchmark() {
         {/* Operational Narrative Description */}
         <p className={styles.description}>
           This same loop — messy PDFs in, GST &amp; HSN verified, ledger
-          classified — posts directly into Tally Prime on every bill, not a
+          classified — posts directly into TallyPrime on every bill, not a
           curated few.
         </p>
 

@@ -31,7 +31,7 @@ export function FinanceClosingCta({
   const resolvedEyebrow = eyebrow ?? financeClosing.eyebrow;
   const resolvedTitle = title ?? (
     <>
-      Bring ten invoices.<br /><span>We&apos;ll show you them in Tally.</span>
+      Bring ten invoices.<br /><span>We&apos;ll show you how they look in Tally.</span>
     </>
   );
   const resolvedCopy = copy ?? financeClosing.copy;

@@ -23,7 +23,7 @@ interface BenchmarkData {
 }
 
 const benchmarkContent: Record<LogisticsModuleSlug, BenchmarkData> = {
-  'email-to-booking': {
+  'RFQ-to-booking': {
     eyebrow: 'Same Loop · 12 Months · Freight Rate & RFQ Desk · UAE & India',
     headlinePrefix: 'Cascadia is one of ',
     headlineAccent: '225 quotes',
@@ -157,7 +157,7 @@ interface LogisticsScaleBenchmarkProps {
 }
 
 export function LogisticsScaleBenchmark({ slug }: LogisticsScaleBenchmarkProps) {
-  const data = benchmarkContent[slug] || benchmarkContent['email-to-booking'];
+  const data = benchmarkContent[slug] || benchmarkContent['RFQ-to-booking'];
 
   return (
     <section

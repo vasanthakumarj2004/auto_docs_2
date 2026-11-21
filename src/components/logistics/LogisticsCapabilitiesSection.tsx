@@ -48,7 +48,7 @@ interface LogisticsModuleCapabilities {
 }
 
 export const CAPABILITIES_DATA: Record<LogisticsModuleSlug, LogisticsModuleCapabilities> = {
-  'email-to-booking': {
+  'RFQ-to-booking': {
     railHeader: 'ENQUIRY RECEIVED · QUOTE PENDING',
     eyebrow: 'WHAT IT HELPS YOUR TEAM DO',
     mainTitle: 'Purpose-built capabilities for everyday operations.',
@@ -294,7 +294,7 @@ interface LogisticsCapabilitiesSectionProps {
 }
 
 export function LogisticsCapabilitiesSection({ slug }: LogisticsCapabilitiesSectionProps) {
-  const config = CAPABILITIES_DATA[slug] || CAPABILITIES_DATA['email-to-booking'];
+  const config = CAPABILITIES_DATA[slug] || CAPABILITIES_DATA['RFQ-to-booking'];
   const steps = config.steps;
 
   const [activeIdx, setActiveIdx] = useState<number>(0);
@@ -451,7 +451,7 @@ export function LogisticsCapabilitiesSection({ slug }: LogisticsCapabilitiesSect
       // ---------------------------------------------------------------------
       // 1. EMAIL-TO-BOOKING (7 STEPS)
       // ---------------------------------------------------------------------
-      case 'email-to-booking': {
+      case 'RFQ-to-booking': {
         switch (activeIdx) {
           case 0: // Read incoming
             return (

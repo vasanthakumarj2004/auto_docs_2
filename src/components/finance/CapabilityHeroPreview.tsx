@@ -37,7 +37,7 @@ function InvoicePreview() {
         <div className={s.validation}><ShieldCheck size={17} aria-hidden="true" /><div><strong>Totals checked</strong><span>Ready for human review</span></div></div>
       </div>
     </div>
-    <div className={s.bottomStrip}><span><FileCheck2 size={15} aria-hidden="true" /><strong>Tally Prime</strong></span><Status pending>Awaiting approval</Status></div>
+    <div className={s.bottomStrip}><span><FileCheck2 size={15} aria-hidden="true" /><strong>TallyPrime</strong></span><Status pending>Awaiting approval</Status></div>
     <p className={s.footnote}>Review and approve before posting to your accounting system.</p>
   </>;
 }
@@ -51,7 +51,7 @@ const transactions = [
 function BankingPreview() {
   return <>
     <div className={s.sectionHeading}><div><span className={s.kicker}>STATEMENT TO LEDGER</span><h2>A clearer path to reconciliation.</h2></div><span className={s.largeIcon}><ArrowLeftRight size={21} aria-hidden="true" /></span></div>
-    <div className={s.bankBridge}><div><Landmark size={19} aria-hidden="true" /><span>Bank statement<small>November 2026</small></span></div><span className={s.bridgeLine}><ArrowLeftRight size={15} aria-hidden="true" /></span><div><Layers3 size={19} aria-hidden="true" /><span>Tally Prime<small>Accounting entries</small></span></div></div>
+    <div className={s.bankBridge}><div><Landmark size={19} aria-hidden="true" /><span>Bank statement<small>November 2026</small></span></div><span className={s.bridgeLine}><ArrowLeftRight size={15} aria-hidden="true" /></span><div><Layers3 size={19} aria-hidden="true" /><span>TallyPrime<small>Accounting entries</small></span></div></div>
     <div className={s.summary}><div><span>Transactions</span><strong>03</strong></div><div><span>Matched</span><strong className={s.teal}>02</strong></div><div><span>Needs review</span><strong className={s.amber}>01</strong></div></div>
     <div className={s.transactionList}>
       <div className={s.listHeading}><span>STATEMENT ENTRY</span><span>AMOUNT / STATUS</span></div>

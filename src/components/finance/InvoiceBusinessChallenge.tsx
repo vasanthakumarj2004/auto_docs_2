@@ -191,7 +191,7 @@ function TaxChecksPreview() {
           <span className={s.reviewDot} />
           <div>
             <strong>Tax compliance guaranteed</strong>
-            <p>Calculations verified before posting to Tally Prime.</p>
+            <p>Calculations verified before posting to TallyPrime.</p>
           </div>
           <ChevronRight size={15} />
         </div>

@@ -3,7 +3,7 @@ export const demoHref = '/demo/#demo-form';
 
 export const logisticsModules = [
   {
-    slug: 'email-to-booking',
+    slug: 'RFQ-to-booking',
     title: 'RFQ-to-Booking',
     label: '01 · Enquiry to quote',
     badge: 'Most teams start here',
@@ -256,7 +256,7 @@ export const logisticsFaqs = [
 export const logisticsPageCopy = {
   overview: {
     eyebrow: 'AI rate desk for freight forwarders',
-    headline: 'Quote faster. Win more loads.',
+    headline: 'Quote faster.\nWin more shipments.',
     accent: 'Straight from your inbox.',
     description:
       'Docsynecx reads every customer enquiry as it lands, asks your vendors for rates, lines them up side by side and drafts the quote. Your team checks it and sends it.',
@@ -282,7 +282,7 @@ export const logisticsPageCopy = {
     //   'See the drafted quotes, side by side with yours',
     // ],
   },
-  'email-to-booking': {
+  'RFQ-to-booking': {
     eyebrow: 'LOGISTICS DESK / EMAIL-TO-BOOKING',
     headline: 'Move freight enquiries from inbox',
     accent: 'to confirmed booking.',

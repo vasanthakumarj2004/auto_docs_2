@@ -222,12 +222,6 @@ export function FreightIntelligencePage() {
           <div className={`site-shell ${s.heroGrid}`}>
             {/* Left Copy */}
             <div className={s.heroCopy}>
-              <nav aria-label="Breadcrumb" className={s.breadcrumb}>
-                <Link href="/logistics-desk/">Logistics Desk</Link>
-                <span className={s.breadcrumbSeparator}>/</span>
-                <span>Freight Intelligence</span>
-              </nav>
-
               <p className={s.eyebrow}>
                 <span className={s.soonPill}>Coming soon</span>
                 FREIGHT INTELLIGENCE · PROFIT AND PERFORMANCE

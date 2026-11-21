@@ -75,11 +75,11 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
     slug: 'business-owners',
     navTitle: 'Business Owners',
     metaTitle: 'For Business Owners · Docsynecx Finance Desk',
-    metaDescription: 'For business owners on Tally Prime: see cash, what you owe and what you are owed, approve the bills that matter in one click, and ask your numbers questions in plain words.',
+    metaDescription: 'For business owners on TallyPrime: see cash, what you owe and what you are owed, approve the bills that matter in one click, and ask your numbers questions in plain words.',
     eyebrow: 'For business owners',
     headline: 'Know where every rupee stands.',
     accent: 'Without waiting for month-end.',
-    description: "See your cash, what you owe and what you're owed. Sign off the bills that matter in one click, and ask your numbers questions in plain words. All from the Tally Prime your team already uses.",
+    description: "See your cash, what you owe and what you're owed. Sign off the bills that matter in one click, and ask your numbers questions in plain words. All from the TallyPrime your team already uses.",
     primaryCta: 'Book a demo',
     secondaryCta: 'What you get',
     microline: 'Nothing is posted to Tally without approval. You decide which bills need yours.',
@@ -189,7 +189,7 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
       },
       {
         number: '04',
-        phase: 'Tally Prime',
+        phase: 'TallyPrime',
         title: 'Posted to Tally',
         description: 'A purchase voucher, with the bill and your approval linked.',
         output: 'Proof on every voucher, ready for your auditor.',
@@ -207,7 +207,7 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
     faqsTitle: 'What owners ask us first.',
     faqs: [
       {
-        question: 'Do we have to stop using Tally Prime?',
+        question: 'Do we have to stop using TallyPrime?',
         answer: 'No. Docsynecx works with your existing Tally company and ledgers. Your team keeps working in Tally as they do today.',
       },
       {
@@ -224,7 +224,7 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
       },
       {
         question: 'How long does it take to get started?',
-        answer: 'The first-time setup with Tally Prime takes minutes. Then we test with your own bills and train your team in a single session.',
+        answer: 'The first-time setup with TallyPrime takes minutes. Then we test with your own bills and train your team in a single session.',
       },
     ],
     ctaEyebrow: 'SEE YOUR OWN NUMBERS',
@@ -238,15 +238,15 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
     navTitle: 'Finance Teams',
     metaTitle: 'For Finance Teams · Docsynecx Finance Desk',
     metaDescription:
-      'For finance teams on Tally Prime: every supplier invoice in one queue, GST and duplicates checked, exceptions first, and vouchers posted with the bill attached after your team approves.',
+      'For finance teams on TallyPrime: every supplier invoice in one queue, GST and duplicates checked, exceptions first, and vouchers posted with the bill attached after your team approves.',
     eyebrow: 'For finance teams',
     headline: 'Close the month faster.',
     accent: 'With every invoice checked.',
     description:
-      'Every supplier invoice in one queue. GST and duplicates checked automatically. Approved by your team and posted to Tally Prime with the bill attached. Your team reviews the exceptions, not every line.',
+      'Every supplier invoice in one queue. GST and duplicates checked automatically. Approved by your team and posted to TallyPrime with the bill attached. Your team reviews the exceptions, not every line.',
     primaryCta: 'Book a demo',
     secondaryCta: 'See how it works',
-    microline: 'Nothing is posted to Tally Prime until your team approves it.',
+    microline: 'Nothing is posted to TallyPrime until your team approves it.',
     visualTitle: 'Month-end queue',
     visualLabel: 'Nov 2026',
     tiles: [
@@ -341,7 +341,7 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
       'Everything in one queue',
       'Read and checked',
       'Your team approves',
-      'Posted to Tally Prime',
+      'Posted to TallyPrime',
     ],
     processFlow: [
       {
@@ -374,7 +374,7 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
       {
         number: '04',
         phase: 'Posting',
-        title: 'Posted to Tally Prime',
+        title: 'Posted to TallyPrime',
         description:
           'Purchase vouchers to the right ledgers, bill attached.',
         output: 'Right ledgers, bill attached',
@@ -395,7 +395,7 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
       {
         question: 'Will our accountants still check entries before posting?',
         answer:
-          'Yes. Nothing goes to Tally Prime until your team approves it. Unclear fields and flagged invoices are shown first.',
+          'Yes. Nothing goes to TallyPrime until your team approves it. Unclear fields and flagged invoices are shown first.',
       },
       {
         question: 'Can we set approval rules by department or amount?',
@@ -415,13 +415,13 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
       {
         question: 'How long does it take to get started?',
         answer:
-          'The first-time setup with Tally Prime takes minutes. Then we test with your own invoices and train your team in a single session.',
+          'The first-time setup with TallyPrime takes minutes. Then we test with your own invoices and train your team in a single session.',
       },
     ],
     ctaEyebrow: 'SEE IT ON YOUR OWN MONTH-END',
     ctaTitle: "Bring last month's invoices. We'll run them with you.",
     ctaDescription:
-      "Share a batch of real supplier invoices. In the demo you'll see them read, checked and the exceptions sorted, ready to approve into Tally Prime.",
+      "Share a batch of real supplier invoices. In the demo you'll see them read, checked and the exceptions sorted, ready to approve into TallyPrime.",
     ctaButtonText: 'Book a demo',
   },
 
@@ -430,12 +430,12 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
     navTitle: 'Accounts Teams',
     metaTitle: 'For Accounts Teams · Docsynecx Finance Desk',
     metaDescription:
-      'For accounts teams on Tally Prime: stop retyping bills. Docsynecx reads every line item, HSN and tax, suggests ledgers and drafts the voucher. You check it and post in one click.',
+      'For accounts teams on TallyPrime: stop retyping bills. Docsynecx reads every line item, HSN and tax, suggests ledgers and drafts the voucher. You check it and post in one click.',
     eyebrow: 'For accounts teams',
     headline: 'Stop retyping bills.',
     accent: 'Check them and post to Tally.',
     description:
-      'Docsynecx reads every line of the bill, item, HSN, quantity, rate and tax, suggests the right ledgers and drafts the voucher. You check it against the bill and post it to Tally Prime in one click.',
+      'Docsynecx reads every line of the bill, item, HSN, quantity, rate and tax, suggests the right ledgers and drafts the voucher. You check it against the bill and post it to TallyPrime in one click.',
     primaryCta: 'Book a demo',
     secondaryCta: 'See your new routine',
     microline: 'You review every bill. Nothing is posted to Tally until you approve it.',
@@ -529,12 +529,12 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
     processEyebrow: 'YOUR NEW ROUTINE',
     processTitle: 'Upload. Check. Confirm. Post.',
     processDescription:
-      'One supplier bill, from a PDF to a purchase voucher in Tally Prime.',
+      'One supplier bill, from a PDF to a purchase voucher in TallyPrime.',
     processSteps: [
       'Upload the bills',
       'Check the details',
       'Confirm the ledgers',
-      'Post to Tally Prime',
+      'Post to TallyPrime',
     ],
     processFlow: [
       {
@@ -567,7 +567,7 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
       {
         number: '04',
         phase: 'Post',
-        title: 'Post to Tally Prime',
+        title: 'Post to TallyPrime',
         description:
           'One click. A purchase voucher with the bill attached.',
         output: 'PUR voucher created in Tally',
@@ -586,7 +586,7 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
     faqsTitle: 'What accounts teams ask about daily use.',
     faqs: [
       {
-        question: 'Does it create real vouchers in Tally Prime?',
+        question: 'Does it create real vouchers in TallyPrime?',
         answer:
           'Yes. Purchase vouchers in your Tally company, using your own ledger names, with the bill attached.',
       },
@@ -608,13 +608,13 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
       {
         question: 'How long does it take to get started?',
         answer:
-          'The first-time setup with Tally Prime takes minutes. Then we test it with your own bills.',
+          'The first-time setup with TallyPrime takes minutes. Then we test it with your own bills.',
       },
     ],
     ctaEyebrow: 'SEE IT ON YOUR OWN BILLS',
     ctaTitle: "Bring your messiest bill. We'll post it with you.",
     ctaDescription:
-      "Two pages, rotated, handwritten, fifty lines. In the demo you'll see it read, checked and ready to post to Tally Prime.",
+      "Two pages, rotated, handwritten, fifty lines. In the demo you'll see it read, checked and ready to post to TallyPrime.",
     ctaButtonText: 'Book a demo',
   },
 
@@ -623,7 +623,7 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
     navTitle: 'CA Firms',
     metaTitle: 'For CA Firms · Docsynecx Finance Desk',
     metaDescription:
-      "For CA firms on Tally Prime: clients send bills by email, WhatsApp or upload. Docsynecx reads them, checks GST and drafts vouchers in each client's Tally company for your team to approve.",
+      "For CA firms on TallyPrime: clients send bills by email, WhatsApp or upload. Docsynecx reads them, checks GST and drafts vouchers in each client's Tally company for your team to approve.",
     eyebrow: 'For CA firms',
     headline: "Every client's bills, in one place.",
     accent: 'Posted to the right Tally company.',
@@ -800,7 +800,7 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
       {
         question: 'How long does it take to get started?',
         answer:
-          'The first-time setup with Tally Prime takes minutes. Then add clients one by one, starting with your busiest.',
+          'The first-time setup with TallyPrime takes minutes. Then add clients one by one, starting with your busiest.',
       },
     ],
     ctaEyebrow: 'SEE IT ON A REAL CLIENT',

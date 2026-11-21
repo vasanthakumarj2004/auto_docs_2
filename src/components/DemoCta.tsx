@@ -49,7 +49,7 @@ export const DemoCta: React.FC<{ intent?: 'demo' | 'accounts-payable' }> = ({ in
           {interest ? 'Register your interest.' : 'Stop retyping. Start growing.'}
         </h2>
         <p className="mx-auto mt-4 max-w-lg text-sm leading-6 text-slate-600">
-          {interest ? 'Tell us what your payables team needs. Accounts Payable is in progress and is not yet available for deployment.' : 'A cleaner finance desk. A faster shipment desk. More room for what’s next.'}
+          {interest ? 'Tell us what your payables team needs. Accounts Payable is in progress and is not available yet.' : 'A cleaner finance desk. A faster shipment desk. More room for what’s next.'}
         </p>
 
         {!interest && <div className="mt-7 flex flex-wrap justify-center gap-3">

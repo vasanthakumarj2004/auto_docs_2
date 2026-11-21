@@ -113,18 +113,6 @@ export function PricingPage() {
         <section className={s.viewportHero} aria-label="Pricing">
           <div className={`site-shell ${s.heroGrid}`}>
             <div className={s.heroCopy}>
-              <nav className={s.breadcrumb} aria-label="Breadcrumb">
-                {desk === 'finance' ? (
-                  <Link href="/finance-desk/">Finance Desk</Link>
-                ) : (
-                  <Link href="/logistics-desk/">Logistics Desk</Link>
-                )}
-                <span aria-hidden="true">/</span>
-                <span className={s.breadcrumbCurrent} aria-current="page">
-                  Pricing
-                </span>
-              </nav>
-
               <div className={s.deskSwitch} role="group" aria-label="Choose your desk">
                 <span className={s.dsLabel}>Pricing for</span>
                 <button

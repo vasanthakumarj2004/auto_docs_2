@@ -111,15 +111,6 @@
   transition: all 250ms ease;
 }
 
-.statusBadge::before {
-  content: '';
-  display: inline-block;
-  width: 18px;
-  height: 2px;
-  background: var(--color-brand, #18cb96);
-  flex-shrink: 0;
-}
-
 .statusBadgeApproved {
   color: var(--color-brand, #18cb96) !important;
 }

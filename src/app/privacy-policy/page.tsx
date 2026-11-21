@@ -36,7 +36,7 @@ export default function PrivacyPolicyPage() {
       <h2>The Long Version</h2>
       <p>
         Docsynecx (&ldquo;Docsynecx&rdquo;, &ldquo;we&rdquo;, or &ldquo;Service Provider&rdquo;)
-        is operated by <strong>SynecxAI Labs Private Limited</strong> and is committed to
+        is operated by <strong>SynecX AI Labs Private Limited</strong> and is committed to
         protecting the Personal Data of its Clients. This Privacy Policy forms an integral part
         of the Terms of Service. Any capitalized term defined in the Terms of Service applies
         here.

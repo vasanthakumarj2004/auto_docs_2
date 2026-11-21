@@ -39,7 +39,7 @@ interface LogisticsPageProps {
 }
 
 export function LogisticsPage({ slug }: LogisticsPageProps) {
-  if (slug === 'email-to-booking') {
+  if (slug === 'RFQ-to-booking') {
     return <EmailToBookingPage />;
   }
   if (slug === 'shipment-operations') {
@@ -91,13 +91,6 @@ export function LogisticsPage({ slug }: LogisticsPageProps) {
           <div className={`site-shell ${base.heroGrid} ${s.heroGrid}`}>
             {/* Left Copy */}
             <div className={base.heroCopy}>
-              {/* Breadcrumb */}
-              <nav aria-label="Breadcrumb" className={s.breadcrumb}>
-                <span>Docsynecx Logistics</span>
-                <span className={s.breadcrumbSeparator}>/</span>
-                <span>{moduleData.breadcrumb.split('/')[1]?.trim() || moduleData.moduleName}</span>
-              </nav>
-
               <p className={s.eyebrow}>{moduleData.eyebrow}</p>
 
               <h1 id="hero-title" className={s.heroTitle}>

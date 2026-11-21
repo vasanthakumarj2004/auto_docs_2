@@ -160,9 +160,9 @@ const howSteps = [
   },
   {
     num: 4,
-    title: 'Post to Tally Prime',
+    title: 'Post to TallyPrime',
     desc: 'One click. A purchase voucher with the bill attached.',
-    panelBar: 'Step 4 of 4 · Tally Prime',
+    panelBar: 'Step 4 of 4 · TallyPrime',
     panelStatus: 'PUR-829 posted',
     statusType: 'ok' as const,
     table: {
@@ -189,7 +189,7 @@ const storyFacts = [
 /* ── 6. Accounts FAQs ── */
 const faqItems = [
   {
-    question: 'Does it create real vouchers in Tally Prime?',
+    question: 'Does it create real vouchers in TallyPrime?',
     answer:
       'Yes. Purchase vouchers in your Tally company, using your own ledger names, with the bill attached.',
   },
@@ -211,7 +211,7 @@ const faqItems = [
   {
     question: 'How long does it take to get started?',
     answer:
-      'The first-time setup with Tally Prime takes minutes. Then we test it with your own bills.',
+      'The first-time setup with TallyPrime takes minutes. Then we test it with your own bills.',
   },
 ];
 
@@ -256,12 +256,6 @@ export function AccountsTeamsPage() {
         <div className="site-shell">
           <div className={s.heroGrid}>
             <div>
-              <nav className={s.crumb} aria-label="Breadcrumb">
-                <Link href="/finance-desk/">Finance Desk</Link>
-                <span aria-hidden="true">/</span>
-                <span>For accounts teams</span>
-              </nav>
-
               <p className={s.eyebrow}>For accounts teams</p>
 
               <h1 id="hero-title" className={s.heroTitle}>
@@ -271,7 +265,7 @@ export function AccountsTeamsPage() {
               </h1>
 
               <p className={s.heroSub}>
-                Docsynecx reads every line of the bill, item, HSN, quantity, rate and tax, suggests the right ledgers and drafts the voucher. You check it against the bill and post it to Tally Prime in one click.
+                Docsynecx reads every line of the bill, item, HSN, quantity, rate and tax, suggests the right ledgers and drafts the voucher. You check it against the bill and post it to TallyPrime in one click.
               </p>
 
               <div className={s.heroActions}>
@@ -454,7 +448,7 @@ export function AccountsTeamsPage() {
               <span>Confirm. Post.</span>
             </h2>
             <p className={s.lead}>
-              One supplier bill, from a PDF to a purchase voucher in Tally Prime.
+              One supplier bill, from a PDF to a purchase voucher in TallyPrime.
             </p>
           </div>
 
@@ -671,7 +665,7 @@ export function AccountsTeamsPage() {
             <span>We&apos;ll post it with you.</span>
           </>
         }
-        copy="Two pages, rotated, handwritten, fifty lines. In the demo you'll see it read, checked and ready to post to Tally Prime."
+        copy="Two pages, rotated, handwritten, fifty lines. In the demo you'll see it read, checked and ready to post to TallyPrime."
         // steps={[
         //   'Book a 30-minute demo',
         //   'Bring a few bills you hate typing',

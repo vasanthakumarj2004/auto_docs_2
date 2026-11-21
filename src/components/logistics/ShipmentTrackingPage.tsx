@@ -222,12 +222,6 @@ export function ShipmentTrackingPage() {
           <div className={`site-shell ${s.heroGrid}`}>
             {/* Left Copy */}
             <div className={s.heroCopy}>
-              <nav aria-label="Breadcrumb" className={s.breadcrumb}>
-                <Link href="/logistics-desk/">Logistics Desk</Link>
-                <span className={s.breadcrumbSeparator}>/</span>
-                <span>Shipment Tracking</span>
-              </nav>
-
               <p className={s.eyebrow}>SHIPMENT TRACKING · OCEAN AND ROAD</p>
 
               <h1 id="hero-title" className={s.heroTitle}>

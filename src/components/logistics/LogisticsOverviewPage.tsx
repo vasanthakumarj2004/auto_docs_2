@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { Fragment, type ReactNode } from 'react';
 import Link from 'next/link';
 import { ArrowDown, ArrowRight, ArrowUpRight, Check, Ship, Mail, PackageCheck, Navigation, BarChart3 } from 'lucide-react';
 import { LandingNavigation } from '../LandingNavigation';
@@ -33,7 +33,7 @@ type PageKey = 'overview' | LogisticsSlug;
 const number = (index: number) => String(index + 1).padStart(2, '0');
 
 const MODULE_FLOW_IMAGES: Record<string, { image: string; alt: string; flowTag: string }> = {
-  'email-to-booking': {
+  'RFQ-to-booking': {
     image: '/images/logistics-collage/logistics-plane-1.jpg',
     alt: 'Customer enquiry intake and carrier quotation flow',
     flowTag: 'Flow Stage 01 · Inbound Intake',
@@ -114,7 +114,12 @@ function Hero({ page }: { page: PageKey }) {
         <div className={`${base.heroCopy} ${s.heroCopy}`}>
           <Eyebrow>{copy.eyebrow}</Eyebrow>
           <h1 id="logistics-title" className={s.heroTitle}>
-            {copy.headline}<br />
+            {copy.headline.split('\n').map((line, i) => (
+              <Fragment key={i}>
+                {line}
+                <br />
+              </Fragment>
+            ))}
             <span>{copy.accent}</span>
           </h1>
           <p className={base.heroDescription}>{copy.description}</p>
@@ -278,7 +283,7 @@ function FreightIntelligence() {
 }
 
 export function LogisticsOverviewPage({ page = 'overview' }: { page?: PageKey }) {
-  if (page === 'email-to-booking') {
+  if (page === 'RFQ-to-booking') {
     return <EmailToBookingPage />;
   }
 

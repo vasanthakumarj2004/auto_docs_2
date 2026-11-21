@@ -195,12 +195,6 @@ export function AccountsPayablePage() {
         <div className="site-shell">
           <div className={s.heroGrid}>
             <div>
-              <nav className={s.crumb} aria-label="Breadcrumb">
-                <Link href="/finance-desk/">Finance Desk</Link>
-                <span aria-hidden="true">/</span>
-                <span>Accounts Payable</span>
-              </nav>
-
               <p className={s.eyebrow}>
                 Accounts Payable <span className={s.badge}>Upcoming capability</span>
               </p>

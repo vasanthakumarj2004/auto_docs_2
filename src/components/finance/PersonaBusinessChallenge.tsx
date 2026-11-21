@@ -80,7 +80,7 @@ function OwnerCashPreview() {
         </div>
         <div className={s.windowFooter}>
           <FileCheck2 size={14} />
-          Direct connection with live Tally Prime balances
+          Direct connection with live TallyPrime balances
           <ChevronRight size={14} />
         </div>
       </div>
@@ -191,7 +191,7 @@ function OwnerApprovalPreview() {
             <strong>Ready for 1-tap sign-off</strong>
             <span>One tap</span>
           </div>
-          <p>Tap approve from your phone to post the voucher straight into Tally Prime</p>
+          <p>Tap approve from your phone to post the voucher straight into TallyPrime</p>
         </div>
         <div className={s.windowFooter}>
           <CheckCircle2 size={14} />

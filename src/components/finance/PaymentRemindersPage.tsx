@@ -138,7 +138,7 @@ const faqItems = [
   {
     question: 'Where do the unpaid invoices come from?',
     answer:
-      'From your sales invoices in Tally Prime, with the due dates already there. Nobody has to keep a separate list.',
+      'From your sales invoices in TallyPrime, with the due dates already there. Nobody has to keep a separate list.',
   },
   {
     question: 'Can we change the wording?',
@@ -152,7 +152,7 @@ const faqItems = [
   {
     question: 'How long does setup take?',
     answer:
-      'Connect Tally Prime straight away. Your unpaid invoices show up in minutes, with the first reminders ready to approve.',
+      'Connect TallyPrime straight away. Your unpaid invoices show up in minutes, with the first reminders ready to approve.',
   },
 ];
 
@@ -197,12 +197,6 @@ export function PaymentRemindersPage() {
         <div className="site-shell">
           <div className={s.heroGrid}>
             <div>
-              <nav className={s.crumb} aria-label="Breadcrumb">
-                <Link href="/finance-desk/">Finance Desk</Link>
-                <span aria-hidden="true">/</span>
-                <span>Payment Reminders</span>
-              </nav>
-
               <p className={s.eyebrow}>Payment Reminders</p>
 
               <h1 id="hero-title" className={s.heroTitle}>
@@ -710,7 +704,7 @@ export function PaymentRemindersPage() {
         copy="In the demo you'll see your unpaid invoices from Tally, sorted by risk, with reminders ready for your team to approve."
         // steps={[
         //   'Book a 30-minute demo',
-        //   'Connect Tally Prime or share your outstanding list',
+        //   'Connect TallyPrime or share your outstanding list',
         //   'See reminders drafted and ready to approve',
         // ]}
         secondaryHref="/finance-desk/"

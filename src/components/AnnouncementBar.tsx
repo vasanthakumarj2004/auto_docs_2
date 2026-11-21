@@ -24,7 +24,7 @@ const ANNOUNCEMENTS: AnnouncementItem[] = [
   {
     id: 'connectors',
     tag: 'Docsynecx 2.0',
-    text: 'Live Tally Prime XML & CargoWise eAdaptor connectors are live',
+    text: 'Live TallyPrime XML & CargoWise eAdaptor connectors are live',
     cta: 'See live connectors',
     href: '/#integrations',
   },

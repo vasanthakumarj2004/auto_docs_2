@@ -284,7 +284,7 @@ export const BLOG_POSTS: BlogPost[] = [
           'Extract shipment information using advanced OCR and AI',
           'Validate extracted data using configurable business rules',
           'Review only low-confidence fields through Human-in-the-Loop validation',
-          'Automatically synchronize verified information with CargoWise, CargoNet, TMS, ERP systems, Tally Prime, or custom applications',
+          'Automatically synchronize verified information with CargoWise, CargoNet, TMS, ERP systems, TallyPrime, or custom applications',
           'Archive documents securely with complete audit trails and searchable digital records',
         ],
       },

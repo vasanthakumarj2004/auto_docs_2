@@ -11,7 +11,6 @@
   color: var(--color-ink, #0f172a);
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   position: relative;
-  overflow-x: hidden;
 }
 
 .mainContent {
@@ -22,6 +21,7 @@
   padding-top: clamp(96px, 11vh, 124px);
   padding-bottom: clamp(60px, 8vh, 88px);
   position: relative;
+  overflow-x: clip;
 }
 
 /* Subtle brand logistics pattern & glow */

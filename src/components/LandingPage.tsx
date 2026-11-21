@@ -49,13 +49,13 @@ interface CustomerStoryOutcome {
 
 const stories: CustomerStoryOutcome[] = [
   { tag: 'Logistics', name: 'Freight Forwarders', metric: '2 hrs → 2 min', summary: 'Email to CargoWise', copy: 'Shipment intake that took about two hours per shipment now takes about two minutes.', href: '/#customers' },
-  { tag: 'Automotive & EV', name: 'Automobile e-vehicles dealer ', metric: 'Days → hours', summary: 'Bills', copy: 'A month\'s spares, service and purchase bills now take hours instead of days.', href: '/#customers' },
+  { tag: 'Automotive & EV', name: 'Automotive & EV Dealer ', metric: 'Days → hours', summary: 'Bills', copy: 'A month\'s spares, service and purchase bills now take hours instead of days.', href: '/#customers' },
   { tag: 'Business operations', name: 'Manufacturer', metric: 'In daily use', summary: 'Assets & Purchase Bills', copy: 'Used every day for asset and purchase bills, with every entry approved before it reaches the books.' },
   { tag: 'Retail & Distribution', name: 'OmniRetail Networks', metric: '94% automated', summary: 'Multi-Vendor Invoicing', copy: 'High-volume invoice auditing and trade documents posted directly without error delays.' },
   { tag: 'Textile & Garments', name: 'Global Fabrics Ltd', metric: '3x faster sync', summary: 'Supplier & Export Manifests', copy: 'Complex supplier bills and export manifests reconciled in minutes instead of days.' },
 ];
 const integrations = [
-  ['Tally Prime', 'Finance integration'], ['CargoWise', 'Logistics integration'],
+  ['TallyPrime', 'Finance integration'], ['CargoWise', 'Logistics integration'],
   ['Email workflows', 'Document intake'], ['API connectivity', 'Connected workflows'],
   ['Zoho Books', 'Finance integration'], ['SAP', 'Enterprise resource planning'],
   ['Oracle ERP', 'Cloud ERP & financial'], ['Microsoft Dynamics', 'Business applications'],
@@ -166,7 +166,7 @@ export function LandingPage() {
         </section>
         <section id="why-docsynecx" className={`${styles.section} ${styles.whySection}`} aria-labelledby="why-title">
           <div className="site-shell">
-            <SectionHeading id="why-title" eyebrow="Why Docsynecx" title={<>Less typing.<span>More clarity.</span></>} />
+            <SectionHeading id="why-title" eyebrow="Why Docsynecx" title={<>Less typing. <span>More clarity.</span></>} />
             <div className={styles.benefits}>
               {benefits.map(([title, copy], index) => {
                 const item = BENEFIT_ITEMS[index] || BENEFIT_ITEMS[0];
