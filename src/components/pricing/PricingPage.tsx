@@ -158,13 +158,13 @@ export function PricingPage() {
               )}
 
               <div className={s.heroActions}>
-                <Link className="button-primary" href="/demo/#demo-form">
+                <Link className={s.primaryBtn} href="/demo/#demo-form">
                   <span>Get your proposal</span>
                   <ArrowUpRight size={16} aria-hidden="true" />
                 </Link>
-                <a className="button-secondary" href="#estimate">
+                <a className={s.secondaryBtn} href="#estimate">
                   <span>Is it worth it?</span>
-                  <ArrowDown size={16} aria-hidden="true" />
+                  <ArrowDown size={15} aria-hidden="true" />
                 </a>
               </div>
 
@@ -299,7 +299,7 @@ export function PricingPage() {
                       </li>
                     </ul>
                     <div className={s.planFooter}>
-                      <Link className="button-secondary" href="/demo/#demo-form">
+                      <Link className={s.secondaryBtn} href="/demo/#demo-form">
                         <span>Talk to us about Starter</span>
                         <ArrowUpRight size={15} aria-hidden="true" />
                       </Link>
@@ -351,7 +351,7 @@ export function PricingPage() {
                       </li>
                     </ul>
                     <div className={s.planFooter}>
-                      <Link className="button-primary" href="/demo/#demo-form">
+                      <Link className={s.primaryBtn} href="/demo/#demo-form">
                         <span>Talk to us about Professional</span>
                         <ArrowUpRight size={15} aria-hidden="true" />
                       </Link>
@@ -483,7 +483,7 @@ export function PricingPage() {
                     counting the mistakes it catches.
                   </p>
                   <div className={s.estCtaRow}>
-                    <Link className="button-primary" href="/demo/#demo-form">
+                    <Link className={s.primaryBtn} href="/demo/#demo-form">
                       <span>Bring your numbers to the demo</span>
                       <ArrowUpRight size={15} aria-hidden="true" />
                     </Link>

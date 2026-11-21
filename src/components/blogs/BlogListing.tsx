@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useMemo, useState, useEffect } from 'react';
-import { Search, X, BookOpen, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Search, X, BookOpen, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import {
   BLOG_CATEGORIES,
   type BlogCategory,
@@ -254,9 +254,10 @@ export function BlogListing({ initialPosts }: BlogListingProps) {
             <button
               type="button"
               onClick={handleResetFilters}
-              className="button-primary"
+              className={styles.primaryBtn}
             >
-              View all articles
+              <span>View all articles</span>
+              <ArrowRight size={15} aria-hidden="true" />
             </button>
           </div>
         )}

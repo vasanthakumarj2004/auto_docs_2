@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import {
+  ArrowDown,
   ArrowRight,
   ArrowUpRight,
   CheckCircle2,
@@ -321,14 +322,14 @@ export function EmailToBookingPage() {
               </p>
 
               <div className={s.heroActions}>
-                <Link href="/demo/#demo-form" className="button-primary">
+                <Link href="/demo/#demo-form" className={s.primaryBtn}>
                   <span>Book a demo</span>
                   <ArrowUpRight size={16} aria-hidden="true" />
                 </Link>
 
-                <a href="#steps" className="button-secondary">
+                <a href="#steps" className={s.secondaryBtn}>
                   <span>See the 8 steps</span>
-                  <ArrowRight size={15} aria-hidden="true" />
+                  <ArrowDown size={15} aria-hidden="true" />
                 </a>
               </div>
 

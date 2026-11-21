@@ -102,7 +102,7 @@ export function LogisticsPage({ slug }: LogisticsPageProps) {
               <div className={s.heroActions}>
                 <Link
                   href="/demo/#demo-form"
-                  className={`button-primary ${base.heroButton}`}
+                  className={s.primaryBtn}
                 >
                   <span>{moduleData.primaryCtaText}</span>
                   <ArrowUpRight size={16} aria-hidden="true" />
@@ -110,7 +110,7 @@ export function LogisticsPage({ slug }: LogisticsPageProps) {
 
                 <Link
                   href="/#platform"
-                  className={`button-secondary ${base.heroButton}`}
+                  className={s.secondaryBtn}
                 >
                   <span>{moduleData.secondaryCtaText}</span>
                   <ArrowRight size={15} aria-hidden="true" />

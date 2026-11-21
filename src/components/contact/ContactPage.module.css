@@ -937,12 +937,12 @@
 }
 
 .submitBtn {
-  background-color: #06281E;
-  color: #ffffff;
-  font-size: 15px;
-  font-weight: 700;
-  padding: 14px 24px;
-  border-radius: 10px;
+  background-color: var(--color-brand-text, #0d9466);
+  color: #ffffff !important;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 8px;
   border: none;
   cursor: pointer;
   display: inline-flex;
@@ -954,7 +954,7 @@
 }
 
 .submitBtn:hover:not(:disabled) {
-  background-color: #0B6B4E;
+  background-color: #0b7a54;
   transform: translateY(-1px);
 }
 

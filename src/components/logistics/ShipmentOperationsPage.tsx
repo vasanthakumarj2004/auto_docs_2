@@ -3,7 +3,9 @@
 import React from 'react';
 import Link from 'next/link';
 import {
+  ArrowDown,
   ArrowRight,
+  ArrowUpRight,
   CheckCircle2,
   Clock,
   TrendingUp,
@@ -259,12 +261,13 @@ export function ShipmentOperationsPage() {
               </p>
 
               <div className={s.heroActions}>
-                <Link href="/demo/#demo-form" className="button-primary">
+                <Link href="/demo/#demo-form" className={s.primaryBtn}>
                   <span>Book a demo</span>
-                  <ArrowRight size={16} aria-hidden="true" />
+                  <ArrowUpRight size={16} aria-hidden="true" />
                 </Link>
-                <a href="#steps" className="button-secondary">
+                <a href="#steps" className={s.secondaryBtn}>
                   <span>See the 5 steps</span>
+                  <ArrowDown size={15} aria-hidden="true" />
                 </a>
               </div>
 

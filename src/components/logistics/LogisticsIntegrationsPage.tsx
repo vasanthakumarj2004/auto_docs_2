@@ -213,12 +213,13 @@ export function LogisticsIntegrationsPage() {
               </p>
 
               <div className={s.heroActions}>
-                <Link href="/demo/#demo-form" className="button-primary">
+                <Link href="/demo/#demo-form" className={s.primaryBtn}>
                   <span>Book a demo</span>
-                  <ArrowUpRight size={17} aria-hidden="true" />
+                  <ArrowUpRight size={16} aria-hidden="true" />
                 </Link>
-                <a href="#ways" className="button-secondary">
+                <a href="#ways" className={s.secondaryBtn}>
                   <span>See how it connects</span>
+                  <ArrowDown size={15} aria-hidden="true" />
                 </a>
               </div>
 

@@ -118,18 +118,18 @@ function Hero({ page }: { page: PageKey }) {
         {upcoming && <span className={`${s.badge} ${s.heroBadge}`}>Upcoming capability</span>}
         <h1 id="finance-title" className={s.heroTitle}>{copy.headline}<br /><span>{copy.accent}</span></h1>
         <p className={base.heroDescription}>{copy.description}</p>
-        <div className={base.heroActions}>
+        <div className={s.heroActions}>
           <Link
             href={upcoming ? '#register-interest' : demoHref}
-            className={`button-primary ${base.heroButton}`}
+            className={s.primaryBtn}
           >
-            {copy.primary}
+            <span>{copy.primary}</span>
             <ArrowUpRight size={16} aria-hidden="true" />
           </Link>
           {!intelligence && (
             <Link
               href={upcoming ? financeRoot : isOverview ? '#how' : '#capabilities'}
-              className={`button-secondary ${base.heroButton}`}
+              className={s.secondaryBtn}
               onClick={(e) => {
                 if (isOverview) {
                   const target = document.getElementById('how');
@@ -141,8 +141,8 @@ function Hero({ page }: { page: PageKey }) {
                 }
               }}
             >
-              {upcoming ? 'Explore Finance Desk' : isOverview ? 'See how it works' : 'Explore capabilities'}
-              {!upcoming && <ArrowDown size={16} aria-hidden="true" />}
+              <span>{upcoming ? 'Explore Finance Desk' : isOverview ? 'See how it works' : 'Explore capabilities'}</span>
+              {!upcoming && <ArrowDown size={15} aria-hidden="true" />}
             </Link>
           )}
         </div>

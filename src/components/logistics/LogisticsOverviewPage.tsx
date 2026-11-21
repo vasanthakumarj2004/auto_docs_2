@@ -123,14 +123,14 @@ function Hero({ page }: { page: PageKey }) {
             <span>{copy.accent}</span>
           </h1>
           <p className={base.heroDescription}>{copy.description}</p>
-          <div className={base.heroActions}>
-            <Link href={demoHref} className={`button-primary ${base.heroButton}`}>
-              {copy.primary}
+          <div className={s.heroActions}>
+            <Link href={demoHref} className={s.primaryBtn}>
+              <span>{copy.primary}</span>
               <ArrowUpRight size={16} aria-hidden="true" />
             </Link>
-            <Link href={isOverview ? '#how' : logisticsRoot} className={`button-secondary ${base.heroButton}`}>
-              {copy.secondary}
-              {isOverview ? <ArrowDown size={16} aria-hidden="true" /> : <ArrowRight size={16} aria-hidden="true" />}
+            <Link href={isOverview ? '#how' : logisticsRoot} className={s.secondaryBtn}>
+              <span>{copy.secondary}</span>
+              {isOverview ? <ArrowDown size={15} aria-hidden="true" /> : <ArrowRight size={15} aria-hidden="true" />}
             </Link>
           </div>
           {isOverview ? (

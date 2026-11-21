@@ -52,11 +52,11 @@ export function SolutionsPage() {
                 </p>
 
                 <div className={styles.heroActions}>
-                  <Link href="/demo/#demo-form" className="button-primary">
+                  <Link href="/demo/#demo-form" className={styles.primaryBtn}>
                     <span>Book a demo</span>
-                    <ArrowUpRight size={15} aria-hidden="true" />
+                    <ArrowUpRight size={16} aria-hidden="true" />
                   </Link>
-                  <a href="#industries" className="button-secondary">
+                  <a href="#industries" className={styles.secondaryBtn}>
                     <span>Find your industry</span>
                     <ArrowDown size={15} aria-hidden="true" />
                   </a>
@@ -188,12 +188,12 @@ export function SolutionsPage() {
                     )}
 
                     <div className={styles.indActions}>
-                      <Link className="button-primary" href="/demo/#demo-form">
+                      <Link className={styles.primaryBtn} href="/demo/#demo-form">
                         <span>{solution.ctaText}</span>
                         <ArrowUpRight size={15} aria-hidden="true" />
                       </Link>
                       {solution.secondaryCta && (
-                        <Link className="button-secondary" href={solution.secondaryCta.href}>
+                        <Link className={styles.secondaryBtn} href={solution.secondaryCta.href}>
                           <span>{solution.secondaryCta.label}</span>
                           <ArrowRight size={15} aria-hidden="true" />
                         </Link>
