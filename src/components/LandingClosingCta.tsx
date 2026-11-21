@@ -9,8 +9,8 @@ import styles from './LandingPage.module.css';
 export function LandingClosingCta({
   primaryHref = '/demo/#demo-form',
   secondaryHref = '/#platform',
-  title = 'What could your team do with less manual work?',
-  copy = 'Tell us about your finance or freight workflow. We’ll help identify a practical place to start.',
+  title = 'What could your team do with less typing?',
+  copy = 'Tell us which documents eat your team\'s day. In 30 minutes we\'ll show you a practical place to start, using your own bills or shipment emails.',
   buttonText = 'Book a demo',
 }: {
   primaryHref?: string;

@@ -21,10 +21,10 @@ const DESK_IMAGES: Record<string, string> = {
 };
 
 const benefits = [
-  ['Reduce repetitive work', 'Automate document-heavy steps that slow teams down.'],
-  ['Keep people in control', 'Human review and approval stay part of important workflows.'],
-  ['Connect your systems', 'Move validated information into your existing business tools.'],
-  ['Make data useful', 'Turn finance and operations information into visibility.'],
+  ['Less repetitive work', 'Docsynecx reads, types and checks the documents that slow your team down.'],
+  ['People stay in charge', 'Nothing is posted, sent or pushed until someone on your team approves it.'],
+  ['Your systems stay', 'Tally, Zoho Books, CargoWise or your own ERP. Your team keeps working where they work today.'],
+  ['Numbers you can use', 'See dues, cash, margins and delays without building a report in Excel.'],
 ];
 const BENEFIT_ITEMS = [
   { icon: Zap, tag: 'Autonomous Flow' },
@@ -48,9 +48,9 @@ interface CustomerStoryOutcome {
 }
 
 const stories: CustomerStoryOutcome[] = [
-  { tag: 'Logistics', name: 'Freight Forwarders', metric: '2 hrs → 2 min', summary: 'Email to CargoWise', copy: 'A specific email-to-CargoWise document workflow reduced from around two hours to approximately two minutes.', href: '/#customers' },
-  { tag: 'Automotive & EV', name: 'Automotive Industries', metric: 'Days → hours', summary: 'Document Workflow', copy: 'Manual document workload reduced from days to hours through an AI-assisted workflow.', href: '/#customers' },
-  { tag: 'Business operations', name: 'Manufacturing', metric: 'In daily use', summary: 'Assets & Purchase Bills', copy: 'Regular operational use for asset and purchase bill workflows with zero manual re-entry.' },
+  { tag: 'Logistics', name: 'Freight Forwarders', metric: '2 hrs → 2 min', summary: 'Email to CargoWise', copy: 'Shipment intake that took about two hours per shipment now takes about two minutes.', href: '/#customers' },
+  { tag: 'Automotive & EV', name: 'Automobile e-vehicles dealer ', metric: 'Days → hours', summary: 'Bills', copy: 'A month\'s spares, service and purchase bills now take hours instead of days.', href: '/#customers' },
+  { tag: 'Business operations', name: 'Manufacturer', metric: 'In daily use', summary: 'Assets & Purchase Bills', copy: 'Used every day for asset and purchase bills, with every entry approved before it reaches the books.' },
   { tag: 'Retail & Distribution', name: 'OmniRetail Networks', metric: '94% automated', summary: 'Multi-Vendor Invoicing', copy: 'High-volume invoice auditing and trade documents posted directly without error delays.' },
   { tag: 'Textile & Garments', name: 'Global Fabrics Ltd', metric: '3x faster sync', summary: 'Supplier & Export Manifests', copy: 'Complex supplier bills and export manifests reconciled in minutes instead of days.' },
 ];
@@ -80,7 +80,8 @@ export function LandingPage() {
         <LandingHero />
         <section className={styles.statStrip} aria-labelledby="outcomes-title">
           <div className="site-shell">
-            <h2 id="outcomes-title" className={styles.eyebrow}>Selected customer outcomes</h2>
+            <h2 id="outcomes-title" className={styles.eyebrow}>What customers see</h2>
+            {/* <SectionHeading id="platform-title" eyebrow="What customers see" title={<>Real teams.<span>Real hours back.</span></>} /> */}
             <div className={styles.stats}>
               {stories.slice(0, 3).map((story, index) => {
                 const Icon = index === 0 ? Zap : index === 1 ? ShieldCheck : CheckCircle2;
@@ -97,12 +98,12 @@ export function LandingPage() {
                       <p className={styles.outcomeSummary}>{story.summary}</p>
                       <p className={styles.outcomeCopy}>{story.copy}</p>
                     </div>
-                    {story.href && (
+                    {/* {story.href && (
                       <Link href={story.href} className={styles.outcomeLink}>
                         <span>Read customer story</span>
                         <ArrowUpRight size={13} aria-hidden="true" />
                       </Link>
-                    )}
+                    )} */}
                   </div>
                 );
               })}
@@ -111,7 +112,7 @@ export function LandingPage() {
         </section>
         <section id="platform" className={`${styles.section} ${styles.platformSection}`} aria-labelledby="platform-title">
           <div className="site-shell">
-            <SectionHeading id="platform-title" eyebrow="One platform. Two desks." title={<>One Platform.<br /><span>Endless Opportunities.</span></>} />
+            <SectionHeading id="platform-title" eyebrow="Pick your desk" title={<>Two desks.<br /><span>One way of working.</span></>} />
             <div className={styles.desks}>
               {landingDesks.map((desk, index) => {
                 const imageSrc = DESK_IMAGES[desk.id] || (index === 0 ? '/images/624dcd31-e7ca-4c2f-b804-e87bb521192e.png' : '/images/e38389f2-4afd-4f87-86dd-6210a3100071.png');
@@ -165,7 +166,7 @@ export function LandingPage() {
         </section>
         <section id="why-docsynecx" className={`${styles.section} ${styles.whySection}`} aria-labelledby="why-title">
           <div className="site-shell">
-            <SectionHeading id="why-title" eyebrow="Why Docsynecx" title={<>Less manual effort.<br /><span>More operational clarity.</span></>} />
+            <SectionHeading id="why-title" eyebrow="Why Docsynecx" title={<>Less typing.<span>More clarity.</span></>} />
             <div className={styles.benefits}>
               {benefits.map(([title, copy], index) => {
                 const item = BENEFIT_ITEMS[index] || BENEFIT_ITEMS[0];
