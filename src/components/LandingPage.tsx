@@ -48,7 +48,7 @@ interface CustomerStoryOutcome {
 }
 
 const stories: CustomerStoryOutcome[] = [
-  { tag: 'Logistics', name: 'Freight Forwarders', metric: '2 hrs → 2 min', summary: 'Email to CargoWise', copy: 'Shipment intake that took about two hours per shipment now takes about two minutes.', href: '/#customers' },
+  { tag: 'Logistics', name: 'Freight Forwarders', metric: '60+ min → 15 min', summary: 'Email to CargoWise', copy: 'Shipment intake that took about two hours per shipment now takes about two minutes.', href: '/#customers' },
   { tag: 'Automotive & EV', name: 'Automotive & EV Dealer ', metric: 'Days → hours', summary: 'Bills', copy: 'A month\'s spares, service and purchase bills now take hours instead of days.', href: '/#customers' },
   { tag: 'Business operations', name: 'Manufacturer', metric: 'In daily use', summary: 'Assets & Purchase Bills', copy: 'Used every day for asset and purchase bills, with every entry approved before it reaches the books.' },
   { tag: 'Retail & Distribution', name: 'OmniRetail Networks', metric: '94% automated', summary: 'Multi-Vendor Invoicing', copy: 'High-volume invoice auditing and trade documents posted directly without error delays.' },

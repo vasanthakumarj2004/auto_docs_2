@@ -8,7 +8,6 @@ import {
   ChevronDown,
   Info,
   MapPin,
-  Sparkles,
   RotateCcw,
 } from 'lucide-react';
 import { LandingNavigation } from '../LandingNavigation';
@@ -138,11 +137,8 @@ export function BookADemoPage() {
             {/* LEFT COLUMN: Pitch, Value Prop & Checklist                         */}
             {/* ================================================================= */}
             <div className={s.pitchColumn}>
-              {/* Eyebrow Pill */}
-              <div className={s.eyebrowPill}>
-                <Sparkles size={13} aria-hidden="true" />
-                <span>LET&apos;S TALK</span>
-              </div>
+              {/* Eyebrow */}
+              <p className={s.eyebrow}>LET&apos;S TALK</p>
 
               {/* H1 Headline */}
               <h1 className={s.headline}>

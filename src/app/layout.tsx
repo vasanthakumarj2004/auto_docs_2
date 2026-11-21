@@ -101,7 +101,7 @@ const organizationSchema = {
     'AI-powered document automation for finance and logistics teams running on Tally, Zoho Books, and CargoWise.',
   sameAs: [
     'https://www.linkedin.com/company/autodocs',
-    'https://twitter.com/autodocs',
+    'https://www.instagram.com/docsynecx',
   ],
   contactPoint: {
     '@type': 'ContactPoint',

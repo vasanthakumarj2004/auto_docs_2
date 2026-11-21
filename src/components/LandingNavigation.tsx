@@ -531,7 +531,7 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
             data-track-location="header"
             onClick={close}
           >
-            <span>Book a Demo</span>
+            <span>Book a demo</span>
             <ArrowUpRight size={14} aria-hidden="true" />
           </Link>
         </nav>
@@ -544,7 +544,7 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
           data-track-location="header"
           onClick={close}
         >
-          <span>Book a Demo</span>
+          <span>Book a demo</span>
           <ArrowUpRight size={14} aria-hidden="true" />
         </Link>
       </div>

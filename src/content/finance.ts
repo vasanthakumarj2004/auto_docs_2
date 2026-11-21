@@ -483,7 +483,7 @@ export const financePageCopy = {
     accent: 'Reconciliation made clearer.',
     description:
       'Process bank statement data, support bookkeeping and review reconciliation in TallyPrime, with your accounting team in control.',
-    primary: 'Book a Demo',
+    primary: 'Book a demo',
     microline: 'Finance Desk · Bookkeeping · Reconciliation review',
     visualTitle: 'BANK STATEMENT WORKSPACE',
     visualLabel: 'FINANCE DESK',
@@ -499,7 +499,7 @@ export const financePageCopy = {
     accent: 'Payment Reminders.',
     description:
       'Keep outstanding invoices visible and help your team follow up with customers before and after payment due dates.',
-    primary: 'Book a Demo',
+    primary: 'Book a demo',
     microline: 'Finance Desk · Receivables visibility · Follow-up workflow',
     visualTitle: 'PAYMENT FOLLOW-UP',
     visualLabel: 'FINANCE DESK',
@@ -531,7 +531,7 @@ export const financePageCopy = {
     accent: 'See the bigger picture.',
     description:
       'Docsynecx Intelligence brings financial and business information into clearer view, helping teams review performance, understand key movements and ask better questions.',
-    primary: 'Book a Demo',
+    primary: 'Book a demo',
     microline: 'Decision support, not a replacement for accounting controls or management judgement.',
     visualTitle: 'DOCSYNECX INTELLIGENCE',
     visualLabel: 'BUSINESS PERFORMANCE',

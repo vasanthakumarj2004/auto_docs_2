@@ -169,7 +169,7 @@ export const logisticsModules: Record<LogisticsSlug, LogisticsModuleData> = {
     heroTitle: 'Connect booking details, shipment documents and job workflows.',
     heroDescription:
       "Support the operational handoff from accepted quotation to shipment job. Extract and validate shipment information from key documents and prepare structured data for the forwarder's operating system.",
-    primaryCtaText: 'Book a Demo',
+    primaryCtaText: 'Book a demo',
     secondaryCtaText: 'Explore Logistics platform',
     cardBadges: ['AI-assisted', 'Workflow status', 'Review ready'],
     capabilities: [
@@ -236,7 +236,7 @@ export const logisticsModules: Record<LogisticsSlug, LogisticsModuleData> = {
     heroTitle: 'Make shipment milestones and delays easier to see.',
     heroDescription:
       'Bring shipment status information into a more visible operational workflow. Track ocean and road movements using supported carrier or transporter data sources, with milestone and ETA updates where available.',
-    primaryCtaText: 'Book a Demo',
+    primaryCtaText: 'Book a demo',
     secondaryCtaText: 'Explore Logistics platform',
     cardBadges: ['AI-assisted', 'Workflow status', 'Review ready'],
     capabilities: [
@@ -303,7 +303,7 @@ export const logisticsModules: Record<LogisticsSlug, LogisticsModuleData> = {
     heroTitle: 'Build a clearer view of shipment costs, margins and performance.',
     heroDescription:
       'Freight Intelligence is the analytics layer designed to help forwarders understand shipment profitability, customer and carrier performance, cost variance and potential margin leakage. Scope and availability should be confirmed for each engagement.',
-    primaryCtaText: 'Book a Demo',
+    primaryCtaText: 'Book a demo',
     secondaryCtaText: 'Explore Logistics platform',
     cardBadges: ['AI-assisted', 'Workflow status', 'Review ready'],
     capabilities: [

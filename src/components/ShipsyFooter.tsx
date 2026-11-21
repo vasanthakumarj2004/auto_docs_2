@@ -2,11 +2,12 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Linkedin, Mail, Youtube, ArrowUpRight } from 'lucide-react';
+import { Linkedin, Mail, Youtube, Instagram, ArrowUpRight, Facebook } from 'lucide-react';
 import { DocsynecxLogo } from './DocsynecxLogo';
 import { financeCapabilities, financeRoot } from '../content/finance';
 import { CookieSettingsButton } from './cookie-consent/CookieSettingsButton';
 import styles from './ShipsyFooter.module.css';
+import { FacebookLogoIcon } from '@phosphor-icons/react';
 
 export interface ShipsyFooterProps {
   className?: string;
@@ -35,7 +36,7 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
               </p>
               <div className={styles.ctaActions}>
                 <Link href="/demo/" className={styles.ctaPrimaryBtn}>
-                  <span>Book a Demo</span>
+                  <span>Book a demo</span>
                   <ArrowUpRight size={16} aria-hidden="true" />
                 </Link>
                 <Link href="/calculator/" className={styles.ctaSecondaryBtn}>
@@ -61,7 +62,7 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
 
             <div className={styles.socialRow} aria-label="Docsynecx social channels">
               <a
-                href="https://www.linkedin.com/company/autodocs"
+                href="https://www.linkedin.com/showcase/docsynecx/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.socialBtn}
@@ -70,18 +71,16 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
                 <Linkedin size={15} aria-hidden="true" />
               </a>
               <a
-                href="https://twitter.com/autodocs"
+                href="https://www.instagram.com/docsynecx?hvrq=Z2V0bDEzYWgzcnpi"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.socialBtn}
-                aria-label="Docsynecx on X (formerly Twitter)"
+                aria-label="Docsynecx on Instagram"
               >
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                  <path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.6 5.5 22H2.3l7.3-8.5L1.6 2h6.5l4.5 6.8L18.9 2Zm-1.1 18h1.7L7.2 3.9H5.4L17.8 20Z" />
-                </svg>
+                <Instagram size={15} aria-hidden="true" />
               </a>
               <a
-                href="https://www.youtube.com/@docsynecx"
+                href="https://youtube.com/@docsynecx?si=qR9Ynj-SsqG1bvwk"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.socialBtn}
@@ -89,12 +88,15 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
               >
                 <Youtube size={15} aria-hidden="true" />
               </a>
+              
               <a
-                href="mailto:info@docsynecx.com"
+                href="https://www.facebook.com/people/Docsynecx/61590633128745/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={styles.socialBtn}
-                aria-label="Contact Docsynecx via Email"
+                aria-label="Docsynecx on YouTube"
               >
-                <Mail size={15} aria-hidden="true" />
+                <Facebook size={15} aria-hidden="true" />
               </a>
             </div>
 

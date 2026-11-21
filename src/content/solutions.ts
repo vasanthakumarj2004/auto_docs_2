@@ -307,7 +307,7 @@ export const SOLUTIONS_DATA: SolutionSubtopic[] = [
       'Forwarders spend hours copying details from emails and carrier documents into their system. Docsynecx reads them, creates the job and pushes it to CargoWise, your ERP, or keeps it in Docsynecx. Your team checks it first.',
     lead: 'Forwarders spend hours copying details from emails and carrier documents into their system. Docsynecx reads them, creates the job and pushes it to CargoWise, your ERP, or keeps it in Docsynecx.',
     image: '/images/industry-logistics.jpg',
-    metricValue: '2 hrs → 2 min',
+    metricValue: '60+ min → 15 min',
     metricLabel: 'per shipment intake',
     challenge:
       'Carrier documents arrive in non-standard formats with strict deadlines. Retyping container details creates demurrage risks.',
@@ -350,7 +350,7 @@ export const SOLUTIONS_DATA: SolutionSubtopic[] = [
     ],
     systems: ['CargoWise', 'Your ERP', 'Docsynecx standalone', 'TallyPrime'],
     story: {
-      metric: '2 hrs → 2 min',
+      metric: '60+ min → 15 min',
       metricLabel: 'per shipment intake',
       quote:
         'An email-to-job workflow that took around two hours per shipment now takes about two minutes.',

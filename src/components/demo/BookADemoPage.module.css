@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Book a Demo Page: Docsynecx
+   Book a demo Page: Docsynecx
    Two-column Hero Layout with Dynamic Conditional Form
    ========================================================================== */
 
@@ -39,21 +39,15 @@
   padding-top: 12px;
 }
 
-.eyebrowPill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border-radius: 9999px;
-  background: #e6f7f2;
-  border: 1px solid rgba(17, 138, 109, 0.22);
-  color: #118a6d;
-  font-family: "JetBrains Mono", monospace, ui-monospace, SFMono-Regular;
+.eyebrow {
+  display: block;
+  margin: 0 0 16px;
+  font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
   font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-weight: 600;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  margin-bottom: 22px;
+  color: #2e8b57;
 }
 
 .headline {
@@ -61,12 +55,12 @@
   font-weight: 800;
   line-height: 1.14;
   letter-spacing: -0.035em;
-  color: #12292f;
+  color: var(--landing-ink, #0f172a);
   margin-bottom: 20px;
 }
 
 .accent {
-  color: #118a6d;
+  color: #2e8b57;
   display: inline;
 }
 
@@ -105,8 +99,8 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #e6f7f2;
-  color: #118a6d;
+  background: #eaf6f0;
+  color: #2e8b57;
   flex-shrink: 0;
   margin-top: 1px;
 }
@@ -124,7 +118,7 @@
 }
 
 .companyIcon {
-  color: #118a6d;
+  color: #2e8b57;
   flex-shrink: 0;
 }
 
@@ -222,8 +216,8 @@
 .textarea:focus {
   outline: none;
   background: #ffffff;
-  border-color: #118a6d;
-  box-shadow: 0 0 0 3px rgba(17, 138, 109, 0.15);
+  border-color: #2e8b57;
+  box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.15);
 }
 
 .inputError {
@@ -299,11 +293,11 @@
   font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
-  color: #118a6d;
+  color: #2e8b57;
   background: #ffffff;
   padding: 2px 7px;
   border-radius: 6px;
-  border: 1px solid rgba(17, 138, 109, 0.25);
+  border: 1px solid rgba(46, 139, 87, 0.25);
 }
 
 .conditionalSelect {
@@ -322,7 +316,7 @@
   justify-content: center;
   gap: 8px;
   padding: 14px 24px;
-  background: #118a6d;
+  background: #2e8b57;
   color: #ffffff;
   font-family: inherit;
   font-size: 15px;
@@ -330,14 +324,14 @@
   border: none;
   border-radius: 9999px;
   cursor: pointer;
-  box-shadow: 0 8px 24px -6px rgba(17, 138, 109, 0.45);
+  box-shadow: 0 8px 24px -6px rgba(46, 139, 87, 0.45);
   transition: all 220ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .submitBtn:hover:not(:disabled) {
-  background: #0e755c;
+  background: #246e45;
   transform: translateY(-1px);
-  box-shadow: 0 12px 28px -6px rgba(17, 138, 109, 0.55);
+  box-shadow: 0 12px 28px -6px rgba(46, 139, 87, 0.55);
 }
 
 .submitBtn:active:not(:disabled) {
@@ -394,8 +388,8 @@
   width: 64px;
   height: 64px;
   border-radius: 50%;
-  background: #e6f7f2;
-  color: #118a6d;
+  background: #eaf6f0;
+  color: #2e8b57;
   margin-bottom: 20px;
 }
 

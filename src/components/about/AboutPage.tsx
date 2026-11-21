@@ -107,7 +107,7 @@ export function AboutPage() {
                 </p>
                 <p>
                   Across businesses, important work is often surrounded by
-                  repetitive tasks  reading documents, entering details,
+                  repetitive tasks such as reading documents, entering details,
                   checking information and keeping different systems in sync.
                   These processes take time away from the decisions and
                   relationships that help a business grow.
@@ -192,7 +192,7 @@ export function AboutPage() {
                     Dr. Ragupathy is a technology entrepreneur and business
                     leader with 15+ years of experience across academia,
                     research and industry R&D. Holding a Ph.D. in Computer
-                    Science specializing in Computer Vision, he combines deep
+                    Science specialising in Computer Vision, he combines deep
                     expertise in AI and technology with business strategy and
                     product innovation.
                   </p>
@@ -236,8 +236,8 @@ export function AboutPage() {
                   </p>
                   <p className={s.bioText}>
                     Combining an engineering foundation with an MBA in Finance,
-                    She brings a practical understanding of how businesses
-                    operate and grow. At Docsynecx, he contributes to business
+                    she brings a practical understanding of how businesses
+                    operate and grow. At Docsynecx, she contributes to business
                     strategy, operational development and growth  helping
                     translate customer needs into meaningful business solutions.
                   </p>

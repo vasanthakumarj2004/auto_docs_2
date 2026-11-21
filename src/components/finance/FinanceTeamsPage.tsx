@@ -177,7 +177,7 @@ const howSteps = [
 
 /* ── 5. Customer Story Facts ── */
 const storyFacts = [
-  { bold: '2 hrs → 2 min', desc: 'document review and entry' },
+  { bold: '60+ min → 15 min', desc: 'document review and entry' },
   { bold: 'Hundreds', desc: 'of recurring documents a month' },
   { bold: 'Every entry', desc: 'still reviewed by the team' },
 ];

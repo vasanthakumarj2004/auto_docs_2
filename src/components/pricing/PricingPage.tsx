@@ -492,7 +492,7 @@ export function PricingPage() {
 
                 <form className={s.estForm} onSubmit={(e) => e.preventDefault()}>
                   <label className={s.estLabel}>
-                    Bills typed in each month
+                    Bills typed each month
                     <input
                       className={s.estInput}
                       type="number"
