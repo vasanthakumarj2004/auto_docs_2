@@ -664,11 +664,11 @@ export function FinanceTeamsPage() {
           </>
         }
         copy="Share a batch of real supplier invoices. In the demo you'll see them read, checked and the exceptions sorted, ready to approve into Tally Prime."
-        steps={[
-          'Book a 30-minute demo',
-          'Share a batch of recent invoices',
-          'See the exceptions your team would review',
-        ]}
+        // steps={[
+        //   'Book a 30-minute demo',
+        //   'Share a batch of recent invoices',
+        //   'See the exceptions your team would review',
+        // ]}
         primaryHref="/demo/#demo-form"
         primaryText="Book a demo"
         secondaryHref="/finance-desk/"

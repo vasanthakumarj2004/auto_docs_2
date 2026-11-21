@@ -3,16 +3,16 @@ import React from 'react';
 import { AboutPage } from '@/src/components/about/AboutPage';
 
 export const metadata: Metadata = {
-  title: 'About Docsynecx — AI-Powered Document Automation Platform',
+  title: 'About Us — Docsynecx | Building Intelligent Business Solutions',
   description:
-    'Discover the story behind Docsynecx innovation, our mission, vision, and core engineering principles powering document intelligence for finance and logistics.',
+    'Meet Docsynecx — building intelligent solutions that make business operations simpler. Practical AI for real work, rooted in Coimbatore, building for businesses everywhere.',
   alternates: {
     canonical: '/about',
   },
   openGraph: {
-    title: 'About Docsynecx — The Story Behind Innovation',
+    title: 'About Us — Docsynecx | We Believe Technology Should Make Business Simpler',
     description:
-      'Transforming document processing with enterprise AI. Discover our mission, core principles, and enterprise architecture.',
+      'Meet Docsynecx — building intelligent solutions that make business operations simpler. Practical AI for real work, rooted in Coimbatore, building for businesses everywhere.',
     url: 'https://docsynecx.com/about',
     siteName: 'Docsynecx',
     type: 'website',

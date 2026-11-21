@@ -656,11 +656,11 @@ export function BusinessOwnersPage() {
           </>
         }
         copy="Bring the question you always ask your accounts team. We'll answer it from your books in the demo."
-        steps={[
-          'Book a 30-minute demo',
-          'Connect Tally Prime or bring a few bills',
-          'See your cash, dues and approvals in one view',
-        ]}
+        // steps={[
+        //   'Book a 30-minute demo',
+        //   'Connect Tally Prime or bring a few bills',
+        //   'See your cash, dues and approvals in one view',
+        // ]}
         primaryHref="/demo/#demo-form"
         primaryText="Book a demo"
         secondaryHref="/finance-desk/"

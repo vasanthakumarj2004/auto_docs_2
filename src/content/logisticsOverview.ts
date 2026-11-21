@@ -276,11 +276,11 @@ export const logisticsPageCopy = {
     ctaTitle: 'Bring last week\'s enquiries. We\'ll show you the quotes.',
     ctaCopy:
       'Send us a few real enquiries from last week. In the demo we\'ll show you the quotes Docsynecx would have drafted, and how fast. You could be live in about a week.',
-    ctaSteps: [
-      'Book a 30-minute demo',
-      'Share a few recent enquiries',
-      'See the drafted quotes, side by side with yours',
-    ],
+    // ctaSteps: [
+    //   'Book a 30-minute demo',
+    //   'Share a few recent enquiries',
+    //   'See the drafted quotes, side by side with yours',
+    // ],
   },
   'email-to-booking': {
     eyebrow: 'LOGISTICS DESK / EMAIL-TO-BOOKING',

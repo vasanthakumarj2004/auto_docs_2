@@ -715,11 +715,11 @@ export function DocsynecxIntelligencePage() {
           </>
         }
         copy="Tell us the one number that's hardest to get today. In the demo we'll answer it from your own Tally data."
-        steps={[
-          'Book a 30-minute demo',
-          'Tell us the reports you build today',
-          'See all six views on your own numbers',
-        ]}
+        // steps={[
+        //   'Book a 30-minute demo',
+        //   'Tell us the reports you build today',
+        //   'See all six views on your own numbers',
+        // ]}
         secondaryHref="/finance-desk/"
         secondaryText="Back to Finance Desk"
       />
