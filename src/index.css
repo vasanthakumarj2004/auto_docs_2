@@ -474,7 +474,7 @@ button, input, textarea, select {
 }
 
 .cta-section {
-  background: radial-gradient(ellipse at 50% 0%, var(--color-brand-soft, #f4edfb), transparent 70%), #fafafa;
+  background: #fafafa;
   padding-block: 84px;
 }
 

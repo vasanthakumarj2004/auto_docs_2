@@ -88,7 +88,7 @@
   border: 0 !important;
   box-shadow: none !important;
 }
-.page :is(summary, input, textarea):focus-visible { outline: 2px solid var(--color-brand-text); outline-offset: 5px; }
+.page summary:focus-visible { outline: 2px solid var(--color-brand-text); outline-offset: 2px; }
 .eyebrow {
   display: block;
   margin: 0 0 16px;

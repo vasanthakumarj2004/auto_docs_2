@@ -445,7 +445,15 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
 
                 {/* Mobile Drawer Accordion ONLY rendered on mobile */}
                 {mobileOpen && openMenu === item.key && (
-                  <ul className={`${styles.mobileDropdownList} ${item.key === 'Finance Desk' ? styles.financeMobileList : ''}`}>
+                  <ul className={styles.mobileDropdownList}>
+                    {menuData?.overviewHref && (
+                      <li key="overview">
+                        <Link href={menuData.overviewHref} onClick={close} className={styles.mobileOverviewLink}>
+                          <strong>{menuData.exploreLabel}</strong>
+                          <ArrowRight size={14} aria-hidden="true" />
+                        </Link>
+                      </li>
+                    )}
                     {MEGA_MENUS[item.key]?.overviewLinks.map((link) => (
                       <li key={link.title}>
                         <Link href={link.href} onClick={close}>
@@ -460,17 +468,10 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
                           {link.sno && (
                             <span className={styles.megaItemNumber}>{link.sno}</span>
                           )}
-                          {item.key === 'Finance Desk' ? (
-                            <div className={styles.financeMobileCopy}>
-                              <strong>{link.title}</strong>
-                              {link.description && <span>{link.description}</span>}
-                            </div>
-                          ) : (
-                            <>
-                              <strong>{link.title}</strong>
-                              {link.description && <span>{link.description}</span>}
-                            </>
-                          )}
+                          <div className={styles.financeMobileCopy}>
+                            <strong>{link.title}</strong>
+                            {link.description && <span>{link.description}</span>}
+                          </div>
                         </Link>
                       </li>
                     ))}
@@ -491,7 +492,14 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
                         <span>{MEGA_MENUS[item.key]?.integrationsHeading || 'Integrations'}</span>
                       </li>
                     )}
-                  </div>
+                    {MEGA_MENUS[item.key]?.integrationsLinks?.map((link) => (
+                      <li key={link.title}>
+                        <Link href={link.href} onClick={close}>
+                          <strong>{link.title}</strong>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
                 )}
               </div>
             );
