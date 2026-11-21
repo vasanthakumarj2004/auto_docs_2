@@ -365,12 +365,12 @@ export function LogisticsIntegrationsPage() {
                       </td>
                       <td>{row.comesFrom}</td>
                       <td>{row.endsUpIn}</td>
-                      {/* <td>
+                      <td>
                         <Link href={row.href} className={s.moduleBadgeDark}>
                           <span>{row.module}</span>
-                          {row.soon && <span className={s.soonPill}>Soon</span>}
+                          {/* {row.soon && <span className={s.soonPill}>Soon</span>} */}
                         </Link>
-                      </td> */}
+                      </td>
                     </tr>
                   ))}
                 </tbody>

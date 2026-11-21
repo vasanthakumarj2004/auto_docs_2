@@ -190,12 +190,32 @@ const faqItems = [
   },
 ];
 
-/* ── Control items ── */
-const controlDecisions = [
-  { bold: '1. Bring in', desc: 'quotes, jobs and vendor invoices' },
-  { bold: '2. Match up', desc: 'each job with its quote and invoices' },
-  { bold: '3. Work out', desc: 'profit, gaps and unbilled charges' },
-  { bold: '4. Report', desc: 'by job, customer, lane and carrier' },
+/* ── Control steps from Section 2 ── */
+const controlSteps = [
+  {
+    num: '01',
+    tag: 'COLLECT',
+    title: 'Bring everything together',
+    desc: 'Collect quotations, shipment jobs and vendor invoices from your workflow.',
+  },
+  {
+    num: '02',
+    tag: 'MATCH',
+    title: 'Connect every transaction',
+    desc: 'Match each job with its quotation and associated vendor costs.',
+  },
+  {
+    num: '03',
+    tag: 'ANALYZE',
+    title: 'Understand your actual margins',
+    desc: 'Identify profit gaps, cost differences and potential unbilled charges.',
+  },
+  {
+    num: '04',
+    tag: 'REPORT',
+    title: 'See performance clearly',
+    desc: 'Review profitability by job, customer, trade lane and carrier.',
+  },
 ];
 
 export function FreightIntelligencePage() {
@@ -386,19 +406,26 @@ export function FreightIntelligencePage() {
                 No new data entry. <em>It uses what your desk already has.</em>
               </h2>
               <p className={s.lead}>
-                If you use RFQ-to-Booking and Shipment Operations, the numbers are already there.
-                If you don&apos;t, we&apos;ll look at bringing them in from CargoWise or your ERP.
+                Bring your existing job, quotation and vendor invoice data together. Docsynecx connects the information to give you a clearer picture of every shipment.
               </p>
             </div>
 
-            <ul className={s.decisionList}>
-              {controlDecisions.map((item) => (
-                <li key={item.bold} className={s.decisionCard}>
-                  <strong>{item.bold}</strong>
-                  <span>{item.desc}</span>
-                </li>
+            <div className={s.controlSteps}>
+              {controlSteps.map((step) => (
+                <article key={step.num} className={s.controlStep}>
+                  <div className={s.controlStepTop}>
+                    <b>{step.num}</b>
+                    <small>{step.tag}</small>
+                  </div>
+                  <h3>{step.title}</h3>
+                  <p>{step.desc}</p>
+                </article>
               ))}
-            </ul>
+            </div>
+
+            <p className={s.controlNote}>
+              <strong>Built around your existing desk:</strong> If you use Email-to-Booking and Shipment Operations, the information may already be available there. Otherwise, source-system connectivity and data availability need to be assessed.
+            </p>
           </div>
         </section>
 
