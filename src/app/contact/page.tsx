@@ -3,16 +3,16 @@ import React from 'react';
 import { ContactPage } from '@/src/components/contact/ContactPage';
 
 export const metadata: Metadata = {
-  title: 'Contact Us — Get in Touch with the Docsynecx Team',
+  title: 'Contact Docsynecx — Talk to us | Enterprise Document AI',
   description:
-    'Have questions about our AI document automation solutions or need a demo? Contact Docsynecx in Coimbatore, Tamil Nadu, India. We reply within 24 hours.',
+    'Real people read every message and reply within 24 hours. Automate finance documents, freight operations, or reach the Docsynecx team in Coimbatore, Tamil Nadu.',
   alternates: {
     canonical: '/contact',
   },
   openGraph: {
-    title: 'Contact Docsynecx — Enterprise Document AI Support & Sales',
+    title: 'Contact Docsynecx — Talk to us | Enterprise Document AI',
     description:
-      'We’re here to help with your document automation requirements, Tally & CargoWise integrations, and enterprise scoping.',
+      'Real people read every message and reply within 24 hours. Automate finance documents, freight operations, or reach the Docsynecx team in Coimbatore, Tamil Nadu.',
     url: 'https://docsynecx.com/contact',
     siteName: 'Docsynecx',
     type: 'website',

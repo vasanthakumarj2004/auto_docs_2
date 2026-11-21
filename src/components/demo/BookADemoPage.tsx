@@ -413,7 +413,7 @@ export function BookADemoPage() {
                     disabled={isSubmitting}
                   >
                     <span>
-                      {isSubmitting ? 'Submitting enquiry...' : 'Submit enquiry ↗'}
+                      {isSubmitting ? 'Submitting enquiry...' : 'Submit enquiry'}
                     </span>
                     {!isSubmitting && <ArrowUpRight size={17} aria-hidden="true" />}
                   </button>
@@ -425,13 +425,13 @@ export function BookADemoPage() {
                   </p>
 
                   {/* Implementation Note Banner */}
-                  <div className={s.implementationNote} role="note">
+                  {/* <div className={s.implementationNote} role="note">
                     <Info size={16} aria-hidden="true" />
                     <span>
                       <strong>Implementation note:</strong> the form currently demonstrates
                       front-end behaviour only. Connect it to your CRM or API before publishing.
                     </span>
-                  </div>
+                  </div> */}
                 </form>
               )}
             </div>
