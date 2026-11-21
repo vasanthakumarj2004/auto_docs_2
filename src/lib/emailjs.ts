@@ -2,10 +2,11 @@ import emailjs from '@emailjs/browser';
 
 // EmailJS configuration
 export const EMAILJS_CONFIG = {
-  SERVICE_ID: 'service_dbf6de6',        // Replace with your service ID
-  TEMPLATE_ID_CONTACT: 'template_0bfyahq', // Replace with contact template ID
-  TEMPLATE_ID_DEMO: 'template_p505oeb',       // Replace with demo template ID
-  PUBLIC_KEY: 'aNHM7hSiOrLj6SJKS',              // Replace with your public key
+  SERVICE_ID: 'service_dbf6de6',
+  TEMPLATE_ID_CONTACT: 'template_0bfyahq',
+  TEMPLATE_ID_DEMO: 'template_p505oeb',
+  TEMPLATE_ID_INTEREST: 'template_p505oeb', // 🔑 Replace with your Register Interest template ID
+  PUBLIC_KEY: 'aNHM7hSiOrLj6SJKS',
 };
 
 // Initialize EmailJS
@@ -112,6 +113,41 @@ export const sendEventMeetingEmail = async (formData: EventMeetingEmailData) => 
     return { success: true, response };
   } catch (error) {
     console.error('Failed to send event meeting email:', error);
+    return { success: false, error };
+  }
+};
+
+export interface RegisterInterestEmailData {
+  email: string;
+  company: string;
+  message: string;
+  feature?: string;
+}
+
+export const sendRegisterInterestEmail = async (
+  formData: RegisterInterestEmailData,
+) => {
+  try {
+    const templateParams = {
+      from_email: formData.email,
+      company: formData.company,
+      feature: formData.feature ?? 'Accounts Payable',
+      message: formData.message,
+      to_name: 'Docsynecx Team',
+      reply_to: formData.email,
+    };
+
+    const response = await emailjs.send(
+      EMAILJS_CONFIG.SERVICE_ID,
+      EMAILJS_CONFIG.TEMPLATE_ID_INTEREST,
+      templateParams,
+      EMAILJS_CONFIG.PUBLIC_KEY,
+    );
+
+    console.log('Register interest email sent:', response);
+    return { success: true, response };
+  } catch (error) {
+    console.error('Failed to send register interest email:', error);
     return { success: false, error };
   }
 };

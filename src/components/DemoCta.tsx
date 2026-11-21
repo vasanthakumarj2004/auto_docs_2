@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import { sendRegisterInterestEmail } from '../lib/emailjs';
 import { useRouter } from '../lib/router';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import s from './DemoCta.module.css';
@@ -60,7 +61,8 @@ export const DemoCta: React.FC<DemoCtaProps> = ({
     setStatus('submitting');
 
     try {
-      const { error } = await supabase.from('contact_submissions').insert({
+      // Always persist to Supabase
+      const { error: dbError } = await supabase.from('contact_submissions').insert({
         submission_type: 'demo',
         email: formData.email.trim(),
         company: formData.company.trim(),
@@ -69,14 +71,32 @@ export const DemoCta: React.FC<DemoCtaProps> = ({
           : formData.message.trim(),
       });
 
-      if (error) {
-        console.error('Supabase submission error:', error);
+      if (dbError) {
+        console.error('Supabase submission error:', dbError);
         setStatus('error');
-      } else {
-        setStatus('success');
-        setFormData({ email: '', company: '', message: '' });
-        setErrors({});
+        return;
       }
+
+      // For "Register Interest" intent, also send a notification email
+      if (interest) {
+        const emailResult = await sendRegisterInterestEmail({
+          email: formData.email.trim(),
+          company: formData.company.trim(),
+          message: formData.message.trim(),
+          feature: 'Accounts Payable',
+        });
+
+        console.log(emailResult, "emailResult")
+
+        if (!emailResult.success) {
+          // Email failed — Supabase already captured the lead, so don't block the user
+          console.log('Register interest email failed (lead still saved):', emailResult.error);
+        }
+      }
+
+      setStatus('success');
+      setFormData({ email: '', company: '', message: '' });
+      setErrors({});
     } catch (err) {
       console.error('Submission exception:', err);
       setStatus('error');
@@ -179,8 +199,8 @@ export const DemoCta: React.FC<DemoCtaProps> = ({
               {status === 'submitting'
                 ? 'Sending…'
                 : interest
-                ? 'Register interest'
-                : 'Request a demo'}
+                  ? 'Register interest'
+                  : 'Request a demo'}
             </span>
             <ArrowRight size={15} aria-hidden="true" />
           </button>
@@ -207,7 +227,7 @@ export const DemoCta: React.FC<DemoCtaProps> = ({
           {interest
             ? 'Tell us what your payables team needs. Accounts Payable is in progress and is not available yet.'
             : 'A cleaner finance desk. A faster shipment desk. More room for what’s next.'}
-        </p>  
+        </p>
 
         {!interest && (
           <div className="mt-7 flex flex-wrap justify-center gap-3">
