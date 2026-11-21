@@ -6,6 +6,7 @@ import { LandingLayoutProvider } from '@/src/components/LandingLayoutProvider';
 import { darkThemeInitScript, LOGO_GREEN } from '@/src/lib/darkTheme';
 import { CookieConsent } from '@/src/components/CookieConsent';
 import { ConsentProvider } from '@/src/context/ConsentContext';
+import { GoogleAnalytics } from '@/src/components/analytics/GoogleAnalytics';
 
 export const viewport: Viewport = {
   themeColor: '#2E8B57',
@@ -148,6 +149,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-white text-slate-800 antialiased font-sans" suppressHydrationWarning>
         <ConsentProvider>
+          <GoogleAnalytics />
           <LandingLayoutProvider>
             {children}
             <CookieConsent />

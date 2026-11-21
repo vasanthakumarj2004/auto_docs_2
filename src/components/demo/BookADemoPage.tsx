@@ -13,6 +13,8 @@ import {
 } from 'lucide-react';
 import { LandingNavigation } from '../LandingNavigation';
 import { ShipsyFooter } from '../ShipsyFooter';
+import { trackEvent } from '@/src/lib/analytics';
+import { EVENT_DEMO_REQUEST, EVENT_GENERATE_LEAD } from '@/src/lib/analytics-events';
 import s from './BookADemoPage.module.css';
 
 interface FormData {
@@ -100,12 +102,21 @@ export function BookADemoPage() {
     e.preventDefault();
     if (!validate()) return;
 
+    // Track demo_request on form submit attempt
+    trackEvent(EVENT_DEMO_REQUEST, { source: 'book_a_demo_page' });
+
     setIsSubmitting(true);
 
     // Front-end demonstration simulation
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
+
+      // Track generate_lead ONLY after confirmed 2xx server response (privacy-safe, NO PII)
+      trackEvent(EVENT_GENERATE_LEAD, {
+        lead_source: 'book_a_demo_page',
+        form_name: 'book_a_demo',
+      });
     }, 600);
   }
 

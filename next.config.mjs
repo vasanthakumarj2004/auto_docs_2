@@ -5,6 +5,14 @@ const nextConfig = {
     unoptimized: true,
   },
   reactStrictMode: true,
+  env: {
+    NEXT_PUBLIC_GA_MEASUREMENT_ID:
+      process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || 'G-5WXXVPGWG6',
+    NEXT_PUBLIC_APP_ENV:
+      process.env.NEXT_PUBLIC_APP_ENV || 'development',
+    NEXT_PUBLIC_GA_DEBUG_MODE:
+      process.env.NEXT_PUBLIC_GA_DEBUG_MODE || 'true',
+  },
   allowedDevOrigins: ['100.97.139.98','192.168.206.1', '192.168.0.100/'],
   async redirects() {
     return [

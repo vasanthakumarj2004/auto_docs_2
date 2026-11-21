@@ -146,8 +146,22 @@ export function LandingHero() {
         <h1 id="hero-title">Grow the business.<br /><span>Not the data-entry desk.</span></h1>
         <p className={styles.description}>Bills and bank statements read, checked and ready in Tally. Freight emails turned into quotes and CargoWise jobs. Your team approves the work instead of typing it.</p>
         <div className={styles.deskLinks}>
-          <Link href="/finance-desk/">I run a finance desk <ArrowUpRight size={17} aria-hidden="true" /></Link>
-          <Link href="/logistics-desk/">I run a logistics desk <ArrowUpRight size={17} aria-hidden="true" /></Link>
+          <Link
+            href="/finance-desk/"
+            data-track="cta_click"
+            data-track-name="hero_finance_desk"
+            data-track-location="hero"
+          >
+            I run a finance desk <ArrowUpRight size={17} aria-hidden="true" />
+          </Link>
+          <Link
+            href="/logistics-desk/"
+            data-track="cta_click"
+            data-track-name="hero_logistics_desk"
+            data-track-location="hero"
+          >
+            I run a logistics desk <ArrowUpRight size={17} aria-hidden="true" />
+          </Link>
         </div>
         <p className={styles.trust}>Works with <strong>TallyPrime, Zoho Books, CargoWise or your own ERP.</strong></p>
       </div>

@@ -6,6 +6,8 @@ import { ArrowDown, ArrowUpRight, Check, CheckCircle2 } from 'lucide-react';
 import { LandingNavigation } from '../LandingNavigation';
 import { ShipsyFooter } from '../ShipsyFooter';
 import { FinanceClosingCta } from '../finance/FinanceClosingCta';
+import { trackEvent } from '@/src/lib/analytics';
+import { EVENT_PRICING_VIEW } from '@/src/lib/analytics-events';
 import s from './PricingPage.module.css';
 
 const formatIndianNumber = (num: number): string => {
@@ -39,6 +41,11 @@ export function PricingPage() {
       // Ignore storage errors
     }
   }, []);
+
+  // Track pricing_view when the pricing page is opened or desk selection changes
+  useEffect(() => {
+    trackEvent(EVENT_PRICING_VIEW, { plan_viewed: desk });
+  }, [desk]);
 
   const handleDeskSwitch = (newDesk: 'finance' | 'logistics') => {
     setDesk(newDesk);

@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { ArrowUpRight, X } from 'lucide-react';
+import { getSecureSessionItem, setSecureSessionItem } from '@/src/lib/storage/secure-session-storage';
 import s from './LandingAnnouncementBar.module.css';
 
 const STORAGE_KEY = 'docsynecx-iics-2026-announcement-dismissed';
@@ -13,7 +14,7 @@ export function LandingAnnouncementBar() {
 
   useEffect(() => {
     try {
-      const isDismissed = sessionStorage.getItem(STORAGE_KEY);
+      const isDismissed = getSecureSessionItem(STORAGE_KEY);
       if (isDismissed !== 'true') {
         setDismissed(false);
       } else {
@@ -58,7 +59,7 @@ export function LandingAnnouncementBar() {
     setDismissed(true);
     document.documentElement.style.setProperty('--announcement-bar-height', '0px');
     try {
-      sessionStorage.setItem(STORAGE_KEY, 'true');
+      setSecureSessionItem(STORAGE_KEY, 'true');
     } catch {}
   }
 

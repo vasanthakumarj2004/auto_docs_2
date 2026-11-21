@@ -273,13 +273,13 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
   };
 
   const handleMouseEnter = (label: string) => {
-    if (typeof window !== 'undefined' && window.innerWidth <= 900) return;
+    if (typeof window !== 'undefined' && window.innerWidth <= 1024) return;
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     setOpenMenu(label);
   };
 
   const handleMouseLeave = () => {
-    if (typeof window !== 'undefined' && window.innerWidth <= 900) return;
+    if (typeof window !== 'undefined' && window.innerWidth <= 1024) return;
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => {
       setOpenMenu(null);
@@ -358,7 +358,7 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
               return (
                 <Link
                   key={item.label}
-                  className={styles.customersLink}
+                  className={mobileOpen ? styles.mobileNavLink : styles.customersLink}
                   href={item.href}
                   onClick={close}
                 >
@@ -369,6 +369,9 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
 
             const isClickableDesk = item.key === 'Finance Desk' || item.key === 'Logistics Desk';
             const deskHref = item.key === 'Finance Desk' ? '/finance-desk/' : '/logistics-desk/';
+            const menuData = MEGA_MENUS[item.key];
+            const isMenuOpen = openMenu === item.key;
+            const menuId = `mobile-dropdown-${item.key.replace(/\s+/g, '-').toLowerCase()}`;
 
             return (
               <div
@@ -376,8 +379,8 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
                 className={styles.dropdown}
                 onMouseEnter={() => handleMouseEnter(item.key)}
               >
-                {isClickableDesk ? (
-                  !mobileOpen ? (
+                {!mobileOpen ? (
+                  isClickableDesk ? (
                     <Link
                       href={deskHref}
                       ref={(node) => {
@@ -398,33 +401,24 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
                       />
                     </Link>
                   ) : (
-                    <div className={styles.mobileDropdownTriggerRow}>
-                      <Link
-                        href={deskHref}
-                        className={styles.mobileDropdownLink}
-                        onClick={close}
-                      >
-                        {MEGA_MENUS[item.key]?.label || item.key}
-                      </Link>
-                      <button
-                        ref={(node) => {
-                          menuTriggers.current[item.key] = node;
-                        }}
-                        type="button"
-                        className={styles.mobileDropdownChevron}
-                        aria-expanded={openMenu === item.key}
-                        aria-label={`Toggle ${MEGA_MENUS[item.key]?.label || item.key} menu`}
-                        onClick={() => setOpenMenu(openMenu === item.key ? null : item.key)}
-                      >
-                        <ChevronDown
-                          size={15}
-                          aria-hidden="true"
-                          className={`transition-transform duration-200 ${
-                            openMenu === item.key ? 'rotate-180' : ''
-                          }`}
-                        />
-                      </button>
-                    </div>
+                    <button
+                      ref={(node) => {
+                        menuTriggers.current[item.key] = node;
+                      }}
+                      type="button"
+                      aria-expanded={openMenu === item.key}
+                      aria-controls="landing-mega-menu"
+                      onClick={() => setOpenMenu(openMenu === item.key ? null : item.key)}
+                    >
+                      {MEGA_MENUS[item.key]?.label || item.key}
+                      <ChevronDown
+                        size={13}
+                        aria-hidden="true"
+                        className={`transition-transform duration-200 ${
+                          openMenu === item.key ? 'rotate-180' : ''
+                        }`}
+                      />
+                    </button>
                   )
                 ) : (
                   <button
@@ -432,68 +426,98 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
                       menuTriggers.current[item.key] = node;
                     }}
                     type="button"
-                    aria-expanded={openMenu === item.key}
-                    aria-controls="landing-mega-menu"
-                    onClick={() => setOpenMenu(openMenu === item.key ? null : item.key)}
+                    className={styles.dropdownTriggerMobile}
+                    aria-expanded={isMenuOpen}
+                    aria-controls={menuId}
+                    onClick={() => setOpenMenu(isMenuOpen ? null : item.key)}
                   >
-                    {MEGA_MENUS[item.key]?.label || item.key}
+                    <span>{menuData?.label || item.key}</span>
                     <ChevronDown
-                      size={13}
+                      size={16}
                       aria-hidden="true"
                       className={`transition-transform duration-200 ${
-                        openMenu === item.key ? 'rotate-180' : ''
+                        isMenuOpen ? 'rotate-180' : ''
                       }`}
                     />
                   </button>
                 )}
 
                 {/* Mobile Drawer Accordion ONLY rendered on mobile */}
-                {mobileOpen && openMenu === item.key && (
-                  <ul className={styles.mobileDropdownList}>
-                    {MEGA_MENUS[item.key]?.overviewLinks.map((link) => (
-                      <li key={link.title}>
-                        <Link href={link.href} onClick={close}>
-                          <strong>{link.title}</strong>
-                          {link.description && <span>{link.description}</span>}
+                {mobileOpen && isMenuOpen && menuData && (
+                  <div id={menuId} className={styles.mobileDropdownMenu} role="region" aria-label={`${menuData.label} submenu`}>
+                    {/* Top Overview Link */}
+                    <Link
+                      href={menuData.overviewHref || (isClickableDesk ? deskHref : '/about')}
+                      onClick={close}
+                      className={styles.mobileOverviewLink}
+                    >
+                      <span className={styles.mobileOverviewBadge}>OVERVIEW</span>
+                      <strong className={styles.mobileOverviewTitle}>{menuData.exploreLabel || `Explore ${menuData.label}`}</strong>
+                      <ArrowRight size={13} className={styles.mobileOverviewArrow} aria-hidden="true" />
+                    </Link>
+
+                    {/* Features List */}
+                    <div className={styles.mobileFeatureGrid}>
+                      {menuData.featureLinks.map((link) => (
+                        <Link
+                          key={link.title}
+                          href={link.href}
+                          onClick={close}
+                          className={styles.mobileFeatureCard}
+                        >
+                          <div className={styles.mobileFeatureContent}>
+                            <strong className={styles.mobileFeatureTitle}>{link.title}</strong>
+                            {link.description && (
+                              <span className={styles.mobileFeatureDesc}>{link.description}</span>
+                            )}
+                          </div>
+                          <ArrowUpRight size={13} className={styles.mobileFeatureArrow} aria-hidden="true" />
                         </Link>
-                      </li>
-                    ))}
-                    {MEGA_MENUS[item.key]?.featureLinks.map((link) => (
-                      <li key={link.title}>
-                        <Link href={link.href} onClick={close}>
-                          {link.sno && (
-                            <span className={styles.megaItemNumber}>{link.sno}</span>
-                          )}
-                          <strong>{link.title}</strong>
-                          {link.description && <span>{link.description}</span>}
-                        </Link>
-                      </li>
-                    ))}
-                    {MEGA_MENUS[item.key]?.whoLinks && (
-                      <li className={styles.mobileSectionHeading}>
-                        <span>{MEGA_MENUS[item.key]?.whoHeading || "Who it's for"}</span>
-                      </li>
+                      ))}
+                    </div>
+
+                    {/* Role Links Grid */}
+                    {menuData.whoLinks && menuData.whoLinks.length > 0 && (
+                      <div className={styles.mobileSectionGroup}>
+                        <span className={styles.mobileSectionHeading}>
+                          {menuData.whoHeading || "Who it's for"}
+                        </span>
+                        <div className={styles.mobileChipGrid}>
+                          {menuData.whoLinks.map((link) => (
+                            <Link
+                              key={link.title}
+                              href={link.href}
+                              onClick={close}
+                              className={styles.mobileChipLink}
+                            >
+                              {link.title}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
                     )}
-                    {MEGA_MENUS[item.key]?.whoLinks?.map((link) => (
-                      <li key={link.title}>
-                        <Link href={link.href} onClick={close}>
-                          <strong>{link.title}</strong>
-                        </Link>
-                      </li>
-                    ))}
-                    {MEGA_MENUS[item.key]?.integrationsLinks && (
-                      <li className={styles.mobileSectionHeading}>
-                        <span>{MEGA_MENUS[item.key]?.integrationsHeading || 'Integrations'}</span>
-                      </li>
+
+                    {/* Integration Links Grid */}
+                    {menuData.integrationsLinks && menuData.integrationsLinks.length > 0 && (
+                      <div className={styles.mobileSectionGroup}>
+                        <span className={styles.mobileSectionHeading}>
+                          {menuData.integrationsHeading || 'Integrations'}
+                        </span>
+                        <div className={styles.mobileChipGrid}>
+                          {menuData.integrationsLinks.map((link) => (
+                            <Link
+                              key={link.title}
+                              href={link.href}
+                              onClick={close}
+                              className={styles.mobileChipLink}
+                            >
+                              {link.title}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
                     )}
-                    {MEGA_MENUS[item.key]?.integrationsLinks?.map((link) => (
-                      <li key={link.title}>
-                        <Link href={link.href} onClick={close}>
-                          <strong>{link.title}</strong>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                  </div>
                 )}
               </div>
             );
@@ -501,7 +525,10 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
 
           <Link
             href="/demo/#demo-form"
-            className={`${styles.demoButton} ${styles.navDemo} ${styles.mobileDemo}`}
+            className={`${styles.demoButton} ${styles.navDemo} ${styles.mobileDemo} ${styles.mobileDemoCta}`}
+            data-track="cta_click"
+            data-track-name="nav_book_demo_mobile"
+            data-track-location="header"
             onClick={close}
           >
             <span>Book a Demo</span>
@@ -512,6 +539,9 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
         <Link
           href="/demo/#demo-form"
           className={`${styles.demoButton} ${styles.navDemo} ${styles.desktopDemo}`}
+          data-track="cta_click"
+          data-track-name="nav_book_demo_desktop"
+          data-track-location="header"
           onClick={close}
         >
           <span>Book a Demo</span>

@@ -52,6 +52,11 @@ export function applyConsent(preferences: ConsentPreferences): ConsentPreference
         detail: preferences,
       })
     );
+    window.dispatchEvent(
+      new CustomEvent('analytics-consent-changed', {
+        detail: { granted: preferences.analytics },
+      })
+    );
   }
 
   return preferences;
@@ -81,6 +86,7 @@ export function rejectAllConsent(): ConsentPreferences {
  */
 export function clearConsent(): void {
   deleteCookie(COOKIE_NAME);
+  deleteCookie('cookie_consent_analytics');
   updateAnalyticsConsent(false);
   updateMarketingConsent(false);
   purgeFunctionalLocalStorage();
@@ -91,6 +97,11 @@ export function clearConsent(): void {
     window.dispatchEvent(
       new CustomEvent('docsynecx:consent-changed', {
         detail: null,
+      })
+    );
+    window.dispatchEvent(
+      new CustomEvent('analytics-consent-changed', {
+        detail: { granted: false },
       })
     );
   }

@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { ArrowRight, X } from 'lucide-react';
+import { getSecureSessionItem, setSecureSessionItem } from '@/src/lib/storage/secure-session-storage';
 
 export interface AnnouncementItem {
   id: string;
@@ -51,7 +52,7 @@ export function AnnouncementBarV2() {
 
   useEffect(() => {
     try {
-      const isDismissed = sessionStorage.getItem('docsynecx-announcement-v3-dismissed');
+      const isDismissed = getSecureSessionItem('docsynecx-announcement-v3-dismissed');
       if (isDismissed === 'true') {
         setDismissed(true);
       }
@@ -85,7 +86,7 @@ export function AnnouncementBarV2() {
   const handleDismiss = () => {
     setDismissed(true);
     try {
-      sessionStorage.setItem('docsynecx-announcement-v3-dismissed', 'true');
+      setSecureSessionItem('docsynecx-announcement-v3-dismissed', 'true');
     } catch { }
   };
 

@@ -35,7 +35,13 @@ export function LandingClosingCta({
               {copy}
             </p>
             <div className={styles.closingActions}>
-              <Link href={primaryHref} className={`${styles.demoButton} ${styles.closingPrimaryBtn}`}>
+              <Link
+                href={primaryHref}
+                className={`${styles.demoButton} ${styles.closingPrimaryBtn}`}
+                data-track="cta_click"
+                data-track-name="closing_book_demo"
+                data-track-location="closing_cta"
+              >
                 {buttonText}
                 <ArrowRight size={17} aria-hidden="true" />
               </Link>

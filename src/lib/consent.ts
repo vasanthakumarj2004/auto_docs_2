@@ -69,11 +69,86 @@ export function isMarketingAllowed(): boolean {
 }
 
 /**
- * Check if Analytics consent is granted
+ * Check if Analytics consent is granted.
+ * consent = true is the only state in which any data leaves the browser.
+ */
+export function getAnalyticsConsent(): boolean {
+  if (typeof document === 'undefined') return false;
+
+  // 1. Check direct cookie (cookie_consent_analytics)
+  const direct = getCookie('cookie_consent_analytics');
+  if (direct !== null) {
+    return direct === 'true';
+  }
+
+  // 2. Check validated preferences from cookie storage
+  const prefs = getSavedConsentCookie();
+  if (prefs) {
+    return prefs.analytics === true;
+  }
+
+  // 3. Fallback raw check for structured preferences cookie (cookie_preferences)
+  try {
+    const raw = getCookie(COOKIE_PREFERENCES_KEY);
+    if (!raw) return false;
+    const parsed = JSON.parse(raw);
+    return Boolean(parsed && typeof parsed === 'object' && parsed.analytics === true);
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Subscribes to analytics consent changes across events and browser tabs without reload.
+ * Listens for CustomEvent 'analytics-consent-changed', 'docsynecx:consent-changed',
+ * and window 'focus' / 'visibilitychange' to detect cross-tab changes.
+ */
+export function onConsentChange(callback: (granted: boolean) => void): () => void {
+  if (typeof window === 'undefined') {
+    return () => {};
+  }
+
+  let lastKnownState = getAnalyticsConsent();
+
+  const notifyIfChanged = (nextState: boolean) => {
+    if (nextState !== lastKnownState) {
+      lastKnownState = nextState;
+      callback(nextState);
+    }
+  };
+
+  const handleCustomEvent = (e: Event) => {
+    const customEvent = e as CustomEvent<{ granted?: boolean } | null>;
+    if (customEvent.detail && typeof customEvent.detail.granted === 'boolean') {
+      notifyIfChanged(customEvent.detail.granted);
+    } else {
+      notifyIfChanged(getAnalyticsConsent());
+    }
+  };
+
+  const handleTabCheck = () => {
+    const current = getAnalyticsConsent();
+    notifyIfChanged(current);
+  };
+
+  window.addEventListener('analytics-consent-changed', handleCustomEvent);
+  window.addEventListener('docsynecx:consent-changed', handleTabCheck);
+  window.addEventListener('focus', handleTabCheck);
+  window.addEventListener('visibilitychange', handleTabCheck);
+
+  return () => {
+    window.removeEventListener('analytics-consent-changed', handleCustomEvent);
+    window.removeEventListener('docsynecx:consent-changed', handleTabCheck);
+    window.removeEventListener('focus', handleTabCheck);
+    window.removeEventListener('visibilitychange', handleTabCheck);
+  };
+}
+
+/**
+ * Legacy alias for getAnalyticsConsent
  */
 export function isAnalyticsAllowed(): boolean {
-  const prefs = getSavedConsentCookie();
-  return prefs ? prefs.analytics : false;
+  return getAnalyticsConsent();
 }
 
 /**
@@ -104,3 +179,11 @@ export function updateGoogleAnalyticsConsent(granted: boolean, marketingGranted 
   updateAnalyticsConsent(granted);
   updateMarketingConsent(marketingGranted);
 }
+
+export {
+  obfuscateSessionData,
+  deobfuscateSessionData,
+  setSecureSessionItem,
+  getSecureSessionItem,
+  removeSecureSessionItem,
+} from './storage/secure-session-storage';

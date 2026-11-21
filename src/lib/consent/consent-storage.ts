@@ -6,6 +6,11 @@ import {
   STORAGE_KEY_SECURE_SESSION,
 } from './consent-config';
 import { validateConsentPreferences } from './consent-validation';
+import {
+  getSecureSessionItem,
+  setSecureSessionItem,
+  removeSecureSessionItem,
+} from '../storage/secure-session-storage';
 
 /**
  * Cookie Reader for client-side execution
@@ -33,15 +38,13 @@ export function getCookie(name: string): string | null {
 export function deleteCookie(name: string): void {
   if (typeof document === 'undefined') return;
   const isSecureContext =
-    typeof window !== 'undefined' &&
-    (window.location.protocol === 'https:' ||
-      window.location.hostname === 'localhost' ||
-      window.location.hostname === '127.0.0.1');
+    typeof window !== 'undefined' && window.location.protocol === 'https:';
   const secureFlag = isSecureContext ? '; Secure' : '';
 
   // Overwrite with immediate expiry across standard domain paths (both secure and plain)
   document.cookie = `${encodeURIComponent(name)}=; max-age=0; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax${secureFlag}`;
   document.cookie = `${encodeURIComponent(name)}=; max-age=0; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax`;
+  document.cookie = `${encodeURIComponent(name)}=; max-age=0; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
 }
 
 /**
@@ -76,16 +79,17 @@ export function saveConsentCookie(preferences: ConsentPreferences): void {
   const expiresUTC = new Date(preferences.expiresAt).toUTCString();
 
   const isSecureContext =
-    typeof window !== 'undefined' &&
-    (window.location.protocol === 'https:' ||
-      window.location.hostname === 'localhost' ||
-      window.location.hostname === '127.0.0.1');
+    typeof window !== 'undefined' && window.location.protocol === 'https:';
 
   const secureFlag = isSecureContext ? '; Secure' : '';
 
   document.cookie = `${encodeURIComponent(COOKIE_NAME)}=${encodeURIComponent(
     serialized
   )}; max-age=${maxAge}; expires=${expiresUTC}; path=/; SameSite=Lax${secureFlag}`;
+
+  // Synchronize direct string cookie (cookie_consent_analytics) for pure string cookie compliance
+  const analyticsValue = preferences.analytics === true ? 'true' : 'false';
+  document.cookie = `cookie_consent_analytics=${analyticsValue}; max-age=${maxAge}; expires=${expiresUTC}; path=/; SameSite=Lax${secureFlag}`;
 }
 
 /**
@@ -115,7 +119,7 @@ export function purgeFunctionalLocalStorage(): void {
 }
 
 /**
- * Saves visitor location to sessionStorage ONLY IF functional consent is granted
+ * Saves visitor location to sessionStorage ONLY IF functional consent is granted (obfuscated)
  */
 export function saveSessionLocation(data: VisitorLocation): void {
   if (typeof window === 'undefined') return;
@@ -124,17 +128,17 @@ export function saveSessionLocation(data: VisitorLocation): void {
     return;
   }
   try {
-    sessionStorage.setItem(STORAGE_KEY_SESSION_LOCATION, JSON.stringify(data));
+    setSecureSessionItem(STORAGE_KEY_SESSION_LOCATION, JSON.stringify(data));
   } catch {}
 }
 
 /**
- * Retrieves visitor location from sessionStorage
+ * Retrieves visitor location from sessionStorage (deobfuscated)
  */
 export function getSessionLocation(): VisitorLocation | null {
   if (typeof window === 'undefined') return null;
   try {
-    const raw = sessionStorage.getItem(STORAGE_KEY_SESSION_LOCATION);
+    const raw = getSecureSessionItem(STORAGE_KEY_SESSION_LOCATION);
     if (!raw) return null;
     return JSON.parse(raw);
   } catch {
@@ -148,7 +152,7 @@ export function getSessionLocation(): VisitorLocation | null {
 export function purgeFunctionalSessionStorage(): void {
   if (typeof window === 'undefined') return;
   try {
-    sessionStorage.removeItem(STORAGE_KEY_SESSION_LOCATION);
+    removeSecureSessionItem(STORAGE_KEY_SESSION_LOCATION);
   } catch {}
 }
 
@@ -168,3 +172,13 @@ export function purgeAllOptionalStorage(): void {
   purgeFunctionalSessionStorage();
   purgeMarketingData();
 }
+
+export {
+  obfuscateSessionData,
+  deobfuscateSessionData,
+  setSecureSessionItem,
+  getSecureSessionItem,
+  removeSecureSessionItem,
+  setSecureSessionJSON,
+  getSecureSessionJSON,
+} from '../storage/secure-session-storage';

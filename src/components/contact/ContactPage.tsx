@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { LandingNavigation } from '../LandingNavigation';
 import { ShipsyFooter } from '../ShipsyFooter';
+import { trackContactSubmit, trackGenerateLead } from '@/src/lib/marketing-analytics';
 import s from './ContactPage.module.css';
 
 export function ContactPage() {
@@ -94,11 +95,20 @@ export function ContactPage() {
     e.preventDefault();
     if (!validateForm()) return;
 
+    // Track contact submit attempt
+    trackContactSubmit('contact_page');
+
     setIsSubmitting(true);
     // Simulate API submission
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSubmitted(true);
+
+      // Track generate_lead ONLY after confirmed 2xx server response
+      trackGenerateLead({
+        leadSource: 'contact_page',
+        formName: 'contact_us',
+      });
     }, 800);
   };
 

@@ -1,6 +1,8 @@
 'use client';
-import React, { useId, useState } from 'react';
+import React, { useId, useState, useRef } from 'react';
 import { ChevronDown, Minus, Plus } from 'lucide-react';
+import { trackEvent } from '@/src/lib/analytics';
+import { EVENT_FAQ_EXPAND } from '@/src/lib/analytics-events';
 
 export interface FaqItem {
   question: string;
@@ -21,10 +23,23 @@ export const SharedFaqAccordion: React.FC<SharedFaqAccordionProps> = ({
   toggleStyle = 'chevron',
 }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(defaultOpenIndex);
+  const trackedQuestions = useRef<Set<string>>(new Set());
   const id = useId();
 
   const toggle = (idx: number) => {
-    setOpenIndex((prev) => (prev === idx ? null : idx));
+    setOpenIndex((prev) => {
+      const isOpening = prev !== idx;
+      if (isOpening) {
+        const question = items[idx]?.question;
+        if (question && !trackedQuestions.current.has(question)) {
+          trackedQuestions.current.add(question);
+          trackEvent(EVENT_FAQ_EXPAND, {
+            faq_question: question.slice(0, 100),
+          });
+        }
+      }
+      return isOpening ? idx : null;
+    });
   };
 
   const activeColor =
