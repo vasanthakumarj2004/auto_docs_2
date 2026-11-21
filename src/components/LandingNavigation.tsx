@@ -150,12 +150,12 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
         description: 'Calculate monthly hours, error reduction and financial savings.',
         href: '/blogs',
       },
-      {
-        sno: '02',
-        title: 'Case Studies',
-        description: 'Answers about GST validation, security rules and human approvals.',
-        href: '/#customers',
-      },
+      // {
+      //   sno: '02',
+      //   title: 'Case Studies',
+      //   description: 'Answers about GST validation, security rules and human approvals.',
+      //   href: '/#customers',
+      // },
       {
         sno: '03',
         title: 'About Us',

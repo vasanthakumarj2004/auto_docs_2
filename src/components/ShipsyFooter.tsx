@@ -217,11 +217,11 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
                   Blogs
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/#customers" className={styles.footerLink}>
                   Case Studies
                 </Link>
-              </li>
+              </li> */}
               <li>
                 <Link href="/about" className={styles.footerLink}>
                   About Us
