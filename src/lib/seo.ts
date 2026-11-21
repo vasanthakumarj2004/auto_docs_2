@@ -58,6 +58,27 @@ const ALIAS_MAP: Record<string, string> = {
   '/finance-desk/accounts-payable': '/finance-desk/accounts-payable/',
   '/finance-desk/accounts-payable/': '/finance-desk/accounts-payable/',
 
+  // Finance personas
+  'business-owners': '/finance-desk/business-owners/',
+  '/business-owners': '/finance-desk/business-owners/',
+  '/finance-desk/business-owners': '/finance-desk/business-owners/',
+  '/finance-desk/business-owners/': '/finance-desk/business-owners/',
+
+  'finance-teams': '/finance-desk/finance-teams/',
+  '/finance-teams': '/finance-desk/finance-teams/',
+  '/finance-desk/finance-teams': '/finance-desk/finance-teams/',
+  '/finance-desk/finance-teams/': '/finance-desk/finance-teams/',
+
+  'accounts-teams': '/finance-desk/accounts-teams/',
+  '/accounts-teams': '/finance-desk/accounts-teams/',
+  '/finance-desk/accounts-teams': '/finance-desk/accounts-teams/',
+  '/finance-desk/accounts-teams/': '/finance-desk/accounts-teams/',
+
+  'ca-firms': '/finance-desk/ca-firms/',
+  '/ca-firms': '/finance-desk/ca-firms/',
+  '/finance-desk/ca-firms': '/finance-desk/ca-firms/',
+  '/finance-desk/ca-firms/': '/finance-desk/ca-firms/',
+
   // Platform - Logistics Desk
   '/logistics': '/logistics-desk/',
   '/logistics/': '/logistics-desk/',
