@@ -264,6 +264,16 @@
 }
 
 /* Step 2 & 3 Tables */
+.tableScroll {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.tableScroll:focus-visible {
+  outline: 2px solid var(--color-brand-text, #0d9466);
+  outline-offset: -2px;
+}
+
 .dataTableDark {
   width: 100%;
   border-collapse: collapse;
@@ -450,4 +460,42 @@
   color: #94a3b8 !important;
   margin-top: 14px;
   text-align: center;
+}
+
+@media (max-width: 640px) {
+  .howGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .howGrid > div {
+    min-width: 0;
+  }
+  .stepPanelDark {
+    padding: 20px 16px;
+  }
+  .panelBarDark {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .qcardRowDark {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 14px;
+  }
+  .rowWhoDark,
+  .rowWhatDark {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .qcardRowDark > .statusBadge {
+    grid-column: 1;
+    grid-row: 3;
+    justify-self: start;
+  }
+  .dataTableDark {
+    min-width: 440px;
+  }
+  .qtotalDark,
+  .trackItemDark {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
 }

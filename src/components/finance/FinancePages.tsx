@@ -111,7 +111,7 @@ function Hero({ page }: { page: PageKey }) {
     page === 'banking-reconciliation' ||
     page === 'accounts-payable' ||
     page === 'docsynecx-intelligence';
-  return <section className={`${base.hero} ${s.viewportHero}`} aria-labelledby="finance-title">
+  return <section className={`${base.hero} ${s.viewportHero} ${isOverview ? s.overviewHero : ''}`} aria-labelledby="finance-title">
     <div className={`site-shell ${base.heroGrid} ${s.heroGrid}`}>
       <div className={`${base.heroCopy} ${s.heroCopy}`}>
         <Eyebrow>{copy.eyebrow}</Eyebrow>

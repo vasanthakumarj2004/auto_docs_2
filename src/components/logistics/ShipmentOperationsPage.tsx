@@ -242,7 +242,7 @@ export function ShipmentOperationsPage() {
 
       <main id="main-content">
         {/* 1. HERO SECTION */}
-        <section className={s.viewportHero} aria-labelledby="hero-title">
+        <section className={`${s.viewportHero} ${s.mobileHero}`} aria-labelledby="hero-title">
           <div className={`site-shell ${s.heroGrid}`}>
             {/* Left Copy */}
             <div className={s.heroCopy}>

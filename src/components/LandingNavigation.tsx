@@ -351,6 +351,7 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
           id="landing-navigation"
           className={styles.navigation}
           data-open={mobileOpen}
+          data-finance-open={mobileOpen && openMenu === 'Finance Desk'}
           aria-label="Main navigation"
         >
           {NAV_ITEMS.map((item) => {
@@ -443,79 +444,52 @@ export function LandingNavigation({ variant = 'horizon' }: { variant?: 'default'
                 )}
 
                 {/* Mobile Drawer Accordion ONLY rendered on mobile */}
-                {mobileOpen && isMenuOpen && menuData && (
-                  <div id={menuId} className={styles.mobileDropdownMenu} role="region" aria-label={`${menuData.label} submenu`}>
-                    {/* Top Overview Link */}
-                    <Link
-                      href={menuData.overviewHref || (isClickableDesk ? deskHref : '/about')}
-                      onClick={close}
-                      className={styles.mobileOverviewLink}
-                    >
-                      <span className={styles.mobileOverviewBadge}>OVERVIEW</span>
-                      <strong className={styles.mobileOverviewTitle}>{menuData.exploreLabel || `Explore ${menuData.label}`}</strong>
-                      <ArrowRight size={13} className={styles.mobileOverviewArrow} aria-hidden="true" />
-                    </Link>
-
-                    {/* Features List */}
-                    <div className={styles.mobileFeatureGrid}>
-                      {menuData.featureLinks.map((link) => (
-                        <Link
-                          key={link.title}
-                          href={link.href}
-                          onClick={close}
-                          className={styles.mobileFeatureCard}
-                        >
-                          <div className={styles.mobileFeatureContent}>
-                            <strong className={styles.mobileFeatureTitle}>{link.title}</strong>
-                            {link.description && (
-                              <span className={styles.mobileFeatureDesc}>{link.description}</span>
-                            )}
-                          </div>
-                          <ArrowUpRight size={13} className={styles.mobileFeatureArrow} aria-hidden="true" />
+                {mobileOpen && openMenu === item.key && (
+                  <ul className={`${styles.mobileDropdownList} ${item.key === 'Finance Desk' ? styles.financeMobileList : ''}`}>
+                    {MEGA_MENUS[item.key]?.overviewLinks.map((link) => (
+                      <li key={link.title}>
+                        <Link href={link.href} onClick={close}>
+                          <strong>{link.title}</strong>
+                          {link.description && <span>{link.description}</span>}
                         </Link>
-                      ))}
-                    </div>
-
-                    {/* Role Links Grid */}
-                    {menuData.whoLinks && menuData.whoLinks.length > 0 && (
-                      <div className={styles.mobileSectionGroup}>
-                        <span className={styles.mobileSectionHeading}>
-                          {menuData.whoHeading || "Who it's for"}
-                        </span>
-                        <div className={styles.mobileChipGrid}>
-                          {menuData.whoLinks.map((link) => (
-                            <Link
-                              key={link.title}
-                              href={link.href}
-                              onClick={close}
-                              className={styles.mobileChipLink}
-                            >
-                              {link.title}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
+                      </li>
+                    ))}
+                    {MEGA_MENUS[item.key]?.featureLinks.map((link) => (
+                      <li key={link.title}>
+                        <Link href={link.href} onClick={close}>
+                          {link.sno && (
+                            <span className={styles.megaItemNumber}>{link.sno}</span>
+                          )}
+                          {item.key === 'Finance Desk' ? (
+                            <div className={styles.financeMobileCopy}>
+                              <strong>{link.title}</strong>
+                              {link.description && <span>{link.description}</span>}
+                            </div>
+                          ) : (
+                            <>
+                              <strong>{link.title}</strong>
+                              {link.description && <span>{link.description}</span>}
+                            </>
+                          )}
+                        </Link>
+                      </li>
+                    ))}
+                    {MEGA_MENUS[item.key]?.whoLinks && (
+                      <li className={styles.mobileSectionHeading}>
+                        <span>{MEGA_MENUS[item.key]?.whoHeading || "Who it's for"}</span>
+                      </li>
                     )}
-
-                    {/* Integration Links Grid */}
-                    {menuData.integrationsLinks && menuData.integrationsLinks.length > 0 && (
-                      <div className={styles.mobileSectionGroup}>
-                        <span className={styles.mobileSectionHeading}>
-                          {menuData.integrationsHeading || 'Integrations'}
-                        </span>
-                        <div className={styles.mobileChipGrid}>
-                          {menuData.integrationsLinks.map((link) => (
-                            <Link
-                              key={link.title}
-                              href={link.href}
-                              onClick={close}
-                              className={styles.mobileChipLink}
-                            >
-                              {link.title}
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
+                    {MEGA_MENUS[item.key]?.whoLinks?.map((link) => (
+                      <li key={link.title}>
+                        <Link href={link.href} onClick={close}>
+                          <strong>{link.title}</strong>
+                        </Link>
+                      </li>
+                    ))}
+                    {MEGA_MENUS[item.key]?.integrationsLinks && (
+                      <li className={styles.mobileSectionHeading}>
+                        <span>{MEGA_MENUS[item.key]?.integrationsHeading || 'Integrations'}</span>
+                      </li>
                     )}
                   </div>
                 )}

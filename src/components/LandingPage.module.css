@@ -1854,79 +1854,49 @@
   .navbar { display: flex; justify-content: space-between; align-items: center; min-height: 70px; }
   .desktopDemo { display: none; }
   .mobileToggle { display: inline-flex; }
-
-  /* Mobile Navigation Drawer */
-  .navigation {
-    display: none;
-    position: absolute;
-    top: calc(100% + 8px);
-    left: 0;
-    right: 0;
-    max-height: calc(100dvh - 90px);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    padding: 10px 10px 16px;
-    border-radius: 18px;
-    background: #ffffff;
-    border: 1px solid var(--landing-line, #dde1e9);
-    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.16), 0 4px 12px rgba(15, 23, 42, 0.06);
+  .navigation { display: none; position: absolute; top: 100%; left: 0; right: 0; max-height: calc(100dvh - 72px); overflow-y: auto; padding: 16px; border-bottom: 1px solid var(--landing-line); background: #FAFAFA; font-size: 14px; box-shadow: 0 14px 24px #0f172a12; }
+  .navigation[data-open='true'] { display: flex; flex-direction: column; align-items: stretch; gap: 6px; }
+  /* Long Finance content must overflow below the scroll origin, not above it. */
+  .header[data-variant='horizon'] .navigation[data-finance-open='true'] {
+    justify-content: flex-start;
+  }
+  .navigation[data-finance-open='true'] > * {
+    flex-shrink: 0;
+  }
+  .navGroup { flex-direction: column; align-items: stretch; gap: 6px; }
+  .customersLink { padding: 12px 0; }
+  .dropdown > :is(button, a),
+  .dropdownTrigger { width: 100%; justify-content: space-between; }
+  .dropdown { min-width: 0; }
+  .dropdown > button {
+    min-height: 44px;
+    padding: 0;
+    gap: 0;
+    text-align: left;
+    white-space: normal;
     font-size: 14px;
-    z-index: 100;
   }
-
-  .header[data-variant='horizon'] .navigation {
-    background: #ffffff;
-    border: 1px solid rgba(15, 23, 42, 0.12);
-    box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18), 0 4px 16px rgba(15, 23, 42, 0.08);
+  .dropdown > button > svg {
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+    padding: 14px;
   }
-
-  .header[data-variant='horizon'][data-theme='dark']:not([data-scrolled='true']) .navigation {
-    background: rgba(11, 19, 30, 0.98);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  .header[data-variant='horizon'] .navigation[data-open='true'] :is(button, a):not(.demoButton) {
+    color: #f8fafc;
   }
-
-  .navigation[data-open='true'] {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 2px;
-    animation: mobileNavSlideDown 200ms cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  @keyframes mobileNavSlideDown {
-    from {
-      opacity: 0;
-      transform: translateY(-8px) scale(0.99);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-  }
-
-  /* Link & button typography inside mobile menu */
-  .navigation :is(button, a):not(.demoButton) {
-    color: var(--landing-ink, #0f172a) !important;
-  }
-
-  .header[data-variant='horizon'][data-theme='dark']:not([data-scrolled='true']) .navigation :is(button, a):not(.demoButton) {
-    color: #ffffff !important;
-  }
-
-  /* Mobile Dropdown Trigger (full row tap target) */
-  .dropdownTriggerMobile {
+  .mobileDropdownTriggerRow {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    min-height: 44px;
-    padding: 9px 14px;
-    border: none;
-    background: transparent;
-    font-family: inherit;
+  }
+  .mobileDropdownLink {
+    flex: 1;
+    min-width: 0;
+    padding: 12px 0;
+    color: inherit;
+    text-decoration: none;
     font-size: 14px;
     font-weight: 600;
     text-align: left;
@@ -1965,20 +1935,15 @@
   .mobileNavLink {
     display: flex;
     align-items: center;
-    width: 100%;
-    min-height: 44px;
-    padding: 9px 14px;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    border-radius: 10px;
-    transition: background 160ms ease, color 160ms ease;
-  }
-
-  .mobileNavLink:hover,
-  .mobileNavLink:active {
-    background: rgba(15, 23, 42, 0.05);
-    color: var(--color-brand-strong, #15b886) !important;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    padding: 10px;
+    color: inherit;
+    background: transparent;
+    border: none;
+    cursor: pointer;
   }
 
   .header[data-variant='horizon'][data-theme='dark']:not([data-scrolled='true']) .mobileNavLink:hover,
@@ -1993,179 +1958,55 @@
   .mobileDropdownMenu {
     display: flex;
     flex-direction: column;
-    padding: 6px 6px 8px;
-    margin: 2px 0 6px;
-    border-radius: 10px;
-    background: rgba(15, 23, 42, 0.02);
-    border: 1px solid rgba(15, 23, 42, 0.05);
-    animation: mobileAccordionFade 180ms cubic-bezier(0.16, 1, 0.3, 1);
+    gap: 4px;
+    margin: 0;
+    padding: 4px 0 12px;
+    list-style: none;
   }
-
-  .header[data-variant='horizon'][data-theme='dark']:not([data-scrolled='true']) .mobileDropdownMenu {
-    background: rgba(255, 255, 255, 0.035);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  @keyframes mobileAccordionFade {
-    from { opacity: 0; transform: translateY(-4px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* Sleek Overview Link (compact row, no giant card box) */
-  .mobileOverviewLink {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    padding: 6px 8px;
-    margin-bottom: 4px;
-    border-radius: 7px;
-    text-decoration: none;
-    background: rgba(24, 203, 150, 0.08);
-    border: 1px solid rgba(24, 203, 150, 0.2);
-    transition: background 150ms ease, border-color 150ms ease;
-  }
-
-  .mobileOverviewLink:hover,
-  .mobileOverviewLink:active {
-    background: rgba(24, 203, 150, 0.16);
-    border-color: rgba(24, 203, 150, 0.35);
-  }
-
-  .header[data-variant='horizon'][data-theme='dark']:not([data-scrolled='true']) .mobileOverviewLink {
-    background: rgba(24, 203, 150, 0.12);
-    border: 1px solid rgba(52, 211, 153, 0.28);
-  }
-
-  .mobileOverviewBadge {
-    display: inline-block;
-    padding: 2px 5px;
-    border-radius: 4px;
-    font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
-    font-size: 8px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    background: #15803d;
-    color: #ffffff;
-    flex-shrink: 0;
-  }
-
-  .header[data-variant='horizon'][data-theme='dark']:not([data-scrolled='true']) .mobileOverviewBadge {
-    background: rgba(52, 211, 153, 0.3);
-    color: #6ee7b7;
-  }
-
-  .mobileOverviewTitle {
-    display: block;
-    font-size: 11px;
-    font-weight: 700;
-    line-height: 1.3;
-    color: #065f46 !important;
-    flex: 1;
-  }
-
-  .header[data-variant='horizon'][data-theme='dark']:not([data-scrolled='true']) .mobileOverviewTitle {
-    color: #6ee7b7 !important;
-  }
-
-  .mobileOverviewArrow {
-    color: #059669;
-    flex-shrink: 0;
-    margin-left: auto;
-  }
-
-  .header[data-variant='horizon'][data-theme='dark']:not([data-scrolled='true']) .mobileOverviewArrow {
-    color: #34d399;
-  }
-
-  /* Clean Feature List — flat list rows, NO card boxes */
-  .mobileFeatureGrid {
+  .mobileDropdownList li { min-width: 0; }
+  .mobileDropdownList a {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0;
-  }
-
-  .mobileFeatureCard {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 8px;
-    padding: 7px 8px;
-    border-radius: 0;
-    background: transparent !important;
-    border: none !important;
-    border-bottom: 1px solid rgba(15, 23, 42, 0.05) !important;
-    box-shadow: none !important;
+    grid-template-columns: 26px minmax(0, 1fr);
+    gap: 4px 10px;
+    align-content: center;
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 0;
+    text-align: left;
+    white-space: normal;
+    overflow-wrap: anywhere;
     text-decoration: none;
-    transition: background 150ms ease;
   }
-
-  /* Last row items (last 1 or 2) remove bottom border */
-  .mobileFeatureCard:last-child,
-  .mobileFeatureCard:nth-last-child(2):nth-child(odd) {
-    border-bottom: none !important;
-  }
-
-  /* Right-column items get a left divider */
-  .mobileFeatureCard:nth-child(even) {
-    border-left: 1px solid rgba(15, 23, 42, 0.05) !important;
-    padding-left: 10px;
-  }
-
-  .mobileFeatureCard:hover,
-  .mobileFeatureCard:active {
-    background: rgba(24, 203, 150, 0.05) !important;
-    transform: none !important;
-    box-shadow: none !important;
-  }
-
-  .header[data-variant='horizon'][data-theme='dark']:not([data-scrolled='true']) .mobileFeatureCard {
-    background: transparent !important;
-    border: none !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.055) !important;
-    box-shadow: none !important;
-  }
-
-  .header[data-variant='horizon'][data-theme='dark']:not([data-scrolled='true']) .mobileFeatureCard:nth-child(even) {
-    border-left-color: rgba(255, 255, 255, 0.055) !important;
-  }
-
-  .header[data-variant='horizon'][data-theme='dark']:not([data-scrolled='true']) .mobileFeatureCard:last-child,
-  .header[data-variant='horizon'][data-theme='dark']:not([data-scrolled='true']) .mobileFeatureCard:nth-last-child(2):nth-child(odd) {
-    border-bottom: none !important;
-  }
-
-  .header[data-variant='horizon'][data-theme='dark']:not([data-scrolled='true']) .mobileFeatureCard:hover,
-  .header[data-variant='horizon'][data-theme='dark']:not([data-scrolled='true']) .mobileFeatureCard:active {
-    background: rgba(255, 255, 255, 0.07) !important;
-  }
-
-  .mobileFeatureContent {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-    min-width: 0;
-    flex: 1;
-  }
-
-  .mobileFeatureTitle {
+  .mobileDropdownList a strong {
     display: block;
-    font-size: 11.5px;
-    font-weight: 600;
-    line-height: 1.3;
-    color: #0f172a !important;
-    letter-spacing: -0.01em;
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--landing-ink);
   }
-
-  .header[data-variant='horizon'][data-theme='dark']:not([data-scrolled='true']) .mobileFeatureTitle {
-    color: #f1f5f9 !important;
+  .mobileDropdownList a span {
+    display: block;
+    grid-column: 2;
+    grid-row: 2;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--landing-muted);
   }
-
-  .mobileFeatureCard:hover .mobileFeatureTitle {
-    color: var(--color-brand-strong, #15b886) !important;
+  .mobileDropdownList a .megaItemNumber {
+    display: inline-flex;
+    grid-column: 1;
+    grid-row: 1 / span 2;
+    align-self: start;
+    margin: 0;
+    font-size: 11px;
   }
-
-  .mobileFeatureDesc {
+  .header[data-variant='horizon'] .mobileDropdownList .megaItemNumber {
+    background: rgb(163 230 197 / 10%);
+    border-color: rgb(163 230 197 / 24%);
+  }
+  .mobileSectionHeading {
     display: block;
     font-size: 10px;
     font-weight: 400;
@@ -2215,8 +2056,52 @@
     font-weight: 700;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #10b981;
-    padding-left: 2px;
+    color: var(--landing-muted);
+    margin-top: 14px;
+    margin-bottom: 2px;
+    padding-left: 36px;
+  }
+  /* Finance has additional role and integration groups below its tool list. */
+  .financeMobileList {
+    --finance-number-width: 26px;
+    --finance-item-gap: 10px;
+    gap: 0;
+  }
+  .financeMobileList a {
+    grid-template-columns: var(--finance-number-width) minmax(0, 1fr);
+    column-gap: var(--finance-item-gap);
+    row-gap: 0;
+    align-items: start;
+    padding-block: 12px;
+  }
+  .financeMobileList .financeMobileCopy {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+  .financeMobileList a strong,
+  .financeMobileList a span {
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: normal;
+  }
+  .financeMobileList a .megaItemNumber {
+    grid-row: 1;
+    width: var(--finance-number-width);
+    min-width: var(--finance-number-width);
+    height: 22px;
+    line-height: 1;
+  }
+  .financeMobileList .mobileSectionHeading {
+    margin: 12px 0 0;
+    padding: 16px 0 4px calc(var(--finance-number-width) + var(--finance-item-gap));
+    border-top: 1px solid var(--landing-line);
+  }
+  .header[data-variant='horizon'] .financeMobileList .mobileSectionHeading {
+    border-top-color: rgb(255 255 255 / 12%);
   }
 
   .header[data-variant='horizon'][data-theme='dark']:not([data-scrolled='true']) .mobileSectionHeading {

@@ -109,7 +109,7 @@ function Hero({ page }: { page: PageKey }) {
   const isOverview = page === 'overview';
 
   return (
-    <section className={`${base.hero} ${s.viewportHero}`} aria-labelledby="logistics-title">
+    <section className={`${base.hero} ${s.viewportHero} ${isOverview ? s.overviewHero : ''}`} aria-labelledby="logistics-title">
       <div className={`site-shell ${base.heroGrid} ${s.heroGrid}`}>
         <div className={`${base.heroCopy} ${s.heroCopy}`}>
           <Eyebrow>{copy.eyebrow}</Eyebrow>
