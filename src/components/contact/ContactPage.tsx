@@ -21,6 +21,7 @@ import {
 import { LandingNavigation } from '../LandingNavigation';
 import { ShipsyFooter } from '../ShipsyFooter';
 import { FinanceClosingCta } from '../finance/FinanceClosingCta';
+import { trackContactSubmit } from '@/src/lib/marketing-analytics';
 import s from './ContactPage.module.css';
 
 export function ContactPage() {

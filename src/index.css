@@ -237,8 +237,6 @@ button, input, textarea, select {
   text-decoration: none;
 }
 
-:global([data-theme="dark"]) .breadcrumb a,
-:global([data-theme="dark"]) .crumb a,
 [data-theme="dark"] .breadcrumb a,
 [data-theme="dark"] .crumb a {
   color: #f1f5f9;

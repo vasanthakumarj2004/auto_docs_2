@@ -211,10 +211,10 @@ export async function runAllTests(): Promise<{ passed: number; failed: number; e
   console.log('\n--- TEST SUITE 3: Runtime Consent Transition (False -> True) ---');
   dom.setup();
   dom.setConsentCookie(false);
-  let listenerNotified = false;
+  const listener = { notified: false };
   const unsubscribe = onConsentChange((granted) => {
     if (granted) {
-      listenerNotified = true;
+      listener.notified = true;
       initGA();
     }
   });
@@ -227,7 +227,7 @@ export async function runAllTests(): Promise<{ passed: number; failed: number; e
     })
   );
 
-  assert(listenerNotified === true, 'onConsentChange subscriber notified immediately on consent transition');
+  assert(listener.notified === true, 'onConsentChange subscriber notified immediately on consent transition');
   assert(dom.scripts.length === 1, 'gtag.js loaded dynamically without requiring page reload');
   unsubscribe();
 

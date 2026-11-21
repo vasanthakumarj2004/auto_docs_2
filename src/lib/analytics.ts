@@ -12,6 +12,7 @@
  */
 
 import { getAnalyticsConsent } from './consent';
+export { getAnalyticsConsent };
 import {
   RESERVED_GA4_EVENTS,
   ALLOWED_RECOMMENDED_EVENTS,
