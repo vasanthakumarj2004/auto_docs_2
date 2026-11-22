@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import { FileText, Bot, GitMerge, BarChart3 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';

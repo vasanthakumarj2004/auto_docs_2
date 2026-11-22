@@ -2,10 +2,8 @@ import React from 'react';
 import Link from 'next/link';
 import { Linkedin, Mail, Youtube, Instagram, ArrowUpRight, Facebook } from 'lucide-react';
 import { DocsynecxLogo } from './DocsynecxLogo';
-import { financeCapabilities, financeRoot } from '../content/finance';
 import { CookieSettingsButton } from './cookie-consent/CookieSettingsButton';
 import styles from './ShipsyFooter.module.css';
-import { FacebookLogoIcon } from '@phosphor-icons/react';
 
 export interface ShipsyFooterProps {
   className?: string;
@@ -178,6 +176,64 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
                   Docsynecx Intelligence
                 </Link>
               </li>
+
+              <li>
+                <Link
+                  href="/finance-desk/business-owners/"
+                  className={styles.footerLink}
+                >
+                  For Business Owners
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/finance-desk/finance-teams/"
+                  className={styles.footerLink}
+                >
+                  For Finance Teams
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/finance-desk/accounts-teams/"
+                  className={styles.footerLink}
+                >
+                  For Accounts Teams
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/finance-desk/ca-firms/"
+                  className={styles.footerLink}
+                >
+                  For CA Firms
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/finance-desk/#integration-tally"
+                  className={styles.footerLink}
+                >
+                  TallyPrime Integration
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/finance-desk/#integration-zoho"
+                  className={styles.footerLink}
+                >
+                  Zoho Books Integration
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/finance-desk/#integration-erp"
+                  className={styles.footerLink}
+                >
+                  Custom ERP Integration
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -260,10 +316,6 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
                   Contact Us
                 </Link>
               </li>
-              <li>
-               
-              </li>
-           
             </ul>
           </div>
         </div>

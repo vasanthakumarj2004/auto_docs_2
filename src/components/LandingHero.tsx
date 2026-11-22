@@ -110,19 +110,36 @@ export function LandingHero() {
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const isMobile = window.matchMedia('(max-width: 768px)').matches;
-      if (!isMobile) {
-        if ('requestIdleCallback' in window) {
-          (window as Window & { requestIdleCallback: (cb: () => void) => void }).requestIdleCallback(() => {
-            setShouldLoadVideo(true);
-          });
-        } else {
-          const timer = setTimeout(() => setShouldLoadVideo(true), 1000);
-          return () => clearTimeout(timer);
-        }
-      }
-    }
+    if (typeof window === 'undefined') return;
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (isMobile) return;
+
+    let triggered = false;
+    let fallbackTimer: NodeJS.Timeout;
+
+    const triggerVideo = () => {
+      if (triggered) return;
+      triggered = true;
+      setShouldLoadVideo(true);
+      cleanup();
+    };
+
+    const cleanup = () => {
+      window.removeEventListener('scroll', triggerVideo);
+      window.removeEventListener('mousemove', triggerVideo);
+      window.removeEventListener('touchstart', triggerVideo);
+      window.removeEventListener('keydown', triggerVideo);
+      clearTimeout(fallbackTimer);
+    };
+
+    window.addEventListener('scroll', triggerVideo, { passive: true, once: true });
+    window.addEventListener('mousemove', triggerVideo, { passive: true, once: true });
+    window.addEventListener('touchstart', triggerVideo, { passive: true, once: true });
+    window.addEventListener('keydown', triggerVideo, { passive: true, once: true });
+
+    fallbackTimer = setTimeout(triggerVideo, 5000);
+
+    return cleanup;
   }, []);
   useEffect(() => {
     const frame = frameRef.current;

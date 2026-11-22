@@ -6,12 +6,13 @@ import { logisticsMetadata } from '@/src/lib/logisticsMetadata';
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  const base = Object.values(logisticsModules).map(item => ({ module: item.slug }));
-  // Add lowercase and legacy aliases so all canonical URLs resolve safely
+  // Always emit lowercase canonical paths first to avoid Windows casing collisions
+  const base = Object.values(logisticsModules).map(item => ({ module: item.slug.toLowerCase() }));
   return [
     ...base,
-    { module: 'email-to-booking' },
     { module: 'rfq-to-booking' },
+    { module: 'email-to-booking' },
+    { module: 'RFQ-to-booking' },
   ];
 }
 

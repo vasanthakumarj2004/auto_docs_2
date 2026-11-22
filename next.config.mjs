@@ -1,11 +1,26 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  turbopack: {},
   output: 'export',
   distDir: 'build',
   trailingSlash: true,
   experimental: {
     cpus: 1,
-    optimizePackageImports: ['lucide-react'],
+    optimizePackageImports: ['lucide-react', '@phosphor-icons/react'],
+  },
+  webpack: (config, { isServer }) => {
+    if (!isServer && config.optimization && config.optimization.splitChunks) {
+      config.optimization.splitChunks.cacheGroups = {
+        ...config.optimization.splitChunks.cacheGroups,
+        styles: {
+          name: 'styles',
+          test: /\.(css|scss)$/,
+          chunks: 'all',
+          enforce: true,
+        },
+      };
+    }
+    return config;
   },
   images: {
     unoptimized: true,
