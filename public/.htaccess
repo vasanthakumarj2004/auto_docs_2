@@ -81,6 +81,12 @@
   RewriteRule ^\.well-known/ - [L]
   RewriteRule ^(ai-catalog\.json|ard\.json|llms\.txt|llms-full\.txt|robots\.txt|sitemap\.xml)$ - [L]
 
+  # Next.js RSC prefetch routing (fallback to directory if flat file not found)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^events/iics-2026/__next\.events\.iics-2026__PAGE__\.txt$ events/iics-2026/__next.events/iics-2026/__PAGE__.txt [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^(.+)/__next\.([^/]+)__PAGE__\.txt$ $1/__next.$2/__PAGE__.txt [L]
+
   # 301 Redirects: Email & RFQ to Canonical Lowercase
   RewriteRule ^(email-to-booking|rfq-to-booking|RFQ-to-booking)/?$ /logistics-desk/rfq-to-booking/ [R=301,L,NC]
   RewriteRule ^logistics/(email-to-booking|rfq-to-booking|RFQ-to-booking)/?$ /logistics-desk/rfq-to-booking/ [R=301,L,NC]
