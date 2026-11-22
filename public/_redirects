@@ -1,21 +1,67 @@
-/logistics /logistics-desk/ 301
-/logistics/* /logistics-desk/:splat 301
-/finance /finance-desk/ 301
-/finance/* /finance-desk/:splat 301
-/RFQ-to-booking /logistics-desk/rfq-to-booking/ 301
-/rfq-to-booking /logistics-desk/rfq-to-booking/ 301
-/email-to-booking /logistics-desk/rfq-to-booking/ 301
-/logistics-desk/RFQ-to-booking /logistics-desk/rfq-to-booking/ 301
-/logistics-desk/RFQ-to-booking/ /logistics-desk/rfq-to-booking/ 301
-/invoice-processing /finance-desk/invoice-processing/ 301
-/blog /blogs/ 301
-/blog/* /blogs/:splat 301
-/shipment-operations /logistics-desk/shipment-operations/ 301
-/shipment-tracking /logistics-desk/shipment-tracking/ 301
-/freight-intelligence /logistics-desk/freight-intelligence/ 301
-/integrations /logistics-desk/integrations/ 301
-/accounts-payable /finance-desk/accounts-payable/ 301
-/business-owners /finance-desk/business-owners/ 301
-/finance-teams /finance-desk/finance-teams/ 301
-/accounts-teams /finance-desk/accounts-teams/ 301
-/ca-firms /finance-desk/ca-firms/ 301
+# =======================================================================
+# Cloudflare Pages & Netlify Redirects / Rewrites (_redirects)
+# Full 301 Canonical & Trailing-Slash Safe Routing
+# =======================================================================
+
+# 1. AI & Agentic Discovery (200 Internal Rewrites)
+/.well-known/ard.json              /ard.json                          200
+/.well-known/ai-catalog.json       /ai-catalog.json                   200
+
+# 2. Specific Nested Aliases (Must precede wildcard rules to prevent double-hops)
+/logistics/email-to-booking        /logistics-desk/rfq-to-booking/    301
+/logistics/email-to-booking/       /logistics-desk/rfq-to-booking/    301
+/logistics/RFQ-to-booking          /logistics-desk/rfq-to-booking/    301
+/logistics/RFQ-to-booking/         /logistics-desk/rfq-to-booking/    301
+/logistics/rfq-to-booking          /logistics-desk/rfq-to-booking/    301
+/logistics/rfq-to-booking/         /logistics-desk/rfq-to-booking/    301
+
+/logistics-desk/email-to-booking   /logistics-desk/rfq-to-booking/    301
+/logistics-desk/email-to-booking/  /logistics-desk/rfq-to-booking/    301
+/logistics-desk/RFQ-to-booking     /logistics-desk/rfq-to-booking/    301
+/logistics-desk/RFQ-to-booking/    /logistics-desk/rfq-to-booking/    301
+
+/finance-desk/invoice-automation   /finance-desk/invoice-processing/  301
+/finance-desk/invoice-automation/  /finance-desk/invoice-processing/  301
+
+# 3. Top-Level Aliases (Both without and with trailing slash)
+/email-to-booking                  /logistics-desk/rfq-to-booking/    301
+/email-to-booking/                 /logistics-desk/rfq-to-booking/    301
+/RFQ-to-booking                    /logistics-desk/rfq-to-booking/    301
+/RFQ-to-booking/                   /logistics-desk/rfq-to-booking/    301
+/rfq-to-booking                    /logistics-desk/rfq-to-booking/    301
+/rfq-to-booking/                   /logistics-desk/rfq-to-booking/    301
+
+/invoice-processing                /finance-desk/invoice-processing/  301
+/invoice-processing/               /finance-desk/invoice-processing/  301
+/accounts-payable                  /finance-desk/accounts-payable/    301
+/accounts-payable/                 /finance-desk/accounts-payable/    301
+/business-owners                   /finance-desk/business-owners/     301
+/business-owners/                  /finance-desk/business-owners/     301
+/finance-teams                     /finance-desk/finance-teams/       301
+/finance-teams/                    /finance-desk/finance-teams/       301
+/accounts-teams                    /finance-desk/accounts-teams/      301
+/accounts-teams/                   /finance-desk/accounts-teams/      301
+/ca-firms                          /finance-desk/ca-firms/            301
+/ca-firms/                         /finance-desk/ca-firms/            301
+
+/shipment-operations               /logistics-desk/shipment-operations/ 301
+/shipment-operations/              /logistics-desk/shipment-operations/ 301
+/shipment-tracking                 /logistics-desk/shipment-tracking/   301
+/shipment-tracking/                /logistics-desk/shipment-tracking/   301
+/freight-intelligence              /logistics-desk/freight-intelligence/ 301
+/freight-intelligence/             /logistics-desk/freight-intelligence/ 301
+/integrations                      /logistics-desk/integrations/        301
+/integrations/                     /logistics-desk/integrations/        301
+
+# 4. Section Hubs & Wildcards
+/logistics                         /logistics-desk/                   301
+/logistics/                        /logistics-desk/                   301
+/logistics/*                       /logistics-desk/:splat             301
+
+/finance                           /finance-desk/                     301
+/finance/                          /finance-desk/                     301
+/finance/*                         /finance-desk/:splat               301
+
+/blog                              /blogs/                            301
+/blog/                             /blogs/                            301
+/blog/*                            /blogs/:splat                      301

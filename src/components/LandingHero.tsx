@@ -115,8 +115,6 @@ export function LandingHero() {
     if (isMobile) return;
 
     let triggered = false;
-    let fallbackTimer: NodeJS.Timeout;
-
     const triggerVideo = () => {
       if (triggered) return;
       triggered = true;
@@ -126,18 +124,15 @@ export function LandingHero() {
 
     const cleanup = () => {
       window.removeEventListener('scroll', triggerVideo);
-      window.removeEventListener('mousemove', triggerVideo);
+      window.removeEventListener('pointerdown', triggerVideo);
       window.removeEventListener('touchstart', triggerVideo);
       window.removeEventListener('keydown', triggerVideo);
-      clearTimeout(fallbackTimer);
     };
 
     window.addEventListener('scroll', triggerVideo, { passive: true, once: true });
-    window.addEventListener('mousemove', triggerVideo, { passive: true, once: true });
+    window.addEventListener('pointerdown', triggerVideo, { passive: true, once: true });
     window.addEventListener('touchstart', triggerVideo, { passive: true, once: true });
     window.addEventListener('keydown', triggerVideo, { passive: true, once: true });
-
-    fallbackTimer = setTimeout(triggerVideo, 5000);
 
     return cleanup;
   }, []);

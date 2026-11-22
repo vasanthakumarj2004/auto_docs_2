@@ -1069,7 +1069,7 @@
   text-shadow: none !important;
 }
 .customersSection .sectionHeading h2 span {
-  color: var(--color-brand-text, #0f766e) !important;
+  color: var(--color-brand-strong, #0f766e) !important;
   text-shadow: none !important;
 }
 .customersSection .sectionCopy {

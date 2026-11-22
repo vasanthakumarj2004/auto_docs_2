@@ -63,24 +63,14 @@
 
 .cardLeft {
   transform: translateX(-54%) scale(0.91);
-  opacity: 0.65;
   z-index: 5;
   cursor: pointer;
-}
-
-.cardLeft:hover {
-  opacity: 0.85;
 }
 
 .cardRight {
   transform: translateX(54%) scale(0.91);
-  opacity: 0.65;
   z-index: 5;
   cursor: pointer;
-}
-
-.cardRight:hover {
-  opacity: 0.85;
 }
 
 .cardHidden {
