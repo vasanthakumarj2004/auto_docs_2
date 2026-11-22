@@ -10,6 +10,13 @@ The Docsynecx Finance Desk automates end-to-end accounting document pipelines:
 - **Banking Reconciliation (https://docsynecx.com/finance-desk/banking-reconciliation/)**: Ingests bank statements from multiple corporate accounts in Excel or PDF formats. Reconciles debit/credit entries with ledger transactions, identifying unmatched dues, bank charges, and duplicate charges.
 - **Payment Reminders (https://docsynecx.com/finance-desk/payment-reminders/)**: Analyzes accounts receivable aging and automates courteous, auditable email/SMS payment notifications to outstanding customers.
 - **Accounts Payable (https://docsynecx.com/finance-desk/accounts-payable/)**: Centralizes supplier bill intake, automated three-way matching (PO vs. Invoice vs. GRN), approval workflows, and payment dispatch.
+- **For Business Owners (https://docsynecx.com/finance-desk/business-owners/)**: Real-time cashflow visibility, dues tracking, and financial oversight without manual reports.
+- **For Finance Teams (https://docsynecx.com/finance-desk/finance-teams/)**: Accelerate month-end closing and eliminate manual voucher entry backlogs.
+- **For Accounts Teams (https://docsynecx.com/finance-desk/accounts-teams/)**: Fast document ingestion, duplicate checks, and verified bookkeeping into Tally.
+- **For CA Firms (https://docsynecx.com/finance-desk/ca-firms/)**: Multi-client document audits, GST verification, and high-speed reconciliation.
+- **TallyPrime Integration (https://docsynecx.com/finance-desk/#integration-tally)**: Purchase and bank vouchers, ledgers mapped or created, bills attached to every entry in TallyPrime.
+- **Zoho Books Integration (https://docsynecx.com/finance-desk/#integration-zoho)**: Bills created with source PDF attached, contacts and chart of accounts synced with Zoho Books.
+- **Custom ERP Integration (https://docsynecx.com/finance-desk/#integration-erp)**: Flexible REST APIs, webhooks, and database connectors for proprietary ERP systems.
 
 ### Logistics Desk (https://docsynecx.com/logistics-desk/)
 The Docsynecx Logistics Desk automates freight forwarding documentation:

@@ -1,6 +1,6 @@
 'use client';
 
-import { JSX, useRef, useState, type KeyboardEvent } from 'react';
+import { useRef, useState, type KeyboardEvent, type ReactNode } from 'react';
 import {
   AlertCircle,
   Archive,
@@ -917,7 +917,7 @@ interface ChallengeConfig {
   title: string;
   description: string;
   icon: typeof FileSpreadsheet;
-  Preview: () => JSX.Element;
+  Preview: () => ReactNode;
 }
 
 const personaConfigs: Record<

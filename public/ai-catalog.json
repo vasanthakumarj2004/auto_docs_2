@@ -52,6 +52,55 @@
       "type": "documentation"
     },
     {
+      "id": "finance-business-owners",
+      "name": "For Business Owners",
+      "description": "Cashflow transparency, debtor dues tracking, and financial oversight without manual reports.",
+      "url": "https://docsynecx.com/finance-desk/business-owners/",
+      "type": "documentation"
+    },
+    {
+      "id": "finance-teams",
+      "name": "For Finance Teams",
+      "description": "Accelerate month-end closing, eliminate voucher entry backlogs, and ensure clean ledgers.",
+      "url": "https://docsynecx.com/finance-desk/finance-teams/",
+      "type": "documentation"
+    },
+    {
+      "id": "accounts-teams",
+      "name": "For Accounts Teams",
+      "description": "Rapid document ingestion, automated duplicate checks, and verified Tally voucher creation.",
+      "url": "https://docsynecx.com/finance-desk/accounts-teams/",
+      "type": "documentation"
+    },
+    {
+      "id": "ca-firms",
+      "name": "For CA Firms",
+      "description": "Multi-client document management, audit-ready voucher generation, and automated reconciliation.",
+      "url": "https://docsynecx.com/finance-desk/ca-firms/",
+      "type": "documentation"
+    },
+    {
+      "id": "integration-tally",
+      "name": "TallyPrime Integration",
+      "description": "Seamless two-way integration with TallyPrime for automated voucher posting and ledger sync.",
+      "url": "https://docsynecx.com/finance-desk/#integration-tally",
+      "type": "documentation"
+    },
+    {
+      "id": "integration-zoho",
+      "name": "Zoho Books Integration",
+      "description": "Direct synchronization with Zoho Books for purchase bills, customer invoices, and bank feeds.",
+      "url": "https://docsynecx.com/finance-desk/#integration-zoho",
+      "type": "documentation"
+    },
+    {
+      "id": "integration-erp",
+      "name": "Custom ERP Integration",
+      "description": "Enterprise ERP integration via secure REST APIs, webhooks, and database connectors.",
+      "url": "https://docsynecx.com/finance-desk/#integration-erp",
+      "type": "documentation"
+    },
+    {
       "id": "logistics-desk",
       "name": "Logistics Desk",
       "description": "Freight forwarding email-to-booking and CargoWise workflow automation",

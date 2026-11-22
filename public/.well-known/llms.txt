@@ -22,6 +22,9 @@ Docsynecx eliminates manual data entry by extracting, validating, reconciling, a
 - [For Finance Teams](https://docsynecx.com/finance-desk/finance-teams/): Accelerate month-end closing and eliminate manual voucher entry backlogs.
 - [For Accounts Teams](https://docsynecx.com/finance-desk/accounts-teams/): Fast document ingestion, duplicate checks, and verified bookkeeping.
 - [For CA Firms](https://docsynecx.com/finance-desk/ca-firms/): Multi-client document audits, GST verification, and high-speed reconciliation.
+- [TallyPrime Integration](https://docsynecx.com/finance-desk/#integration-tally): Direct connection with TallyPrime for automated voucher posting.
+- [Zoho Books Integration](https://docsynecx.com/finance-desk/#integration-zoho): Native sync with Zoho Books for bills, invoices, and bank feeds.
+- [Custom ERP Integration](https://docsynecx.com/finance-desk/#integration-erp): Enterprise REST API and webhook connectors for proprietary ERPs.
 
 ## Logistics Desk
 - [Logistics Desk Overview](https://docsynecx.com/logistics-desk/): Connected freight workflows converting emails into CargoWise jobs and quotes.

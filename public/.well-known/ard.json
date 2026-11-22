@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "Docsynecx",
+  "description": "AI-powered document automation and workflow intelligence platform for finance and logistics operations.",
+  "url": "https://docsynecx.com",
+  "version": "1.0.0",
+  "provider": {
+    "name": "SynecX AI Labs Private Limited",
+    "url": "https://docsynecx.com"
+  },
+  "resources": [
+    {
+      "id": "home",
+      "name": "Docsynecx Platform",
+      "description": "AI Finance & Logistics Document Automation Platform",
+      "url": "https://docsynecx.com/",
+      "type": "application"
+    },
+    {
+      "id": "finance-desk",
+      "name": "Finance Desk",
+      "description": "Autonomous invoice processing, banking reconciliation, and Tally/Zoho sync",
+      "url": "https://docsynecx.com/finance-desk/",
+      "type": "documentation"
+    },
+    {
+      "id": "invoice-processing",
+      "name": "Invoice Processing",
+      "description": "Automated invoice reading, line-item tax extraction, and posting to Tally",
+      "url": "https://docsynecx.com/finance-desk/invoice-processing/",
+      "type": "documentation"
+    },
+    {
+      "id": "banking-reconciliation",
+      "name": "Banking Reconciliation",
+      "description": "Multi-bank statement reconciliation and automated ledger matching",
+      "url": "https://docsynecx.com/finance-desk/banking-reconciliation/",
+      "type": "documentation"
+    },
+    {
+      "id": "payment-reminders",
+      "name": "Payment Reminders",
+      "description": "Debtor aging analytics and automated payment follow-ups",
+      "url": "https://docsynecx.com/finance-desk/payment-reminders/",
+      "type": "documentation"
+    },
+    {
+      "id": "accounts-payable",
+      "name": "Accounts Payable",
+      "description": "Supplier bill approvals, 3-way matching, and payment schedules",
+      "url": "https://docsynecx.com/finance-desk/accounts-payable/",
+      "type": "documentation"
+    },
+    {
+      "id": "finance-business-owners",
+      "name": "For Business Owners",
+      "description": "Cashflow transparency, debtor dues tracking, and financial oversight without manual reports.",
+      "url": "https://docsynecx.com/finance-desk/business-owners/",
+      "type": "documentation"
+    },
+    {
+      "id": "finance-teams",
+      "name": "For Finance Teams",
+      "description": "Accelerate month-end closing, eliminate voucher entry backlogs, and ensure clean ledgers.",
+      "url": "https://docsynecx.com/finance-desk/finance-teams/",
+      "type": "documentation"
+    },
+    {
+      "id": "accounts-teams",
+      "name": "For Accounts Teams",
+      "description": "Rapid document ingestion, automated duplicate checks, and verified Tally voucher creation.",
+      "url": "https://docsynecx.com/finance-desk/accounts-teams/",
+      "type": "documentation"
+    },
+    {
+      "id": "ca-firms",
+      "name": "For CA Firms",
+      "description": "Multi-client document management, audit-ready voucher generation, and automated reconciliation.",
+      "url": "https://docsynecx.com/finance-desk/ca-firms/",
+      "type": "documentation"
+    },
+    {
+      "id": "integration-tally",
+      "name": "TallyPrime Integration",
+      "description": "Seamless two-way integration with TallyPrime for automated voucher posting and ledger sync.",
+      "url": "https://docsynecx.com/finance-desk/#integration-tally",
+      "type": "documentation"
+    },
+    {
+      "id": "integration-zoho",
+      "name": "Zoho Books Integration",
+      "description": "Direct synchronization with Zoho Books for purchase bills, customer invoices, and bank feeds.",
+      "url": "https://docsynecx.com/finance-desk/#integration-zoho",
+      "type": "documentation"
+    },
+    {
+      "id": "integration-erp",
+      "name": "Custom ERP Integration",
+      "description": "Enterprise ERP integration via secure REST APIs, webhooks, and database connectors.",
+      "url": "https://docsynecx.com/finance-desk/#integration-erp",
+      "type": "documentation"
+    },
+    {
+      "id": "logistics-desk",
+      "name": "Logistics Desk",
+      "description": "Freight forwarding email-to-booking and CargoWise workflow automation",
+      "url": "https://docsynecx.com/logistics-desk/",
+      "type": "documentation"
+    },
+    {
+      "id": "RFQ-to-booking",
+      "name": "RFQ to Booking",
+      "description": "Parse customer freight emails and create validated CargoWise booking jobs",
+      "url": "https://docsynecx.com/logistics-desk/RFQ-to-booking/",
+      "type": "documentation"
+    },
+    {
+      "id": "shipment-operations",
+      "name": "Shipment Operations",
+      "description": "Bill of lading, air waybill, and customs entry document processing",
+      "url": "https://docsynecx.com/logistics-desk/shipment-operations/",
+      "type": "documentation"
+    },
+    {
+      "id": "shipment-tracking",
+      "name": "Shipment Tracking",
+      "description": "Multi-carrier milestone tracking, ETA aggregation, and delay alerts",
+      "url": "https://docsynecx.com/logistics-desk/shipment-tracking/",
+      "type": "documentation"
+    },
+    {
+      "id": "freight-intelligence",
+      "name": "Freight Intelligence",
+      "description": "Rate benchmarks, carrier procurement analytics, and margin rules",
+      "url": "https://docsynecx.com/logistics-desk/freight-intelligence/",
+      "type": "documentation"
+    },
+    {
+      "id": "integrations",
+      "name": "Integrations",
+      "description": "Connectors for TallyPrime, Zoho Books, CargoWise, and custom ERPs",
+      "url": "https://docsynecx.com/logistics-desk/integrations/",
+      "type": "documentation"
+    },
+    {
+      "id": "solutions",
+      "name": "Industry Solutions",
+      "description": "Vertical workflows for Automotive, Manufacturing, Textile, and Retail",
+      "url": "https://docsynecx.com/solutions/",
+      "type": "documentation"
+    },
+    {
+      "id": "pricing",
+      "name": "Pricing",
+      "description": "Transparent tiers and ROI calculator for document processing",
+      "url": "https://docsynecx.com/pricing/",
+      "type": "documentation"
+    },
+    {
+      "id": "demo",
+      "name": "Request Live Demo",
+      "description": "Interactive workflow demo registration",
+      "url": "https://docsynecx.com/demo/",
+      "type": "endpoint"
+    },
+    {
+      "id": "contact",
+      "name": "Contact Support",
+      "description": "Enterprise inquiry and customer support",
+      "url": "https://docsynecx.com/contact/",
+      "type": "endpoint"
+    },
+    {
+      "id": "blogs",
+      "name": "Docsynecx Technical Blog",
+      "description": "Research benchmarks, ROI analysis, and Document AI whitepapers",
+      "url": "https://docsynecx.com/blogs/",
+      "type": "documentation"
+    }
+  ]
+}
