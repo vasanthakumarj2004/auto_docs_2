@@ -9,6 +9,9 @@ import { ConsentProvider } from '@/src/context/ConsentContext';
 import { GoogleAnalytics } from '@/src/components/analytics/GoogleAnalytics';
 import { jsonLd } from '@/src/lib/seo';
 
+const GOOGLE_FONTS_URL =
+  'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Allura&family=Alex+Brush&display=swap';
+
 export const viewport: Viewport = {
   themeColor: '#2E8B57',
   width: 'device-width',
@@ -125,12 +128,25 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Allura&family=Alex+Brush&display=swap"
+          rel="preload"
+          as="image"
+          href="/videos/gemini-layout-two-poster.webp"
+          type="image/webp"
+          fetchPriority="high"
         />
         <link rel="ai-catalog" type="application/json" href="/.well-known/ai-catalog.json" />
         <link rel="ard" type="application/json" href="/.well-known/ard.json" />
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Documentation" />
+        <Script
+          id="google-fonts-loader"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var link=document.createElement('link');link.rel='stylesheet';link.href='${GOOGLE_FONTS_URL}';document.head.appendChild(link);})();`,
+          }}
+        />
+        <noscript>
+          <link rel="stylesheet" href={GOOGLE_FONTS_URL} />
+        </noscript>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

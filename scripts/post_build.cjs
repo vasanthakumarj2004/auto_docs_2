@@ -140,7 +140,12 @@ function syncPublicAssets(buildDir = 'build') {
     'icon-512.png',
     'favicon.ico',
     'site.webmanifest',
-    'robots.txt'
+    'robots.txt',
+    'ard.json',
+    'ai-catalog.json',
+    'llms.txt',
+    'llms-full.txt',
+    '.htaccess'
   ];
 
   for (const a of assets) {
@@ -150,7 +155,18 @@ function syncPublicAssets(buildDir = 'build') {
       fs.copyFileSync(src, dest);
     }
   }
-  console.log('[post_build] Synced public manifests, icons, and robots.txt to build directory.');
+
+  // Also sync .well-known
+  const wellKnownSrc = path.join('public', '.well-known');
+  const wellKnownDest = path.join(buildDir, '.well-known');
+  if (fs.existsSync(wellKnownSrc)) {
+    fs.mkdirSync(wellKnownDest, { recursive: true });
+    for (const f of fs.readdirSync(wellKnownSrc)) {
+      fs.copyFileSync(path.join(wellKnownSrc, f), path.join(wellKnownDest, f));
+    }
+  }
+
+  console.log('[post_build] Synced public manifests, ARD, icons, and robots.txt to build directory.');
 }
 
 syncRscPayloads('build');
