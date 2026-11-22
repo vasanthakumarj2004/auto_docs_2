@@ -2,10 +2,11 @@ import type { ReactNode } from 'react';
 import { ArrowDownLeft, ArrowLeftRight, ArrowUpRight, Check, CheckCheck, Clock3, FileCheck2, FileText, GitBranch, Landmark, Layers3, LockKeyhole, ScanLine, ShieldCheck, Sparkles, TrendingUp } from 'lucide-react';
 import s from './CapabilityHeroPreview.module.css';
 
-export type PreviewCapability = 'invoice-automation' | 'banking-reconciliation' | 'docsynecx-intelligence' | 'accounts-payable';
+export type PreviewCapability = 'invoice-automation' | 'invoice-processing' | 'banking-reconciliation' | 'docsynecx-intelligence' | 'accounts-payable';
 
-const titles = {
+const titles: Record<PreviewCapability, string> = {
   'invoice-automation': 'Invoice review',
+  'invoice-processing': 'Invoice review',
   'banking-reconciliation': 'Bank reconciliation',
   'docsynecx-intelligence': 'Business intelligence',
   'accounts-payable': 'Payables workspace',
@@ -100,7 +101,7 @@ export function CapabilityHeroPreview({ page }: { page: PreviewCapability }) {
     <div className={s.preview} role="group" aria-label={`${titles[page]}: product preview with sample data`}>
       <div className={s.toolbar}><span className={s.appIcon}><Layers3 size={15} aria-hidden="true" /></span><strong>Finance Desk</strong><span className={s.toolbarSlash}>/</span><span>{titles[page]}</span><span className={s.sampleBadge}>{page === 'accounts-payable' ? 'Upcoming' : 'Sample data'}</span></div>
       <div className={s.body}>
-        {page === 'invoice-automation' && <InvoicePreview />}
+        {(page === 'invoice-automation' || page === 'invoice-processing') && <InvoicePreview />}
         {page === 'banking-reconciliation' && <BankingPreview />}
         {page === 'docsynecx-intelligence' && <IntelligencePreview />}
         {page === 'accounts-payable' && <PayablePreview />}

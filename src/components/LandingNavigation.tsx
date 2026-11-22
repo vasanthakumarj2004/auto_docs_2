@@ -50,9 +50,9 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
     featureLinks: [
       {
         sno: '01',
-        title: 'Invoice Automation',
+        title: 'Invoice Processing',
         description: 'Supplier invoices into TallyPrime, without typing.',
-        href: '/finance-desk/invoice-automation/',
+        href: '/finance-desk/invoice-processing/',
       },
       {
         sno: '02',

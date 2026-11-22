@@ -24,10 +24,10 @@
       "type": "documentation"
     },
     {
-      "id": "invoice-automation",
-      "name": "Invoice Automation",
+      "id": "invoice-processing",
+      "name": "Invoice Processing",
       "description": "Automated invoice reading, line-item tax extraction, and posting to Tally",
-      "url": "https://docsynecx.com/finance-desk/invoice-automation/",
+      "url": "https://docsynecx.com/finance-desk/invoice-processing/",
       "type": "documentation"
     },
     {

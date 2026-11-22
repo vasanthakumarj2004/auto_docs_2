@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation';
+import { StaticRedirect } from '@/src/components/StaticRedirect';
 
-export default function IntegrationsRoute() {
-  redirect('/logistics-desk/integrations/');
+export default function IntegrationsRedirect() {
+  return <StaticRedirect to="/logistics-desk/integrations/" />;
 }

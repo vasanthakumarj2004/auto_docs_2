@@ -1,4 +1,4 @@
-import { redirect } from 'next/navigation';
+import { StaticRedirect } from '@/src/components/StaticRedirect';
 import { getAllBlogs } from '@/src/content/blogs';
 
 export function generateStaticParams() {
@@ -14,5 +14,5 @@ export default async function BlogSlugRedirect({
   params: Promise<{ slug: string }>;
 }) {
   const resolved = await params;
-  redirect(`/blogs/${resolved.slug}/`);
+  return <StaticRedirect to={`/blogs/${resolved.slug}/`} />;
 }

@@ -4,10 +4,10 @@ export const interestHref = '/finance-desk/accounts-payable/#register-interest';
 
 export const financeCapabilities = [
   {
-    slug: 'invoice-automation',
+    slug: 'invoice-processing',
     tag: '01 · Invoices',
     badge: 'Most teams start here',
-    title: 'Invoice Automation',
+    title: 'Invoice Processing',
     label: 'Invoices',
     description: 'Supplier invoices into TallyPrime, without the typing.',
     bullets: [
@@ -17,7 +17,7 @@ export const financeCapabilities = [
       'Your team reviews and approves',
       'Posts to your TallyPrime company',
     ],
-    link: 'See Invoice Automation',
+    link: 'See Invoice Processing',
   },
   {
     slug: 'banking-reconciliation',
@@ -84,7 +84,7 @@ export const financeCapabilities = [
   },
 ] as const;
 
-export type FinanceSlug = typeof financeCapabilities[number]['slug'];
+export type FinanceSlug = typeof financeCapabilities[number]['slug'] | 'invoice-automation';
 export type Feature = readonly [tag: string, title: string, description: string];
 
 /* ── Proof / Key Facts ── */
@@ -92,17 +92,17 @@ export const financeStats = [
   {
     metric: 'Minutes',
     copy: 'from connecting Tally to your first approved invoice',
-    href: '/finance-desk/invoice-automation/',
+    href: '/finance-desk/invoice-processing/',
   },
   {
     metric: 'GSTIN · HSN · tax',
     copy: 'captured from PDFs, scans and email',
-    href: '/finance-desk/invoice-automation/',
+    href: '/finance-desk/invoice-processing/',
   },
   {
     metric: 'Your approval',
     copy: 'before anything posts to TallyPrime',
-    href: '/finance-desk/invoice-automation/',
+    href: '/finance-desk/invoice-processing/',
   },
 ] as const;
 
@@ -460,8 +460,25 @@ export const financePageCopy = {
     ctaPrimary: 'Book a demo',
     ctaSecondary: 'See all five tools',
   },
+  'invoice-processing': {
+    eyebrow: 'Invoice Processing · Most teams start here',
+    headline: 'Stop typing supplier invoices',
+    accent: 'into Tally.',
+    description:
+      'Upload the invoice in the portal, email it, or send it on WhatsApp. Docsynecx reads the supplier, GSTIN, HSN, line items and tax, checks the GST and looks for duplicates. Your team reviews it and posts it to TallyPrime.',
+    primary: 'Book a demo',
+    microline: 'Nothing is posted to TallyPrime until your team approves it.',
+    visualTitle: 'INVOICE INBOX',
+    visualLabel: 'FINANCE DESK',
+    tiles: [['Intake', 'Portal, email & WhatsApp'], ['TallyPrime', 'Purchase vouchers']],
+    chip: 'Read · Validate · Post',
+    ctaEyebrow: 'See it on your own invoices',
+    ctaTitle: "Bring ten invoices. We'll show you them in Tally.",
+    ctaCopy:
+      "Send us a few real supplier invoices, the messier the better. In the demo you'll see them read, checked and ready to approve into TallyPrime.",
+  },
   'invoice-automation': {
-    eyebrow: 'Invoice Automation · Most teams start here',
+    eyebrow: 'Invoice Processing · Most teams start here',
     headline: 'Stop typing supplier invoices',
     accent: 'into Tally.',
     description:

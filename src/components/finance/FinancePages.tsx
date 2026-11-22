@@ -108,6 +108,7 @@ function Hero({ page }: { page: PageKey }) {
   const isOverview = page === 'overview';
   const restorePreviousVisual =
     page === 'invoice-automation' ||
+    page === 'invoice-processing' ||
     page === 'banking-reconciliation' ||
     page === 'accounts-payable' ||
     page === 'docsynecx-intelligence';
@@ -235,7 +236,7 @@ function Banking() {
     <BankingWhyItMatters />
     <Section id="capabilities"><Heading eyebrow="BANK STATEMENT & RECONCILIATION CAPABILITIES" title="From bank statement to TallyPrime bookkeeping and reconciliation." /><Features items={bankingFeatures} /><p className={base.bottomDescription}>Docsynecx processes bank statement information, supports bookkeeping and reconciliation, and posts the resulting entries into TallyPrime. Exact formats and workflow steps depend on the implementation configuration.</p></Section>
     <BankingWorkflowOverview />
-    <Related slugs={['invoice-automation', 'payment-reminders', 'docsynecx-intelligence']} />
+    <Related slugs={['invoice-processing', 'payment-reminders', 'docsynecx-intelligence']} />
   </>;
 }
 
@@ -245,7 +246,7 @@ function Reminders() {
       'View customer invoices and payment due dates', 'Identify pending and overdue payments', 'Send or schedule reminders using supported channels', 'Maintain visibility into follow-up activity', 'Support a more consistent collections process',
     ]} /></div></Split></Section>
     <Section><Heading eyebrow="A SIMPLE PROCESS" title="From due date to customer follow-up." /><Process items={['Track invoice due dates', 'Identify pending payments', 'Send reminders', 'Review follow-ups']} /><p className={base.bottomDescription}>Reminder rules, communication channels and follow-up status can be configured according to the available product functionality and your business needs.</p></Section>
-    <Related slugs={['invoice-automation', 'banking-reconciliation', 'docsynecx-intelligence']} />
+    <Related slugs={['invoice-processing', 'banking-reconciliation', 'docsynecx-intelligence']} />
   </>;
 }
 
@@ -267,7 +268,7 @@ function Intelligence() {
 }
 
 export function FinancePage({ page = 'overview' }: { page?: PageKey }) {
-  if (page === 'invoice-automation') {
+  if (page === 'invoice-automation' || page === 'invoice-processing') {
     return (
       <div className={`${base.page} ${s.page}`}>
         <a href="#main-content" className={base.skipLink}>Skip to content</a>

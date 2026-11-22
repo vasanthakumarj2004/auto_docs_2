@@ -6,7 +6,7 @@
 
 ### Finance Desk (https://docsynecx.com/finance-desk/)
 The Docsynecx Finance Desk automates end-to-end accounting document pipelines:
-- **Invoice Automation (https://docsynecx.com/finance-desk/invoice-automation/)**: Scans single and multi-page supplier invoices in PDF, PNG, JPEG formats. Automatically parses GSTIN, vendor names, line items, quantities, HSN/SAC codes, CGST/SGST/IGST breakdown, and totals. Matches against Purchase Orders and pushes validated voucher entries directly into TallyPrime and Zoho Books.
+- **Invoice Processing (https://docsynecx.com/finance-desk/invoice-processing/)**: Scans single and multi-page supplier invoices in PDF, PNG, JPEG formats. Automatically parses GSTIN, vendor names, line items, quantities, HSN/SAC codes, CGST/SGST/IGST breakdown, and totals. Matches against Purchase Orders and pushes validated voucher entries directly into TallyPrime and Zoho Books.
 - **Banking Reconciliation (https://docsynecx.com/finance-desk/banking-reconciliation/)**: Ingests bank statements from multiple corporate accounts in Excel or PDF formats. Reconciles debit/credit entries with ledger transactions, identifying unmatched dues, bank charges, and duplicate charges.
 - **Payment Reminders (https://docsynecx.com/finance-desk/payment-reminders/)**: Analyzes accounts receivable aging and automates courteous, auditable email/SMS payment notifications to outstanding customers.
 - **Accounts Payable (https://docsynecx.com/finance-desk/accounts-payable/)**: Centralizes supplier bill intake, automated three-way matching (PO vs. Invoice vs. GRN), approval workflows, and payment dispatch.

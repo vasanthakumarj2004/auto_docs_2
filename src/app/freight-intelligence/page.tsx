@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation';
+import { StaticRedirect } from '@/src/components/StaticRedirect';
 
-export default function DirectFreightIntelligencePage() {
-  redirect('/logistics-desk/freight-intelligence/');
+export default function FreightIntelligenceRedirect() {
+  return <StaticRedirect to="/logistics-desk/freight-intelligence/" />;
 }

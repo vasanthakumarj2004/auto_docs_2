@@ -156,8 +156,8 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
             <h3 className={styles.colHeader}>Finance</h3>
             <ul className={styles.linkList}>
               <li>
-                <Link href="/finance-desk/invoice-automation/" className={styles.footerLink}>
-                  Invoice Automation
+                <Link href="/finance-desk/invoice-processing/" className={styles.footerLink}>
+                  Invoice Processing
                 </Link>
               </li>
               <li>

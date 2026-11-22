@@ -1,0 +1,78 @@
+# =======================================================================
+# High-Performance Caching & Compression (.htaccess)
+# Eliminates Lighthouse "Use efficient cache lifetimes"
+# =======================================================================
+
+# 1. Enable Compression (Gzip / Deflate)
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript application/json
+  AddOutputFilterByType DEFLATE image/svg+xml application/xml application/xhtml+xml
+  AddOutputFilterByType DEFLATE font/ttf font/otf font/woff font/woff2 application/font-woff
+</IfModule>
+
+# 2. Leverage Browser Caching (1 Year for Static Assets, Revalidate for HTML)
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Default expiration
+  ExpiresDefault "access plus 1 month"
+
+  # HTML documents (always fresh)
+  ExpiresByType text/html "access plus 0 seconds"
+
+  # CSS, JavaScript
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType application/x-javascript "access plus 1 year"
+
+  # Images
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+
+  # Media (Videos & Audio)
+  ExpiresByType video/mp4 "access plus 1 year"
+  ExpiresByType video/webm "access plus 1 year"
+
+  # Web Fonts
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType font/woff "access plus 1 year"
+  ExpiresByType font/ttf "access plus 1 year"
+  ExpiresByType font/otf "access plus 1 year"
+  ExpiresByType application/font-woff "access plus 1 year"
+  ExpiresByType application/font-woff2 "access plus 1 year"
+</IfModule>
+
+# 3. Explicit Cache-Control Headers
+<IfModule mod_headers.c>
+  # 1-year immutable cache for versioned/static assets
+  <FilesMatch "\.(css|js|webp|png|jpg|jpeg|gif|ico|svg|mp4|webm|woff|woff2|ttf|otf)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  # HTML must revalidate
+  <FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+
+  # Security headers
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# 4. Clean URL Routing for Static Export
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Handle trailing slash and directory index
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME}/index.html -f
+  RewriteRule ^(.*)/?$ $1/index.html [L]
+</IfModule>

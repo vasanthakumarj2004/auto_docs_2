@@ -157,8 +157,9 @@ export function LandingPage() {
                         className={styles.deskImage}
                         loading="lazy"
                         decoding="async"
-                        width={818}
-                        height={682}
+                        width={750}
+                        height={480}
+                        sizes="(max-width: 768px) 100vw, 750px"
                       />
                       <div className={styles.deskScrim} />
                     </div>

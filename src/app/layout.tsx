@@ -137,9 +137,24 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Allura&family=Alex+Brush&display=swap"
         />
         <link
+          id="gfonts-css"
           href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Allura&family=Alex+Brush&display=swap"
           rel="stylesheet"
+          media="print"
         />
+        <Script
+          id="gfonts-async"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(){var f=document.getElementById('gfonts-css');if(f){f.media='all';}})();`,
+          }}
+        />
+        <noscript>
+          <link
+            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Allura&family=Alex+Brush&display=swap"
+            rel="stylesheet"
+          />
+        </noscript>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation';
+import { StaticRedirect } from '@/src/components/StaticRedirect';
 
-export default function DirectShipmentTrackingPage() {
-  redirect('/logistics-desk/shipment-tracking/');
+export default function ShipmentTrackingRedirect() {
+  return <StaticRedirect to="/logistics-desk/shipment-tracking/" />;
 }

@@ -62,15 +62,15 @@ export const SEO_PAGES: Record<string, SeoPageItem> = {
     secondaryKeywords: "TallyPrime automation pricing, freight forwarding software pricing, document automation plans",
     keywords: ["invoice automation pricing", "TallyPrime automation pricing", "freight forwarding software pricing", "document automation plans"],
   },
-  "/finance-desk/invoice-automation/": {
+  "/finance-desk/invoice-processing/": {
     pageGroup: "Finance Module",
-    pageName: "Invoice Automation",
-    url: "/finance-desk/invoice-automation/",
-    seoTitle: "TallyPrime Invoice Automation Software | GST Invoice Processing | Docsynecx",
+    pageName: "Invoice Processing",
+    url: "/finance-desk/invoice-processing/",
+    seoTitle: "TallyPrime Invoice Processing Software | GST Invoice Processing | Docsynecx",
     metaDescription: "Automate supplier invoice processing for TallyPrime. Extract GSTIN, HSN, line items and tax from PDFs, scans and email, flag duplicates and approve entries before posting.",
-    primaryKeyword: "TallyPrime invoice automation",
+    primaryKeyword: "TallyPrime invoice processing",
     secondaryKeywords: "GST invoice processing, supplier invoice data extraction, purchase invoice automation, invoice OCR, accounts payable automation",
-    keywords: ["TallyPrime invoice automation", "GST invoice processing", "supplier invoice data extraction", "purchase invoice automation", "invoice OCR", "accounts payable automation"],
+    keywords: ["TallyPrime invoice processing", "GST invoice processing", "supplier invoice data extraction", "purchase invoice automation", "invoice OCR", "accounts payable automation"],
   },
   "/finance-desk/banking-reconciliation/": {
     pageGroup: "Finance Module",

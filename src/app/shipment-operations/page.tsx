@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation';
+import { StaticRedirect } from '@/src/components/StaticRedirect';
 
-export default function DirectShipmentOperationsPage() {
-  redirect('/logistics-desk/shipment-operations/');
+export default function ShipmentOperationsRedirect() {
+  return <StaticRedirect to="/logistics-desk/shipment-operations/" />;
 }

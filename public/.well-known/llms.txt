@@ -14,7 +14,7 @@ Docsynecx eliminates manual data entry by extracting, validating, reconciling, a
 
 ## Finance Desk
 - [Finance Desk Overview](https://docsynecx.com/finance-desk/): Autonomous document intake, OCR verification, and 2-way sync with TallyPrime and Zoho Books.
-- [Invoice Automation](https://docsynecx.com/finance-desk/invoice-automation/): Read line items, calculate taxes, match POs, and post vouchers without typing.
+- [Invoice Processing](https://docsynecx.com/finance-desk/invoice-processing/): Read line items, calculate taxes, match POs, and post vouchers without typing.
 - [Banking Reconciliation](https://docsynecx.com/finance-desk/banking-reconciliation/): Automated multi-bank statement parsing and ledger match reconciliation.
 - [Payment Reminders](https://docsynecx.com/finance-desk/payment-reminders/): Intelligent debtor aging analysis and automated payment reminders.
 - [Accounts Payable](https://docsynecx.com/finance-desk/accounts-payable/): Streamline vendor bills, approvals, audit trails, and payment scheduling.

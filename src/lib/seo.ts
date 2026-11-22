@@ -6,14 +6,14 @@ export { BASE_URL, SEO_PAGES } from './seoData';
 
 // ─── Shared defaults ────────────────────────────────────────────────────────
 
-const SITE_NAME       = 'Docsynecx';
-const PUBLISHER       = 'SynecX AI Labs Private Limited';
+const SITE_NAME = 'Docsynecx';
+const PUBLISHER = 'SynecX AI Labs Private Limited';
 // Primary 1376x768 social share card for rich link previews (WhatsApp, LinkedIn, Twitter, Facebook, Slack)
-const OG_IMAGE_CARD   = '/navbar-social-card.jpg';
+const OG_IMAGE_CARD = '/navbar-social-card.jpg';
 const OG_IMAGE_CARD_W = 1376;
 const OG_IMAGE_CARD_H = 768;
 // Brand logo fallback
-const OG_LOGO_SVG     = '/Docsynecx-Logo.svg';
+const OG_LOGO_SVG = '/Docsynecx-Logo.svg';
 
 /**
  * Normalizes any route, slug, or absolute URL into a consistent, absolute canonical URL.
@@ -73,10 +73,10 @@ const ALIAS_MAP: Record<string, string> = {
   'finance-overview': '/finance-desk/',
 
   // Finance modules
-  'invoice-automation': '/finance-desk/invoice-automation/',
-  '/invoice-automation': '/finance-desk/invoice-automation/',
-  '/finance-desk/invoice-automation': '/finance-desk/invoice-automation/',
-  '/finance-desk/invoice-automation/': '/finance-desk/invoice-automation/',
+  'invoice-processing': '/finance-desk/invoice-processing/',
+  '/invoice-processing': '/finance-desk/invoice-processing/',
+  '/finance-desk/invoice-processing': '/finance-desk/invoice-processing/',
+  '/finance-desk/invoice-processing/': '/finance-desk/invoice-processing/',
 
   'banking-reconciliation': '/finance-desk/banking-reconciliation/',
   '/banking-reconciliation': '/finance-desk/banking-reconciliation/',
@@ -345,23 +345,23 @@ export function constructMetadata(
   // 4. Fallback to homepage BASE_URL/
   const canonicalUrl = toCanonicalUrl(
     (overrides?.alternates?.canonical as string | undefined) ??
-      seo?.url ??
-      (identifierOrPath.startsWith('/') ? identifierOrPath : '/')
+    seo?.url ??
+    (identifierOrPath.startsWith('/') ? identifierOrPath : '/')
   );
 
-  const seoTitle       = seo?.seoTitle       ?? SEO_PAGES['/'].seoTitle;
+  const seoTitle = seo?.seoTitle ?? SEO_PAGES['/'].seoTitle;
   const seoDescription = seo?.metaDescription ?? SEO_PAGES['/'].metaDescription;
-  const seoKeywords    = seo?.keywords        ?? SEO_PAGES['/'].keywords;
+  const seoKeywords = seo?.keywords ?? SEO_PAGES['/'].keywords;
 
   const baseMeta: Metadata = {
     metadataBase: new URL(BASE_URL),
 
-    title:       { absolute: seoTitle },
+    title: { absolute: seoTitle },
     description: seoDescription,
-    keywords:    seoKeywords,
+    keywords: seoKeywords,
 
-    authors:   [{ name: SITE_NAME, url: BASE_URL }],
-    creator:   SITE_NAME,
+    authors: [{ name: SITE_NAME, url: BASE_URL }],
+    creator: SITE_NAME,
     publisher: PUBLISHER,
 
     alternates: {
@@ -369,38 +369,38 @@ export function constructMetadata(
     },
 
     openGraph: {
-      title:       seoTitle,
+      title: seoTitle,
       description: seoDescription,
-      url:         canonicalUrl,
-      siteName:    SITE_NAME,
-      locale:      'en_US',
-      type:        'website',
+      url: canonicalUrl,
+      siteName: SITE_NAME,
+      locale: 'en_US',
+      type: 'website',
       images: [
         {
-          url:    `${BASE_URL}${OG_IMAGE_CARD}`,
-          width:  OG_IMAGE_CARD_W,
+          url: `${BASE_URL}${OG_IMAGE_CARD}`,
+          width: OG_IMAGE_CARD_W,
           height: OG_IMAGE_CARD_H,
-          alt:    seoTitle,
+          alt: seoTitle,
         },
       ],
     },
 
     twitter: {
-      card:        'summary_large_image',
-      title:       seoTitle,
+      card: 'summary_large_image',
+      title: seoTitle,
       description: seoDescription,
-      images:      [`${BASE_URL}${OG_IMAGE_CARD}`],
+      images: [`${BASE_URL}${OG_IMAGE_CARD}`],
     },
 
     robots: {
-      index:  true,
+      index: true,
       follow: true,
       googleBot: {
-        index:                true,
-        follow:               true,
-        'max-video-preview':  -1,
-        'max-image-preview':  'large',
-        'max-snippet':        -1,
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
       },
     },
   };
@@ -411,9 +411,9 @@ export function constructMetadata(
   return {
     ...baseMeta,
     ...overrides,
-    title:       overrides.title       ?? baseMeta.title,
+    title: overrides.title ?? baseMeta.title,
     description: overrides.description ?? baseMeta.description,
-    keywords:    overrides.keywords    ?? baseMeta.keywords,
+    keywords: overrides.keywords ?? baseMeta.keywords,
     alternates: {
       ...baseMeta.alternates,
       ...overrides.alternates,
@@ -454,10 +454,10 @@ export const getPageMetadata = constructMetadata;
 export function organizationSchema() {
   return {
     '@context': 'https://schema.org',
-    '@type':    'Organization',
-    name:       SITE_NAME,
-    url:        BASE_URL,
-    logo:       `${BASE_URL}${OG_LOGO_SVG}`,
+    '@type': 'Organization',
+    name: SITE_NAME,
+    url: BASE_URL,
+    logo: `${BASE_URL}${OG_LOGO_SVG}`,
   };
 }
 
@@ -473,10 +473,10 @@ export function organizationSchema() {
 export function faqSchema(faqs: { question: string; answer: string }[]) {
   return {
     '@context': 'https://schema.org',
-    '@type':    'FAQPage',
+    '@type': 'FAQPage',
     mainEntity: faqs.map(({ question, answer }) => ({
-      '@type':        'Question',
-      name:           question,
+      '@type': 'Question',
+      name: question,
       acceptedAnswer: { '@type': 'Answer', text: answer },
     })),
   };

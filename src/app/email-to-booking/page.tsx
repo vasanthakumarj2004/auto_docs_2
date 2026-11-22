@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation';
+import { StaticRedirect } from '@/src/components/StaticRedirect';
 
-export default function DirectEmailToBookingPage() {
-  redirect('/logistics-desk/RFQ-to-booking/');
+export default function EmailToBookingRedirect() {
+  return <StaticRedirect to="/logistics-desk/RFQ-to-booking/" />;
 }

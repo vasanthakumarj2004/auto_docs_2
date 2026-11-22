@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation';
+import { StaticRedirect } from '@/src/components/StaticRedirect';
 
-export default function LegacyFinancePage() {
-  redirect('/finance-desk/');
+export default function FinanceRedirect() {
+  return <StaticRedirect to="/finance-desk/" />;
 }

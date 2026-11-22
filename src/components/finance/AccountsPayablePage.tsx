@@ -615,12 +615,12 @@ export function AccountsPayablePage() {
           <div className={s.moreGrid}>
             <article className={s.moreCard}>
               <span className={s.moreTag}>Invoices</span>
-              <h3>Invoice Automation</h3>
+              <h3>Invoice Processing</h3>
               <p className={s.moreLead}>
                 Supplier invoices read, checked for GST and duplicates, and approved into Tally.
               </p>
-              <Link href="/finance-desk/invoice-automation/" className={s.moreLink}>
-                <span>See Invoice Automation</span>
+              <Link href="/finance-desk/invoice-processing/" className={s.moreLink}>
+                <span>See Invoice Processing</span>
                 <ArrowRight size={15} aria-hidden="true" />
               </Link>
             </article>
