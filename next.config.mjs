@@ -18,8 +18,14 @@ const nextConfig = {
     NEXT_PUBLIC_GA_DEBUG_MODE:
       process.env.NEXT_PUBLIC_GA_DEBUG_MODE || 'true',
   },
-  allowedDevOrigins: ['100.97.139.98','192.168.206.1', '192.168.0.100/'],
-  async headers() {
+  allowedDevOrigins: ['100.97.139.98', '192.168.206.1', '192.168.0.100/'],
+};
+
+// Next.js warns when "headers" or "redirects" are defined alongside "output: 'export'".
+// In static export mode, headers and redirects are handled via public/_redirects, public/.htaccess, and public/_headers.
+// Only attach them if running in server mode (e.g. during standard dev or dynamic hosting).
+if (nextConfig.output !== 'export') {
+  nextConfig.headers = async function headers() {
     return [
       {
         source: '/:path*',
@@ -80,8 +86,9 @@ const nextConfig = {
         ],
       },
     ];
-  },
-  async redirects() {
+  };
+
+  nextConfig.redirects = async function redirects() {
     return [
       {
         source: '/logistics',
@@ -168,8 +175,18 @@ const nextConfig = {
         destination: '/finance-desk/ca-firms/',
         permanent: true,
       },
+      {
+        source: '/invoice-processing',
+        destination: '/finance-desk/invoice-processing/',
+        permanent: true,
+      },
+      {
+        source: '/invoice-automation',
+        destination: '/finance-desk/invoice-processing/',
+        permanent: true,
+      },
     ];
-  },
-};
+  };
+}
 
 export default nextConfig;

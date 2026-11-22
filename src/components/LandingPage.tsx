@@ -63,7 +63,7 @@ const stories: CustomerStoryOutcome[] = [
     name: "Freight Forwarders",
     metric: "60+ min → 15 min",
     summary: "Email to CargoWise",
-    copy: "Shipment intake that once took about an hour per shipment now takes just two minutes.",
+    copy: "Shipment intake that once took about an hour per shipment now takes less than fifteen minutes.",
     href: "/#customers",
   },
   {

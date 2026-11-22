@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState, type KeyboardEvent } from 'react';
+import { JSX, useRef, useState, type KeyboardEvent } from 'react';
 import {
   AlertCircle,
   Archive,
@@ -723,7 +723,7 @@ function CADocumentDumpPreview() {
           {[
             { client: 'Apex Engineering Pvt Ltd', docs: '48 bills ingested via client email box', status: 'Processed' },
             { client: 'Kovai Textiles Hub', docs: '32 bills uploaded via secure drop link', status: 'Processed' },
-            { client: 'Rajadurai E-Vehicles', docs: '18 bills scanned & auto-extracted', status: 'Processed' },
+            { client: 'EV Vehicles', docs: '18 bills scanned & auto-extracted', status: 'Processed' },
           ].map(({ client, docs, status }, i) => (
             <div className={s.documentRow} key={client} style={{ animationDelay: `${i * 100}ms` }}>
               <span className={s.documentIcon}><FileText size={20} /></span>

@@ -113,7 +113,7 @@ export function AboutPage() {
                   relationships that help a business grow.
                 </p>
                 <p>
-                  We believed there was a better way. Our journey began in 2024
+                  We believed there was a better way. Our journey began in 2025
                   with a shared ambition to make artificial intelligence
                   practical and useful in everyday business operations.
                 </p>

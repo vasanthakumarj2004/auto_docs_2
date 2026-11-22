@@ -70,7 +70,7 @@ export const SOLUTIONS_DATA: SolutionSubtopic[] = [
       {
         tag: 'Line-item reading',
         title: 'Every part on the bill',
-        desc: 'Part numbers, quantities, rates and tax read from multi-page PDFs and scans, so nobody retypes a 60-line spares bill.',
+        desc: 'Part numbers, quantities, rates, and taxes are extracted from multi-page PDFs and scans, so nobody has to manually retype a spares bill containing 100+ line items.',
       },
       {
         tag: 'Checked before posting',
@@ -82,7 +82,7 @@ export const SOLUTIONS_DATA: SolutionSubtopic[] = [
       {
         title: 'Every part on the bill',
         description:
-          'Part numbers, quantities, rates and tax read from multi-page PDFs and scans, so nobody retypes a 60-line spares bill.',
+          'Part numbers, quantities, rates, and taxes are extracted from multi-page PDFs and scans, so nobody has to manually retype a spares bill containing 100+ line items.',
         tag: 'Line-item reading',
       },
       {
@@ -353,12 +353,12 @@ export const SOLUTIONS_DATA: SolutionSubtopic[] = [
       metric: '60+ min → 15 min',
       metricLabel: 'per shipment intake',
       quote:
-        'An email-to-job workflow that took around two hours per shipment now takes about two minutes.',
+        'An email-to-job workflow that once took around an hour per shipment now takes less than fifteen minutes.',
       author: 'A logistics company',
     },
     sampleUseCase: {
       quote:
-        'An email-to-job workflow that took around two hours per shipment now takes about two minutes.',
+        'An email-to-job workflow that once took around an hour per shipment now takes less than fifteen minutes.',
       author: 'A logistics company',
       company: 'Freight & Logistics Operations',
     },

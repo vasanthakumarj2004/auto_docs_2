@@ -21,7 +21,7 @@ const REVIEWS: CustomerReview[] = [
   {
     id: 'rajadurai-ev',
     industry: 'Automotive & EV',
-    company: 'Rajadurai E-Vehicles',
+    company: 'EV Vehicles',
     copy: 'Manual document workload reduced from days to hours through an AI-assisted workflow.',
   },
   {
