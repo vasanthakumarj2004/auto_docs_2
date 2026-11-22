@@ -171,3 +171,14 @@ function syncPublicAssets(buildDir = 'build') {
 
 syncRscPayloads('build');
 syncPublicAssets('build');
+
+// Clean up dev lock/artifacts if any were left in build
+const devDir = path.join('build', 'dev');
+if (fs.existsSync(devDir)) {
+  try {
+    fs.rmSync(devDir, { recursive: true, force: true });
+    console.log('[post_build] Removed build/dev folder to prevent file lock issues.');
+  } catch (e) {
+    // ignore
+  }
+}

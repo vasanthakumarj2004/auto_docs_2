@@ -2,7 +2,7 @@
 const nextConfig = {
   turbopack: {},
   output: 'export',
-  distDir: 'build',
+  distDir: process.env.NODE_ENV === 'development' ? '.next' : 'build',
   trailingSlash: true,
   experimental: {
     cpus: 1,
