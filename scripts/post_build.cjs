@@ -6,6 +6,19 @@ function syncRscPayloads(buildDir = 'build') {
 
   let createdCount = 0;
 
+  function copyIfMissing(src, dest) {
+    if (fs.existsSync(src) && !fs.existsSync(dest)) {
+      try {
+        fs.mkdirSync(path.dirname(dest), { recursive: true });
+        fs.copyFileSync(src, dest);
+        createdCount++;
+      } catch (e) {
+        // ignore
+      }
+    }
+  }
+
+  // 1. Walk build directory and find all __PAGE__.txt and index.txt files
   function walk(currentDir) {
     const entries = fs.readdirSync(currentDir, { withFileTypes: true });
 
@@ -14,43 +27,47 @@ function syncRscPayloads(buildDir = 'build') {
 
       if (entry.isDirectory()) {
         walk(fullPath);
-      } else if (entry.name === '__PAGE__.txt') {
-        // Find which route folder this belongs to
-        // e.g. build/finance-desk/__next.finance-desk/__PAGE__.txt -> target folder: build/finance-desk
-        // e.g. build/events/iics-2026/__next.events/iics-2026/__PAGE__.txt -> target folder: build/events/iics-2026
+      } else if (entry.name === '__PAGE__.txt' || entry.name === 'index.txt') {
         const parts = path.relative(buildDir, fullPath).split(path.sep);
         
-        // Find the index where __next. starts
+        // Find if this is inside a __next.* folder
         const nextIdx = parts.findIndex(p => p.startsWith('__next.'));
+        
         if (nextIdx > 0) {
           const routeDir = path.join(buildDir, ...parts.slice(0, nextIdx));
-          const subParts = parts.slice(nextIdx, parts.length - 1); // e.g. ['__next.events', 'iics-2026'] or ['__next.finance-desk']
+          const subParts = parts.slice(nextIdx, parts.length - 1);
           
-          // Variation 1: joining with dot e.g. __next.events.iics-2026__PAGE__.txt
-          const dotName = subParts[0] + (subParts.length > 1 ? '.' + subParts.slice(1).join('.') : '') + '__PAGE__.txt';
-          const dotPath = path.join(routeDir, dotName);
-          if (!fs.existsSync(dotPath)) {
-            fs.copyFileSync(fullPath, dotPath);
-            createdCount++;
+          // Folder segment e.g. 'finance-desk', 'solutions', 'iics-2026'
+          const leafFolder = parts[nextIdx - 1];
+          // Parent segments joined e.g. 'events.iics-2026'
+          const routeParts = parts.slice(0, nextIdx);
+          const routeDot = routeParts.join('.');
+
+          // All filename patterns requested by Next.js client prefetch router:
+          const targetFilenames = new Set([
+            // Standard: __next.<route>.__PAGE__.txt
+            `__next.${routeDot}.__PAGE__.txt`,
+            `__next.${routeDot}._PAGE__.txt`,
+            `__next.${routeDot}__PAGE__.txt`,
+            // Leaf-only: __next.<leaf>.__PAGE__.txt
+            `__next.${leafFolder}.__PAGE__.txt`,
+            `__next.${leafFolder}._PAGE__.txt`,
+            `__next.${leafFolder}__PAGE__.txt`,
+            // subParts raw
+            `${subParts[0]}.__PAGE__.txt`,
+            `${subParts[0]}._PAGE__.txt`,
+            `${subParts[0]}__PAGE__.txt`,
+          ]);
+
+          if (subParts.length > 1) {
+            const subJoined = subParts[0] + '.' + subParts.slice(1).join('.');
+            targetFilenames.add(`${subJoined}.__PAGE__.txt`);
+            targetFilenames.add(`${subJoined}._PAGE__.txt`);
+            targetFilenames.add(`${subJoined}__PAGE__.txt`);
           }
 
-          // Variation 2: flat base name e.g. __next.events__PAGE__.txt
-          const baseName = subParts[0] + '__PAGE__.txt';
-          const basePath = path.join(routeDir, baseName);
-          if (!fs.existsSync(basePath)) {
-            fs.copyFileSync(fullPath, basePath);
-            createdCount++;
-          }
-
-          // Variation 3: if dynamic slug e.g. $d$slug replaced with folder name
-          const folderName = parts[nextIdx - 1];
-          if (subParts.some(p => p.includes('$d$'))) {
-            const resolvedName = subParts[0] + '.' + folderName + '__PAGE__.txt';
-            const resolvedPath = path.join(routeDir, resolvedName);
-            if (!fs.existsSync(resolvedPath)) {
-              fs.copyFileSync(fullPath, resolvedPath);
-              createdCount++;
-            }
+          for (const fname of targetFilenames) {
+            copyIfMissing(fullPath, path.join(routeDir, fname));
           }
         }
       }
@@ -58,6 +75,61 @@ function syncRscPayloads(buildDir = 'build') {
   }
 
   walk(buildDir);
+
+  // 2. Secondary pass: ensure EVERY directory with an index.html has prefetch files
+  function ensureRoutePrefetch(currentDir) {
+    const entries = fs.readdirSync(currentDir, { withFileTypes: true });
+    const hasIndexHtml = entries.some(e => e.name === 'index.html');
+    const rel = path.relative(buildDir, currentDir);
+
+    if (hasIndexHtml && rel.length > 0) {
+      const folderName = path.basename(currentDir);
+      const relParts = rel.split(path.sep);
+      const dotPath = relParts.join('.');
+
+      // Look for any existing .txt file in this directory or subdirectories
+      let fallbackRsc = null;
+      if (fs.existsSync(path.join(currentDir, 'index.txt'))) {
+        fallbackRsc = path.join(currentDir, 'index.txt');
+      }
+
+      if (!fallbackRsc) {
+        // Look inside nested __next.*
+        const nextDir = entries.find(e => e.isDirectory() && e.name.startsWith('__next.'));
+        if (nextDir) {
+          const candidate = path.join(currentDir, nextDir.name, '__PAGE__.txt');
+          if (fs.existsSync(candidate)) fallbackRsc = candidate;
+        }
+      }
+
+      if (fallbackRsc) {
+        const variants = [
+          `__next.${dotPath}.__PAGE__.txt`,
+          `__next.${dotPath}._PAGE__.txt`,
+          `__next.${dotPath}__PAGE__.txt`,
+          `__next.${folderName}.__PAGE__.txt`,
+          `__next.${folderName}._PAGE__.txt`,
+          `__next.${folderName}__PAGE__.txt`,
+          `__next._full.txt`,
+          `__next._tree.txt`,
+          `__next._index.txt`
+        ];
+
+        for (const v of variants) {
+          copyIfMissing(fallbackRsc, path.join(currentDir, v));
+        }
+      }
+    }
+
+    for (const e of entries) {
+      if (e.isDirectory() && !e.name.startsWith('__next.')) {
+        ensureRoutePrefetch(path.join(currentDir, e.name));
+      }
+    }
+  }
+
+  ensureRoutePrefetch(buildDir);
+
   console.log(`[post_build] Generated ${createdCount} flat RSC prefetch files to prevent 404s.`);
 }
 
