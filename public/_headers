@@ -23,3 +23,6 @@
 # HTML pages must revalidate
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
+
+/*
+  Content-Security-Policy: script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com

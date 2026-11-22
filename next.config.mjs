@@ -9,16 +9,24 @@ const nextConfig = {
     optimizePackageImports: ['lucide-react', '@phosphor-icons/react'],
   },
   webpack: (config, { isServer }) => {
-    if (!isServer && config.optimization && config.optimization.splitChunks) {
-      config.optimization.splitChunks.cacheGroups = {
-        ...config.optimization.splitChunks.cacheGroups,
-        styles: {
-          name: 'styles',
-          test: /\.(css|scss)$/,
-          chunks: 'all',
-          enforce: true,
-        },
+    if (!isServer) {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        '../build/polyfills/polyfill-module': false,
+        'next/dist/build/polyfills/polyfill-module': false,
       };
+
+      if (config.optimization && config.optimization.splitChunks) {
+        config.optimization.splitChunks.cacheGroups = {
+          ...config.optimization.splitChunks.cacheGroups,
+          styles: {
+            name: 'styles',
+            test: /\.(css|scss)$/,
+            chunks: 'all',
+            enforce: true,
+          },
+        };
+      }
     }
     return config;
   },
