@@ -110,21 +110,21 @@
 }
 
 .btnAccept {
-  background-color: #18cb96;
-  border: 1px solid #18cb96;
+  background-color: #047857;
+  border: 1px solid #047857;
   color: #ffffff;
   font-size: 0.75rem;
   font-weight: 600;
   padding: 0.3rem 0.75rem;
   border-radius: 0.375rem;
   cursor: pointer;
-  box-shadow: 0 1px 2px rgba(24, 203, 150, 0.25);
+  box-shadow: 0 1px 2px rgba(4, 120, 87, 0.25);
   transition: all 0.15s ease;
 }
 
 .btnAccept:hover {
-  background-color: #14b484;
-  border-color: #14b484;
+  background-color: #065f46;
+  border-color: #065f46;
 }
 
 .dismissBtn {

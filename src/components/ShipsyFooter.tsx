@@ -104,7 +104,7 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
 
           {/* Column 2: Platforms */}
           <div className={styles.navCol}>
-            <h4 className={styles.colHeader}>Platforms</h4>
+            <h3 className={styles.colHeader}>Platforms</h3>
             <ul className={styles.linkList}>
               <li>
                 <Link href="/finance-desk/" className={styles.footerLink}>
@@ -121,7 +121,7 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
 
           {/* Column 3: Solutions by Use Case */}
           <div className={styles.navCol}>
-            <h4 className={styles.colHeader}>Solutions by Use Case</h4>
+            <h3 className={styles.colHeader}>Solutions by Use Case</h3>
             <ul className={styles.linkList}>
               <li>
                 <Link href="/solutions#automotive" className={styles.footerLink}>
@@ -153,7 +153,7 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
 
           {/* Column 4: Finance Modules */}
           <div className={styles.navCol}>
-            <h4 className={styles.colHeader}>Finance</h4>
+            <h3 className={styles.colHeader}>Finance</h3>
             <ul className={styles.linkList}>
               <li>
                 <Link href="/finance-desk/invoice-automation/" className={styles.footerLink}>
@@ -185,7 +185,7 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
 
           {/* Column 5: Logistics Modules */}
           <div className={styles.navCol}>
-            <h4 className={styles.colHeader}>Logistics</h4>
+            <h3 className={styles.colHeader}>Logistics</h3>
             <ul className={styles.linkList}>
               <li>
                 <Link href="/logistics-desk/RFQ-to-booking/" className={styles.footerLink}>
@@ -217,7 +217,7 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
 
           {/* Column 6: Resources */}
           <div className={styles.navCol}>
-            <h4 className={styles.colHeader}>Resources</h4>
+            <h3 className={styles.colHeader}>Resources</h3>
             <ul className={styles.linkList}>
               <li>
                 <Link href="/blogs" className={styles.footerLink}>
@@ -244,7 +244,7 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
 
           {/* Column 7: Company */}
           <div className={styles.navCol}>
-            <h4 className={styles.colHeader}>Company</h4>
+            <h3 className={styles.colHeader}>Company</h3>
             <ul className={styles.linkList}>
               <li>
                 <Link href="/privacy-policy" className={styles.footerLink}>
