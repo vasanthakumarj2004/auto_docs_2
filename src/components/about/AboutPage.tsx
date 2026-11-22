@@ -225,7 +225,7 @@ export function AboutPage() {
 
                 <div className={s.founderContent}>
                   <span className={s.roleBadge}>Co-founder</span>
-                  <h3 className={s.founderName}>Boopana</h3>
+                  <h3 className={s.founderName}>Boopana Sriganesh</h3>
                   <p className={s.credential}>
                     B.E. Electronics & Communication · MBA Finance
                   </p>
