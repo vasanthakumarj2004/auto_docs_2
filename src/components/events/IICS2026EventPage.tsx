@@ -140,7 +140,7 @@ export function IICS2026EventPage() {
                         alt="India International Cargo Show 2026"
                         className={s.cargoLogoImg}
                         width={160}
-                        height={48}
+                        height={52}
                       />
                     </div>
                   </div>
