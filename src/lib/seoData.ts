@@ -122,16 +122,6 @@ export const SEO_PAGES: Record<string, SeoPageItem> = {
     secondaryKeywords: "freight quotation automation, AI-powered freight forwarding, carrier rate comparison, email to booking, CargoWise booking automation",
     keywords: ["agentic AI freight RFQ automation", "freight quotation automation", "AI-powered freight forwarding", "carrier rate comparison", "email to booking", "CargoWise booking automation"],
   },
-  "/logistics-desk/RFQ-to-booking/": {
-    pageGroup: "Logistics Module",
-    pageName: "RFQ-to-Booking",
-    url: "/logistics-desk/rfq-to-booking/",
-    seoTitle: "Agentic AI for Freight RFQ & Booking Automation | Docsynecx",
-    metaDescription: "Use Agentic AI to manage freight enquiries, gather carrier rates, compare quotations, calculate margins and prepare bookings. Keep approvals and CargoWise handoffs under your team's control.",
-    primaryKeyword: "agentic AI freight RFQ automation",
-    secondaryKeywords: "freight quotation automation, AI-powered freight forwarding, carrier rate comparison, email to booking, CargoWise booking automation",
-    keywords: ["agentic AI freight RFQ automation", "freight quotation automation", "AI-powered freight forwarding", "carrier rate comparison", "email to booking", "CargoWise booking automation"],
-  },
   "/logistics-desk/email-to-booking/": {
     pageGroup: "Logistics Module",
     pageName: "RFQ-to-Booking",
