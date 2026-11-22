@@ -44,6 +44,20 @@
 /ca-firms                          /finance-desk/ca-firms/            301
 /ca-firms/                         /finance-desk/ca-firms/            301
 
+/finance-desk/integration-tally    /finance-desk/#integration-tally   301
+/finance-desk/integration-tally/   /finance-desk/#integration-tally   301
+/finance-desk/integration-zoho     /finance-desk/#integration-zoho    301
+/finance-desk/integration-zoho/    /finance-desk/#integration-zoho    301
+/finance-desk/integration-erp      /finance-desk/#integration-erp     301
+/finance-desk/integration-erp/     /finance-desk/#integration-erp     301
+
+/integration-tally                 /finance-desk/#integration-tally   301
+/integration-tally/                /finance-desk/#integration-tally   301
+/integration-zoho                  /finance-desk/#integration-zoho    301
+/integration-zoho/                 /finance-desk/#integration-zoho    301
+/integration-erp                   /finance-desk/#integration-erp     301
+/integration-erp/                  /finance-desk/#integration-erp     301
+
 /shipment-operations               /logistics-desk/shipment-operations/ 301
 /shipment-operations/              /logistics-desk/shipment-operations/ 301
 /shipment-tracking                 /logistics-desk/shipment-tracking/   301

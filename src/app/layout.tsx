@@ -136,8 +136,8 @@ export default function RootLayout({
           as="style"
           href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Allura&family=Alex+Brush&display=swap"
         />
-        <link rel="ai-catalog" type="application/json" href="/ai-catalog.json" />
-        <link rel="ard" type="application/json" href="/ard.json" />
+        <link rel="ai-catalog" type="application/json" href="/.well-known/ai-catalog.json" />
+        <link rel="ard" type="application/json" href="/.well-known/ard.json" />
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Documentation" />
         <Script
           id="gfonts-loader"

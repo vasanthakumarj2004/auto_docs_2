@@ -86,6 +86,11 @@
   RewriteRule ^logistics/(email-to-booking|rfq-to-booking|RFQ-to-booking)/?$ /logistics-desk/rfq-to-booking/ [R=301,L,NC]
   RewriteRule ^logistics-desk/(email-to-booking|RFQ-to-booking)/?$ /logistics-desk/rfq-to-booking/ [R=301,L]
 
+  # 301 Redirects: Integration anchor shortcuts (NE flag preserves # from being URL-encoded to %23)
+  RewriteRule ^(finance-desk/)?integration-tally/?$ /finance-desk/#integration-tally [R=301,NE,L]
+  RewriteRule ^(finance-desk/)?integration-zoho/?$ /finance-desk/#integration-zoho [R=301,NE,L]
+  RewriteRule ^(finance-desk/)?integration-erp/?$ /finance-desk/#integration-erp [R=301,NE,L]
+
   # 301 Redirects: Finance aliases
   RewriteRule ^finance-desk/invoice-automation/?$ /finance-desk/invoice-processing/ [R=301,L]
   RewriteRule ^invoice-processing/?$ /finance-desk/invoice-processing/ [R=301,L]
