@@ -15,9 +15,9 @@ import { landingDesks, landingFaqs } from '../content/landing';
 import styles from './LandingPage.module.css';
 
 const DESK_IMAGES: Record<string, string> = {
-  finance: '/images/624dcd31-e7ca-4c2f-b804-e87bb521192e.png',
-  shipment: '/images/e38389f2-4afd-4f87-86dd-6210a3100071.png',
-  logistics: '/images/e38389f2-4afd-4f87-86dd-6210a3100071.png',
+  finance: '/images/624dcd31-e7ca-4c2f-b804-e87bb521192e.webp',
+  shipment: '/images/e38389f2-4afd-4f87-86dd-6210a3100071.webp',
+  logistics: '/images/e38389f2-4afd-4f87-86dd-6210a3100071.webp',
 };
 
 const benefits = [
@@ -147,7 +147,7 @@ export function LandingPage() {
             <SectionHeading id="platform-title" eyebrow="Pick your desk" title={<>Two desks.<br /><span>One way of working.</span></>} />
             <div className={styles.desks}>
               {landingDesks.map((desk, index) => {
-                const imageSrc = DESK_IMAGES[desk.id] || (index === 0 ? '/images/624dcd31-e7ca-4c2f-b804-e87bb521192e.png' : '/images/e38389f2-4afd-4f87-86dd-6210a3100071.png');
+                const imageSrc = DESK_IMAGES[desk.id] || (index === 0 ? '/images/624dcd31-e7ca-4c2f-b804-e87bb521192e.webp' : '/images/e38389f2-4afd-4f87-86dd-6210a3100071.webp');
                 return (
                   <article key={desk.id} id={desk.id} className={styles.desk} data-desk={desk.id} tabIndex={0}>
                     <div className={styles.deskImageWrapper}>
@@ -156,6 +156,9 @@ export function LandingPage() {
                         alt={`${desk.title} background`}
                         className={styles.deskImage}
                         loading="lazy"
+                        decoding="async"
+                        width={818}
+                        height={682}
                       />
                       <div className={styles.deskScrim} />
                     </div>

@@ -18,7 +18,7 @@
   background: #FAFAFA;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
-  --announcement-bar-height: 0px;
+  --announcement-bar-height: 38px;
 }
 
 :root[data-theme="violet"] {

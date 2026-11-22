@@ -9,19 +9,18 @@ import s from './LandingAnnouncementBar.module.css';
 const STORAGE_KEY = 'docsynecx-iics-2026-announcement-dismissed';
 
 export function LandingAnnouncementBar() {
-  const [dismissed, setDismissed] = useState(true); // default true for SSR to avoid layout shift
+  const [dismissed, setDismissed] = useState(false);
   const barRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     try {
       const isDismissed = getSecureSessionItem(STORAGE_KEY);
-      if (isDismissed !== 'true') {
-        setDismissed(false);
-      } else {
+      if (isDismissed === 'true') {
+        setDismissed(true);
         document.documentElement.style.setProperty('--announcement-bar-height', '0px');
       }
     } catch {
-      setDismissed(false);
+      // Keep rendered
     }
   }, []);
 

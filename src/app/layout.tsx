@@ -125,6 +125,18 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
+          rel="preload"
+          as="image"
+          href="/videos/gemini-layout-two-poster.webp"
+          type="image/webp"
+          fetchPriority="high"
+        />
+        <link
+          rel="preload"
+          as="style"
+          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Allura&family=Alex+Brush&display=swap"
+        />
+        <link
           href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Allura&family=Alex+Brush&display=swap"
           rel="stylesheet"
         />

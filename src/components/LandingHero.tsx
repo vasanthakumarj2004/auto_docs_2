@@ -135,7 +135,7 @@ export function LandingHero() {
           loop
           playsInline
           preload="metadata"
-          poster="/videos/gemini-layout-two-poster.jpg"
+          poster="/videos/gemini-layout-two-poster.webp"
         >
           <source src="/videos/gemini-layout-two.mp4" type="video/mp4" />
         </video>
