@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { ClosingVisualBg } from './ClosingVisualBg';
-import styles from './LandingPage.module.css';
+import styles from './LandingClosingCta.module.css';
 
 export function LandingClosingCta({
   primaryHref = '/demo/#demo-form',

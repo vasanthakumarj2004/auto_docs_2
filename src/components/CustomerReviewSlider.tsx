@@ -3,34 +3,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Quote } from 'lucide-react';
 import styles from './CustomerReviewSlider.module.css';
-
-interface CustomerReview {
-  id: string;
-  industry: string;
-  company: string;
-  copy: string;
-}
-
-const REVIEWS: CustomerReview[] = [
-  {
-    id: 'tri-connect-logistics',
-    industry: 'Logistics',
-    company: 'TriConnect Logistics',
-    copy: 'Docsynecx simplifies our enquiry-to-booking process, reducing manual coordination and improving workflow efficiency',
-  },
-  {
-    id: 'rajadurai-ev',
-    industry: 'Automotive & EV',
-    company: 'EV Vehicles',
-    copy: 'Manual document workload reduced from days to hours through an AI-assisted workflow.',
-  },
-  {
-    id: 'arishfirma',
-    industry: 'Business Operations',
-    company: 'Arishfirma',
-    copy: 'Regular operational use for asset and purchase bill workflows.',
-  },
-];
+import { customerReviews as REVIEWS } from '../content/customerReviews';
 
 export const CustomerReviewSlider: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);

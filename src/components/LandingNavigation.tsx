@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ChevronDown, Menu, X, ArrowRight, ArrowUpRight, Workflow } from 'lucide-react';
 import { DocsynecxLogo } from './DocsynecxLogo';
 import { AnnouncementBarV2 } from './AnnouncementBar';
-import styles from './LandingPage.module.css';
+import styles from './LandingNavigation.module.css';
 import cardStyles from './NavbarMenuCard.module.css';
 
 interface MegaOverviewLink {

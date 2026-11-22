@@ -1,4 +1,3 @@
-import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { ArrowRight, ArrowLeftRight, ArrowUpRight, FileText, Zap, ShieldCheck, CheckCircle2, TrendingUp } from 'lucide-react';
 
@@ -6,21 +5,12 @@ import { LandingHero } from './LandingHero';
 import { LandingNavigation } from './LandingNavigation';
 import { LandingAnnouncementBar } from './LandingAnnouncementBar';
 import { ShipsyFooter } from './ShipsyFooter';
+import { IntelligenceLayer } from './IntelligenceLayer';
+import { LandingClosingCta } from './LandingClosingCta';
+import { CustomerReviewSliderFallback } from './CustomerReviewSliderFallback';
+import { DeferredCustomerReviewSlider, DeferredSharedFaqAccordion } from './DeferredLandingSections';
 import { landingDesks, landingFaqs } from '../content/landing';
-import styles from './LandingPage.module.css';
-
-const CustomerReviewSlider = dynamic(() => import('./CustomerReviewSlider').then(m => m.CustomerReviewSlider), {
-  ssr: true,
-});
-const SharedFaqAccordion = dynamic(() => import('./SharedFaqAccordion').then(m => m.SharedFaqAccordion), {
-  ssr: true,
-});
-const IntelligenceLayer = dynamic(() => import('./IntelligenceLayer').then(m => m.IntelligenceLayer), {
-  ssr: true,
-});
-const LandingClosingCta = dynamic(() => import('./LandingClosingCta').then(m => m.LandingClosingCta), {
-  ssr: true,
-});
+import styles from './LandingHome.module.css';
 
 const DESK_IMAGES: Record<string, string> = {
   finance: '/images/finance-desk-background-750.webp',
@@ -106,6 +96,36 @@ function SectionHeading({ eyebrow, title, copy, id }: { eyebrow: string; title: 
     <div><p className={styles.eyebrow}>{eyebrow}</p><h2 id={id}>{title}</h2></div>
     {copy && <p className={styles.sectionCopy}>{copy}</p>}
   </div>;
+}
+
+function LandingFaqFallback() {
+  return (
+    <div className="space-y-2.5" role="region" aria-label="Frequently Asked Questions">
+      {landingFaqs.map((item, index) => (
+        <details
+          key={item.question}
+          open={index === 0}
+          className={`rounded-xl border transition-all duration-200 ${
+            index === 0
+              ? 'border-[#18cb96]/45 bg-[#f4fbf8] shadow-2xs'
+              : 'border-slate-200/90 bg-white'
+          }`}
+        >
+          <summary className="flex w-full cursor-pointer list-none items-center justify-between gap-4 rounded-xl p-4 text-left [&::-webkit-details-marker]:hidden">
+            <span className="text-sm font-bold text-slate-800">{item.question}</span>
+            <span className="shrink-0 text-xl text-slate-500" aria-hidden="true">⌄</span>
+          </summary>
+          {item.answer && (
+            <div className="px-4 pb-4 pt-1">
+              <div className="border-l-2 border-[#18cb96]/45 pl-3 text-xs leading-relaxed text-slate-600 sm:text-[13px]">
+                {item.answer}
+              </div>
+            </div>
+          )}
+        </details>
+      ))}
+    </div>
+  );
 }
 
 export function LandingPage() {
@@ -250,13 +270,17 @@ export function LandingPage() {
               eyebrow="Testimonials"
               title={<>Real workflows.<br /><span>Meaningful time saved.</span></>}
             />
-            <CustomerReviewSlider />
+            <DeferredCustomerReviewSlider>
+              <CustomerReviewSliderFallback />
+            </DeferredCustomerReviewSlider>
           </div>
         </section>
         <section id="faq" className={`${styles.section} ${styles.faqSection}`} aria-labelledby="faq-title">
           <div className={`site-shell ${styles.faqLayout}`}>
             <h2 id="faq-title" className="sr-only">Frequently asked questions</h2>
-            <SharedFaqAccordion items={landingFaqs} defaultOpenIndex={0} toggleStyle="plus" />
+            <DeferredSharedFaqAccordion items={landingFaqs}>
+              <LandingFaqFallback />
+            </DeferredSharedFaqAccordion>
           </div>
         </section>
         <LandingClosingCta />
