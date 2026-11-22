@@ -137,7 +137,7 @@ export function LandingHero() {
           preload="metadata"
           poster="/videos/gemini-layout-two-poster.webp"
         >
-          <source src="/videos/gemini-layout-two.mp4" type="video/mp4" />
+          <source src="/videos/main-layout-two.mp4" type="video/mp4" />
         </video>
         <div className={styles.videoOverlay} />
       </div>

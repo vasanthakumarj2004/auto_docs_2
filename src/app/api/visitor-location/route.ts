@@ -14,11 +14,22 @@ interface UpstreamIpApiResponse {
   reason?: string;
 }
 
+export const dynamic = 'force-static';
+
 export async function GET() {
   try {
-    // 1. Check server-side cookies for cookie_preferences
-    const cookieStore = await cookies();
-    const consentCookie = cookieStore.get(COOKIE_NAME);
+    // 1. Check server-side cookies for cookie_preferences (guarded for static export)
+    let consentCookie;
+    try {
+      const cookieStore = await cookies();
+      consentCookie = cookieStore.get(COOKIE_NAME);
+    } catch {
+      // In static export mode, request cookies are not present at build time
+      return NextResponse.json(
+        { error: 'Static export mode: runtime cookies not available', consentVerified: false },
+        { status: 200 }
+      );
+    }
 
     if (!consentCookie || !consentCookie.value) {
       return NextResponse.json(

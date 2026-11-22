@@ -1,0 +1,17 @@
+/logistics /logistics-desk/ 301
+/logistics/* /logistics-desk/:splat 301
+/finance /finance-desk/ 301
+/finance/* /finance-desk/:splat 301
+/RFQ-to-booking /logistics-desk/RFQ-to-booking/ 301
+/email-to-booking /logistics-desk/RFQ-to-booking/ 301
+/blog /blogs/ 301
+/blog/* /blogs/:splat 301
+/shipment-operations /logistics-desk/shipment-operations/ 301
+/shipment-tracking /logistics-desk/shipment-tracking/ 301
+/freight-intelligence /logistics-desk/freight-intelligence/ 301
+/integrations /logistics-desk/integrations/ 301
+/accounts-payable /finance-desk/accounts-payable/ 301
+/business-owners /finance-desk/business-owners/ 301
+/finance-teams /finance-desk/finance-teams/ 301
+/accounts-teams /finance-desk/accounts-teams/ 301
+/ca-firms /finance-desk/ca-firms/ 301
