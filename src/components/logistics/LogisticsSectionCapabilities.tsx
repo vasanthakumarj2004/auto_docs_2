@@ -682,6 +682,7 @@ export function LogisticsSectionCapabilities({ slug }: LogisticsSectionCapabilit
                 alt={activeTab.title}
                 className={styles.bgImage}
                 loading="lazy"
+                decoding="async"
               />
               <div className={styles.bgScrim} />
             </div>

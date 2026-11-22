@@ -90,7 +90,10 @@ export function InvoiceWhoItIsFor({
                   src={industry.image}
                   alt={industry.title}
                   className={styles.industryImage}
+                  width={600}
+                  height={400}
                   loading="lazy"
+                  decoding="async"
                 />
                 <div className={styles.industryImageOverlay} aria-hidden="true" />
               </div>

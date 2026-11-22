@@ -72,7 +72,10 @@ export function BlogPostView({ post, related }: BlogPostViewProps) {
                 src={post.image}
                 alt={post.imageAlt || post.title}
                 className={styles.heroImage}
+                width={1200}
+                height={630}
                 loading="eager"
+                decoding="async"
               />
             </div>
 
@@ -118,7 +121,7 @@ export function BlogPostView({ post, related }: BlogPostViewProps) {
                   case 'image':
                     return (
                       <figure key={idx} className={styles.inlineFigure}>
-                        <img src={section.src} alt={section.alt} />
+                        <img src={section.src} alt={section.alt} loading="lazy" decoding="async" />
                         {section.caption && <figcaption>{section.caption}</figcaption>}
                       </figure>
                     );

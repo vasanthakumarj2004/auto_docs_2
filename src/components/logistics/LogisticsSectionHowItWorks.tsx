@@ -711,6 +711,7 @@ export function LogisticsSectionHowItWorks({ slug }: LogisticsSectionHowItWorksP
                     alt={activeStep.windowTitle}
                     className={s.bannerImg}
                     loading="lazy"
+                  decoding="async"
                   />
                   <div className={s.bannerOverlay}>
                     <span className={s.bannerTag}>

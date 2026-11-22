@@ -20,7 +20,10 @@ export function BlogCard({ post }: BlogCardProps) {
           src={post.image}
           alt={post.imageAlt || post.title}
           className={styles.image}
+          width={600}
+          height={340}
           loading="lazy"
+          decoding="async"
         />
         <div className={styles.imageOverlay} aria-hidden="true" />
         <span className={styles.categoryBadge}>{post.category}</span>

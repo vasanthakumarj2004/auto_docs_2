@@ -87,7 +87,10 @@ function Step1Preview() {
             src="/images/industry-logistics.jpg"
             alt="Multi-modal Logistics Intake"
             className={s.bannerImg}
+            width={860}
+            height={353}
             loading="lazy"
+            decoding="async"
           />
           <div className={s.bannerOverlay}>
             <span className={s.bannerTag}>
@@ -174,7 +177,10 @@ function Step2Preview() {
             src="/images/hero-collage/ind-logistics-3.jpg"
             alt="Container Ship & Harbor Cranes"
             className={s.bannerImg}
+            width={800}
+            height={533}
             loading="lazy"
+            decoding="async"
           />
           <div className={s.bannerOverlay}>
             <span className={s.bannerTag}>
@@ -261,7 +267,10 @@ function Step3Preview() {
             src="/images/logistics-desk-card.jpg"
             alt="Freight Analytics Dashboard"
             className={s.bannerImg}
+            width={1376}
+            height={768}
             loading="lazy"
+            decoding="async"
           />
           <div className={s.bannerOverlay}>
             <span className={s.bannerTag}>
@@ -348,7 +357,10 @@ function Step4Preview() {
             src="/images/hero-collage/ind-logistics-1.jpg"
             alt="Warehouse & Freight Logistics"
             className={s.bannerImg}
+            width={800}
+            height={533}
             loading="lazy"
+            decoding="async"
           />
           <div className={s.bannerOverlay}>
             <span className={s.bannerTag}>
