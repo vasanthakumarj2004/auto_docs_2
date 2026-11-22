@@ -94,7 +94,7 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.socialBtn}
-                aria-label="Docsynecx on YouTube"
+                aria-label="Docsynecx on Facebook"
               >
                 <Facebook size={15} aria-hidden="true" />
               </a>

@@ -115,7 +115,7 @@ export const SEO_PAGES: Record<string, SeoPageItem> = {
   "/logistics-desk/email-to-booking/": {
     pageGroup: "Logistics Module",
     pageName: "RFQ-to-Booking",
-    url: "/logistics-desk/email-to-booking/",
+    url: "/logistics-desk/RFQ-to-booking/",
     seoTitle: "Agentic AI for Freight RFQ & Booking Automation | Docsynecx",
     metaDescription: "Use Agentic AI to manage freight enquiries, gather carrier rates, compare quotations, calculate margins and prepare bookings. Keep approvals and CargoWise handoffs under your team's control.",
     primaryKeyword: "agentic AI freight RFQ automation",

@@ -1,0 +1,62 @@
+# Docsynecx
+
+> AI-powered document automation and workflow intelligence platform for finance and logistics operations connected directly to TallyPrime, Zoho Books, and CargoWise.
+
+Docsynecx eliminates manual data entry by extracting, validating, reconciling, and syncing high-volume business documents with human-in-the-loop review.
+
+## Core Pages
+- [Home](https://docsynecx.com/): AI finance and logistics document automation platform.
+- [About](https://docsynecx.com/about/): Company background, SynecX AI Labs Private Limited mission, and leadership.
+- [Pricing](https://docsynecx.com/pricing/): Transparent pricing plans for growth, mid-market, and enterprise workloads.
+- [Request Demo](https://docsynecx.com/demo/): Schedule an interactive live workflow demo.
+- [Contact Us](https://docsynecx.com/contact/): Get in touch with product specialists and customer support.
+- [IICS 2026 Event](https://docsynecx.com/events/iics-2026/): Meet Docsynecx at India International Cargo Show 2026, Booth Q53.
+
+## Finance Desk
+- [Finance Desk Overview](https://docsynecx.com/finance-desk/): Autonomous document intake, OCR verification, and 2-way sync with TallyPrime and Zoho Books.
+- [Invoice Automation](https://docsynecx.com/finance-desk/invoice-automation/): Read line items, calculate taxes, match POs, and post vouchers without typing.
+- [Banking Reconciliation](https://docsynecx.com/finance-desk/banking-reconciliation/): Automated multi-bank statement parsing and ledger match reconciliation.
+- [Payment Reminders](https://docsynecx.com/finance-desk/payment-reminders/): Intelligent debtor aging analysis and automated payment reminders.
+- [Accounts Payable](https://docsynecx.com/finance-desk/accounts-payable/): Streamline vendor bills, approvals, audit trails, and payment scheduling.
+- [For Business Owners](https://docsynecx.com/finance-desk/business-owners/): Real-time cashflow visibility, dues tracking, and oversight without manual reports.
+- [For Finance Teams](https://docsynecx.com/finance-desk/finance-teams/): Accelerate month-end closing and eliminate manual voucher entry backlogs.
+- [For Accounts Teams](https://docsynecx.com/finance-desk/accounts-teams/): Fast document ingestion, duplicate checks, and verified bookkeeping.
+- [For CA Firms](https://docsynecx.com/finance-desk/ca-firms/): Multi-client document audits, GST verification, and high-speed reconciliation.
+
+## Logistics Desk
+- [Logistics Desk Overview](https://docsynecx.com/logistics-desk/): Connected freight workflows converting emails into CargoWise jobs and quotes.
+- [RFQ to Booking](https://docsynecx.com/logistics-desk/RFQ-to-booking/): Read freight inquiry emails, attachments, and turn them into validated CargoWise jobs.
+- [Shipment Operations](https://docsynecx.com/logistics-desk/shipment-operations/): Automate bills of lading, packing lists, air waybills, and customs declarations.
+- [Shipment Tracking](https://docsynecx.com/logistics-desk/shipment-tracking/): Real-time container milestones, status aggregation, and exception alerts.
+- [Freight Intelligence](https://docsynecx.com/logistics-desk/freight-intelligence/): Rate analytics, margin rules, and carrier quotation insights.
+- [Integrations](https://docsynecx.com/logistics-desk/integrations/): Native connectors for CargoWise, custom ERPs, EDI, and email workflows.
+
+## Industry Solutions
+- [Solutions Overview](https://docsynecx.com/solutions/): End-to-end document workflows customized for operational verticals.
+- [Automotive & EV](https://docsynecx.com/solutions/automotive-ev/): Monthly spares, service, dealer, and purchase bill automation.
+- [Industrial Manufacturing](https://docsynecx.com/solutions/industrial-manufacturing/): Complex multi-vendor asset bills, material receipts, and PO validation.
+- [Textile & Garments](https://docsynecx.com/solutions/textile-garments/): Multi-currency export manifests, supplier invoices, and fabric lot matching.
+- [Retail & Distribution](https://docsynecx.com/solutions/retail-distribution/): Fast invoice auditing, delivery challan verification, and credit notes.
+- [Freight Logistics](https://docsynecx.com/solutions/freight-logistics/): Freight forwarding document intake, quotation rules, and customs filings.
+
+## Knowledge Base & Articles
+- [Blog Directory](https://docsynecx.com/blogs/): Complete library of document AI benchmarks, guides, and technical insights.
+- [AI Logistics Document Verification Impact 2026](https://docsynecx.com/blogs/ai-logistics-document-verification-impact-2026/): How document AI accelerates freight operations in 2026.
+- [Manual vs AI Document Processing Comparison](https://docsynecx.com/blogs/manual-vs-ai-document-processing-cost-time-accuracy-comparison/): Cost, speed, and accuracy benchmark comparison.
+- [Why Manual Invoice Entry Fails at Scale](https://docsynecx.com/blogs/why-manual-invoice-entry-fails-at-scale/): Operational failure points of human data entry in high-volume finance.
+- [From Raw Invoices to ERP-Ready Data](https://docsynecx.com/blogs/from-raw-invoices-to-erp-ready-data-intelligent-invoice-structuring/): Intelligent invoice parsing and tax structuring methodologies.
+- [Tally Workflow Automation Guide](https://docsynecx.com/blogs/tally-workflow-automation-pdf-image-invoices-to-tally-entries/): Converting scanned PDFs and mobile photos directly into Tally entries.
+- [Accurate Data Extraction at Scale](https://docsynecx.com/blogs/accurate-data-extraction-at-scale-bulk-document-uploads-enterprise-workloads/): Bulk document uploads and SLA performance on enterprise workloads.
+- [Seamless Tally Data Sync](https://docsynecx.com/blogs/seamless-tally-data-sync-automated-accounting-workflows/): Two-way synchronization architectures for modern accounting.
+- [AI-Driven Invoice Intelligence](https://docsynecx.com/blogs/ai-driven-invoice-intelligence-end-to-end-invoice-processing-docsynecx/): End-to-end document lifecycle automation explained.
+- [Measuring ROI From Document AI](https://docsynecx.com/blogs/measuring-roi-from-document-ai-transforming-document-workflows-strategic-advantage/): Frameworks for calculating financial ROI on intelligent document processing.
+- [OCR vs IDP Differences](https://docsynecx.com/blogs/ocr-vs-idp-differences-and-why-it-matters-for-your-business/): Why basic OCR fails and how Intelligent Document Processing succeeds.
+- [ERP Integration Best Practices](https://docsynecx.com/blogs/erp-integration-best-practices-sap-tally-and-beyond/): Connecting AI pipelines to SAP, TallyPrime, and Zoho Books securely.
+- [Future of OCR](https://docsynecx.com/blogs/future-of-ocr-ai-powered-document-processing-revolution/): Deep learning, vision-language models, and the next decade of document intelligence.
+- [Complete Guide to Invoice Processing Automation](https://docsynecx.com/blogs/complete-guide-to-invoice-processing-automation/): Definitive playbook for finance leaders.
+- [Intelligent Document Processing Future](https://docsynecx.com/blogs/intelligent-document-processing-future-of-automated-document-workflows/): Next-generation autonomous workflow design.
+- [API-First Document Processing](https://docsynecx.com/blogs/api-first-document-processing-developers-complete-guide/): Developer integration guide and REST API endpoints.
+
+## Legal & Compliance
+- [Privacy Policy](https://docsynecx.com/privacy-policy/): Enterprise data confidentiality, encryption, and GDPR compliance policies.
+- [Terms of Service](https://docsynecx.com/terms-of-service/): Software licensing, service levels, and customer terms.

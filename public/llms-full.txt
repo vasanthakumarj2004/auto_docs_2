@@ -1,0 +1,47 @@
+# Docsynecx — Complete LLM Specification & Documentation
+
+> Docsynecx is an enterprise AI-powered document intelligence and workflow automation platform developed by SynecX AI Labs Private Limited. It bridges physical, PDF, and scanned business documents into ERP systems including TallyPrime, Zoho Books, and CargoWise with automated OCR, line-item tax extraction, two-way reconciliation, and strict human-in-the-loop validation.
+
+## 1. Core Platform Desks
+
+### Finance Desk (https://docsynecx.com/finance-desk/)
+The Docsynecx Finance Desk automates end-to-end accounting document pipelines:
+- **Invoice Automation (https://docsynecx.com/finance-desk/invoice-automation/)**: Scans single and multi-page supplier invoices in PDF, PNG, JPEG formats. Automatically parses GSTIN, vendor names, line items, quantities, HSN/SAC codes, CGST/SGST/IGST breakdown, and totals. Matches against Purchase Orders and pushes validated voucher entries directly into TallyPrime and Zoho Books.
+- **Banking Reconciliation (https://docsynecx.com/finance-desk/banking-reconciliation/)**: Ingests bank statements from multiple corporate accounts in Excel or PDF formats. Reconciles debit/credit entries with ledger transactions, identifying unmatched dues, bank charges, and duplicate charges.
+- **Payment Reminders (https://docsynecx.com/finance-desk/payment-reminders/)**: Analyzes accounts receivable aging and automates courteous, auditable email/SMS payment notifications to outstanding customers.
+- **Accounts Payable (https://docsynecx.com/finance-desk/accounts-payable/)**: Centralizes supplier bill intake, automated three-way matching (PO vs. Invoice vs. GRN), approval workflows, and payment dispatch.
+
+### Logistics Desk (https://docsynecx.com/logistics-desk/)
+The Docsynecx Logistics Desk automates freight forwarding documentation:
+- **RFQ to Booking (https://docsynecx.com/logistics-desk/RFQ-to-booking/)**: Monitors customer inquiry emails and attached rate requests. Automatically parses origin, destination, cargo volume, weight, container types, and Incoterms to build validated CargoWise booking jobs in under 2 minutes (down from 60+ minutes manually).
+- **Shipment Operations (https://docsynecx.com/logistics-desk/shipment-operations/)**: Extracts and validates bills of lading, ocean carrier shipping instructions, air waybills, and packing lists.
+- **Shipment Tracking (https://docsynecx.com/logistics-desk/shipment-tracking/)**: Aggregates carrier milestone events, container status, transshipment delays, and customs holds into a unified visibility dashboard.
+- **Freight Intelligence (https://docsynecx.com/logistics-desk/freight-intelligence/)**: Provides historical spot rate analytics, procurement pricing benchmarks, and margin enforcement rules.
+- **Integrations (https://docsynecx.com/logistics-desk/integrations/)**: Two-way data sync with CargoWise, custom enterprise ERPs, EDI protocols, and email gateways.
+
+---
+
+## 2. Industry Solutions
+
+- **Automotive & EV (https://docsynecx.com/solutions/automotive-ev/)**: Designed for automotive dealerships, EV manufacturers, and component distributors managing thousands of spare parts bills, warranty claims, and service vouchers each month.
+- **Industrial Manufacturing (https://docsynecx.com/solutions/industrial-manufacturing/)**: Streamlines asset bills, raw material delivery challans, and multi-tier vendor procurement reconciliations.
+- **Textile & Garments (https://docsynecx.com/solutions/textile-garments/)**: Supports multi-currency trade invoices, export manifests, fabric lot tracking, and customs entry filings.
+- **Retail & Distribution (https://docsynecx.com/solutions/retail-distribution/)**: High-speed invoice auditing, credit note reconciliation, and multi-store delivery tracking.
+- **Freight Logistics (https://docsynecx.com/solutions/freight-logistics/)**: Tailored for international freight forwarders, NVOCCs, and customs brokers processing daily shipment documents.
+
+---
+
+## 3. Commercial & Engagement
+
+- **Pricing (https://docsynecx.com/pricing/)**: Transparent tiered pricing based on document volume, desk selection, and user seats. Includes self-service ROI estimation.
+- **Request Demo (https://docsynecx.com/demo/)**: Schedule a customized, interactive workflow demonstration with real documents.
+- **Contact Support & Sales (https://docsynecx.com/contact/)**: Reach technical specialists, customer success, or enterprise sales representatives.
+- **Corporate Event (https://docsynecx.com/events/iics-2026/)**: Meet Docsynecx at the India International Cargo Show (IICS) 2026 — Booth Q53.
+
+---
+
+## 4. Technical Architecture & Security
+
+- **Security & Privacy (https://docsynecx.com/privacy-policy/)**: End-to-end data encryption in transit and at rest. Strict role-based access control (RBAC). Document data is never retained for unauthorized public model training.
+- **Human-in-the-Loop Oversight**: No financial voucher or freight booking is committed to client ERPs without user review and confirmation.
+- **API First Design**: Complete REST API endpoints for seamless programmatic ingestion and event webhook notifications.
