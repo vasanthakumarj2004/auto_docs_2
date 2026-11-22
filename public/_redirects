@@ -2,8 +2,11 @@
 /logistics/* /logistics-desk/:splat 301
 /finance /finance-desk/ 301
 /finance/* /finance-desk/:splat 301
-/RFQ-to-booking /logistics-desk/RFQ-to-booking/ 301
-/email-to-booking /logistics-desk/RFQ-to-booking/ 301
+/RFQ-to-booking /logistics-desk/rfq-to-booking/ 301
+/rfq-to-booking /logistics-desk/rfq-to-booking/ 301
+/email-to-booking /logistics-desk/rfq-to-booking/ 301
+/logistics-desk/RFQ-to-booking /logistics-desk/rfq-to-booking/ 301
+/logistics-desk/RFQ-to-booking/ /logistics-desk/rfq-to-booking/ 301
 /invoice-processing /finance-desk/invoice-processing/ 301
 /blog /blogs/ 301
 /blog/* /blogs/:splat 301

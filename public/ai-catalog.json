@@ -108,10 +108,10 @@
       "type": "documentation"
     },
     {
-      "id": "RFQ-to-booking",
+      "id": "rfq-to-booking",
       "name": "RFQ to Booking",
       "description": "Parse customer freight emails and create validated CargoWise booking jobs",
-      "url": "https://docsynecx.com/logistics-desk/RFQ-to-booking/",
+      "url": "https://docsynecx.com/logistics-desk/rfq-to-booking/",
       "type": "documentation"
     },
     {

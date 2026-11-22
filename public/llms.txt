@@ -28,7 +28,7 @@ Docsynecx eliminates manual data entry by extracting, validating, reconciling, a
 
 ## Logistics Desk
 - [Logistics Desk Overview](https://docsynecx.com/logistics-desk/): Connected freight workflows converting emails into CargoWise jobs and quotes.
-- [RFQ to Booking](https://docsynecx.com/logistics-desk/RFQ-to-booking/): Read freight inquiry emails, attachments, and turn them into validated CargoWise jobs.
+- [RFQ to Booking](https://docsynecx.com/logistics-desk/rfq-to-booking/): Read freight inquiry emails, attachments, and turn them into validated CargoWise jobs.
 - [Shipment Operations](https://docsynecx.com/logistics-desk/shipment-operations/): Automate bills of lading, packing lists, air waybills, and customs declarations.
 - [Shipment Tracking](https://docsynecx.com/logistics-desk/shipment-tracking/): Real-time container milestones, status aggregation, and exception alerts.
 - [Freight Intelligence](https://docsynecx.com/logistics-desk/freight-intelligence/): Rate analytics, margin rules, and carrier quotation insights.

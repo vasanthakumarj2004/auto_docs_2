@@ -104,7 +104,7 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
         sno: '01',
         title: 'RFQ-to-Booking',
         description: 'Connect customer enquiries, quotes and freight bookings.',
-        href: '/logistics-desk/RFQ-to-booking/',
+        href: '/logistics-desk/rfq-to-booking/',
       },
       {
         sno: '02',

@@ -113,12 +113,17 @@ if (nextConfig.output !== 'export') {
       },
       {
         source: '/RFQ-to-booking',
-        destination: '/logistics-desk/RFQ-to-booking/',
+        destination: '/logistics-desk/rfq-to-booking/',
+        permanent: true,
+      },
+      {
+        source: '/rfq-to-booking',
+        destination: '/logistics-desk/rfq-to-booking/',
         permanent: true,
       },
       {
         source: '/email-to-booking',
-        destination: '/logistics-desk/RFQ-to-booking/',
+        destination: '/logistics-desk/rfq-to-booking/',
         permanent: true,
       },
       {

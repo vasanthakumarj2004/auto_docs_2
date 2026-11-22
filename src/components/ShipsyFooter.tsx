@@ -186,7 +186,7 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
             <h3 className={styles.colHeader}>Logistics</h3>
             <ul className={styles.linkList}>
               <li>
-                <Link href="/logistics-desk/RFQ-to-booking/" className={styles.footerLink}>
+                <Link href="/logistics-desk/rfq-to-booking/" className={styles.footerLink}>
                   RFQ-to-Booking
                 </Link>
               </li>

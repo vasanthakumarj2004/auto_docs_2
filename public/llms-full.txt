@@ -20,7 +20,7 @@ The Docsynecx Finance Desk automates end-to-end accounting document pipelines:
 
 ### Logistics Desk (https://docsynecx.com/logistics-desk/)
 The Docsynecx Logistics Desk automates freight forwarding documentation:
-- **RFQ to Booking (https://docsynecx.com/logistics-desk/RFQ-to-booking/)**: Monitors customer inquiry emails and attached rate requests. Automatically parses origin, destination, cargo volume, weight, container types, and Incoterms to build validated CargoWise booking jobs in under 2 minutes (down from 60+ minutes manually).
+- **RFQ to Booking (https://docsynecx.com/logistics-desk/rfq-to-booking/)**: Monitors customer inquiry emails and attached rate requests. Automatically parses origin, destination, cargo volume, weight, container types, and Incoterms to build validated CargoWise booking jobs in under 2 minutes (down from 60+ minutes manually).
 - **Shipment Operations (https://docsynecx.com/logistics-desk/shipment-operations/)**: Extracts and validates bills of lading, ocean carrier shipping instructions, air waybills, and packing lists.
 - **Shipment Tracking (https://docsynecx.com/logistics-desk/shipment-tracking/)**: Aggregates carrier milestone events, container status, transshipment delays, and customs holds into a unified visibility dashboard.
 - **Freight Intelligence (https://docsynecx.com/logistics-desk/freight-intelligence/)**: Provides historical spot rate analytics, procurement pricing benchmarks, and margin enforcement rules.
