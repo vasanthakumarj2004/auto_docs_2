@@ -112,6 +112,16 @@ export const CustomerReviewSlider: React.FC = () => {
                 if (offset === -1) handlePrev();
                 if (offset === 1) handleNext();
               }}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  if (offset === -1) handlePrev();
+                  if (offset === 1) handleNext();
+                }
+              }}
+              role={offset !== 0 ? 'button' : undefined}
+              tabIndex={offset !== 0 ? 0 : undefined}
+              aria-label={offset === -1 ? 'Previous testimonial' : offset === 1 ? 'Next testimonial' : undefined}
               aria-hidden={offset !== 0}
             >
               {/* Industry label */}

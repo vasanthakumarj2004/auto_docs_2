@@ -157,7 +157,7 @@ export function LandingPage() {
               {landingDesks.map((desk, index) => {
                 const imageSrc = DESK_IMAGES[desk.id] || (index === 0 ? '/images/624dcd31-e7ca-4c2f-b804-e87bb521192e.webp' : '/images/e38389f2-4afd-4f87-86dd-6210a3100071.webp');
                 return (
-                  <article key={desk.id} id={desk.id} className={styles.desk} data-desk={desk.id} tabIndex={0}>
+                  <article key={desk.id} id={desk.id} className={styles.desk} data-desk={desk.id}>
                     <div className={styles.deskImageWrapper}>
                       <img
                         src={imageSrc}

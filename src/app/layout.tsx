@@ -125,33 +125,12 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          rel="preload"
-          as="image"
-          href="/videos/gemini-layout-two-poster.webp"
-          type="image/webp"
-          fetchPriority="high"
-        />
-        <link
-          rel="preload"
-          as="style"
+          rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Allura&family=Alex+Brush&display=swap"
         />
         <link rel="ai-catalog" type="application/json" href="/.well-known/ai-catalog.json" />
         <link rel="ard" type="application/json" href="/.well-known/ard.json" />
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM Documentation" />
-        <Script
-          id="gfonts-loader"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Allura&family=Alex+Brush&display=swap';document.head.appendChild(l);})();`,
-          }}
-        />
-        <noscript>
-          <link
-            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Allura&family=Alex+Brush&display=swap"
-            rel="stylesheet"
-          />
-        </noscript>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
