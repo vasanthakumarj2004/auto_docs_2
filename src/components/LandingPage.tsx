@@ -1,18 +1,28 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { ArrowRight, ArrowLeftRight, ArrowUpRight, FileText, Zap, ShieldCheck, CheckCircle2, TrendingUp } from 'lucide-react';
 
 import { LandingHero } from './LandingHero';
-import { SharedFaqAccordion } from './SharedFaqAccordion';
 import { LandingNavigation } from './LandingNavigation';
 import { LandingAnnouncementBar } from './LandingAnnouncementBar';
-import { CustomerReviewSlider } from './CustomerReviewSlider';
-import { IntelligenceLayer } from './IntelligenceLayer';
-import { LandingClosingCta } from './LandingClosingCta';
 import { ShipsyFooter } from './ShipsyFooter';
 import { landingDesks, landingFaqs } from '../content/landing';
 import styles from './LandingPage.module.css';
+
+const CustomerReviewSlider = dynamic(() => import('./CustomerReviewSlider').then(m => m.CustomerReviewSlider), {
+  ssr: true,
+});
+const SharedFaqAccordion = dynamic(() => import('./SharedFaqAccordion').then(m => m.SharedFaqAccordion), {
+  ssr: true,
+});
+const IntelligenceLayer = dynamic(() => import('./IntelligenceLayer').then(m => m.IntelligenceLayer), {
+  ssr: true,
+});
+const LandingClosingCta = dynamic(() => import('./LandingClosingCta').then(m => m.LandingClosingCta), {
+  ssr: true,
+});
 
 const DESK_IMAGES: Record<string, string> = {
   finance: '/images/624dcd31-e7ca-4c2f-b804-e87bb521192e.webp',

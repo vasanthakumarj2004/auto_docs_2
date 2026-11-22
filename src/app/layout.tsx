@@ -136,17 +136,11 @@ export default function RootLayout({
           as="style"
           href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Allura&family=Alex+Brush&display=swap"
         />
-        <link
-          id="gfonts-css"
-          href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Allura&family=Alex+Brush&display=swap"
-          rel="stylesheet"
-          media="print"
-        />
         <Script
-          id="gfonts-async"
-          strategy="beforeInteractive"
+          id="gfonts-loader"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
-            __html: `(function(){var f=document.getElementById('gfonts-css');if(f){f.media='all';}})();`,
+            __html: `(function(){var l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Allura&family=Alex+Brush&display=swap';document.head.appendChild(l);})();`,
           }}
         />
         <noscript>

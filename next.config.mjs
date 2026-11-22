@@ -3,6 +3,9 @@ const nextConfig = {
   output: 'export',
   distDir: 'build',
   trailingSlash: true,
+  experimental: {
+    cpus: 1,
+  },
   images: {
     unoptimized: true,
   },

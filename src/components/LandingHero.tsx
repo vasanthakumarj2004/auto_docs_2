@@ -107,6 +107,23 @@ const workflows = {
 
 export function LandingHero() {
   const frameRef = useRef<HTMLDivElement>(null);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      if (!isMobile) {
+        if ('requestIdleCallback' in window) {
+          (window as Window & { requestIdleCallback: (cb: () => void) => void }).requestIdleCallback(() => {
+            setShouldLoadVideo(true);
+          });
+        } else {
+          const timer = setTimeout(() => setShouldLoadVideo(true), 1000);
+          return () => clearTimeout(timer);
+        }
+      }
+    }
+  }, []);
   useEffect(() => {
     const frame = frameRef.current;
     if (!frame) return;
@@ -134,10 +151,10 @@ export function LandingHero() {
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="none"
           poster="/videos/gemini-layout-two-poster.webp"
         >
-          <source src="/videos/main-layout-two.mp4" type="video/mp4" />
+          {shouldLoadVideo && <source src="/videos/main-layout-two.mp4" type="video/mp4" />}
         </video>
         <div className={styles.videoOverlay} />
       </div>
