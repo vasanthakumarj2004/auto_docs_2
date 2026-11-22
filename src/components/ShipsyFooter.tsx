@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import Link from 'next/link';
 import { Linkedin, Mail, Youtube, Instagram, ArrowUpRight, Facebook } from 'lucide-react';
@@ -57,7 +55,7 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
               <DocsynecxLogo variant="footer" className={styles.logo} />
             </Link>
             <p className={styles.brandTagline}>
-              AI-powered platforms that simplify complex workflows across Finance and Freight Forwarders.
+              AI-powered platforms that simplify complex workflows across Finance and Logistics Forwarders.
             </p>
 
             <div className={styles.socialRow} aria-label="Docsynecx social channels">

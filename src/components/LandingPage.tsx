@@ -1,5 +1,3 @@
-'use client';
-
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { ArrowRight, ArrowLeftRight, ArrowUpRight, FileText, Zap, ShieldCheck, CheckCircle2, TrendingUp } from 'lucide-react';

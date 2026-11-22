@@ -4,10 +4,14 @@ import Script from 'next/script';
 import '@/src/index.css';
 import { LandingLayoutProvider } from '@/src/components/LandingLayoutProvider';
 import { darkThemeInitScript, LOGO_GREEN } from '@/src/lib/darkTheme';
-import { CookieConsent } from '@/src/components/CookieConsent';
+import dynamic from 'next/dynamic';
 import { ConsentProvider } from '@/src/context/ConsentContext';
 import { GoogleAnalytics } from '@/src/components/analytics/GoogleAnalytics';
 import { jsonLd } from '@/src/lib/seo';
+
+const CookieConsent = dynamic(() => import('@/src/components/CookieConsent'), {
+  ssr: false,
+});
 
 export const viewport: Viewport = {
   themeColor: '#2E8B57',
