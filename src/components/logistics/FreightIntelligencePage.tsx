@@ -245,7 +245,6 @@ export function FreightIntelligencePage() {
             {/* Left Copy */}
             <div className={s.heroCopy}>
               <p className={s.eyebrow}>
-                <span className={s.soonPill}>Coming soon</span>
                 FREIGHT INTELLIGENCE · PROFIT AND PERFORMANCE
               </p>
 

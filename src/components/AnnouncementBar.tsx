@@ -96,7 +96,6 @@ export function AnnouncementBarV2() {
 
   return (
     <aside
-      role="banner"
       aria-label="New Release Announcement"
       className="relative z-50 text-white text-xs py-2 px-4 select-none transition-all duration-300"
       style={{

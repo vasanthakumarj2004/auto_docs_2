@@ -51,7 +51,6 @@ export const logisticsModules = [
     slug: 'freight-intelligence',
     title: 'Freight Intelligence',
     label: '04 · Profit and performance',
-    badge: 'Coming soon',
     lead: 'See which jobs, customers and lanes make you money.',
     description: 'See which jobs, customers and lanes make you money. Profit on every job, quoted vs actual cost with detention/demurrage trends, and monthly management reports ready on day one.',
     bullets: [

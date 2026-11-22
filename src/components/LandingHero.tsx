@@ -134,7 +134,7 @@ export function LandingHero() {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           poster="/videos/gemini-layout-two-poster.jpg"
         >
           <source src="/videos/gemini-layout-two.mp4" type="video/mp4" />

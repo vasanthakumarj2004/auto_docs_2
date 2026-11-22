@@ -68,7 +68,6 @@ export function LandingAnnouncementBar() {
   return (
     <aside
       ref={barRef}
-      role="banner"
       aria-label="IICS 2026 Event Announcement"
       className={s.announcementBar}
     >
