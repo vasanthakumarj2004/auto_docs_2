@@ -5,6 +5,7 @@ const nextConfig = {
   trailingSlash: true,
   experimental: {
     cpus: 1,
+    optimizePackageImports: ['lucide-react'],
   },
   images: {
     unoptimized: true,
