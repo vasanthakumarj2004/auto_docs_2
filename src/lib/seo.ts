@@ -6,11 +6,51 @@ export { BASE_URL, SEO_PAGES } from './seoData';
 
 // ─── Shared defaults ────────────────────────────────────────────────────────
 
-const SITE_NAME   = 'Docsynecx';
-const PUBLISHER   = 'SynecX AI Labs Private Limited';
-const OG_IMAGE    = '/Docsynecx-Logo.svg';
-const OG_IMAGE_W  = 1200;
-const OG_IMAGE_H  = 630;
+const SITE_NAME       = 'Docsynecx';
+const PUBLISHER       = 'SynecX AI Labs Private Limited';
+// Primary 1376x768 social share card for rich link previews (WhatsApp, LinkedIn, Twitter, Facebook, Slack)
+const OG_IMAGE_CARD   = '/navbar-social-card.jpg';
+const OG_IMAGE_CARD_W = 1376;
+const OG_IMAGE_CARD_H = 768;
+// Brand logo fallback
+const OG_LOGO_SVG     = '/Docsynecx-Logo.svg';
+
+/**
+ * Normalizes any route, slug, or absolute URL into a consistent, absolute canonical URL.
+ * Ensures:
+ * - Full domain https://docsynecx.com prefix
+ * - Trailing slash for all pages (except root '/')
+ * - Cleaned whitespace and lowercase path
+ *
+ * @example
+ * toCanonicalUrl('/')                      // -> 'https://docsynecx.com/'
+ * toCanonicalUrl('/pricing')               // -> 'https://docsynecx.com/pricing/'
+ * toCanonicalUrl('/logistics-desk/RFQ/')   // -> 'https://docsynecx.com/logistics-desk/rfq/'
+ * toCanonicalUrl('https://docsynecx.com/demo') // -> 'https://docsynecx.com/demo/'
+ */
+export function toCanonicalUrl(pathOrUrl?: string): string {
+  if (!pathOrUrl || pathOrUrl.trim() === '' || pathOrUrl.trim() === '/') {
+    return `${BASE_URL}/`;
+  }
+
+  const trimmed = pathOrUrl.trim();
+
+  // If already absolute URL
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+    try {
+      const parsed = new URL(trimmed);
+      const pathname = parsed.pathname.endsWith('/') ? parsed.pathname : `${parsed.pathname}/`;
+      return `${BASE_URL}${pathname.toLowerCase()}`;
+    } catch {
+      return trimmed.endsWith('/') ? trimmed : `${trimmed}/`;
+    }
+  }
+
+  // Relative path or bare slug
+  const normalizedPath = trimmed.startsWith('/') ? trimmed : `/${trimmed}`;
+  const withSlash = normalizedPath.endsWith('/') ? normalizedPath : `${normalizedPath}/`;
+  return `${BASE_URL}${withSlash.toLowerCase()}`;
+}
 
 /**
  * Normalization map for various slugs, route paths, and shorthand identifiers
@@ -87,13 +127,30 @@ const ALIAS_MAP: Record<string, string> = {
   'logistics-desk': '/logistics-desk/',
   'logistics-overview': '/logistics-desk/',
 
-  // Logistics modules
+  // Logistics modules (casing & aliases resolved)
   'email-to-booking': '/logistics-desk/email-to-booking/',
   'rfq-to-booking': '/logistics-desk/email-to-booking/',
+  'rfq-to-booking/': '/logistics-desk/email-to-booking/',
+  'RFQ-to-booking': '/logistics-desk/email-to-booking/',
+  'RFQ-to-booking/': '/logistics-desk/email-to-booking/',
   '/email-to-booking': '/logistics-desk/email-to-booking/',
+  '/email-to-booking/': '/logistics-desk/email-to-booking/',
+  '/rfq-to-booking': '/logistics-desk/email-to-booking/',
+  '/rfq-to-booking/': '/logistics-desk/email-to-booking/',
+  '/RFQ-to-booking': '/logistics-desk/email-to-booking/',
+  '/RFQ-to-booking/': '/logistics-desk/email-to-booking/',
   '/logistics/email-to-booking': '/logistics-desk/email-to-booking/',
+  '/logistics/email-to-booking/': '/logistics-desk/email-to-booking/',
+  '/logistics/rfq-to-booking': '/logistics-desk/email-to-booking/',
+  '/logistics/rfq-to-booking/': '/logistics-desk/email-to-booking/',
+  '/logistics/RFQ-to-booking': '/logistics-desk/email-to-booking/',
+  '/logistics/RFQ-to-booking/': '/logistics-desk/email-to-booking/',
   '/logistics-desk/email-to-booking': '/logistics-desk/email-to-booking/',
   '/logistics-desk/email-to-booking/': '/logistics-desk/email-to-booking/',
+  '/logistics-desk/rfq-to-booking': '/logistics-desk/email-to-booking/',
+  '/logistics-desk/rfq-to-booking/': '/logistics-desk/email-to-booking/',
+  '/logistics-desk/RFQ-to-booking': '/logistics-desk/email-to-booking/',
+  '/logistics-desk/RFQ-to-booking/': '/logistics-desk/email-to-booking/',
 
   'shipment-operations': '/logistics-desk/shipment-operations/',
   '/shipment-operations': '/logistics-desk/shipment-operations/',
@@ -165,6 +222,10 @@ const ALIAS_MAP: Record<string, string> = {
   '/pricing/': '/pricing/',
   'pricing': '/pricing/',
 
+  '/demo': '/demo/',
+  '/demo/': '/demo/',
+  'demo': '/demo/',
+
   '/about': '/about/',
   '/about/': '/about/',
   'about': '/about/',
@@ -208,28 +269,47 @@ const ALIAS_MAP: Record<string, string> = {
 
 /**
  * Resolves a given path, route slug, or identifier to its matching SeoPageItem.
+ * Handles any case variations, missing/extra trailing slashes, and route aliases.
  */
 export function getSeoData(identifierOrPath: string): SeoPageItem | undefined {
   if (!identifierOrPath) return SEO_PAGES['/'];
 
-  // Check alias map
   const cleaned = identifierOrPath.trim();
   const lower = cleaned.toLowerCase();
 
-  const mappedKey = ALIAS_MAP[cleaned] || ALIAS_MAP[lower];
+  // Try alias map with cleaned, lower, and slash variations
+  const mappedKey =
+    ALIAS_MAP[cleaned] ||
+    ALIAS_MAP[lower] ||
+    ALIAS_MAP[lower.endsWith('/') ? lower.slice(0, -1) : `${lower}/`] ||
+    ALIAS_MAP[cleaned.endsWith('/') ? cleaned.slice(0, -1) : `${cleaned}/`];
+
   if (mappedKey && SEO_PAGES[mappedKey]) {
     return SEO_PAGES[mappedKey];
   }
 
-  // Direct match in SEO_PAGES
-  if (SEO_PAGES[cleaned]) return SEO_PAGES[cleaned];
+  // Direct match in SEO_PAGES with casing & trailing-slash tolerance
+  const candidates = [
+    cleaned,
+    lower,
+    cleaned.endsWith('/') ? cleaned : `${cleaned}/`,
+    cleaned.endsWith('/') ? cleaned.slice(0, -1) : cleaned,
+    lower.endsWith('/') ? lower : `${lower}/`,
+    lower.endsWith('/') ? lower.slice(0, -1) : lower,
+  ];
 
-  // Try normalized trailing slash
-  const withTrailing = cleaned.endsWith('/') ? cleaned : `${cleaned}/`;
-  if (SEO_PAGES[withTrailing]) return SEO_PAGES[withTrailing];
+  for (const c of candidates) {
+    if (SEO_PAGES[c]) return SEO_PAGES[c];
+  }
 
-  const withoutTrailing = cleaned.endsWith('/') ? cleaned.slice(0, -1) : cleaned;
-  if (SEO_PAGES[withoutTrailing]) return SEO_PAGES[withoutTrailing];
+  // Match case-insensitively against SEO_PAGES keys
+  const lowerKeys = Object.keys(SEO_PAGES);
+  for (const key of lowerKeys) {
+    const kLower = key.toLowerCase();
+    if (kLower === lower || kLower === (lower.endsWith('/') ? lower : `${lower}/`)) {
+      return SEO_PAGES[key];
+    }
+  }
 
   return undefined;
 }
@@ -256,42 +336,60 @@ export function constructMetadata(
   identifierOrPath: string,
   overrides?: Partial<Metadata>,
 ): Metadata {
-  const seo     = getSeoData(identifierOrPath) ?? SEO_PAGES['/'];
-  const fullUrl = `${BASE_URL}${seo.url === '/' ? '' : seo.url}`;
+  const seo = getSeoData(identifierOrPath);
+
+  // Determine canonical URL:
+  // 1. Explicit override if provided
+  // 2. Curated url from seoData.ts if found
+  // 3. Normalized identifierOrPath if it looks like a path (starts with '/')
+  // 4. Fallback to homepage BASE_URL/
+  const canonicalUrl = toCanonicalUrl(
+    (overrides?.alternates?.canonical as string | undefined) ??
+      seo?.url ??
+      (identifierOrPath.startsWith('/') ? identifierOrPath : '/')
+  );
+
+  const seoTitle       = seo?.seoTitle       ?? SEO_PAGES['/'].seoTitle;
+  const seoDescription = seo?.metaDescription ?? SEO_PAGES['/'].metaDescription;
+  const seoKeywords    = seo?.keywords        ?? SEO_PAGES['/'].keywords;
 
   const baseMeta: Metadata = {
     metadataBase: new URL(BASE_URL),
 
-    title:       { absolute: seo.seoTitle },
-    description: seo.metaDescription,
-    keywords:    seo.keywords,
+    title:       { absolute: seoTitle },
+    description: seoDescription,
+    keywords:    seoKeywords,
 
     authors:   [{ name: SITE_NAME, url: BASE_URL }],
     creator:   SITE_NAME,
     publisher: PUBLISHER,
 
-    alternates: { canonical: seo.url },
+    alternates: {
+      canonical: canonicalUrl,
+    },
 
     openGraph: {
-      title:       seo.seoTitle,
-      description: seo.metaDescription,
-      url:         fullUrl,
+      title:       seoTitle,
+      description: seoDescription,
+      url:         canonicalUrl,
       siteName:    SITE_NAME,
       locale:      'en_US',
       type:        'website',
-      images: [{
-        url:    OG_IMAGE,
-        width:  OG_IMAGE_W,
-        height: OG_IMAGE_H,
-        alt:    seo.seoTitle,
-      }],
+      images: [
+        {
+          url:    `${BASE_URL}${OG_IMAGE_CARD}`,
+          width:  OG_IMAGE_CARD_W,
+          height: OG_IMAGE_CARD_H,
+          alt:    seoTitle,
+        },
+      ],
     },
 
     twitter: {
       card:        'summary_large_image',
-      title:       seo.seoTitle,
-      description: seo.metaDescription,
-      images:      [OG_IMAGE],
+      title:       seoTitle,
+      description: seoDescription,
+      images:      [`${BASE_URL}${OG_IMAGE_CARD}`],
     },
 
     robots: {
@@ -309,16 +407,33 @@ export function constructMetadata(
 
   if (!overrides) return baseMeta;
 
-  // Deep-merge nested objects so callers only specify what changes.
+  // Deep-merge nested objects so callers only override specific properties
   return {
     ...baseMeta,
     ...overrides,
     title:       overrides.title       ?? baseMeta.title,
     description: overrides.description ?? baseMeta.description,
     keywords:    overrides.keywords    ?? baseMeta.keywords,
-    alternates:  { ...baseMeta.alternates,  ...overrides.alternates  },
-    openGraph:   { ...baseMeta.openGraph,   ...overrides.openGraph   },
-    twitter:     { ...baseMeta.twitter,     ...overrides.twitter     },
+    alternates: {
+      ...baseMeta.alternates,
+      ...overrides.alternates,
+      canonical: overrides.alternates?.canonical
+        ? toCanonicalUrl(overrides.alternates.canonical as string)
+        : canonicalUrl,
+    },
+    openGraph: {
+      ...baseMeta.openGraph,
+      ...overrides.openGraph,
+      url: overrides.openGraph?.url
+        ? toCanonicalUrl(overrides.openGraph.url as string)
+        : canonicalUrl,
+      images: overrides.openGraph?.images ?? baseMeta.openGraph?.images,
+    },
+    twitter: {
+      ...baseMeta.twitter,
+      ...overrides.twitter,
+      images: overrides.twitter?.images ?? baseMeta.twitter?.images,
+    },
   };
 }
 
@@ -342,7 +457,7 @@ export function organizationSchema() {
     '@type':    'Organization',
     name:       SITE_NAME,
     url:        BASE_URL,
-    logo:       `${BASE_URL}${OG_IMAGE}`,
+    logo:       `${BASE_URL}${OG_LOGO_SVG}`,
   };
 }
 
@@ -364,6 +479,55 @@ export function faqSchema(faqs: { question: string; answer: string }[]) {
       name:           question,
       acceptedAnswer: { '@type': 'Answer', text: answer },
     })),
+  };
+}
+
+/**
+ * BlogPosting schema — render on individual blog posts for Google search rich snippets.
+ */
+export function articleSchema(
+  post: {
+    title: string;
+    excerpt?: string;
+    subtitle?: string;
+    image?: string;
+    date?: string;
+    author?: { name: string; role?: string };
+  },
+  canonicalPathOrUrl: string,
+) {
+  const fullUrl = canonicalPathOrUrl.startsWith('http')
+    ? canonicalPathOrUrl
+    : `${BASE_URL}${canonicalPathOrUrl.startsWith('/') ? canonicalPathOrUrl : `/${canonicalPathOrUrl}`}`;
+
+  const imageUrl = post.image?.startsWith('http')
+    ? post.image
+    : `${BASE_URL}${post.image || OG_IMAGE_CARD}`;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    description: post.excerpt || post.subtitle || post.title,
+    image: [imageUrl],
+    datePublished: post.date,
+    dateModified: post.date,
+    author: {
+      '@type': 'Person',
+      name: post.author?.name || SITE_NAME,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${BASE_URL}${OG_LOGO_SVG}`,
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': fullUrl,
+    },
   };
 }
 

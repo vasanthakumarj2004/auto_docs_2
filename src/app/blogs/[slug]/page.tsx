@@ -5,10 +5,10 @@ import { LandingNavigation } from '@/src/components/LandingNavigation';
 import { ShipsyFooter } from '@/src/components/ShipsyFooter';
 import { BlogPostView } from '@/src/components/blogs/BlogPostView';
 import base from '@/src/components/LandingPage.module.css';
-import { constructMetadata, getSeoData } from '@/src/lib/seo';
+import { constructMetadata, getSeoData, articleSchema, jsonLd } from '@/src/lib/seo';
 
 interface PageProps {
-  params: Promise<{ slug: string }> | { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -18,6 +18,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!post) {
     return {
       title: 'Blog Not Found | Docsynecx Document AI',
+      robots: { index: false, follow: false },
     };
   }
 
@@ -79,9 +80,16 @@ export default async function BlogPostPage({ params }: PageProps) {
   }
 
   const related = getRelatedBlogs(post.slug, post.category, 3);
+  const blogUrl = `/blogs/${resolvedParams.slug}/`;
 
   return (
     <div className={base.page}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: jsonLd(articleSchema(post, blogUrl)),
+        }}
+      />
       <a href="#main-content" className={base.skipLink}>
         Skip to content
       </a>

@@ -42,6 +42,21 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/email-to-booking',
+        destination: '/logistics-desk/RFQ-to-booking/',
+        permanent: true,
+      },
+      {
+        source: '/blog',
+        destination: '/blogs/',
+        permanent: true,
+      },
+      {
+        source: '/blog/:slug+',
+        destination: '/blogs/:slug+/',
+        permanent: true,
+      },
+      {
         source: '/shipment-operations',
         destination: '/logistics-desk/shipment-operations/',
         permanent: true,

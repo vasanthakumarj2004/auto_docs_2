@@ -7,6 +7,7 @@ import { darkThemeInitScript, LOGO_GREEN } from '@/src/lib/darkTheme';
 import { CookieConsent } from '@/src/components/CookieConsent';
 import { ConsentProvider } from '@/src/context/ConsentContext';
 import { GoogleAnalytics } from '@/src/components/analytics/GoogleAnalytics';
+import { jsonLd } from '@/src/lib/seo';
 
 export const viewport: Viewport = {
   themeColor: '#2E8B57',
@@ -38,9 +39,6 @@ export const metadata: Metadata = {
     email: false,
     address: false,
     telephone: false,
-  },
-  alternates: {
-    canonical: '/',
   },
   openGraph: {
     title: 'AI Finance & Logistics Automation Platform - Docsynecx',
@@ -133,7 +131,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema),
+            __html: jsonLd(organizationSchema),
           }}
         />
         <Script

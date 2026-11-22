@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-  <!-- ═══ Core ══════════════════════════════════════════════════════════════ -->
+  <!-- Core -->
   <url>
     <loc>https://docsynecx.com/</loc>
     <lastmod>2026-11-21</lastmod>
@@ -9,7 +9,7 @@
     <priority>1.0</priority>
   </url>
 
-  <!-- ═══ Platform — Finance Desk ══════════════════════════════════════════ -->
+  <!--  Platform — Finance Desk  -->
   <url>
     <loc>https://docsynecx.com/finance-desk/</loc>
     <lastmod>2026-11-21</lastmod>
@@ -73,7 +73,7 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- ═══ Platform — Logistics Desk ════════════════════════════════════════ -->
+  <!--  Platform — Logistics Desk ═ -->
   <url>
     <loc>https://docsynecx.com/logistics-desk/</loc>
     <lastmod>2026-11-21</lastmod>
@@ -111,7 +111,7 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- ═══ Industry Solutions ════════════════════════════════════════════════ -->
+  <!--  Industry Solutions  -->
   <url>
     <loc>https://docsynecx.com/solutions/</loc>
     <lastmod>2026-11-21</lastmod>
@@ -149,15 +149,21 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- ═══ Commercial ════════════════════════════════════════════════════════ -->
+  <!-- Commercial -->
   <url>
     <loc>https://docsynecx.com/pricing/</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://docsynecx.com/demo/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
-  <!-- ═══ Company ══════════════════════════════════════════════════════════ -->
+  <!-- Company -->
   <url>
     <loc>https://docsynecx.com/about/</loc>
     <lastmod>2026-11-21</lastmod>
@@ -177,13 +183,15 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- ═══ Blog ══════════════════════════════════════════════════════════════ -->
+  <!-- Blog Listing  -->
   <url>
     <loc>https://docsynecx.com/blogs/</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
+
+  <!-- All Blog Articles -->
   <url>
     <loc>https://docsynecx.com/blogs/ai-logistics-document-verification-impact-2026/</loc>
     <lastmod>2026-11-21</lastmod>
@@ -202,8 +210,80 @@
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://docsynecx.com/blogs/from-raw-invoices-to-erp-ready-data-intelligent-invoice-structuring/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/blogs/tally-workflow-automation-pdf-image-invoices-to-tally-entries/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/blogs/accurate-data-extraction-at-scale-bulk-document-uploads-enterprise-workloads/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/blogs/seamless-tally-data-sync-automated-accounting-workflows/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/blogs/ai-driven-invoice-intelligence-end-to-end-invoice-processing-docsynecx/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/blogs/measuring-roi-from-document-ai-transforming-document-workflows-strategic-advantage/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/blogs/ocr-vs-idp-differences-and-why-it-matters-for-your-business/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/blogs/erp-integration-best-practices-sap-tally-and-beyond/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/blogs/future-of-ocr-ai-powered-document-processing-revolution/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/blogs/complete-guide-to-invoice-processing-automation/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/blogs/intelligent-document-processing-future-of-automated-document-workflows/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://docsynecx.com/blogs/api-first-document-processing-developers-complete-guide/</loc>
+    <lastmod>2026-11-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
 
-  <!-- ═══ Legal ═════════════════════════════════════════════════════════════ -->
+  <!-- Legal -->
   <url>
     <loc>https://docsynecx.com/privacy-policy/</loc>
     <lastmod>2026-11-21</lastmod>
