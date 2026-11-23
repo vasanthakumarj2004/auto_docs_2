@@ -157,14 +157,14 @@ export default function TermsOfServicePage() {
       <h3>4.1. Pricing</h3>
       <p>
         Docsynecx offers monthly and annual subscription plans, with pricing outlined on the official
-        Pricing page. Except where otherwise stated, all prices are listed in U.S. dollars or
-        euros, exclusive of applicable taxes, duties, or levies. Clients are responsible for any
+        Pricing page. Except where otherwise stated, all prices are listed in INR , exclusive of 
+        applicable taxes, duties, or levies. Clients are responsible for any
         such taxes applicable in their jurisdiction.
       </p>
 
       <h3>4.2. Free Trials and Upgrade Plan</h3>
       <p>
-        Clients may sign up for a 14-day free trial, which grants limited access to the Service at no
+        Clients may sign up for a 7-day free trial, which grants limited access to the Service at no
         cost. Only one free trial is permitted per Client. At any point during the trial, the Client
         may upgrade to a paid plan (a &ldquo;Subscribed Plan&rdquo;), which will take effect
         immediately and be charged accordingly. If the Client upgrades or downgrades their
