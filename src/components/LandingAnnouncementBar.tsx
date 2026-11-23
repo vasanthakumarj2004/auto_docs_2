@@ -31,9 +31,13 @@ export function LandingAnnouncementBar() {
     }
 
     const updateHeight = () => {
-      if (barRef.current) {
-        const rect = barRef.current.getBoundingClientRect();
-        document.documentElement.style.setProperty('--announcement-bar-height', `${Math.ceil(rect.height)}px`);
+      if (typeof window !== 'undefined') {
+        window.requestAnimationFrame(() => {
+          if (barRef.current) {
+            const h = Math.ceil(barRef.current.getBoundingClientRect().height);
+            document.documentElement.style.setProperty('--announcement-bar-height', `${h}px`);
+          }
+        });
       }
     };
 

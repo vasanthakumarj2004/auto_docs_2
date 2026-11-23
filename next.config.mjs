@@ -15,18 +15,6 @@ const nextConfig = {
         '../build/polyfills/polyfill-module': false,
         'next/dist/build/polyfills/polyfill-module': false,
       };
-
-      if (config.optimization && config.optimization.splitChunks) {
-        config.optimization.splitChunks.cacheGroups = {
-          ...config.optimization.splitChunks.cacheGroups,
-          styles: {
-            name: 'styles',
-            test: /\.(css|scss)$/,
-            chunks: 'all',
-            enforce: true,
-          },
-        };
-      }
     }
     return config;
   },

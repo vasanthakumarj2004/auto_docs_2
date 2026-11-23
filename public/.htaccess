@@ -1,3 +1,8 @@
+# Disable GoDaddy auto-injected tracking scripts
+<IfModule mod_env.c>
+  SetEnv TCCL_DISABLED 1
+</IfModule>
+
 # =======================================================================
 # High-Performance Caching & Compression (.htaccess)
 # Eliminates Lighthouse "Use efficient cache lifetimes"
@@ -5,10 +10,12 @@
 
 # 1. Enable Compression (Gzip / Deflate)
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
-  AddOutputFilterByType DEFLATE application/javascript application/x-javascript application/json
-  AddOutputFilterByType DEFLATE image/svg+xml application/xml application/xhtml+xml
-  AddOutputFilterByType DEFLATE font/ttf font/otf font/woff font/woff2 application/font-woff
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript application/json application/xml
+  AddOutputFilterByType DEFLATE image/svg+xml font/ttf font/otf font/woff font/woff2 application/font-woff application/font-woff2
+  <FilesMatch "\.(css|js|html|json|svg|txt)$">
+    SetOutputFilter DEFLATE
+  </FilesMatch>
 </IfModule>
 
 # 2. Leverage Browser Caching (1 Year for Static Assets, Revalidate for HTML)

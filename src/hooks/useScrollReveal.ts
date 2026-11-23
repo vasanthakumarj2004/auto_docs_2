@@ -26,17 +26,7 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>({
       return;
     }
 
-    // If already in viewport on mount, reveal immediately
-    if (typeof window !== 'undefined') {
-      const rect = element.getBoundingClientRect();
-      if (rect.top < window.innerHeight && rect.bottom > 0) {
-        setIsVisible(true);
-        element.classList.add('reveal-visible');
-        element.querySelectorAll('.reveal-init').forEach((child) => child.classList.add('reveal-visible'));
-        if (triggerOnce) return;
-      }
-    }
-
+    // IntersectionObserver will naturally report initial intersection without forced reflow
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
