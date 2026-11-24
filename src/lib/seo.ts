@@ -176,6 +176,22 @@ const ALIAS_MAP: Record<string, string> = {
   '/logistics-desk/integrations': '/logistics-desk/integrations/',
   '/logistics-desk/integrations/': '/logistics-desk/integrations/',
 
+  // Logistics personas
+  'freight-forwarders': '/logistics-desk/freight-forwarders/',
+  '/freight-forwarders': '/logistics-desk/freight-forwarders/',
+  '/logistics-desk/freight-forwarders': '/logistics-desk/freight-forwarders/',
+  '/logistics-desk/freight-forwarders/': '/logistics-desk/freight-forwarders/',
+
+  'pricing-sourcing': '/logistics-desk/pricing-sourcing/',
+  '/pricing-sourcing': '/logistics-desk/pricing-sourcing/',
+  '/logistics-desk/pricing-sourcing': '/logistics-desk/pricing-sourcing/',
+  '/logistics-desk/pricing-sourcing/': '/logistics-desk/pricing-sourcing/',
+
+  'operations-team': '/logistics-desk/operations-team/',
+  '/operations-team': '/logistics-desk/operations-team/',
+  '/logistics-desk/operations-team': '/logistics-desk/operations-team/',
+  '/logistics-desk/operations-team/': '/logistics-desk/operations-team/',
+
   // Industry Solutions
   '/solutions': '/solutions/',
   '/solutions/': '/solutions/',

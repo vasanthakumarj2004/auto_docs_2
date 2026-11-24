@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" fill="none">
+  <defs>
+    <linearGradient id="icon-doc-blue" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#2f3de0"/>
+      <stop offset="100%" stop-color="#4f46e5"/>
+    </linearGradient>
+    <linearGradient id="icon-flow-cyan" x1="12" y1="6" x2="42" y2="36" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0b7056"/>
+    </linearGradient>
+  </defs>
+
+  <g transform="translate(4, 5)">
+    <!-- Base Document Layer -->
+    <rect x="0" y="2" width="28" height="34" rx="7" fill="url(#icon-doc-blue)"/>
+    <!-- Folded Corner Detail -->
+    <path d="M18 2L28 12H21C19.3431 12 18 10.6569 18 9V2Z" fill="#ffffff" opacity="0.25"/>
+    <!-- Foreground Automated Flow Layer -->
+    <rect x="10" y="8" width="26" height="28" rx="6" fill="url(#icon-flow-cyan)" opacity="0.95"/>
+    <!-- Central Autonomous Sync Aperture -->
+    <circle cx="23" cy="22" r="4.5" fill="#ffffff"/>
+    <path d="M21.5 20L25 22L21.5 24" stroke="#2f3de0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

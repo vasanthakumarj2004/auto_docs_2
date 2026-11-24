@@ -1,0 +1,24 @@
+{
+  "moving": true,
+  "geometryStable": true,
+  "reducedMotionFrozen": true,
+  "reducedMotion": {
+    "running": "false",
+    "plateAnimation": "none"
+  },
+  "resumed": true,
+  "offscreenPaused": true,
+  "pageErrors": [],
+  "rafAverageMs": 2.680487813019171,
+  "rafMaxMs": 10.799999952316284,
+  "cls": 0.010708329807684845,
+  "mobile": {
+    "width": 390,
+    "height": 1944,
+    "running": "false",
+    "pageWidth": 390
+  },
+  "modifiedExistingFiles": [
+    "src/components/hero/HeroStageBackdrop.tsx"
+  ]
+}

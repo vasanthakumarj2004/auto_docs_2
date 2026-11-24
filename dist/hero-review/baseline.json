@@ -1,0 +1,182 @@
+{
+  "typography": {
+    "h1": {
+      "text": "Grow the business,\nnot the data-entry desk.",
+      "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+      "fontSize": "60px",
+      "lineHeight": "60px",
+      "fontWeight": "800",
+      "letterSpacing": "-3.3px",
+      "color": "rgb(255, 255, 255)",
+      "width": 472,
+      "height": 240
+    },
+    "subtitle": {
+      "text": "Bills read, checked, paid and posted to Tally. Emails become CargoWise jobs. Your team handles exceptions, not typing.",
+      "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+      "fontSize": "15px",
+      "lineHeight": "28px",
+      "fontWeight": "400",
+      "letterSpacing": "normal",
+      "color": "rgb(203, 213, 225)",
+      "width": 472,
+      "height": 56
+    },
+    "eyebrow": {
+      "text": "For businesses that run on Tally, an ERP, or CargoWise",
+      "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+      "fontSize": "11px",
+      "lineHeight": "16.5px",
+      "fontWeight": "700",
+      "letterSpacing": "normal",
+      "color": "rgb(219, 234, 254)",
+      "width": 303.03125,
+      "height": 28.5
+    },
+    "trust": {
+      "text": "Built around your approvals\nNo rip-and-replace",
+      "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+      "fontSize": "12px",
+      "lineHeight": "18px",
+      "fontWeight": "600",
+      "letterSpacing": "normal",
+      "color": "rgb(203, 213, 225)",
+      "width": 472,
+      "height": 18
+    },
+    "financeButton": {
+      "text": "Run a finance desk",
+      "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+      "fontSize": "12px",
+      "lineHeight": "18px",
+      "fontWeight": "700",
+      "letterSpacing": "normal",
+      "color": "rgb(255, 255, 255)",
+      "width": 164.890625,
+      "height": 38
+    },
+    "logisticsButton": {
+      "text": "Run the logistics desk",
+      "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+      "fontSize": "12px",
+      "lineHeight": "18px",
+      "fontWeight": "700",
+      "letterSpacing": "normal",
+      "color": "rgb(255, 255, 255)",
+      "width": 181.578125,
+      "height": 38
+    },
+    "financeLabel": {
+      "text": "Run a finance desk",
+      "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+      "fontSize": "12px",
+      "lineHeight": "18px",
+      "fontWeight": "700",
+      "letterSpacing": "normal",
+      "color": "rgb(255, 255, 255)",
+      "width": 105.890625,
+      "height": 18
+    },
+    "logisticsLabel": {
+      "text": "Run the logistics desk",
+      "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+      "fontSize": "12px",
+      "lineHeight": "18px",
+      "fontWeight": "700",
+      "letterSpacing": "normal",
+      "color": "rgb(255, 255, 255)",
+      "width": 122.578125,
+      "height": 18
+    }
+  },
+  "downstream": [
+    {
+      "tag": "SECTION",
+      "id": "",
+      "heading": "",
+      "text": "PROCESSING VELOCITY\n-98.3% CYCLE TIME\n2 hrs → 2 min\nFTL logistics: email to CargoWise\nTURNAROUND RATE\n10x FASTER POSTING\nDays → hours\nRejections & re-fetches: purchase and spares\nSYSTEM RELIABILITY\n99.8% FIELD ACCURACY\nIn daily use\nJob billing: assets and purchase bills\nTrusted by teams that run on Tally and CargoWise\nCustomer logos pending permission\nCustomer logo\nVERIFIED\nCustomer logo\nVERIFIED\nCustomer logo\nVERIFIED\nCustomer logo\nVERIFIED\nCustomer logo\nVERIFIED\nCustomer logo\nVERIFIED\nCustomer logo\nVERIFIED\nCustomer logo\nVERIFIED\nCustomer logo\nVERIFIED\nCustomer logo\nVERIFIED\nCustomer logo\nVERIFIED\nCustomer logo\nVERIFIED",
+      "sha256": "033719758d46ade631c637f45e17d9d13c6b91879a1a2db4cbfb9a1781cdcce2",
+      "textSha256": "5bf8c2ba559cdaee74c70be465b80160847d67ef41294e811141e2661651f732"
+    },
+    {
+      "tag": "SECTION",
+      "id": "problem",
+      "heading": "The data-entry desk bottleneck",
+      "text": "The Operational Reality\nThe data-entry desk bottleneck\n\nManual data entry between vendor PDFs, emails, Tally, and CargoWise is slow, error-prone, and invisible to management.\n\nHours of manual retyping\n\nOperations and finance staff spend 30–60 minutes per batch re-keying line items, vendor details, and container specs by hand.\n\nManual Batch\n35m 00s\nDocsynecx AI\n4.2s\nInconsistent & error-prone keying\n\nManual typos lead to GST mismatches, rejected ledger postings, and discrepancies across Bills of Lading and commercial invoices.\n\nAUTOMATED EXCEPTION TRAPS\n[ ! GSTIN Checksum Error ]\n[ ! HSN Tax Rate Mismatch ]\n[ ! BL Gross Weight Delta ]\nZero operational visibility\n\nCritical documents live trapped in shared Outlook and Gmail inboxes with no real-time audit trail or automated exception routing.\n\nSHARED INBOX BOTTLENECK\nSLA RISK\nshared-ap@company.com\n·\n42 Unprocessed PDFs",
+      "sha256": "6ea27e1f1238a0ae3c53d5de967385d03ead7ee2fb76d83980c29f751798346d",
+      "textSha256": "d813055295ba02801c83c4538bfcdf1149c81140ef17c0af2e397f5eab3fc880"
+    },
+    {
+      "tag": "SECTION",
+      "id": "how-it-works",
+      "heading": "How it works",
+      "text": "End-To-End Automation\nHow it works\n\nFrom incoming bill or pre-alert email to verified system ledger — fully automated, fully auditable.\n\nSTEP 01\nDocument comes in\n\nVia email, PDF, or customer upload — Docsynecx ingests it automatically.\n\nPDF · Scan · Pre-Alert Email\nSTEP 02\nDetails extracted\n\nDocsynecx extracts line items, party ledgers, GSTIN, and shipment specs.\n\nLine Items · GSTIN · Container #\nSTEP 03\nCross-checked & matched\n\nReconciles BL vs Packing List, checks GST portal, and verifies PO matching.\n\nGST Portal · 3-Way PO · BL vs PL\nSTEP 04\nPushed to system\n\nVoucher or job is built and pushed directly into Tally or CargoWise.\n\nTally XML · CargoWise eAdaptor\nSTEP 05\nReview exceptions only\n\nYour team reviews only flagged discrepancies — clean records post automatically.\n\nException Queue · Audit Log",
+      "sha256": "ea52ff59b211d920797e7b3314caab87c959c197f3194515d59c8d0570ae18b7",
+      "textSha256": "0db1fc68ec314762fc6bb370e0e0ac4c9eced7c2e9415a72006635a48ff06216"
+    },
+    {
+      "tag": "SECTION",
+      "id": "finance",
+      "heading": "Every bill read, checked and posted.",
+      "text": "FINANCE DESK\nEvery bill read, checked and posted.\n\nFrom a vendor PDF to your books, keep every check in one flow. Your finance team stays in control of approvals and exceptions.\n\n01 · INVOICE & GST INTELLIGENCE\nRead and GST-check every bill\n01\n\nCapture line items and validate GST details before posting.\n\n✓ GSTIN & HSN/SAC rates verified\n✓ 100% line-item & tax math extraction\n02 · APPROVAL & TALLY SYNC\nApprove, pay, post to Tally\n02\n\nMove approved bills forward without entering the data again.\n\n✓ Multi-level approval recorded\n✓ Direct XML push to Tally voucher #829\n03 · DUPLICATE GUARDRAILS\nHold duplicates, never pay twice\n03\n\nFlag a repeated bill before it reaches your payment queue.\n\n✓ Cross-checked against historical vendor ledger\n✓ Automatic duplicate hold before payout\nDocsynecx · Read & GST-check\nReady to post\nBill review\n(Prime Components · ₹74,095)\nINV #829 · FY 2024-25\nAI Field Confidence: 99.9%\nTAX INVOICE\nGSTIN: 33AABCP1234A1Z5\n\nPrime Components\n\n4 line items · 18% GST\n\nMachined parts · 420 units\n₹62,792\nTotal\n₹74,095\nCHECKED BEFORE IT MOVES\n\nGST & line items totals verified\n\nNo duplicate bill found\n\nApproval recorded\n\nPosted to Tally: voucher #829\nIllustrative workflow · your approvals rules, your books\nSame review workflow, your approval rules, zero retyping.",
+      "sha256": "15a17952f027ea9e5255108c75945169f8fe3b81afa1a1e8b81742c2cec27aa8",
+      "textSha256": "2bd8860f43e02ea5a50137afb5bff6a4227b040b583723ccda096f9ba81f04d2"
+    },
+    {
+      "tag": "SECTION",
+      "id": "logistics",
+      "heading": "Customer emails become CargoWise jobs.",
+      "text": "SHIPMENT DESK\nCustomer emails become CargoWise jobs.\n\nGive your operations team a job to review, not an inbox to retype. Shipment details move together, with checks built in.\n\n01 · INBOX TO STRUCTURED JOB\nEmails become jobs\n01\n\nTurn booking instructions into structured CargoWise entries.\n\n✓ Auto-ingest attachment-heavy booking emails\n✓ Instant shipper, consignee & port mapping\n02 · MULTI-DOCUMENT RECONCILIATION\nBL, packing list, invoice cross-checked\n02\n\nSpot mismatches across shipment documents before they travel.\n\n✓ Container, seal, weight & package count matched\n✓ Read & cross-checked in 110s\n03 · CUSTOMS & FREIGHT AP ALIGNMENT\nCustoms entry and freight AP checks\n03\n\nKeep exceptions visible from customs through freight payables.\n\n✓ HS codes & commercial invoice values verified\n✓ Ready for CargoWise eAdaptor posting\nDocsynecx · Booking intake\nLive\nCustomer inbox\nParsing Active\n09:41 AM\n\nNew booking: Chennai → Singapore\n\nBill of lading.pdf\nPacking list.pdf\nInvoice.pdf\n✓ Read & cross-checked in 110s\nCargoWise job · S00038421\nJOB CREATED\nORIGIN → DESTINATION\nINMAA → SGSIN\nSHIPMENT\n1 x 40' HC · Sea export\n3 documents cross-checked · ready for review\n\nIllustrative workflow · from email to structured shipment\n\nFrom attachment-heavy email to structured shipment.",
+      "sha256": "40d99ffb81896b42e2e2319c76afe07c463d9e89d0abaadc9332fec4c6d6d8b7",
+      "textSha256": "0bde73e921f6001ec87583256168c1531b13b51d6fcafb081b492e73a4886345"
+    },
+    {
+      "tag": "SECTION",
+      "id": "calculator",
+      "heading": "What is retyping costing you?",
+      "text": "What is retyping costing you?\n\nPut a number on the hours your team spends moving data by hand.\n\nSee my number\nBook a demo\nThe cost of doing it by hand\nILLUSTRATIVE EXAMPLE · NOT VERIFIED SAVINGS\nDocuments a month\ndocuments\nMinutes each\nminutes\nStaff cost a month\n₹\nper person\n\nAssumes 160 working hours per person/month (₹250/hour). 1,200 x 5 = 100 hours. 100 x ₹250 = ₹25,000 in staff time.\n\nTIME & COST LOST TO RETYPING / MONTH\n100 hrs\n/\n₹25,000\n\nAn estimate of manual effort, not guaranteed savings.\n\nMANUAL VS. DOCSYNECX IMPACT\nManual Keying:\n100 hrs / mo\nWith Docsynecx:\n~3.5 hrs / mo (Exceptions only)\nGet the full breakdown",
+      "sha256": "f219154f117af07dad9534dff6f76aad889ae13c8c4f8157cef8457f67f126f3",
+      "textSha256": "5961b1158c7dbd381450d2742a998c37e52421b9a44177854da5b868a9661119"
+    },
+    {
+      "tag": "SECTION",
+      "id": "why-docsynecx",
+      "heading": "Why finance and logistics teams choose Docsynecx",
+      "text": "Domain Precision\nWhy finance and logistics teams choose Docsynecx\n\nPurpose-built for international trade documents and Indian accounting workflows, not generic OCR templates.\n\nENTERPRISE ARCHITECTURE\nZero Screen-Scrapers · 100% Native Schema\nD\nDocsynecx Engine\nNative XML / eAdaptor API\nTallyPrime\n|\nZoho Books\n|\nCargoWise One\nBuilt natively for Tally and CargoWise\n\nDocsynecx integrates directly into your existing Tally Prime and CargoWise environments via native XML and eAdaptor connections. No screen scrapers, no brittle browser plugins, and zero disruption to how your desks operate.\n\nPRE-TRAINED DOMAIN ENTITIES\nZero-Shot Parsing\n[ GSTIN & 2A/2B Rules ]\n[ HSN / SAC Codes ]\n[ Multi-Container BL ]\n[ 3-Way PO Matching ]\n[ Freight Payables ]\nTrained on trade and accounting schemas\n\nOur AI understands commercial invoice structures, GST portal rules, HSN codes, multi-container BL weight matching, and freight payables. It identifies line items and exceptions right out of the box with zero template training.",
+      "sha256": "6541bcfb53de878f78abc795e2c85f3df2dbe3d761606be2a97882020da1b142",
+      "textSha256": "976434f5ed95260b17edd5ca94d048c94db3ffe3df48fdc2bb5a6f0ae22522ff"
+    },
+    {
+      "tag": "SECTION",
+      "id": "faq",
+      "heading": "Frequently asked questions",
+      "text": "Answers & Clarifications\nFrequently asked questions\n\nEverything you need to know about integrations, security, and setup.\n\nWhat systems does Docsynecx integrate with natively?\n+\nHow does Docsynecx connect without disrupting our existing setup?\n+\nHow are duplicate invoices and GST mismatches prevented?\n+\nCan Docsynecx process low-resolution scans and non-standard vendor formats?\n+\nHow long does implementation and onboarding take?\n+\nIs our trade or financial data used to train AI models?\n+",
+      "sha256": "085d3e01387a5bbf158b23fda60a46481af0f0c0c0d5a50cc05bf8b99d270688",
+      "textSha256": "ac7f61fe0fd1212bd42e5d34644c10d497b6162d78d6f2f0f2eb478a304d9c18"
+    },
+    {
+      "tag": "SECTION",
+      "id": "demo",
+      "heading": "Stop retyping. Start growing.",
+      "text": "Stop retyping. Start growing.\n\nA cleaner finance desk. A faster shipment desk. More room for what’s next.\n\nBook a demo\nTry the free calculator\nWork email\nCompany\nWhat would you like to improve?\n\nNo pressure, just a useful conversation.\n\n⚡ 15-min live walkthrough with your own sample PDFs\nRequest a demo",
+      "sha256": "e905a8bf8070b21aea4af5c2f4838fb1135b534cdc09f6864752fce6da240472",
+      "textSha256": "1f2d71e6f3617d2dfba863d628e96b0f981a899bd17eba8abd88e5b2f2d3a9b8"
+    },
+    {
+      "tag": "SECTION",
+      "id": "",
+      "heading": "Get product updates and trade news.",
+      "text": "Get product updates and trade news.\n\nUseful notes for finance and logistics teams. No noise.\n\nSubscribe",
+      "sha256": "cc93ed1cc799e71de03cd4ee9b57bec873d977fb7162a1c38f40f4636f665dee",
+      "textSha256": "4b26c59d57de3103bf714c233cfd07b3497dfe930ca924cdebb769e5dc29ef4d"
+    }
+  ],
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "horizontalOverflow": false,
+  "fontStatus": "loaded",
+  "status": 200,
+  "errors": []
+}

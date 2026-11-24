@@ -1,0 +1,18 @@
+{
+  "left_animation_moves": true,
+  "pipeline_phases": [
+    "checking",
+    "posted",
+    "reading",
+    "reset"
+  ],
+  "pipeline_height_stable": true,
+  "image_loaded": true,
+  "reduced_motion_freezes_left": true,
+  "reduced_motion_pauses_pipeline": true,
+  "queue_tab_works": true,
+  "pipeline_tab_restores": true,
+  "mobile_no_page_overflow": true,
+  "browser_errors": [],
+  "unrelated_sources_unchanged": true
+}

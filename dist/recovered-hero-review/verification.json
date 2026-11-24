@@ -1,0 +1,51 @@
+{
+  "left_animation_moves": true,
+  "pipeline_phases": [
+    "checking",
+    "posted",
+    "reading"
+  ],
+  "spacing_checks": [
+    {
+      "width": 390,
+      "no_overlap": true,
+      "no_page_overflow": true
+    },
+    {
+      "width": 768,
+      "no_overlap": true,
+      "no_page_overflow": true
+    },
+    {
+      "width": 1024,
+      "no_overlap": true,
+      "no_page_overflow": true
+    },
+    {
+      "width": 1280,
+      "no_overlap": true,
+      "no_page_overflow": true
+    },
+    {
+      "width": 1440,
+      "no_overlap": true,
+      "no_page_overflow": true
+    },
+    {
+      "width": 1628,
+      "no_overlap": true,
+      "no_page_overflow": true
+    },
+    {
+      "width": 1920,
+      "no_overlap": true,
+      "no_page_overflow": true
+    }
+  ],
+  "reduced_motion_freezes_left": true,
+  "reduced_motion_pauses_pipeline": true,
+  "apex_opens_queue": true,
+  "return_to_pipeline": true,
+  "browser_errors": [],
+  "other_sources_unchanged": true
+}

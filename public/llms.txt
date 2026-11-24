@@ -32,6 +32,9 @@ Docsynecx eliminates manual data entry by extracting, validating, reconciling, a
 - [Shipment Operations](https://docsynecx.com/logistics-desk/shipment-operations/): Automate bills of lading, packing lists, air waybills, and customs declarations.
 - [Shipment Tracking](https://docsynecx.com/logistics-desk/shipment-tracking/): Real-time container milestones, status aggregation, and exception alerts.
 - [Freight Intelligence](https://docsynecx.com/logistics-desk/freight-intelligence/): Rate analytics, margin rules, and carrier quotation insights.
+- [For Freight Forwarders](https://docsynecx.com/logistics-desk/freight-forwarders/): Win more shipments, enforce margin rules, stop margin leaks, and scale without adding headcount.
+- [For Pricing & Sourcing](https://docsynecx.com/logistics-desk/pricing-sourcing/): Normalize carrier tariffs, compare multi-carrier buy rates, and draft quotes in minutes.
+- [For Operations Teams](https://docsynecx.com/logistics-desk/operations-team/): Eliminate manual keying into CargoWise, validate B/Ls, and track container milestones.
 - [Integrations](https://docsynecx.com/logistics-desk/integrations/): Native connectors for CargoWise, custom ERPs, EDI, and email workflows.
 
 ## Industry Solutions

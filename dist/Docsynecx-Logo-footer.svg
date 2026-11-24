@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 48" width="240" height="48" fill="none">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@800&amp;display=swap');
+      .logo-brand-text {
+        font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+      }
+    </style>
+    <linearGradient id="footer-doc-blue" x1="0" y1="0" x2="38" y2="38" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#3b82f6"/>
+      <stop offset="100%" stop-color="#2f3de0"/>
+    </linearGradient>
+    <linearGradient id="footer-flow-cyan" x1="12" y1="6" x2="42" y2="36" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+  </defs>
+
+  <!-- ICON MARK: The Synergy Nexus (Dark Mode) -->
+  <g transform="translate(4, 5)">
+    <!-- Base Document Layer -->
+    <rect x="0" y="2" width="28" height="34" rx="7" fill="url(#footer-doc-blue)"/>
+    <!-- Folded Corner Detail -->
+    <path d="M18 2L28 12H21C19.3431 12 18 10.6569 18 9V2Z" fill="#ffffff" opacity="0.3"/>
+    <!-- Foreground Automated Flow Layer -->
+    <rect x="10" y="8" width="26" height="28" rx="6" fill="url(#footer-flow-cyan)" opacity="0.95"/>
+    <!-- Central Autonomous Sync Aperture -->
+    <circle cx="23" cy="22" r="4.5" fill="#ffffff"/>
+    <path d="M21.5 20L25 22L21.5 24" stroke="#0b1330" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- TYPOGRAPHY: Doc in White, synecx in Electric Blue -->
+  <text x="52" y="32" class="logo-brand-text" font-size="24.5">
+    <tspan fill="#ffffff">Doc</tspan><tspan fill="#38bdf8">synecx</tspan>
+  </text>
+</svg>

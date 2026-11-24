@@ -1,0 +1,1814 @@
+{
+  "url": "http://127.0.0.1:3101/",
+  "widths": [
+    {
+      "width": 320,
+      "status": 200,
+      "initial": {
+        "width": 320,
+        "scrollWidth": 320,
+        "overflow": false,
+        "hero": {
+          "x": 0,
+          "y": 65,
+          "width": 320,
+          "height": 1591,
+          "top": 65,
+          "right": 320,
+          "bottom": 1656,
+          "left": 0
+        },
+        "panels": [
+          {
+            "id": "hero-panel-0",
+            "active": "true",
+            "hidden": "false",
+            "visibility": "visible",
+            "rect": {
+              "x": 33,
+              "y": 912.5,
+              "width": 254,
+              "height": 560,
+              "top": 912.5,
+              "right": 287,
+              "bottom": 1472.5,
+              "left": 33
+            },
+            "visibleFocusable": []
+          },
+          {
+            "id": "hero-panel-1",
+            "active": "false",
+            "hidden": "true",
+            "visibility": "hidden",
+            "rect": {
+              "x": 33,
+              "y": 912.5,
+              "width": 254,
+              "height": 560,
+              "top": 912.5,
+              "right": 287,
+              "bottom": 1472.5,
+              "left": 33
+            },
+            "visibleFocusable": []
+          },
+          {
+            "id": "hero-panel-2",
+            "active": "false",
+            "hidden": "true",
+            "visibility": "hidden",
+            "rect": {
+              "x": 33,
+              "y": 912.5,
+              "width": 254,
+              "height": 560,
+              "top": 912.5,
+              "right": 287,
+              "bottom": 1472.5,
+              "left": 33
+            },
+            "visibleFocusable": []
+          }
+        ]
+      },
+      "typography": {
+        "h1": {
+          "text": "Grow the business,\nnot the data-entry desk.",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "36px",
+          "lineHeight": "38.88px",
+          "fontWeight": "800",
+          "letterSpacing": "-1.98px",
+          "color": "rgb(255, 255, 255)",
+          "width": 288,
+          "height": 155.5
+        },
+        "subtitle": {
+          "text": "Bills read, checked, paid and posted to Tally. Emails become CargoWise jobs. Your team handles exceptions, not typing.",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "15px",
+          "lineHeight": "28px",
+          "fontWeight": "400",
+          "letterSpacing": "normal",
+          "color": "rgb(203, 213, 225)",
+          "width": 288,
+          "height": 84
+        },
+        "eyebrow": {
+          "text": "For businesses that run on Tally, an ERP, or CargoWise",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "11px",
+          "lineHeight": "16.5px",
+          "fontWeight": "700",
+          "letterSpacing": "normal",
+          "color": "rgb(219, 234, 254)",
+          "width": 288,
+          "height": 45
+        },
+        "trust": {
+          "text": "Built around your approvals\nNo rip-and-replace",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "18px",
+          "fontWeight": "600",
+          "letterSpacing": "normal",
+          "color": "rgb(203, 213, 225)",
+          "width": 288,
+          "height": 60
+        },
+        "financeButton": {
+          "text": "Run a finance desk",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "18px",
+          "fontWeight": "700",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 164.890625,
+          "height": 38
+        },
+        "logisticsButton": {
+          "text": "Run the logistics desk",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "18px",
+          "fontWeight": "700",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 181.578125,
+          "height": 38
+        },
+        "financeLabel": {
+          "text": "Run a finance desk",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "18px",
+          "fontWeight": "700",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 105.890625,
+          "height": 18
+        },
+        "logisticsLabel": {
+          "text": "Run the logistics desk",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "18px",
+          "fontWeight": "700",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 122.578125,
+          "height": 18
+        }
+      },
+      "links": [
+        {
+          "text": "Run a finance desk",
+          "href": "/finance"
+        },
+        {
+          "text": "Run the logistics desk",
+          "href": "/logistics"
+        }
+      ],
+      "tabs": [
+        {
+          "index": 0,
+          "selected": "true",
+          "layout": {
+            "width": 320,
+            "scrollWidth": 320,
+            "overflow": false,
+            "hero": {
+              "x": 0,
+              "y": 0,
+              "width": 320,
+              "height": 1591,
+              "top": 0,
+              "right": 320,
+              "bottom": 1591,
+              "left": 0
+            },
+            "panels": [
+              {
+                "id": "hero-panel-0",
+                "active": "true",
+                "hidden": "false",
+                "visibility": "visible",
+                "rect": {
+                  "x": 33,
+                  "y": 847.5,
+                  "width": 254,
+                  "height": 560,
+                  "top": 847.5,
+                  "right": 287,
+                  "bottom": 1407.5,
+                  "left": 33
+                },
+                "visibleFocusable": []
+              },
+              {
+                "id": "hero-panel-1",
+                "active": "false",
+                "hidden": "true",
+                "visibility": "hidden",
+                "rect": {
+                  "x": 33,
+                  "y": 847.5,
+                  "width": 254,
+                  "height": 560,
+                  "top": 847.5,
+                  "right": 287,
+                  "bottom": 1407.5,
+                  "left": 33
+                },
+                "visibleFocusable": []
+              },
+              {
+                "id": "hero-panel-2",
+                "active": "false",
+                "hidden": "true",
+                "visibility": "hidden",
+                "rect": {
+                  "x": 33,
+                  "y": 847.5,
+                  "width": 254,
+                  "height": 560,
+                  "top": 847.5,
+                  "right": 287,
+                  "bottom": 1407.5,
+                  "left": 33
+                },
+                "visibleFocusable": []
+              }
+            ]
+          },
+          "hiddenFocusFailures": []
+        },
+        {
+          "index": 1,
+          "selected": "true",
+          "layout": {
+            "width": 320,
+            "scrollWidth": 320,
+            "overflow": false,
+            "hero": {
+              "x": 0,
+              "y": -408,
+              "width": 320,
+              "height": 1591,
+              "top": -408,
+              "right": 320,
+              "bottom": 1183,
+              "left": 0
+            },
+            "panels": [
+              {
+                "id": "hero-panel-0",
+                "active": "false",
+                "hidden": "true",
+                "visibility": "hidden",
+                "rect": {
+                  "x": 33,
+                  "y": 439.5,
+                  "width": 254,
+                  "height": 560,
+                  "top": 439.5,
+                  "right": 287,
+                  "bottom": 999.5,
+                  "left": 33
+                },
+                "visibleFocusable": []
+              },
+              {
+                "id": "hero-panel-1",
+                "active": "true",
+                "hidden": "false",
+                "visibility": "visible",
+                "rect": {
+                  "x": 33,
+                  "y": 439.5,
+                  "width": 254,
+                  "height": 560,
+                  "top": 439.5,
+                  "right": 287,
+                  "bottom": 999.5,
+                  "left": 33
+                },
+                "visibleFocusable": [
+                  "INPUT",
+                  "BUTTON",
+                  "All bills\n24",
+                  "Needs review\n1",
+                  "Posted\n23",
+                  "INV-2018\t\nAlpha Components\n33AABCA1122B1Z1\n\t12-10-2024\t₹1,84,200\t\nVerified\t\nPosted to Tally\tAC",
+                  "BILL-3081\t\nShivraj Traders\n27AAACS4455C1Z8\n\t13-10-2024\t₹92,450\t\nVerified\t\nPosted to Tally\tST",
+                  "INV-0021\t\nPrime Components\n33AABCP1234A1Z5\n\t14-10-2024\t₹74,095\t\nVerified\t\nDuplicate hold\tPC",
+                  "BILL-2082\t\nJaxon Industrial\n29AAACJ9988D1Z2\n\t14-10-2024\t₹3,15,000\t\nVerified\t\nPosted to Tally\tJI",
+                  "INV-4091\t\nTransLogix India\n36AABCT6677E1Z3\n\t15-10-2024\t₹1,42,800\t\nVerified\t\nNeeds review\tTL",
+                  "BILL-1185\t\nPremier Freight\n07AAACP3322F1Z4\n\t15-10-2024\t₹2,68,500\t\nVerified\t\nPosted to Tally\tPF"
+                ]
+              },
+              {
+                "id": "hero-panel-2",
+                "active": "false",
+                "hidden": "true",
+                "visibility": "hidden",
+                "rect": {
+                  "x": 33,
+                  "y": 439.5,
+                  "width": 254,
+                  "height": 560,
+                  "top": 439.5,
+                  "right": 287,
+                  "bottom": 999.5,
+                  "left": 33
+                },
+                "visibleFocusable": []
+              }
+            ]
+          },
+          "hiddenFocusFailures": []
+        },
+        {
+          "index": 2,
+          "selected": "true",
+          "layout": {
+            "width": 320,
+            "scrollWidth": 320,
+            "overflow": false,
+            "hero": {
+              "x": 0,
+              "y": -408,
+              "width": 320,
+              "height": 1591,
+              "top": -408,
+              "right": 320,
+              "bottom": 1183,
+              "left": 0
+            },
+            "panels": [
+              {
+                "id": "hero-panel-0",
+                "active": "false",
+                "hidden": "true",
+                "visibility": "hidden",
+                "rect": {
+                  "x": 33,
+                  "y": 439.5,
+                  "width": 254,
+                  "height": 560,
+                  "top": 439.5,
+                  "right": 287,
+                  "bottom": 999.5,
+                  "left": 33
+                },
+                "visibleFocusable": []
+              },
+              {
+                "id": "hero-panel-1",
+                "active": "false",
+                "hidden": "true",
+                "visibility": "hidden",
+                "rect": {
+                  "x": 33,
+                  "y": 439.5,
+                  "width": 254,
+                  "height": 560,
+                  "top": 439.5,
+                  "right": 287,
+                  "bottom": 999.5,
+                  "left": 33
+                },
+                "visibleFocusable": []
+              },
+              {
+                "id": "hero-panel-2",
+                "active": "true",
+                "hidden": "false",
+                "visibility": "visible",
+                "rect": {
+                  "x": 33,
+                  "y": 439.5,
+                  "width": 254,
+                  "height": 560,
+                  "top": 439.5,
+                  "right": 287,
+                  "bottom": 999.5,
+                  "left": 33
+                },
+                "visibleFocusable": [
+                  "Video Player",
+                  "Interactive Storyboard",
+                  "00:00 Intake",
+                  "00:30 Extract",
+                  "01:00 Check",
+                  "01:30 Post",
+                  "BUTTON",
+                  "BUTTON"
+                ]
+              }
+            ]
+          },
+          "hiddenFocusFailures": []
+        }
+      ],
+      "keyboard": [
+        {
+          "key": "ArrowRight",
+          "expected": 1,
+          "actual": "hero-tab-1",
+          "focused": "hero-tab-1"
+        },
+        {
+          "key": "ArrowRight",
+          "expected": 2,
+          "actual": "hero-tab-2",
+          "focused": "hero-tab-2"
+        },
+        {
+          "key": "ArrowRight",
+          "expected": 0,
+          "actual": "hero-tab-0",
+          "focused": "hero-tab-0"
+        },
+        {
+          "key": "ArrowLeft",
+          "expected": 2,
+          "actual": "hero-tab-2",
+          "focused": "hero-tab-2"
+        },
+        {
+          "key": "Home",
+          "expected": 0,
+          "actual": "hero-tab-0",
+          "focused": "hero-tab-0"
+        },
+        {
+          "key": "End",
+          "expected": 2,
+          "actual": "hero-tab-2",
+          "focused": "hero-tab-2"
+        }
+      ]
+    },
+    {
+      "width": 390,
+      "status": 200,
+      "initial": {
+        "width": 390,
+        "scrollWidth": 390,
+        "overflow": false,
+        "hero": {
+          "x": 0,
+          "y": 65,
+          "width": 390,
+          "height": 1482.375,
+          "top": 65,
+          "right": 390,
+          "bottom": 1547.375,
+          "left": 0
+        },
+        "panels": [
+          {
+            "id": "hero-panel-0",
+            "active": "true",
+            "hidden": "false",
+            "visibility": "visible",
+            "rect": {
+              "x": 33,
+              "y": 803.875,
+              "width": 324,
+              "height": 560,
+              "top": 803.875,
+              "right": 357,
+              "bottom": 1363.875,
+              "left": 33
+            },
+            "visibleFocusable": []
+          },
+          {
+            "id": "hero-panel-1",
+            "active": "false",
+            "hidden": "true",
+            "visibility": "hidden",
+            "rect": {
+              "x": 33,
+              "y": 803.875,
+              "width": 324,
+              "height": 560,
+              "top": 803.875,
+              "right": 357,
+              "bottom": 1363.875,
+              "left": 33
+            },
+            "visibleFocusable": []
+          },
+          {
+            "id": "hero-panel-2",
+            "active": "false",
+            "hidden": "true",
+            "visibility": "hidden",
+            "rect": {
+              "x": 33,
+              "y": 803.875,
+              "width": 324,
+              "height": 560,
+              "top": 803.875,
+              "right": 357,
+              "bottom": 1363.875,
+              "left": 33
+            },
+            "visibleFocusable": []
+          }
+        ]
+      },
+      "typography": {
+        "h1": {
+          "text": "Grow the business,\nnot the data-entry desk.",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "36px",
+          "lineHeight": "38.88px",
+          "fontWeight": "800",
+          "letterSpacing": "-1.98px",
+          "color": "rgb(255, 255, 255)",
+          "width": 358,
+          "height": 116.625
+        },
+        "subtitle": {
+          "text": "Bills read, checked, paid and posted to Tally. Emails become CargoWise jobs. Your team handles exceptions, not typing.",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "15px",
+          "lineHeight": "28px",
+          "fontWeight": "400",
+          "letterSpacing": "normal",
+          "color": "rgb(203, 213, 225)",
+          "width": 358,
+          "height": 84
+        },
+        "eyebrow": {
+          "text": "For businesses that run on Tally, an ERP, or CargoWise",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "11px",
+          "lineHeight": "16.5px",
+          "fontWeight": "700",
+          "letterSpacing": "normal",
+          "color": "rgb(219, 234, 254)",
+          "width": 303.03125,
+          "height": 28.5
+        },
+        "trust": {
+          "text": "Built around your approvals\nNo rip-and-replace",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "18px",
+          "fontWeight": "600",
+          "letterSpacing": "normal",
+          "color": "rgb(203, 213, 225)",
+          "width": 358,
+          "height": 18
+        },
+        "financeButton": {
+          "text": "Run a finance desk",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "18px",
+          "fontWeight": "700",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 164.890625,
+          "height": 38
+        },
+        "logisticsButton": {
+          "text": "Run the logistics desk",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "18px",
+          "fontWeight": "700",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 181.578125,
+          "height": 38
+        },
+        "financeLabel": {
+          "text": "Run a finance desk",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "18px",
+          "fontWeight": "700",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 105.890625,
+          "height": 18
+        },
+        "logisticsLabel": {
+          "text": "Run the logistics desk",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "18px",
+          "fontWeight": "700",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 122.578125,
+          "height": 18
+        }
+      },
+      "links": [
+        {
+          "text": "Run a finance desk",
+          "href": "/finance"
+        },
+        {
+          "text": "Run the logistics desk",
+          "href": "/logistics"
+        }
+      ],
+      "tabs": [
+        {
+          "index": 0,
+          "selected": "true",
+          "layout": {
+            "width": 390,
+            "scrollWidth": 390,
+            "overflow": false,
+            "hero": {
+              "x": 0,
+              "y": 0,
+              "width": 390,
+              "height": 1482.375,
+              "top": 0,
+              "right": 390,
+              "bottom": 1482.375,
+              "left": 0
+            },
+            "panels": [
+              {
+                "id": "hero-panel-0",
+                "active": "true",
+                "hidden": "false",
+                "visibility": "visible",
+                "rect": {
+                  "x": 33,
+                  "y": 738.875,
+                  "width": 324,
+                  "height": 560,
+                  "top": 738.875,
+                  "right": 357,
+                  "bottom": 1298.875,
+                  "left": 33
+                },
+                "visibleFocusable": []
+              },
+              {
+                "id": "hero-panel-1",
+                "active": "false",
+                "hidden": "true",
+                "visibility": "hidden",
+                "rect": {
+                  "x": 33,
+                  "y": 738.875,
+                  "width": 324,
+                  "height": 560,
+                  "top": 738.875,
+                  "right": 357,
+                  "bottom": 1298.875,
+                  "left": 33
+                },
+                "visibleFocusable": []
+              },
+              {
+                "id": "hero-panel-2",
+                "active": "false",
+                "hidden": "true",
+                "visibility": "hidden",
+                "rect": {
+                  "x": 33,
+                  "y": 738.875,
+                  "width": 324,
+                  "height": 560,
+                  "top": 738.875,
+                  "right": 357,
+                  "bottom": 1298.875,
+                  "left": 33
+                },
+                "visibleFocusable": []
+              }
+            ]
+          },
+          "hiddenFocusFailures": []
+        },
+        {
+          "index": 1,
+          "selected": "true",
+          "layout": {
+            "width": 390,
+            "scrollWidth": 390,
+            "overflow": false,
+            "hero": {
+              "x": 0,
+              "y": 0,
+              "width": 390,
+              "height": 1482.375,
+              "top": 0,
+              "right": 390,
+              "bottom": 1482.375,
+              "left": 0
+            },
+            "panels": [
+              {
+                "id": "hero-panel-0",
+                "active": "false",
+                "hidden": "true",
+                "visibility": "hidden",
+                "rect": {
+                  "x": 33,
+                  "y": 738.875,
+                  "width": 324,
+                  "height": 560,
+                  "top": 738.875,
+                  "right": 357,
+                  "bottom": 1298.875,
+                  "left": 33
+                },
+                "visibleFocusable": []
+              },
+              {
+                "id": "hero-panel-1",
+                "active": "true",
+                "hidden": "false",
+                "visibility": "visible",
+                "rect": {
+                  "x": 33,
+                  "y": 738.875,
+                  "width": 324,
+                  "height": 560,
+                  "top": 738.875,
+                  "right": 357,
+                  "bottom": 1298.875,
+                  "left": 33
+                },
+                "visibleFocusable": [
+                  "INPUT",
+                  "BUTTON",
+                  "All bills\n24",
+                  "Needs review\n1",
+                  "Posted\n23",
+                  "INV-2018\t\nAlpha Components\n33AABCA1122B1Z1\n\t12-10-2024\t₹1,84,200\t\nVerified\t\nPosted to Tally\tAC",
+                  "BILL-3081\t\nShivraj Traders\n27AAACS4455C1Z8\n\t13-10-2024\t₹92,450\t\nVerified\t\nPosted to Tally\tST",
+                  "INV-0021\t\nPrime Components\n33AABCP1234A1Z5\n\t14-10-2024\t₹74,095\t\nVerified\t\nDuplicate hold\tPC",
+                  "BILL-2082\t\nJaxon Industrial\n29AAACJ9988D1Z2\n\t14-10-2024\t₹3,15,000\t\nVerified\t\nPosted to Tally\tJI",
+                  "INV-4091\t\nTransLogix India\n36AABCT6677E1Z3\n\t15-10-2024\t₹1,42,800\t\nVerified\t\nNeeds review\tTL",
+                  "BILL-1185\t\nPremier Freight\n07AAACP3322F1Z4\n\t15-10-2024\t₹2,68,500\t\nVerified\t\nPosted to Tally\tPF"
+                ]
+              },
+              {
+                "id": "hero-panel-2",
+                "active": "false",
+                "hidden": "true",
+                "visibility": "hidden",
+                "rect": {
+                  "x": 33,
+                  "y": 738.875,
+                  "width": 324,
+                  "height": 560,
+                  "top": 738.875,
+                  "right": 357,
+                  "bottom": 1298.875,
+                  "left": 33
+                },
+                "visibleFocusable": []
+              }
+            ]
+          },
+          "hiddenFocusFailures": []
+        },
+        {
+          "index": 2,
+          "selected": "true",
+          "layout": {
+            "width": 390,
+            "scrollWidth": 390,
+            "overflow": false,
+            "hero": {
+              "x": 0,
+              "y": 0,
+              "width": 390,
+              "height": 1482.375,
+              "top": 0,
+              "right": 390,
+              "bottom": 1482.375,
+              "left": 0
+            },
+            "panels": [
+              {
+                "id": "hero-panel-0",
+                "active": "false",
+                "hidden": "true",
+                "visibility": "hidden",
+                "rect": {
+                  "x": 33,
+                  "y": 738.875,
+                  "width": 324,
+                  "height": 560,
+                  "top": 738.875,
+                  "right": 357,
+                  "bottom": 1298.875,
+                  "left": 33
+                },
+                "visibleFocusable": []
+              },
+              {
+                "id": "hero-panel-1",
+                "active": "false",
+                "hidden": "true",
+                "visibility": "hidden",
+                "rect": {
+                  "x": 33,
+                  "y": 738.875,
+                  "width": 324,
+                  "height": 560,
+                  "top": 738.875,
+                  "right": 357,
+                  "bottom": 1298.875,
+                  "left": 33
+                },
+                "visibleFocusable": []
+              },
+              {
+                "id": "hero-panel-2",
+                "active": "true",
+                "hidden": "false",
+                "visibility": "visible",
+                "rect": {
+                  "x": 33,
+                  "y": 738.875,
+                  "width": 324,
+                  "height": 560,
+                  "top": 738.875,
+                  "right": 357,
+                  "bottom": 1298.875,
+                  "left": 33
+                },
+                "visibleFocusable": [
+                  "Video Player",
+                  "Interactive Storyboard",
+                  "00:00 Intake",
+                  "00:30 Extract",
+                  "01:00 Check",
+                  "01:30 Post",
+                  "BUTTON",
+                  "BUTTON"
+                ]
+              }
+            ]
+          },
+          "hiddenFocusFailures": []
+        }
+      ],
+      "keyboard": [
+        {
+          "key": "ArrowRight",
+          "expected": 1,
+          "actual": "hero-tab-1",
+          "focused": "hero-tab-1"
+        },
+        {
+          "key": "ArrowRight",
+          "expected": 2,
+          "actual": "hero-tab-2",
+          "focused": "hero-tab-2"
+        },
+        {
+          "key": "ArrowRight",
+          "expected": 0,
+          "actual": "hero-tab-0",
+          "focused": "hero-tab-0"
+        },
+        {
+          "key": "ArrowLeft",
+          "expected": 2,
+          "actual": "hero-tab-2",
+          "focused": "hero-tab-2"
+        },
+        {
+          "key": "Home",
+          "expected": 0,
+          "actual": "hero-tab-0",
+          "focused": "hero-tab-0"
+        },
+        {
+          "key": "End",
+          "expected": 2,
+          "actual": "hero-tab-2",
+          "focused": "hero-tab-2"
+        }
+      ]
+    },
+    {
+      "width": 768,
+      "status": 200,
+      "initial": {
+        "width": 768,
+        "scrollWidth": 768,
+        "overflow": false,
+        "hero": {
+          "x": 0,
+          "y": 65,
+          "width": 768,
+          "height": 1285.75,
+          "top": 65,
+          "right": 768,
+          "bottom": 1350.75,
+          "left": 0
+        },
+        "panels": [
+          {
+            "id": "hero-panel-0",
+            "active": "true",
+            "hidden": "false",
+            "visibility": "visible",
+            "rect": {
+              "x": 45,
+              "y": 634.5,
+              "width": 678,
+              "height": 554.5,
+              "top": 634.5,
+              "right": 723,
+              "bottom": 1189,
+              "left": 45
+            },
+            "visibleFocusable": []
+          },
+          {
+            "id": "hero-panel-1",
+            "active": "false",
+            "hidden": "true",
+            "visibility": "hidden",
+            "rect": {
+              "x": 45,
+              "y": 634.5,
+              "width": 678,
+              "height": 554.5,
+              "top": 634.5,
+              "right": 723,
+              "bottom": 1189,
+              "left": 45
+            },
+            "visibleFocusable": []
+          },
+          {
+            "id": "hero-panel-2",
+            "active": "false",
+            "hidden": "true",
+            "visibility": "hidden",
+            "rect": {
+              "x": 45,
+              "y": 634.5,
+              "width": 678,
+              "height": 554.5,
+              "top": 634.5,
+              "right": 723,
+              "bottom": 1189,
+              "left": 45
+            },
+            "visibleFocusable": []
+          }
+        ]
+      },
+      "typography": {
+        "h1": {
+          "text": "Grow the business,\nnot the data-entry desk.",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "48px",
+          "lineHeight": "48px",
+          "fontWeight": "800",
+          "letterSpacing": "-2.64px",
+          "color": "rgb(255, 255, 255)",
+          "width": 580,
+          "height": 96
+        },
+        "subtitle": {
+          "text": "Bills read, checked, paid and posted to Tally. Emails become CargoWise jobs. Your team handles exceptions, not typing.",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "15px",
+          "lineHeight": "28px",
+          "fontWeight": "400",
+          "letterSpacing": "normal",
+          "color": "rgb(203, 213, 225)",
+          "width": 580,
+          "height": 56
+        },
+        "eyebrow": {
+          "text": "For businesses that run on Tally, an ERP, or CargoWise",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "11px",
+          "lineHeight": "16.5px",
+          "fontWeight": "700",
+          "letterSpacing": "normal",
+          "color": "rgb(219, 234, 254)",
+          "width": 303.03125,
+          "height": 28.5
+        },
+        "trust": {
+          "text": "Built around your approvals\nNo rip-and-replace",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "18px",
+          "fontWeight": "600",
+          "letterSpacing": "normal",
+          "color": "rgb(203, 213, 225)",
+          "width": 580,
+          "height": 18
+        },
+        "financeButton": {
+          "text": "Run a finance desk",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "18px",
+          "fontWeight": "700",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 164.890625,
+          "height": 38
+        },
+        "logisticsButton": {
+          "text": "Run the logistics desk",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "18px",
+          "fontWeight": "700",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 181.578125,
+          "height": 38
+        },
+        "financeLabel": {
+          "text": "Run a finance desk",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "18px",
+          "fontWeight": "700",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 105.890625,
+          "height": 18
+        },
+        "logisticsLabel": {
+          "text": "Run the logistics desk",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "18px",
+          "fontWeight": "700",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 122.578125,
+          "height": 18
+        }
+      },
+      "links": [
+        {
+          "text": "Run a finance desk",
+          "href": "/finance"
+        },
+        {
+          "text": "Run the logistics desk",
+          "href": "/logistics"
+        }
+      ],
+      "tabs": [
+        {
+          "index": 0,
+          "selected": "true",
+          "layout": {
+            "width": 768,
+            "scrollWidth": 768,
+            "overflow": false,
+            "hero": {
+              "x": 0,
+              "y": 0,
+              "width": 768,
+              "height": 1285.75,
+              "top": 0,
+              "right": 768,
+              "bottom": 1285.75,
+              "left": 0
+            },
+            "panels": [
+              {
+                "id": "hero-panel-0",
+                "active": "true",
+                "hidden": "false",
+                "visibility": "visible",
+                "rect": {
+                  "x": 45,
+                  "y": 569.5,
+                  "width": 678,
+                  "height": 554.5,
+                  "top": 569.5,
+                  "right": 723,
+                  "bottom": 1124,
+                  "left": 45
+                },
+                "visibleFocusable": []
+              },
+              {
+                "id": "hero-panel-1",
+                "active": "false",
+                "hidden": "true",
+                "visibility": "hidden",
+                "rect": {
+                  "x": 45,
+                  "y": 569.5,
+                  "width": 678,
+                  "height": 554.5,
+                  "top": 569.5,
+                  "right": 723,
+                  "bottom": 1124,
+                  "left": 45
+                },
+                "visibleFocusable": []
+              },
+              {
+                "id": "hero-panel-2",
+                "active": "false",
+                "hidden": "true",
+                "visibility": "hidden",
+                "rect": {
+                  "x": 45,
+                  "y": 569.5,
+                  "width": 678,
+                  "height": 554.5,
+                  "top": 569.5,
+                  "right": 723,
+                  "bottom": 1124,
+                  "left": 45
+                },
+                "visibleFocusable": []
+              }
+            ]
+          },
+          "hiddenFocusFailures": []
+        },
+        {
+          "index": 1,
+          "selected": "true",
+          "layout": {
+            "width": 768,
+            "scrollWidth": 768,
+            "overflow": false,
+            "hero": {
+              "x": 0,
+              "y": 0,
+              "width": 768,
+              "height": 1285.75,
+              "top": 0,
+              "right": 768,
+              "bottom": 1285.75,
+              "left": 0
+            },
+            "panels": [
+              {
+                "id": "hero-panel-0",
+                "active": "false",
+                "hidden": "true",
+                "visibility": "hidden",
+                "rect": {
+                  "x": 45,
+                  "y": 569.5,
+                  "width": 678,
+                  "height": 554.5,
+                  "top": 569.5,
+                  "right": 723,
+                  "bottom": 1124,
+                  "left": 45
+                },
+                "visibleFocusable": []
+              },
+              {
+                "id": "hero-panel-1",
+                "active": "true",
+                "hidden": "false",
+                "visibility": "visible",
+                "rect": {
+                  "x": 45,
+                  "y": 569.5,
+                  "width": 678,
+                  "height": 554.5,
+                  "top": 569.5,
+                  "right": 723,
+                  "bottom": 1124,
+                  "left": 45
+                },
+                "visibleFocusable": [
+                  "INPUT",
+                  "BUTTON",
+                  "All bills\n24",
+                  "Needs review\n1",
+                  "Posted\n23",
+                  "INV-2018\t\nAlpha Components\n33AABCA1122B1Z1\n\t12-10-2024\t₹1,84,200\t\nVerified\t\nPosted to Tally\tAC",
+                  "BILL-3081\t\nShivraj Traders\n27AAACS4455C1Z8\n\t13-10-2024\t₹92,450\t\nVerified\t\nPosted to Tally\tST",
+                  "INV-0021\t\nPrime Components\n33AABCP1234A1Z5\n\t14-10-2024\t₹74,095\t\nVerified\t\nDuplicate hold\tPC",
+                  "BILL-2082\t\nJaxon Industrial\n29AAACJ9988D1Z2\n\t14-10-2024\t₹3,15,000\t\nVerified\t\nPosted to Tally\tJI",
+                  "INV-4091\t\nTransLogix India\n36AABCT6677E1Z3\n\t15-10-2024\t₹1,42,800\t\nVerified\t\nNeeds review\tTL",
+                  "BILL-1185\t\nPremier Freight\n07AAACP3322F1Z4\n\t15-10-2024\t₹2,68,500\t\nVerified\t\nPosted to Tally\tPF"
+                ]
+              },
+              {
+                "id": "hero-panel-2",
+                "active": "false",
+                "hidden": "true",
+                "visibility": "hidden",
+                "rect": {
+                  "x": 45,
+                  "y": 569.5,
+                  "width": 678,
+                  "height": 554.5,
+                  "top": 569.5,
+                  "right": 723,
+                  "bottom": 1124,
+                  "left": 45
+                },
+                "visibleFocusable": []
+              }
+            ]
+          },
+          "hiddenFocusFailures": []
+        },
+        {
+          "index": 2,
+          "selected": "true",
+          "layout": {
+            "width": 768,
+            "scrollWidth": 768,
+            "overflow": false,
+            "hero": {
+              "x": 0,
+              "y": 0,
+              "width": 768,
+              "height": 1285.75,
+              "top": 0,
+              "right": 768,
+              "bottom": 1285.75,
+              "left": 0
+            },
+            "panels": [
+              {
+                "id": "hero-panel-0",
+                "active": "false",
+                "hidden": "true",
+                "visibility": "hidden",
+                "rect": {
+                  "x": 45,
+                  "y": 569.5,
+                  "width": 678,
+                  "height": 554.5,
+                  "top": 569.5,
+                  "right": 723,
+                  "bottom": 1124,
+                  "left": 45
+                },
+                "visibleFocusable": []
+              },
+              {
+                "id": "hero-panel-1",
+                "active": "false",
+                "hidden": "true",
+                "visibility": "hidden",
+                "rect": {
+                  "x": 45,
+                  "y": 569.5,
+                  "width": 678,
+                  "height": 554.5,
+                  "top": 569.5,
+                  "right": 723,
+                  "bottom": 1124,
+                  "left": 45
+                },
+                "visibleFocusable": []
+              },
+              {
+                "id": "hero-panel-2",
+                "active": "true",
+                "hidden": "false",
+                "visibility": "visible",
+                "rect": {
+                  "x": 45,
+                  "y": 569.5,
+                  "width": 678,
+                  "height": 554.5,
+                  "top": 569.5,
+                  "right": 723,
+                  "bottom": 1124,
+                  "left": 45
+                },
+                "visibleFocusable": [
+                  "Video Player",
+                  "Interactive Storyboard",
+                  "00:00 Intake",
+                  "00:30 Extract",
+                  "01:00 Check",
+                  "01:30 Post",
+                  "BUTTON",
+                  "BUTTON"
+                ]
+              }
+            ]
+          },
+          "hiddenFocusFailures": []
+        }
+      ],
+      "keyboard": [
+        {
+          "key": "ArrowRight",
+          "expected": 1,
+          "actual": "hero-tab-1",
+          "focused": "hero-tab-1"
+        },
+        {
+          "key": "ArrowRight",
+          "expected": 2,
+          "actual": "hero-tab-2",
+          "focused": "hero-tab-2"
+        },
+        {
+          "key": "ArrowRight",
+          "expected": 0,
+          "actual": "hero-tab-0",
+          "focused": "hero-tab-0"
+        },
+        {
+          "key": "ArrowLeft",
+          "expected": 2,
+          "actual": "hero-tab-2",
+          "focused": "hero-tab-2"
+        },
+        {
+          "key": "Home",
+          "expected": 0,
+          "actual": "hero-tab-0",
+          "focused": "hero-tab-0"
+        },
+        {
+          "key": "End",
+          "expected": 2,
+          "actual": "hero-tab-2",
+          "focused": "hero-tab-2"
+        }
+      ]
+    },
+    {
+      "width": 1024,
+      "status": 200,
+      "initial": {
+        "width": 1024,
+        "scrollWidth": 1063,
+        "overflow": true,
+        "hero": {
+          "x": 0,
+          "y": 65,
+          "width": 1024,
+          "height": 933,
+          "top": 65,
+          "right": 1024,
+          "bottom": 998,
+          "left": 0
+        },
+        "panels": [
+          {
+            "id": "hero-panel-0",
+            "active": "true",
+            "hidden": "false",
+            "visibility": "visible",
+            "rect": {
+              "x": 473,
+              "y": 267,
+              "width": 498,
+              "height": 560,
+              "top": 267,
+              "right": 971,
+              "bottom": 827,
+              "left": 473
+            },
+            "visibleFocusable": []
+          },
+          {
+            "id": "hero-panel-1",
+            "active": "false",
+            "hidden": "true",
+            "visibility": "hidden",
+            "rect": {
+              "x": 473,
+              "y": 267,
+              "width": 498,
+              "height": 560,
+              "top": 267,
+              "right": 971,
+              "bottom": 827,
+              "left": 473
+            },
+            "visibleFocusable": []
+          },
+          {
+            "id": "hero-panel-2",
+            "active": "false",
+            "hidden": "true",
+            "visibility": "hidden",
+            "rect": {
+              "x": 473,
+              "y": 267,
+              "width": 498,
+              "height": 560,
+              "top": 267,
+              "right": 971,
+              "bottom": 827,
+              "left": 473
+            },
+            "visibleFocusable": []
+          }
+        ]
+      },
+      "typography": {
+        "h1": {
+          "text": "Grow the business,\nnot the data-entry desk.",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "60px",
+          "lineHeight": "60px",
+          "fontWeight": "800",
+          "letterSpacing": "-3.3px",
+          "color": "rgb(255, 255, 255)",
+          "width": 372,
+          "height": 240
+        },
+        "subtitle": {
+          "text": "Bills read, checked, paid and posted to Tally. Emails become CargoWise jobs. Your team handles exceptions, not typing.",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "15px",
+          "lineHeight": "28px",
+          "fontWeight": "400",
+          "letterSpacing": "normal",
+          "color": "rgb(203, 213, 225)",
+          "width": 372,
+          "height": 84
+        },
+        "eyebrow": {
+          "text": "For businesses that run on Tally, an ERP, or CargoWise",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "11px",
+          "lineHeight": "16.5px",
+          "fontWeight": "700",
+          "letterSpacing": "normal",
+          "color": "rgb(219, 234, 254)",
+          "width": 303.03125,
+          "height": 28.5
+        },
+        "trust": {
+          "text": "Built around your approvals\nNo rip-and-replace",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "18px",
+          "fontWeight": "600",
+          "letterSpacing": "normal",
+          "color": "rgb(203, 213, 225)",
+          "width": 372,
+          "height": 18
+        },
+        "financeButton": {
+          "text": "Run a finance desk",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "18px",
+          "fontWeight": "700",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 164.890625,
+          "height": 38
+        },
+        "logisticsButton": {
+          "text": "Run the logistics desk",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "18px",
+          "fontWeight": "700",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 181.578125,
+          "height": 38
+        },
+        "financeLabel": {
+          "text": "Run a finance desk",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "18px",
+          "fontWeight": "700",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 105.890625,
+          "height": 18
+        },
+        "logisticsLabel": {
+          "text": "Run the logistics desk",
+          "fontFamily": "\"Plus Jakarta Sans\", system-ui, sans-serif",
+          "fontSize": "12px",
+          "lineHeight": "18px",
+          "fontWeight": "700",
+          "letterSpacing": "normal",
+          "color": "rgb(255, 255, 255)",
+          "width": 122.578125,
+          "height": 18
+        }
+      },
+      "links": [
+        {
+          "text": "Run a finance desk",
+          "href": "/finance"
+        },
+        {
+          "text": "Run the logistics desk",
+          "href": "/logistics"
+        }
+      ],
+      "tabs": [
+        {
+          "index": 0,
+          "selected": "true",
+          "layout": {
+            "width": 1024,
+            "scrollWidth": 1063,
+            "overflow": true,
+            "hero": {
+              "x": 0,
+              "y": 65,
+              "width": 1024,
+              "height": 933,
+              "top": 65,
+              "right": 1024,
+              "bottom": 998,
+              "left": 0
+            },
+            "panels": [
+              {
+                "id": "hero-panel-0",
+                "active": "true",
+                "hidden": "false",
+                "visibility": "visible",
+                "rect": {
+                  "x": 473,
+                  "y": 267,
+                  "width": 498,
+                  "height": 560,
+                  "top": 267,
+                  "right": 971,
+                  "bottom": 827,
+                  "left": 473
+                },
+                "visibleFocusable": []
+              },
+              {
+                "id": "hero-panel-1",
+                "active": "false",
+                "hidden": "true",
+                "visibility": "hidden",
+                "rect": {
+                  "x": 473,
+                  "y": 267,
+                  "width": 498,
+                  "height": 560,
+                  "top": 267,
+                  "right": 971,
+                  "bottom": 827,
+                  "left": 473
+                },
+                "visibleFocusable": []
+              },
+              {
+                "id": "hero-panel-2",
+                "active": "false",
+                "hidden": "true",
+                "visibility": "hidden",
+                "rect": {
+                  "x": 473,
+                  "y": 267,
+                  "width": 498,
+                  "height": 560,
+                  "top": 267,
+                  "right": 971,
+                  "bottom": 827,
+                  "left": 473
+                },
+                "visibleFocusable": []
+              }
+            ]
+          },
+          "hiddenFocusFailures": []
+        },
+        {
+          "index": 1,
+          "selected": "true",
+          "layout": {
+            "width": 1024,
+            "scrollWidth": 1063,
+            "overflow": true,
+            "hero": {
+              "x": 0,
+              "y": 65,
+              "width": 1024,
+              "height": 933,
+              "top": 65,
+              "right": 1024,
+              "bottom": 998,
+              "left": 0
+            },
+            "panels": [
+              {
+                "id": "hero-panel-0",
+                "active": "false",
+                "hidden": "true",
+                "visibility": "hidden",
+                "rect": {
+                  "x": 473,
+                  "y": 267,
+                  "width": 498,
+                  "height": 560,
+                  "top": 267,
+                  "right": 971,
+                  "bottom": 827,
+                  "left": 473
+                },
+                "visibleFocusable": []
+              },
+              {
+                "id": "hero-panel-1",
+                "active": "true",
+                "hidden": "false",
+                "visibility": "visible",
+                "rect": {
+                  "x": 473,
+                  "y": 267,
+                  "width": 498,
+                  "height": 560,
+                  "top": 267,
+                  "right": 971,
+                  "bottom": 827,
+                  "left": 473
+                },
+                "visibleFocusable": [
+                  "INPUT",
+                  "BUTTON",
+                  "All bills\n24",
+                  "Needs review\n1",
+                  "Posted\n23",
+                  "INV-2018\t\nAlpha Components\n33AABCA1122B1Z1\n\t12-10-2024\t₹1,84,200\t\nVerified\t\nPosted to Tally\tAC",
+                  "BILL-3081\t\nShivraj Traders\n27AAACS4455C1Z8\n\t13-10-2024\t₹92,450\t\nVerified\t\nPosted to Tally\tST",
+                  "INV-0021\t\nPrime Components\n33AABCP1234A1Z5\n\t14-10-2024\t₹74,095\t\nVerified\t\nDuplicate hold\tPC",
+                  "BILL-2082\t\nJaxon Industrial\n29AAACJ9988D1Z2\n\t14-10-2024\t₹3,15,000\t\nVerified\t\nPosted to Tally\tJI",
+                  "INV-4091\t\nTransLogix India\n36AABCT6677E1Z3\n\t15-10-2024\t₹1,42,800\t\nVerified\t\nNeeds review\tTL",
+                  "BILL-1185\t\nPremier Freight\n07AAACP3322F1Z4\n\t15-10-2024\t₹2,68,500\t\nVerified\t\nPosted to Tally\tPF"
+                ]
+              },
+              {
+                "id": "hero-panel-2",
+                "active": "false",
+                "hidden": "true",
+                "visibility": "hidden",
+                "rect": {
+                  "x": 473,
+                  "y": 267,
+                  "width": 498,
+                  "height": 560,
+                  "top": 267,
+                  "right": 971,
+                  "bottom": 827,
+                  "left": 473
+                },
+                "visibleFocusable": []
+              }
+            ]
+          },
+          "hiddenFocusFailures": []
+        },
+        {
+          "index": 2,
+          "selected": "true",
+          "layout": {
+            "width": 1024,
+            "scrollWidth": 1063,
+            "overflow": true,
+            "hero": {
+              "x": 0,
+              "y": 65,
+              "width": 1024,
+              "height": 933,
+              "top": 65,
+              "right": 1024,
+              "bottom": 998,
+              "left": 0
+            },
+            "panels": [
+              {
+                "id": "hero-panel-0",
+                "active": "false",
+                "hidden": "true",
+                "visibility": "hidden",
+                "rect": {
+                  "x": 473,
+                  "y": 267,
+                  "width": 498,
+                  "height": 560,
+                  "top": 267,
+                  "right": 971,
+                  "bottom": 827,
+                  "left": 473
+                },
+                "visibleFocusable": []
+              },
+              {
+                "id": "hero-panel-1",
+                "active": "false",
+                "hidden": "true",
+                "visibility": "hidden",
+                "rect": {
+                  "x": 473,
+                  "y": 267,
+                  "width": 498,
+                  "height": 560,
+                  "top": 267,
+                  "right": 971,
+                  "bottom": 827,
+                  "left": 473
+                },
+                "visibleFocusable": []
+              },
+              {
+                "id": "hero-panel-2",
+                "active": "true",
+                "hidden": "false",
+                "visibility": "visible",
+                "rect": {
+                  "x": 473,
+                  "y": 267,
+                  "width": 498,
+                  "height": 560,
+                  "top": 267,
+                  "right": 971,
+                  "bottom": 827,
+                  "left": 473
+                },
+                "visibleFocusable": [
+                  "Video Player",
+                  "Interactive Storyboard",
+                  "00:00 Intake",
+                  "00:30 Extract",
+                  "01:00 Check",
+                  "01:30 Post",
+                  "BUTTON",
+                  "BUTTON"
+                ]
+              }
+            ]
+          },
+          "hiddenFocusFailures": []
+        }
+      ],
+      "keyboard": [
+        {
+          "key": "ArrowRight",
+          "expected": 1,
+          "actual": "hero-tab-1",
+          "focused": "hero-tab-1"
+        },
+        {
+          "key": "ArrowRight",
+          "expected": 2,
+          "actual": "hero-tab-2",
+          "focused": "hero-tab-2"
+        },
+        {
+          "key": "ArrowRight",
+          "expected": 0,
+          "actual": "hero-tab-0",
+          "focused": "hero-tab-0"
+        },
+        {
+          "key": "ArrowLeft",
+          "expected": 2,
+          "actual": "hero-tab-2",
+          "focused": "hero-tab-2"
+        },
+        {
+          "key": "Home",
+          "expected": 0,
+          "actual": "hero-tab-0",
+          "focused": "hero-tab-0"
+        },
+        {
+          "key": "End",
+          "expected": 2,
+          "actual": "hero-tab-2",
+          "focused": "hero-tab-2"
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

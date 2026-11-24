@@ -262,6 +262,21 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
                 </Link>
               </li>
               <li>
+                <Link href="/logistics-desk/freight-forwarders/" className={styles.footerLink}>
+                  For Freight Forwarders
+                </Link>
+              </li>
+              <li>
+                <Link href="/logistics-desk/pricing-sourcing/" className={styles.footerLink}>
+                  For Pricing &amp; Sourcing
+                </Link>
+              </li>
+              <li>
+                <Link href="/logistics-desk/operations-team/" className={styles.footerLink}>
+                  For Operations Teams
+                </Link>
+              </li>
+              <li>
                 <Link href="/logistics-desk/integrations/" className={styles.footerLink}>
                   Integrations
                 </Link>

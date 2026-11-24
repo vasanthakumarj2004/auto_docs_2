@@ -1,0 +1,268 @@
+{
+  "widths": [
+    {
+      "width": 320,
+      "shell": {
+        "x": 16,
+        "y": 340.3125,
+        "width": 288,
+        "height": 569.25
+      },
+      "scene": {
+        "x": 29,
+        "y": 535.8125,
+        "width": 620,
+        "height": 286.75
+      },
+      "documentWidth": 320,
+      "posted": "true",
+      "running": "false",
+      "errors": [],
+      "helpVisible": true,
+      "searchOpensQueue": true,
+      "keyboardOpensQueue": true
+    },
+    {
+      "width": 390,
+      "shell": {
+        "x": 16,
+        "y": 361.046875,
+        "width": 358,
+        "height": 548.75
+      },
+      "scene": {
+        "x": 29,
+        "y": 536.046875,
+        "width": 620,
+        "height": 286.75
+      },
+      "documentWidth": 390,
+      "posted": "true",
+      "running": "false",
+      "errors": [],
+      "helpVisible": true,
+      "searchOpensQueue": true,
+      "keyboardOpensQueue": true
+    },
+    {
+      "width": 768,
+      "shell": {
+        "x": 24,
+        "y": 346.375,
+        "width": 720,
+        "height": 564.0625
+      },
+      "scene": {
+        "x": 45,
+        "y": 509.875,
+        "width": 678,
+        "height": 313.5625
+      },
+      "documentWidth": 768,
+      "posted": "true",
+      "running": "false",
+      "errors": [],
+      "helpVisible": true,
+      "searchOpensQueue": true,
+      "keyboardOpensQueue": true
+    },
+    {
+      "width": 1024,
+      "shell": {
+        "x": 429.328125,
+        "y": 120,
+        "width": 562.671875,
+        "height": 537.25
+      },
+      "scene": {
+        "x": 450.328125,
+        "y": 283.5,
+        "width": 620,
+        "height": 286.75
+      },
+      "documentWidth": 1024,
+      "posted": "true",
+      "running": "false",
+      "errors": [],
+      "helpVisible": true,
+      "searchOpensQueue": true,
+      "keyboardOpensQueue": true
+    },
+    {
+      "width": 1440,
+      "shell": {
+        "x": 609.328125,
+        "y": 120,
+        "width": 710.65625,
+        "height": 559.75
+      },
+      "scene": {
+        "x": 630.328125,
+        "y": 283.5,
+        "width": 668.65625,
+        "height": 309.25
+      },
+      "documentWidth": 1440,
+      "posted": "true",
+      "running": "false",
+      "errors": [],
+      "helpVisible": true,
+      "searchOpensQueue": true,
+      "keyboardOpensQueue": true
+    },
+    {
+      "width": 1628,
+      "shell": {
+        "x": 703.328125,
+        "y": 120,
+        "width": 710.65625,
+        "height": 559.75
+      },
+      "scene": {
+        "x": 724.328125,
+        "y": 283.5,
+        "width": 668.65625,
+        "height": 309.25
+      },
+      "documentWidth": 1628,
+      "posted": "true",
+      "running": "false",
+      "errors": [],
+      "helpVisible": true,
+      "searchOpensQueue": true,
+      "keyboardOpensQueue": true
+    }
+  ],
+  "cycleSamples": [
+    {
+      "phase": "reading",
+      "posted": "false",
+      "rect": {
+        "x": 703.328125,
+        "y": 120,
+        "width": 710.65625,
+        "height": 559.75
+      }
+    },
+    {
+      "phase": "checking",
+      "posted": "false",
+      "rect": {
+        "x": 703.328125,
+        "y": 120,
+        "width": 710.65625,
+        "height": 559.75
+      }
+    },
+    {
+      "phase": "checking",
+      "posted": "false",
+      "rect": {
+        "x": 703.328125,
+        "y": 120,
+        "width": 710.65625,
+        "height": 559.75
+      }
+    },
+    {
+      "phase": "posted",
+      "posted": "true",
+      "rect": {
+        "x": 703.328125,
+        "y": 120,
+        "width": 710.65625,
+        "height": 559.75
+      }
+    },
+    {
+      "phase": "posted",
+      "posted": "true",
+      "rect": {
+        "x": 703.328125,
+        "y": 120,
+        "width": 710.65625,
+        "height": 559.75
+      }
+    },
+    {
+      "phase": "posted",
+      "posted": "true",
+      "rect": {
+        "x": 703.328125,
+        "y": 120,
+        "width": 710.65625,
+        "height": 559.75
+      }
+    },
+    {
+      "phase": "posted",
+      "posted": "true",
+      "rect": {
+        "x": 703.328125,
+        "y": 120,
+        "width": 710.65625,
+        "height": 559.75
+      }
+    },
+    {
+      "phase": "posted",
+      "posted": "true",
+      "rect": {
+        "x": 703.328125,
+        "y": 120,
+        "width": 710.65625,
+        "height": 559.75
+      }
+    },
+    {
+      "phase": "posted",
+      "posted": "true",
+      "rect": {
+        "x": 703.328125,
+        "y": 120,
+        "width": 710.65625,
+        "height": 559.75
+      }
+    },
+    {
+      "phase": "reset",
+      "posted": "false",
+      "rect": {
+        "x": 703.328125,
+        "y": 120,
+        "width": 710.65625,
+        "height": 559.75
+      }
+    },
+    {
+      "phase": "reading",
+      "posted": "false",
+      "rect": {
+        "x": 703.328125,
+        "y": 120,
+        "width": 710.65625,
+        "height": 559.75
+      }
+    },
+    {
+      "phase": "checking",
+      "posted": "false",
+      "rect": {
+        "x": 703.328125,
+        "y": 120,
+        "width": 710.65625,
+        "height": 559.75
+      }
+    }
+  ],
+  "reducedMotion": {
+    "posted": "true",
+    "running": "false",
+    "animations": 0
+  },
+  "resumes": true,
+  "modifiedExistingFiles": [
+    "src/components/hero/HeroProductPanel.tsx",
+    "src/components/hero/PipelineGraph.tsx"
+  ]
+}

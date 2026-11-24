@@ -1,0 +1,168 @@
+'use client';
+import React, { useState, useEffect, useRef } from 'react';
+import { Zap, TableProperties, Video } from 'lucide-react';
+import { PipelineView } from './PipelineView';
+import { BillQueueView } from './BillQueueView';
+import { WalkthroughView } from './WalkthroughView';
+import styles from './HeroProductPanel.module.css';
+
+interface HeroProductPanelProps {
+  onTabChange?: (tabIndex: number) => void;
+}
+
+const tabs = [
+  { label: 'Live Pipeline', icon: Zap },
+  { label: 'Finance Bill Queue', icon: TableProperties },
+  { label: '2-Min Walkthrough', icon: Video },
+];
+
+export const HeroProductPanel: React.FC<HeroProductPanelProps> = ({ onTabChange }) => {
+  const [activeTab, setActiveTab] = useState(0);
+  const [isPermanentlyStopped, setIsPermanentlyStopped] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [reducedMotion, setReducedMotion] = useState(false);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const tabListRef = useRef<HTMLDivElement>(null);
+  const previousTab = useRef(0);
+  const canAutoCycle = !isPermanentlyStopped && !isHovered && isVisible && !reducedMotion;
+
+  const stopAutoCycle = () => setIsPermanentlyStopped(true);
+
+  const handleTabClick = (index: number) => {
+    setActiveTab(index);
+    stopAutoCycle();
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent, index: number) => {
+    const nextIndex = event.key === 'ArrowRight' ? (index + 1) % tabs.length
+      : event.key === 'ArrowLeft' ? (index + tabs.length - 1) % tabs.length
+      : event.key === 'Home' ? 0
+      : event.key === 'End' ? tabs.length - 1 : null;
+    if (nextIndex === null) return;
+    event.preventDefault();
+    handleTabClick(nextIndex);
+    tabListRef.current?.querySelectorAll<HTMLButtonElement>('[role="tab"]')[nextIndex]?.focus();
+  };
+
+  useEffect(() => {
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updatePreference = () => setReducedMotion(preference.matches);
+    updatePreference();
+    preference.addEventListener('change', updatePreference);
+    return () => preference.removeEventListener('change', updatePreference);
+  }, []);
+
+  useEffect(() => {
+    if (!canAutoCycle) return;
+    const timer = window.setInterval(() => {
+      if (!document.hidden) setActiveTab((current) => (current + 1) % tabs.length);
+    }, 8000);
+    return () => window.clearInterval(timer);
+  }, [canAutoCycle]);
+
+  useEffect(() => {
+    if (previousTab.current !== activeTab) {
+      previousTab.current = activeTab;
+      onTabChange?.(activeTab);
+    }
+  }, [activeTab, onTabChange]);
+
+  useEffect(() => {
+    const panel = panelRef.current;
+    if (!panel) return;
+    const observer = new IntersectionObserver(([entry]) => setIsVisible(entry.isIntersecting), { threshold: 0.1 });
+    observer.observe(panel);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={panelRef}
+      onMouseEnter={() => { setIsHovered(true); stopAutoCycle(); }}
+      onMouseLeave={() => setIsHovered(false)}
+      onFocus={stopAutoCycle}
+      onClick={stopAutoCycle}
+      onTouchStart={stopAutoCycle}
+      className={`${styles.stack} relative w-full min-w-0`}
+    >
+      <div className={styles.backLayer} aria-hidden="true" />
+      <div className={styles.middleLayer} aria-hidden="true" />
+      <div className={`${styles.console} relative min-h-[520px] rounded-3xl p-4 sm:p-5`}>
+        <div className={styles.titlebar}>
+          <div className="flex min-w-0 items-center gap-2 text-xs">
+            <span className={styles.brandMark} aria-hidden="true">D</span>
+            <span className="font-semibold text-slate-100">Docsynecx</span>
+            <span className="text-slate-500">/</span>
+            <span className="font-mono text-[11px] text-slate-300">Finance desk</span>
+          </div>
+          <span className={`${styles.connected} text-[10.5px] font-bold`}>
+            <span className={styles.statusDot} />
+            Tally Prime connected
+          </span>
+        </div>
+
+        <div className={styles.navigation}>
+          <div ref={tabListRef} role="tablist" aria-label="Docsynecx hero panel views" className={styles.tabs}>
+            {tabs.map(({ label, icon: Icon }, index) => (
+              <button
+                key={label}
+                type="button"
+                role="tab"
+                id={`hero-tab-${index}`}
+                aria-selected={activeTab === index}
+                aria-controls={`hero-panel-${index}`}
+                tabIndex={activeTab === index ? 0 : -1}
+                onClick={() => handleTabClick(index)}
+                onKeyDown={(event) => handleKeyDown(event, index)}
+                className={`${styles.tab} font-mono text-[11px] font-semibold tracking-tight`}
+              >
+                <Icon size={13} aria-hidden="true" className={styles.tabIcon} />
+                <span>{label}</span>
+                {index === 0 && <span className={styles.statusDot} />}
+                {index === 1 && <span className={`${styles.queueCount} text-[9.5px]`}>24</span>}
+              </button>
+            ))}
+          </div>
+          <span className={`${styles.telemetry} font-mono text-[10px]`}>
+            <span className={styles.statusDot} />
+            Auto-sync telemetry
+          </span>
+        </div>
+
+        <div className={styles.progressTrack} aria-hidden="true">
+          <div key={activeTab} className={styles.progress} data-running={canAutoCycle} data-stopped={isPermanentlyStopped || reducedMotion} />
+        </div>
+
+        {/* Overlapping grid cells reserve the tallest view before hydration and on every tab. */}
+        <div className={`${styles.viewport} min-h-[490px]`}>
+          <div id="hero-panel-0" role="tabpanel" aria-labelledby="hero-tab-0" aria-hidden={activeTab !== 0}
+            tabIndex={activeTab === 0 ? 0 : -1} data-active={activeTab === 0} className={styles.view}>
+            <PipelineView isPaused={activeTab !== 0 || isHovered || !isVisible || reducedMotion} />
+          </div>
+          <div id="hero-panel-1" role="tabpanel" aria-labelledby="hero-tab-1" aria-hidden={activeTab !== 1}
+            tabIndex={activeTab === 1 ? 0 : -1} data-active={activeTab === 1} className={`${styles.view} ${styles.queueView}`}>
+            <BillQueueView />
+          </div>
+          <div id="hero-panel-2" role="tabpanel" aria-labelledby="hero-tab-2" aria-hidden={activeTab !== 2}
+            tabIndex={activeTab === 2 ? 0 : -1} data-active={activeTab === 2} className={`${styles.view} ${styles.walkthroughView}`}>
+            <WalkthroughView isPaused={activeTab !== 2 || !isVisible || reducedMotion} />
+          </div>
+        </div>
+
+        <div className={`${styles.footer} font-mono text-[10.5px]`}>
+          <span className="inline-flex items-center gap-2 font-semibold text-slate-200">
+            <span className={styles.statusDot} />
+            Direct ERP &amp; Tally Prime Sync
+          </span>
+          <span className="inline-flex items-center gap-2 text-slate-400">
+            <span>Avg. speed: <b className="font-bold text-slate-200">4.2s</b></span>
+            <span aria-hidden="true" className="text-slate-600">|</span>
+            <span>Accuracy: <b className="font-bold text-emerald-300">99.8%</b></span>
+          </span>
+        </div>
+        <div className="mt-2 text-right font-mono text-[10px] text-slate-400">Illustrative demo data</div>
+      </div>
+    </div>
+  );
+};

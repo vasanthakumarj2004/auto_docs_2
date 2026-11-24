@@ -125,13 +125,12 @@ const MEGA_MENUS: Record<string, MegaMenuData> = {
         href: '/logistics-desk/freight-intelligence/',
       },
     ],
-    // whoHeading: "By Role",
-    // whoLinks: [
-    //   { title: 'Freight Forwarders', href: '/logistics-desk/RFQ-to-booking/' },
-    //   { title: 'Operations Teams', href: '/logistics-desk/shipment-operations/' },
-    //   { title: 'Pricing & Sourcing', href: '/logistics-desk/freight-intelligence/' },
-    //   { title: 'Logistics Leadership', href: '/logistics-desk/shipment-operations/' },
-    // ],
+    whoHeading: "By Role",
+    whoLinks: [
+      { title: 'Freight Forwarders', href: '/logistics-desk/freight-forwarders/' },
+      { title: 'Pricing & Sourcing', href: '/logistics-desk/pricing-sourcing/' },
+      { title: 'Operations Teams', href: '/logistics-desk/operations-team/' },
+    ],
     integrationsHeading: 'Integrations',
     integrationsLinks: [
       { title: 'CargoWise & Custom ERP/TMS', href: '/logistics-desk/integrations/' },
