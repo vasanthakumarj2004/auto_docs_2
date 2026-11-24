@@ -326,11 +326,11 @@ export function ShipsyFooter({ className, showCta = false }: ShipsyFooterProps) 
       <div className={styles.bottomStrip}>
         <div className={styles.shell}>
           <div className={styles.bottomContent}>
-            <div className={styles.bottomMeta}>
+            {/* <div className={styles.bottomMeta}>
               <span className={styles.brandLocation}>
                 Built by SynecX AI Labs Private Limited &middot; Coimbatore, Tamil Nadu, India
               </span>
-            </div>
+            </div> */}
             <span className={styles.copyright}>
               &copy; Powered by SynecX AI Labs Private Limited. All rights reserved. 
             </span>

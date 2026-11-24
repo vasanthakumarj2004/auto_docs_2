@@ -144,12 +144,13 @@ export default function TermsOfServicePage() {
       </p>
       <p>
         Customer support is available in English via email at{' '}
-        <a href="mailto:support@docsynecx.com">support@docsynecx.com</a>. Clients may also consult
+        <a href="mailto:support@docsynecx.com">support@docsynecx.com</a>. 
+        {/* Clients may also consult
         helpful resources and self-service guides at{' '}
         <a href="https://docsynecx.com/help" target="_blank" rel="noopener noreferrer">
           docsynecx.com/help
         </a>
-        .
+        . */}
       </p>
 
       {/* 4. Billing */}

@@ -219,7 +219,7 @@ export function AboutPage() {
                 <div className={`${s.founderVisual} ${s.founderVisual2}`}>
                   <div className={s.visualOrbit1} aria-hidden="true" />
                   <div className={s.visualOrbit2} aria-hidden="true" />
-                  <div className={s.initials}>B</div>
+                  <div className={s.initials}>BS</div>
                   <span className={s.visualBadge}>Founder profile</span>
                 </div>
 
