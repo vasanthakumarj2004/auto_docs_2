@@ -1,0 +1,44 @@
+
+name: CodeQL Security Analysis
+
+on:
+  push:
+    branches:
+      - main
+      - nav-edit_20_11
+      - codeql_analysis
+
+  pull_request:
+    branches:
+      - main
+      - nav-edit_20_11
+      - codeql_analysis
+
+  workflow_dispatch:
+
+jobs:
+  analyze:
+    name: Analyze
+    runs-on: ubuntu-latest
+
+    permissions:
+      security-events: write
+      contents: read
+      actions: read
+
+    strategy:
+      fail-fast: false
+      matrix:
+        language: ['javascript-typescript']
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v4
+        with:
+          languages: ${{ matrix.language }}
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v4
