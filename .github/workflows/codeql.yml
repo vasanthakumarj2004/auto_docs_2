@@ -5,12 +5,12 @@ on:
   push:
     branches:
       - main
-      - nav-edit_20_11
+      - codeql_analysis
 
   pull_request:
     branches:
       - main
-      - nav-edit_20_11
+      - codeql_analysis
 
   workflow_dispatch:
 
