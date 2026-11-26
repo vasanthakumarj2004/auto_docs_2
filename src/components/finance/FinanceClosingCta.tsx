@@ -27,7 +27,7 @@ export function FinanceClosingCta({
   steps,
   primaryHref,
   primaryText,
-  secondaryHref = "/finance-desk/#tools",
+  secondaryHref = "/finance-desk/tools",
   secondaryText,
   bg = "slate",
   className,
@@ -35,7 +35,9 @@ export function FinanceClosingCta({
   const resolvedEyebrow = eyebrow ?? financeClosing.eyebrow;
   const resolvedTitle = title ?? (
     <>
-      Bring ten invoices.<br /><span>We&apos;ll show you how they look in Tally.</span>
+      Bring ten invoices.
+      <br />
+      <span>We&apos;ll show you how they look in Tally.</span>
     </>
   );
   const resolvedCopy = copy ?? financeClosing.copy;
@@ -46,7 +48,7 @@ export function FinanceClosingCta({
   return (
     <section
       id="contact"
-      className={`${styles.closing} ${bg === 'white' ? styles.bgWhite : ''} ${bg === 'transparent' ? styles.bgTransparent : ''} ${className ?? ''}`}
+      className={`${styles.closing} ${bg === "white" ? styles.bgWhite : ""} ${bg === "transparent" ? styles.bgTransparent : ""} ${className ?? ""}`}
       data-bg={bg}
       aria-labelledby="closing-title"
     >

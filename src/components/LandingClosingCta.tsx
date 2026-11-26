@@ -1,15 +1,15 @@
-import type { ReactNode } from 'react';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { ClosingVisualBg } from './ClosingVisualBg';
-import styles from './LandingClosingCta.module.css';
+import type { ReactNode } from "react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { ClosingVisualBg } from "./ClosingVisualBg";
+import styles from "./LandingClosingCta.module.css";
 
 export function LandingClosingCta({
-  primaryHref = '/demo/#demo-form',
-  secondaryHref = '/#platform',
-  title = 'What could your team do with less typing?',
-  copy = 'Tell us which documents eat your team\'s day. In 30 minutes we\'ll show you a practical place to start, using your own bills or shipment emails.',
-  buttonText = 'Book a demo',
+  primaryHref = "/demo-form",
+  secondaryHref = "/platform",
+  title = "What could your team do with less typing?",
+  copy = "Tell us which documents eat your team's day. In 30 minutes we'll show you a practical place to start, using your own bills or shipment emails.",
+  buttonText = "Book a demo",
 }: {
   primaryHref?: string;
   secondaryHref?: string;
@@ -18,7 +18,11 @@ export function LandingClosingCta({
   buttonText?: string;
 }) {
   return (
-    <section id="contact" className={styles.closing} aria-labelledby="closing-title">
+    <section
+      id="contact"
+      className={styles.closing}
+      aria-labelledby="closing-title"
+    >
       <div className="site-shell">
         <div className={styles.closingCard}>
           <div className={styles.closingBgPattern} aria-hidden="true">
@@ -29,9 +33,7 @@ export function LandingClosingCta({
             <h2 id="closing-title" className={styles.closingTitle}>
               {title}
             </h2>
-            <p className={styles.closingCopy}>
-              {copy}
-            </p>
+            <p className={styles.closingCopy}>{copy}</p>
             <div className={styles.closingActions}>
               <Link
                 href={primaryHref}

@@ -1,18 +1,28 @@
-import { Fragment, type ReactNode } from 'react';
-import Link from 'next/link';
-import { ArrowDown, ArrowRight, ArrowUpRight, Check, Ship, Mail, PackageCheck, Navigation, BarChart3 } from 'lucide-react';
-import { LandingNavigation } from '../LandingNavigation';
-import { ShipsyFooter } from '../ShipsyFooter';
-import { SharedFaqAccordion } from '../SharedFaqAccordion';
-import { LogisticsHeroCollage } from './LogisticsHeroCollage';
-import { LogisticsHeroVisual } from './LogisticsHeroVisual';
-import { LogisticsStatStrip } from './LogisticsStatStrip';
-import { LogisticsProblemComparison } from './LogisticsProblemComparison';
-import { LogisticsHowItWorks } from './LogisticsHowItWorks';
-import { LogisticsGetStarted } from './LogisticsGetStarted';
-import { LogisticsClosingCta } from './LogisticsClosingCta';
-import { LandingClosingCta } from '../LandingClosingCta';
-import { EmailToBookingPage } from './EmailToBookingPage';
+import { Fragment, type ReactNode } from "react";
+import Link from "next/link";
+import {
+  ArrowDown,
+  ArrowRight,
+  ArrowUpRight,
+  Check,
+  Ship,
+  Mail,
+  PackageCheck,
+  Navigation,
+  BarChart3,
+} from "lucide-react";
+import { LandingNavigation } from "../LandingNavigation";
+import { ShipsyFooter } from "../ShipsyFooter";
+import { SharedFaqAccordion } from "../SharedFaqAccordion";
+import { LogisticsHeroCollage } from "./LogisticsHeroCollage";
+import { LogisticsHeroVisual } from "./LogisticsHeroVisual";
+import { LogisticsStatStrip } from "./LogisticsStatStrip";
+import { LogisticsProblemComparison } from "./LogisticsProblemComparison";
+import { LogisticsHowItWorks } from "./LogisticsHowItWorks";
+import { LogisticsGetStarted } from "./LogisticsGetStarted";
+import { LogisticsClosingCta } from "./LogisticsClosingCta";
+import { LandingClosingCta } from "../LandingClosingCta";
+import { EmailToBookingPage } from "./EmailToBookingPage";
 import {
   demoHref,
   logisticsModules,
@@ -25,33 +35,36 @@ import {
   freightIntelligenceFeatures,
   type Feature,
   type LogisticsSlug,
-} from '../../content/logisticsOverview';
-import base from '../LandingPage.module.css';
-import s from './LogisticsOverviewPage.module.css';
+} from "../../content/logisticsOverview";
+import base from "../LandingPage.module.css";
+import s from "./LogisticsOverviewPage.module.css";
 
-type PageKey = 'overview' | LogisticsSlug;
-const number = (index: number) => String(index + 1).padStart(2, '0');
+type PageKey = "overview" | LogisticsSlug;
+const number = (index: number) => String(index + 1).padStart(2, "0");
 
-const MODULE_FLOW_IMAGES: Record<string, { image: string; alt: string; flowTag: string }> = {
-  'RFQ-to-booking': {
-    image: '/images/logistics-collage/logistics-plane-1.jpg',
-    alt: 'Customer enquiry intake and carrier quotation flow',
-    flowTag: 'Flow Stage 01 · Inbound Intake',
+const MODULE_FLOW_IMAGES: Record<
+  string,
+  { image: string; alt: string; flowTag: string }
+> = {
+  "RFQ-to-booking": {
+    image: "/images/logistics-collage/logistics-plane-1.jpg",
+    alt: "Customer enquiry intake and carrier quotation flow",
+    flowTag: "Flow Stage 01 · Inbound Intake",
   },
-  'shipment-operations': {
-    image: '/images/logistics-collage/logistics-ship-2.jpg',
-    alt: 'Shipment operations and CargoWise ERP synchronization',
-    flowTag: 'Flow Stage 02 · Execution & Documents',
+  "shipment-operations": {
+    image: "/images/logistics-collage/logistics-ship-2.jpg",
+    alt: "Shipment operations and CargoWise ERP synchronization",
+    flowTag: "Flow Stage 02 · Execution & Documents",
   },
-  'shipment-tracking': {
-    image: '/images/logistics-collage/logistics-port-1.jpg',
-    alt: 'Container port terminal and live milestone tracking',
-    flowTag: 'Flow Stage 03 · Milestone Telemetry',
+  "shipment-tracking": {
+    image: "/images/logistics-collage/logistics-port-1.jpg",
+    alt: "Container port terminal and live milestone tracking",
+    flowTag: "Flow Stage 03 · Milestone Telemetry",
   },
-  'freight-intelligence': {
-    image: '/images/logistics-collage/logistics-supply-1.jpg',
-    alt: 'Global freight intelligence and margin analytics',
-    flowTag: 'Flow Stage 04 · Profitability Insight',
+  "freight-intelligence": {
+    image: "/images/logistics-collage/logistics-supply-1.jpg",
+    alt: "Global freight intelligence and margin analytics",
+    flowTag: "Flow Stage 04 · Profitability Insight",
   },
 };
 
@@ -59,7 +72,15 @@ function Eyebrow({ children }: { children: ReactNode }) {
   return <p className={`${base.eyebrow} ${s.eyebrow}`}>{children}</p>;
 }
 
-function Heading({ eyebrow, title, copy }: { eyebrow: string; title: ReactNode; copy?: string }) {
+function Heading({
+  eyebrow,
+  title,
+  copy,
+}: {
+  eyebrow: string;
+  title: ReactNode;
+  copy?: string;
+}) {
   return (
     <div className={s.secHead}>
       <Eyebrow>{eyebrow}</Eyebrow>
@@ -69,9 +90,22 @@ function Heading({ eyebrow, title, copy }: { eyebrow: string; title: ReactNode; 
   );
 }
 
-function Section({ children, id, alternate = false, dark = false }: { children: ReactNode; id?: string; alternate?: boolean; dark?: boolean }) {
+function Section({
+  children,
+  id,
+  alternate = false,
+  dark = false,
+}: {
+  children: ReactNode;
+  id?: string;
+  alternate?: boolean;
+  dark?: boolean;
+}) {
   return (
-    <section id={id} className={`${base.section} ${alternate ? base.alternate : ''} ${dark ? s.dark : ''}`}>
+    <section
+      id={id}
+      className={`${base.section} ${alternate ? base.alternate : ""} ${dark ? s.dark : ""}`}
+    >
       <div className="site-shell">{children}</div>
     </section>
   );
@@ -80,7 +114,7 @@ function Section({ children, id, alternate = false, dark = false }: { children: 
 function Checklist({ items }: { items: readonly string[] }) {
   return (
     <ul className={s.checklist}>
-      {items.map(item => (
+      {items.map((item) => (
         <li key={item}>
           <Check size={15} aria-hidden="true" />
           <span>{item}</span>
@@ -106,15 +140,18 @@ function Features({ items }: { items: Feature[] }) {
 
 function Hero({ page }: { page: PageKey }) {
   const copy = logisticsPageCopy[page] || logisticsPageCopy.overview;
-  const isOverview = page === 'overview';
+  const isOverview = page === "overview";
 
   return (
-    <section className={`${base.hero} ${s.viewportHero} ${isOverview ? s.overviewHero : ''}`} aria-labelledby="logistics-title">
+    <section
+      className={`${base.hero} ${s.viewportHero} ${isOverview ? s.overviewHero : ""}`}
+      aria-labelledby="logistics-title"
+    >
       <div className={`site-shell ${base.heroGrid} ${s.heroGrid}`}>
         <div className={`${base.heroCopy} ${s.heroCopy}`}>
           <Eyebrow>{copy.eyebrow}</Eyebrow>
           <h1 id="logistics-title" className={s.heroTitle}>
-            {copy.headline.split('\n').map((line, i) => (
+            {copy.headline.split("\n").map((line, i) => (
               <Fragment key={i}>
                 {line}
                 <br />
@@ -128,33 +165,64 @@ function Hero({ page }: { page: PageKey }) {
               <span>{copy.primary}</span>
               <ArrowUpRight size={16} aria-hidden="true" />
             </Link>
-            <Link href={isOverview ? '#how' : logisticsRoot} className={s.secondaryBtn}>
+            <Link
+              href={isOverview ? "#how" : logisticsRoot}
+              className={s.secondaryBtn}
+            >
               <span>{copy.secondary}</span>
-              {isOverview ? <ArrowDown size={15} aria-hidden="true" /> : <ArrowRight size={15} aria-hidden="true" />}
+              {isOverview ? (
+                <ArrowDown size={15} aria-hidden="true" />
+              ) : (
+                <ArrowRight size={15} aria-hidden="true" />
+              )}
             </Link>
           </div>
           {isOverview ? (
             <>
-              {'promise' in copy && copy.promise && (
+              {"promise" in copy && copy.promise && (
                 <p className={s.promise}>
-                  <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
-                    <circle cx="10" cy="10" r="9" fill="none" stroke="currentColor" strokeWidth="2" />
-                    <path d="M6 10.5l2.5 2.5L14 7.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    aria-hidden="true"
+                  >
+                    <circle
+                      cx="10"
+                      cy="10"
+                      r="9"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    />
+                    <path
+                      d="M6 10.5l2.5 2.5L14 7.5"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
                   </svg>
                   <span>{copy.promise}</span>
                 </p>
               )}
               <p className={`${base.trust} ${s.heroTrust}`}>
-                Works with <strong>Standalone or CargoWise</strong>, your own ERP, or just your email inbox. <strong>Live in about a week.</strong>
+                Works with <strong>Standalone or CargoWise</strong>, your own
+                ERP, or just your email inbox.{" "}
+                <strong>Live in about a week.</strong>
               </p>
             </>
           ) : (
             <p className={`${base.trust} ${s.heroTrust}`}>
-              <strong>Built for businesses that run on CargoWise</strong>, custom ERPs, and email workflows.
+              <strong>Built for businesses that run on CargoWise</strong>,
+              custom ERPs, and email workflows.
             </p>
           )}
         </div>
-        <div className={isOverview ? s.heroVisualWrapper : s.heroCollageWrapper}>
+        <div
+          className={isOverview ? s.heroVisualWrapper : s.heroCollageWrapper}
+        >
           {isOverview ? <LogisticsHeroVisual /> : <LogisticsHeroCollage />}
         </div>
       </div>
@@ -178,7 +246,13 @@ function Overview() {
       <Section id="modules">
         <Heading
           eyebrow="START WITH ONE. ADD THE REST WHEN YOU'RE READY."
-          title={<>Four modules,<br /><span>one desk.</span></>}
+          title={
+            <>
+              Four modules,
+              <br />
+              <span>one desk.</span>
+            </>
+          }
           copy="Most teams start with RFQ-to-Booking and add operations and tracking later. We set each one up around how your desk already works."
         />
         <div className={s.capabilityGrid}>
@@ -186,14 +260,19 @@ function Overview() {
             <article className={base.desk} key={item.slug}>
               <div className={s.cardTop}>
                 <span>{item.label}</span>
-                {'badge' in item && item.badge && <span className={s.badge}>{item.badge}</span>}
+                {"badge" in item && item.badge && (
+                  <span className={s.badge}>{item.badge}</span>
+                )}
               </div>
               <h3>
                 <Link href={`${logisticsRoot}${item.slug}/`}>{item.title}</Link>
               </h3>
               <p className={base.deskCopy}>{item.lead}</p>
               <Checklist items={item.bullets} />
-              <Link className={base.deskLink} href={`${logisticsRoot}${item.slug}/`}>
+              <Link
+                className={base.deskLink}
+                href={`${logisticsRoot}${item.slug}/`}
+              >
                 {item.link}
                 <ArrowRight size={16} aria-hidden="true" />
               </Link>
@@ -215,12 +294,16 @@ function Overview() {
                 What forwarders ask us first.
               </h2>
               <p className={s.faqDescription}>
-                Something else on your mind?{' '}
-                <Link href="/demo/#demo-form">Ask us in the demo.</Link>
+                Something else on your mind?{" "}
+                <Link href="/demo-form">Ask us in the demo.</Link>
               </p>
             </div>
           </div>
-          <SharedFaqAccordion items={logisticsFaqs} defaultOpenIndex={0} toggleStyle="plus" />
+          <SharedFaqAccordion
+            items={logisticsFaqs}
+            defaultOpenIndex={0}
+            toggleStyle="plus"
+          />
         </div>
       </Section>
 
@@ -282,8 +365,12 @@ function FreightIntelligence() {
   );
 }
 
-export function LogisticsOverviewPage({ page = 'overview' }: { page?: PageKey }) {
-  if (page === 'RFQ-to-booking') {
+export function LogisticsOverviewPage({
+  page = "overview",
+}: {
+  page?: PageKey;
+}) {
+  if (page === "RFQ-to-booking") {
     return <EmailToBookingPage />;
   }
 
@@ -291,18 +378,20 @@ export function LogisticsOverviewPage({ page = 'overview' }: { page?: PageKey })
 
   return (
     <div className={`${base.page} ${s.page}`}>
-      <a href="#main-content" className={base.skipLink}>Skip to content</a>
+      <a href="#main-content" className={base.skipLink}>
+        Skip to content
+      </a>
       <LandingNavigation />
       <main id="main-content">
         <Hero page={page} />
-        {page === 'overview' && <Overview />}
-        {page === 'shipment-operations' && <ShipmentOperations />}
-        {page === 'shipment-tracking' && <ShipmentTracking />}
-        {page === 'freight-intelligence' && <FreightIntelligence />}
+        {page === "overview" && <Overview />}
+        {page === "shipment-operations" && <ShipmentOperations />}
+        {page === "shipment-tracking" && <ShipmentTracking />}
+        {page === "freight-intelligence" && <FreightIntelligence />}
 
         {/* Closing CTA Banner for individual sub-pages */}
-        {page !== 'overview' && (
-          <LandingClosingCta primaryHref={demoHref} secondaryHref="/#platform" />
+        {page !== "overview" && (
+          <LandingClosingCta primaryHref={demoHref} secondaryHref="/platform" />
         )}
       </main>
       <ShipsyFooter />

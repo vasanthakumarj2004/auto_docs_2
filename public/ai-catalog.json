@@ -156,7 +156,7 @@
       "displayName": "TallyPrime Integration",
       "name": "TallyPrime Integration",
       "description": "Seamless two-way integration with TallyPrime for automated voucher posting and ledger sync.",
-      "url": "https://docsynecx.com/finance-desk/#integration-tally",
+      "url": "https://docsynecx.com/finance-desk/integration-tally",
       "type": "text/html",
       "representativeQueries": [
         "integrate AI invoice extraction with TallyPrime",
@@ -170,7 +170,7 @@
       "displayName": "Zoho Books Integration",
       "name": "Zoho Books Integration",
       "description": "Direct synchronization with Zoho Books for purchase bills, customer invoices, and bank feeds.",
-      "url": "https://docsynecx.com/finance-desk/#integration-zoho",
+      "url": "https://docsynecx.com/finance-desk/integration-zoho",
       "type": "text/html",
       "representativeQueries": [
         "integrate invoice processing with Zoho Books",
@@ -184,7 +184,7 @@
       "displayName": "Custom ERP Integration",
       "name": "Custom ERP Integration",
       "description": "Enterprise ERP integration via secure REST APIs, webhooks, and database connectors.",
-      "url": "https://docsynecx.com/finance-desk/#integration-erp",
+      "url": "https://docsynecx.com/finance-desk/integration-erp",
       "type": "text/html",
       "representativeQueries": [
         "connect document AI to enterprise ERP",
@@ -310,7 +310,7 @@
       "displayName": "Request Live Demo",
       "name": "Request Live Demo",
       "description": "Interactive workflow demo registration",
-      "url": "https://docsynecx.com/demo/",
+      "url": "https://docsynecx.com/demo-form",
       "type": "text/html",
       "representativeQueries": [
         "request Docsynecx live demo",

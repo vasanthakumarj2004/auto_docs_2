@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, type FormEvent, type ChangeEvent } from 'react';
+import React, { useEffect, useState, type FormEvent, type ChangeEvent } from 'react';
 import {
   Check,
   CheckCircle2,
@@ -45,6 +45,15 @@ export function BookADemoPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (
+      (window.location.pathname === '/demo/' || window.location.pathname === '/demo') &&
+      window.location.hash === '#demo-form'
+    ) {
+      window.location.replace(`/demo-form${window.location.search}`);
+    }
+  }, []);
 
   function handleChange(
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>

@@ -1,40 +1,64 @@
-import Link from 'next/link';
-import { ArrowRight, ArrowLeftRight, ArrowUpRight, FileText, Zap, ShieldCheck, CheckCircle2, TrendingUp } from 'lucide-react';
+import Link from "next/link";
+import {
+  ArrowRight,
+  ArrowLeftRight,
+  ArrowUpRight,
+  FileText,
+  Zap,
+  ShieldCheck,
+  CheckCircle2,
+  TrendingUp,
+} from "lucide-react";
 
-import { LandingHero } from './LandingHero';
-import { LandingNavigation } from './LandingNavigation';
-import { LandingAnnouncementBar } from './LandingAnnouncementBar';
-import { ShipsyFooter } from './ShipsyFooter';
-import { IntelligenceLayer } from './IntelligenceLayer';
-import { LandingClosingCta } from './LandingClosingCta';
-import { CustomerReviewSliderFallback } from './CustomerReviewSliderFallback';
-import { DeferredCustomerReviewSlider, DeferredSharedFaqAccordion } from './DeferredLandingSections';
-import { landingDesks, landingFaqs } from '../content/landing';
-import styles from './LandingHome.module.css';
+import { LandingHero } from "./LandingHero";
+import { LandingNavigation } from "./LandingNavigation";
+import { LandingAnnouncementBar } from "./LandingAnnouncementBar";
+import { ShipsyFooter } from "./ShipsyFooter";
+import { IntelligenceLayer } from "./IntelligenceLayer";
+import { LandingClosingCta } from "./LandingClosingCta";
+import { CustomerReviewSliderFallback } from "./CustomerReviewSliderFallback";
+import {
+  DeferredCustomerReviewSlider,
+  DeferredSharedFaqAccordion,
+} from "./DeferredLandingSections";
+import { landingDesks, landingFaqs } from "../content/landing";
+import styles from "./LandingHome.module.css";
 
 const DESK_IMAGES: Record<string, string> = {
-  finance: '/images/finance-desk-background-750.webp',
-  shipment: '/images/logistics-desk-background-750.webp',
-  logistics: '/images/logistics-desk-background-750.webp',
+  finance: "/images/finance-desk-background-750.webp",
+  shipment: "/images/logistics-desk-background-750.webp",
+  logistics: "/images/logistics-desk-background-750.webp",
 };
 
 const benefits = [
-  ['Less repetitive work', 'Docsynecx reads, types and checks the documents that slow your team down.'],
-  ['People stay in charge', 'Nothing is posted, sent or pushed until someone on your team approves it.'],
-  ['Your systems stay', 'Tally, Zoho Books, CargoWise or your own ERP. Your team keeps working where they work today.'],
-  ['Numbers you can use', 'See dues, cash, margins and delays without building a report in Excel.'],
+  [
+    "Less repetitive work",
+    "Docsynecx reads, types and checks the documents that slow your team down.",
+  ],
+  [
+    "People stay in charge",
+    "Nothing is posted, sent or pushed until someone on your team approves it.",
+  ],
+  [
+    "Your systems stay",
+    "Tally, Zoho Books, CargoWise or your own ERP. Your team keeps working where they work today.",
+  ],
+  [
+    "Numbers you can use",
+    "See dues, cash, margins and delays without building a report in Excel.",
+  ],
 ];
 const BENEFIT_ITEMS = [
-  { icon: Zap, tag: 'Autonomous Flow' },
-  { icon: ShieldCheck, tag: 'Human Review Loop' },
-  { icon: ArrowLeftRight, tag: 'Two-Way System Sync' },
-  { icon: TrendingUp, tag: 'Actionable Visibility' },
+  { icon: Zap, tag: "Autonomous Flow" },
+  { icon: ShieldCheck, tag: "Human Review Loop" },
+  { icon: ArrowLeftRight, tag: "Two-Way System Sync" },
+  { icon: TrendingUp, tag: "Actionable Visibility" },
 ];
 const steps = [
-  ['Understand', 'Review your process, systems, document types and volumes.'],
-  ['Configure', 'Map the workflow, validation points and integration needs.'],
-  ['Validate', 'Test with representative documents and your team.'],
-  ['Scale', 'Expand to more workflows as results are established.'],
+  ["Understand", "Review your process, systems, document types and volumes."],
+  ["Configure", "Map the workflow, validation points and integration needs."],
+  ["Validate", "Test with representative documents and your team."],
+  ["Scale", "Expand to more workflows as results are established."],
 ];
 interface CustomerStoryOutcome {
   tag: string;
@@ -52,7 +76,7 @@ const stories: CustomerStoryOutcome[] = [
     metric: "60+ min → 15 min",
     summary: "Email to CargoWise",
     copy: "Shipment intake that once took about an hour per shipment now takes less than fifteen minutes.",
-    href: "/#customers",
+    href: "/customers",
   },
   {
     tag: "Automotive & EV",
@@ -60,7 +84,7 @@ const stories: CustomerStoryOutcome[] = [
     metric: "Days → hours",
     summary: "Bills",
     copy: "A month's spares, service and purchase bills now take hours instead of days.",
-    href: "/#customers",
+    href: "/customers",
   },
   {
     tag: "Business operations",
@@ -85,35 +109,65 @@ const stories: CustomerStoryOutcome[] = [
   },
 ];
 const integrations = [
-  ['TallyPrime', 'Finance integration'], ['CargoWise', 'Logistics integration'],
-  ['Email workflows', 'Document intake'], ['API connectivity', 'Connected workflows'],
-  ['Zoho Books', 'Finance integration'], ['SAP', 'Enterprise resource planning'],
-  ['Oracle ERP', 'Cloud ERP & financial'], ['Microsoft Dynamics', 'Business applications'],
+  ["TallyPrime", "Finance integration"],
+  ["CargoWise", "Logistics integration"],
+  ["Email workflows", "Document intake"],
+  ["API connectivity", "Connected workflows"],
+  ["Zoho Books", "Finance integration"],
+  ["SAP", "Enterprise resource planning"],
+  ["Oracle ERP", "Cloud ERP & financial"],
+  ["Microsoft Dynamics", "Business applications"],
 ];
 
-function SectionHeading({ eyebrow, title, copy, id }: { eyebrow: string; title: React.ReactNode; copy?: string; id: string }) {
-  return <div className={styles.sectionHeading}>
-    <div><p className={styles.eyebrow}>{eyebrow}</p><h2 id={id}>{title}</h2></div>
-    {copy && <p className={styles.sectionCopy}>{copy}</p>}
-  </div>;
+function SectionHeading({
+  eyebrow,
+  title,
+  copy,
+  id,
+}: {
+  eyebrow: string;
+  title: React.ReactNode;
+  copy?: string;
+  id: string;
+}) {
+  return (
+    <div className={styles.sectionHeading}>
+      <div>
+        <p className={styles.eyebrow}>{eyebrow}</p>
+        <h2 id={id}>{title}</h2>
+      </div>
+      {copy && <p className={styles.sectionCopy}>{copy}</p>}
+    </div>
+  );
 }
 
 function LandingFaqFallback() {
   return (
-    <div className="space-y-2.5" role="region" aria-label="Frequently Asked Questions">
+    <div
+      className="space-y-2.5"
+      role="region"
+      aria-label="Frequently Asked Questions"
+    >
       {landingFaqs.map((item, index) => (
         <details
           key={item.question}
           open={index === 0}
           className={`rounded-xl border transition-all duration-200 ${
             index === 0
-              ? 'border-[#18cb96]/45 bg-[#f4fbf8] shadow-2xs'
-              : 'border-slate-200/90 bg-white'
+              ? "border-[#18cb96]/45 bg-[#f4fbf8] shadow-2xs"
+              : "border-slate-200/90 bg-white"
           }`}
         >
           <summary className="flex w-full cursor-pointer list-none items-center justify-between gap-4 rounded-xl p-4 text-left [&::-webkit-details-marker]:hidden">
-            <span className="text-sm font-bold text-slate-800">{item.question}</span>
-            <span className="shrink-0 text-xl text-slate-500" aria-hidden="true">⌄</span>
+            <span className="text-sm font-bold text-slate-800">
+              {item.question}
+            </span>
+            <span
+              className="shrink-0 text-xl text-slate-500"
+              aria-hidden="true"
+            >
+              ⌄
+            </span>
           </summary>
           {item.answer && (
             <div className="px-4 pb-4 pt-1">
@@ -140,16 +194,22 @@ export function LandingPage() {
         <LandingHero />
         <section className={styles.statStrip} aria-labelledby="outcomes-title">
           <div className="site-shell">
-            <h2 id="outcomes-title" className={styles.eyebrow}>What customers see</h2>
+            <h2 id="outcomes-title" className={styles.eyebrow}>
+              What customers see
+            </h2>
             {/* <SectionHeading id="platform-title" eyebrow="What customers see" title={<>Real teams.<span>Real hours back.</span></>} /> */}
             <div className={styles.stats}>
               {stories.slice(0, 3).map((story, index) => {
-                const Icon = index === 0 ? Zap : index === 1 ? ShieldCheck : CheckCircle2;
+                const Icon =
+                  index === 0 ? Zap : index === 1 ? ShieldCheck : CheckCircle2;
                 return (
                   <div key={story.name} className={styles.outcomeCard}>
                     <div className={styles.outcomeCardTop}>
                       <p className={styles.statValue}>{story.metric}</p>
-                      <span className={styles.outcomeIconBadge} aria-hidden="true">
+                      <span
+                        className={styles.outcomeIconBadge}
+                        aria-hidden="true"
+                      >
                         <Icon size={15} className="stroke-[2.2]" />
                       </span>
                     </div>
@@ -170,14 +230,37 @@ export function LandingPage() {
             </div>
           </div>
         </section>
-        <section id="platform" className={`${styles.section} ${styles.platformSection}`} aria-labelledby="platform-title">
+        <section
+          id="platform"
+          className={`${styles.section} ${styles.platformSection}`}
+          aria-labelledby="platform-title"
+        >
           <div className="site-shell">
-            <SectionHeading id="platform-title" eyebrow="Pick your desk" title={<>Two desks.<br /><span>One way of working.</span></>} />
+            <SectionHeading
+              id="platform-title"
+              eyebrow="Pick your desk"
+              title={
+                <>
+                  Two desks.
+                  <br />
+                  <span>One way of working.</span>
+                </>
+              }
+            />
             <div className={styles.desks}>
               {landingDesks.map((desk, index) => {
-                const imageSrc = DESK_IMAGES[desk.id] || (index === 0 ? '/images/finance-desk-background-750.webp' : '/images/logistics-desk-background-750.webp');
+                const imageSrc =
+                  DESK_IMAGES[desk.id] ||
+                  (index === 0
+                    ? "/images/finance-desk-background-750.webp"
+                    : "/images/logistics-desk-background-750.webp");
                 return (
-                  <article key={desk.id} id={desk.id} className={styles.desk} data-desk={desk.id}>
+                  <article
+                    key={desk.id}
+                    id={desk.id}
+                    className={styles.desk}
+                    data-desk={desk.id}
+                  >
                     <div className={styles.deskImageWrapper}>
                       <img
                         src={imageSrc}
@@ -198,9 +281,15 @@ export function LandingPage() {
 
                     <div className={styles.deskHoverView}>
                       <div className={styles.deskHoverTop}>
-                        <span className={styles.deskHoverEyebrow}>{desk.tag}</span>
+                        <span className={styles.deskHoverEyebrow}>
+                          {desk.tag}
+                        </span>
                         <span className={styles.deskHoverIcon}>
-                          {index === 0 ? <FileText size={20} aria-hidden="true" /> : <ArrowLeftRight size={20} aria-hidden="true" />}
+                          {index === 0 ? (
+                            <FileText size={20} aria-hidden="true" />
+                          ) : (
+                            <ArrowLeftRight size={20} aria-hidden="true" />
+                          )}
                         </span>
                       </div>
 
@@ -208,7 +297,7 @@ export function LandingPage() {
                         <h3 className={styles.deskHoverTitle}>{desk.title}</h3>
                         <p className={styles.deskHoverCopy}>{desk.copy}</p>
                         <ul className={styles.deskHoverChips}>
-                          {desk.features.map(feature => (
+                          {desk.features.map((feature) => (
                             <li key={feature}>{feature}</li>
                           ))}
                         </ul>
@@ -225,12 +314,27 @@ export function LandingPage() {
                 );
               })}
             </div>
-            <p className={styles.deskText}>Start with the workflow that takes the most effort today. Expand as your teams are ready.</p>
+            <p className={styles.deskText}>
+              Start with the workflow that takes the most effort today. Expand
+              as your teams are ready.
+            </p>
           </div>
         </section>
-        <section id="why-docsynecx" className={`${styles.section} ${styles.whySection}`} aria-labelledby="why-title">
+        <section
+          id="why-docsynecx"
+          className={`${styles.section} ${styles.whySection}`}
+          aria-labelledby="why-title"
+        >
           <div className="site-shell">
-            <SectionHeading id="why-title" eyebrow="Why Docsynecx" title={<>Less typing. <span>More clarity.</span></>} />
+            <SectionHeading
+              id="why-title"
+              eyebrow="Why Docsynecx"
+              title={
+                <>
+                  Less typing. <span>More clarity.</span>
+                </>
+              }
+            />
             <div className={styles.benefits}>
               {benefits.map(([title, copy], index) => {
                 const item = BENEFIT_ITEMS[index] || BENEFIT_ITEMS[0];
@@ -242,7 +346,11 @@ export function LandingPage() {
                         <div className={styles.benefitRingOuter} />
                         <div className={styles.benefitRingInner} />
                         <span className={styles.benefitIconBadge}>
-                          <IconComponent size={26} strokeWidth={2.2} aria-hidden="true" />
+                          <IconComponent
+                            size={26}
+                            strokeWidth={2.2}
+                            aria-hidden="true"
+                          />
                         </span>
                         <span className={styles.benefitTag}>
                           <span className={styles.benefitDot} />
@@ -263,21 +371,37 @@ export function LandingPage() {
           </div>
         </section>
         <IntelligenceLayer />
-        <section id="customers" className={`${styles.section} ${styles.customersSection}`} aria-labelledby="customers-title">
+        <section
+          id="customers"
+          className={`${styles.section} ${styles.customersSection}`}
+          aria-labelledby="customers-title"
+        >
           <div className="site-shell">
             <SectionHeading
               id="customers-title"
               eyebrow="Testimonials"
-              title={<>Real workflows.<br /><span>Meaningful time saved.</span></>}
+              title={
+                <>
+                  Real workflows.
+                  <br />
+                  <span>Meaningful time saved.</span>
+                </>
+              }
             />
             <DeferredCustomerReviewSlider>
               <CustomerReviewSliderFallback />
             </DeferredCustomerReviewSlider>
           </div>
         </section>
-        <section id="faq" className={`${styles.section} ${styles.faqSection}`} aria-labelledby="faq-title">
+        <section
+          id="faq"
+          className={`${styles.section} ${styles.faqSection}`}
+          aria-labelledby="faq-title"
+        >
           <div className={`site-shell ${styles.faqLayout}`}>
-            <h2 id="faq-title" className="sr-only">Frequently asked questions</h2>
+            <h2 id="faq-title" className="sr-only">
+              Frequently asked questions
+            </h2>
             <DeferredSharedFaqAccordion items={landingFaqs}>
               <LandingFaqFallback />
             </DeferredSharedFaqAccordion>

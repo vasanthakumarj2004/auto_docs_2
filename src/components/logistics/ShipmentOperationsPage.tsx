@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
 import {
   ArrowDown,
   ArrowRight,
@@ -18,14 +18,14 @@ import {
   Receipt,
   AlertTriangle,
   Check,
-} from 'lucide-react';
-import { LandingNavigation } from '../LandingNavigation';
-import { ShipsyFooter } from '../ShipsyFooter';
-import { SharedFaqAccordion } from '../SharedFaqAccordion';
-import { LogisticsClosingCta } from './LogisticsClosingCta';
-import { useAutoCycle } from '@/src/hooks/useAutoCycle';
-import layoutStyles from '../LandingPage.module.css';
-import s from './EmailToBookingPage.module.css';
+} from "lucide-react";
+import { LandingNavigation } from "../LandingNavigation";
+import { ShipsyFooter } from "../ShipsyFooter";
+import { SharedFaqAccordion } from "../SharedFaqAccordion";
+import { LogisticsClosingCta } from "./LogisticsClosingCta";
+import { useAutoCycle } from "@/src/hooks/useAutoCycle";
+import layoutStyles from "../LandingPage.module.css";
+import s from "./EmailToBookingPage.module.css";
 
 /* ── 5 Steps Data ── */
 interface OpsStep {
@@ -34,27 +34,37 @@ interface OpsStep {
   desc: string;
   panelBar: string;
   panelStatus: string;
-  statusType: 'info' | 'wait' | 'ok';
+  statusType: "info" | "wait" | "ok";
   headTitle: string;
   headDesc: string;
   fields?: { label: string; value: string }[];
-  rows?: { who: string; what: string; status: string; type: 'info' | 'wait' | 'ok' }[];
+  rows?: {
+    who: string;
+    what: string;
+    status: string;
+    type: "info" | "wait" | "ok";
+  }[];
   files?: string[];
   docCheckTable?: {
     headers: string[];
     rows: {
       field: string;
       draftBL: string;
-      draftBLStatus?: 'good' | 'bad';
+      draftBLStatus?: "good" | "bad";
       invoice: string;
-      invoiceStatus?: 'good' | 'bad';
+      invoiceStatus?: "good" | "bad";
       packingList: string;
-      packingListStatus?: 'good' | 'bad';
+      packingListStatus?: "good" | "bad";
     }[];
   };
   ratesTable?: {
     headers: string[];
-    rows: { charge: string; agreed: string; invoiced: string; isFlagged?: boolean }[];
+    rows: {
+      charge: string;
+      agreed: string;
+      invoiced: string;
+      isFlagged?: boolean;
+    }[];
   };
   footBold: string;
   foot: string;
@@ -63,163 +73,215 @@ interface OpsStep {
 const stepsData: OpsStep[] = [
   {
     num: 1,
-    title: 'Accepted quote to job',
-    desc: 'No retyping from sales to ops',
-    panelBar: 'Step 1 of 5 · New job',
-    panelStatus: 'Created from quote',
-    statusType: 'ok',
-    headTitle: 'The accepted quote becomes the job.',
+    title: "Accepted quote to job",
+    desc: "No retyping from sales to ops",
+    panelBar: "Step 1 of 5 · New job",
+    panelStatus: "Created from quote",
+    statusType: "ok",
+    headTitle: "The accepted quote becomes the job.",
     headDesc:
-      'When the customer says yes, the job is opened with the shipper, consignee, cargo, ports, Incoterm and agreed rate already filled in from the quote. Nobody in ops retypes it.',
+      "When the customer says yes, the job is opened with the shipper, consignee, cargo, ports, Incoterm and agreed rate already filled in from the quote. Nobody in ops retypes it.",
     fields: [
-      { label: 'Job', value: 'JOB-2026-8812' },
-      { label: 'From quote', value: 'QT-9042' },
-      { label: 'Shipper', value: 'Orion Trading' },
-      { label: 'Route', value: 'INNSA → AEJEA' },
-      { label: 'Equipment', value: "1 × 40' HC FCL" },
-      { label: 'Cargo', value: 'Garments · 18,200 kg' },
-      { label: 'Incoterm', value: 'FOB Nhava Sheva' },
-      { label: 'Carrier', value: 'Carrier A' },
-      { label: 'Sell rate', value: 'USD 785' },
+      { label: "Job", value: "JOB-2026-8812" },
+      { label: "From quote", value: "QT-9042" },
+      { label: "Shipper", value: "Orion Trading" },
+      { label: "Route", value: "INNSA → AEJEA" },
+      { label: "Equipment", value: "1 × 40' HC FCL" },
+      { label: "Cargo", value: "Garments · 18,200 kg" },
+      { label: "Incoterm", value: "FOB Nhava Sheva" },
+      { label: "Carrier", value: "Carrier A" },
+      { label: "Sell rate", value: "USD 785" },
     ],
-    footBold: 'Sales to ops in one step.',
-    foot: 'The same details the customer agreed to.',
+    footBold: "Sales to ops in one step.",
+    foot: "The same details the customer agreed to.",
   },
   {
     num: 2,
-    title: 'Pushed to your ERP',
-    desc: 'Pushed to CargoWise or your ERP',
-    panelBar: 'Step 2 of 5 · Job created',
-    panelStatus: 'Pushed',
-    statusType: 'ok',
-    headTitle: 'The job is created and pushed to your system.',
+    title: "Pushed to your ERP",
+    desc: "Pushed to CargoWise or your ERP",
+    panelBar: "Step 2 of 5 · Job created",
+    panelStatus: "Pushed",
+    statusType: "ok",
+    headTitle: "The job is created and pushed to your system.",
     headDesc:
-      'Docsynecx creates the job, then pushes it to CargoWise or your own ERP, so ops works where they always work. If you don\'t use one, the job stays in Docsynecx.',
+      "Docsynecx creates the job, then pushes it to CargoWise or your own ERP, so ops works where they always work. If you don't use one, the job stays in Docsynecx.",
     rows: [
-      { who: 'Job created', what: 'JOB-2026-8812', status: 'Done', type: 'ok' },
-      { who: 'Pushed to CargoWise or ERP', what: 'Job, parties, cargo and rate', status: 'Pushed', type: 'ok' },
-      { who: 'Shipper and consignee', what: 'Matched to existing CargoWise records', status: 'Matched', type: 'ok' },
-      { who: 'Milestones', what: 'Cargo ready 24 Nov · ETD 27 Nov', status: 'Added', type: 'ok' },
+      { who: "Job created", what: "JOB-2026-8812", status: "Done", type: "ok" },
+      {
+        who: "Pushed to CargoWise or ERP",
+        what: "Job, parties, cargo and rate",
+        status: "Pushed",
+        type: "ok",
+      },
+      {
+        who: "Shipper and consignee",
+        what: "Matched to existing CargoWise records",
+        status: "Matched",
+        type: "ok",
+      },
+      {
+        who: "Milestones",
+        what: "Cargo ready 24 Nov · ETD 27 Nov",
+        status: "Added",
+        type: "ok",
+      },
     ],
-    footBold: 'No double entry.',
-    foot: 'One job, in the system you already use.',
+    footBold: "No double entry.",
+    foot: "One job, in the system you already use.",
   },
   {
     num: 3,
-    title: 'Reads every document',
-    desc: 'B/L, invoice and packing list',
-    panelBar: 'Step 3 of 5 · Documents',
-    panelStatus: '3 read',
-    statusType: 'info',
-    headTitle: 'Reads every document on the job.',
+    title: "Reads every document",
+    desc: "B/L, invoice and packing list",
+    panelBar: "Step 3 of 5 · Documents",
+    panelStatus: "3 read",
+    statusType: "info",
+    headTitle: "Reads every document on the job.",
     headDesc:
-      'Pulls container and seal numbers, weights, package counts and parties from the draft B/L, commercial invoice and packing list as they arrive.',
-    files: ['draft-BL-8812.pdf', 'commercial-invoice.pdf', 'packing-list.xlsx'],
+      "Pulls container and seal numbers, weights, package counts and parties from the draft B/L, commercial invoice and packing list as they arrive.",
+    files: ["draft-BL-8812.pdf", "commercial-invoice.pdf", "packing-list.xlsx"],
     fields: [
-      { label: 'Container', value: 'MSCU8921045' },
-      { label: 'Seal', value: 'ML-448120' },
-      { label: 'Packages', value: '640 cartons' },
+      { label: "Container", value: "MSCU8921045" },
+      { label: "Seal", value: "ML-448120" },
+      { label: "Packages", value: "640 cartons" },
     ],
-    footBold: 'No copying between documents.',
-    foot: 'Every figure is read once and shared across the job.',
+    footBold: "No copying between documents.",
+    foot: "Every figure is read once and shared across the job.",
   },
   {
     num: 4,
-    title: 'Document mismatch check',
-    desc: 'Flagged before the B/L is final',
-    panelBar: 'Step 4 of 5 · Document check',
-    panelStatus: '1 to clear',
-    statusType: 'wait',
-    headTitle: 'Catches the mismatch before it costs you.',
+    title: "Document mismatch check",
+    desc: "Flagged before the B/L is final",
+    panelBar: "Step 4 of 5 · Document check",
+    panelStatus: "1 to clear",
+    statusType: "wait",
+    headTitle: "Catches the mismatch before it costs you.",
     headDesc:
-      'Container numbers, seals, weights and package counts are checked across all three documents. Anything that doesn\'t match waits for your ops team.',
+      "Container numbers, seals, weights and package counts are checked across all three documents. Anything that doesn't match waits for your ops team.",
     docCheckTable: {
-      headers: ['Field', 'Draft B/L', 'Invoice', 'Packing list'],
+      headers: ["Field", "Draft B/L", "Invoice", "Packing list"],
       rows: [
-        { field: 'Container', draftBL: 'MSCU8921045', draftBLStatus: 'good', invoice: 'MSCU8921045', invoiceStatus: 'good', packingList: 'MSCU8921045', packingListStatus: 'good' },
-        { field: 'Seal', draftBL: 'ML-448120', draftBLStatus: 'good', invoice: 'n/a', invoiceStatus: 'good', packingList: 'ML-448120', packingListStatus: 'good' },
-        { field: 'Gross weight', draftBL: '18,400 kg', draftBLStatus: 'bad', invoice: '18,200 kg', invoiceStatus: 'good', packingList: '18,200 kg', packingListStatus: 'good' },
-        { field: 'Packages', draftBL: '640 ctns', draftBLStatus: 'good', invoice: '640 ctns', invoiceStatus: 'good', packingList: '640 ctns', packingListStatus: 'good' },
+        {
+          field: "Container",
+          draftBL: "MSCU8921045",
+          draftBLStatus: "good",
+          invoice: "MSCU8921045",
+          invoiceStatus: "good",
+          packingList: "MSCU8921045",
+          packingListStatus: "good",
+        },
+        {
+          field: "Seal",
+          draftBL: "ML-448120",
+          draftBLStatus: "good",
+          invoice: "n/a",
+          invoiceStatus: "good",
+          packingList: "ML-448120",
+          packingListStatus: "good",
+        },
+        {
+          field: "Gross weight",
+          draftBL: "18,400 kg",
+          draftBLStatus: "bad",
+          invoice: "18,200 kg",
+          invoiceStatus: "good",
+          packingList: "18,200 kg",
+          packingListStatus: "good",
+        },
+        {
+          field: "Packages",
+          draftBL: "640 ctns",
+          draftBLStatus: "good",
+          invoice: "640 ctns",
+          invoiceStatus: "good",
+          packingList: "640 ctns",
+          packingListStatus: "good",
+        },
       ],
     },
-    footBold: 'Weight on the draft B/L is 200 kg over.',
-    foot: 'Flagged for ops to correct with the carrier before the B/L is final.',
+    footBold: "Weight on the draft B/L is 200 kg over.",
+    foot: "Flagged for ops to correct with the carrier before the B/L is final.",
   },
   {
     num: 5,
-    title: 'Checks vendor bills',
-    desc: 'Against the rate you agreed',
-    panelBar: 'Step 5 of 5 · Vendor invoice',
-    panelStatus: '1 charge flagged',
-    statusType: 'wait',
-    headTitle: 'Checks what vendors bill you.',
+    title: "Checks vendor bills",
+    desc: "Against the rate you agreed",
+    panelBar: "Step 5 of 5 · Vendor invoice",
+    panelStatus: "1 charge flagged",
+    statusType: "wait",
+    headTitle: "Checks what vendors bill you.",
     headDesc:
-      'When the carrier\'s invoice arrives, it\'s compared line by line with the rate you agreed. Extra charges are flagged before you pay.',
+      "When the carrier's invoice arrives, it's compared line by line with the rate you agreed. Extra charges are flagged before you pay.",
     ratesTable: {
-      headers: ['Charge', 'Agreed', 'Invoiced'],
+      headers: ["Charge", "Agreed", "Invoiced"],
       rows: [
-        { charge: 'Ocean freight', agreed: '$640', invoiced: '$640' },
-        { charge: 'Origin THC', agreed: 'Included', invoiced: '$85', isFlagged: true },
+        { charge: "Ocean freight", agreed: "$640", invoiced: "$640" },
+        {
+          charge: "Origin THC",
+          agreed: "Included",
+          invoiced: "$85",
+          isFlagged: true,
+        },
       ],
     },
-    footBold: '$85 terminal handling charge wasn\'t in the agreed rate.',
-    foot: 'Flagged for your team to query with Carrier A.',
+    footBold: "$85 terminal handling charge wasn't in the agreed rate.",
+    foot: "Flagged for your team to query with Carrier A.",
   },
 ];
 
 /* ── FAQ items ── */
 const faqItems = [
   {
-    question: 'Does my team still check the documents?',
+    question: "Does my team still check the documents?",
     answer:
-      'Yes. Anything that doesn\'t match, and any extra charge on a vendor invoice, waits for someone on your ops team. Nothing is finalised or paid on its own.',
+      "Yes. Anything that doesn't match, and any extra charge on a vendor invoice, waits for someone on your ops team. Nothing is finalised or paid on its own.",
   },
   {
-    question: 'Does it work with CargoWise or our own system?',
+    question: "Does it work with CargoWise or our own system?",
     answer:
-      'Yes. Docsynecx creates the job and pushes it to CargoWise or your own ERP, so ops keeps working where they already work. If you don\'t use one, jobs stay in Docsynecx.',
+      "Yes. Docsynecx creates the job and pushes it to CargoWise or your own ERP, so ops keeps working where they already work. If you don't use one, jobs stay in Docsynecx.",
   },
   {
-    question: 'Which documents can it read?',
+    question: "Which documents can it read?",
     answer:
-      'B/Ls, commercial invoices, packing lists and shipping orders, as PDFs, scans or Excel sheets. We check your own document formats during setup.',
+      "B/Ls, commercial invoices, packing lists and shipping orders, as PDFs, scans or Excel sheets. We check your own document formats during setup.",
   },
   {
-    question: 'Will it fit how our ops desk already works?',
+    question: "Will it fit how our ops desk already works?",
     answer:
-      'Yes. We set it up around your document types, the checks you already do and who approves what. You agree the setup before we start.',
+      "Yes. We set it up around your document types, the checks you already do and who approves what. You agree the setup before we start.",
   },
   {
-    question: 'How long does setup take?',
+    question: "How long does setup take?",
     answer:
-      'About a week for a typical team. You test it on your own jobs and documents before going live.',
+      "About a week for a typical team. You test it on your own jobs and documents before going live.",
   },
 ];
 
 /* ── Control items from Section 4 ── */
 const controlDecisions = [
   {
-    step: '01 · DISCREPANCY DETECTION',
-    title: 'Spot document mismatches',
-    desc: 'Compare shipment details across documents and flag differences for review.',
+    step: "01 · DISCREPANCY DETECTION",
+    title: "Spot document mismatches",
+    desc: "Compare shipment details across documents and flag differences for review.",
     icon: Search,
   },
   {
-    step: '02 · DOCUMENT APPROVAL',
-    title: 'Review the final Bill of Lading',
-    desc: 'Check critical details and confirm the document before it is finalized.',
+    step: "02 · DOCUMENT APPROVAL",
+    title: "Review the final Bill of Lading",
+    desc: "Check critical details and confirm the document before it is finalized.",
     icon: FileCheck2,
   },
   {
-    step: '03 · JOB READINESS',
-    title: 'Check before the next operation',
-    desc: 'Verify required information and resolve open exceptions before handoff.',
+    step: "03 · JOB READINESS",
+    title: "Check before the next operation",
+    desc: "Verify required information and resolve open exceptions before handoff.",
     icon: CheckCheck,
   },
   {
-    step: '04 · PAYMENT CONTROL',
-    title: 'Review vendor charges',
-    desc: 'Check vendor invoices and additional charges before payment approval.',
+    step: "04 · PAYMENT CONTROL",
+    title: "Review vendor charges",
+    desc: "Check vendor invoices and additional charges before payment approval.",
     icon: Receipt,
   },
 ];
@@ -244,24 +306,30 @@ export function ShipmentOperationsPage() {
 
       <main id="main-content">
         {/* 1. HERO SECTION */}
-        <section className={`${s.viewportHero} ${s.mobileHero}`} aria-labelledby="hero-title">
+        <section
+          className={`${s.viewportHero} ${s.mobileHero}`}
+          aria-labelledby="hero-title"
+        >
           <div className={`site-shell ${s.heroGrid}`}>
             {/* Left Copy */}
             <div className={s.heroCopy}>
-              <p className={s.eyebrow}>SHIPMENT OPERATIONS · FROM SALES TO OPS</p>
+              <p className={s.eyebrow}>
+                SHIPMENT OPERATIONS · FROM SALES TO OPS
+              </p>
 
               <h1 id="hero-title" className={s.heroTitle}>
                 The quote is won. <em>Now the paperwork starts.</em>
               </h1>
 
               <p className={s.heroDescription}>
-                Re-keying the job order. Chasing document fields. Calling the carrier. Twenty-five
-                minutes per shipment. Docsynecx opens the job from the accepted quote, checks the
-                documents and flags what doesn&apos;t match.
+                Re-keying the job order. Chasing document fields. Calling the
+                carrier. Twenty-five minutes per shipment. Docsynecx opens the
+                job from the accepted quote, checks the documents and flags what
+                doesn&apos;t match.
               </p>
 
               <div className={s.heroActions}>
-                <Link href="/demo/#demo-form" className={s.primaryBtn}>
+                <Link href="/demo-form" className={s.primaryBtn}>
                   <span>Book a demo</span>
                   <ArrowUpRight size={16} aria-hidden="true" />
                 </Link>
@@ -274,13 +342,14 @@ export function ShipmentOperationsPage() {
               <p className={s.promise}>
                 <CheckCircle2 size={18} aria-hidden="true" />
                 <span>
-                  Anything that doesn&apos;t match waits for your ops team. Nothing is finalised until
-                  they clear it.
+                  Anything that doesn&apos;t match waits for your ops team.
+                  Nothing is finalised until they clear it.
                 </span>
               </p>
 
               <p className={s.heroTrust}>
-                Works with <strong>Standalone or CargoWise</strong>, your own ERP, or just your email inbox.{' '}
+                Works with <strong>Standalone or CargoWise</strong>, your own
+                ERP, or just your email inbox.{" "}
                 <strong>Live in about a week.</strong>
               </p>
             </div>
@@ -299,7 +368,9 @@ export function ShipmentOperationsPage() {
                   <span>
                     <strong>Ops desk</strong> · Today
                   </span>
-                  <span className={`${s.statusBadge} ${s.info}`}>24 jobs opened</span>
+                  <span className={`${s.statusBadge} ${s.info}`}>
+                    24 jobs opened
+                  </span>
                 </div>
                 <div className={s.qcardBody}>
                   <div className={s.deskStats}>
@@ -313,33 +384,53 @@ export function ShipmentOperationsPage() {
                     </div>
                     <div className={s.statBox}>
                       <span className={s.statVal}>2</span>
-                      <span className={s.statLabel}>vendor invoices flagged</span>
+                      <span className={s.statLabel}>
+                        vendor invoices flagged
+                      </span>
                     </div>
                   </div>
 
                   <div className={s.qcardRows}>
                     <div className={s.heroRowCard}>
                       <div className={s.heroRowTop}>
-                        <span className={s.rowWho}>JOB-2026-8812 · Orion Trading</span>
-                        <span className={`${s.statusBadge} ${s.wait}`}>Weight mismatch</span>
+                        <span className={s.rowWho}>
+                          JOB-2026-8812 · Orion Trading
+                        </span>
+                        <span className={`${s.statusBadge} ${s.wait}`}>
+                          Weight mismatch
+                        </span>
                       </div>
-                      <span className={s.rowWhat}>INNSA → AEJEA · 1×40&apos; HC</span>
+                      <span className={s.rowWhat}>
+                        INNSA → AEJEA · 1×40&apos; HC
+                      </span>
                     </div>
 
                     <div className={s.heroRowCard}>
                       <div className={s.heroRowTop}>
-                        <span className={s.rowWho}>JOB-2026-8813 · Gulf Home Furnishings</span>
-                        <span className={`${s.statusBadge} ${s.ok}`}>All match</span>
+                        <span className={s.rowWho}>
+                          JOB-2026-8813 · Gulf Home Furnishings
+                        </span>
+                        <span className={`${s.statusBadge} ${s.ok}`}>
+                          All match
+                        </span>
                       </div>
-                      <span className={s.rowWhat}>CNSHA → AEJEA · 2×40&apos; HC</span>
+                      <span className={s.rowWhat}>
+                        CNSHA → AEJEA · 2×40&apos; HC
+                      </span>
                     </div>
 
                     <div className={s.heroRowCard}>
                       <div className={s.heroRowTop}>
-                        <span className={s.rowWho}>JOB-2026-8815 · Rhein Machine Parts</span>
-                        <span className={`${s.statusBadge} ${s.info}`}>Waiting for B/L</span>
+                        <span className={s.rowWho}>
+                          JOB-2026-8815 · Rhein Machine Parts
+                        </span>
+                        <span className={`${s.statusBadge} ${s.info}`}>
+                          Waiting for B/L
+                        </span>
                       </div>
-                      <span className={s.rowWhat}>DEHAM → INMAA · 4 pallets</span>
+                      <span className={s.rowWhat}>
+                        DEHAM → INMAA · 4 pallets
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -362,7 +453,9 @@ export function ShipmentOperationsPage() {
                 </div>
                 <div className={s.outcomeCardContent}>
                   <span className={s.outcomeStatValue}>25+ min → 35 sec</span>
-                  <span className={s.outcomeStatLabel}>to set up a new job</span>
+                  <span className={s.outcomeStatLabel}>
+                    to set up a new job
+                  </span>
                 </div>
               </div>
               <div className={s.outcomeCard}>
@@ -371,7 +464,9 @@ export function ShipmentOperationsPage() {
                 </div>
                 <div className={s.outcomeCardContent}>
                   <span className={s.outcomeStatValue}>175 → 420+</span>
-                  <span className={s.outcomeStatLabel}>jobs opened a day, same team</span>
+                  <span className={s.outcomeStatLabel}>
+                    jobs opened a day, same team
+                  </span>
                 </div>
               </div>
               <div className={s.outcomeCard}>
@@ -380,13 +475,15 @@ export function ShipmentOperationsPage() {
                 </div>
                 <div className={s.outcomeCardContent}>
                   <span className={s.outcomeStatValue}>99.4%</span>
-                  <span className={s.outcomeStatLabel}>of document details read correctly</span>
+                  <span className={s.outcomeStatLabel}>
+                    of document details read correctly
+                  </span>
                 </div>
               </div>
             </div>
             <p className={s.statSource}>
-              Results from an ocean and air operations team over 12 months. Accuracy measured on B/Ls,
-              packing lists and commercial invoices.
+              Results from an ocean and air operations team over 12 months.
+              Accuracy measured on B/Ls, packing lists and commercial invoices.
             </p>
           </div>
         </section>
@@ -397,10 +494,13 @@ export function ShipmentOperationsPage() {
             <div className={s.controlHead}>
               <p className={s.eyebrow}>OPERATIONAL CONTROL</p>
               <h2 id="ctrl-h" className={s.headline}>
-                Every document checked. <em>Every critical decision reviewed.</em>
+                Every document checked.{" "}
+                <em>Every critical decision reviewed.</em>
               </h2>
               <p className={s.lead}>
-                AI validates shipment information, identifies mismatches and flags additional charges. Your operations team reviews exceptions before the shipment moves forward.
+                AI validates shipment information, identifies mismatches and
+                flags additional charges. Your operations team reviews
+                exceptions before the shipment moves forward.
               </p>
             </div>
 
@@ -423,11 +523,16 @@ export function ShipmentOperationsPage() {
                 })}
               </div>
 
-              <aside className={s.controlMock} aria-label="Document validation case review">
+              <aside
+                className={s.controlMock}
+                aria-label="Document validation case review"
+              >
                 <div className={s.mockHeaderBar}>
                   <div className={s.mockTitleGroup}>
                     <span className={s.mockPulseDot} aria-hidden="true" />
-                    <span className={s.mockTitle}>Document validation engine</span>
+                    <span className={s.mockTitle}>
+                      Document validation engine
+                    </span>
                   </div>
                   <span className={s.mockBadge}>ILLUSTRATIVE · 1 CASE</span>
                 </div>
@@ -441,7 +546,9 @@ export function ShipmentOperationsPage() {
                       </div>
                       <div className={s.mockItemText}>
                         <span className={s.mockItemTitle}>Bill of Lading</span>
-                        <span className={s.mockItemSub}>Container MSCU8921045 · Consignee verified</span>
+                        <span className={s.mockItemSub}>
+                          Container MSCU8921045 · Consignee verified
+                        </span>
                       </div>
                     </div>
                     <span className={s.mockStatusChipOk}>
@@ -453,12 +560,16 @@ export function ShipmentOperationsPage() {
                   {/* Item 2: Active Flagged Case */}
                   <div className={`${s.mockItem} ${s.mockItemActive}`}>
                     <div className={s.mockItemLeft}>
-                      <div className={`${s.mockItemIconWrap} ${s.mockItemIconWrapWarn}`}>
+                      <div
+                        className={`${s.mockItemIconWrap} ${s.mockItemIconWrapWarn}`}
+                      >
                         <AlertTriangle size={16} />
                       </div>
                       <div className={s.mockItemText}>
                         <span className={s.mockItemTitle}>Packing List</span>
-                        <span className={s.mockItemSub}>Gross weight variance detected</span>
+                        <span className={s.mockItemSub}>
+                          Gross weight variance detected
+                        </span>
                       </div>
                     </div>
                     <span className={s.mockStatusChipWarn}>
@@ -474,7 +585,9 @@ export function ShipmentOperationsPage() {
                       <span>PAUSED FOR REVIEW</span>
                     </div>
                     <p className={s.mockCaseDesc}>
-                      B/L declares <strong>18,400 kg</strong> vs Packing List <strong>18,040 kg</strong> (-360 kg). Exceeds carrier 2% tolerance threshold.
+                      B/L declares <strong>18,400 kg</strong> vs Packing List{" "}
+                      <strong>18,040 kg</strong> (-360 kg). Exceeds carrier 2%
+                      tolerance threshold.
                     </p>
                     <div className={s.mockCaseActions}>
                       <button type="button" className={s.mockBtnPrimary}>
@@ -494,7 +607,9 @@ export function ShipmentOperationsPage() {
                       </div>
                       <div className={s.mockItemText}>
                         <span className={s.mockItemTitle}>Vendor Invoice</span>
-                        <span className={s.mockItemSub}>Charges matched to agreed carrier tariff ($2,840)</span>
+                        <span className={s.mockItemSub}>
+                          Charges matched to agreed carrier tariff ($2,840)
+                        </span>
                       </div>
                     </div>
                     <span className={s.mockStatusChipOk}>
@@ -505,7 +620,9 @@ export function ShipmentOperationsPage() {
                 </div>
 
                 <div className={s.mockFooter}>
-                  Document checks automatically identify potential discrepancies. An authorized team member reviews the case and decides the next action.
+                  Document checks automatically identify potential
+                  discrepancies. An authorized team member reviews the case and
+                  decides the next action.
                 </div>
               </aside>
             </div>
@@ -513,7 +630,11 @@ export function ShipmentOperationsPage() {
         </section>
 
         {/* 4. FIVE STEPS (HOW IT WORKS) */}
-        <section id="steps" className={s.howSectionDark} aria-labelledby="steps-h">
+        <section
+          id="steps"
+          className={s.howSectionDark}
+          aria-labelledby="steps-h"
+        >
           <div className="site-shell">
             <div className={s.secHead}>
               <p className={s.eyebrow}>FOLLOW ONE SHIPMENT</p>
@@ -521,14 +642,18 @@ export function ShipmentOperationsPage() {
                 From accepted quote to a <em>clean set of documents</em>.
               </h2>
               <p className={s.leadLight}>
-                Here&apos;s how one job moves from the quote to CargoWise, with every document checked
-                along the way.
+                Here&apos;s how one job moves from the quote to CargoWise, with
+                every document checked along the way.
               </p>
             </div>
 
             <div className={s.howGrid} {...containerProps}>
               {/* Tab Selector Buttons */}
-              <ol className={s.stepsList} role="tablist" aria-label="Five steps">
+              <ol
+                className={s.stepsList}
+                role="tablist"
+                aria-label="Five steps"
+              >
                 {stepsData.map((step, idx) => (
                   <li key={step.num}>
                     <button
@@ -557,12 +682,14 @@ export function ShipmentOperationsPage() {
                   id={`step-panel-${activeStep.num}`}
                   role="tabpanel"
                   aria-labelledby={`step-tab-${activeStep.num}`}
-                  style={{ position: 'relative', zIndex: 1 }}
+                  style={{ position: "relative", zIndex: 1 }}
                 >
                   <div className={s.interactivePanelDark}>
                     <div className={s.panelTopDark}>
                       <span>{activeStep.panelBar}</span>
-                      <span className={`${s.statusBadge} ${s[activeStep.statusType] || s.info}`}>
+                      <span
+                        className={`${s.statusBadge} ${s[activeStep.statusType] || s.info}`}
+                      >
                         {activeStep.panelStatus}
                       </span>
                     </div>
@@ -575,10 +702,13 @@ export function ShipmentOperationsPage() {
                     <div className={s.panelBodyDark}>
                       {/* Step 3 Attached Files */}
                       {activeStep.files && (
-                        <div className={s.mailFilesDark} style={{ marginBottom: 16 }}>
+                        <div
+                          className={s.mailFilesDark}
+                          style={{ marginBottom: 16 }}
+                        >
                           {activeStep.files.map((file) => (
                             <span key={file} className={s.fileChipDark}>
-                              {file.endsWith('.pdf') ? (
+                              {file.endsWith(".pdf") ? (
                                 <FileText size={14} aria-hidden="true" />
                               ) : (
                                 <FileSpreadsheet size={14} aria-hidden="true" />
@@ -594,8 +724,12 @@ export function ShipmentOperationsPage() {
                         <div className={s.fieldsGridDark}>
                           {activeStep.fields.map((f) => (
                             <div key={f.label} className={s.fieldBoxDark}>
-                              <span className={s.fieldLabelDark}>{f.label}</span>
-                              <span className={s.fieldValueDark}>{f.value}</span>
+                              <span className={s.fieldLabelDark}>
+                                {f.label}
+                              </span>
+                              <span className={s.fieldValueDark}>
+                                {f.value}
+                              </span>
                             </div>
                           ))}
                         </div>
@@ -608,7 +742,9 @@ export function ShipmentOperationsPage() {
                             <div key={row.who} className={s.qcardRow}>
                               <span className={s.rowWho}>{row.who}</span>
                               <span className={s.rowWhat}>{row.what}</span>
-                              <span className={`${s.statusBadge} ${s[row.type] || s.ok}`}>
+                              <span
+                                className={`${s.statusBadge} ${s[row.type] || s.ok}`}
+                              >
                                 {row.status}
                               </span>
                             </div>
@@ -631,13 +767,31 @@ export function ShipmentOperationsPage() {
                               {activeStep.docCheckTable.rows.map((r) => (
                                 <tr key={r.field}>
                                   <td style={{ fontWeight: 600 }}>{r.field}</td>
-                                  <td className={r.draftBLStatus === 'bad' ? s.tagBad : s.tagGood}>
+                                  <td
+                                    className={
+                                      r.draftBLStatus === "bad"
+                                        ? s.tagBad
+                                        : s.tagGood
+                                    }
+                                  >
                                     {r.draftBL}
                                   </td>
-                                  <td className={r.invoiceStatus === 'bad' ? s.tagBad : s.tagGood}>
+                                  <td
+                                    className={
+                                      r.invoiceStatus === "bad"
+                                        ? s.tagBad
+                                        : s.tagGood
+                                    }
+                                  >
                                     {r.invoice}
                                   </td>
-                                  <td className={r.packingListStatus === 'bad' ? s.tagBad : s.tagGood}>
+                                  <td
+                                    className={
+                                      r.packingListStatus === "bad"
+                                        ? s.tagBad
+                                        : s.tagGood
+                                    }
+                                  >
                                     {r.packingList}
                                   </td>
                                 </tr>
@@ -661,9 +815,15 @@ export function ShipmentOperationsPage() {
                             <tbody>
                               {activeStep.ratesTable.rows.map((r) => (
                                 <tr key={r.charge}>
-                                  <td style={{ fontWeight: 600 }}>{r.charge}</td>
+                                  <td style={{ fontWeight: 600 }}>
+                                    {r.charge}
+                                  </td>
                                   <td>{r.agreed}</td>
-                                  <td className={r.isFlagged ? s.tagWarn : undefined}>
+                                  <td
+                                    className={
+                                      r.isFlagged ? s.tagWarn : undefined
+                                    }
+                                  >
                                     {r.invoiced}
                                   </td>
                                 </tr>
@@ -680,7 +840,9 @@ export function ShipmentOperationsPage() {
                     </div>
                   </div>
 
-                  <p className={s.howNote}>Sample data · Example product view</p>
+                  <p className={s.howNote}>
+                    Sample data · Example product view
+                  </p>
                 </div>
               </div>
             </div>
@@ -698,9 +860,9 @@ export function ShipmentOperationsPage() {
                 Job set-up in 35 seconds, <em>not 25 minutes</em>.
               </h2>
               <p className={s.lead}>
-                This ops team used to open about 175 jobs a day. A year later it&apos;s over 420, with
-                the same people. Every job goes through the same document checks, not just the big
-                ones.
+                This ops team used to open about 175 jobs a day. A year later
+                it&apos;s over 420, with the same people. Every job goes through
+                the same document checks, not just the big ones.
               </p>
             </div>
 
@@ -711,12 +873,15 @@ export function ShipmentOperationsPage() {
               </div>
               <div className={s.resultStatCard}>
                 <span className={s.resultStatNum}>35 sec</span>
-                <span className={s.resultStatLabel}>median time to set up a job, was 25+ min</span>
+                <span className={s.resultStatLabel}>
+                  median time to set up a job, was 25+ min
+                </span>
               </div>
               <div className={s.resultStatCard}>
                 <span className={s.resultStatNum}>99.4%</span>
                 <span className={s.resultStatLabel}>
-                  of details read correctly from B/Ls, invoices and packing lists
+                  of details read correctly from B/Ls, invoices and packing
+                  lists
                 </span>
               </div>
               <div className={s.resultStatCard}>
@@ -728,7 +893,7 @@ export function ShipmentOperationsPage() {
             </div>
 
             <div style={{ marginTop: 32 }}>
-              <Link href="/demo/#demo-form" className="button-secondary">
+              <Link href="/demo-form" className="button-secondary">
                 <span>See what this would mean for your ops team</span>
                 <ArrowRight size={15} aria-hidden="true" />
               </Link>
@@ -747,13 +912,17 @@ export function ShipmentOperationsPage() {
                     What ops managers ask us first.
                   </h2>
                   <p className={s.faqDescription}>
-                    Something else on your mind?{' '}
-                    <Link href="/demo/#demo-form">Ask us in the demo.</Link>
+                    Something else on your mind?{" "}
+                    <Link href="/demo-form">Ask us in the demo.</Link>
                   </p>
                 </div>
               </div>
 
-              <SharedFaqAccordion items={faqItems} defaultOpenIndex={0} toggleStyle="plus" />
+              <SharedFaqAccordion
+                items={faqItems}
+                defaultOpenIndex={0}
+                toggleStyle="plus"
+              />
             </div>
           </div>
         </section>

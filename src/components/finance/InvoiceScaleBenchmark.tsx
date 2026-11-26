@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import styles from './InvoiceScaleBenchmark.module.css';
+import React from "react";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import styles from "./InvoiceScaleBenchmark.module.css";
 
 interface MetricCard {
   label: string;
@@ -13,24 +13,24 @@ interface MetricCard {
 
 const metrics: MetricCard[] = [
   {
-    label: 'Daily Invoice Volume',
-    stat: '+125%',
-    delta: '~150 → 350+ per day',
+    label: "Daily Invoice Volume",
+    stat: "+125%",
+    delta: "~150 → 350+ per day",
   },
   {
-    label: 'Extraction Accuracy',
-    stat: '99.2%',
-    delta: 'GST, HSN & line-items',
+    label: "Extraction Accuracy",
+    stat: "99.2%",
+    delta: "GST, HSN & line-items",
   },
   {
-    label: 'Median Invoice Cycle',
-    stat: '28 s',
-    delta: 'Down from 15+ min',
+    label: "Median Invoice Cycle",
+    stat: "28 s",
+    delta: "Down from 15+ min",
   },
   {
-    label: 'Touchless Posting',
-    stat: '84%',
-    delta: 'Direct to TallyPrime',
+    label: "Touchless Posting",
+    stat: "84%",
+    delta: "Direct to TallyPrime",
   },
 ];
 
@@ -53,7 +53,7 @@ export function InvoiceScaleBenchmark() {
 
         {/* Main Two-Tone Headline */}
         <h2 id="scale-benchmark-title" className={styles.title}>
-          Apex Electricals is one of{' '}
+          Apex Electricals is one of{" "}
           <span className={styles.accent}>350 invoices</span> posting out per
           day.
         </h2>
@@ -78,8 +78,8 @@ export function InvoiceScaleBenchmark() {
 
         {/* Low-Friction Value / Cost Inquiry Link */}
         <div className={styles.ctaWrapper}>
-          <Link href="/demo/#demo-form" className={styles.ctaLink}>
-            See what this loop would save your finance team{' '}
+          <Link href="/demo-form" className={styles.ctaLink}>
+            See what this loop would save your finance team{" "}
             <ArrowRight size={15} aria-hidden="true" />
           </Link>
         </div>

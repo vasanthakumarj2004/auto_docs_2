@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
 import {
   ArrowDown,
   ArrowRight,
@@ -11,14 +11,14 @@ import {
   Layers,
   Receipt,
   Sparkles,
-} from 'lucide-react';
-import { LandingNavigation } from '../LandingNavigation';
-import { ShipsyFooter } from '../ShipsyFooter';
-import { SharedFaqAccordion } from '../SharedFaqAccordion';
-import { LogisticsClosingCta } from './LogisticsClosingCta';
-import { useAutoCycle } from '@/src/hooks/useAutoCycle';
-import layoutStyles from '../LandingPage.module.css';
-import s from './EmailToBookingPage.module.css';
+} from "lucide-react";
+import { LandingNavigation } from "../LandingNavigation";
+import { ShipsyFooter } from "../ShipsyFooter";
+import { SharedFaqAccordion } from "../SharedFaqAccordion";
+import { LogisticsClosingCta } from "./LogisticsClosingCta";
+import { useAutoCycle } from "@/src/hooks/useAutoCycle";
+import layoutStyles from "../LandingPage.module.css";
+import s from "./EmailToBookingPage.module.css";
 
 /* ── 6 Steps Data ── */
 interface IntelStep {
@@ -27,11 +27,16 @@ interface IntelStep {
   desc: string;
   panelBar: string;
   panelStatus: string;
-  statusType: 'info' | 'wait' | 'ok';
+  statusType: "info" | "wait" | "ok";
   headTitle: string;
   headDesc: string;
   fields?: { label: string; value: string }[];
-  rows?: { who: string; what: string; status: string; type: 'info' | 'wait' | 'ok' }[];
+  rows?: {
+    who: string;
+    what: string;
+    status: string;
+    type: "info" | "wait" | "ok";
+  }[];
   table?: {
     headers: string[];
     rows: (string | number)[][];
@@ -45,178 +50,208 @@ interface IntelStep {
 const stepsData: IntelStep[] = [
   {
     num: 1,
-    title: 'Real profit per job',
-    desc: 'What you billed minus what you paid',
-    panelBar: '1 · Job profit · November',
-    panelStatus: '212 jobs',
-    statusType: 'info',
-    headTitle: 'The real profit on every job.',
+    title: "Real profit per job",
+    desc: "What you billed minus what you paid",
+    panelBar: "1 · Job profit · November",
+    panelStatus: "212 jobs",
+    statusType: "info",
+    headTitle: "The real profit on every job.",
     headDesc:
-      'Your sell rate against the carrier\'s buy rate and every surcharge on the vendor invoice. Gross profit per job, without a spreadsheet.',
+      "Your sell rate against the carrier's buy rate and every surcharge on the vendor invoice. Gross profit per job, without a spreadsheet.",
     rows: [
-      { who: 'JOB-2026-8812 · Orion Trading', what: 'Sell $785 · Cost $725', status: '$60 · 7.6%', type: 'wait' },
-      { who: 'JOB-2026-8813 · Gulf Home Furnishings', what: 'Sell $2,840 · Cost $2,360', status: '$480 · 16.9%', type: 'ok' },
-      { who: 'JOB-2026-8815 · Rhein Machine Parts', what: 'Sell $890 · Cost $690', status: '$200 · 22.5%', type: 'ok' },
+      {
+        who: "JOB-2026-8812 · Orion Trading",
+        what: "Sell $785 · Cost $725",
+        status: "$60 · 7.6%",
+        type: "wait",
+      },
+      {
+        who: "JOB-2026-8813 · Gulf Home Furnishings",
+        what: "Sell $2,840 · Cost $2,360",
+        status: "$480 · 16.9%",
+        type: "ok",
+      },
+      {
+        who: "JOB-2026-8815 · Rhein Machine Parts",
+        what: "Sell $890 · Cost $690",
+        status: "$200 · 22.5%",
+        type: "ok",
+      },
     ],
-    footBold: 'Sorted by margin,',
-    foot: 'so the thin ones are at the top.',
+    footBold: "Sorted by margin,",
+    foot: "so the thin ones are at the top.",
   },
   {
     num: 2,
-    title: 'Quoted vs actual gaps',
-    desc: 'Where the final cost crept up',
-    panelBar: '2 · Quoted vs actual',
-    panelStatus: '14 jobs over',
-    statusType: 'wait',
-    headTitle: 'Spot jobs where the cost crept up.',
+    title: "Quoted vs actual gaps",
+    desc: "Where the final cost crept up",
+    panelBar: "2 · Quoted vs actual",
+    panelStatus: "14 jobs over",
+    statusType: "wait",
+    headTitle: "Spot jobs where the cost crept up.",
     headDesc:
-      'Every job compared with what you quoted. You see which jobs cost more than planned, and by how much.',
+      "Every job compared with what you quoted. You see which jobs cost more than planned, and by how much.",
     table: {
-      headers: ['Job', 'Quoted cost', 'Actual cost', 'Gap'],
+      headers: ["Job", "Quoted cost", "Actual cost", "Gap"],
       rows: [
-        ['JOB-8812', '$640', '$725', '+$85'],
-        ['JOB-8790', '$1,180', '$1,240', '+$60'],
-        ['JOB-8813', '$2,360', '$2,360', '$0'],
+        ["JOB-8812", "$640", "$725", "+$85"],
+        ["JOB-8790", "$1,180", "$1,240", "+$60"],
+        ["JOB-8813", "$2,360", "$2,360", "$0"],
       ],
       warnCol: 3,
     },
-    footBold: '14 jobs',
-    foot: 'this month cost more than quoted.',
+    footBold: "14 jobs",
+    foot: "this month cost more than quoted.",
   },
   {
     num: 3,
-    title: 'Unbilled vendor charges',
-    desc: 'Detention, demurrage, THC',
-    panelBar: '3 · Charges not billed',
-    panelStatus: '$3,420 this month',
-    statusType: 'wait',
-    headTitle: 'Charges you paid but didn\'t pass on.',
+    title: "Unbilled vendor charges",
+    desc: "Detention, demurrage, THC",
+    panelBar: "3 · Charges not billed",
+    panelStatus: "$3,420 this month",
+    statusType: "wait",
+    headTitle: "Charges you paid but didn't pass on.",
     headDesc:
-      'Detention, demurrage, terminal handling and waiting time that showed up on vendor invoices but never made it onto the customer\'s invoice.',
+      "Detention, demurrage, terminal handling and waiting time that showed up on vendor invoices but never made it onto the customer's invoice.",
     rows: [
-      { who: 'Detention, Jebel Ali', what: '6 jobs · 2 customers', status: '$1,860', type: 'wait' },
-      { who: 'Origin THC', what: '11 jobs · Carrier A', status: '$935', type: 'wait' },
-      { who: 'Truck waiting time', what: '5 jobs · Nhava Sheva', status: '$625', type: 'wait' },
+      {
+        who: "Detention, Jebel Ali",
+        what: "6 jobs · 2 customers",
+        status: "$1,860",
+        type: "wait",
+      },
+      {
+        who: "Origin THC",
+        what: "11 jobs · Carrier A",
+        status: "$935",
+        type: "wait",
+      },
+      {
+        who: "Truck waiting time",
+        what: "5 jobs · Nhava Sheva",
+        status: "$625",
+        type: "wait",
+      },
     ],
-    footBold: 'Bill it back',
-    foot: 'or fix the quote template before next month.',
+    footBold: "Bill it back",
+    foot: "or fix the quote template before next month.",
   },
   {
     num: 4,
-    title: 'Lane margin analysis',
-    desc: 'Which routes earn, which run thin',
-    panelBar: '4 · Lanes · November',
-    panelStatus: '3 of 18 lanes',
-    statusType: 'info',
-    headTitle: 'Which routes earn, and which you\'re pricing too thin.',
+    title: "Lane margin analysis",
+    desc: "Which routes earn, which run thin",
+    panelBar: "4 · Lanes · November",
+    panelStatus: "3 of 18 lanes",
+    statusType: "info",
+    headTitle: "Which routes earn, and which you're pricing too thin.",
     headDesc:
-      'Volume, average margin and unbilled charges for every lane you move.',
+      "Volume, average margin and unbilled charges for every lane you move.",
     table: {
-      headers: ['Lane', 'Jobs', 'Avg margin'],
+      headers: ["Lane", "Jobs", "Avg margin"],
       rows: [
-        ['DEHAM → INMAA', 12, '21.0%'],
-        ['INNSA → AEJEA', 42, '14.2%'],
-        ['CNSHA → AEJEA', 31, '9.8%'],
+        ["DEHAM → INMAA", 12, "21.0%"],
+        ["INNSA → AEJEA", 42, "14.2%"],
+        ["CNSHA → AEJEA", 31, "9.8%"],
       ],
       warnCol: 2,
     },
-    footBold: 'Your busiest lanes aren\'t always your best.',
-    foot: '',
+    footBold: "Your busiest lanes aren't always your best.",
+    foot: "",
   },
   {
     num: 5,
-    title: 'Carrier on-time & leaks',
-    desc: 'On-time record and detention',
-    panelBar: '5 · Carriers · Last 90 days',
-    panelStatus: '4 carriers',
-    statusType: 'info',
-    headTitle: 'Which carriers actually deliver.',
+    title: "Carrier on-time & leaks",
+    desc: "On-time record and detention",
+    panelBar: "5 · Carriers · Last 90 days",
+    panelStatus: "4 carriers",
+    statusType: "info",
+    headTitle: "Which carriers actually deliver.",
     headDesc:
-      'On-time arrivals, average delay and detention days for each carrier, from your own tracking data.',
+      "On-time arrivals, average delay and detention days for each carrier, from your own tracking data.",
     table: {
-      headers: ['Carrier', 'On time', 'Avg delay', 'Detention days'],
+      headers: ["Carrier", "On time", "Avg delay", "Detention days"],
       rows: [
-        ['Carrier A', '92%', '0.4 days', 3],
-        ['Agent B', '85%', '1.1 days', 9],
-        ['Carrier C', '78%', '1.8 days', 14],
+        ["Carrier A", "92%", "0.4 days", 3],
+        ["Agent B", "85%", "1.1 days", 9],
+        ["Carrier C", "78%", "1.8 days", 14],
       ],
       bestIndex: 0,
     },
-    footBold: 'The cheapest rate isn\'t always the cheapest carrier.',
-    foot: '',
+    footBold: "The cheapest rate isn't always the cheapest carrier.",
+    foot: "",
   },
   {
     num: 6,
-    title: 'Month-end management pack',
-    desc: 'Ready on day one',
-    panelBar: '6 · Management report · November',
-    panelStatus: 'Ready 1 Dec',
-    statusType: 'ok',
-    headTitle: 'Your month-end report, ready on day one.',
+    title: "Month-end management pack",
+    desc: "Ready on day one",
+    panelBar: "6 · Management report · November",
+    panelStatus: "Ready 1 Dec",
+    statusType: "ok",
+    headTitle: "Your month-end report, ready on day one.",
     headDesc:
-      'Margins by customer, lane and branch, with the month\'s leaks and late carriers, in one report for management.',
+      "Margins by customer, lane and branch, with the month's leaks and late carriers, in one report for management.",
     fields: [
-      { label: 'Jobs', value: '212' },
-      { label: 'Gross profit', value: '$48,300' },
-      { label: 'Avg margin', value: '14.6%' },
-      { label: 'Not billed', value: '$3,420' },
-      { label: 'Top lane', value: 'INNSA → AEJEA' },
-      { label: 'Branches', value: 'Chennai · Mumbai' },
+      { label: "Jobs", value: "212" },
+      { label: "Gross profit", value: "$48,300" },
+      { label: "Avg margin", value: "14.6%" },
+      { label: "Not billed", value: "$3,420" },
+      { label: "Top lane", value: "INNSA → AEJEA" },
+      { label: "Branches", value: "Chennai · Mumbai" },
     ],
-    footBold: 'No waiting a week',
-    foot: 'for accounts to close the month.',
+    footBold: "No waiting a week",
+    foot: "for accounts to close the month.",
   },
 ];
 
 /* ── FAQ items ── */
 const faqItems = [
   {
-    question: 'When will it be available?',
+    question: "When will it be available?",
     answer:
-      'It\'s in development now. Join early access and we\'ll tell you when it\'s ready to run on your jobs.',
+      "It's in development now. Join early access and we'll tell you when it's ready to run on your jobs.",
   },
   {
-    question: 'Do we need the other modules?',
+    question: "Do we need the other modules?",
     answer:
-      'It works best with them, because your quotes, jobs and vendor invoices are already in one place. If you don\'t use them, we\'ll look at bringing the same data in from CargoWise or your ERP.',
+      "It works best with them, because your quotes, jobs and vendor invoices are already in one place. If you don't use them, we'll look at bringing the same data in from CargoWise or your ERP.",
   },
   {
-    question: 'Does it work with CargoWise or our own system?',
+    question: "Does it work with CargoWise or our own system?",
     answer:
-      'That\'s the plan. We\'ll check what data your system can share, and how, before you start.',
+      "That's the plan. We'll check what data your system can share, and how, before you start.",
   },
   {
-    question: 'Does it change anything in our jobs or invoices?',
+    question: "Does it change anything in our jobs or invoices?",
     answer:
-      'No. It only reads your data and shows reports. It doesn\'t send, change or approve anything.',
+      "No. It only reads your data and shows reports. It doesn't send, change or approve anything.",
   },
 ];
 
 /* ── Control steps from Section 2 ── */
 const controlSteps = [
   {
-    num: '01',
-    tag: 'COLLECT',
-    title: 'Bring everything together',
-    desc: 'Collect quotations, shipment jobs and vendor invoices from your workflow.',
+    num: "01",
+    tag: "COLLECT",
+    title: "Bring everything together",
+    desc: "Collect quotations, shipment jobs and vendor invoices from your workflow.",
   },
   {
-    num: '02',
-    tag: 'MATCH',
-    title: 'Connect every transaction',
-    desc: 'Match each job with its quotation and associated vendor costs.',
+    num: "02",
+    tag: "MATCH",
+    title: "Connect every transaction",
+    desc: "Match each job with its quotation and associated vendor costs.",
   },
   {
-    num: '03',
-    tag: 'ANALYZE',
-    title: 'Understand your actual margins',
-    desc: 'Identify profit gaps, cost differences and potential unbilled charges.',
+    num: "03",
+    tag: "ANALYZE",
+    title: "Understand your actual margins",
+    desc: "Identify profit gaps, cost differences and potential unbilled charges.",
   },
   {
-    num: '04',
-    tag: 'REPORT',
-    title: 'See performance clearly',
-    desc: 'Review profitability by job, customer, trade lane and carrier.',
+    num: "04",
+    tag: "REPORT",
+    title: "See performance clearly",
+    desc: "Review profitability by job, customer, trade lane and carrier.",
   },
 ];
 
@@ -249,17 +284,19 @@ export function FreightIntelligencePage() {
               </p>
 
               <h1 id="hero-title" className={s.heroTitle}>
-                See which jobs, customers and lanes <em>actually make you money.</em>
+                See which jobs, customers and lanes{" "}
+                <em>actually make you money.</em>
               </h1>
 
               <p className={s.heroDescription}>
-                Margins worked out in Excel. Detention you paid but never billed. Month-end reports
-                that arrive a week late. Freight Intelligence will show the real profit on every
-                job, and where it&apos;s leaking.
+                Margins worked out in Excel. Detention you paid but never
+                billed. Month-end reports that arrive a week late. Freight
+                Intelligence will show the real profit on every job, and where
+                it&apos;s leaking.
               </p>
 
               <div className={s.heroActions}>
-                <Link href="/demo/#demo-form" className={s.primaryBtn}>
+                <Link href="/demo-form" className={s.primaryBtn}>
                   <span>Join early access</span>
                   <ArrowUpRight size={16} aria-hidden="true" />
                 </Link>
@@ -271,11 +308,15 @@ export function FreightIntelligencePage() {
 
               <p className={s.promise}>
                 <CheckCircle2 size={18} aria-hidden="true" />
-                <span>Built on the quotes, jobs and vendor invoices already in your desk.</span>
+                <span>
+                  Built on the quotes, jobs and vendor invoices already in your
+                  desk.
+                </span>
               </p>
 
               <p className={s.heroTrust}>
-                Works with <strong>Standalone or CargoWise</strong>, your own ERP, or just your email inbox.{' '}
+                Works with <strong>Standalone or CargoWise</strong>, your own
+                ERP, or just your email inbox.{" "}
                 <strong>Early access now open.</strong>
               </p>
             </div>
@@ -302,7 +343,9 @@ export function FreightIntelligencePage() {
                     <span className={s.intelRouteArrow}>→</span>
                     <span>AEJEA</span>
                   </div>
-                  <p className={s.intelMetaText}>Orion Trading · 1 × 40&apos; HC · Carrier A</p>
+                  <p className={s.intelMetaText}>
+                    Orion Trading · 1 × 40&apos; HC · Carrier A
+                  </p>
 
                   <table className={s.intelTable}>
                     <thead>
@@ -339,18 +382,25 @@ export function FreightIntelligencePage() {
                   </table>
 
                   <div className={s.intelMarginBox}>
-                    <span className={s.intelMarginLabel}>Margin, quoted → actual</span>
+                    <span className={s.intelMarginLabel}>
+                      Margin, quoted → actual
+                    </span>
                     <span className={s.intelMarginValue}>18.5% → 7.6%</span>
                   </div>
                 </div>
-                <p className={s.intelSampleFoot}>SAMPLE DATA · EXAMPLE OF WHAT YOU&apos;LL SEE</p>
+                <p className={s.intelSampleFoot}>
+                  SAMPLE DATA · EXAMPLE OF WHAT YOU&apos;LL SEE
+                </p>
               </div>
             </div>
           </div>
         </section>
 
         {/* 2. WHERE THE NUMBERS COME FROM SECTION */}
-        <section className={s.statStrip} aria-label="Where the numbers come from">
+        <section
+          className={s.statStrip}
+          aria-label="Where the numbers come from"
+        >
           <div className="site-shell">
             <p className={s.statStripEyebrow}>WHERE THE NUMBERS COME FROM</p>
             <div className={s.statsGrid}>
@@ -382,13 +432,15 @@ export function FreightIntelligencePage() {
                 </div>
                 <div className={s.outcomeCardContent}>
                   <span className={s.outcomeStatValue}>Vendor invoices</span>
-                  <span className={s.outcomeStatLabel}>what you actually paid, line by line</span>
+                  <span className={s.outcomeStatLabel}>
+                    what you actually paid, line by line
+                  </span>
                 </div>
               </div>
             </div>
             <p className={s.statSource}>
-              Freight Intelligence is in development. What&apos;s shown on this page is the planned
-              scope, with sample data.
+              Freight Intelligence is in development. What&apos;s shown on this
+              page is the planned scope, with sample data.
             </p>
           </div>
         </section>
@@ -402,7 +454,9 @@ export function FreightIntelligencePage() {
                 No new data entry. <em>It uses what your desk already has.</em>
               </h2>
               <p className={s.lead}>
-                Bring your existing job, quotation and vendor invoice data together. Docsynecx connects the information to give you a clearer picture of every shipment.
+                Bring your existing job, quotation and vendor invoice data
+                together. Docsynecx connects the information to give you a
+                clearer picture of every shipment.
               </p>
             </div>
 
@@ -420,13 +474,20 @@ export function FreightIntelligencePage() {
             </div>
 
             <p className={s.controlNote}>
-              <strong>Built around your existing desk:</strong> If you use Email-to-Booking and Shipment Operations, the information may already be available there. Otherwise, source-system connectivity and data availability need to be assessed.
+              <strong>Built around your existing desk:</strong> If you use
+              Email-to-Booking and Shipment Operations, the information may
+              already be available there. Otherwise, source-system connectivity
+              and data availability need to be assessed.
             </p>
           </div>
         </section>
 
         {/* 4. SIX STEPS (HOW IT WORKS) */}
-        <section id="steps" className={s.howSectionDark} aria-labelledby="steps-h">
+        <section
+          id="steps"
+          className={s.howSectionDark}
+          aria-labelledby="steps-h"
+        >
           <div className="site-shell">
             <div className={s.secHead}>
               <p className={s.eyebrow}>WHAT YOU GET</p>
@@ -434,14 +495,18 @@ export function FreightIntelligencePage() {
                 Six answers your management team <em>asks for every month</em>.
               </h2>
               <p className={s.leadLight}>
-                Here&apos;s what Freight Intelligence pulls together across your quotes, jobs and
-                invoices.
+                Here&apos;s what Freight Intelligence pulls together across your
+                quotes, jobs and invoices.
               </p>
             </div>
 
             <div className={s.howGrid} {...containerProps}>
               {/* Tab Selector Buttons */}
-              <ol className={s.stepsList} role="tablist" aria-label="Six answers">
+              <ol
+                className={s.stepsList}
+                role="tablist"
+                aria-label="Six answers"
+              >
                 {stepsData.map((step, idx) => (
                   <li key={step.num}>
                     <button
@@ -470,12 +535,14 @@ export function FreightIntelligencePage() {
                   id={`step-panel-${activeStep.num}`}
                   role="tabpanel"
                   aria-labelledby={`step-tab-${activeStep.num}`}
-                  style={{ position: 'relative', zIndex: 1 }}
+                  style={{ position: "relative", zIndex: 1 }}
                 >
                   <div className={s.interactivePanelDark}>
                     <div className={s.panelTopDark}>
                       <span>{activeStep.panelBar}</span>
-                      <span className={`${s.statusBadge} ${s[activeStep.statusType] || s.info}`}>
+                      <span
+                        className={`${s.statusBadge} ${s[activeStep.statusType] || s.info}`}
+                      >
                         {activeStep.panelStatus}
                       </span>
                     </div>
@@ -491,8 +558,12 @@ export function FreightIntelligencePage() {
                         <div className={s.fieldsGridDark}>
                           {activeStep.fields.map((f) => (
                             <div key={f.label} className={s.fieldBoxDark}>
-                              <span className={s.fieldLabelDark}>{f.label}</span>
-                              <span className={s.fieldValueDark}>{f.value}</span>
+                              <span className={s.fieldLabelDark}>
+                                {f.label}
+                              </span>
+                              <span className={s.fieldValueDark}>
+                                {f.value}
+                              </span>
                             </div>
                           ))}
                         </div>
@@ -505,7 +576,9 @@ export function FreightIntelligencePage() {
                             <div key={row.who} className={s.qcardRow}>
                               <span className={s.rowWho}>{row.who}</span>
                               <span className={s.rowWhat}>{row.what}</span>
-                              <span className={`${s.statusBadge} ${s[row.type] || s.ok}`}>
+                              <span
+                                className={`${s.statusBadge} ${s[row.type] || s.ok}`}
+                              >
                                 {row.status}
                               </span>
                             </div>
@@ -526,20 +599,27 @@ export function FreightIntelligencePage() {
                             </thead>
                             <tbody>
                               {activeStep.table.rows.map((row, rIdx) => {
-                                const isBest = activeStep.table?.bestIndex === rIdx;
+                                const isBest =
+                                  activeStep.table?.bestIndex === rIdx;
                                 return (
-                                  <tr key={rIdx} className={isBest ? s.bestRow : undefined}>
+                                  <tr
+                                    key={rIdx}
+                                    className={isBest ? s.bestRow : undefined}
+                                  >
                                     {row.map((cell, cIdx) => {
                                       const isWarn =
                                         activeStep.table?.warnCol === cIdx &&
-                                        typeof cell === 'string' &&
-                                        (cell.includes('+') || cell.includes('9.8%'));
+                                        typeof cell === "string" &&
+                                        (cell.includes("+") ||
+                                          cell.includes("9.8%"));
                                       return (
                                         <td
                                           key={cIdx}
                                           style={{
                                             fontWeight: cIdx === 0 ? 600 : 400,
-                                            color: isWarn ? '#d97706' : undefined,
+                                            color: isWarn
+                                              ? "#d97706"
+                                              : undefined,
                                           }}
                                         >
                                           {cell}
@@ -561,7 +641,9 @@ export function FreightIntelligencePage() {
                     </div>
                   </div>
 
-                  <p className={s.howNote}>Sample data · Example product view</p>
+                  <p className={s.howNote}>
+                    Sample data · Example product view
+                  </p>
                 </div>
               </div>
             </div>
@@ -577,33 +659,41 @@ export function FreightIntelligencePage() {
                 Help shape it with <em>your own numbers</em>.
               </h2>
               <p className={s.lead}>
-                We&apos;re building Freight Intelligence with a small group of forwarders. Early
-                access teams see it first, run it on their own jobs, and tell us which reports matter
-                most.
+                We&apos;re building Freight Intelligence with a small group of
+                forwarders. Early access teams see it first, run it on their own
+                jobs, and tell us which reports matter most.
               </p>
             </div>
 
             <div className={s.resultsGrid4}>
               <div className={s.resultStatCard}>
                 <span className={s.resultStatNum}>First look</span>
-                <span className={s.resultStatLabel}>see each report before it&apos;s released</span>
+                <span className={s.resultStatLabel}>
+                  see each report before it&apos;s released
+                </span>
               </div>
               <div className={s.resultStatCard}>
                 <span className={s.resultStatNum}>Your data</span>
-                <span className={s.resultStatLabel}>run it on your own jobs and lanes</span>
+                <span className={s.resultStatLabel}>
+                  run it on your own jobs and lanes
+                </span>
               </div>
               <div className={s.resultStatCard}>
                 <span className={s.resultStatNum}>Your say</span>
-                <span className={s.resultStatLabel}>tell us which numbers you need</span>
+                <span className={s.resultStatLabel}>
+                  tell us which numbers you need
+                </span>
               </div>
               <div className={s.resultStatCard}>
                 <span className={s.resultStatNum}>No extra work</span>
-                <span className={s.resultStatLabel}>if you already use our other modules</span>
+                <span className={s.resultStatLabel}>
+                  if you already use our other modules
+                </span>
               </div>
             </div>
 
             <div style={{ marginTop: 32 }}>
-              <Link href="/demo/#demo-form" className="button-secondary">
+              <Link href="/demo-form" className="button-secondary">
                 <span>Join early access</span>
                 <ArrowRight size={15} aria-hidden="true" />
               </Link>
@@ -622,13 +712,17 @@ export function FreightIntelligencePage() {
                     What owners and finance heads ask us first.
                   </h2>
                   <p className={s.faqDescription}>
-                    Something else on your mind?{' '}
-                    <Link href="/demo/#demo-form">Ask us in the demo.</Link>
+                    Something else on your mind?{" "}
+                    <Link href="/demo-form">Ask us in the demo.</Link>
                   </p>
                 </div>
               </div>
 
-              <SharedFaqAccordion items={faqItems} defaultOpenIndex={0} toggleStyle="plus" />
+              <SharedFaqAccordion
+                items={faqItems}
+                defaultOpenIndex={0}
+                toggleStyle="plus"
+              />
             </div>
           </div>
         </section>

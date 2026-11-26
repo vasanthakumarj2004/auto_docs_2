@@ -99,6 +99,7 @@
   RewriteRule ^(.+)/__next\..+\.txt$ $1/index.txt [L]
 
   # 301 Redirects: Email & RFQ to Canonical Lowercase
+  RewriteRule ^demo/demo-form/?$ /demo-form [R=301,L]
   RewriteRule ^(email-to-booking|rfq-to-booking|RFQ-to-booking)/?$ /logistics-desk/rfq-to-booking/ [R=301,L,NC]
   RewriteRule ^logistics/(email-to-booking|rfq-to-booking|RFQ-to-booking)/?$ /logistics-desk/rfq-to-booking/ [R=301,L,NC]
   RewriteRule ^logistics-desk/(email-to-booking|RFQ-to-booking)/?$ /logistics-desk/rfq-to-booking/ [R=301,L]

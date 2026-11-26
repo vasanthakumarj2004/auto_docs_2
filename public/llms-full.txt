@@ -14,9 +14,9 @@ The Docsynecx Finance Desk automates end-to-end accounting document pipelines:
 - **For Finance Teams (https://docsynecx.com/finance-desk/finance-teams/)**: Accelerate month-end closing and eliminate manual voucher entry backlogs.
 - **For Accounts Teams (https://docsynecx.com/finance-desk/accounts-teams/)**: Fast document ingestion, duplicate checks, and verified bookkeeping into Tally.
 - **For CA Firms (https://docsynecx.com/finance-desk/ca-firms/)**: Multi-client document audits, GST verification, and high-speed reconciliation.
-- **TallyPrime Integration (https://docsynecx.com/finance-desk/#integration-tally)**: Purchase and bank vouchers, ledgers mapped or created, bills attached to every entry in TallyPrime.
-- **Zoho Books Integration (https://docsynecx.com/finance-desk/#integration-zoho)**: Bills created with source PDF attached, contacts and chart of accounts synced with Zoho Books.
-- **Custom ERP Integration (https://docsynecx.com/finance-desk/#integration-erp)**: Flexible REST APIs, webhooks, and database connectors for proprietary ERP systems.
+- **TallyPrime Integration (https://docsynecx.com/finance-desk/integration-tally)**: Purchase and bank vouchers, ledgers mapped or created, bills attached to every entry in TallyPrime.
+- **Zoho Books Integration (https://docsynecx.com/finance-desk/integration-zoho)**: Bills created with source PDF attached, contacts and chart of accounts synced with Zoho Books.
+- **Custom ERP Integration (https://docsynecx.com/finance-desk/integration-erp)**: Flexible REST APIs, webhooks, and database connectors for proprietary ERP systems.
 
 ### Logistics Desk (https://docsynecx.com/logistics-desk/)
 The Docsynecx Logistics Desk automates freight forwarding documentation:
@@ -41,7 +41,7 @@ The Docsynecx Logistics Desk automates freight forwarding documentation:
 ## 3. Commercial & Engagement
 
 - **Pricing (https://docsynecx.com/pricing/)**: Transparent tiered pricing based on document volume, desk selection, and user seats. Includes self-service ROI estimation.
-- **Request Demo (https://docsynecx.com/demo/)**: Schedule a customized, interactive workflow demonstration with real documents.
+- **Request Demo (https://docsynecx.com/demo-form)**: Schedule a customized, interactive workflow demonstration with real documents.
 - **Contact Support & Sales (https://docsynecx.com/contact/)**: Reach technical specialists, customer success, or enterprise sales representatives.
 - **Corporate Event (https://docsynecx.com/events/iics-2026/)**: Meet Docsynecx at the India International Cargo Show (IICS) 2026 — Booth Q53.
 

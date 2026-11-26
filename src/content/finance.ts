@@ -1,6 +1,6 @@
 export const financeRoot = '/finance-desk/';
-export const demoHref = '/demo/#demo-form';
-export const interestHref = '/finance-desk/accounts-payable/#register-interest';
+export const demoHref = '/demo-form';
+export const interestHref = '/finance-desk/accounts-payable/register-interest';
 
 export const financeCapabilities = [
   {
@@ -220,7 +220,7 @@ export const financeIntelligenceViews = [
 export const financeIntelligenceBottom = {
   note: "Built from your own TallyPrime data. What each view shows depends on what's recorded in Tally. In the demo we'll show you all six on your own books.",
   buttonText: 'See your own numbers',
-  buttonHref: '/demo/#demo-form',
+  buttonHref: '/demo-form',
 } as const;
 
 /* ── Integrations ── */
@@ -342,7 +342,7 @@ export const financeClosing = {
   //   'See them checked and ready for Tally',
   // ],
   primaryText: 'Book a demo',
-  primaryHref: '/demo/#demo-form',
+  primaryHref: '/demo-form',
   secondaryText: 'See all five tools',
   secondaryHref: '#tools',
 } as const;

@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
 import {
   ArrowDown,
   ArrowRight,
@@ -11,32 +11,32 @@ import {
   Clock,
   Layers,
   ShieldCheck,
-} from 'lucide-react';
-import { useAutoCycle } from '@/src/hooks/useAutoCycle';
-import { SharedFaqAccordion } from '../SharedFaqAccordion';
-import { FinanceClosingCta } from './FinanceClosingCta';
-import s from './InvoiceAutomationPage.module.css';
+} from "lucide-react";
+import { useAutoCycle } from "@/src/hooks/useAutoCycle";
+import { SharedFaqAccordion } from "../SharedFaqAccordion";
+import { FinanceClosingCta } from "./FinanceClosingCta";
+import s from "./InvoiceAutomationPage.module.css";
 
 /* ── 1. Proof Stats Strip (Key Facts) ── */
 const proofStats = [
   {
-    title: 'Month-end in batches',
-    copy: 'Hundreds of invoices at once',
+    title: "Month-end in batches",
+    copy: "Hundreds of invoices at once",
     icon: Layers,
   },
   {
-    title: 'Exceptions first',
+    title: "Exceptions first",
     copy: "Review what's unclear, not every line",
     icon: Clock,
   },
   {
-    title: 'GST and duplicate checks',
-    copy: 'On every invoice, before approval',
+    title: "GST and duplicate checks",
+    copy: "On every invoice, before approval",
     icon: ShieldCheck,
   },
   {
-    title: 'Audit-ready',
-    copy: 'Every bill linked to its voucher',
+    title: "Audit-ready",
+    copy: "Every bill linked to its voucher",
     icon: CheckCircle2,
     highlight: true,
   },
@@ -45,64 +45,64 @@ const proofStats = [
 /* ── 2. Four Pain Points (Sound familiar?) ── */
 const painPoints = [
   {
-    num: '01 · Approvals',
+    num: "01 · Approvals",
     title: "Invoices stuck in someone's inbox",
-    was: 'Managers forget to sign off, and early-payment discounts slip away.',
-    fix: 'every invoice in one queue, with who has it and how long.',
+    was: "Managers forget to sign off, and early-payment discounts slip away.",
+    fix: "every invoice in one queue, with who has it and how long.",
   },
   {
-    num: '02 · Month-end',
-    title: 'The last-week flood',
-    was: 'Bills pile up in the final days, and the team works late to check and enter them.',
-    fix: 'batches read and checked as they arrive.',
+    num: "02 · Month-end",
+    title: "The last-week flood",
+    was: "Bills pile up in the final days, and the team works late to check and enter them.",
+    fix: "batches read and checked as they arrive.",
   },
   {
-    num: '03 · Audits',
+    num: "03 · Audits",
     title: '"Who approved this, and where\'s the bill?"',
-    was: 'Hunting through folders and emails when the auditors ask.',
-    fix: 'the bill, edits and approval, one click from the voucher.',
+    was: "Hunting through folders and emails when the auditors ask.",
+    fix: "the bill, edits and approval, one click from the voucher.",
   },
   {
-    num: '04 · GST',
-    title: 'Tax errors found too late',
-    was: 'Wrong splits and GSTINs surface at filing time, as blocked credit.',
-    fix: 'GSTIN, HSN and tax splits checked on every bill.',
+    num: "04 · GST",
+    title: "Tax errors found too late",
+    was: "Wrong splits and GSTINs surface at filing time, as blocked credit.",
+    fix: "GSTIN, HSN and tax splits checked on every bill.",
   },
 ];
 
 /* ── 3. What You Get (Gain Cards) ── */
 const gainCards = [
   {
-    tag: 'Intake',
-    title: 'Every source, one queue',
-    desc: 'Email, WhatsApp, portal upload and batch upload from branches.',
+    tag: "Intake",
+    title: "Every source, one queue",
+    desc: "Email, WhatsApp, portal upload and batch upload from branches.",
   },
   {
-    tag: 'GST checks',
-    title: 'GSTIN, HSN and tax splits',
-    desc: 'CGST, SGST and IGST worked out from the lines and compared with the bill.',
+    tag: "GST checks",
+    title: "GSTIN, HSN and tax splits",
+    desc: "CGST, SGST and IGST worked out from the lines and compared with the bill.",
   },
   {
-    tag: 'Exceptions',
+    tag: "Exceptions",
     title: "Review only what's unclear",
-    desc: 'Unsure fields, duplicates and tax mismatches flagged. The rest is ready to approve.',
+    desc: "Unsure fields, duplicates and tax mismatches flagged. The rest is ready to approve.",
   },
   {
-    tag: 'Approvals',
-    title: 'Approval rules by department and amount',
-    desc: 'Route bills by branch, department or value, with reminders to approvers.',
+    tag: "Approvals",
+    title: "Approval rules by department and amount",
+    desc: "Route bills by branch, department or value, with reminders to approvers.",
   },
   {
-    tag: 'Banking',
-    title: 'Reconciliation in the same place',
-    desc: 'Bank lines matched to your sales and purchase entries.',
-    linkHref: '/finance-desk/banking-reconciliation/',
-    linkText: 'See Banking →',
+    tag: "Banking",
+    title: "Reconciliation in the same place",
+    desc: "Bank lines matched to your sales and purchase entries.",
+    linkHref: "/finance-desk/banking-reconciliation/",
+    linkText: "See Banking →",
   },
   {
-    tag: 'Audit trail',
-    title: 'Every step on record',
-    desc: 'Edits, approvals and rejection reasons, with the bill linked to its voucher.',
+    tag: "Audit trail",
+    title: "Every step on record",
+    desc: "Edits, approvals and rejection reasons, with the bill linked to its voucher.",
   },
 ];
 
@@ -110,129 +110,169 @@ const gainCards = [
 const howSteps = [
   {
     num: 1,
-    title: 'Everything in one queue',
-    desc: 'Email, WhatsApp, portal and branch uploads, in batches.',
-    panelBar: 'Step 1 of 4 · November queue',
-    panelStatus: '412 invoices',
-    statusType: 'info' as const,
+    title: "Everything in one queue",
+    desc: "Email, WhatsApp, portal and branch uploads, in batches.",
+    panelBar: "Step 1 of 4 · November queue",
+    panelStatus: "412 invoices",
+    statusType: "info" as const,
     rows: [
-      { who: 'Email', what: 'Forwarded from suppliers and branches', status: '268', type: 'ok' as const },
-      { who: 'Portal upload', what: 'PDFs and scans, single and batch', status: '96', type: 'ok' as const },
-      { who: 'WhatsApp', what: 'Photos and PDFs from the field', status: '48', type: 'ok' as const },
+      {
+        who: "Email",
+        what: "Forwarded from suppliers and branches",
+        status: "268",
+        type: "ok" as const,
+      },
+      {
+        who: "Portal upload",
+        what: "PDFs and scans, single and batch",
+        status: "96",
+        type: "ok" as const,
+      },
+      {
+        who: "WhatsApp",
+        what: "Photos and PDFs from the field",
+        status: "48",
+        type: "ok" as const,
+      },
     ],
-    foot: 'One queue for the whole month, however invoices arrive.',
+    foot: "One queue for the whole month, however invoices arrive.",
   },
   {
     num: 2,
-    title: 'Read and checked',
-    desc: 'Line items, HSN, GST and duplicates checked on every invoice.',
-    panelBar: 'Step 2 of 4 · Checks',
-    panelStatus: '26 exceptions',
-    statusType: 'wait' as const,
+    title: "Read and checked",
+    desc: "Line items, HSN, GST and duplicates checked on every invoice.",
+    panelBar: "Step 2 of 4 · Checks",
+    panelStatus: "26 exceptions",
+    statusType: "wait" as const,
     deskStats: [
-      { val: '386', label: 'all checks passed' },
-      { val: '14', label: 'unsure fields' },
-      { val: '12', label: 'GST or duplicate flags' },
+      { val: "386", label: "all checks passed" },
+      { val: "14", label: "unsure fields" },
+      { val: "12", label: "GST or duplicate flags" },
     ],
     rows: [
-      { who: 'Apex Services · INV-0294', what: 'Lines give ₹2,700 GST. Bill says ₹2,970', status: 'GST mismatch', type: 'wait' as const },
-      { who: 'Metro Supplies · INV-1068', what: 'Same supplier, amount and date as INV-1061', status: 'Duplicate?', type: 'wait' as const },
+      {
+        who: "Apex Services · INV-0294",
+        what: "Lines give ₹2,700 GST. Bill says ₹2,970",
+        status: "GST mismatch",
+        type: "wait" as const,
+      },
+      {
+        who: "Metro Supplies · INV-1068",
+        what: "Same supplier, amount and date as INV-1061",
+        status: "Duplicate?",
+        type: "wait" as const,
+      },
     ],
-    foot: 'Your team starts with the 26 that need them, not all 412.',
+    foot: "Your team starts with the 26 that need them, not all 412.",
   },
   {
     num: 3,
-    title: 'Your team approves',
-    desc: 'Routed by your approval rules. Clear invoices approved in batches.',
-    panelBar: 'Step 3 of 4 · Approvals',
-    panelStatus: '386 approved',
-    statusType: 'ok' as const,
+    title: "Your team approves",
+    desc: "Routed by your approval rules. Clear invoices approved in batches.",
+    panelBar: "Step 3 of 4 · Approvals",
+    panelStatus: "386 approved",
+    statusType: "ok" as const,
     rows: [
-      { who: 'Clear invoices', what: 'Reviewed and approved as a batch', status: '386', type: 'ok' as const },
-      { who: 'Apex Services · INV-0294', what: 'Supplier sent corrected bill', status: 'Fixed', type: 'ok' as const },
-      { who: 'Metro Supplies · INV-1068', what: 'Rejected: duplicate of INV-1061', status: 'Rejected', type: 'wait' as const },
+      {
+        who: "Clear invoices",
+        what: "Reviewed and approved as a batch",
+        status: "386",
+        type: "ok" as const,
+      },
+      {
+        who: "Apex Services · INV-0294",
+        what: "Supplier sent corrected bill",
+        status: "Fixed",
+        type: "ok" as const,
+      },
+      {
+        who: "Metro Supplies · INV-1068",
+        what: "Rejected: duplicate of INV-1061",
+        status: "Rejected",
+        type: "wait" as const,
+      },
     ],
-    foot: 'Every approval and rejection reason is logged.',
+    foot: "Every approval and rejection reason is logged.",
   },
   {
     num: 4,
-    title: 'Posted to TallyPrime',
-    desc: 'Purchase vouchers to the right ledgers, bill attached.',
-    panelBar: 'Step 4 of 4 · TallyPrime',
-    panelStatus: 'Vouchers created',
-    statusType: 'ok' as const,
+    title: "Posted to TallyPrime",
+    desc: "Purchase vouchers to the right ledgers, bill attached.",
+    panelBar: "Step 4 of 4 · TallyPrime",
+    panelStatus: "Vouchers created",
+    statusType: "ok" as const,
     table: {
-      headers: ['Prime Components · INV-4821', 'Dr / Cr', 'Amount'],
+      headers: ["Prime Components · INV-4821", "Dr / Cr", "Amount"],
       rows: [
-        ['Purchase @ 18%', 'Dr', '₹62,750'],
-        ['Input CGST 9%', 'Dr', '₹5,647.50'],
-        ['Input SGST 9%', 'Dr', '₹5,647.50'],
-        ['Prime Components', 'Cr', '₹74,045'],
+        ["Purchase @ 18%", "Dr", "₹62,750"],
+        ["Input CGST 9%", "Dr", "₹5,647.50"],
+        ["Input SGST 9%", "Dr", "₹5,647.50"],
+        ["Prime Components", "Cr", "₹74,045"],
       ],
     },
-    files: ['INV-4821.pdf linked · Approved 28 Nov · audit log kept'],
-    foot: 'Right ledgers, bill attached, ready for the auditors.',
+    files: ["INV-4821.pdf linked · Approved 28 Nov · audit log kept"],
+    foot: "Right ledgers, bill attached, ready for the auditors.",
   },
 ];
 
 /* ── 5. Customer Story Facts ── */
 const storyFacts = [
-  { bold: '60+ min → 15 min', desc: 'document review and entry' },
-  { bold: 'Hundreds', desc: 'of recurring documents a month' },
-  { bold: 'Every entry', desc: 'still reviewed by the team' },
+  { bold: "60+ min → 15 min", desc: "document review and entry" },
+  { bold: "Hundreds", desc: "of recurring documents a month" },
+  { bold: "Every entry", desc: "still reviewed by the team" },
 ];
 
 /* ── 6. Finance FAQs ── */
 const faqItems = [
   {
-    question: 'Will our accountants still check entries before posting?',
+    question: "Will our accountants still check entries before posting?",
     answer:
-      'Yes. Nothing goes to TallyPrime until your team approves it. Unclear fields and flagged invoices are shown first.',
+      "Yes. Nothing goes to TallyPrime until your team approves it. Unclear fields and flagged invoices are shown first.",
   },
   {
-    question: 'Can we set approval rules by department or amount?',
+    question: "Can we set approval rules by department or amount?",
     answer:
-      'Yes. Route invoices by department, branch, category or amount, for example invoices over ₹50,000 going to a director. Approvers get reminders, and every step is logged.',
+      "Yes. Route invoices by department, branch, category or amount, for example invoices over ₹50,000 going to a director. Approvers get reminders, and every step is logged.",
   },
   {
-    question: 'Does it handle credit and debit notes?',
+    question: "Does it handle credit and debit notes?",
     answer:
-      'Yes. They come into the same queue as supplier invoices and go through the same checks.',
+      "Yes. They come into the same queue as supplier invoices and go through the same checks.",
   },
   {
-    question: 'What about multiple branches?',
+    question: "What about multiple branches?",
     answer:
-      'Branches send bills into the same queue by email, WhatsApp or upload, so the finance team sees the whole month in one place.',
+      "Branches send bills into the same queue by email, WhatsApp or upload, so the finance team sees the whole month in one place.",
   },
   {
-    question: 'How long does it take to get started?',
+    question: "How long does it take to get started?",
     answer:
-      'The first-time setup with TallyPrime takes minutes. Then we test with your own invoices and train your team in a single session.',
+      "The first-time setup with TallyPrime takes minutes. Then we test with your own invoices and train your team in a single session.",
   },
 ];
 
 /* ── 7. For the Rest of Your Team ── */
 const otherRoles = [
   {
-    role: 'Business owners',
-    title: 'Know where every rupee stands',
-    lead: 'Cash, dues and the bills that need your sign-off, without waiting for month-end.',
-    href: '/finance-desk/business-owners/',
-    linkText: 'For business owners',
+    role: "Business owners",
+    title: "Know where every rupee stands",
+    lead: "Cash, dues and the bills that need your sign-off, without waiting for month-end.",
+    href: "/finance-desk/business-owners/",
+    linkText: "For business owners",
   },
   {
-    role: 'Accounts teams',
-    title: 'Stop retyping bills into Tally',
-    lead: 'Bills read, ledgers mapped and vouchers drafted. Your team reviews and approves.',
-    href: '/finance-desk/accounts-teams/',
-    linkText: 'For accounts teams',
+    role: "Accounts teams",
+    title: "Stop retyping bills into Tally",
+    lead: "Bills read, ledgers mapped and vouchers drafted. Your team reviews and approves.",
+    href: "/finance-desk/accounts-teams/",
+    linkText: "For accounts teams",
   },
   {
-    role: 'CA firms',
+    role: "CA firms",
     title: "Every client's bills, one workspace",
-    lead: 'Client bills read, GST checked and posted across all your client companies.',
-    href: '/finance-desk/ca-firms/',
-    linkText: 'For CA firms',
+    lead: "Client bills read, GST checked and posted across all your client companies.",
+    href: "/finance-desk/ca-firms/",
+    linkText: "For CA firms",
   },
 ];
 
@@ -261,11 +301,14 @@ export function FinanceTeamsPage() {
               </h1>
 
               <p className={s.heroSub}>
-                Every supplier invoice in one queue. GST and duplicates checked automatically. Approved by your team and posted to TallyPrime with the bill attached. Your team reviews the exceptions, not every line.
+                Every supplier invoice in one queue. GST and duplicates checked
+                automatically. Approved by your team and posted to TallyPrime
+                with the bill attached. Your team reviews the exceptions, not
+                every line.
               </p>
 
               <div className={s.heroActions}>
-                <Link href="/demo/#demo-form" className={s.primaryBtn}>
+                <Link href="/demo-form" className={s.primaryBtn}>
                   <span>Book a demo</span>
                   <ArrowUpRight size={16} aria-hidden="true" />
                 </Link>
@@ -273,11 +316,14 @@ export function FinanceTeamsPage() {
                   href="#how"
                   className={s.secondaryBtn}
                   onClick={(e) => {
-                    const target = document.getElementById('how');
+                    const target = document.getElementById("how");
                     if (target) {
                       e.preventDefault();
-                      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                      window.history.pushState(null, '', '#how');
+                      target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                      });
+                      window.history.pushState(null, "", "#how");
                     }
                   }}
                 >
@@ -287,8 +333,20 @@ export function FinanceTeamsPage() {
               </div>
 
               <p className={s.promise}>
-                <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
-                  <circle cx="10" cy="10" r="9" fill="none" stroke="currentColor" strokeWidth="2" />
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  aria-hidden="true"
+                >
+                  <circle
+                    cx="10"
+                    cy="10"
+                    r="9"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
                   <path
                     d="M6 10.5l2.5 2.5L14 7.5"
                     fill="none"
@@ -298,7 +356,9 @@ export function FinanceTeamsPage() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span>Nothing is posted to TallyPrime until your team approves it.</span>
+                <span>
+                  Nothing is posted to TallyPrime until your team approves it.
+                </span>
               </p>
             </div>
 
@@ -316,7 +376,9 @@ export function FinanceTeamsPage() {
                   <span>
                     <strong>Month-end queue</strong> · Nov 2026
                   </span>
-                  <span className={`${s.statusBadge} ${s.wait}`}>26 exceptions</span>
+                  <span className={`${s.statusBadge} ${s.wait}`}>
+                    26 exceptions
+                  </span>
                 </div>
                 <div className={s.qcardBody}>
                   <div className={s.deskStats}>
@@ -336,22 +398,30 @@ export function FinanceTeamsPage() {
                   <div className={s.qcardRows}>
                     <div className={s.qcardRow}>
                       <span className={s.rowWho}>Prime Components</span>
-                      <span className={s.rowWhat}>INV-4821 · ₹74,045 · checks passed</span>
+                      <span className={s.rowWhat}>
+                        INV-4821 · ₹74,045 · checks passed
+                      </span>
                       <span className={`${s.statusBadge} ${s.ok}`}>Ready</span>
                     </div>
                     <div className={s.qcardRow}>
                       <span className={s.rowWho}>Metro Supplies</span>
-                      <span className={s.rowWhat}>INV-1068 · same as INV-1061?</span>
-                      <span className={`${s.statusBadge} ${s.wait}`}>Duplicate?</span>
+                      <span className={s.rowWhat}>
+                        INV-1068 · same as INV-1061?
+                      </span>
+                      <span className={`${s.statusBadge} ${s.wait}`}>
+                        Duplicate?
+                      </span>
                     </div>
                     <div className={s.qcardRow}>
                       <span className={s.rowWho}>Apex Services</span>
-                      <span className={s.rowWhat}>INV-0294 · GST ₹2,970, lines give ₹2,700</span>
-                      <span className={`${s.statusBadge} ${s.wait}`}>GST mismatch</span>
+                      <span className={s.rowWhat}>
+                        INV-0294 · GST ₹2,970, lines give ₹2,700
+                      </span>
+                      <span className={`${s.statusBadge} ${s.wait}`}>
+                        GST mismatch
+                      </span>
                     </div>
                   </div>
-
-                
                 </div>
                 <p className={s.sampleNote}>Sample data</p>
               </div>
@@ -372,7 +442,7 @@ export function FinanceTeamsPage() {
               return (
                 <div
                   key={item.title}
-                  className={`${s.outcomeCard} ${item.highlight ? s.highlightOutcome : ''}`}
+                  className={`${s.outcomeCard} ${item.highlight ? s.highlightOutcome : ""}`}
                 >
                   <span className={s.outcomeIconBadge} aria-hidden="true">
                     <Icon size={20} className="stroke-[2.2]" />
@@ -389,7 +459,10 @@ export function FinanceTeamsPage() {
       </section>
 
       {/* 3. PROBLEM BAND */}
-      <section className={`${s.section} ${s.altSection}`} aria-labelledby="problem-h">
+      <section
+        className={`${s.section} ${s.altSection}`}
+        aria-labelledby="problem-h"
+      >
         <div className="site-shell">
           <div className={s.secHead}>
             <p className={s.eyebrow}>Sound familiar?</p>
@@ -399,7 +472,8 @@ export function FinanceTeamsPage() {
               <span>month-end late.</span>
             </h2>
             <p className={s.lead}>
-              Docsynecx takes the checking and chasing off your team, so the books close on time.
+              Docsynecx takes the checking and chasing off your team, so the
+              books close on time.
             </p>
           </div>
 
@@ -437,7 +511,11 @@ export function FinanceTeamsPage() {
                 <h3>{card.title}</h3>
                 <p>{card.desc}</p>
                 {card.linkHref && (
-                  <Link href={card.linkHref} className={s.moreLink} style={{ marginTop: 12 }}>
+                  <Link
+                    href={card.linkHref}
+                    className={s.moreLink}
+                    style={{ marginTop: 12 }}
+                  >
                     <span>{card.linkText}</span>
                     <ArrowRight size={14} aria-hidden="true" />
                   </Link>
@@ -449,7 +527,11 @@ export function FinanceTeamsPage() {
       </section>
 
       {/* 5. HOW IT WORKS */}
-      <section id="how" className={`${s.section} ${s.howSectionDark}`} aria-labelledby="how-h">
+      <section
+        id="how"
+        className={`${s.section} ${s.howSectionDark}`}
+        aria-labelledby="how-h"
+      >
         <div className="site-shell">
           <div className={s.secHead}>
             <p className={s.eyebrow}>How it works</p>
@@ -473,7 +555,7 @@ export function FinanceTeamsPage() {
                     id={`step-tab-${step.num}`}
                     aria-controls={`step-panel-${step.num}`}
                     aria-selected={active === idx}
-                    className={`${s.stepButtonDark} ${active === idx ? s.stepButtonDarkActive : ''}`}
+                    className={`${s.stepButtonDark} ${active === idx ? s.stepButtonDarkActive : ""}`}
                     onClick={() => goTo(idx)}
                   >
                     <span className={s.stepNumDark}>{step.num}</span>
@@ -495,7 +577,9 @@ export function FinanceTeamsPage() {
               >
                 <div className={s.panelBarDark}>
                   <span>{activeStep.panelBar}</span>
-                  <span className={`${s.statusBadge} ${s[activeStep.statusType] || s.info}`}>
+                  <span
+                    className={`${s.statusBadge} ${s[activeStep.statusType] || s.info}`}
+                  >
                     {activeStep.panelStatus}
                   </span>
                 </div>
@@ -520,7 +604,9 @@ export function FinanceTeamsPage() {
                         <div key={row.who} className={s.qcardRowDark}>
                           <span className={s.rowWhoDark}>{row.who}</span>
                           <span className={s.rowWhatDark}>{row.what}</span>
-                          <span className={`${s.statusBadge} ${s[row.type] || s.ok}`}>
+                          <span
+                            className={`${s.statusBadge} ${s[row.type] || s.ok}`}
+                          >
                             {row.status}
                           </span>
                         </div>
@@ -530,7 +616,10 @@ export function FinanceTeamsPage() {
 
                   {/* Table in Step 4 */}
                   {activeStep.table && (
-                    <table className={s.dataTableDark} style={{ marginTop: 12 }}>
+                    <table
+                      className={s.dataTableDark}
+                      style={{ marginTop: 12 }}
+                    >
                       <thead>
                         <tr>
                           {activeStep.table.headers.map((h) => (
@@ -543,7 +632,9 @@ export function FinanceTeamsPage() {
                           <tr key={i}>
                             <td>{r[0]}</td>
                             <td>{r[1]}</td>
-                            <td><strong>{r[2]}</strong></td>
+                            <td>
+                              <strong>{r[2]}</strong>
+                            </td>
                           </tr>
                         ))}
                       </tbody>
@@ -552,7 +643,10 @@ export function FinanceTeamsPage() {
 
                   {/* Files in Step 4 */}
                   {activeStep.files && (
-                    <div className={s.fileListDark} style={{ marginTop: 12, marginBottom: 0 }}>
+                    <div
+                      className={s.fileListDark}
+                      style={{ marginTop: 12, marginBottom: 0 }}
+                    >
                       {activeStep.files.map((file) => (
                         <span key={file} className={s.fileChipDark}>
                           {file}
@@ -563,26 +657,39 @@ export function FinanceTeamsPage() {
                 </div>
 
                 <p className={s.panelFootDark}>
-                  <strong>{activeStep.foot.split(',')[0]},</strong>
-                  {activeStep.foot.includes(',') ? activeStep.foot.substring(activeStep.foot.indexOf(',') + 1) : ''}
+                  <strong>{activeStep.foot.split(",")[0]},</strong>
+                  {activeStep.foot.includes(",")
+                    ? activeStep.foot.substring(
+                        activeStep.foot.indexOf(",") + 1,
+                      )
+                    : ""}
                 </p>
               </div>
 
-              <p className={s.howNoteDark}>Sample data · Example product view</p>
+              <p className={s.howNoteDark}>
+                Sample data · Example product view
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       {/* 6. CUSTOMER STORY */}
-      <section className={`${s.section} ${s.altSection}`} aria-labelledby="cust-h">
+      <section
+        className={`${s.section} ${s.altSection}`}
+        aria-labelledby="cust-h"
+      >
         <div className="site-shell">
           <div className={s.storyCard}>
             <div className={s.storyCopy}>
               <p className={s.eyebrow}>Customer story</p>
-              <h2 id="cust-h">A logistics company: 2 hours of entry, now 2 minutes.</h2>
+              <h2 id="cust-h">
+                A logistics company: 2 hours of entry, now 2 minutes.
+              </h2>
               <p>
-                Hundreds of recurring supplier documents a month. Review and entry that took hours now takes minutes, and the team still checks every entry.
+                Hundreds of recurring supplier documents a month. Review and
+                entry that took hours now takes minutes, and the team still
+                checks every entry.
               </p>
             </div>
 
@@ -609,18 +716,25 @@ export function FinanceTeamsPage() {
                   What finance managers ask before rollout.
                 </h2>
                 <p className={s.faqDescription}>
-                  Something else on your mind?{' '}
-                  <Link href="/demo/#demo-form">Ask us in the demo.</Link>
+                  Something else on your mind?{" "}
+                  <Link href="/demo-form">Ask us in the demo.</Link>
                 </p>
               </div>
             </div>
-            <SharedFaqAccordion items={faqItems} defaultOpenIndex={0} toggleStyle="plus" />
+            <SharedFaqAccordion
+              items={faqItems}
+              defaultOpenIndex={0}
+              toggleStyle="plus"
+            />
           </div>
         </div>
       </section>
 
       {/* 8. FOR THE REST OF YOUR TEAM */}
-      <section className={`${s.section} ${s.moreSectionDark}`} aria-labelledby="roles-h">
+      <section
+        className={`${s.section} ${s.moreSectionDark}`}
+        aria-labelledby="roles-h"
+      >
         <div className="site-shell">
           <div className={s.secHead}>
             <p className={s.eyebrow}>For the rest of your team</p>
@@ -663,7 +777,7 @@ export function FinanceTeamsPage() {
         //   'Share a batch of recent invoices',
         //   'See the exceptions your team would review',
         // ]}
-        primaryHref="/demo/#demo-form"
+        primaryHref="/demo-form"
         primaryText="Book a demo"
         secondaryHref="/finance-desk/"
         secondaryText="Explore Finance Desk"

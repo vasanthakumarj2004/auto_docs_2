@@ -1,9 +1,12 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect, useRef } from 'react';
-import Link from 'next/link';
-import { ArrowRight, X } from 'lucide-react';
-import { getSecureSessionItem, setSecureSessionItem } from '@/src/lib/storage/secure-session-storage';
+import React, { useState, useEffect, useRef } from "react";
+import Link from "next/link";
+import { ArrowRight, X } from "lucide-react";
+import {
+  getSecureSessionItem,
+  setSecureSessionItem,
+} from "@/src/lib/storage/secure-session-storage";
 
 export interface AnnouncementItem {
   id: string;
@@ -15,32 +18,32 @@ export interface AnnouncementItem {
 
 const ANNOUNCEMENTS: AnnouncementItem[] = [
   {
-    id: 'features',
-    tag: 'New Release',
-    text: 'Check out for new features',
-    cta: 'Explore updates',
-    href: '/#platform',
+    id: "features",
+    tag: "New Release",
+    text: "Check out for new features",
+    cta: "Explore updates",
+    href: "/platform",
   },
   {
-    id: 'connectors',
-    tag: 'Docsynecx 2.0',
-    text: 'Live TallyPrime XML & CargoWise eAdaptor connectors are live',
-    cta: 'See live connectors',
-    href: '/#integrations',
+    id: "connectors",
+    tag: "Docsynecx 2.0",
+    text: "Live TallyPrime XML & CargoWise eAdaptor connectors are live",
+    cta: "See live connectors",
+    href: "/integrations",
   },
   {
-    id: 'finance',
-    tag: 'Finance Desk',
-    text: '3-way automated invoice matching with zero data re-entry',
-    cta: 'Explore Finance Desk',
-    href: '/finance-desk/',
+    id: "finance",
+    tag: "Finance Desk",
+    text: "3-way automated invoice matching with zero data re-entry",
+    cta: "Explore Finance Desk",
+    href: "/finance-desk/",
   },
   {
-    id: 'logistics',
-    tag: 'Logistics Desk',
-    text: 'Real-time milestones, container tracking and carrier status updates',
-    cta: 'Explore Logistics Desk',
-    href: '/logistics-desk/',
+    id: "logistics",
+    tag: "Logistics Desk",
+    text: "Real-time milestones, container tracking and carrier status updates",
+    cta: "Explore Logistics Desk",
+    href: "/logistics-desk/",
   },
 ];
 
@@ -52,20 +55,27 @@ export function AnnouncementBarV2() {
 
   useEffect(() => {
     try {
-      const isDismissed = getSecureSessionItem('docsynecx-announcement-v3-dismissed');
-      if (isDismissed === 'true') {
+      const isDismissed = getSecureSessionItem(
+        "docsynecx-announcement-v3-dismissed",
+      );
+      if (isDismissed === "true") {
         setDismissed(true);
       }
-    } catch { }
+    } catch {}
   }, []);
 
   useEffect(() => {
-    if (typeof document !== 'undefined') {
-      document.documentElement.style.setProperty('--announcement-bar-height', dismissed ? '0px' : '37px');
+    if (typeof document !== "undefined") {
+      document.documentElement.style.setProperty(
+        "--announcement-bar-height",
+        dismissed ? "0px" : "37px",
+      );
     }
     return () => {
-      if (typeof document !== 'undefined') {
-        document.documentElement.style.removeProperty('--announcement-bar-height');
+      if (typeof document !== "undefined") {
+        document.documentElement.style.removeProperty(
+          "--announcement-bar-height",
+        );
       }
     };
   }, [dismissed]);
@@ -86,8 +96,8 @@ export function AnnouncementBarV2() {
   const handleDismiss = () => {
     setDismissed(true);
     try {
-      setSecureSessionItem('docsynecx-announcement-v3-dismissed', 'true');
-    } catch { }
+      setSecureSessionItem("docsynecx-announcement-v3-dismissed", "true");
+    } catch {}
   };
 
   if (dismissed) return null;
@@ -99,10 +109,10 @@ export function AnnouncementBarV2() {
       aria-label="New Release Announcement"
       className="relative z-50 text-white text-xs py-2 px-4 select-none transition-all duration-300"
       style={{
-        background: 'rgba(104, 85, 134, 0.45)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.14)',
+        background: "rgba(104, 85, 134, 0.45)",
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
+        borderBottom: "1px solid rgba(255, 255, 255, 0.14)",
       }}
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
@@ -132,7 +142,11 @@ export function AnnouncementBarV2() {
             className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/15 hover:bg-white/25 text-white text-[11px] font-bold tracking-tight shadow-xs border border-white/20 transition-all hover:scale-105 active:scale-95 shrink-0"
             title="View new release features"
           >
-            <img src="/icon.svg" alt="Docsynecx icon" className="w-3.5 h-3.5 object-contain" />
+            <img
+              src="/icon.svg"
+              alt="Docsynecx icon"
+              className="w-3.5 h-3.5 object-contain"
+            />
             <span>{current.tag}</span>
           </Link>
 

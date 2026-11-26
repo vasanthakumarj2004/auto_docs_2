@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
 import {
   ArrowDown,
   ArrowRight,
@@ -11,11 +11,11 @@ import {
   CheckCircle2,
   ShieldCheck,
   UploadCloud,
-} from 'lucide-react';
-import { useAutoCycle } from '@/src/hooks/useAutoCycle';
-import { SharedFaqAccordion } from '../SharedFaqAccordion';
-import { FinanceClosingCta } from './FinanceClosingCta';
-import s from './InvoiceAutomationPage.module.css';
+} from "lucide-react";
+import { useAutoCycle } from "@/src/hooks/useAutoCycle";
+import { SharedFaqAccordion } from "../SharedFaqAccordion";
+import { FinanceClosingCta } from "./FinanceClosingCta";
+import s from "./InvoiceAutomationPage.module.css";
 
 /* ── 1. Proof Stats Strip (Key Facts) ── */
 const proofStats = [
@@ -45,64 +45,64 @@ const proofStats = [
 /* ── 2. Four Pain Points (Sound familiar?) ── */
 const painPoints = [
   {
-    num: '01 · Late batches',
-    title: 'Bills arrive in a heap, at the deadline',
-    was: 'Paper receipts, WhatsApp photos and PDF dumps, days before filing.',
-    fix: 'clients send as they go, sorted by client automatically.',
+    num: "01 · Late batches",
+    title: "Bills arrive in a heap, at the deadline",
+    was: "Paper receipts, WhatsApp photos and PDF dumps, days before filing.",
+    fix: "clients send as they go, sorted by client automatically.",
   },
   {
-    num: '02 · Entry',
-    title: 'Articles stuck typing vouchers',
-    was: 'Trainees punch bills into Tally instead of learning to audit.',
-    fix: 'they check drafts and approve in batches.',
+    num: "02 · Entry",
+    title: "Articles stuck typing vouchers",
+    was: "Trainees punch bills into Tally instead of learning to audit.",
+    fix: "they check drafts and approve in batches.",
   },
   {
-    num: '03 · GST',
-    title: 'Tax errors found at filing time',
-    was: 'Wrong splits and GSTINs show up when the return is due.',
-    fix: 'GSTIN, HSN and tax checked on every bill.',
+    num: "03 · GST",
+    title: "Tax errors found at filing time",
+    was: "Wrong splits and GSTINs show up when the return is due.",
+    fix: "GSTIN, HSN and tax checked on every bill.",
   },
   {
-    num: '04 · Audits',
+    num: "04 · Audits",
     title: '"Where\'s the original bill?"',
-    was: 'Hours lost hunting a source document when a client gets a query.',
-    fix: 'the bill is linked to its voucher, one click away.',
+    was: "Hours lost hunting a source document when a client gets a query.",
+    fix: "the bill is linked to its voucher, one click away.",
   },
 ];
 
 /* ── 3. What You Get (Gain Cards) ── */
 const gainCards = [
   {
-    tag: 'Clients',
-    title: 'One workspace, many companies',
-    desc: 'Switch between clients. Each keeps its own Tally company, ledgers and voucher types.',
+    tag: "Clients",
+    title: "One workspace, many companies",
+    desc: "Switch between clients. Each keeps its own Tally company, ledgers and voucher types.",
   },
   {
-    tag: 'Intake',
-    title: 'Clients send it straight in',
-    desc: 'By email, WhatsApp or upload. No chasing, no couriered bags of paper.',
+    tag: "Intake",
+    title: "Clients send it straight in",
+    desc: "By email, WhatsApp or upload. No chasing, no couriered bags of paper.",
   },
   {
-    tag: 'GST checks',
-    title: 'GSTIN, HSN and tax splits',
-    desc: 'CGST, SGST and IGST worked out from the lines and compared with each bill.',
+    tag: "GST checks",
+    title: "GSTIN, HSN and tax splits",
+    desc: "CGST, SGST and IGST worked out from the lines and compared with each bill.",
   },
   {
-    tag: 'Vouchers',
+    tag: "Vouchers",
     title: "Drafted in the client's Tally",
     desc: "Ledgers suggested from that client's past entries. Your team confirms.",
   },
   {
-    tag: 'Banking',
-    title: 'Client bank statements too',
-    desc: 'Categorised, matched to the books and pushed to Tally.',
-    linkHref: '/finance-desk/banking-reconciliation/',
-    linkText: 'See Banking →',
+    tag: "Banking",
+    title: "Client bank statements too",
+    desc: "Categorised, matched to the books and pushed to Tally.",
+    linkHref: "/finance-desk/banking-reconciliation/",
+    linkText: "See Banking →",
   },
   {
-    tag: 'Audit trail',
-    title: 'Every voucher has its source',
-    desc: 'The original bill linked to its voucher, with who approved it and when.',
+    tag: "Audit trail",
+    title: "Every voucher has its source",
+    desc: "The original bill linked to its voucher, with who approved it and when.",
   },
 ];
 
@@ -110,31 +110,46 @@ const gainCards = [
 const howSteps = [
   {
     num: 1,
-    title: 'Clients send bills',
-    desc: 'Bills and bank statements by email, WhatsApp or upload, sorted by client.',
-    panelBar: 'Step 1 of 4 · Incoming',
-    panelStatus: '98 bills',
-    statusType: 'info' as const,
+    title: "Clients send bills",
+    desc: "Bills and bank statements by email, WhatsApp or upload, sorted by client.",
+    panelBar: "Step 1 of 4 · Incoming",
+    panelStatus: "98 bills",
+    statusType: "info" as const,
     rows: [
-      { who: 'Apex Engineering Pvt Ltd', what: '48 bills · email', status: 'Received', type: 'ok' as const },
-      { who: 'Kovai Textiles', what: '32 bills · upload', status: 'Received', type: 'ok' as const },
-      { who: 'Sri Lakshmi Traders', what: '18 bills · WhatsApp', status: 'Received', type: 'ok' as const },
+      {
+        who: "Apex Engineering Pvt Ltd",
+        what: "48 bills · email",
+        status: "Received",
+        type: "ok" as const,
+      },
+      {
+        who: "Kovai Textiles",
+        what: "32 bills · upload",
+        status: "Received",
+        type: "ok" as const,
+      },
+      {
+        who: "Sri Lakshmi Traders",
+        what: "18 bills · WhatsApp",
+        status: "Received",
+        type: "ok" as const,
+      },
     ],
-    foot: 'Sorted by client as they arrive, without a call to your office.',
+    foot: "Sorted by client as they arrive, without a call to your office.",
   },
   {
     num: 2,
-    title: 'Read and checked',
-    desc: 'Lines, HSN, GST and duplicates, with inter- or intra-state tax worked out.',
-    panelBar: 'Step 2 of 4 · Checks',
-    panelStatus: '9 flags',
-    statusType: 'wait' as const,
+    title: "Read and checked",
+    desc: "Lines, HSN, GST and duplicates, with inter- or intra-state tax worked out.",
+    panelBar: "Step 2 of 4 · Checks",
+    panelStatus: "9 flags",
+    statusType: "wait" as const,
     rows: [
       { who: 'Kovai Textiles · INV-2231', what: 'Out-of-state supplier, but CGST + SGST charged', status: 'Should be IGST', type: 'wait' as const },
       { who: 'Sri Lakshmi Traders · photo', what: 'Bill number faint on the photo', status: 'Please check', type: 'wait' as const },
       { who: 'Kovai Textiles · INV-2240', what: 'Same supplier, amount and date as INV-2236', status: 'Duplicate?', type: 'wait' as const },
     ],
-    foot: 'Problems caught before filing, not after.',
+    foot: "Problems caught before filing, not after.",
   },
   {
     num: 3,
@@ -152,14 +167,29 @@ const howSteps = [
   {
     num: 4,
     title: "Posted to each client's Tally",
-    desc: 'Vouchers in the right company, with the bill attached.',
-    panelBar: 'Step 4 of 4 · Client Tally companies',
-    panelStatus: 'Posted',
-    statusType: 'ok' as const,
+    desc: "Vouchers in the right company, with the bill attached.",
+    panelBar: "Step 4 of 4 · Client Tally companies",
+    panelStatus: "Posted",
+    statusType: "ok" as const,
     rows: [
-      { who: 'Apex Engineering Pvt Ltd', what: '48 purchase vouchers · bills attached', status: 'Posted', type: 'ok' as const },
-      { who: 'Kovai Textiles', what: '27 posted · 5 being checked', status: 'In progress', type: 'wait' as const },
-      { who: 'Sri Lakshmi Traders', what: '14 posted · 4 to check', status: 'In progress', type: 'wait' as const },
+      {
+        who: "Apex Engineering Pvt Ltd",
+        what: "48 purchase vouchers · bills attached",
+        status: "Posted",
+        type: "ok" as const,
+      },
+      {
+        who: "Kovai Textiles",
+        what: "27 posted · 5 being checked",
+        status: "In progress",
+        type: "wait" as const,
+      },
+      {
+        who: "Sri Lakshmi Traders",
+        what: "14 posted · 4 to check",
+        status: "In progress",
+        type: "wait" as const,
+      },
     ],
     foot: "Each voucher in the right client's books, ready for returns and audits.",
   },
@@ -168,54 +198,54 @@ const howSteps = [
 /* ── 5. CA FAQs ── */
 const faqItems = [
   {
-    question: 'Can we manage many client Tally companies from one account?',
+    question: "Can we manage many client Tally companies from one account?",
     answer:
-      'Yes. Each client has its own profile, with its own Tally company, ledgers and voucher types.',
+      "Yes. Each client has its own profile, with its own Tally company, ledgers and voucher types.",
   },
   {
-    question: 'How do clients send us documents?',
+    question: "How do clients send us documents?",
     answer:
       "By email, WhatsApp or upload. Bills land in your firm's queue, already sorted by client.",
   },
   {
-    question: 'Is client data kept separate?',
+    question: "Is client data kept separate?",
     answer:
       "Yes. Each client's documents and books sit in their own profile. We'll take you through security and access in the demo.",
   },
   {
-    question: 'Does anything post without our review?',
+    question: "Does anything post without our review?",
     answer:
       "No. Your team approves every entry before it goes into a client's Tally.",
   },
   {
-    question: 'How long does it take to get started?',
+    question: "How long does it take to get started?",
     answer:
-      'The first-time setup with TallyPrime takes minutes. Then add clients one by one, starting with your busiest.',
+      "The first-time setup with TallyPrime takes minutes. Then add clients one by one, starting with your busiest.",
   },
 ];
 
 /* ── 6. For Your Clients' Teams ── */
 const otherRoles = [
   {
-    role: 'Business owners',
-    title: 'Know where every rupee stands',
-    lead: 'Cash, dues and the bills that need sign-off, without waiting for month-end.',
-    href: '/finance-desk/business-owners/',
-    linkText: 'For business owners',
+    role: "Business owners",
+    title: "Know where every rupee stands",
+    lead: "Cash, dues and the bills that need sign-off, without waiting for month-end.",
+    href: "/finance-desk/business-owners/",
+    linkText: "For business owners",
   },
   {
-    role: 'Finance teams',
-    title: 'Close the month faster',
-    lead: 'Every invoice in one queue, approval rules, and the exceptions first.',
-    href: '/finance-desk/finance-teams/',
-    linkText: 'For finance teams',
+    role: "Finance teams",
+    title: "Close the month faster",
+    lead: "Every invoice in one queue, approval rules, and the exceptions first.",
+    href: "/finance-desk/finance-teams/",
+    linkText: "For finance teams",
   },
   {
-    role: 'Accounts teams',
-    title: 'Stop retyping bills',
-    lead: 'Bills read, ledgers suggested and vouchers drafted. Check and post in one click.',
-    href: '/finance-desk/accounts-teams/',
-    linkText: 'For accounts teams',
+    role: "Accounts teams",
+    title: "Stop retyping bills",
+    lead: "Bills read, ledgers suggested and vouchers drafted. Check and post in one click.",
+    href: "/finance-desk/accounts-teams/",
+    linkText: "For accounts teams",
   },
 ];
 
@@ -244,11 +274,14 @@ export function CaFirmsPage() {
               </h1>
 
               <p className={s.heroSub}>
-                Clients send bills and bank statements by email, WhatsApp or upload. Docsynecx reads them, checks GST and duplicates, and drafts vouchers in each client&apos;s own Tally company. Your articles review and approve, instead of typing.
+                Clients send bills and bank statements by email, WhatsApp or
+                upload. Docsynecx reads them, checks GST and duplicates, and
+                drafts vouchers in each client&apos;s own Tally company. Your
+                articles review and approve, instead of typing.
               </p>
 
               <div className={s.heroActions}>
-                <Link href="/demo/#demo-form" className={s.primaryBtn}>
+                <Link href="/demo-form" className={s.primaryBtn}>
                   <span>Book a demo</span>
                   <ArrowUpRight size={16} aria-hidden="true" />
                 </Link>
@@ -256,11 +289,14 @@ export function CaFirmsPage() {
                   href="#how"
                   className={s.secondaryBtn}
                   onClick={(e) => {
-                    const target = document.getElementById('how');
+                    const target = document.getElementById("how");
                     if (target) {
                       e.preventDefault();
-                      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                      window.history.pushState(null, '', '#how');
+                      target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                      });
+                      window.history.pushState(null, "", "#how");
                     }
                   }}
                 >
@@ -270,8 +306,20 @@ export function CaFirmsPage() {
               </div>
 
               <p className={s.promise}>
-                <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
-                  <circle cx="10" cy="10" r="9" fill="none" stroke="currentColor" strokeWidth="2" />
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  aria-hidden="true"
+                >
+                  <circle
+                    cx="10"
+                    cy="10"
+                    r="9"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
                   <path
                     d="M6 10.5l2.5 2.5L14 7.5"
                     fill="none"
@@ -281,7 +329,10 @@ export function CaFirmsPage() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span>Nothing is posted to a client&apos;s books until your team approves it.</span>
+                <span>
+                  Nothing is posted to a client&apos;s books until your team
+                  approves it.
+                </span>
               </p>
             </div>
 
@@ -299,7 +350,9 @@ export function CaFirmsPage() {
                   <span>
                     <strong>Your clients</strong> · This week
                   </span>
-                  <span className={`${s.statusBadge} ${s.info}`}>12 companies</span>
+                  <span className={`${s.statusBadge} ${s.info}`}>
+                    12 companies
+                  </span>
                 </div>
                 <div className={s.qcardBody}>
                   <div className={s.deskStats}>
@@ -325,16 +378,20 @@ export function CaFirmsPage() {
                     <div className={s.qcardRow}>
                       <span className={s.rowWho}>Kovai Textiles</span>
                       <span className={s.rowWhat}>32 bills · uploaded</span>
-                      <span className={`${s.statusBadge} ${s.wait}`}>5 to check</span>
+                      <span className={`${s.statusBadge} ${s.wait}`}>
+                        5 to check
+                      </span>
                     </div>
                     <div className={s.qcardRow}>
                       <span className={s.rowWho}>Sri Lakshmi Traders</span>
-                      <span className={s.rowWhat}>18 bills · WhatsApp photos</span>
-                      <span className={`${s.statusBadge} ${s.wait}`}>4 to check</span>
+                      <span className={s.rowWhat}>
+                        18 bills · WhatsApp photos
+                      </span>
+                      <span className={`${s.statusBadge} ${s.wait}`}>
+                        4 to check
+                      </span>
                     </div>
                   </div>
-
-                
                 </div>
                 <p className={s.sampleNote}>Sample data</p>
               </div>
@@ -355,7 +412,7 @@ export function CaFirmsPage() {
               return (
                 <div
                   key={item.title}
-                  className={`${s.outcomeCard} ${item.highlight ? s.highlightOutcome : ''}`}
+                  className={`${s.outcomeCard} ${item.highlight ? s.highlightOutcome : ""}`}
                 >
                   <span className={s.outcomeIconBadge} aria-hidden="true">
                     <Icon size={20} className="stroke-[2.2]" />
@@ -372,7 +429,10 @@ export function CaFirmsPage() {
       </section>
 
       {/* 3. PROBLEM BAND */}
-      <section className={`${s.section} ${s.altSection}`} aria-labelledby="problem-h">
+      <section
+        className={`${s.section} ${s.altSection}`}
+        aria-labelledby="problem-h"
+      >
         <div className="site-shell">
           <div className={s.secHead}>
             <p className={s.eyebrow}>Sound familiar?</p>
@@ -382,7 +442,8 @@ export function CaFirmsPage() {
               <span>every filing season.</span>
             </h2>
             <p className={s.lead}>
-              Docsynecx takes the collecting and typing off your team, so they can review, reconcile and advise.
+              Docsynecx takes the collecting and typing off your team, so they
+              can review, reconcile and advise.
             </p>
           </div>
 
@@ -420,7 +481,11 @@ export function CaFirmsPage() {
                 <h3>{card.title}</h3>
                 <p>{card.desc}</p>
                 {card.linkHref && (
-                  <Link href={card.linkHref} className={s.moreLink} style={{ marginTop: 12 }}>
+                  <Link
+                    href={card.linkHref}
+                    className={s.moreLink}
+                    style={{ marginTop: 12 }}
+                  >
                     <span>{card.linkText}</span>
                     <ArrowRight size={14} aria-hidden="true" />
                   </Link>
@@ -432,7 +497,11 @@ export function CaFirmsPage() {
       </section>
 
       {/* 5. HOW IT WORKS */}
-      <section id="how" className={`${s.section} ${s.howSectionDark}`} aria-labelledby="how-h">
+      <section
+        id="how"
+        className={`${s.section} ${s.howSectionDark}`}
+        aria-labelledby="how-h"
+      >
         <div className="site-shell">
           <div className={s.secHead}>
             <p className={s.eyebrow}>How it works</p>
@@ -456,7 +525,7 @@ export function CaFirmsPage() {
                     id={`step-tab-${step.num}`}
                     aria-controls={`step-panel-${step.num}`}
                     aria-selected={active === idx}
-                    className={`${s.stepButtonDark} ${active === idx ? s.stepButtonDarkActive : ''}`}
+                    className={`${s.stepButtonDark} ${active === idx ? s.stepButtonDarkActive : ""}`}
                     onClick={() => goTo(idx)}
                   >
                     <span className={s.stepNumDark}>{step.num}</span>
@@ -478,7 +547,9 @@ export function CaFirmsPage() {
               >
                 <div className={s.panelBarDark}>
                   <span>{activeStep.panelBar}</span>
-                  <span className={`${s.statusBadge} ${s[activeStep.statusType] || s.info}`}>
+                  <span
+                    className={`${s.statusBadge} ${s[activeStep.statusType] || s.info}`}
+                  >
                     {activeStep.panelStatus}
                   </span>
                 </div>
@@ -490,7 +561,9 @@ export function CaFirmsPage() {
                         <div key={row.who} className={s.qcardRowDark}>
                           <span className={s.rowWhoDark}>{row.who}</span>
                           <span className={s.rowWhatDark}>{row.what}</span>
-                          <span className={`${s.statusBadge} ${s[row.type] || s.ok}`}>
+                          <span
+                            className={`${s.statusBadge} ${s[row.type] || s.ok}`}
+                          >
                             {row.status}
                           </span>
                         </div>
@@ -500,12 +573,18 @@ export function CaFirmsPage() {
                 </div>
 
                 <p className={s.panelFootDark}>
-                  <strong>{activeStep.foot.split(',')[0]},</strong>
-                  {activeStep.foot.includes(',') ? activeStep.foot.substring(activeStep.foot.indexOf(',') + 1) : ''}
+                  <strong>{activeStep.foot.split(",")[0]},</strong>
+                  {activeStep.foot.includes(",")
+                    ? activeStep.foot.substring(
+                        activeStep.foot.indexOf(",") + 1,
+                      )
+                    : ""}
                 </p>
               </div>
 
-              <p className={s.howNoteDark}>Sample data · Example product view</p>
+              <p className={s.howNoteDark}>
+                Sample data · Example product view
+              </p>
             </div>
           </div>
         </div>
@@ -522,18 +601,25 @@ export function CaFirmsPage() {
                   What CA firms ask us first.
                 </h2>
                 <p className={s.faqDescription}>
-                  Something else on your mind?{' '}
-                  <Link href="/demo/#demo-form">Ask us in the demo.</Link>
+                  Something else on your mind?{" "}
+                  <Link href="/demo-form">Ask us in the demo.</Link>
                 </p>
               </div>
             </div>
-            <SharedFaqAccordion items={faqItems} defaultOpenIndex={0} toggleStyle="plus" />
+            <SharedFaqAccordion
+              items={faqItems}
+              defaultOpenIndex={0}
+              toggleStyle="plus"
+            />
           </div>
         </div>
       </section>
 
       {/* 7. FOR YOUR CLIENTS' TEAMS */}
-      <section className={`${s.section} ${s.moreSectionDark}`} aria-labelledby="roles-h">
+      <section
+        className={`${s.section} ${s.moreSectionDark}`}
+        aria-labelledby="roles-h"
+      >
         <div className="site-shell">
           <div className={s.secHead}>
             <p className={s.eyebrow}>For your clients&apos; teams</p>
@@ -576,7 +662,7 @@ export function CaFirmsPage() {
         //   "Bring one client's bills for a month",
         //   'See them checked and ready to post',
         // ]}
-        primaryHref="/demo/#demo-form"
+        primaryHref="/demo-form"
         primaryText="Book a demo"
         secondaryHref="/finance-desk/"
         secondaryText="Explore Finance Desk"

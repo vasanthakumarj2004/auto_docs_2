@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Link from 'next/link';
+import React from "react";
+import Link from "next/link";
 import {
   ArrowDown,
   ArrowRight,
@@ -12,224 +12,260 @@ import {
   LayoutGrid,
   MessageSquare,
   Sparkles,
-} from 'lucide-react';
-import { useAutoCycle } from '@/src/hooks/useAutoCycle';
-import { SharedFaqAccordion } from '../SharedFaqAccordion';
-import { FinanceClosingCta } from './FinanceClosingCta';
-import s from './InvoiceAutomationPage.module.css';
+} from "lucide-react";
+import { useAutoCycle } from "@/src/hooks/useAutoCycle";
+import { SharedFaqAccordion } from "../SharedFaqAccordion";
+import { FinanceClosingCta } from "./FinanceClosingCta";
+import s from "./InvoiceAutomationPage.module.css";
 
 /* ── Six views step definitions with full panel data ── */
 const howSteps = [
   {
     num: 1,
-    title: 'Financial',
-    desc: 'Are we making money, and how much cash do we have?',
-    panelBar: 'Financial · Nov 2026',
-    panelStatus: 'vs Oct',
-    statusType: 'info',
+    title: "Financial",
+    desc: "Are we making money, and how much cash do we have?",
+    panelBar: "Financial · Nov 2026",
+    panelStatus: "vs Oct",
+    statusType: "info",
     table: {
-      headers: ['Line', 'Nov', 'vs Oct'],
+      headers: ["Line", "Nov", "vs Oct"],
       rows: [
-        ['Sales', '₹48.2L', '+12%'],
-        ['Gross profit', '₹14.9L · 31%', '−2 pts'],
-        ['Operating expenses', '₹9.5L', '+4%'],
-        ['Net profit', '₹5.4L', '+3%'],
-        ['Cash & bank', '₹21.7L', '−₹3.8L'],
+        ["Sales", "₹48.2L", "+12%"],
+        ["Gross profit", "₹14.9L · 31%", "−2 pts"],
+        ["Operating expenses", "₹9.5L", "+4%"],
+        ["Net profit", "₹5.4L", "+3%"],
+        ["Cash & bank", "₹21.7L", "−₹3.8L"],
       ],
     },
-    chips: ['P&L', 'Balance Sheet', 'Profitability', 'Revenue', 'Expenses', 'Cash & Bank'],
-    foot: 'Profit and cash side by side, so a good month on paper is never a surprise in the bank.',
+    chips: [
+      "P&L",
+      "Balance Sheet",
+      "Profitability",
+      "Revenue",
+      "Expenses",
+      "Cash & Bank",
+    ],
+    foot: "Profit and cash side by side, so a good month on paper is never a surprise in the bank.",
   },
   {
     num: 2,
-    title: 'Business',
-    desc: 'Who are our best customers, suppliers and products?',
-    panelBar: 'Business · Nov 2026',
-    panelStatus: 'Top 3',
-    statusType: 'info',
+    title: "Business",
+    desc: "Who are our best customers, suppliers and products?",
+    panelBar: "Business · Nov 2026",
+    panelStatus: "Top 3",
+    statusType: "info",
     rows: [
       {
-        who: 'Sharma Textiles',
-        what: '₹9.8L sales · 20% of the month',
-        status: 'Top customer',
-        type: 'ok',
+        who: "Sharma Textiles",
+        what: "₹9.8L sales · 20% of the month",
+        status: "Top customer",
+        type: "ok",
       },
       {
-        who: 'Rubber seals',
-        what: 'Best seller by margin · 38%',
-        status: 'Top product',
-        type: 'ok',
+        who: "Rubber seals",
+        what: "Best seller by margin · 38%",
+        status: "Top product",
+        type: "ok",
       },
       {
-        who: 'Kiran Retail',
-        what: 'Orders down 30% on last quarter',
-        status: 'Watch',
-        type: 'wait',
+        who: "Kiran Retail",
+        what: "Orders down 30% on last quarter",
+        status: "Watch",
+        type: "wait",
       },
     ],
-    chips: ['Sales', 'Purchases', 'Customers', 'Suppliers', 'Products', 'Inventory'],
-    foot: 'See which relationships really pay, and which are slipping.',
+    chips: [
+      "Sales",
+      "Purchases",
+      "Customers",
+      "Suppliers",
+      "Products",
+      "Inventory",
+    ],
+    foot: "See which relationships really pay, and which are slipping.",
   },
   {
     num: 3,
-    title: 'Working capital',
+    title: "Working capital",
     desc: "Who owes us, what do we owe, and what's overdue?",
-    panelBar: 'Working capital · today',
-    panelStatus: '₹6.4L overdue',
-    statusType: 'wait',
+    panelBar: "Working capital · today",
+    panelStatus: "₹6.4L overdue",
+    statusType: "wait",
     deskStats: [
-      { val: '₹18.6L', label: 'customers owe us' },
-      { val: '₹6.4L', label: 'of that is overdue' },
-      { val: '₹11.2L', label: 'we owe suppliers' },
+      { val: "₹18.6L", label: "customers owe us" },
+      { val: "₹6.4L", label: "of that is overdue" },
+      { val: "₹11.2L", label: "we owe suppliers" },
     ],
     rows: [
       {
-        who: 'Kiran Retail',
-        what: '₹3.2L · over 45 days',
-        status: 'Overdue',
-        type: 'wait',
+        who: "Kiran Retail",
+        what: "₹3.2L · over 45 days",
+        status: "Overdue",
+        type: "wait",
       },
       {
-        who: 'Metro Supplies',
-        what: '₹2.4L due to them this week',
-        status: 'Payable',
-        type: 'info',
+        who: "Metro Supplies",
+        what: "₹2.4L due to them this week",
+        status: "Payable",
+        type: "info",
       },
     ],
-    chips: ['Receivables', 'Payables', 'Overdue bills', 'Liquidity', 'Cash cycle'],
-    foot: 'Ageing in the periods you already use, 30, 60, 90 days or your own.',
+    chips: [
+      "Receivables",
+      "Payables",
+      "Overdue bills",
+      "Liquidity",
+      "Cash cycle",
+    ],
+    foot: "Ageing in the periods you already use, 30, 60, 90 days or your own.",
   },
   {
     num: 4,
-    title: 'Operations',
-    desc: 'Which stock is moving, and which supplier is late?',
-    panelBar: 'Operations · Nov 2026',
-    panelStatus: '2 to look at',
-    statusType: 'wait',
+    title: "Operations",
+    desc: "Which stock is moving, and which supplier is late?",
+    panelBar: "Operations · Nov 2026",
+    panelStatus: "2 to look at",
+    statusType: "wait",
     rows: [
       {
-        who: 'Ball bearings 6202',
-        what: 'No movement in 92 days · ₹2.1L of stock',
-        status: 'Slow stock',
-        type: 'wait',
+        who: "Ball bearings 6202",
+        what: "No movement in 92 days · ₹2.1L of stock",
+        status: "Slow stock",
+        type: "wait",
       },
       {
-        who: 'Metro Supplies',
-        what: '3 of the last 10 deliveries late',
-        status: 'Supplier',
-        type: 'wait',
+        who: "Metro Supplies",
+        what: "3 of the last 10 deliveries late",
+        status: "Supplier",
+        type: "wait",
       },
       {
-        who: 'Rubber seals',
-        what: 'Bought weekly in small lots',
-        status: 'Pattern',
-        type: 'info',
+        who: "Rubber seals",
+        what: "Bought weekly in small lots",
+        status: "Pattern",
+        type: "info",
       },
     ],
-    chips: ['Stock movement', 'Stock ageing', 'Purchase patterns', 'Supplier performance'],
-    foot: 'Spot dead stock and late suppliers before they cost you.',
+    chips: [
+      "Stock movement",
+      "Stock ageing",
+      "Purchase patterns",
+      "Supplier performance",
+    ],
+    foot: "Spot dead stock and late suppliers before they cost you.",
   },
   {
     num: 5,
-    title: 'Ask AI',
-    desc: 'Why did that number change?',
+    title: "Ask AI",
+    desc: "Why did that number change?",
     panelBar: 'Ask AI · "Why is cash down ₹3.8L when sales are up?"',
-    panelStatus: 'Answered',
-    statusType: 'ok',
+    panelStatus: "Answered",
+    statusType: "ok",
     table: {
-      headers: ['What moved cash in Nov', 'From', 'Amount'],
+      headers: ["What moved cash in Nov", "From", "Amount"],
       rows: [
-        ['Net profit for the month', 'P&L', '+₹5.4L'],
-        ['More waiting with customers', 'Receivables', '−₹4.6L'],
-        ['More stock bought', 'Purchases', '−₹2.1L'],
-        ['Suppliers paid down', 'Payables', '−₹2.5L'],
-        ['Change in cash', '', '−₹3.8L'],
+        ["Net profit for the month", "P&L", "+₹5.4L"],
+        ["More waiting with customers", "Receivables", "−₹4.6L"],
+        ["More stock bought", "Purchases", "−₹2.1L"],
+        ["Suppliers paid down", "Payables", "−₹2.5L"],
+        ["Change in cash", "", "−₹3.8L"],
       ],
     },
-    chips: ['Ask a question', 'Find the cause', 'Insights', 'Suggested next steps'],
-    foot: 'Every answer shows where it came from, so your accountant can check it before anyone acts.',
+    chips: [
+      "Ask a question",
+      "Find the cause",
+      "Insights",
+      "Suggested next steps",
+    ],
+    foot: "Every answer shows where it came from, so your accountant can check it before anyone acts.",
   },
   {
     num: 6,
-    title: 'Management',
-    desc: 'Is the MIS ready, and is anything off track?',
-    panelBar: 'Management · schedules and alerts',
-    panelStatus: '1 alert',
-    statusType: 'wait',
+    title: "Management",
+    desc: "Is the MIS ready, and is anything off track?",
+    panelBar: "Management · schedules and alerts",
+    panelStatus: "1 alert",
+    statusType: "wait",
     rows: [
       {
-        who: 'Monthly MIS',
-        what: 'To the owners · 1st of every month',
-        status: 'Scheduled',
-        type: 'ok',
+        who: "Monthly MIS",
+        what: "To the owners · 1st of every month",
+        status: "Scheduled",
+        type: "ok",
       },
       {
-        who: 'Sales and collections',
-        what: 'To the sales head · every Monday',
-        status: 'Scheduled',
-        type: 'ok',
+        who: "Sales and collections",
+        what: "To the sales head · every Monday",
+        status: "Scheduled",
+        type: "ok",
       },
       {
-        who: 'Overdue above ₹5L',
-        what: 'Now ₹6.4L. Owners told today',
-        status: 'Alert',
-        type: 'wait',
+        who: "Overdue above ₹5L",
+        what: "Now ₹6.4L. Owners told today",
+        status: "Alert",
+        type: "wait",
       },
     ],
-    chips: ['Monthly MIS', 'KPIs', 'This month vs last', 'Scheduled reports', 'Alerts'],
-    foot: 'You choose the KPIs, periods and people. The MIS goes out on time.',
+    chips: [
+      "Monthly MIS",
+      "KPIs",
+      "This month vs last",
+      "Scheduled reports",
+      "Alerts",
+    ],
+    foot: "You choose the KPIs, periods and people. The MIS goes out on time.",
   },
 ];
 
 /* ── FAQ items ── */
 const faqItems = [
   {
-    question: 'Where do the numbers come from?',
+    question: "Where do the numbers come from?",
     answer:
       "From your TallyPrime company. What each view shows depends on what's recorded in Tally, for example stock views need inventory kept in Tally.",
   },
   {
-    question: 'Do we need to change how we use Tally?',
+    question: "Do we need to change how we use Tally?",
     answer:
-      'No. It works from the entries your team already makes. We set up the views around your company and the KPIs you track.',
+      "No. It works from the entries your team already makes. We set up the views around your company and the KPIs you track.",
   },
   {
-    question: 'Can we trust the AI answers?',
+    question: "Can we trust the AI answers?",
     answer:
       "Every answer shows the figures and entries it's based on, so your accountant can check it. It helps you decide, it doesn't replace your accountant's judgement.",
   },
   {
-    question: 'Can the MIS be sent automatically?',
+    question: "Can the MIS be sent automatically?",
     answer:
-      'Yes. Choose the KPIs, comparison periods, schedule and who gets it. Alerts go out when a number crosses a line you set.',
+      "Yes. Choose the KPIs, comparison periods, schedule and who gets it. Alerts go out when a number crosses a line you set.",
   },
   {
-    question: 'Do we need the other Finance Desk tools?',
+    question: "Do we need the other Finance Desk tools?",
     answer:
-      'No. Intelligence works on its own with your Tally data. Invoice Automation and Banking keep that data up to date, so the views get sharper.',
+      "No. Intelligence works on its own with your Tally data. Invoice Automation and Banking keep that data up to date, so the views get sharper.",
   },
 ];
 
 /* ── Proof stats matching FinanceStatStrip (Without bottom links) ── */
 const proofStats = [
   {
-    title: 'Six views',
-    copy: 'The whole business in one place',
+    title: "Six views",
+    copy: "The whole business in one place",
     icon: LayoutGrid,
   },
   {
-    title: 'Ask in plain words',
-    copy: 'Answers come with the numbers behind them',
+    title: "Ask in plain words",
+    copy: "Answers come with the numbers behind them",
     icon: MessageSquare,
   },
   {
-    title: 'MIS on schedule',
-    copy: 'Built and sent, no Excel nights',
+    title: "MIS on schedule",
+    copy: "Built and sent, no Excel nights",
     icon: FileSpreadsheet,
   },
   {
-    title: 'Alerts that matter',
-    copy: 'Told when a number crosses your line',
+    title: "Alerts that matter",
+    copy: "Told when a number crosses your line",
     icon: Bell,
     highlight: true,
   },
@@ -260,13 +296,13 @@ export function DocsynecxIntelligencePage() {
               </h1>
 
               <p className={s.heroSub}>
-                Profit, cash, sales, stock and what&apos;s overdue, in six views your owners can
-                read. Ask &ldquo;why did that change?&rdquo; in plain words, and get the MIS sent on
-                schedule.
+                Profit, cash, sales, stock and what&apos;s overdue, in six views
+                your owners can read. Ask &ldquo;why did that change?&rdquo; in
+                plain words, and get the MIS sent on schedule.
               </p>
 
               <div className={s.heroActions}>
-                <Link href="/demo/#demo-form" className={s.primaryBtn}>
+                <Link href="/demo-form" className={s.primaryBtn}>
                   <span>Book a demo</span>
                   <ArrowUpRight size={16} aria-hidden="true" />
                 </Link>
@@ -274,11 +310,14 @@ export function DocsynecxIntelligencePage() {
                   href="#views"
                   className={s.secondaryBtn}
                   onClick={(e) => {
-                    const target = document.getElementById('views');
+                    const target = document.getElementById("views");
                     if (target) {
                       e.preventDefault();
-                      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                      window.history.pushState(null, '', '#views');
+                      target.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start",
+                      });
+                      window.history.pushState(null, "", "#views");
                     }
                   }}
                 >
@@ -288,8 +327,20 @@ export function DocsynecxIntelligencePage() {
               </div>
 
               <p className={s.promise}>
-                <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true">
-                  <circle cx="10" cy="10" r="9" fill="none" stroke="currentColor" strokeWidth="2" />
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  aria-hidden="true"
+                >
+                  <circle
+                    cx="10"
+                    cy="10"
+                    r="9"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  />
                   <path
                     d="M6 10.5l2.5 2.5L14 7.5"
                     fill="none"
@@ -337,19 +388,22 @@ export function DocsynecxIntelligencePage() {
                   <div className={s.qcardRows}>
                     <div className={s.qcardRow}>
                       <span className={s.rowWho}>You asked</span>
-                      <span className={s.rowWhat}>Why is cash down ₹3.8L when sales are up?</span>
+                      <span className={s.rowWhat}>
+                        Why is cash down ₹3.8L when sales are up?
+                      </span>
                       <span className={`${s.statusBadge} ${s.info}`}>AI</span>
                     </div>
                     <div className={s.qcardRow}>
                       <span className={s.rowWho}>Answer</span>
                       <span className={s.rowWhat}>
-                        ₹4.6L more is waiting with customers, and stock buying rose ₹2.1L
+                        ₹4.6L more is waiting with customers, and stock buying
+                        rose ₹2.1L
                       </span>
-                      <span className={`${s.statusBadge} ${s.ok}`}>Sources</span>
+                      <span className={`${s.statusBadge} ${s.ok}`}>
+                        Sources
+                      </span>
                     </div>
                   </div>
-
-                  
                 </div>
                 <p className={s.sampleNote}>Sample data</p>
               </div>
@@ -359,7 +413,10 @@ export function DocsynecxIntelligencePage() {
       </section>
 
       {/* 2. PROOF STATS STRIP */}
-      <section className={s.proofSection} aria-labelledby="intelligence-stats-title">
+      <section
+        className={s.proofSection}
+        aria-labelledby="intelligence-stats-title"
+      >
         <div className="site-shell">
           <h2 id="intelligence-stats-title" className={s.proofEyebrow}>
             Docsynecx Intelligence at a glance
@@ -370,7 +427,7 @@ export function DocsynecxIntelligencePage() {
               return (
                 <div key={item.title} className={s.outcomeCard}>
                   <span
-                    className={`${s.outcomeIconBadge} ${item.highlight ? s.outcomeIconBadgeHl : ''}`}
+                    className={`${s.outcomeIconBadge} ${item.highlight ? s.outcomeIconBadgeHl : ""}`}
                     aria-hidden="true"
                   >
                     <Icon size={20} className="stroke-[2.2]" />
@@ -397,8 +454,8 @@ export function DocsynecxIntelligencePage() {
               <span>Getting answers out is the hard part.</span>
             </h2>
             <p className={s.lead}>
-              Docsynecx reads what&apos;s already there, so your team stops rebuilding the same
-              reports.
+              Docsynecx reads what&apos;s already there, so your team stops
+              rebuilding the same reports.
             </p>
           </div>
 
@@ -410,7 +467,8 @@ export function DocsynecxIntelligencePage() {
                 Exports, Excel sheets and formulas, rebuilt every month.
               </p>
               <p className={s.painFix}>
-                <strong>Now:</strong> built from Tally and sent on the day you choose.
+                <strong>Now:</strong> built from Tally and sent on the day you
+                choose.
               </p>
             </article>
 
@@ -418,10 +476,12 @@ export function DocsynecxIntelligencePage() {
               <span className={s.painMono}>02 · The why</span>
               <h3>Numbers without the reason</h3>
               <p className={s.painWas}>
-                Profit dropped, but finding out why means digging through ledgers.
+                Profit dropped, but finding out why means digging through
+                ledgers.
               </p>
               <p className={s.painFix}>
-                <strong>Now:</strong> ask the question and see the entries behind the answer.
+                <strong>Now:</strong> ask the question and see the entries
+                behind the answer.
               </p>
             </article>
 
@@ -432,7 +492,8 @@ export function DocsynecxIntelligencePage() {
                 Sales look good, yet the bank balance keeps falling.
               </p>
               <p className={s.painFix}>
-                <strong>Now:</strong> receivables, payables and overdue in one view.
+                <strong>Now:</strong> receivables, payables and overdue in one
+                view.
               </p>
             </article>
 
@@ -443,7 +504,8 @@ export function DocsynecxIntelligencePage() {
                 Slow stock and late suppliers only noticed at year-end.
               </p>
               <p className={s.painFix}>
-                <strong>Now:</strong> stock ageing and supplier delays flagged as they happen.
+                <strong>Now:</strong> stock ageing and supplier delays flagged
+                as they happen.
               </p>
             </article>
           </div>
@@ -451,7 +513,11 @@ export function DocsynecxIntelligencePage() {
       </section>
 
       {/* 4. SIX VIEWS SECTION */}
-      <section id="views" className={`${s.section} ${s.howSectionDark}`} aria-labelledby="views-h">
+      <section
+        id="views"
+        className={`${s.section} ${s.howSectionDark}`}
+        aria-labelledby="views-h"
+      >
         <div className="site-shell">
           <div className={s.secHead}>
             <p className={s.eyebrow}>Six views</p>
@@ -460,7 +526,9 @@ export function DocsynecxIntelligencePage() {
               <br />
               <span>Answered from your books.</span>
             </h2>
-            <p className={s.lead}>Pick a view to see the kind of answer it gives.</p>
+            <p className={s.lead}>
+              Pick a view to see the kind of answer it gives.
+            </p>
           </div>
 
           <div className={s.howGrid} {...containerProps}>
@@ -476,7 +544,7 @@ export function DocsynecxIntelligencePage() {
                     aria-selected={isActive}
                     aria-controls={`view-panel-${step.num}`}
                     tabIndex={isActive ? 0 : -1}
-                    className={`${s.stepButtonDark} ${isActive ? s.stepButtonDarkActive : ''}`}
+                    className={`${s.stepButtonDark} ${isActive ? s.stepButtonDarkActive : ""}`}
                     onClick={() => goTo(idx)}
                   >
                     <span className={s.stepNumDark}>{step.num}</span>
@@ -499,12 +567,13 @@ export function DocsynecxIntelligencePage() {
                 <div className={s.panelBarDark}>
                   <span>{activeStep.panelBar}</span>
                   <span
-                    className={`${s.statusBadge} ${activeStep.statusType === 'ok'
-                      ? s.ok
-                      : activeStep.statusType === 'wait'
-                        ? s.wait
-                        : s.info
-                      }`}
+                    className={`${s.statusBadge} ${
+                      activeStep.statusType === "ok"
+                        ? s.ok
+                        : activeStep.statusType === "wait"
+                          ? s.wait
+                          : s.info
+                    }`}
                   >
                     {activeStep.panelStatus}
                   </span>
@@ -552,8 +621,13 @@ export function DocsynecxIntelligencePage() {
                           <span className={s.rowWhoDark}>{row.who}</span>
                           <span className={s.rowWhatDark}>{row.what}</span>
                           <span
-                            className={`${s.statusBadge} ${row.type === 'ok' ? s.ok : row.type === 'wait' ? s.wait : s.info
-                              }`}
+                            className={`${s.statusBadge} ${
+                              row.type === "ok"
+                                ? s.ok
+                                : row.type === "wait"
+                                  ? s.wait
+                                  : s.info
+                            }`}
                           >
                             {row.status}
                           </span>
@@ -574,11 +648,13 @@ export function DocsynecxIntelligencePage() {
                 </div>
 
                 <p className={s.panelFootDark}>
-                  <strong>{activeStep.foot.split('.')[0]}.</strong>{' '}
-                  {activeStep.foot.split('.').slice(1).join('.').trim()}
+                  <strong>{activeStep.foot.split(".")[0]}.</strong>{" "}
+                  {activeStep.foot.split(".").slice(1).join(".").trim()}
                 </p>
               </div>
-              <p className={s.howNoteDark}>Sample data · Example product view</p>
+              <p className={s.howNoteDark}>
+                Sample data · Example product view
+              </p>
             </div>
           </div>
         </div>
@@ -601,7 +677,8 @@ export function DocsynecxIntelligencePage() {
               <span className={s.moreTag}>Owners and directors</span>
               <h3>The business at a glance</h3>
               <p className={s.moreLead}>
-                Profit, cash and what&apos;s overdue, without asking the accounts team for a report.
+                Profit, cash and what&apos;s overdue, without asking the
+                accounts team for a report.
               </p>
             </article>
 
@@ -609,8 +686,8 @@ export function DocsynecxIntelligencePage() {
               <span className={s.moreTag}>Finance heads</span>
               <h3>MIS without the Excel nights</h3>
               <p className={s.moreLead}>
-                KPIs and comparisons built from Tally, sent on schedule, with alerts when something
-                slips.
+                KPIs and comparisons built from Tally, sent on schedule, with
+                alerts when something slips.
               </p>
             </article>
 
@@ -618,7 +695,8 @@ export function DocsynecxIntelligencePage() {
               <span className={s.moreTag}>Accounts teams</span>
               <h3>Fewer &ldquo;can you pull this?&rdquo; requests</h3>
               <p className={s.moreLead}>
-                Managers find answers themselves, and every figure traces back to the books.
+                Managers find answers themselves, and every figure traces back
+                to the books.
               </p>
             </article>
           </div>
@@ -626,7 +704,10 @@ export function DocsynecxIntelligencePage() {
       </section>
 
       {/* 6. THE REST OF THE FINANCE DESK */}
-      <section className={`${s.section} ${s.moreSectionDark}`} aria-labelledby="more-h">
+      <section
+        className={`${s.section} ${s.moreSectionDark}`}
+        aria-labelledby="more-h"
+      >
         <div className="site-shell">
           <div className={s.secHead}>
             <p className={s.eyebrow}>Works with the rest of Finance Desk</p>
@@ -642,9 +723,13 @@ export function DocsynecxIntelligencePage() {
               <span className={s.moreTag}>Invoices</span>
               <h3>Invoice Processing</h3>
               <p className={s.moreLead}>
-                Supplier invoices read, checked for GST and duplicates, and approved into Tally.
+                Supplier invoices read, checked for GST and duplicates, and
+                approved into Tally.
               </p>
-              <Link href="/finance-desk/invoice-processing/" className={s.moreLink}>
+              <Link
+                href="/finance-desk/invoice-processing/"
+                className={s.moreLink}
+              >
                 <span>See Invoice Processing</span>
                 <ArrowRight size={15} aria-hidden="true" />
               </Link>
@@ -654,9 +739,13 @@ export function DocsynecxIntelligencePage() {
               <span className={s.moreTag}>Banking</span>
               <h3>Banking &amp; Reconciliation</h3>
               <p className={s.moreLead}>
-                Bank statements categorised, reconciled and pushed to Tally in minutes.
+                Bank statements categorised, reconciled and pushed to Tally in
+                minutes.
               </p>
-              <Link href="/finance-desk/banking-reconciliation/" className={s.moreLink}>
+              <Link
+                href="/finance-desk/banking-reconciliation/"
+                className={s.moreLink}
+              >
                 <span>See Banking</span>
                 <ArrowRight size={15} aria-hidden="true" />
               </Link>
@@ -666,9 +755,13 @@ export function DocsynecxIntelligencePage() {
               <span className={s.moreTag}>Receivables</span>
               <h3>Payment Reminders</h3>
               <p className={s.moreLead}>
-                Reminders drafted for your team to approve, then sent or scheduled.
+                Reminders drafted for your team to approve, then sent or
+                scheduled.
               </p>
-              <Link href="/finance-desk/payment-reminders/" className={s.moreLink}>
+              <Link
+                href="/finance-desk/payment-reminders/"
+                className={s.moreLink}
+              >
                 <span>See Payment Reminders</span>
                 <ArrowRight size={15} aria-hidden="true" />
               </Link>
@@ -678,7 +771,11 @@ export function DocsynecxIntelligencePage() {
       </section>
 
       {/* 7. FAQ */}
-      <section id="faq" className={`${s.section} ${s.altSection}`} aria-labelledby="faq-h">
+      <section
+        id="faq"
+        className={`${s.section} ${s.altSection}`}
+        aria-labelledby="faq-h"
+      >
         <div className="site-shell">
           <div className={s.faqLayout}>
             <div className={s.faqHeading}>
@@ -688,12 +785,16 @@ export function DocsynecxIntelligencePage() {
                   What owners and finance heads ask us first.
                 </h2>
                 <p className={s.faqDescription}>
-                  Something else on your mind?{' '}
-                  <Link href="/demo/#demo-form">Ask us in the demo.</Link>
+                  Something else on your mind?{" "}
+                  <Link href="/demo-form">Ask us in the demo.</Link>
                 </p>
               </div>
             </div>
-            <SharedFaqAccordion items={faqItems} defaultOpenIndex={0} toggleStyle="plus" />
+            <SharedFaqAccordion
+              items={faqItems}
+              defaultOpenIndex={0}
+              toggleStyle="plus"
+            />
           </div>
         </div>
       </section>

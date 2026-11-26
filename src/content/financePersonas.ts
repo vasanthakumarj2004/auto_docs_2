@@ -201,7 +201,7 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
     proofMetricFrom: 'Days',
     proofMetricTo: 'hours',
     proofDescription: 'Spares, service bills and purchase vouchers across several branches now take hours instead of days, and the owner still signs off on what matters.',
-    proofLink: '/demo/#demo-form',
+    proofLink: '/demo-form',
     proofLinkText: 'See customer outcome',
     faqsEyebrow: 'OWNER QUESTIONS',
     faqsTitle: 'What owners ask us first.',
@@ -387,7 +387,7 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
     proofMetricTo: '2 min',
     proofDescription:
       'Hundreds of recurring supplier documents a month. Review and entry that took hours now takes minutes, and the team still checks every entry.',
-    proofLink: '/demo/#demo-form',
+    proofLink: '/demo-form',
     proofLinkText: 'Read the case study',
     faqsEyebrow: 'FINANCE QUESTIONS',
     faqsTitle: 'What finance managers ask before rollout.',
@@ -580,7 +580,7 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
     proofMetricTo: 'minutes',
     proofDescription:
       'Purchase bills and asset documents come in every day. The team now checks and posts them in minutes, instead of spending hours retyping.',
-    proofLink: '/demo/#demo-form',
+    proofLink: '/demo-form',
     proofLinkText: 'See customer outcome',
     faqsEyebrow: 'ACCOUNTS QUESTIONS',
     faqsTitle: 'What accounts teams ask about daily use.',
@@ -772,7 +772,7 @@ export const financePersonas: Record<PersonaData['slug'], PersonaData> = {
     proofMetricTo: 'hours',
     proofDescription:
       'Clients send bills as they go, sorted by client automatically. Articles review and approve vouchers in minutes.',
-    proofLink: '/demo/#demo-form',
+    proofLink: '/demo-form',
     proofLinkText: 'See multi-client demo',
     faqsEyebrow: 'CA PRACTICE QUESTIONS',
     faqsTitle: 'What CA firms ask us first.',

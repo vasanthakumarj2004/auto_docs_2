@@ -107,11 +107,11 @@ const howSteps = [
   },
   {
     num: 4,
-    title: 'Posted to TallyPrime',
-    desc: 'A purchase voucher in your Tally company, with the invoice PDF linked.',
-    panelBar: 'Step 4 of 4 · TallyPrime',
-    panelStatus: 'Voucher created',
-    statusType: 'ok',
+    title: "Posted to TallyPrime",
+    desc: "A purchase voucher in your Tally company, with the invoice PDF linked.",
+    panelBar: "Step 4 of 4 · TallyPrime",
+    panelStatus: "Voucher created",
+    statusType: "ok",
     table: {
       headers: ["Ledger", "Dr / Cr", "Amount"],
       rows: [
@@ -151,7 +151,7 @@ const faqItems = [
   {
     question: "How long does setup take?",
     answer:
-      'Connect TallyPrime straight away and approve your first invoice in minutes. You test it on your own invoices before anything is posted.',
+      "Connect TallyPrime straight away and approve your first invoice in minutes. You test it on your own invoices before anything is posted.",
   },
   // {
   //   question: 'Does it work with our TallyPrime?',
@@ -229,13 +229,14 @@ export function InvoiceAutomationPage() {
               </h1>
 
               <p className={s.heroSub}>
-                Upload the invoice in the portal, email it, or send it on WhatsApp. Docsynecx reads
-                the supplier, GSTIN, HSN, line items and tax, checks the GST and looks for
-                duplicates. Your team reviews it and posts it to TallyPrime.
+                Upload the invoice in the portal, email it, or send it on
+                WhatsApp. Docsynecx reads the supplier, GSTIN, HSN, line items
+                and tax, checks the GST and looks for duplicates. Your team
+                reviews it and posts it to TallyPrime.
               </p>
 
               <div className={s.heroActions}>
-                <Link href="/demo/#demo-form" className={s.primaryBtn}>
+                <Link href="/demo-form" className={s.primaryBtn}>
                   <span>Book a demo</span>
                   <ArrowUpRight size={16} aria-hidden="true" />
                 </Link>
@@ -283,7 +284,9 @@ export function InvoiceAutomationPage() {
                     strokeLinejoin="round"
                   />
                 </svg>
-                <span>Nothing is posted to TallyPrime until your team approves it.</span>
+                <span>
+                  Nothing is posted to TallyPrime until your team approves it.
+                </span>
               </p>
             </div>
 
@@ -473,7 +476,8 @@ export function InvoiceAutomationPage() {
               <span>Post.</span>
             </h2>
             <p className={s.lead}>
-              One supplier invoice, from your inbox to a purchase voucher in TallyPrime.
+              One supplier invoice, from your inbox to a purchase voucher in
+              TallyPrime.
             </p>
           </div>
 
@@ -695,7 +699,10 @@ export function InvoiceAutomationPage() {
             <article className={s.handleCard}>
               <span className={s.handleTag}>TallyPrime</span>
               <h3>Posted as a purchase voucher</h3>
-              <p>Approved invoices go to your TallyPrime company, with the PDF linked.</p>
+              <p>
+                Approved invoices go to your TallyPrime company, with the PDF
+                linked.
+              </p>
             </article>
           </div>
         </div>
@@ -782,7 +789,7 @@ export function InvoiceAutomationPage() {
                 </h2>
                 <p className={s.faqDescription}>
                   Something else on your mind?{" "}
-                  <Link href="/demo/#demo-form">Ask us in the demo.</Link>
+                  <Link href="/demo-form">Ask us in the demo.</Link>
                 </p>
               </div>
             </div>

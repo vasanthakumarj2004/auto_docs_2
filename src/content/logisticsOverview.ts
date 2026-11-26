@@ -1,5 +1,5 @@
 export const logisticsRoot = '/logistics-desk/';
-export const demoHref = '/demo/#demo-form';
+export const demoHref = '/demo-form';
 
 export const logisticsModules = [
   {

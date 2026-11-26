@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import {
   Mail,
   Phone,
@@ -17,12 +17,12 @@ import {
   Sparkles,
   Clock,
   Calendar,
-} from 'lucide-react';
-import { LandingNavigation } from '../LandingNavigation';
-import { ShipsyFooter } from '../ShipsyFooter';
-import { FinanceClosingCta } from '../finance/FinanceClosingCta';
-import { trackContactSubmit } from '@/src/lib/marketing-analytics';
-import s from './ContactPage.module.css';
+} from "lucide-react";
+import { LandingNavigation } from "../LandingNavigation";
+import { ShipsyFooter } from "../ShipsyFooter";
+import { FinanceClosingCta } from "../finance/FinanceClosingCta";
+import { trackContactSubmit } from "@/src/lib/marketing-analytics";
+import s from "./ContactPage.module.css";
 
 export function ContactPage() {
   // Satellite toggle state for Google Map
@@ -31,16 +31,16 @@ export function ContactPage() {
   // Math Captcha State
   const [num1, setNum1] = useState(4);
   const [num2, setNum2] = useState(4);
-  const [userCaptcha, setUserCaptcha] = useState('');
-  const [captchaError, setCaptchaError] = useState('');
+  const [userCaptcha, setUserCaptcha] = useState("");
+  const [captchaError, setCaptchaError] = useState("");
 
   // Form Field State
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    company: '',
-    description: '',
+    fullName: "",
+    email: "",
+    phone: "",
+    company: "",
+    description: "",
   });
 
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
@@ -52,8 +52,8 @@ export function ContactPage() {
     const b = Math.floor(Math.random() * 8) + 1;
     setNum1(a);
     setNum2(b);
-    setUserCaptcha('');
-    setCaptchaError('');
+    setUserCaptcha("");
+    setCaptchaError("");
   };
 
   useEffect(() => {
@@ -61,36 +61,40 @@ export function ContactPage() {
   }, []);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
     if (formErrors[name]) {
-      setFormErrors((prev) => ({ ...prev, [name]: '' }));
+      setFormErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
   const validateForm = () => {
     const errors: Record<string, string> = {};
-    if (!formData.fullName.trim()) errors.fullName = 'Please enter your full name.';
+    if (!formData.fullName.trim())
+      errors.fullName = "Please enter your full name.";
     if (!formData.email.trim()) {
-      errors.email = 'Please enter your email address.';
+      errors.email = "Please enter your email address.";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      errors.email = 'Please enter a valid work email address.';
+      errors.email = "Please enter a valid work email address.";
     }
-    if (!formData.phone.trim()) errors.phone = 'Please enter your contact phone number.';
-    if (!formData.company.trim()) errors.company = 'Please enter your company or organization name.';
-    if (!formData.description.trim()) errors.description = 'Please let us know how we can help you.';
+    if (!formData.phone.trim())
+      errors.phone = "Please enter your contact phone number.";
+    if (!formData.company.trim())
+      errors.company = "Please enter your company or organization name.";
+    if (!formData.description.trim())
+      errors.description = "Please let us know how we can help you.";
 
     const expected = num1 + num2;
     if (!userCaptcha.trim()) {
-      setCaptchaError('Please solve the captcha.');
-      errors.captcha = 'Required';
+      setCaptchaError("Please solve the captcha.");
+      errors.captcha = "Required";
     } else if (parseInt(userCaptcha.trim(), 10) !== expected) {
       setCaptchaError(`Incorrect answer. What is ${num1} + ${num2}?`);
-      errors.captcha = 'Incorrect';
+      errors.captcha = "Incorrect";
     } else {
-      setCaptchaError('');
+      setCaptchaError("");
     }
 
     setFormErrors(errors);
@@ -102,7 +106,7 @@ export function ContactPage() {
     if (!validateForm()) return;
 
     // Track contact submit attempt
-    trackContactSubmit('contact_page');
+    trackContactSubmit("contact_page");
 
     setIsSubmitting(true);
     setTimeout(() => {
@@ -113,76 +117,76 @@ export function ContactPage() {
 
   const handleReset = () => {
     setFormData({
-      fullName: '',
-      email: '',
-      phone: '',
-      company: '',
-      description: '',
+      fullName: "",
+      email: "",
+      phone: "",
+      company: "",
+      description: "",
     });
-    setUserCaptcha('');
-    setCaptchaError('');
+    setUserCaptcha("");
+    setCaptchaError("");
     generateCaptcha();
     setIsSubmitted(false);
   };
 
   const scrollToForm = () => {
-    const target = document.getElementById('contact-form');
+    const target = document.getElementById("contact-form");
     if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
+      target.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   const reasonRoutes = [
     {
-      no: '01',
-      title: 'Automate finance documents',
-      desc: 'Invoices, bank reconciliation, GST and posting to Tally or Zoho.',
-      href: '/demo/?track=finance',
-      meta: 'Opens demo booking',
+      no: "01",
+      title: "Automate finance documents",
+      desc: "Invoices, bank reconciliation, GST and posting to Tally or Zoho.",
+      href: "/demo/?track=finance",
+      meta: "Opens demo booking",
       metaIcon: Calendar,
-      cta: 'Book a finance demo',
+      cta: "Book a finance demo",
       icon: ReceiptText,
-      iconBg: '#E8F9F3',
-      iconColor: '#0B6B4E',
+      iconBg: "#E8F9F3",
+      iconColor: "#0B6B4E",
       isExternal: false,
     },
     {
-      no: '02',
-      title: 'Automate freight operations',
-      desc: 'RFQ-to-booking, shipment ops and CargoWise jobs from email.',
-      href: '/demo/?track=logistics',
-      meta: 'Opens demo booking',
+      no: "02",
+      title: "Automate freight operations",
+      desc: "RFQ-to-booking, shipment ops and CargoWise jobs from email.",
+      href: "/demo/?track=logistics",
+      meta: "Opens demo booking",
       metaIcon: Calendar,
-      cta: 'Book a logistics demo',
+      cta: "Book a logistics demo",
       icon: Truck,
-      iconBg: '#E0F2FE',
-      iconColor: '#0284C7',
+      iconBg: "#E0F2FE",
+      iconColor: "#0284C7",
       isExternal: false,
     },
     {
-      no: '03',
-      title: 'I need support',
-      desc: 'Existing customer with a question or an issue to fix.',
-      href: 'mailto:success@docsynecx.com',
-      meta: 'Reply within 24 hours',
+      no: "03",
+      title: "I need support",
+      desc: "Existing customer with a question or an issue to fix.",
+      href: "mailto:success@docsynecx.com",
+      meta: "Reply within 24 hours",
       metaIcon: Clock,
-      cta: 'success@docsynecx.com',
+      cta: "success@docsynecx.com",
       icon: LifeBuoy,
-      iconBg: '#F3E8FF',
-      iconColor: '#7C3AED',
+      iconBg: "#F3E8FF",
+      iconColor: "#7C3AED",
       isExternal: true,
     },
     {
-      no: '04',
-      title: 'Something else',
-      desc: 'Partnerships, careers, press, or a plain question.',
-      href: 'mailto:hello@docsynecx.com',
-      meta: 'Reply within 24 hours',
+      no: "04",
+      title: "Something else",
+      desc: "Partnerships, careers, press, or a plain question.",
+      href: "mailto:hello@docsynecx.com",
+      meta: "Reply within 24 hours",
       metaIcon: Clock,
-      cta: 'hello@docsynecx.com',
+      cta: "hello@docsynecx.com",
       icon: Sparkles,
-      iconBg: '#FEF3C7',
-      iconColor: '#D97706',
+      iconBg: "#FEF3C7",
+      iconColor: "#D97706",
       isExternal: true,
     },
   ];
@@ -212,11 +216,11 @@ export function ContactPage() {
           <div className={s.sectionHeader}>
             <div className={s.eyebrow}>FIND YOUR WAY TO US</div>
             <h2 className={s.sectionHeading}>
-              Choose the conversation{' '}
-              <span>that best fits your needs.</span>
+              Choose the conversation <span>that best fits your needs.</span>
             </h2>
             <p className={s.sectionLead}>
-              Choose the topic that best matches your needs, and we&apos;ll connect you with the right team.
+              Choose the topic that best matches your needs, and we&apos;ll
+              connect you with the right team.
             </p>
           </div>
 
@@ -231,7 +235,10 @@ export function ContactPage() {
                     <div className={s.cardTopRow}>
                       <div
                         className={s.cardIconBadge}
-                        style={{ backgroundColor: r.iconBg, color: r.iconColor }}
+                        style={{
+                          backgroundColor: r.iconBg,
+                          color: r.iconColor,
+                        }}
                       >
                         <IconComp size={22} />
                       </div>
@@ -261,22 +268,14 @@ export function ContactPage() {
 
               if (r.isExternal) {
                 return (
-                  <a
-                    key={r.no}
-                    href={r.href}
-                    className={s.reasonCard}
-                  >
+                  <a key={r.no} href={r.href} className={s.reasonCard}>
                     {cardContent}
                   </a>
                 );
               }
 
               return (
-                <Link
-                  key={r.no}
-                  href={r.href}
-                  className={s.reasonCard}
-                >
+                <Link key={r.no} href={r.href} className={s.reasonCard}>
                   {cardContent}
                 </Link>
               );
@@ -297,13 +296,18 @@ export function ContactPage() {
                 One inbox, real people on the other end.
               </p>
               <div className={s.directLinksList}>
-                <a href="mailto:hello@docsynecx.com" className={s.directLinkRow}>
+                <a
+                  href="mailto:hello@docsynecx.com"
+                  className={s.directLinkRow}
+                >
                   <div className={s.directIconWrap}>
                     <Mail size={18} />
                   </div>
                   <div className={s.directLinkContent}>
                     <span className={s.directLinkLabel}>Email us directly</span>
-                    <span className={s.directLinkValue}>hello@docsynecx.com</span>
+                    <span className={s.directLinkValue}>
+                      hello@docsynecx.com
+                    </span>
                   </div>
                   <ArrowRight size={16} className={s.directLinkArrow} />
                 </a>
@@ -343,16 +347,12 @@ export function ContactPage() {
 
                 <div className={s.detailRow}>
                   <span className={s.detailLabel}>GSTIN</span>
-                  <span className={s.detailValue}>
-                    33ABNCS3469C1Z9
-                  </span>
+                  <span className={s.detailValue}>33ABNCS3469C1Z9</span>
                 </div>
 
                 <div className={s.detailRow}>
                   <span className={s.detailLabel}>Web</span>
-                  <span className={s.detailValue}>
-                    docsynecx.com
-                  </span>
+                  <span className={s.detailValue}>docsynecx.com</span>
                 </div>
               </div>
             </div>
@@ -367,14 +367,15 @@ export function ContactPage() {
             <div className={s.eyebrow}>FIND US</div>
             <h2 className={s.sectionHeading}>Coimbatore, Tamil Nadu.</h2>
             <p className={s.sectionLead}>
-              Where the Docsynecx team builds. Visiting? Message us first so someone is there to meet you.
+              Where the Docsynecx team builds. Visiting? Message us first so
+              someone is there to meet you.
             </p>
           </div>
 
           <div className={s.googleMapContainer}>
             {/* Live Google Map Iframe with SynecX AI Labs pin & native place card */}
             <iframe
-              src={`https://maps.google.com/maps?q=SynecX%20AI%20Labs%20Private%20Limited,%20Thadagam%20Main%20Road,%20Kanuvai,%20Coimbatore,%20Tamil%20Nadu%20641108&t=${isSat ? 'k' : 'm'}&z=15&ie=UTF8&iwloc=&output=embed`}
+              src={`https://maps.google.com/maps?q=SynecX%20AI%20Labs%20Private%20Limited,%20Thadagam%20Main%20Road,%20Kanuvai,%20Coimbatore,%20Tamil%20Nadu%20641108&t=${isSat ? "k" : "m"}&z=15&ie=UTF8&iwloc=&output=embed`}
               title="SynecX AI Labs Google Map Location"
               className={s.googleMapIframe}
               loading="lazy"
@@ -385,19 +386,23 @@ export function ContactPage() {
             <button
               type="button"
               onClick={() => setIsSat((prev) => !prev)}
-              aria-label={isSat ? 'Switch to Map view' : 'Switch to Satellite view'}
+              aria-label={
+                isSat ? "Switch to Map view" : "Switch to Satellite view"
+              }
               className={s.gmSatThumbnailBtn}
               style={{
                 backgroundImage: isSat
                   ? 'url("https://maps.gstatic.com/tactile/layerswitcher/vector_1x.png")'
                   : 'url("https://maps.gstatic.com/tactile/layerswitcher/satellite_1x.png")',
-                backgroundColor: isSat ? '#ffffff' : '#1e3a1e',
+                backgroundColor: isSat ? "#ffffff" : "#1e3a1e",
               }}
-              title={isSat ? 'Switch to Default Map' : 'Switch to Satellite Imagery'}
+              title={
+                isSat ? "Switch to Default Map" : "Switch to Satellite Imagery"
+              }
             />
           </div>
 
-          <div style={{ textAlign: 'center' }}>
+          <div style={{ textAlign: "center" }}>
             <a
               href="https://www.google.com/maps/dir/?api=1&destination=SynecX+AI+Labs+Kanuvai+Coimbatore"
               target="_blank"
@@ -421,7 +426,7 @@ export function ContactPage() {
           </>
         }
         copy="See how Docsynecx transforms document processing into structured data and seamlessly syncs it with your ERP systems."
-        primaryHref="/demo/#demo-form"
+        primaryHref="/demo-form"
         primaryText="Book a demo"
       />
 
