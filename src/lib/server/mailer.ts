@@ -32,8 +32,10 @@ export interface IICSPilotBookingMailerData {
   pain?: string;
   event?: string;
   booth?: string;
-  type?: 'confirmation' | 'request';
+  type?: 'confirmation' | 'request' | 'cancellation' | 'reschedule';
   status?: string;
+  previousDay?: string;
+  previousSlot?: string;
 }
 
 export interface EventMeetingMailerData {
@@ -74,15 +76,36 @@ export async function sendIICSPilotBookingMailer(data: IICSPilotBookingMailerDat
     return { success: false, error: 'A valid email address is required.' };
   }
 
+  const isCancellation = data.type === 'cancellation';
+  const isReschedule = data.type === 'reschedule';
   const isRequest =
-    data.type === 'request' ||
-    (cleanSlot && (cleanSlot.toLowerCase().includes('to be') || cleanSlot.toLowerCase().includes('custom') || cleanSlot.toLowerCase().includes('schedule'))) ||
-    (cleanDay && (cleanDay.toLowerCase().includes('custom') || cleanDay.toLowerCase().includes('request')));
+    !isCancellation &&
+    !isReschedule &&
+    (data.type === 'request' ||
+      (cleanSlot && (cleanSlot.toLowerCase().includes('to be') || cleanSlot.toLowerCase().includes('custom') || cleanSlot.toLowerCase().includes('schedule'))) ||
+      (cleanDay && (cleanDay.toLowerCase().includes('custom') || cleanDay.toLowerCase().includes('request'))));
 
-  const statusText = data.status || (isRequest ? 'Requested (To Be Coordinated)' : 'Confirmed');
-  const subjectLine = isRequest
-    ? `Request Received Docsynecx IICS 2026 Pilot Walkthrough Custom Slot`
-    : `Confirmation Docsynecx IICS 2026 Pilot Walkthrough`;
+  let statusText = data.status;
+  if (!statusText) {
+    if (isCancellation) statusText = 'Cancelled';
+    else if (isReschedule) statusText = 'Rescheduled';
+    else if (isRequest) statusText = 'Requested (To Be Coordinated)';
+    else statusText = 'Confirmed';
+  }
+
+  let subjectLine = `Confirmation Docsynecx IICS 2026 Pilot Walkthrough`;
+  let adminSubjectLine = `[Lead Notification] Confirmation Docsynecx IICS 2026 Pilot Walkthrough - ${cleanCompany}`;
+
+  if (isCancellation) {
+    subjectLine = `Booking Cancelled: Docsynecx IICS 2026 Pilot Walkthrough`;
+    adminSubjectLine = `[Booking Cancelled] Docsynecx IICS 2026 Pilot Walkthrough - ${cleanCompany} (${cleanName})`;
+  } else if (isReschedule) {
+    subjectLine = `Booking Rescheduled: Docsynecx IICS 2026 Pilot Walkthrough`;
+    adminSubjectLine = `[Booking Rescheduled] Docsynecx IICS 2026 Pilot Walkthrough - ${cleanCompany} (${cleanName})`;
+  } else if (isRequest) {
+    subjectLine = `Request Received Docsynecx IICS 2026 Pilot Walkthrough Custom Slot`;
+    adminSubjectLine = `[Custom Slot Request] Docsynecx IICS 2026 Pilot Walkthrough - ${cleanCompany}`;
+  }
 
   const safeName = escapeHtml(cleanName);
   const safeCompany = escapeHtml(cleanCompany);
@@ -94,6 +117,26 @@ export async function sendIICSPilotBookingMailer(data: IICSPilotBookingMailerDat
   const safeSystem = escapeHtml(data.system || 'N/A');
   const safeVolume = escapeHtml(data.volume || 'N/A');
   const safePain = escapeHtml(data.pain || 'N/A');
+  const safePrevDay = escapeHtml(data.previousDay || '');
+  const safePrevSlot = escapeHtml(data.previousSlot || '');
+
+  // Dynamic badge styling
+  let badgeBg = '#ecfdf5';
+  let badgeColor = '#047857';
+  if (isCancellation) {
+    badgeBg = '#fef2f2';
+    badgeColor = '#b91c1c';
+  } else if (isReschedule) {
+    badgeBg = '#eff6ff';
+    badgeColor = '#1d4ed8';
+  }
+
+  let introGreeting = `Hello <strong>${safeName}</strong>, thank you for reserving your 1-Month Pilot Walkthrough session with Docsynecx for <strong>${safeCompany}</strong>.`;
+  if (isCancellation) {
+    introGreeting = `Hello <strong>${safeName}</strong>, your 1-Month Pilot Walkthrough session reservation with Docsynecx for <strong>${safeCompany}</strong> has been cancelled. Your slot has been released.`;
+  } else if (isReschedule) {
+    introGreeting = `Hello <strong>${safeName}</strong>, your 1-Month Pilot Walkthrough session with Docsynecx for <strong>${safeCompany}</strong> has been successfully rescheduled.`;
+  }
 
   const attendeeHtml = `
 <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 620px; margin: 0 auto; background: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; color: #1f2937;">
@@ -103,7 +146,7 @@ export async function sendIICSPilotBookingMailer(data: IICSPilotBookingMailerDat
   </div>
 
   <div style="padding: 32px;">
-    <div style="display: inline-block; background: #ecfdf5; color: #047857; font-size: 13px; font-weight: 600; padding: 4px 12px; border-radius: 9999px; margin-bottom: 16px;">
+    <div style="display: inline-block; background: ${badgeBg}; color: ${badgeColor}; font-size: 13px; font-weight: 600; padding: 4px 12px; border-radius: 9999px; margin-bottom: 16px;">
       Status: ${escapeHtml(statusText)}
     </div>
 
@@ -112,15 +155,20 @@ export async function sendIICSPilotBookingMailer(data: IICSPilotBookingMailerDat
     </h2>
 
     <p style="font-size: 15px; line-height: 1.6; color: #4b5563; margin: 0 0 24px;">
-      Hello <strong>${safeName}</strong>, thank you for reserving your 1-Month Pilot Walkthrough session with Docsynecx for <strong>${safeCompany}</strong>.
+      ${introGreeting}
     </p>
 
     <div style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 18px; margin-bottom: 24px;">
       <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
         <tr style="border-bottom: 1px solid #f3f4f6;">
-          <td style="padding: 9px 0; color: #6b7280;">Date & Time</td>
+          <td style="padding: 9px 0; color: #6b7280;">${isCancellation ? 'Cancelled Slot' : 'Date & Time'}</td>
           <td style="padding: 9px 0; font-weight: 600; color: #111827;">${safeDay} at ${safeSlot} IST</td>
         </tr>
+        ${isReschedule && safePrevSlot ? `
+        <tr style="border-bottom: 1px solid #f3f4f6;">
+          <td style="padding: 9px 0; color: #6b7280;">Previous Slot</td>
+          <td style="padding: 9px 0; color: #9ca3af; text-decoration: line-through;">${safePrevDay ? `${safePrevDay} at ` : ''}${safePrevSlot} IST</td>
+        </tr>` : ''}
         <tr style="border-bottom: 1px solid #f3f4f6;">
           <td style="padding: 9px 0; color: #6b7280;">Location</td>
           <td style="padding: 9px 0; font-weight: 600; color: #111827;">${safeBooth}, Jio World Convention Centre, BKC, Mumbai</td>
@@ -140,7 +188,12 @@ export async function sendIICSPilotBookingMailer(data: IICSPilotBookingMailerDat
       </table>
     </div>
 
-    ${isRequest
+    ${isCancellation
+      ? `
+    <div style="background: #fffbeb; border: 1px solid #fef3c7; border-radius: 8px; padding: 16px; margin-bottom: 24px; font-size: 14px; color: #92400e;">
+      <strong>Slot Released:</strong> Your booking has been cancelled and the slot has been made available to other attendees. If this was a mistake or you wish to schedule a new slot, you can re-book any time at <a href="https://docsynecx.com/events/iics-pilot" style="color: #1F6B45; font-weight: 600; text-decoration: underline;">docsynecx.com/events/iics-pilot</a>.
+    </div>`
+      : isRequest
       ? `
     <div style="background: #fffbeb; border: 1px solid #fef3c7; border-radius: 8px; padding: 16px; margin-bottom: 24px; font-size: 14px; color: #92400e;">
       <strong>Next Steps:</strong> Our engineering & solutions team will contact you directly on WhatsApp (<strong>${safePhone}</strong>) or Email (<strong>${escapeHtml(cleanEmail)}</strong>) to coordinate a custom walkthrough time.
@@ -171,7 +224,7 @@ export async function sendIICSPilotBookingMailer(data: IICSPilotBookingMailerDat
 
   const adminHtml = `
   <div style="font-family: sans-serif; padding: 20px; color: #222;">
-    <h2>New IICS 2026 Pilot Booking / Walkthrough Lead</h2>
+    <h2>${isCancellation ? '⚠️ IICS 2026 Pilot Booking CANCELLED' : isReschedule ? '🔄 IICS 2026 Pilot Booking RESCHEDULED' : 'New IICS 2026 Pilot Booking / Walkthrough Lead'}</h2>
     <p><strong>Status:</strong> ${escapeHtml(statusText)}</p>
     <hr style="border: 0; border-top: 1px solid #ddd; margin: 15px 0;">
     <h3>Attendee Information:</h3>
@@ -180,7 +233,8 @@ export async function sendIICSPilotBookingMailer(data: IICSPilotBookingMailerDat
       <li><strong>Company:</strong> ${safeCompany}</li>
       <li><strong>Email:</strong> ${escapeHtml(cleanEmail)}</li>
       <li><strong>Phone/WA:</strong> ${safePhone}</li>
-      <li><strong>Reserved Slot:</strong> ${safeDay} at ${safeSlot} IST</li>
+      <li><strong>${isCancellation ? 'Cancelled Slot' : isReschedule ? 'New Slot' : 'Reserved Slot'}:</strong> ${safeDay} at ${safeSlot} IST</li>
+      ${isReschedule && safePrevSlot ? `<li><strong>Previous Slot:</strong> ${safePrevDay ? `${safePrevDay} at ` : ''}${safePrevSlot} IST</li>` : ''}
       <li><strong>Event:</strong> ${escapeHtml(data.event || 'IICS 2026')} (${safeBooth})</li>
     </ul>
     <h3>Forwarder Desk Profile:</h3>
@@ -193,7 +247,7 @@ export async function sendIICSPilotBookingMailer(data: IICSPilotBookingMailerDat
   </div>
 `;
 
-  // 1. Send confirmation to attendee (no replyTo header so email client won't show "Reply to admin@docsynecx.com")
+  // 1. Send confirmation/cancellation/reschedule to attendee (no replyTo header so email client won't show "Reply to admin@docsynecx.com")
   let attendeeRes: any = null;
   try {
     attendeeRes = await noreplyTransporter.sendMail({
@@ -204,19 +258,19 @@ export async function sendIICSPilotBookingMailer(data: IICSPilotBookingMailerDat
       text: `Docsynecx IICS 2026 Pilot Walkthrough \nStatus: ${statusText}\nTime: ${cleanDay} at ${cleanSlot} IST\nLocation: ${data.booth || 'Booth Q53'}, Jio World Convention Centre, Mumbai\nAttendee: ${cleanName} (${cleanCompany})`,
     });
   } catch (err) {
-    console.error('Failed to send attendee confirmation email:', err);
+    console.error('Failed to send attendee email:', err);
   }
 
-  // 2. Send lead notification to admin
+  // 2. Send notification to admin
   let adminRes: any = null;
   try {
     adminRes = await noreplyTransporter.sendMail({
       from: `"Docsynecx Leads" <${NOREPLY_USER}>`,
       to: ADMIN_EMAIL,
       replyTo: cleanEmail,
-      subject: `[Lead Notification] ${subjectLine} - ${cleanCompany}`,
+      subject: adminSubjectLine,
       html: adminHtml,
-      text: `New IICS Lead: ${cleanName} (${cleanCompany})\nEmail: ${cleanEmail}\nPhone: ${cleanPhone}\nSlot: ${cleanDay} at ${cleanSlot} IST`,
+      text: `IICS Pilot Update: ${cleanName} (${cleanCompany})\nStatus: ${statusText}\nEmail: ${cleanEmail}\nPhone: ${cleanPhone}\nSlot: ${cleanDay} at ${cleanSlot} IST`,
     });
   } catch (err) {
     console.error('Failed to send admin notification email:', err);

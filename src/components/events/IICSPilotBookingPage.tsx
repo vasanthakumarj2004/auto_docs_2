@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { sendEventMeetingEmail, sendIICSPilotBookingEmail } from '@/src/lib/emailjs';
 import { supabase } from '@/src/lib/supabase';
 
@@ -90,6 +90,30 @@ function generateUpcomingDays(count = 5): DaySchedule[] {
   return list;
 }
 
+function formatDisplayDate(dateIso: string): string {
+  if (!dateIso) return '';
+  const [y, m, d] = dateIso.split('-').map(Number);
+  const dateObj = new Date(y, m - 1, d);
+  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  return `${days[dateObj.getDay()]}, ${d} ${months[dateObj.getMonth()]} ${y}`;
+}
+
+const MONTH_NAMES = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
 const LS_KEY = 'iics26_bookings';
 
 export function IICSPilotBookingPage() {
@@ -120,6 +144,35 @@ export function IICSPilotBookingPage() {
   const [consent, setConsent] = useState<boolean>(false);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [showCancelConfirm, setShowCancelConfirm] = useState<boolean>(false);
+  const [isCancelling, setIsCancelling] = useState<boolean>(false);
+  const [isRescheduling, setIsRescheduling] = useState<boolean>(false);
+  const [previousBooking, setPreviousBooking] = useState<{ day: string; slot: string; ref: string } | null>(null);
+
+  // Custom Calendar state (Saturdays and Sundays are unclickable across all months)
+  const [showCalendar, setShowCalendar] = useState<boolean>(false);
+  const [viewYear, setViewYear] = useState<number>(() => {
+    const d = new Date();
+    return d.getFullYear();
+  });
+  const [viewMonth, setViewMonth] = useState<number>(() => {
+    const d = new Date();
+    return d.getMonth();
+  });
+  const calendarRef = useRef<HTMLDivElement>(null);
+
+  // Close calendar popover on outside click
+  useEffect(() => {
+    if (!showCalendar) return;
+    const handleClickOutside = (event: MouseEvent) => {
+      if (calendarRef.current && !calendarRef.current.contains(event.target as Node)) {
+        setShowCalendar(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showCalendar]);
 
   // Form 1: Details
   const [name, setName] = useState('');
@@ -359,7 +412,7 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
     });
 
     setIsSubmitting(true);
-    const ref = 'IICS-' + Math.floor(1000 + Math.random() * 9000);
+    const ref = bookingRef || ('IICS-' + Math.floor(1000 + Math.random() * 9000));
     const cur = getCurDay();
 
     const bookingPayload = {
@@ -381,16 +434,16 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
     // 1. Supabase record with all details
     try {
       await supabase.from('contact_submissions').insert({
-        submission_type: 'event_iics2026_pilot_booking',
+        submission_type: isRescheduling ? 'event_iics2026_pilot_rescheduled' : 'event_iics2026_pilot_booking',
         email: email.trim(),
         company: company.trim() || null,
-        message: `[IICS 2026 Pilot Booking ${ref}]
+        message: `[IICS 2026 Pilot Booking ${isRescheduling ? 'RESCHEDULED ' : ''}${ref}]
 Attendee: ${name.trim()}
 Email: ${email.trim()}
 Mobile/WhatsApp: ${phone.trim()}
 Company: ${company.trim()}
 Reserved Slot: ${cur.l} at ${selectedSlot} IST
-Desk Role: ${role}
+${isRescheduling && previousBooking ? `Previous Slot: ${previousBooking.day} at ${previousBooking.slot} IST\n` : ''}Desk Role: ${role}
 Current Software: ${system}
 Weekly Quotes: ${volume}
 Operational Focus: ${pain}
@@ -400,7 +453,7 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
       console.warn('Supabase log:', err);
     }
 
-    // 2. EmailJS confirmation with all details
+    // 2. Email confirmation to BOTH Attendee and Admin (handles both new booking and slot change)
     try {
       const emailRes = await sendIICSPilotBookingEmail({
         name: name.trim(),
@@ -416,13 +469,16 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
         pain,
         event: 'India International Cargo Show (IICS) 2026',
         booth: 'Booth Q53',
-        type: 'confirmation',
+        type: isRescheduling ? 'reschedule' : 'confirmation',
+        status: isRescheduling ? 'Rescheduled' : 'Confirmed',
+        previousDay: previousBooking?.day,
+        previousSlot: previousBooking?.slot,
       });
       if (!emailRes.success) {
-        console.warn('EmailJS confirmation delivery warning:', emailRes.error);
+        console.warn('Email confirmation delivery warning:', emailRes.error);
       }
     } catch (err) {
-      console.warn('EmailJS log:', err);
+      console.warn('Email log:', err);
     }
 
     // 3. Local state persistence
@@ -431,6 +487,7 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
     saveMine(updated);
 
     setBookingRef(ref);
+    setIsRescheduling(false);
     setIsSubmitting(false);
     setStep(5);
     document.getElementById('book')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -472,18 +529,74 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
     setShowCancelConfirm(true);
   };
 
-  const confirmCancellation = () => {
+  const confirmCancellation = async () => {
+    setIsCancelling(true);
+    const cur = getCurDay();
+    const prevData = mineBookings[bookingRef]?.data || {};
+    const cancelDay = cur.l || prevData.day || 'Scheduled Day';
+    const cancelSlot = selectedSlot || prevData.slot || 'Scheduled Slot';
+
+    // 1. Send cancellation emails to BOTH Attendee and Admin
+    try {
+      await sendIICSPilotBookingEmail({
+        name: name.trim() || prevData.name || 'Attendee',
+        email: email.trim() || prevData.email,
+        phone: phone.trim() || prevData.phone,
+        company: company.trim() || prevData.company,
+        ref: bookingRef,
+        day: cancelDay,
+        slot: cancelSlot,
+        role: role || prevData.role,
+        system: system || prevData.system,
+        volume: volume || prevData.volume,
+        pain: pain || prevData.pain,
+        event: 'India International Cargo Show (IICS) 2026',
+        booth: 'Booth Q53',
+        type: 'cancellation',
+        status: 'Cancelled',
+      });
+    } catch (err) {
+      console.warn('Cancellation email error:', err);
+    }
+
+    // 2. Supabase log for cancellation
+    try {
+      await supabase.from('contact_submissions').insert({
+        submission_type: 'event_iics2026_pilot_cancellation',
+        email: (email.trim() || prevData.email || '').trim(),
+        company: (company.trim() || prevData.company || '').trim() || null,
+        message: `[IICS 2026 Pilot Booking CANCELLED ${bookingRef}]
+Attendee: ${name.trim() || prevData.name}
+Company: ${company.trim() || prevData.company}
+Email: ${email.trim() || prevData.email}
+Phone: ${phone.trim() || prevData.phone}
+Released Slot: ${cancelDay} at ${cancelSlot} IST
+Location: Booth Q53, Jio World Convention Centre, Mumbai`,
+      });
+    } catch (err) {
+      console.warn('Supabase cancellation log:', err);
+    }
+
+    // 3. Clear local storage
     const updated = { ...mineBookings };
     delete updated[bookingRef];
     saveMine(updated);
     setSelectedSlot('');
     setBookingRef('');
+    setIsCancelling(false);
     setShowCancelConfirm(false);
     setStep(6);
     document.getElementById('book')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   const handleReschedule = () => {
+    const cur = getCurDay();
+    setPreviousBooking({
+      day: cur.l,
+      slot: selectedSlot,
+      ref: bookingRef,
+    });
+    setIsRescheduling(true);
     const updated = { ...mineBookings };
     delete updated[bookingRef];
     saveMine(updated);
@@ -494,6 +607,35 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
 
   const curDay = getCurDay();
   const takenSlots = getTakenOf(curDay);
+
+  // Month details for custom calendar
+  const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+  const firstDayOfWeek = new Date(viewYear, viewMonth, 1).getDay(); // 0 = Sun, 1 = Mon ... 6 = Sat
+  const startOffset = firstDayOfWeek === 0 ? 6 : firstDayOfWeek - 1; // 0 for Mon, 6 for Sun
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const currentMonth = now.getMonth();
+  const canGoPrev = viewYear > currentYear || (viewYear === currentYear && viewMonth > currentMonth);
+
+  const handlePrevMonth = () => {
+    setViewMonth((prev) => {
+      if (prev === 0) {
+        setViewYear((y) => y - 1);
+        return 11;
+      }
+      return prev - 1;
+    });
+  };
+
+  const handleNextMonth = () => {
+    setViewMonth((prev) => {
+      if (prev === 11) {
+        setViewYear((y) => y + 1);
+        return 0;
+      }
+      return prev + 1;
+    });
+  };
 
   const buttonWobbleStyle: React.CSSProperties = {
     background: '#C2410C',
@@ -1358,34 +1500,238 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                 <form onSubmit={handleForm3Submit} noValidate style={{ display: 'flex', flexDirection: 'column', gap: '18px', marginTop: '14px' }}>
                   {/* Date Picker & Quick Days Selector */}
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '10px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
                       <span style={{ fontSize: '15px', fontWeight: 700, color: '#111827' }}>
                         Choose Weekday (Mon – Fri):
                       </span>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <label htmlFor="custom-date-picker" style={{ fontSize: '13px', fontWeight: 600, color: '#4B5563' }}>
-                          Pick any date :
-                        </label>
-                        <input
-                          id="custom-date-picker"
-                          type="date"
-                          min={getTodayIso()}
-                          value={selectedDateIso}
-                          onChange={(e) => handleDateSelect(e.target.value)}
-                          aria-label="Pick booking date (present and future weekdays only)"
-                          style={{
-                            fontFamily: 'inherit',
-                            fontSize: '14px',
-                            fontWeight: 600,
-                            padding: '7px 12px',
-                            borderRadius: '8px',
-                            border: dateErr ? '2px solid #B42318' : '2px solid #1F6B45',
-                            background: '#FFFFFF',
-                            color: '#111827',
-                            cursor: 'pointer',
-                            outline: 'none',
-                          }}
-                        />
+                      <div style={{ position: 'relative' }} ref={calendarRef}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                          <span style={{ fontSize: '13px', fontWeight: 600, color: '#4B5563' }}>
+                            Pick any date:
+                          </span>
+                          <button
+                            type="button"
+                            id="custom-date-picker-trigger"
+                            onClick={() => {
+                              if (selectedDateIso) {
+                                const [y, m] = selectedDateIso.split('-').map(Number);
+                                if (y && m) {
+                                  setViewYear(y);
+                                  setViewMonth(m - 1);
+                                }
+                              }
+                              setShowCalendar((prev) => !prev);
+                            }}
+                            aria-label="Pick booking date (present and future weekdays only)"
+                            aria-expanded={showCalendar}
+                            style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '8px',
+                              fontFamily: 'inherit',
+                              fontSize: '14px',
+                              fontWeight: 600,
+                              padding: '7px 14px',
+                              borderRadius: '8px',
+                              border: dateErr ? '2px solid #B42318' : '2px solid #1F6B45',
+                              background: '#FFFFFF',
+                              color: '#111827',
+                              cursor: 'pointer',
+                              outline: 'none',
+                              boxShadow: '0 1px 2px rgba(0,0,0,0.05)',
+                            }}
+                          >
+                            <span aria-hidden="true">📅</span>
+                            <span>{formatDisplayDate(selectedDateIso) || 'Select date'}</span>
+                            <span style={{ fontSize: '10px', color: '#6B7280' }}>{showCalendar ? '▲' : '▼'}</span>
+                          </button>
+                        </div>
+
+                        {/* CUSTOM CALENDAR POPOVER: Saturday & Sunday are permanently unclickable across all months */}
+                        {showCalendar && (
+                          <div
+                            style={{
+                              position: 'absolute',
+                              top: 'calc(100% + 6px)',
+                              right: 0,
+                              zIndex: 9999,
+                              background: '#FFFFFF',
+                              border: '2px solid #2B2B2B',
+                              borderRadius: '12px',
+                              boxShadow: '0 12px 30px -4px rgba(0, 0, 0, 0.25)',
+                              padding: '16px',
+                              width: '320px',
+                            }}
+                          >
+                            {/* Month Header Navigation */}
+                            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
+                              <button
+                                type="button"
+                                onClick={handlePrevMonth}
+                                disabled={!canGoPrev}
+                                aria-label="Previous month"
+                                style={{
+                                  background: 'transparent',
+                                  border: '1px solid #E5E7EB',
+                                  borderRadius: '6px',
+                                  padding: '4px 8px',
+                                  cursor: canGoPrev ? 'pointer' : 'not-allowed',
+                                  opacity: canGoPrev ? 1 : 0.3,
+                                  fontWeight: 700,
+                                  fontSize: '13px',
+                                  color: '#374151',
+                                }}
+                              >
+                                ◀
+                              </button>
+                              <span style={{ fontWeight: 700, fontSize: '15px', color: '#111827' }}>
+                                {MONTH_NAMES[viewMonth]} {viewYear}
+                              </span>
+                              <button
+                                type="button"
+                                onClick={handleNextMonth}
+                                aria-label="Next month"
+                                style={{
+                                  background: 'transparent',
+                                  border: '1px solid #E5E7EB',
+                                  borderRadius: '6px',
+                                  padding: '4px 8px',
+                                  cursor: 'pointer',
+                                  fontWeight: 700,
+                                  fontSize: '13px',
+                                  color: '#374151',
+                                }}
+                              >
+                                ▶
+                              </button>
+                            </div>
+
+                            {/* Weekday Column Headers (Sa and Su are in red/muted) */}
+                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '4px', textAlign: 'center', marginBottom: '6px' }}>
+                              {['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'].map((dayHeader, idx) => {
+                                const isWeekendHeader = idx >= 5;
+                                return (
+                                  <div
+                                    key={dayHeader}
+                                    style={{
+                                      fontSize: '12px',
+                                      fontWeight: 700,
+                                      color: isWeekendHeader ? '#EF4444' : '#4B5563',
+                                      padding: '4px 0',
+                                    }}
+                                  >
+                                    {dayHeader}
+                                  </div>
+                                );
+                              })}
+                            </div>
+
+                            {/* Days Grid */}
+                            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(7, 1fr)', gap: '4px' }}>
+                              {/* Empty padding slots before first day */}
+                              {Array.from({ length: startOffset }).map((_, padIdx) => (
+                                <div key={`pad-${padIdx}`} />
+                              ))}
+
+                              {/* Days of the month */}
+                              {Array.from({ length: daysInMonth }).map((_, idx) => {
+                                const dayNum = idx + 1;
+                                const iso = `${viewYear}-${String(viewMonth + 1).padStart(2, '0')}-${String(dayNum).padStart(2, '0')}`;
+                                const dayDate = new Date(viewYear, viewMonth, dayNum);
+                                const dow = dayDate.getDay(); // 0 is Sun, 6 is Sat
+                                const isWeekend = dow === 0 || dow === 6;
+                                const isPast = iso < getTodayIso();
+                                const isCurSelected = iso === selectedDateIso;
+                                const isBlocked = isWeekend || isPast;
+
+                                if (isBlocked) {
+                                  return (
+                                    <button
+                                      key={iso}
+                                      type="button"
+                                      disabled
+                                      title={isWeekend ? 'Saturday & Sunday are closed across all months. Please choose Monday–Friday.' : 'Past dates cannot be selected.'}
+                                      style={{
+                                        height: '34px',
+                                        width: '100%',
+                                        display: 'flex',
+                                        alignItems: 'center',
+                                        justifyContent: 'center',
+                                        fontSize: '13px',
+                                        borderRadius: '6px',
+                                        border: isWeekend ? '1px dashed #CBD5E1' : '1px solid transparent',
+                                        background: isWeekend ? '#F1F5F9' : '#FAFAFA',
+                                        color: isWeekend ? '#94A3B8' : '#CBD5E1',
+                                        cursor: 'not-allowed',
+                                        pointerEvents: 'none',
+                                        opacity: 0.6,
+                                        fontWeight: 500,
+                                      }}
+                                    >
+                                      {dayNum}
+                                    </button>
+                                  );
+                                }
+
+                                return (
+                                  <button
+                                    key={iso}
+                                    type="button"
+                                    onClick={() => {
+                                      handleDateSelect(iso);
+                                      setShowCalendar(false);
+                                    }}
+                                    style={{
+                                      height: '34px',
+                                      width: '100%',
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      justifyContent: 'center',
+                                      fontSize: '13px',
+                                      fontWeight: isCurSelected ? 700 : 600,
+                                      borderRadius: '6px',
+                                      border: isCurSelected ? '2px solid #1F6B45' : '1px solid #E2E8F0',
+                                      background: isCurSelected ? '#1F6B45' : '#FFFFFF',
+                                      color: isCurSelected ? '#FFFFFF' : '#111827',
+                                      cursor: 'pointer',
+                                      transition: 'background 0.15s ease',
+                                    }}
+                                  >
+                                    {dayNum}
+                                  </button>
+                                );
+                              })}
+                            </div>
+
+                            {/* Calendar Popover Footer Note */}
+                            <div style={{ marginTop: '12px', paddingTop: '10px', borderTop: '1px solid #E5E7EB', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '11px', color: '#6B7280' }}>
+                              <span>🔒 Sat &amp; Sun closed (Mon–Fri only)</span>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  const today = getTodayIso();
+                                  const todayDow = new Date().getDay();
+                                  if (todayDow >= 1 && todayDow <= 5) {
+                                    handleDateSelect(today);
+                                  }
+                                  setShowCalendar(false);
+                                }}
+                                style={{
+                                  background: 'none',
+                                  border: 'none',
+                                  color: '#1F6B45',
+                                  fontWeight: 700,
+                                  cursor: 'pointer',
+                                  padding: 0,
+                                  fontSize: '11px',
+                                  textDecoration: 'underline',
+                                }}
+                              >
+                                Today
+                              </button>
+                            </div>
+                          </div>
+                        )}
                       </div>
                     </div>
 
@@ -1395,8 +1741,17 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                       </div>
                     )}
 
-                    {/* Quick Days Row: Mon to Fri */}
-                    <div role="group" aria-label="Choose a weekday" style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                    {/* Quick Days Row: Mon to Fri in Responsive Equal Grid */}
+                    <div
+                      role="group"
+                      aria-label="Choose a weekday"
+                      style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
+                        gap: '8px',
+                        width: '100%',
+                      }}
+                    >
                       {upcomingDays.map((d) => {
                         const isCur = selectedDateIso === d.iso;
                         return (
@@ -1409,13 +1764,17 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                               fontFamily: 'inherit',
                               fontSize: '14px',
                               fontWeight: 600,
-                              padding: '9px 14px',
+                              padding: '9px 12px',
                               borderRadius: '8px',
                               border: `2px solid ${isCur ? '#1F6B45' : '#2B2B2B'}`,
                               cursor: 'pointer',
                               background: isCur ? '#1F6B45' : 'transparent',
                               color: isCur ? '#FFFFFF' : '#2B2B2B',
                               transition: 'all 0.15s ease',
+                              textAlign: 'center',
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
                             }}
                           >
                             {d.l} · {getOpenCount(d)} open
@@ -1425,7 +1784,7 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                     </div>
                   </div>
 
-                  {/* Slots Grid: Strictly 11:00 AM to 4:00 PM */}
+                  {/* Slots Grid: Strictly 11:00 AM to 4:00 PM in Responsive Equal Grid */}
                   <div>
                     <div style={{ fontSize: '13px', fontWeight: 600, color: '#6B7280', textTransform: 'uppercase', letterSpacing: '0.04em', marginBottom: '8px' }}>
                       Available 20-Min Slots (11:00 AM – 4:00 PM IST)
@@ -1435,7 +1794,16 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                         Weekend dates (Saturday & Sunday) are closed for pilot onboarding sessions. Please select any Monday to Friday to view available 11:00 AM – 4:00 PM slots.
                       </div>
                     ) : (
-                      <div role="group" aria-label="Choose a time slot between 11:00 AM and 4:00 PM" style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+                      <div
+                        role="group"
+                        aria-label="Choose a time slot between 11:00 AM and 4:00 PM"
+                        style={{
+                          display: 'grid',
+                          gridTemplateColumns: 'repeat(auto-fill, minmax(88px, 1fr))',
+                          gap: '8px',
+                          width: '100%',
+                        }}
+                      >
                         {curDay.t.map((t) => {
                           const taken = takenSlots.includes(t);
                           const isSel = selectedSlot === t;
@@ -1450,13 +1818,17 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                                   fontFamily: 'inherit',
                                   fontSize: '15px',
                                   fontWeight: 400,
-                                  padding: '9px 14px',
+                                  padding: '9px 12px',
                                   border: '2px dashed #8A8A8A',
                                   borderRadius: '8px',
                                   background: 'transparent',
                                   color: '#6B6B6B',
                                   textDecoration: 'line-through',
                                   cursor: 'not-allowed',
+                                  textAlign: 'center',
+                                  display: 'flex',
+                                  alignItems: 'center',
+                                  justifyContent: 'center',
                                 }}
                               >
                                 {t}
@@ -1476,12 +1848,16 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                                 fontFamily: 'inherit',
                                 fontSize: '15px',
                                 fontWeight: 600,
-                                padding: '9px 14px',
+                                padding: '9px 12px',
                                 borderRadius: '8px',
                                 border: `2px solid ${isSel ? '#1F6B45' : '#2B2B2B'}`,
                                 cursor: 'pointer',
                                 background: isSel ? '#1F6B45' : 'transparent',
                                 color: isSel ? '#FFFFFF' : '#2B2B2B',
+                                textAlign: 'center',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
                               }}
                             >
                               {t}
@@ -1541,8 +1917,14 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
               <div id="step4">
                 <div style={{ fontWeight: 600, fontSize: '14px', color: '#1F6B45' }}>STEP 4 OF 4 · REVIEW AND CONFIRM</div>
                 <div style={{ fontFamily: 'Caveat, cursive', fontWeight: 700, fontSize: '34px', lineHeight: 1.05, marginTop: '8px' }}>
-                  Check your pilot booking
+                  {isRescheduling ? 'Review your updated slot' : 'Check your pilot booking'}
                 </div>
+
+                {isRescheduling && (
+                  <div style={{ marginTop: '12px', background: '#EFF6FF', border: '1px solid #BFDBFE', borderRadius: '8px', padding: '12px 16px', color: '#1D4ED8', fontSize: '14px', fontWeight: 600 }}>
+                    🔄 You are changing your pilot slot. Your updated time will be saved and confirmation emails will be sent to both your email and our team.
+                  </div>
+                )}
 
                 <dl style={{ margin: '14px 0 0', display: 'grid', gridTemplateColumns: 'auto 1fr', gap: '8px 18px', fontSize: '16px' }}>
                   <dt style={{ fontWeight: 600 }}>Name</dt>
@@ -1553,8 +1935,14 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                   <dd style={{ margin: 0 }}>{email}</dd>
                   <dt style={{ fontWeight: 600 }}>Mobile</dt>
                   <dd style={{ margin: 0 }}>{phone}</dd>
-                  <dt style={{ fontWeight: 600 }}>Slot</dt>
+                  <dt style={{ fontWeight: 600 }}>{isRescheduling ? 'New Slot' : 'Slot'}</dt>
                   <dd style={{ margin: 0 }}>{curDay.l}, {selectedSlot} IST, online (20 min)</dd>
+                  {isRescheduling && previousBooking && (
+                    <>
+                      <dt style={{ fontWeight: 600, color: '#6B7280' }}>Previous Slot</dt>
+                      <dd style={{ margin: 0, color: '#9CA3AF', textDecoration: 'line-through' }}>{previousBooking.day}, {previousBooking.slot} IST</dd>
+                    </>
+                  )}
                   <dt style={{ fontWeight: 600 }}>Desk</dt>
                   <dd style={{ margin: 0 }}>{role} · {system} · {volume} per week</dd>
                   <dt style={{ fontWeight: 600 }}>Focus</dt>
@@ -1590,7 +1978,7 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                       disabled={isSubmitting}
                       style={{ ...buttonWobbleStyle, fontSize: '19px', padding: '14px 24px' }}
                     >
-                      {isSubmitting ? 'Confirming...' : 'Confirm my slot'}
+                      {isSubmitting ? (isRescheduling ? 'Updating slot…' : 'Confirming…') : (isRescheduling ? 'Confirm updated slot' : 'Confirm my slot')}
                     </button>
                   </div>
                 </form>
@@ -1618,10 +2006,10 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                     </svg>
                   </div>
                   <div style={{ fontFamily: 'Caveat, cursive', fontWeight: 700, fontSize: '54px', lineHeight: 1 }}>
-                    You're booked.
+                    {previousBooking ? 'Slot updated!' : 'You\'re booked.'}
                   </div>
                   <p style={{ margin: 0 }}>
-                    Booking <strong>{bookingRef}</strong>: <strong>{curDay.l}, {selectedSlot} IST, online</strong>. We'll send the call link to <span>{email}</span> and your WhatsApp.
+                    Booking <strong>{bookingRef}</strong>: <strong>{curDay.l}, {selectedSlot} IST, online</strong>. We&apos;ve sent confirmation emails to <strong>{email}</strong> and our team, plus updates to your WhatsApp.
                   </p>
                   <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
                     <a
@@ -1665,10 +2053,15 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                 <div style={{ fontFamily: 'Caveat, cursive', fontWeight: 700, fontSize: '46px', lineHeight: 1 }}>
                   Booking cancelled.
                 </div>
-                <p>Your slot is free again. You can book a new one any time while slots are open.</p>
+                <p style={{ margin: '14px 0', fontSize: '16px', color: '#4B5563' }}>
+                  Your slot is free again. A cancellation email has been dispatched to both your inbox and our team. You can book a new one any time while slots are open.
+                </p>
                 <button
                   type="button"
-                  onClick={() => setStep(3)}
+                  onClick={() => {
+                    setSelectedSlot('');
+                    setStep(3);
+                  }}
                   style={{ ...buttonWobbleStyle, fontSize: '19px', padding: '14px 24px' }}
                 >
                   Book a new slot
@@ -1889,32 +2282,37 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                 Cancel this booking?
               </h3>
               <p style={{ margin: '0 0 24px', fontSize: '15px', color: '#555555', lineHeight: 1.5 }}>
-                Are you sure you want to cancel your pilot onboarding slot? This slot will be released for other attendees.
+                Are you sure you want to cancel your pilot onboarding slot? This slot will be released for other attendees, and cancellation notifications will be sent to both your email and our team.
               </p>
               <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
                 <button
                   type="button"
+                  disabled={isCancelling}
                   onClick={() => setShowCancelConfirm(false)}
                   style={{
                     ...backButtonStyle,
                     padding: '10px 20px',
                     fontSize: '15px',
+                    opacity: isCancelling ? 0.5 : 1,
+                    cursor: isCancelling ? 'not-allowed' : 'pointer',
                   }}
                 >
                   No, keep slot
                 </button>
                 <button
                   type="button"
+                  disabled={isCancelling}
                   onClick={confirmCancellation}
                   style={{
                     ...buttonWobbleStyle,
                     padding: '10px 20px',
                     fontSize: '15px',
-                    background: '#B42318',
+                    background: isCancelling ? '#9CA3AF' : '#B42318',
                     borderColor: '#2B2B2B',
+                    cursor: isCancelling ? 'not-allowed' : 'pointer',
                   }}
                 >
-                  Yes, cancel booking
+                  {isCancelling ? 'Cancelling…' : 'Yes, cancel booking'}
                 </button>
               </div>
             </div>

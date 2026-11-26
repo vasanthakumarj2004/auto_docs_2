@@ -36,8 +36,10 @@ export interface IICSPilotBookingEmailData {
   pain?: string;
   event?: string;
   booth?: string;
-  type?: 'confirmation' | 'request';
+  type?: 'confirmation' | 'request' | 'cancellation' | 'reschedule';
   status?: string;
+  previousDay?: string;
+  previousSlot?: string;
 }
 
 // Send comprehensive IICS 2026 pilot booking confirmation or custom slot request email (Nodemailer SMTP via server)

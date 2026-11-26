@@ -191,13 +191,82 @@ try {
   $pain = htmlspecialchars(trim($payload['pain'] ?? 'N/A'));
   $booth = htmlspecialchars(trim($payload['booth'] ?? 'Booth Q53'));
   $type = $payload['type'] ?? '';
+  $previousDay = htmlspecialchars(trim($payload['previousDay'] ?? ''));
+  $previousSlot = htmlspecialchars(trim($payload['previousSlot'] ?? ''));
 
-  $isRequest = ($type === 'request') || (stripos($slot, 'to be') !== false) || (stripos($day, 'custom') !== false);
-  $statusText = $payload['status'] ?? ($isRequest ? 'Requested (To Be Coordinated)' : 'Confirmed');
+  $isCancellation = ($type === 'cancellation');
+  $isReschedule = ($type === 'reschedule');
+  $isRequest = (!$isCancellation && !$isReschedule) && (($type === 'request') || (stripos($slot, 'to be') !== false) || (stripos($day, 'custom') !== false));
 
-  $subjectLine = $isRequest
-    ? "Request Received Docsynecx IICS 2026 Pilot Walkthrough Custom Slot"
-    : "Confirmation Docsynecx IICS 2026 Pilot Walkthrough";
+  $statusText = $payload['status'] ?? null;
+  if (!$statusText) {
+    if ($isCancellation) $statusText = 'Cancelled';
+    else if ($isReschedule) $statusText = 'Rescheduled';
+    else if ($isRequest) $statusText = 'Requested (To Be Coordinated)';
+    else $statusText = 'Confirmed';
+  }
+
+  $subjectLine = "Confirmation Docsynecx IICS 2026 Pilot Walkthrough";
+  $adminSubjectLine = "[Lead Notification] Confirmation Docsynecx IICS 2026 Pilot Walkthrough - {$company}";
+
+  if ($isCancellation) {
+    $subjectLine = "Booking Cancelled: Docsynecx IICS 2026 Pilot Walkthrough";
+    $adminSubjectLine = "[Booking Cancelled] Docsynecx IICS 2026 Pilot Walkthrough - {$company} ({$name})";
+  } else if ($isReschedule) {
+    $subjectLine = "Booking Rescheduled: Docsynecx IICS 2026 Pilot Walkthrough";
+    $adminSubjectLine = "[Booking Rescheduled] Docsynecx IICS 2026 Pilot Walkthrough - {$company} ({$name})";
+  } else if ($isRequest) {
+    $subjectLine = "Request Received Docsynecx IICS 2026 Pilot Walkthrough Custom Slot";
+    $adminSubjectLine = "[Custom Slot Request] Docsynecx IICS 2026 Pilot Walkthrough - {$company}";
+  }
+
+  $badgeBg = '#ecfdf5';
+  $badgeColor = '#047857';
+  if ($isCancellation) {
+    $badgeBg = '#fef2f2';
+    $badgeColor = '#b91c1c';
+  } else if ($isReschedule) {
+    $badgeBg = '#eff6ff';
+    $badgeColor = '#1d4ed8';
+  }
+
+  $introGreeting = "Hello <strong>{$name}</strong>, thank you for reserving your 1-Month Pilot Walkthrough session with Docsynecx for <strong>{$company}</strong>.";
+  if ($isCancellation) {
+    $introGreeting = "Hello <strong>{$name}</strong>, your 1-Month Pilot Walkthrough session reservation with Docsynecx for <strong>{$company}</strong> has been cancelled. Your slot has been released.";
+  } else if ($isReschedule) {
+    $introGreeting = "Hello <strong>{$name}</strong>, your 1-Month Pilot Walkthrough session with Docsynecx for <strong>{$company}</strong> has been successfully rescheduled.";
+  }
+
+  $prevSlotHtml = ($isReschedule && !empty($previousSlot))
+    ? "<tr style=\"border-bottom: 1px solid #f3f4f6;\"><td style=\"padding: 9px 0; color: #6b7280;\">Previous Slot</td><td style=\"padding: 9px 0; color: #9ca3af; text-decoration: line-through;\">" . (!empty($previousDay) ? "{$previousDay} at " : "") . "{$previousSlot} IST</td></tr>"
+    : "";
+
+  $slotLabel = $isCancellation ? 'Cancelled Slot' : 'Date & Time';
+
+  $boxHtml = "";
+  if ($isCancellation) {
+    $boxHtml = "
+    <div style=\"background: #fffbeb; border: 1px solid #fef3c7; border-radius: 8px; padding: 16px; margin-bottom: 24px; font-size: 14px; color: #92400e;\">
+      <strong>Slot Released:</strong> Your booking has been cancelled and the slot has been made available to other attendees. If this was a mistake or you wish to schedule a new slot, you can re-book any time at <a href=\"https://docsynecx.com/events/iics-pilot\" style=\"color: #1F6B45; font-weight: 600; text-decoration: underline;\">docsynecx.com/events/iics-pilot</a>.
+    </div>";
+  } else if ($isRequest) {
+    $boxHtml = "
+    <div style=\"background: #fffbeb; border: 1px solid #fef3c7; border-radius: 8px; padding: 16px; margin-bottom: 24px; font-size: 14px; color: #92400e;\">
+      <strong>Next Steps:</strong> Our engineering & solutions team will contact you directly on WhatsApp (<strong>{$phone}</strong>) or Email (<strong>{$email}</strong>) to coordinate a custom walkthrough time.
+    </div>";
+  } else {
+    $boxHtml = "
+    <div style=\"background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 16px; margin-bottom: 24px;\">
+      <div style=\"font-weight: 700; color: #166534; font-size: 14px; margin-bottom: 6px;\">1-Month Pilot Inclusions (IICS 2026 Exclusive):</div>
+      <ul style=\"margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.6; color: #166534;\">
+        <li>Up to 250 live enquiries / shipment documents processed at zero platform fee</li>
+        <li>Same-day start & onboarding by core engineering team at Booth Q53</li>
+        <li>RFQ to Booking, Shipment Documents, Live Tracking, Finance Reconciliation</li>
+        <li>Native integrations for CargoWise, TallyPrime, Zoho Books, or custom forwarder TMS</li>
+      </ul>
+      <div style=\"margin-top: 10px; font-size: 13px; color: #166534;\"><strong>What to prepare:</strong> Please have 1 sample RFQ email and 1 shipping document ready for the live walkthrough.</div>
+    </div>";
+  }
 
   $attendeeHtml = "
   <div style=\"font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 620px; margin: 0 auto; background: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; color: #1f2937;\">
@@ -206,24 +275,26 @@ try {
       <div style=\"font-size: 14px; opacity: 0.9; margin-top: 4px;\">IICS 2026 Pilot Walkthrough</div>
     </div>
     <div style=\"padding: 32px;\">
-      <div style=\"display: inline-block; background: #ecfdf5; color: #047857; font-size: 13px; font-weight: 600; padding: 4px 12px; border-radius: 9999px; margin-bottom: 16px;\">
+      <div style=\"display: inline-block; background: {$badgeBg}; color: {$badgeColor}; font-size: 13px; font-weight: 600; padding: 4px 12px; border-radius: 9999px; margin-bottom: 16px;\">
         Status: {$statusText}
       </div>
       <h2 style=\"font-size: 20px; font-weight: 700; margin: 0 0 12px; color: #111827;\">{$subjectLine}</h2>
       <p style=\"font-size: 15px; line-height: 1.6; color: #4b5563; margin: 0 0 24px;\">
-        Hello <strong>{$name}</strong>, thank you for reserving your 1-Month Pilot Walkthrough session with Docsynecx for <strong>{$company}</strong>.
+        {$introGreeting}
       </p>
       <div style=\"background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 18px; margin-bottom: 24px;\">
         <table style=\"width: 100%; border-collapse: collapse; font-size: 14px;\">
-          <tr style=\"border-bottom: 1px solid #f3f4f6;\"><td style=\"padding: 9px 0; color: #6b7280;\">Date & Time</td><td style=\"padding: 9px 0; font-weight: 600;\">{$day} at {$slot} IST</td></tr>
+          <tr style=\"border-bottom: 1px solid #f3f4f6;\"><td style=\"padding: 9px 0; color: #6b7280;\">{$slotLabel}</td><td style=\"padding: 9px 0; font-weight: 600;\">{$day} at {$slot} IST</td></tr>
+          {$prevSlotHtml}
           <tr style=\"border-bottom: 1px solid #f3f4f6;\"><td style=\"padding: 9px 0; color: #6b7280;\">Location</td><td style=\"padding: 9px 0; font-weight: 600;\">{$booth}, Jio World Convention Centre, BKC, Mumbai</td></tr>
           <tr style=\"border-bottom: 1px solid #f3f4f6;\"><td style=\"padding: 9px 0; color: #6b7280;\">Desk Role</td><td style=\"padding: 9px 0; font-weight: 600;\">{$role}</td></tr>
           <tr style=\"border-bottom: 1px solid #f3f4f6;\"><td style=\"padding: 9px 0; color: #6b7280;\">Current System</td><td style=\"padding: 9px 0; font-weight: 600;\">{$system}</td></tr>
           <tr><td style=\"padding: 9px 0; color: #6b7280;\">Weekly Volume</td><td style=\"padding: 9px 0; font-weight: 600;\">{$volume} quotes/enquiries</td></tr>
         </table>
       </div>
+      {$boxHtml}
       <p style=\"font-size: 14px; line-height: 1.6; color: #6b7280; margin: 0;\">
-        Need to reschedule or reach us immediately? Reply directly to this email or reach us on WhatsApp ({$phone}).
+        Need to reschedule or reach us immediately? Reach out to our team at <a href=\"mailto:admin@docsynecx.com\" style=\"color: #1F6B45; text-decoration: none;\">admin@docsynecx.com</a> or message us on WhatsApp.
       </p>
     </div>
     <div style=\"background: #f9fafb; padding: 16px 32px; border-top: 1px solid #e5e7eb; font-size: 12px; color: #9ca3af; text-align: center;\">
@@ -231,16 +302,24 @@ try {
     </div>
   </div>";
 
+  $adminTitle = $isCancellation ? '⚠️ IICS 2026 Pilot Booking CANCELLED' : ($isReschedule ? '🔄 IICS 2026 Pilot Booking RESCHEDULED' : 'New IICS 2026 Pilot Booking / Walkthrough Lead');
+
+  $adminSlotLabel = $isCancellation ? 'Cancelled Slot' : ($isReschedule ? 'New Slot' : 'Reserved Slot');
+  $adminPrevSlotItem = ($isReschedule && !empty($previousSlot))
+    ? "<li><strong>Previous Slot:</strong> " . (!empty($previousDay) ? "{$previousDay} at " : "") . "{$previousSlot} IST</li>"
+    : "";
+
   $adminHtml = "
 <div style=\"font-family: sans-serif; padding: 20px; color: #222;\">
-  <h2>New IICS 2026 Pilot Booking / Walkthrough Lead</h2>
+  <h2>{$adminTitle}</h2>
   <p><strong>Status:</strong> {$statusText}</p>
   <ul>
     <li><strong>Name:</strong> {$name}</li>
     <li><strong>Company:</strong> {$company}</li>
     <li><strong>Email:</strong> {$email}</li>
     <li><strong>Phone/WA:</strong> {$phone}</li>
-    <li><strong>Reserved Slot:</strong> {$day} at {$slot} IST</li>
+    <li><strong>{$adminSlotLabel}:</strong> {$day} at {$slot} IST</li>
+    {$adminPrevSlotItem}
     <li><strong>Event:</strong> IICS 2026 ({$booth})</li>
     <li><strong>Role:</strong> {$role}</li>
     <li><strong>System:</strong> {$system}</li>
@@ -250,7 +329,7 @@ try {
 </div>";
 
   sendSmtpMail($email, $subjectLine, $attendeeHtml, null, 'Docsynecx IICS 2026');
-  sendSmtpMail($adminEmail, "[Lead Notification] {$subjectLine} - {$company}", $adminHtml, $email, 'Docsynecx Leads');
+  sendSmtpMail($adminEmail, $adminSubjectLine, $adminHtml, $email, 'Docsynecx Leads');
 
   echo json_encode(['success' => true]);
 } catch (Exception $e) {
