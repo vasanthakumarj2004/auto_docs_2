@@ -1,7 +1,8 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "identifier": "urn:air:docsynecx.com:core:platform",
   "name": "Docsynecx",
-  "displayName": "Docsynecx",
+  "displayName": "Docsynecx Platform",
   "description": "AI-powered document automation and workflow intelligence platform for finance and logistics operations.",
   "url": "https://docsynecx.com",
   "version": "1.0.0",

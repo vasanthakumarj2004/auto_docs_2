@@ -69,7 +69,7 @@ export type Feature = readonly [tag: string, title: string, description: string]
 
 export const logisticsStats = [
   { metric: '60+ min → 15 min', copy: 'to send a customer quote' },
-  { metric: '120 → 225', copy: 'quotes a day, same team' },
+  { metric: '120 → 225', copy: 'quotes a month, same team' },
   { metric: '65% fewer', copy: '"where is my cargo?" emails' },
 ] as const;
 

@@ -252,8 +252,7 @@ function NavbarMenuCard({
               <ArrowRight size={15} aria-hidden="true" />
             </button>
           ))}
-          <Link
-            href={menu.overviewHref}
+          <Link prefetch={false} href={menu.overviewHref}
             className={cardStyles.overview}
             onClick={onNavigate}
           >
@@ -273,8 +272,7 @@ function NavbarMenuCard({
         </p>
         <div className={cardStyles.links}>
           {current.links.map((item) => (
-            <Link
-              href={item.href}
+            <Link prefetch={false} href={item.href}
               key={item.title}
               className={cardStyles.link}
               onClick={onNavigate}
@@ -293,8 +291,7 @@ function NavbarMenuCard({
         </div>
       </div>
       <aside className={cardStyles.aside}>
-        <Link
-          href={menu.overviewHref}
+        <Link prefetch={false} href={menu.overviewHref}
           className={cardStyles.promo}
           onClick={onNavigate}
         >
@@ -318,8 +315,7 @@ function NavbarMenuCard({
         </Link>
         <div className={cardStyles.contact}>
           <span>See it on your own documents.</span>
-          <Link
-            href="/demo/"
+          <Link prefetch={false} href="/demo/"
             className={cardStyles.demoButton}
             onClick={onNavigate}
           >
@@ -433,8 +429,7 @@ export function LandingNavigation({
       onMouseLeave={handleMouseLeave}
     >
       <div className={`site-shell ${styles.navbar}`}>
-        <Link
-          href="/"
+        <Link prefetch={false} href="/"
           className={styles.brand}
           aria-label="Docsynecx home"
           onClick={close}
@@ -502,8 +497,7 @@ export function LandingNavigation({
               >
                 {!mobileOpen ? (
                   isClickableDesk ? (
-                    <Link
-                      href={deskHref}
+                    <Link prefetch={false} href={deskHref}
                       ref={(node) => {
                         menuTriggers.current[item.key] =
                           node as unknown as HTMLButtonElement;
@@ -571,8 +565,7 @@ export function LandingNavigation({
                   <ul className={styles.mobileDropdownList}>
                     {menuData?.overviewHref && (
                       <li key="overview">
-                        <Link
-                          href={menuData.overviewHref}
+                        <Link prefetch={false} href={menuData.overviewHref}
                           onClick={close}
                           className={styles.mobileOverviewLink}
                         >
@@ -583,7 +576,7 @@ export function LandingNavigation({
                     )}
                     {MEGA_MENUS[item.key]?.overviewLinks.map((link) => (
                       <li key={link.title}>
-                        <Link href={link.href} onClick={close}>
+                        <Link prefetch={false} href={link.href} onClick={close}>
                           <strong>{link.title}</strong>
                           {link.description && <span>{link.description}</span>}
                         </Link>
@@ -591,7 +584,7 @@ export function LandingNavigation({
                     ))}
                     {MEGA_MENUS[item.key]?.featureLinks.map((link) => (
                       <li key={link.title}>
-                        <Link href={link.href} onClick={close}>
+                        <Link prefetch={false} href={link.href} onClick={close}>
                           {link.sno && (
                             <span className={styles.megaItemNumber}>
                               {link.sno}
@@ -615,7 +608,7 @@ export function LandingNavigation({
                     )}
                     {MEGA_MENUS[item.key]?.whoLinks?.map((link) => (
                       <li key={link.title}>
-                        <Link href={link.href} onClick={close}>
+                        <Link prefetch={false} href={link.href} onClick={close}>
                           <strong>{link.title}</strong>
                         </Link>
                       </li>
@@ -630,7 +623,7 @@ export function LandingNavigation({
                     )}
                     {MEGA_MENUS[item.key]?.integrationsLinks?.map((link) => (
                       <li key={link.title}>
-                        <Link href={link.href} onClick={close}>
+                        <Link prefetch={false} href={link.href} onClick={close}>
                           <strong>{link.title}</strong>
                         </Link>
                       </li>
@@ -641,8 +634,7 @@ export function LandingNavigation({
             );
           })}
 
-          <Link
-            href="/demo-form"
+          <Link prefetch={false} href="/demo-form"
             className={`${styles.demoButton} ${styles.navDemo} ${styles.mobileDemo} ${styles.mobileDemoCta}`}
             data-track="cta_click"
             data-track-name="nav_book_demo_mobile"
@@ -654,8 +646,7 @@ export function LandingNavigation({
           </Link>
         </nav>
 
-        <Link
-          href="/demo-form"
+        <Link prefetch={false} href="/demo-form"
           className={`${styles.demoButton} ${styles.navDemo} ${styles.desktopDemo}`}
           data-track="cta_click"
           data-track-name="nav_book_demo_desktop"

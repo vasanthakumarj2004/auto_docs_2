@@ -10,7 +10,7 @@ import { GoogleAnalytics } from '@/src/components/analytics/GoogleAnalytics';
 import { jsonLd } from '@/src/lib/seo';
 
 const GOOGLE_FONTS_URL =
-  'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Allura&family=Alex+Brush&display=swap';
+  'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Caveat:wght@500;700&family=Inter:wght@400;600;800&family=Allura&family=Alex+Brush&display=swap';
 
 export const viewport: Viewport = {
   themeColor: '#2E8B57',

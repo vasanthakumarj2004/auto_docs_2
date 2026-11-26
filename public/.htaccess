@@ -89,14 +89,20 @@
   RewriteRule ^\.well-known/ - [L]
   RewriteRule ^(ai-catalog\.json|ard\.json|llms\.txt|llms-full\.txt|robots\.txt|sitemap\.xml)$ - [L]
 
+  # Route API booking email endpoint to server PHP SMTP handler
+  RewriteRule ^api/events/send-booking-email/?$ /api/send-booking-email.php [L]
+
   # Next.js RSC prefetch routing (fallback to directory or index.txt if flat file not found)
   RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteRule ^events/iics-2026/__next.*\.txt$ events/iics-2026/__next.events/iics-2026/__PAGE__.txt [L]
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteRule ^(.+)/__next\.([^/]+)[\._]+PAGE__\.txt$ $1/__next.$2/__PAGE__.txt [L]
-  RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{DOCUMENT_ROOT}/$1/index.txt -f
-  RewriteRule ^(.+)/__next\..+\.txt$ $1/index.txt [L]
+  RewriteRule ^(.+)/__next\..+\.txt$ /$1/index.txt [L]
+
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^events/iics-2026/__next.*\.txt$ /events/iics-2026/index.txt [L]
+
+  # Universal fallback for any remaining __next.*.txt request to avoid console 404
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^.*__next.*\.txt$ /index.txt [L]
 
   # 301 Redirects: Email & RFQ to Canonical Lowercase
   RewriteRule ^demo/demo-form/?$ /demo-form [R=301,L]

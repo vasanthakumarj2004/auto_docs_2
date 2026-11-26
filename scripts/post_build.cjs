@@ -145,7 +145,8 @@ function syncPublicAssets(buildDir = 'build') {
     'ai-catalog.json',
     'llms.txt',
     'llms-full.txt',
-    '.htaccess'
+    '.htaccess',
+    'sitemap.xml'
   ];
 
   for (const a of assets) {
@@ -181,4 +182,11 @@ if (fs.existsSync(devDir)) {
   } catch (e) {
     // ignore
   }
+}
+const buildLock = path.join('build', 'lock');
+if (fs.existsSync(buildLock)) {
+  try {
+    fs.unlinkSync(buildLock);
+    console.log('[post_build] Removed build/lock file.');
+  } catch (e) {}
 }

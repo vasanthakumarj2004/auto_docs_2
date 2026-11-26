@@ -534,7 +534,7 @@ export function EmailToBookingPage() {
                 <div className={s.outcomeCardContent}>
                   <span className={s.outcomeStatValue}>120 → 225+</span>
                   <span className={s.outcomeStatLabel}>
-                    quotes a day, with the same team
+                    quotes a month, with the same team
                   </span>
                 </div>
               </div>
@@ -829,7 +829,7 @@ export function EmailToBookingPage() {
                 Same team, <em>nearly twice the quotes</em>.
               </h2>
               <p className={s.lead}>
-                Their desk used to send about 120 quotes a day. A year later
+                Their desk used to send about 120 quotes a month. A year later
                 it&apos;s over 225, with the same people. Every enquiry goes
                 through the same steps, not just the easy ones.
               </p>
@@ -838,7 +838,7 @@ export function EmailToBookingPage() {
             <div className={s.resultsGrid4}>
               <div className={s.resultStatCard}>
                 <span className={s.resultStatNum}>120 → 225+</span>
-                <span className={s.resultStatLabel}>quotes a day</span>
+                <span className={s.resultStatLabel}>quotes a month</span>
               </div>
               <div className={s.resultStatCard}>
                 <span className={s.resultStatNum}>15 min</span>

@@ -47,11 +47,11 @@ export function ShipsyFooter({
                 and matching directly in Tally and CargoWise.
               </p>
               <div className={styles.ctaActions}>
-                <Link href="/demo/" className={styles.ctaPrimaryBtn}>
+                <Link prefetch={false} href="/demo/" className={styles.ctaPrimaryBtn}>
                   <span>Book a demo</span>
                   <ArrowUpRight size={16} aria-hidden="true" />
                 </Link>
-                <Link href="/calculator/" className={styles.ctaSecondaryBtn}>
+                <Link prefetch={false} href="/calculator/" className={styles.ctaSecondaryBtn}>
                   <span>Calculate ROI</span>
                 </Link>
               </div>
@@ -65,8 +65,7 @@ export function ShipsyFooter({
           <div className={styles.footerGrid}>
             {/* Column 1: Brand, Positioning, Socials & Shipsy Trust Badges */}
             <div className={styles.brandCol}>
-              <Link
-                href="/"
+              <Link prefetch={false} href="/"
                 className={styles.logoLink}
                 aria-label="Docsynecx home"
               >
@@ -126,12 +125,12 @@ export function ShipsyFooter({
               <h3 className={styles.colHeader}>Platforms</h3>
               <ul className={styles.linkList}>
                 <li>
-                  <Link href="/finance-desk/" className={styles.footerLink}>
+                  <Link prefetch={false} href="/finance-desk/" className={styles.footerLink}>
                     Docsynecx Finance
                   </Link>
                 </li>
                 <li>
-                  <Link href="/logistics-desk" className={styles.footerLink}>
+                  <Link prefetch={false} href="/logistics-desk" className={styles.footerLink}>
                     Docsynecx Logistics
                   </Link>
                 </li>
@@ -143,34 +142,31 @@ export function ShipsyFooter({
               <h3 className={styles.colHeader}>Solutions by Use Case</h3>
               <ul className={styles.linkList}>
                 <li>
-                  <Link
-                    href="/solutions#automotive"
+                  <Link prefetch={false} href="/solutions#automotive"
                     className={styles.footerLink}
                   >
                     Automotive &amp; EV
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/solutions#manufacturing"
+                  <Link prefetch={false} href="/solutions#manufacturing"
                     className={styles.footerLink}
                   >
                     Industrial Manufacturing
                   </Link>
                 </li>
                 <li>
-                  <Link href="/solutions#textile" className={styles.footerLink}>
+                  <Link prefetch={false} href="/solutions#textile" className={styles.footerLink}>
                     Textile &amp; Garments
                   </Link>
                 </li>
                 <li>
-                  <Link href="/solutions#retail" className={styles.footerLink}>
+                  <Link prefetch={false} href="/solutions#retail" className={styles.footerLink}>
                     Retail &amp; Distribution
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/solutions#logistics"
+                  <Link prefetch={false} href="/solutions#logistics"
                     className={styles.footerLink}
                   >
                     Freight &amp; Logistics
@@ -184,40 +180,35 @@ export function ShipsyFooter({
               <h3 className={styles.colHeader}>Finance</h3>
               <ul className={styles.linkList}>
                 <li>
-                  <Link
-                    href="/finance-desk/invoice-processing/"
+                  <Link prefetch={false} href="/finance-desk/invoice-processing/"
                     className={styles.footerLink}
                   >
                     Invoice Processing
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/finance-desk/banking-reconciliation/"
+                  <Link prefetch={false} href="/finance-desk/banking-reconciliation/"
                     className={styles.footerLink}
                   >
                     Banking & Reconciliation
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/finance-desk/payment-reminders/"
+                  <Link prefetch={false} href="/finance-desk/payment-reminders/"
                     className={styles.footerLink}
                   >
                     Payment Reminders
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/finance-desk/accounts-payable/"
+                  <Link prefetch={false} href="/finance-desk/accounts-payable/"
                     className={styles.footerLink}
                   >
                     Accounts Payable
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/finance-desk/docsynecx-intelligence/"
+                  <Link prefetch={false} href="/finance-desk/docsynecx-intelligence/"
                     className={styles.footerLink}
                   >
                     Docsynecx Intelligence
@@ -225,32 +216,28 @@ export function ShipsyFooter({
                 </li>
 
                 <li>
-                  <Link
-                    href="/finance-desk/business-owners/"
+                  <Link prefetch={false} href="/finance-desk/business-owners/"
                     className={styles.footerLink}
                   >
                     For Business Owners
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/finance-desk/finance-teams/"
+                  <Link prefetch={false} href="/finance-desk/finance-teams/"
                     className={styles.footerLink}
                   >
                     For Finance Teams
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/finance-desk/accounts-teams/"
+                  <Link prefetch={false} href="/finance-desk/accounts-teams/"
                     className={styles.footerLink}
                   >
                     For Accounts Teams
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/finance-desk/ca-firms/"
+                  <Link prefetch={false} href="/finance-desk/ca-firms/"
                     className={styles.footerLink}
                   >
                     For CA Firms
@@ -258,24 +245,21 @@ export function ShipsyFooter({
                 </li>
 
                 <li>
-                  <Link
-                    href="/finance-desk/integration-tally"
+                  <Link prefetch={false} href="/finance-desk/integration-tally"
                     className={styles.footerLink}
                   >
                     TallyPrime Integration
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/finance-desk/integration-zoho"
+                  <Link prefetch={false} href="/finance-desk/integration-zoho"
                     className={styles.footerLink}
                   >
                     Zoho Books Integration
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/finance-desk/integration-erp"
+                  <Link prefetch={false} href="/finance-desk/integration-erp"
                     className={styles.footerLink}
                   >
                     Custom ERP Integration
@@ -289,40 +273,35 @@ export function ShipsyFooter({
               <h3 className={styles.colHeader}>Logistics</h3>
               <ul className={styles.linkList}>
                 <li>
-                  <Link
-                    href="/logistics-desk/rfq-to-booking/"
+                  <Link prefetch={false} href="/logistics-desk/rfq-to-booking/"
                     className={styles.footerLink}
                   >
                     RFQ-to-Booking
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/logistics-desk/shipment-operations/"
+                  <Link prefetch={false} href="/logistics-desk/shipment-operations/"
                     className={styles.footerLink}
                   >
                     Shipment Operations
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/logistics-desk/shipment-tracking/"
+                  <Link prefetch={false} href="/logistics-desk/shipment-tracking/"
                     className={styles.footerLink}
                   >
                     Shipment Tracking
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/logistics-desk/freight-intelligence/"
+                  <Link prefetch={false} href="/logistics-desk/freight-intelligence/"
                     className={styles.footerLink}
                   >
                     Freight Intelligence
                   </Link>
                 </li>
                 <li>
-                  <Link
-                    href="/logistics-desk/integrations/"
+                  <Link prefetch={false} href="/logistics-desk/integrations/"
                     className={styles.footerLink}
                   >
                     Integrations
@@ -336,22 +315,22 @@ export function ShipsyFooter({
               <h3 className={styles.colHeader}>Resources</h3>
               <ul className={styles.linkList}>
                 <li>
-                  <Link href="/blogs" className={styles.footerLink}>
+                  <Link prefetch={false} href="/blogs" className={styles.footerLink}>
                     Blogs
                   </Link>
                 </li>
                 {/* <li>
-                <Link href="/customers" className={styles.footerLink}>
+                <Link prefetch={false} href="/customers" className={styles.footerLink}>
                   Case Studies
                 </Link>
               </li> */}
                 <li>
-                  <Link href="/about" className={styles.footerLink}>
+                  <Link prefetch={false} href="/about" className={styles.footerLink}>
                     About Us
                   </Link>
                 </li>
                 <li>
-                  <Link href="/events/iics-2026/" className={styles.footerLink}>
+                  <Link prefetch={false} href="/events/iics-2026/" className={styles.footerLink}>
                     Events
                   </Link>
                 </li>
@@ -363,18 +342,18 @@ export function ShipsyFooter({
               <h3 className={styles.colHeader}>Company</h3>
               <ul className={styles.linkList}>
                 <li>
-                  <Link href="/privacy-policy" className={styles.footerLink}>
+                  <Link prefetch={false} href="/privacy-policy" className={styles.footerLink}>
                     Privacy Policy
                   </Link>
                 </li>
                 <li>
-                  <Link href="/terms-of-service" className={styles.footerLink}>
+                  <Link prefetch={false} href="/terms-of-service" className={styles.footerLink}>
                     Terms of Service
                   </Link>
                 </li>
 
                 <li>
-                  <Link href="/contact" className={styles.footerLink}>
+                  <Link prefetch={false} href="/contact" className={styles.footerLink}>
                     Contact Us
                   </Link>
                 </li>

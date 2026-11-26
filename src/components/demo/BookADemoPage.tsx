@@ -459,7 +459,7 @@ export function BookADemoPage() {
                     disabled={isSubmitting}
                   >
                     <span>
-                      {isSubmitting ? 'Submitting enquiry...' : 'Submit demo'}
+                      {isSubmitting ? 'Submitting enquiry...' : 'Submit Demo'}
                     </span>
                     {!isSubmitting && <ArrowUpRight size={17} aria-hidden="true" />}
                   </button>

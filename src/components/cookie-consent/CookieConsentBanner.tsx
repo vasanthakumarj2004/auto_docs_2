@@ -1,12 +1,14 @@
 'use client';
 
 import React from 'react';
+import { usePathname } from 'next/navigation';
 import { Cookie, SlidersHorizontal, X } from 'lucide-react';
 import { useConsent } from '@/src/context/ConsentContext';
 import { CookiePreferences } from './CookiePreferences';
 import styles from './CookieConsent.module.css';
 
 export const CookieConsentBanner: React.FC = () => {
+  const pathname = usePathname();
   const {
     isBannerOpen,
     isCustomizing,
@@ -16,6 +18,11 @@ export const CookieConsentBanner: React.FC = () => {
     openCustomizing,
     closeBanner,
   } = useConsent();
+
+  // Exclude cookie banner on event / IICS pilot pages
+  if (pathname?.startsWith('/events/') || pathname?.includes('iics')) {
+    return null;
+  }
 
   if (!hasHydrated || !isBannerOpen) {
     return null;

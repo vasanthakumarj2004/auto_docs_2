@@ -78,6 +78,7 @@ export function LandingAnnouncementBar() {
         {/* Full Clickable Area to Event Page */}
         <Link
           href="/events/iics-2026/"
+          prefetch={false}
           className={s.linkWrapper}
           title="Meet Docsynecx at IICS 2026 — Booth Q53"
         >
