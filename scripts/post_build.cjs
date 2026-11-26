@@ -157,6 +157,16 @@ function syncPublicAssets(buildDir = 'build') {
     }
   }
 
+  // Also sync api folder (PHP SMTP Gateway for GoDaddy)
+  const apiSrc = path.join('public', 'api');
+  const apiDest = path.join(buildDir, 'api');
+  if (fs.existsSync(apiSrc)) {
+    fs.mkdirSync(apiDest, { recursive: true });
+    for (const f of fs.readdirSync(apiSrc)) {
+      fs.copyFileSync(path.join(apiSrc, f), path.join(apiDest, f));
+    }
+  }
+
   // Also sync .well-known
   const wellKnownSrc = path.join('public', '.well-known');
   const wellKnownDest = path.join(buildDir, '.well-known');
