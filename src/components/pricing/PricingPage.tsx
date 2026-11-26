@@ -299,8 +299,8 @@ export function PricingPage() {
                       </li>
                     </ul>
                     <div className={s.planFooter}>
-                      <Link className={s.secondaryBtn} href="https://invoice.docsynecx.com/signin/">
-                        <span>Talk to us about Starter</span>
+                      <Link className={s.secondaryBtn} href="https://invoice.docsynecx.com/signup/">
+                        <span>Explore Starter</span>
                         <ArrowUpRight size={15} aria-hidden="true" />
                       </Link>
                     </div>
@@ -351,8 +351,8 @@ export function PricingPage() {
                       </li>
                     </ul>
                     <div className={s.planFooter}>
-                      <Link className={s.primaryBtn} href="https://invoice.docsynecx.com/signin/">
-                        <span>Talk to us about Professional</span>
+                      <Link className={s.primaryBtn} href="https://invoice.docsynecx.com/signup/">
+                        <span>Explore Professional</span>
                         <ArrowUpRight size={15} aria-hidden="true" />
                       </Link>
                     </div>
