@@ -2,11 +2,9 @@ import type { Metadata, Viewport } from 'next';
 import React from 'react';
 import Script from 'next/script';
 import '@/src/index.css';
-import { LandingLayoutProvider } from '@/src/components/LandingLayoutProvider';
-import { darkThemeInitScript, LOGO_GREEN } from '@/src/lib/darkTheme';
-import { CookieConsent } from '@/src/components/CookieConsent';
+import { darkThemeInitScript } from '@/src/lib/darkTheme';
 import { ConsentProvider } from '@/src/context/ConsentContext';
-import { GoogleAnalytics } from '@/src/components/analytics/GoogleAnalytics';
+import { DeferredGlobalFeatures } from '@/src/components/DeferredGlobalFeatures';
 import { jsonLd } from '@/src/lib/seo';
 
 const GOOGLE_FONTS_URL =
@@ -163,11 +161,8 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-white text-slate-800 antialiased font-sans" suppressHydrationWarning>
         <ConsentProvider>
-          <GoogleAnalytics />
-          <LandingLayoutProvider>
-            {children}
-            <CookieConsent />
-          </LandingLayoutProvider>
+          {children}
+          <DeferredGlobalFeatures />
         </ConsentProvider>
       </body>
     </html>

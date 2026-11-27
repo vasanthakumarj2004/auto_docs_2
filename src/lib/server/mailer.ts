@@ -170,10 +170,6 @@ export async function sendIICSPilotBookingMailer(data: IICSPilotBookingMailerDat
           <td style="padding: 9px 0; color: #9ca3af; text-decoration: line-through;">${safePrevDay ? `${safePrevDay} at ` : ''}${safePrevSlot} IST</td>
         </tr>` : ''}
         <tr style="border-bottom: 1px solid #f3f4f6;">
-          <td style="padding: 9px 0; color: #6b7280;">Location</td>
-          <td style="padding: 9px 0; font-weight: 600; color: #111827;">${safeBooth}, Jio World Convention Centre, BKC, Mumbai</td>
-        </tr>
-        <tr style="border-bottom: 1px solid #f3f4f6;">
           <td style="padding: 9px 0; color: #6b7280;">Desk Role</td>
           <td style="padding: 9px 0; font-weight: 600; color: #111827;">${safeRole}</td>
         </tr>
@@ -202,10 +198,7 @@ export async function sendIICSPilotBookingMailer(data: IICSPilotBookingMailerDat
     <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 16px; margin-bottom: 24px;">
       <div style="font-weight: 700; color: #166534; font-size: 14px; margin-bottom: 6px;">1-Month Pilot Inclusions (IICS 2026 Exclusive):</div>
       <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.6; color: #166534;">
-        <li>Up to 250 live enquiries / shipment documents processed at zero platform fee</li>
-        <li>Same-day start & onboarding by core engineering team at Booth Q53</li>
-        <li>RFQ to Booking, Shipment Documents, Live Tracking, Finance Reconciliation</li>
-        <li>Native integrations for CargoWise, TallyPrime, Zoho Books, or custom forwarder TMS</li>
+        <li>Up to 250 live RFQs processed from customer enquiry to booking at zero platform fee.</li>
       </ul>
       <div style="margin-top: 10px; font-size: 13px; color: #166534;"><strong>What to prepare:</strong> Please have 1 sample RFQ email and 1 shipping document ready for the live walkthrough.</div>
     </div>`
@@ -255,7 +248,7 @@ export async function sendIICSPilotBookingMailer(data: IICSPilotBookingMailerDat
       to: cleanEmail,
       subject: subjectLine,
       html: attendeeHtml,
-      text: `Docsynecx IICS 2026 Pilot Walkthrough \nStatus: ${statusText}\nTime: ${cleanDay} at ${cleanSlot} IST\nLocation: ${data.booth || 'Booth Q53'}, Jio World Convention Centre, Mumbai\nAttendee: ${cleanName} (${cleanCompany})`,
+      text: `Docsynecx IICS 2026 Pilot Walkthrough \nStatus: ${statusText}\nTime: ${cleanDay} at ${cleanSlot} IST\nAttendee: ${cleanName} (${cleanCompany})`,
     });
   } catch (err) {
     console.error('Failed to send attendee email:', err);
@@ -320,7 +313,6 @@ export async function sendEventMeetingMailer(data: EventMeetingMailerData) {
     </p>
 
     <div style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; margin: 20px 0;">
-      <p style="margin: 4px 0;"><strong>Location:</strong> ${safeBooth}, Jio World Convention Centre, BKC, Mumbai</p>
       <p style="margin: 4px 0;"><strong>Company:</strong> ${safeCompany}</p>
       <p style="margin: 4px 0;"><strong>Mobile/WA:</strong> ${safePhone}</p>
       ${safeMessage ? `<p style="margin: 4px 0;"><strong>Notes/Topic:</strong> ${safeMessage}</p>` : ''}
@@ -358,7 +350,7 @@ export async function sendEventMeetingMailer(data: EventMeetingMailerData) {
       to: cleanEmail,
       subject: subjectLine,
       html: attendeeHtml,
-      text: `Docsynecx at IICS 2026 (${cleanBooth})\nMeeting Request: ${cleanName} (${cleanCompany})\nLocation: ${cleanBooth}, Jio World Convention Centre, Mumbai`,
+      text: `Docsynecx at IICS 2026 (${cleanBooth})\nMeeting Request: ${cleanName} (${cleanCompany})`,
     });
   } catch (err) {
     console.error('Failed to send event meeting confirmation email:', err);

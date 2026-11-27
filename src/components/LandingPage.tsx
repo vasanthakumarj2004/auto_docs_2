@@ -25,9 +25,9 @@ import { landingDesks, landingFaqs } from "../content/landing";
 import styles from "./LandingHome.module.css";
 
 const DESK_IMAGES: Record<string, string> = {
-  finance: "/images/finance-desk-background-750.webp",
-  shipment: "/images/logistics-desk-background-750.webp",
-  logistics: "/images/logistics-desk-background-750.webp",
+  finance: "/images/finance-desk-background",
+  shipment: "/images/logistics-desk-background",
+  logistics: "/images/logistics-desk-background",
 };
 
 const benefits = [
@@ -249,11 +249,11 @@ export function LandingPage() {
             />
             <div className={styles.desks}>
               {landingDesks.map((desk, index) => {
-                const imageSrc =
+                const imageBase =
                   DESK_IMAGES[desk.id] ||
                   (index === 0
-                    ? "/images/finance-desk-background-750.webp"
-                    : "/images/logistics-desk-background-750.webp");
+                    ? "/images/finance-desk-background"
+                    : "/images/logistics-desk-background");
                 return (
                   <article
                     key={desk.id}
@@ -263,14 +263,15 @@ export function LandingPage() {
                   >
                     <div className={styles.deskImageWrapper}>
                       <img
-                        src={imageSrc}
+                        src={`${imageBase}-750-optimized.webp`}
+                        srcSet={`${imageBase}-480.webp 480w, ${imageBase}-640.webp 640w, ${imageBase}-750-optimized.webp 750w, ${imageBase}-1200-optimized.webp 1200w`}
                         alt={`${desk.title} background`}
                         className={styles.deskImage}
                         loading="lazy"
                         decoding="async"
                         width={750}
                         height={480}
-                        sizes="(max-width: 768px) 100vw, 750px"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                       />
                       <div className={styles.deskScrim} />
                     </div>

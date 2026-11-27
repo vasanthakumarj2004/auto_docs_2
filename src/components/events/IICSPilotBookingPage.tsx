@@ -26,6 +26,12 @@ const ALL_SLOTS = [
   '16:00',
 ];
 
+const UNAVAILABLE_DATES = new Set(['2027-01-01', '2026-12-25']);
+
+function isUnavailableDate(dateIso: string): boolean {
+  return UNAVAILABLE_DATES.has(dateIso);
+}
+
 function getTodayIso() {
   const d = new Date();
   const y = d.getFullYear();
@@ -57,8 +63,8 @@ function createDaySchedule(dateIso: string): DaySchedule {
     }
   }
 
-  // Only Monday to Friday allow slots (dayOfWeek 1 to 5). Saturday and Sunday are closed.
-  const isAllowedWeekday = dayOfWeek >= 1 && dayOfWeek <= 5;
+  // Slots are limited to weekdays, excluding configured unavailable dates.
+  const isAllowedWeekday = dayOfWeek >= 1 && dayOfWeek <= 5 && !isUnavailableDate(dateIso);
 
   return {
     id: `day-${dateIso}`,
@@ -73,18 +79,18 @@ function generateUpcomingDays(count = 5): DaySchedule[] {
   const list: DaySchedule[] = [];
   const base = new Date();
   let offset = 0;
-  // Generate upcoming days strictly for Mon, Tue, Wed, Thu, Fri
+  // Generate upcoming days strictly for available weekdays.
   while (list.length < count && offset < 30) {
     const d = new Date(base);
     d.setDate(base.getDate() + offset);
     offset++;
-    const dow = d.getDay();
-    if (dow === 0 || dow === 6) continue; // Skip Saturday and Sunday
-
     const y = d.getFullYear();
     const m = String(d.getMonth() + 1).padStart(2, '0');
     const day = String(d.getDate()).padStart(2, '0');
     const iso = `${y}-${m}-${day}`;
+    const dow = d.getDay();
+    if (dow === 0 || dow === 6 || isUnavailableDate(iso)) continue;
+
     list.push(createDaySchedule(iso));
   }
   return list;
@@ -261,6 +267,11 @@ export function IICSPilotBookingPage() {
     const dateObj = new Date(y, m - 1, d);
     const dow = dateObj.getDay();
 
+    if (isUnavailableDate(targetIso)) {
+      setDateErr('This date is closed for pilot onboarding. Please select another date.');
+      return;
+    }
+
     // Block Saturday (6) and Sunday (0) from being selected
     if (dow === 0 || dow === 6) {
       setDateErr('Saturday and Sunday are closed. Please select a weekday (Monday to Friday).');
@@ -325,6 +336,11 @@ export function IICSPilotBookingPage() {
     e.preventDefault();
     if (!selectedSlot) {
       setSlotErr('Pick a time to continue.');
+      return;
+    }
+    if (isUnavailableDate(selectedDateIso) || !getCurDay().t.includes(selectedSlot)) {
+      setSelectedSlot('');
+      setSlotErr('This date has no available slots. Please choose another date.');
       return;
     }
     setSlotErr('');
@@ -617,25 +633,14 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
   const currentMonth = now.getMonth();
   const canGoPrev = viewYear > currentYear || (viewYear === currentYear && viewMonth > currentMonth);
 
-  const handlePrevMonth = () => {
-    setViewMonth((prev) => {
-      if (prev === 0) {
-        setViewYear((y) => y - 1);
-        return 11;
-      }
-      return prev - 1;
-    });
+  const changeCalendarMonth = (offset: number) => {
+    const targetMonth = new Date(viewYear, viewMonth + offset, 1);
+    setViewYear(targetMonth.getFullYear());
+    setViewMonth(targetMonth.getMonth());
   };
 
-  const handleNextMonth = () => {
-    setViewMonth((prev) => {
-      if (prev === 11) {
-        setViewYear((y) => y + 1);
-        return 0;
-      }
-      return prev + 1;
-    });
-  };
+  const handlePrevMonth = () => changeCalendarMonth(-1);
+  const handleNextMonth = () => changeCalendarMonth(1);
 
   const buttonWobbleStyle: React.CSSProperties = {
     background: '#C2410C',
@@ -1541,7 +1546,6 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                               boxShadow: '0 1px 2px rgba(0,0,0,0.05)',
                             }}
                           >
-                            <span aria-hidden="true">📅</span>
                             <span>{formatDisplayDate(selectedDateIso) || 'Select date'}</span>
                             <span style={{ fontSize: '10px', color: '#6B7280' }}>{showCalendar ? '▲' : '▼'}</span>
                           </button>
@@ -1640,9 +1644,10 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                                 const dayDate = new Date(viewYear, viewMonth, dayNum);
                                 const dow = dayDate.getDay(); // 0 is Sun, 6 is Sat
                                 const isWeekend = dow === 0 || dow === 6;
+                                const isUnavailable = isUnavailableDate(iso);
                                 const isPast = iso < getTodayIso();
                                 const isCurSelected = iso === selectedDateIso;
-                                const isBlocked = isWeekend || isPast;
+                                const isBlocked = isWeekend || isPast || isUnavailable;
 
                                 if (isBlocked) {
                                   return (
@@ -1650,7 +1655,13 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                                       key={iso}
                                       type="button"
                                       disabled
-                                      title={isWeekend ? 'Saturday & Sunday are closed across all months. Please choose Monday–Friday.' : 'Past dates cannot be selected.'}
+                                      title={
+                                        isUnavailable
+                                          ? 'This date is closed for pilot onboarding.'
+                                          : isWeekend
+                                            ? 'Saturday & Sunday are closed across all months. Please choose Monday–Friday.'
+                                            : 'Past dates cannot be selected.'
+                                      }
                                       style={{
                                         height: '34px',
                                         width: '100%',
@@ -1659,9 +1670,9 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                                         justifyContent: 'center',
                                         fontSize: '13px',
                                         borderRadius: '6px',
-                                        border: isWeekend ? '1px dashed #CBD5E1' : '1px solid transparent',
-                                        background: isWeekend ? '#F1F5F9' : '#FAFAFA',
-                                        color: isWeekend ? '#94A3B8' : '#CBD5E1',
+                                        border: isWeekend || isUnavailable ? '1px dashed #CBD5E1' : '1px solid transparent',
+                                        background: isWeekend || isUnavailable ? '#F1F5F9' : '#FAFAFA',
+                                        color: isWeekend || isUnavailable ? '#94A3B8' : '#CBD5E1',
                                         cursor: 'not-allowed',
                                         pointerEvents: 'none',
                                         opacity: 0.6,
@@ -1705,13 +1716,18 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
 
                             {/* Calendar Popover Footer Note */}
                             <div style={{ marginTop: '12px', paddingTop: '10px', borderTop: '1px solid #E5E7EB', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '11px', color: '#6B7280' }}>
-                              <span>🔒 Sat &amp; Sun closed (Mon–Fri only)</span>
+                              <span>🔒 Weekends and selected dates are closed</span>
                               <button
                                 type="button"
+                                disabled={
+                                  new Date().getDay() === 0 ||
+                                  new Date().getDay() === 6 ||
+                                  isUnavailableDate(getTodayIso())
+                                }
                                 onClick={() => {
                                   const today = getTodayIso();
                                   const todayDow = new Date().getDay();
-                                  if (todayDow >= 1 && todayDow <= 5) {
+                                  if (todayDow >= 1 && todayDow <= 5 && !isUnavailableDate(today)) {
                                     handleDateSelect(today);
                                   }
                                   setShowCalendar(false);
@@ -1721,7 +1737,18 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                                   border: 'none',
                                   color: '#1F6B45',
                                   fontWeight: 700,
-                                  cursor: 'pointer',
+                                  cursor:
+                                    new Date().getDay() === 0 ||
+                                    new Date().getDay() === 6 ||
+                                    isUnavailableDate(getTodayIso())
+                                      ? 'not-allowed'
+                                      : 'pointer',
+                                  opacity:
+                                    new Date().getDay() === 0 ||
+                                    new Date().getDay() === 6 ||
+                                    isUnavailableDate(getTodayIso())
+                                      ? 0.5
+                                      : 1,
                                   padding: 0,
                                   fontSize: '11px',
                                   textDecoration: 'underline',
@@ -1754,22 +1781,27 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                     >
                       {upcomingDays.map((d) => {
                         const isCur = selectedDateIso === d.iso;
+                        const isClosed = isUnavailableDate(d.iso) || d.t.length === 0;
                         return (
                           <button
                             key={d.id}
                             type="button"
+                            disabled={isClosed}
                             aria-pressed={isCur}
                             onClick={() => handleDateSelect(d.iso)}
                             style={{
                               fontFamily: 'inherit',
                               fontSize: '14px',
-                              fontWeight: 600,
+                              fontWeight: isCur && !isClosed ? 700 : 600,
                               padding: '9px 12px',
                               borderRadius: '8px',
-                              border: `2px solid ${isCur ? '#1F6B45' : '#2B2B2B'}`,
-                              cursor: 'pointer',
-                              background: isCur ? '#1F6B45' : 'transparent',
-                              color: isCur ? '#FFFFFF' : '#2B2B2B',
+                              border: `2px ${isClosed ? 'dashed' : 'solid'} ${
+                                isCur && !isClosed ? '#1F6B45' : isClosed ? '#94A3B8' : '#2B2B2B'
+                              }`,
+                              cursor: isClosed ? 'not-allowed' : 'pointer',
+                              background: isCur && !isClosed ? '#1F6B45' : isClosed ? '#F1F5F9' : 'transparent',
+                              color: isCur && !isClosed ? '#FFFFFF' : isClosed ? '#64748B' : '#2B2B2B',
+                              opacity: isClosed ? 0.65 : 1,
                               transition: 'all 0.15s ease',
                               textAlign: 'center',
                               display: 'flex',
@@ -1791,7 +1823,7 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                     </div>
                     {curDay.t.length === 0 ? (
                       <div style={{ background: '#FFFBEB', border: '1px solid #FEF3C7', padding: '16px 20px', borderRadius: '8px', color: '#92400E', fontSize: '14px', fontWeight: 600 }}>
-                        Weekend dates (Saturday & Sunday) are closed for pilot onboarding sessions. Please select any Monday to Friday to view available 11:00 AM – 4:00 PM slots.
+                        This date is closed for pilot onboarding. Weekends and selected dates are unavailable; choose another weekday to view open slots.
                       </div>
                     ) : (
                       <div
@@ -1841,6 +1873,7 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                               type="button"
                               aria-pressed={isSel}
                               onClick={() => {
+                                if (isUnavailableDate(selectedDateIso) || !curDay.t.includes(t)) return;
                                 setSelectedSlot(t);
                                 setSlotErr('');
                               }}
