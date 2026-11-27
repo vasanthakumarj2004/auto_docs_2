@@ -94,7 +94,7 @@ export async function sendIICSPilotBookingMailer(data: IICSPilotBookingMailerDat
   }
 
   let subjectLine = `Confirmation Docsynecx IICS 2026 Pilot Walkthrough`;
-  let adminSubjectLine = `[Lead Notification] Confirmation Docsynecx IICS 2026 Pilot Walkthrough - ${cleanCompany}`;
+  let adminSubjectLine = `Confirmation Docsynecx IICS 2026 Pilot Walkthrough - ${cleanCompany}`;
 
   if (isCancellation) {
     subjectLine = `Booking Cancelled: Docsynecx IICS 2026 Pilot Walkthrough`;
@@ -194,11 +194,11 @@ export async function sendIICSPilotBookingMailer(data: IICSPilotBookingMailerDat
       <strong>Slot Released:</strong> Your booking has been cancelled and the slot has been made available to other attendees. If this was a mistake or you wish to schedule a new slot, you can re-book any time at <a href="https://docsynecx.com/events/iics-pilot" style="color: #1F6B45; font-weight: 600; text-decoration: underline;">docsynecx.com/events/iics-pilot</a>.
     </div>`
       : isRequest
-      ? `
+        ? `
     <div style="background: #fffbeb; border: 1px solid #fef3c7; border-radius: 8px; padding: 16px; margin-bottom: 24px; font-size: 14px; color: #92400e;">
       <strong>Next Steps:</strong> Our engineering & solutions team will contact you directly on WhatsApp (<strong>${safePhone}</strong>) or Email (<strong>${escapeHtml(cleanEmail)}</strong>) to coordinate a custom walkthrough time.
     </div>`
-      : `
+        : `
     <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 16px; margin-bottom: 24px;">
       <div style="font-weight: 700; color: #166534; font-size: 14px; margin-bottom: 6px;">1-Month Pilot Inclusions (IICS 2026 Exclusive):</div>
       <ul style="margin: 0; padding-left: 20px; font-size: 13px; line-height: 1.6; color: #166534;">

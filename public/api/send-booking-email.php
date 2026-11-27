@@ -49,6 +49,20 @@ function sendSmtpMail($to, $subject, $htmlBody, $replyTo = null, $fromName = 'Do
 
   $socket = @stream_socket_client("ssl://{$smtpHost}:{$smtpPort}", $errno, $errstr, 15, STREAM_CLIENT_CONNECT, $context);
   if (!$socket) {
+    // Fallback to PHP native mail() if socket connection is blocked by host
+    $nativeHeaders = [
+      "From: {$fromName} <{$smtpUser}>",
+      "MIME-Version: 1.0",
+      "Content-Type: text/html; charset=UTF-8",
+      "X-Mailer: Docsynecx PHP Server Mailer"
+    ];
+    if (!empty($replyTo)) {
+      $nativeHeaders[] = "Reply-To: {$replyTo}";
+    }
+    $sent = @mail($to, $subject, $htmlBody, implode("\r\n", $nativeHeaders));
+    if ($sent) {
+      return ['success' => true, 'via' => 'mail_fallback'];
+    }
     return ['success' => false, 'error' => "Failed to connect to SMTP: {$errstr} ({$errno})"];
   }
 
@@ -165,10 +179,16 @@ try {
   </ul>
 </div>";
 
-    sendSmtpMail($email, $subjectLine, $attendeeHtml, null, 'Docsynecx Event Team');
-    sendSmtpMail($adminEmail, "[IICS Meeting Lead] {$name} - {$company}", $adminHtml, $email, 'Docsynecx Leads');
+    $res1 = sendSmtpMail($email, $subjectLine, $attendeeHtml, null, 'Docsynecx Event Team');
+    $res2 = sendSmtpMail($adminEmail, "[IICS Meeting Lead] {$name} - {$company}", $adminHtml, $email, 'Docsynecx Leads');
 
-    echo json_encode(['success' => true]);
+    $ok = ($res1['success'] || $res2['success']);
+    http_response_code($ok ? 200 : 500);
+    echo json_encode([
+      'success' => $ok,
+      'attendee' => $res1,
+      'admin' => $res2,
+    ]);
     exit(0);
   }
 
@@ -200,14 +220,18 @@ try {
 
   $statusText = $payload['status'] ?? null;
   if (!$statusText) {
-    if ($isCancellation) $statusText = 'Cancelled';
-    else if ($isReschedule) $statusText = 'Rescheduled';
-    else if ($isRequest) $statusText = 'Requested (To Be Coordinated)';
-    else $statusText = 'Confirmed';
+    if ($isCancellation)
+      $statusText = 'Cancelled';
+    else if ($isReschedule)
+      $statusText = 'Rescheduled';
+    else if ($isRequest)
+      $statusText = 'Requested (To Be Coordinated)';
+    else
+      $statusText = 'Confirmed';
   }
 
   $subjectLine = "Confirmation Docsynecx IICS 2026 Pilot Walkthrough";
-  $adminSubjectLine = "[Lead Notification] Confirmation Docsynecx IICS 2026 Pilot Walkthrough - {$company}";
+  $adminSubjectLine = "Confirmation Docsynecx IICS 2026 Pilot Walkthrough - {$company}";
 
   if ($isCancellation) {
     $subjectLine = "Booking Cancelled: Docsynecx IICS 2026 Pilot Walkthrough";
@@ -328,10 +352,16 @@ try {
   </ul>
 </div>";
 
-  sendSmtpMail($email, $subjectLine, $attendeeHtml, null, 'Docsynecx IICS 2026');
-  sendSmtpMail($adminEmail, $adminSubjectLine, $adminHtml, $email, 'Docsynecx Leads');
+  $res1 = sendSmtpMail($email, $subjectLine, $attendeeHtml, null, 'Docsynecx IICS 2026');
+  $res2 = sendSmtpMail($adminEmail, $adminSubjectLine, $adminHtml, $email, 'Docsynecx Leads');
 
-  echo json_encode(['success' => true]);
+  $ok = ($res1['success'] || $res2['success']);
+  http_response_code($ok ? 200 : 500);
+  echo json_encode([
+    'success' => $ok,
+    'attendee' => $res1,
+    'admin' => $res2,
+  ]);
 } catch (Exception $e) {
   http_response_code(500);
   echo json_encode(['success' => false, 'error' => 'Unable to send email at this time']);

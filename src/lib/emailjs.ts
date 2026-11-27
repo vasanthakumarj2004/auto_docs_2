@@ -51,26 +51,52 @@ export const sendIICSPilotBookingEmail = async (formData: IICSPilotBookingEmailD
       return { success: result.success, response: result };
     }
 
-    const response = await fetch('/api/events/send-booking-email', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        action: 'iics_pilot',
-        ...formData,
-      }),
+    const payload = JSON.stringify({
+      action: 'iics_pilot',
+      ...formData,
     });
 
     let result: any = null;
+    let ok = false;
+
+    // 1. Direct call to PHP SMTP Gateway on GoDaddy (physical file, no rewrite dependency)
     try {
-      result = await response.json();
+      const res = await fetch('/api/send-booking-email.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: payload,
+      });
+      if (res.ok) {
+        result = await res.json().catch(() => null);
+        if (result?.success) ok = true;
+      }
     } catch {
-      // response wasn't JSON
+      // ignore, proceed to fallback
     }
 
-    if (!response.ok || !result?.success) {
-      throw new Error(result?.error || `Server communication issue (${response.status})`);
+    // 2. Fallback to /api/events/send-booking-email (for local Next.js dev server)
+    if (!ok) {
+      try {
+        const res = await fetch('/api/events/send-booking-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: payload,
+        });
+        if (res.ok) {
+          result = await res.json().catch(() => null);
+          if (result?.success) ok = true;
+        }
+      } catch {
+        // ignore
+      }
+    }
+
+    if (!ok) {
+      throw new Error(result?.error || 'Unable to deliver confirmation email.');
     }
 
     console.log('IICS pilot booking email sent successfully via Nodemailer SMTP:', result);
@@ -148,26 +174,52 @@ export const sendEventMeetingEmail = async (formData: EventMeetingEmailData) => 
       return { success: result.success, response: result };
     }
 
-    const response = await fetch('/api/events/send-booking-email', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        action: 'event_meeting',
-        ...formData,
-      }),
+    const payload = JSON.stringify({
+      action: 'event_meeting',
+      ...formData,
     });
 
     let result: any = null;
+    let ok = false;
+
+    // 1. Direct call to PHP SMTP Gateway on GoDaddy
     try {
-      result = await response.json();
+      const res = await fetch('/api/send-booking-email.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: payload,
+      });
+      if (res.ok) {
+        result = await res.json().catch(() => null);
+        if (result?.success) ok = true;
+      }
     } catch {
-      // response wasn't JSON
+      // ignore
     }
 
-    if (!response.ok || !result?.success) {
-      throw new Error(result?.error || `Server communication issue (${response.status})`);
+    // 2. Fallback to /api/events/send-booking-email
+    if (!ok) {
+      try {
+        const res = await fetch('/api/events/send-booking-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: payload,
+        });
+        if (res.ok) {
+          result = await res.json().catch(() => null);
+          if (result?.success) ok = true;
+        }
+      } catch {
+        // ignore
+      }
+    }
+
+    if (!ok) {
+      throw new Error(result?.error || 'Unable to deliver meeting confirmation email.');
     }
 
     console.log('Event meeting email sent successfully via Nodemailer SMTP:', result);
