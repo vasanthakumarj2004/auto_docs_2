@@ -7,7 +7,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: var(--color-paper, #fafafa);
+  background-color: #ffffff;
   color: var(--color-ink, #0f172a);
   font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
   position: relative;

@@ -12,7 +12,7 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import { LandingNavigation } from "../LandingNavigation";
-import { ShipsyFooter } from "../ShipsyFooter";
+import { DocsynecxFooter } from "../DocsynecxFooter";
 import { SharedFaqAccordion } from "../SharedFaqAccordion";
 import { LogisticsClosingCta } from "./LogisticsClosingCta";
 import layoutStyles from "../LandingPage.module.css";
@@ -491,7 +491,7 @@ export function LogisticsIntegrationsPage() {
       </main>
 
       {/* Global Footer */}
-      <ShipsyFooter />
+      <DocsynecxFooter />
     </div>
   );
 }

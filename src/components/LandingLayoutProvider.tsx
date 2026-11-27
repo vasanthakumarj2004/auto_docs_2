@@ -1,15 +1,15 @@
-'use client';
+"use client";
 
-import { createContext, useContext, useEffect, useState } from 'react';
-import { isFunctionalAllowed } from '../lib/consent';
+import { createContext, useContext, useEffect, useState } from "react";
+import { isFunctionalAllowed } from "../lib/consent";
 
-export type LandingLayout = 'v1' | 'v2';
-export type LandingAppearance = 'light' | 'dark';
-export type NavbarTheme = 'light' | 'dark';
+export type LandingLayout = "v1" | "v2";
+export type LandingAppearance = "light" | "dark";
+export type NavbarTheme = "light" | "dark";
 
-const storageKey = 'autodocs-landing-layout';
-const appearanceKey = 'autodocs-v2-appearance';
-const navbarThemeKey = 'autodocs-navbar-theme';
+const storageKey = "docsynecx-landing-layout";
+const appearanceKey = "docsynecx-v2-appearance";
+const navbarThemeKey = "docsynecx-navbar-theme";
 
 const LayoutContext = createContext<{
   layout: LandingLayout;
@@ -19,64 +19,89 @@ const LayoutContext = createContext<{
   navbarTheme: NavbarTheme;
   setNavbarTheme: (theme: NavbarTheme) => void;
 }>({
-  layout: 'v2',
+  layout: "v2",
   setLayout: () => {},
-  appearance: 'dark',
+  appearance: "dark",
   setAppearance: () => {},
-  navbarTheme: 'dark',
+  navbarTheme: "dark",
   setNavbarTheme: () => {},
 });
 
-export function LandingLayoutProvider({ children }: { children: React.ReactNode }) {
-  const [layout, updateLayout] = useState<LandingLayout>('v2');
-  const [appearance, updateAppearance] = useState<LandingAppearance>('dark');
-  const [navbarTheme, updateNavbarTheme] = useState<NavbarTheme>('dark');
+export function LandingLayoutProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const [layout, updateLayout] = useState<LandingLayout>("v2");
+  const [appearance, updateAppearance] = useState<LandingAppearance>("dark");
+  const [navbarTheme, updateNavbarTheme] = useState<NavbarTheme>("dark");
 
   useEffect(() => {
     try {
       const saved = localStorage.getItem(storageKey);
-      if (saved === 'v1' || saved === 'v2') updateLayout(saved);
+      if (saved === "v1" || saved === "v2") updateLayout(saved);
       const savedAppearance = localStorage.getItem(appearanceKey);
-      if (savedAppearance === 'light' || savedAppearance === 'dark') updateAppearance(savedAppearance);
+      if (savedAppearance === "light" || savedAppearance === "dark")
+        updateAppearance(savedAppearance);
       const savedNavbarTheme = localStorage.getItem(navbarThemeKey);
-      if (savedNavbarTheme === 'light' || savedNavbarTheme === 'dark') {
+      if (savedNavbarTheme === "light" || savedNavbarTheme === "dark") {
         updateNavbarTheme(savedNavbarTheme);
-      } else if (savedAppearance === 'light') {
-        updateNavbarTheme('dark');
+      } else if (savedAppearance === "light") {
+        updateNavbarTheme("dark");
       }
-    } catch { /* Layout switching also works when storage is unavailable. */ }
+    } catch {
+      /* Layout switching also works when storage is unavailable. */
+    }
     const sync = (event: StorageEvent) => {
-      if (event.key === storageKey) updateLayout(event.newValue === 'v1' ? 'v1' : 'v2');
-      if (event.key === appearanceKey) updateAppearance(event.newValue === 'light' ? 'light' : 'dark');
-      if (event.key === navbarThemeKey) updateNavbarTheme(event.newValue === 'light' ? 'light' : 'dark');
+      if (event.key === storageKey)
+        updateLayout(event.newValue === "v1" ? "v1" : "v2");
+      if (event.key === appearanceKey)
+        updateAppearance(event.newValue === "light" ? "light" : "dark");
+      if (event.key === navbarThemeKey)
+        updateNavbarTheme(event.newValue === "light" ? "light" : "dark");
     };
-    window.addEventListener('storage', sync);
-    return () => window.removeEventListener('storage', sync);
+    window.addEventListener("storage", sync);
+    return () => window.removeEventListener("storage", sync);
   }, []);
 
   const setLayout = (value: LandingLayout) => {
     updateLayout(value);
     if (isFunctionalAllowed()) {
-      try { localStorage.setItem(storageKey, value); } catch {}
+      try {
+        localStorage.setItem(storageKey, value);
+      } catch {}
     }
   };
 
   const setAppearance = (value: LandingAppearance) => {
     updateAppearance(value);
     if (isFunctionalAllowed()) {
-      try { localStorage.setItem(appearanceKey, value); } catch {}
+      try {
+        localStorage.setItem(appearanceKey, value);
+      } catch {}
     }
   };
 
   const setNavbarTheme = (value: NavbarTheme) => {
     updateNavbarTheme(value);
     if (isFunctionalAllowed()) {
-      try { localStorage.setItem(navbarThemeKey, value); } catch {}
+      try {
+        localStorage.setItem(navbarThemeKey, value);
+      } catch {}
     }
   };
 
   return (
-    <LayoutContext.Provider value={{ layout, setLayout, appearance, setAppearance, navbarTheme, setNavbarTheme }}>
+    <LayoutContext.Provider
+      value={{
+        layout,
+        setLayout,
+        appearance,
+        setAppearance,
+        navbarTheme,
+        setNavbarTheme,
+      }}
+    >
       {children}
     </LayoutContext.Provider>
   );

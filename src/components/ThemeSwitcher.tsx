@@ -1,7 +1,18 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect, useRef, useTransition } from 'react';
-import { Palette, Check, X, RotateCcw, Sun, Moon, Droplet, Plus, Trash2, Paintbrush } from 'lucide-react';
+import React, { useState, useEffect, useRef, useTransition } from "react";
+import {
+  Palette,
+  Check,
+  X,
+  RotateCcw,
+  Sun,
+  Moon,
+  Droplet,
+  Plus,
+  Trash2,
+  Paintbrush,
+} from "lucide-react";
 import {
   applyDarkTheme,
   DARK_THEME_KEY,
@@ -10,8 +21,8 @@ import {
   LOGO_GREEN,
   parseDarkTheme,
   type DarkTheme,
-} from '../lib/darkTheme';
-import { isFunctionalAllowed } from '../lib/consent';
+} from "../lib/darkTheme";
+import { isFunctionalAllowed } from "../lib/consent";
 
 export interface ThemeOption {
   id: string;
@@ -32,58 +43,144 @@ export interface BgOption {
 
 export const DEFAULT_CUSTOM_BRANDS: ThemeOption[] = [
   {
-    id: 'custom-sea-green',
-    name: 'Sea Green',
-    color: '#2E8B57',
+    id: "custom-sea-green",
+    name: "Sea Green",
+    color: "#2E8B57",
     hue: 146,
-    description: 'Permanent custom color (#2E8B57)',
+    description: "Permanent custom color (#2E8B57)",
     isCustom: true,
   },
 ];
 
 export const THEME_OPTIONS: ThemeOption[] = [
-  { id: 'violet', name: 'Royal Violet', color: '#8B32F7', hue: 267, description: 'Optional Royal Violet palette' },
-  { id: 'logo', name: 'Logo theme', color: LOGO_GREEN, hue: LOGO_DARK_THEME.hue, description: `Docsynecx logo green (${LOGO_GREEN})` },
-  { id: 'sea-green', name: 'Sea Green', color: '#2E8B57', hue: 146, description: 'Permanent Sea Green (#2E8B57)' },
-  { id: 'green', name: 'Green', color: '#18CB96', hue: 162, description: 'Fresh Mint (#18CB96)' },
-  { id: 'light-green', name: 'Light Green', color: '#18CB96', hue: 162, description: 'Mint Pastel (#18CB96)' },
-  { id: 'red', name: 'Red', color: '#DC2626', hue: 0, description: 'Bold Crimson Red' },
-  { id: 'blue', name: 'Blue', color: '#2563EB', hue: 221, description: 'Classic Enterprise Blue' },
-  { id: 'yellow', name: 'Yellow', color: '#D97706', hue: 36, description: 'Warm Amber & Gold' },
-  { id: 'orange', name: 'Orange', color: '#EA580C', hue: 21, description: 'Vibrant Sunset Orange' },
+  {
+    id: "violet",
+    name: "Royal Violet",
+    color: "#8B32F7",
+    hue: 267,
+    description: "Optional Royal Violet palette",
+  },
+  {
+    id: "logo",
+    name: "Logo theme",
+    color: LOGO_GREEN,
+    hue: LOGO_DARK_THEME.hue,
+    description: `Docsynecx logo green (${LOGO_GREEN})`,
+  },
+  {
+    id: "sea-green",
+    name: "Sea Green",
+    color: "#2E8B57",
+    hue: 146,
+    description: "Permanent Sea Green (#2E8B57)",
+  },
+  {
+    id: "green",
+    name: "Green",
+    color: "#18CB96",
+    hue: 162,
+    description: "Fresh Mint (#18CB96)",
+  },
+  {
+    id: "light-green",
+    name: "Light Green",
+    color: "#18CB96",
+    hue: 162,
+    description: "Mint Pastel (#18CB96)",
+  },
+  {
+    id: "red",
+    name: "Red",
+    color: "#DC2626",
+    hue: 0,
+    description: "Bold Crimson Red",
+  },
+  {
+    id: "blue",
+    name: "Blue",
+    color: "#2563EB",
+    hue: 221,
+    description: "Classic Enterprise Blue",
+  },
+  {
+    id: "yellow",
+    name: "Yellow",
+    color: "#D97706",
+    hue: 36,
+    description: "Warm Amber & Gold",
+  },
+  {
+    id: "orange",
+    name: "Orange",
+    color: "#EA580C",
+    hue: 21,
+    description: "Vibrant Sunset Orange",
+  },
 ];
 
 export const DEFAULT_BG_OPTIONS: BgOption[] = [
-  { id: 'alabaster', name: 'Warm Alabaster', color: '#F7F5F0', description: 'Hero section default warm background' },
-  { id: 'paper', name: 'Clean Paper', color: '#FAFAFA', description: 'Subtle clean off-white' },
-  { id: 'white', name: 'Pure White', color: '#FFFFFF', description: 'Crisp bright modern white' },
-  { id: 'cream', name: 'Soft Cream', color: '#FDFBF7', description: 'Gentle warm cream surface' },
-  { id: 'slate', name: 'Slate Frost', color: '#F1F5F9', description: 'Cool contemporary slate' },
-  { id: 'ice', name: 'Mint Ice', color: '#F0FDF4', description: 'Subtle fresh mint tint' },
+  {
+    id: "alabaster",
+    name: "Warm Alabaster",
+    color: "#F7F5F0",
+    description: "Hero section default warm background",
+  },
+  {
+    id: "paper",
+    name: "Clean Paper",
+    color: "#FAFAFA",
+    description: "Subtle clean off-white",
+  },
+  {
+    id: "white",
+    name: "Pure White",
+    color: "#FFFFFF",
+    description: "Crisp bright modern white",
+  },
+  {
+    id: "cream",
+    name: "Soft Cream",
+    color: "#FDFBF7",
+    description: "Gentle warm cream surface",
+  },
+  {
+    id: "slate",
+    name: "Slate Frost",
+    color: "#F1F5F9",
+    description: "Cool contemporary slate",
+  },
+  {
+    id: "ice",
+    name: "Mint Ice",
+    color: "#F0FDF4",
+    description: "Subtle fresh mint tint",
+  },
 ];
 
 const DARK_THEME_OPTIONS: ThemeOption[] = THEME_OPTIONS.map((theme) =>
-  theme.id === 'violet' ? { ...theme, id: 'current', name: 'Original purple' } : theme
+  theme.id === "violet"
+    ? { ...theme, id: "current", name: "Original purple" }
+    : theme,
 );
 
 const BRAND_STYLE_PROPERTIES = [
-  '--color-brand',
-  '--color-brand-strong',
-  '--color-brand-soft',
-  '--color-brand-border',
-  '--color-brand-text',
-  '--color-brand-50',
-  '--color-brand-100',
-  '--color-brand-200',
-  '--color-brand-400',
-  '--color-brand-500',
-  '--color-brand-800',
-  '--color-brand-900',
-  '--landing-green',
+  "--color-brand",
+  "--color-brand-strong",
+  "--color-brand-soft",
+  "--color-brand-border",
+  "--color-brand-text",
+  "--color-brand-50",
+  "--color-brand-100",
+  "--color-brand-200",
+  "--color-brand-400",
+  "--color-brand-500",
+  "--color-brand-800",
+  "--color-brand-900",
+  "--landing-green",
 ];
 
 function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
-  const cleanHex = hex.replace('#', '').trim();
+  const cleanHex = hex.replace("#", "").trim();
   if (cleanHex.length === 3) {
     return {
       r: parseInt(cleanHex[0] + cleanHex[0], 16),
@@ -105,7 +202,7 @@ function rgbToHex(r: number, g: number, b: number): string {
   const toHex = (n: number) =>
     Math.round(Math.max(0, Math.min(255, n)))
       .toString(16)
-      .padStart(2, '0');
+      .padStart(2, "0");
   return `#${toHex(r)}${toHex(g)}${toHex(b)}`.toUpperCase();
 }
 
@@ -117,12 +214,16 @@ function hslToHex(h: number, s: number, l: number): string {
     const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
     return Math.round(255 * color)
       .toString(16)
-      .padStart(2, '0');
+      .padStart(2, "0");
   };
   return `#${f(0)}${f(8)}${f(4)}`.toUpperCase();
 }
 
-function rgbToHsl(r: number, g: number, b: number): { h: number; s: number; l: number } {
+function rgbToHsl(
+  r: number,
+  g: number,
+  b: number,
+): { h: number; s: number; l: number } {
   r /= 255;
   g /= 255;
   b /= 255;
@@ -153,7 +254,7 @@ function rgbToHsl(r: number, g: number, b: number): { h: number; s: number; l: n
 
 function normalizeHex(input: string): string | null {
   let clean = input.trim();
-  if (!clean.startsWith('#')) clean = `#${clean}`;
+  if (!clean.startsWith("#")) clean = `#${clean}`;
   if (/^#[0-9A-Fa-f]{6}$/.test(clean)) return clean.toUpperCase();
   if (/^#[0-9A-Fa-f]{3}$/.test(clean)) {
     const r = clean[1];
@@ -166,27 +267,31 @@ function normalizeHex(input: string): string | null {
 
 export const ThemeSwitcher: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [colorTarget, setColorTarget] = useState<'brand' | 'bg' | 'dark'>('brand');
-  const [activeTab, setActiveTab] = useState<'color' | 'opacity'>('color');
+  const [colorTarget, setColorTarget] = useState<"brand" | "bg" | "dark">(
+    "brand",
+  );
+  const [activeTab, setActiveTab] = useState<"color" | "opacity">("color");
 
   // Brand color state
-  const [currentTheme, setCurrentTheme] = useState('logo');
+  const [currentTheme, setCurrentTheme] = useState("logo");
   const [brandHex, setBrandHex] = useState<string>(LOGO_GREEN);
   const [sliderHue, setSliderHue] = useState<number>(LOGO_DARK_THEME.hue);
   const [opacity, setOpacity] = useState<number>(100);
   const [isCustom, setIsCustom] = useState(false);
-  const [customBrandOptions, setCustomBrandOptions] = useState<ThemeOption[]>(DEFAULT_CUSTOM_BRANDS);
+  const [customBrandOptions, setCustomBrandOptions] = useState<ThemeOption[]>(
+    DEFAULT_CUSTOM_BRANDS,
+  );
   const [showAddBrandForm, setShowAddBrandForm] = useState(false);
-  const [newBrandHex, setNewBrandHex] = useState('#18CB96');
-  const [newBrandName, setNewBrandName] = useState('');
+  const [newBrandHex, setNewBrandHex] = useState("#18CB96");
+  const [newBrandName, setNewBrandName] = useState("");
 
   // Background color state
-  const [currentBgId, setCurrentBgId] = useState<string>('alabaster');
-  const [currentBgHex, setCurrentBgHex] = useState<string>('#F7F5F0');
+  const [currentBgId, setCurrentBgId] = useState<string>("alabaster");
+  const [currentBgHex, setCurrentBgHex] = useState<string>("#F7F5F0");
   const [customBgOptions, setCustomBgOptions] = useState<BgOption[]>([]);
   const [showAddBgForm, setShowAddBgForm] = useState(false);
-  const [newBgHex, setNewBgHex] = useState('#F7F5F0');
-  const [newBgName, setNewBgName] = useState('');
+  const [newBgHex, setNewBgHex] = useState("#F7F5F0");
+  const [newBgName, setNewBgName] = useState("");
 
   // Dark surface state
   const [darkTheme, setDarkTheme] = useState<DarkTheme>(DEFAULT_DARK_THEME);
@@ -198,12 +303,21 @@ export const ThemeSwitcher: React.FC = () => {
   // Load custom saved colors from localStorage
   useEffect(() => {
     try {
-      const savedCustomBrands = localStorage.getItem('autodocs-custom-brand-list');
+      const savedCustomBrands = localStorage.getItem(
+        "docsynecx-custom-brand-list",
+      );
       if (savedCustomBrands) {
         const parsed = JSON.parse(savedCustomBrands);
         const merged = [...parsed];
         for (const def of DEFAULT_CUSTOM_BRANDS) {
-          if (!merged.some((item: ThemeOption) => item.id === def.id || (item.color && item.color.toLowerCase() === def.color.toLowerCase()))) {
+          if (
+            !merged.some(
+              (item: ThemeOption) =>
+                item.id === def.id ||
+                (item.color &&
+                  item.color.toLowerCase() === def.color.toLowerCase()),
+            )
+          ) {
             merged.unshift(def);
           }
         }
@@ -216,18 +330,18 @@ export const ThemeSwitcher: React.FC = () => {
     }
 
     try {
-      const savedCustomBgs = localStorage.getItem('autodocs-custom-bg-list');
+      const savedCustomBgs = localStorage.getItem("docsynecx-custom-bg-list");
       if (savedCustomBgs) {
         setCustomBgOptions(JSON.parse(savedCustomBgs));
       }
     } catch {}
 
     try {
-      const savedBgHex = localStorage.getItem('autodocs-bg-color');
-      const savedBgId = localStorage.getItem('autodocs-bg-id');
+      const savedBgHex = localStorage.getItem("docsynecx-bg-color");
+      const savedBgId = localStorage.getItem("docsynecx-bg-id");
       if (savedBgHex) {
         setCurrentBgHex(savedBgHex);
-        setCurrentBgId(savedBgId || 'custom-bg');
+        setCurrentBgId(savedBgId || "custom-bg");
         applyBackgroundColor(savedBgHex);
       }
     } catch {}
@@ -249,8 +363,8 @@ export const ThemeSwitcher: React.FC = () => {
         applyDarkTheme(next);
       }
     };
-    window.addEventListener('storage', sync);
-    return () => window.removeEventListener('storage', sync);
+    window.addEventListener("storage", sync);
+    return () => window.removeEventListener("storage", sync);
   }, []);
 
   // Live apply Brand Color
@@ -258,9 +372,9 @@ export const ThemeSwitcher: React.FC = () => {
     themeId: string,
     hex: string,
     alphaPercent: number,
-    isCustomMode: boolean
+    isCustomMode: boolean,
   ) => {
-    if (typeof document === 'undefined') return;
+    if (typeof document === "undefined") return;
     const rootStyle = document.documentElement.style;
     const rgb = hexToRgb(hex);
     if (!rgb) return;
@@ -280,47 +394,58 @@ export const ThemeSwitcher: React.FC = () => {
 
     // Set attributes & CSS variables
     if (isCustomMode) {
-      document.documentElement.setAttribute('data-theme', 'custom');
+      document.documentElement.setAttribute("data-theme", "custom");
     } else {
-      document.documentElement.setAttribute('data-theme', themeId);
+      document.documentElement.setAttribute("data-theme", themeId);
     }
 
-    rootStyle.setProperty('--color-brand', brandRgba);
-    rootStyle.setProperty('--color-brand-500', brandRgba);
-    rootStyle.setProperty('--color-brand-strong', strongRgba);
-    rootStyle.setProperty('--color-brand-soft', softRgba);
-    rootStyle.setProperty('--color-brand-border', borderRgba);
-    rootStyle.setProperty('--color-brand-text', hex);
-    rootStyle.setProperty('--color-brand-50', softRgba);
-    rootStyle.setProperty('--color-brand-100', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.18)`);
-    rootStyle.setProperty('--color-brand-200', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.32)`);
-    rootStyle.setProperty('--color-brand-400', `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.70)`);
-    rootStyle.setProperty('--color-brand-800', strongRgba);
+    rootStyle.setProperty("--color-brand", brandRgba);
+    rootStyle.setProperty("--color-brand-500", brandRgba);
+    rootStyle.setProperty("--color-brand-strong", strongRgba);
+    rootStyle.setProperty("--color-brand-soft", softRgba);
+    rootStyle.setProperty("--color-brand-border", borderRgba);
+    rootStyle.setProperty("--color-brand-text", hex);
+    rootStyle.setProperty("--color-brand-50", softRgba);
     rootStyle.setProperty(
-      '--color-brand-900',
-      `rgba(${Math.max(0, Math.round(rgb.r * 0.6))}, ${Math.max(0, Math.round(rgb.g * 0.6))}, ${Math.max(0, Math.round(rgb.b * 0.6))}, ${alpha})`
+      "--color-brand-100",
+      `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.18)`,
     );
-    rootStyle.setProperty('--landing-green', brandRgba);
+    rootStyle.setProperty(
+      "--color-brand-200",
+      `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.32)`,
+    );
+    rootStyle.setProperty(
+      "--color-brand-400",
+      `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.70)`,
+    );
+    rootStyle.setProperty("--color-brand-800", strongRgba);
+    rootStyle.setProperty(
+      "--color-brand-900",
+      `rgba(${Math.max(0, Math.round(rgb.r * 0.6))}, ${Math.max(0, Math.round(rgb.g * 0.6))}, ${Math.max(0, Math.round(rgb.b * 0.6))}, ${alpha})`,
+    );
+    rootStyle.setProperty("--landing-green", brandRgba);
 
     try {
       const storedThemeKey = isCustomMode
-        ? (themeId.startsWith('custom-brand-') ? themeId : 'custom')
+        ? themeId.startsWith("custom-brand-")
+          ? themeId
+          : "custom"
         : themeId;
       if (isFunctionalAllowed()) {
-        localStorage.setItem('autodocs-theme', storedThemeKey);
-        localStorage.setItem('autodocs-theme-opacity', String(alphaPercent));
-        localStorage.setItem('autodocs-brand-hex', hex);
+        localStorage.setItem("docsynecx-theme", storedThemeKey);
+        localStorage.setItem("docsynecx-theme-opacity", String(alphaPercent));
+        localStorage.setItem("docsynecx-brand-hex", hex);
       }
     } catch {}
   };
 
   // Live apply Background Color
   const applyBackgroundColor = (hex: string) => {
-    if (typeof document === 'undefined') return;
+    if (typeof document === "undefined") return;
     const rootStyle = document.documentElement.style;
-    rootStyle.setProperty('--color-hero-bg', hex);
-    rootStyle.setProperty('--landing-bg', hex);
-    rootStyle.setProperty('--color-paper', hex);
+    rootStyle.setProperty("--color-hero-bg", hex);
+    rootStyle.setProperty("--landing-bg", hex);
+    rootStyle.setProperty("--color-paper", hex);
     if (document.body) {
       document.body.style.backgroundColor = hex;
     }
@@ -329,10 +454,11 @@ export const ThemeSwitcher: React.FC = () => {
   // Initialize theme on mount
   useEffect(() => {
     try {
-      const storedTheme = localStorage.getItem('autodocs-theme');
-      const savedTheme = !storedTheme || storedTheme === 'current' ? 'logo' : storedTheme;
-      const savedBrandHex = localStorage.getItem('autodocs-brand-hex');
-      const savedOpacity = localStorage.getItem('autodocs-theme-opacity');
+      const storedTheme = localStorage.getItem("docsynecx-theme");
+      const savedTheme =
+        !storedTheme || storedTheme === "current" ? "logo" : storedTheme;
+      const savedBrandHex = localStorage.getItem("docsynecx-brand-hex");
+      const savedOpacity = localStorage.getItem("docsynecx-theme-opacity");
       const parsedOpacity = Number(savedOpacity ?? 100);
       const initialOpacity = Number.isFinite(parsedOpacity)
         ? Math.max(15, Math.min(100, parsedOpacity))
@@ -341,7 +467,7 @@ export const ThemeSwitcher: React.FC = () => {
 
       let customBrands: ThemeOption[] = [];
       try {
-        const rawBrands = localStorage.getItem('autodocs-custom-brand-list');
+        const rawBrands = localStorage.getItem("docsynecx-custom-brand-list");
         if (rawBrands) customBrands = JSON.parse(rawBrands);
       } catch {}
 
@@ -349,33 +475,53 @@ export const ThemeSwitcher: React.FC = () => {
       const match = allBrands.find((t) => t.id === savedTheme);
 
       const isCustomSaved =
-        savedTheme === 'custom' ||
-        savedTheme.startsWith('custom') ||
+        savedTheme === "custom" ||
+        savedTheme.startsWith("custom") ||
         (savedBrandHex &&
-          savedBrandHex.startsWith('#') &&
-          !['logo', 'violet', 'green', 'light-green', 'sea-green', 'red', 'blue', 'yellow', 'orange'].includes(
-            savedTheme
-          ));
+          savedBrandHex.startsWith("#") &&
+          ![
+            "logo",
+            "violet",
+            "green",
+            "light-green",
+            "sea-green",
+            "red",
+            "blue",
+            "yellow",
+            "orange",
+          ].includes(savedTheme));
 
-      if (isCustomSaved && savedBrandHex && savedBrandHex.startsWith('#')) {
+      if (isCustomSaved && savedBrandHex && savedBrandHex.startsWith("#")) {
         const rgb = hexToRgb(savedBrandHex);
-        const hsl = rgb ? rgbToHsl(rgb.r, rgb.g, rgb.b) : { h: 162, s: 70, l: 50 };
+        const hsl = rgb
+          ? rgbToHsl(rgb.r, rgb.g, rgb.b)
+          : { h: 162, s: 70, l: 50 };
         setBrandHex(savedBrandHex);
         setSliderHue(hsl.h);
         setIsCustom(true);
-        setCurrentTheme(match ? match.id : 'custom');
-        applyBrandStyle(match ? match.id : 'custom', savedBrandHex, initialOpacity, true);
+        setCurrentTheme(match ? match.id : "custom");
+        applyBrandStyle(
+          match ? match.id : "custom",
+          savedBrandHex,
+          initialOpacity,
+          true,
+        );
       } else if (match) {
         setBrandHex(match.color);
         setSliderHue(match.hue);
         setCurrentTheme(match.id);
         setIsCustom(!!match.isCustom);
-        applyBrandStyle(match.id, match.color, initialOpacity, !!match.isCustom);
+        applyBrandStyle(
+          match.id,
+          match.color,
+          initialOpacity,
+          !!match.isCustom,
+        );
       } else {
-        applyBrandStyle('logo', LOGO_GREEN, initialOpacity, false);
+        applyBrandStyle("logo", LOGO_GREEN, initialOpacity, false);
       }
     } catch {
-      applyBrandStyle('logo', LOGO_GREEN, 100, false);
+      applyBrandStyle("logo", LOGO_GREEN, 100, false);
     }
   }, []);
 
@@ -392,22 +538,22 @@ export const ThemeSwitcher: React.FC = () => {
 
   // Handle hue slider change
   const handleHueChange = (newHue: number) => {
-    if (colorTarget === 'dark') {
-      updateDarkTheme({ id: 'custom', hue: newHue });
+    if (colorTarget === "dark") {
+      updateDarkTheme({ id: "custom", hue: newHue });
       return;
     }
     const hex = hslToHex(newHue, 92, 54);
     setSliderHue(newHue);
     setBrandHex(hex);
     setIsCustom(true);
-    setCurrentTheme('custom');
-    applyBrandStyle('custom', hex, opacity, true);
+    setCurrentTheme("custom");
+    applyBrandStyle("custom", hex, opacity, true);
   };
 
   // Direct custom hex input or native color picker change (instant live apply & localStorage persistence)
   const handleCustomHexInput = (rawHex: string) => {
     let clean = rawHex.toUpperCase();
-    if (!clean.startsWith('#') && clean.length > 0) clean = `#${clean}`;
+    if (!clean.startsWith("#") && clean.length > 0) clean = `#${clean}`;
     setBrandHex(clean);
     const validHex = normalizeHex(clean);
     if (validHex) {
@@ -417,14 +563,14 @@ export const ThemeSwitcher: React.FC = () => {
         setSliderHue(hsl.h);
       }
       setIsCustom(true);
-      setCurrentTheme('custom');
-      applyBrandStyle('custom', validHex, opacity, true);
+      setCurrentTheme("custom");
+      applyBrandStyle("custom", validHex, opacity, true);
     }
   };
 
   // Handle opacity slider change
   const handleOpacityChange = (newOpacity: number) => {
-    if (colorTarget === 'dark') return;
+    if (colorTarget === "dark") return;
     setOpacity(newOpacity);
     applyBrandStyle(currentTheme, brandHex, newOpacity, isCustom);
   };
@@ -459,25 +605,31 @@ export const ThemeSwitcher: React.FC = () => {
     setCustomBrandOptions(updated);
     try {
       if (isFunctionalAllowed()) {
-        localStorage.setItem('autodocs-custom-brand-list', JSON.stringify(updated));
+        localStorage.setItem(
+          "docsynecx-custom-brand-list",
+          JSON.stringify(updated),
+        );
       }
     } catch {}
 
     // Immediately select and apply it
     handleBrandSelect(newOption);
     setShowAddBrandForm(false);
-    setNewBrandName('');
+    setNewBrandName("");
   };
 
   // Delete custom brand color
   const handleDeleteBrandColor = (id: string, e: React.MouseEvent) => {
     e.stopPropagation();
-    if (id === 'custom-sea-green') return; // Permanent saved color
+    if (id === "custom-sea-green") return; // Permanent saved color
     const updated = customBrandOptions.filter((o) => o.id !== id);
     setCustomBrandOptions(updated);
     try {
       if (isFunctionalAllowed()) {
-        localStorage.setItem('autodocs-custom-brand-list', JSON.stringify(updated));
+        localStorage.setItem(
+          "docsynecx-custom-brand-list",
+          JSON.stringify(updated),
+        );
       }
     } catch {}
 
@@ -493,8 +645,8 @@ export const ThemeSwitcher: React.FC = () => {
     applyBackgroundColor(bg.color);
     try {
       if (isFunctionalAllowed()) {
-        localStorage.setItem('autodocs-bg-color', bg.color);
-        localStorage.setItem('autodocs-bg-id', bg.id);
+        localStorage.setItem("docsynecx-bg-color", bg.color);
+        localStorage.setItem("docsynecx-bg-id", bg.id);
       }
     } catch {}
   };
@@ -517,14 +669,17 @@ export const ThemeSwitcher: React.FC = () => {
     setCustomBgOptions(updated);
     try {
       if (isFunctionalAllowed()) {
-        localStorage.setItem('autodocs-custom-bg-list', JSON.stringify(updated));
+        localStorage.setItem(
+          "docsynecx-custom-bg-list",
+          JSON.stringify(updated),
+        );
       }
     } catch {}
 
     // Immediately select and apply it
     handleBgSelect(newOption);
     setShowAddBgForm(false);
-    setNewBgName('');
+    setNewBgName("");
   };
 
   // Delete custom background color
@@ -534,7 +689,10 @@ export const ThemeSwitcher: React.FC = () => {
     setCustomBgOptions(updated);
     try {
       if (isFunctionalAllowed()) {
-        localStorage.setItem('autodocs-custom-bg-list', JSON.stringify(updated));
+        localStorage.setItem(
+          "docsynecx-custom-bg-list",
+          JSON.stringify(updated),
+        );
       }
     } catch {}
 
@@ -546,38 +704,44 @@ export const ThemeSwitcher: React.FC = () => {
   // Close popup on click outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (panelRef.current && !panelRef.current.contains(event.target as Node)) {
+      if (
+        panelRef.current &&
+        !panelRef.current.contains(event.target as Node)
+      ) {
         setIsOpen(false);
       }
     };
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
+      if (event.key === "Escape") {
         setIsOpen(false);
         triggerRef.current?.focus();
       }
     };
 
     if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      document.addEventListener('keydown', handleKeyDown);
+      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener("keydown", handleKeyDown);
     }
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, [isOpen]);
 
   const activeColorPreview =
-    colorTarget === 'bg'
+    colorTarget === "bg"
       ? currentBgHex
-      : colorTarget === 'dark'
-      ? darkTheme.id === 'current'
-        ? '#100A21'
-        : hslToHex(darkTheme.hue, 53, 8.4)
-      : brandHex;
+      : colorTarget === "dark"
+        ? darkTheme.id === "current"
+          ? "#100A21"
+          : hslToHex(darkTheme.hue, 53, 8.4)
+        : brandHex;
 
   return (
-    <div ref={panelRef} className="fixed bottom-3 right-3 sm:bottom-4 sm:right-4 z-50 select-none">
+    <div
+      ref={panelRef}
+      className="fixed bottom-3 right-3 sm:bottom-4 sm:right-4 z-50 select-none"
+    >
       <style>{`
         .theme-control-slider::-webkit-slider-thumb {
           appearance: none;
@@ -636,7 +800,7 @@ export const ThemeSwitcher: React.FC = () => {
                 className="h-3.5 w-3.5 rounded-full border border-black/15 shrink-0 transition-all shadow-xs"
                 style={{
                   backgroundColor: activeColorPreview,
-                  opacity: colorTarget === 'brand' ? opacity / 100 : 1,
+                  opacity: colorTarget === "brand" ? opacity / 100 : 1,
                 }}
               />
             </div>
@@ -658,13 +822,13 @@ export const ThemeSwitcher: React.FC = () => {
             <button
               type="button"
               onClick={() => {
-                setColorTarget('brand');
-                setActiveTab('color');
+                setColorTarget("brand");
+                setActiveTab("color");
               }}
               className={`py-1.5 px-2 rounded-lg transition-all cursor-pointer text-center flex items-center justify-center gap-1.5 ${
-                colorTarget === 'brand'
-                  ? 'bg-white text-slate-900 shadow-xs font-bold'
-                  : 'text-slate-600 hover:text-slate-900'
+                colorTarget === "brand"
+                  ? "bg-white text-slate-900 shadow-xs font-bold"
+                  : "text-slate-600 hover:text-slate-900"
               }`}
             >
               <Paintbrush size={12} />
@@ -673,11 +837,11 @@ export const ThemeSwitcher: React.FC = () => {
 
             <button
               type="button"
-              onClick={() => setColorTarget('bg')}
+              onClick={() => setColorTarget("bg")}
               className={`py-1.5 px-2 rounded-lg transition-all cursor-pointer text-center flex items-center justify-center gap-1.5 ${
-                colorTarget === 'bg'
-                  ? 'bg-white text-slate-900 shadow-xs font-bold'
-                  : 'text-slate-600 hover:text-slate-900'
+                colorTarget === "bg"
+                  ? "bg-white text-slate-900 shadow-xs font-bold"
+                  : "text-slate-600 hover:text-slate-900"
               }`}
             >
               <Sun size={12} />
@@ -686,11 +850,11 @@ export const ThemeSwitcher: React.FC = () => {
 
             <button
               type="button"
-              onClick={() => setColorTarget('dark')}
+              onClick={() => setColorTarget("dark")}
               className={`py-1.5 px-2 rounded-lg transition-all cursor-pointer text-center flex items-center justify-center gap-1.5 ${
-                colorTarget === 'dark'
-                  ? 'bg-white text-slate-900 shadow-xs font-bold'
-                  : 'text-slate-600 hover:text-slate-900'
+                colorTarget === "dark"
+                  ? "bg-white text-slate-900 shadow-xs font-bold"
+                  : "text-slate-600 hover:text-slate-900"
               }`}
             >
               <Moon size={12} />
@@ -701,7 +865,7 @@ export const ThemeSwitcher: React.FC = () => {
           {/* ========================================================= */}
           {/* 1. BRAND COLOR TARGET                                     */}
           {/* ========================================================= */}
-          {colorTarget === 'brand' && (
+          {colorTarget === "brand" && (
             <div>
               {/* Sub-tab: Color vs Opacity */}
               <div className="flex items-center justify-between gap-2 mb-3">
@@ -711,18 +875,22 @@ export const ThemeSwitcher: React.FC = () => {
                 <div className="flex rounded-md bg-slate-100 p-0.5 text-[11px] font-semibold shrink-0">
                   <button
                     type="button"
-                    onClick={() => setActiveTab('color')}
+                    onClick={() => setActiveTab("color")}
                     className={`px-2 py-0.5 rounded transition-all cursor-pointer ${
-                      activeTab === 'color' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-500'
+                      activeTab === "color"
+                        ? "bg-white text-slate-900 shadow-2xs"
+                        : "text-slate-500"
                     }`}
                   >
                     Color
                   </button>
                   <button
                     type="button"
-                    onClick={() => setActiveTab('opacity')}
+                    onClick={() => setActiveTab("opacity")}
                     className={`px-2 py-0.5 rounded transition-all cursor-pointer flex items-center gap-1 ${
-                      activeTab === 'opacity' ? 'bg-white text-slate-900 shadow-2xs' : 'text-slate-500'
+                      activeTab === "opacity"
+                        ? "bg-white text-slate-900 shadow-2xs"
+                        : "text-slate-500"
                     }`}
                   >
                     <span>{opacity}%</span>
@@ -730,7 +898,7 @@ export const ThemeSwitcher: React.FC = () => {
                 </div>
               </div>
 
-              {activeTab === 'color' && (
+              {activeTab === "color" && (
                 <div>
                   {/* Spectrum Slider Box */}
                   <div className="mb-3 px-3 py-2.5 rounded-xl bg-slate-50 border border-slate-100">
@@ -739,16 +907,24 @@ export const ThemeSwitcher: React.FC = () => {
                         Color Spectrum
                       </span>
                       <div className="flex items-center gap-1.5">
-                        <label className="relative flex items-center cursor-pointer" title="Pick custom color">
+                        <label
+                          className="relative flex items-center cursor-pointer"
+                          title="Pick custom color"
+                        >
                           <input
                             type="color"
-                            value={normalizeHex(brandHex) || '#18CB96'}
-                            onChange={(e) => handleCustomHexInput(e.target.value)}
+                            value={normalizeHex(brandHex) || "#18CB96"}
+                            onChange={(e) =>
+                              handleCustomHexInput(e.target.value)
+                            }
                             className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
                           />
                           <span
                             className="h-4 w-4 rounded-full border border-black/20 shadow-2xs transition-transform hover:scale-110"
-                            style={{ backgroundColor: brandHex, opacity: opacity / 100 }}
+                            style={{
+                              backgroundColor: brandHex,
+                              opacity: opacity / 100,
+                            }}
                             aria-hidden="true"
                           />
                         </label>
@@ -778,7 +954,7 @@ export const ThemeSwitcher: React.FC = () => {
                         className="theme-control-slider w-full h-3 rounded-full appearance-none cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-slate-500 shadow-inner"
                         style={{
                           background:
-                            'linear-gradient(to right, #ff0000 0%, #ff8000 14%, #ffff00 28%, #00ff00 42%, #00ffff 57%, #0077ff 71%, #8800ff 85%, #ff0080 93%, #ff0000 100%)',
+                            "linear-gradient(to right, #ff0000 0%, #ff8000 14%, #ffff00 28%, #00ff00 42%, #00ffff 57%, #0077ff 71%, #8800ff 85%, #ff0080 93%, #ff0000 100%)",
                         }}
                       />
                     </div>
@@ -787,7 +963,8 @@ export const ThemeSwitcher: React.FC = () => {
                   {/* Header with "+ Add New Color" and "Reset" */}
                   <div className="flex items-center justify-between px-0.5 pb-1 mb-1.5">
                     <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">
-                      Brand Colors ({THEME_OPTIONS.length + customBrandOptions.length})
+                      Brand Colors (
+                      {THEME_OPTIONS.length + customBrandOptions.length})
                     </span>
                     <div className="flex items-center gap-2">
                       <button
@@ -797,7 +974,7 @@ export const ThemeSwitcher: React.FC = () => {
                       >
                         <Plus size={12} /> Add New Color
                       </button>
-                      {(isCustom || currentTheme !== 'logo') && (
+                      {(isCustom || currentTheme !== "logo") && (
                         <button
                           type="button"
                           onClick={() => handleBrandSelect(THEME_OPTIONS[1])}
@@ -827,14 +1004,18 @@ export const ThemeSwitcher: React.FC = () => {
                         <input
                           type="color"
                           value={newBrandHex}
-                          onChange={(e) => setNewBrandHex(e.target.value.toUpperCase())}
+                          onChange={(e) =>
+                            setNewBrandHex(e.target.value.toUpperCase())
+                          }
                           className="h-8 w-8 rounded-lg cursor-pointer border border-slate-300 p-0.5 bg-white"
                           title="Choose custom color"
                         />
                         <input
                           type="text"
                           value={newBrandHex}
-                          onChange={(e) => setNewBrandHex(e.target.value.toUpperCase())}
+                          onChange={(e) =>
+                            setNewBrandHex(e.target.value.toUpperCase())
+                          }
                           placeholder="#18CB96"
                           maxLength={7}
                           className="w-24 text-xs font-mono font-semibold px-2 py-1.5 rounded-lg border border-slate-300 bg-white"
@@ -881,8 +1062,8 @@ export const ThemeSwitcher: React.FC = () => {
                               onClick={() => handleBrandSelect(theme)}
                               className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
                                 isSelected
-                                  ? 'bg-slate-100 text-slate-900 font-semibold'
-                                  : 'text-slate-700 hover:bg-slate-50'
+                                  ? "bg-slate-100 text-slate-900 font-semibold"
+                                  : "text-slate-700 hover:bg-slate-50"
                               }`}
                             >
                               <div className="flex items-center gap-2">
@@ -904,10 +1085,12 @@ export const ThemeSwitcher: React.FC = () => {
                                     style={{ color: theme.color }}
                                   />
                                 )}
-                                {theme.id !== 'custom-sea-green' && (
+                                {theme.id !== "custom-sea-green" && (
                                   <button
                                     type="button"
-                                    onClick={(e) => handleDeleteBrandColor(theme.id, e)}
+                                    onClick={(e) =>
+                                      handleDeleteBrandColor(theme.id, e)
+                                    }
                                     className="p-1 text-slate-400 hover:text-red-500 rounded transition-colors"
                                     title="Delete color"
                                   >
@@ -935,8 +1118,8 @@ export const ThemeSwitcher: React.FC = () => {
                           onClick={() => handleBrandSelect(theme)}
                           className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors text-left cursor-pointer ${
                             isSelected
-                              ? 'bg-slate-100 text-slate-900 font-semibold'
-                              : 'text-slate-700 hover:bg-slate-50'
+                              ? "bg-slate-100 text-slate-900 font-semibold"
+                              : "text-slate-700 hover:bg-slate-50"
                           }`}
                         >
                           <div className="flex items-center gap-2">
@@ -946,7 +1129,7 @@ export const ThemeSwitcher: React.FC = () => {
                               aria-hidden="true"
                             />
                             <span className="truncate">{theme.name}</span>
-                            {theme.id === 'logo' && (
+                            {theme.id === "logo" && (
                               <span className="text-[9px] font-mono text-slate-500">
                                 {LOGO_GREEN}
                               </span>
@@ -967,14 +1150,17 @@ export const ThemeSwitcher: React.FC = () => {
               )}
 
               {/* Opacity Tab */}
-              {activeTab === 'opacity' && (
+              {activeTab === "opacity" && (
                 <div>
                   <div className="mb-3 px-3 py-2.5 rounded-xl bg-slate-50 border border-slate-100">
                     <div className="flex items-center justify-between mb-2">
                       <div className="flex items-center gap-2">
                         <span
                           className="h-4 w-4 rounded-full border border-black/15 shadow-2xs shrink-0"
-                          style={{ backgroundColor: brandHex, opacity: opacity / 100 }}
+                          style={{
+                            backgroundColor: brandHex,
+                            opacity: opacity / 100,
+                          }}
                         />
                         <span className="text-xs font-semibold text-slate-800">
                           Accent Transparency
@@ -1006,12 +1192,12 @@ export const ThemeSwitcher: React.FC = () => {
 
                   <div className="grid grid-cols-3 gap-1.5">
                     {[
-                      { label: '100% Solid', val: 100 },
-                      { label: '85% Crisp', val: 85 },
-                      { label: '70% Vibrant', val: 70 },
-                      { label: '50% Medium', val: 50 },
-                      { label: '35% Soft', val: 35 },
-                      { label: '20% Tint', val: 20 },
+                      { label: "100% Solid", val: 100 },
+                      { label: "85% Crisp", val: 85 },
+                      { label: "70% Vibrant", val: 70 },
+                      { label: "50% Medium", val: 50 },
+                      { label: "35% Soft", val: 35 },
+                      { label: "20% Tint", val: 20 },
                     ].map((preset) => (
                       <button
                         key={preset.val}
@@ -1019,8 +1205,8 @@ export const ThemeSwitcher: React.FC = () => {
                         onClick={() => handleOpacityChange(preset.val)}
                         className={`px-2 py-1.5 rounded-md text-[11px] font-medium transition-colors text-center cursor-pointer border ${
                           opacity === preset.val
-                            ? 'bg-slate-900 text-white border-slate-900 font-semibold'
-                            : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-50'
+                            ? "bg-slate-900 text-white border-slate-900 font-semibold"
+                            : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50"
                         }`}
                       >
                         {preset.label}
@@ -1035,7 +1221,7 @@ export const ThemeSwitcher: React.FC = () => {
           {/* ========================================================= */}
           {/* 2. BACKGROUND COLOR TARGET                                */}
           {/* ========================================================= */}
-          {colorTarget === 'bg' && (
+          {colorTarget === "bg" && (
             <div>
               <p className="mb-2 text-[11px] leading-tight text-slate-500">
                 Change hero section background and page surface.
@@ -1060,7 +1246,8 @@ export const ThemeSwitcher: React.FC = () => {
               {/* Header with "+ Add New Color" and Reset */}
               <div className="flex items-center justify-between px-0.5 pb-1 mb-1.5">
                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">
-                  Background Colors ({DEFAULT_BG_OPTIONS.length + customBgOptions.length})
+                  Background Colors (
+                  {DEFAULT_BG_OPTIONS.length + customBgOptions.length})
                 </span>
                 <div className="flex items-center gap-2">
                   <button
@@ -1070,7 +1257,7 @@ export const ThemeSwitcher: React.FC = () => {
                   >
                     <Plus size={12} /> Add New Color
                   </button>
-                  {currentBgHex !== '#F7F5F0' && (
+                  {currentBgHex !== "#F7F5F0" && (
                     <button
                       type="button"
                       onClick={() => handleBgSelect(DEFAULT_BG_OPTIONS[0])}
@@ -1100,14 +1287,18 @@ export const ThemeSwitcher: React.FC = () => {
                     <input
                       type="color"
                       value={newBgHex}
-                      onChange={(e) => setNewBgHex(e.target.value.toUpperCase())}
+                      onChange={(e) =>
+                        setNewBgHex(e.target.value.toUpperCase())
+                      }
                       className="h-8 w-8 rounded-lg cursor-pointer border border-slate-300 p-0.5 bg-white"
                       title="Choose background color"
                     />
                     <input
                       type="text"
                       value={newBgHex}
-                      onChange={(e) => setNewBgHex(e.target.value.toUpperCase())}
+                      onChange={(e) =>
+                        setNewBgHex(e.target.value.toUpperCase())
+                      }
                       placeholder="#F7F5F0"
                       maxLength={7}
                       className="w-24 text-xs font-mono font-semibold px-2 py-1.5 rounded-lg border border-slate-300 bg-white"
@@ -1147,15 +1338,16 @@ export const ThemeSwitcher: React.FC = () => {
                   </span>
                   <div className="flex flex-col gap-1">
                     {customBgOptions.map((bg) => {
-                      const isSelected = currentBgId === bg.id || currentBgHex === bg.color;
+                      const isSelected =
+                        currentBgId === bg.id || currentBgHex === bg.color;
                       return (
                         <div
                           key={bg.id}
                           onClick={() => handleBgSelect(bg)}
                           className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors cursor-pointer ${
                             isSelected
-                              ? 'bg-slate-100 text-slate-900 font-semibold'
-                              : 'text-slate-700 hover:bg-slate-50'
+                              ? "bg-slate-100 text-slate-900 font-semibold"
+                              : "text-slate-700 hover:bg-slate-50"
                           }`}
                         >
                           <div className="flex items-center gap-2">
@@ -1171,7 +1363,10 @@ export const ThemeSwitcher: React.FC = () => {
                           </div>
                           <div className="flex items-center gap-1.5">
                             {isSelected && (
-                              <Check size={13} className="stroke-[3] text-brand shrink-0" />
+                              <Check
+                                size={13}
+                                className="stroke-[3] text-brand shrink-0"
+                              />
                             )}
                             <button
                               type="button"
@@ -1202,8 +1397,8 @@ export const ThemeSwitcher: React.FC = () => {
                       onClick={() => handleBgSelect(bg)}
                       className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors text-left cursor-pointer ${
                         isSelected
-                          ? 'bg-slate-100 text-slate-900 font-semibold'
-                          : 'text-slate-700 hover:bg-slate-50'
+                          ? "bg-slate-100 text-slate-900 font-semibold"
+                          : "text-slate-700 hover:bg-slate-50"
                       }`}
                     >
                       <div className="flex items-center gap-2">
@@ -1213,10 +1408,15 @@ export const ThemeSwitcher: React.FC = () => {
                           aria-hidden="true"
                         />
                         <span className="truncate">{bg.name}</span>
-                        <span className="text-[9px] font-mono text-slate-500">{bg.color}</span>
+                        <span className="text-[9px] font-mono text-slate-500">
+                          {bg.color}
+                        </span>
                       </div>
                       {isSelected && (
-                        <Check size={13} className="stroke-[3] text-brand shrink-0" />
+                        <Check
+                          size={13}
+                          className="stroke-[3] text-brand shrink-0"
+                        />
                       )}
                     </button>
                   );
@@ -1228,7 +1428,7 @@ export const ThemeSwitcher: React.FC = () => {
           {/* ========================================================= */}
           {/* 3. DARK SURFACE TARGET                                    */}
           {/* ========================================================= */}
-          {colorTarget === 'dark' && (
+          {colorTarget === "dark" && (
             <div>
               <p className="mb-2 text-[11px] leading-tight text-slate-500">
                 Change dark mode hero background and deep surface tones.
@@ -1243,11 +1443,15 @@ export const ThemeSwitcher: React.FC = () => {
                   <div className="flex items-center gap-1.5">
                     <span
                       className="h-3.5 w-3.5 rounded-full border border-black/15 shadow-2xs"
-                      style={{ backgroundColor: hslToHex(darkTheme.hue, 53, 8.4) }}
+                      style={{
+                        backgroundColor: hslToHex(darkTheme.hue, 53, 8.4),
+                      }}
                       aria-hidden="true"
                     />
                     <span className="text-[11px] font-mono font-bold text-slate-700">
-                      {darkTheme.id === 'current' ? '#100A21' : hslToHex(darkTheme.hue, 53, 8.4)}
+                      {darkTheme.id === "current"
+                        ? "#100A21"
+                        : hslToHex(darkTheme.hue, 53, 8.4)}
                     </span>
                   </div>
                 </div>
@@ -1266,7 +1470,7 @@ export const ThemeSwitcher: React.FC = () => {
                     className="theme-control-slider w-full h-3 rounded-full appearance-none cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-slate-500 shadow-inner"
                     style={{
                       background:
-                        'linear-gradient(to right, #ff0000 0%, #ff8000 14%, #ffff00 28%, #00ff00 42%, #00ffff 57%, #0077ff 71%, #8800ff 85%, #ff0080 93%, #ff0000 100%)',
+                        "linear-gradient(to right, #ff0000 0%, #ff8000 14%, #ffff00 28%, #00ff00 42%, #00ffff 57%, #0077ff 71%, #8800ff 85%, #ff0080 93%, #ff0000 100%)",
                     }}
                   />
                 </div>
@@ -1277,7 +1481,7 @@ export const ThemeSwitcher: React.FC = () => {
                 <span className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">
                   Presets ({DARK_THEME_OPTIONS.length})
                 </span>
-                {darkTheme.id !== 'current' && (
+                {darkTheme.id !== "current" && (
                   <button
                     type="button"
                     onClick={() => updateDarkTheme(DEFAULT_DARK_THEME)}
@@ -1292,17 +1496,21 @@ export const ThemeSwitcher: React.FC = () => {
                 {DARK_THEME_OPTIONS.map((theme) => {
                   const isSelected = darkTheme.id === theme.id;
                   const surfaceHex =
-                    theme.id === 'current' ? '#100A21' : hslToHex(theme.hue, 53, 8.4);
+                    theme.id === "current"
+                      ? "#100A21"
+                      : hslToHex(theme.hue, 53, 8.4);
                   return (
                     <button
                       key={theme.id}
                       type="button"
                       aria-pressed={isSelected}
-                      onClick={() => updateDarkTheme({ id: theme.id, hue: theme.hue })}
+                      onClick={() =>
+                        updateDarkTheme({ id: theme.id, hue: theme.hue })
+                      }
                       className={`w-full flex items-center justify-between px-2.5 py-1.5 rounded-lg text-xs font-medium transition-colors text-left cursor-pointer ${
                         isSelected
-                          ? 'bg-slate-100 text-slate-900 font-semibold'
-                          : 'text-slate-700 hover:bg-slate-50'
+                          ? "bg-slate-100 text-slate-900 font-semibold"
+                          : "text-slate-700 hover:bg-slate-50"
                       }`}
                     >
                       <div className="flex items-center gap-2">
@@ -1312,10 +1520,15 @@ export const ThemeSwitcher: React.FC = () => {
                           aria-hidden="true"
                         />
                         <span className="truncate">{theme.name}</span>
-                        <span className="text-[9px] font-mono text-slate-500">{surfaceHex}</span>
+                        <span className="text-[9px] font-mono text-slate-500">
+                          {surfaceHex}
+                        </span>
                       </div>
                       {isSelected && (
-                        <Check size={13} className="stroke-[3] text-brand shrink-0" />
+                        <Check
+                          size={13}
+                          className="stroke-[3] text-brand shrink-0"
+                        />
                       )}
                     </button>
                   );

@@ -33,7 +33,7 @@
 }
 
 /* ==========================================================================
-   Shipsy Pre-Footer Integrated CTA ("Let's make work flow")
+   Docsynecx Pre-Footer Integrated CTA ("Let's make work flow")
    Outside: Dark Footer Canvas (#111827)
    Inside Card: Light Colour (#ffffff)
    ========================================================================== */
@@ -301,7 +301,7 @@
   max-width: 320px;
 }
 
-/* Social Buttons (Shipsy style rounded squares) */
+/* Social Buttons (Docsynecx style rounded squares) */
 .socialRow {
   display: flex;
   align-items: center;
@@ -330,7 +330,7 @@
   transform: translateY(-2px);
 }
 
-/* Shipsy Compliance & Certification Badges Strip */
+/* Docsynecx Compliance & Certification Badges Strip */
 .certsStrip {
   margin-top: 28px;
   padding-top: 22px;
@@ -466,7 +466,7 @@
 }
 
 /* ==========================================================================
-   Bottom Legal & Operational Bar (Shipsy style)
+   Bottom Legal & Operational Bar (Docsynecx style)
    ========================================================================== */
 .bottomStrip {
   flex-shrink: 0;

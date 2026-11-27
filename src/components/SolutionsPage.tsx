@@ -14,7 +14,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { LandingNavigation } from "./LandingNavigation";
-import { ShipsyFooter } from "./ShipsyFooter";
+import { DocsynecxFooter } from "./DocsynecxFooter";
 import { FinanceClosingCta } from "./finance/FinanceClosingCta";
 import { SOLUTIONS_DATA } from "../content/solutions";
 import styles from "./SolutionsPage.module.css";
@@ -221,10 +221,7 @@ export function SolutionsPage() {
                     )}
 
                     <div className={styles.indActions}>
-                      <Link
-                        className={styles.primaryBtn}
-                        href="/demo-form"
-                      >
+                      <Link className={styles.primaryBtn} href="/demo-form">
                         <span>{solution.ctaText}</span>
                         <ArrowUpRight size={15} aria-hidden="true" />
                       </Link>
@@ -312,7 +309,7 @@ export function SolutionsPage() {
         />
       </main>
 
-      <ShipsyFooter />
+      <DocsynecxFooter />
     </div>
   );
 }

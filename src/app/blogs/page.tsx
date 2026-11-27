@@ -1,12 +1,12 @@
-import type { Metadata } from 'next';
-import { getAllBlogs } from '@/src/content/blogs';
-import { LandingNavigation } from '@/src/components/LandingNavigation';
-import { ShipsyFooter } from '@/src/components/ShipsyFooter';
-import { BlogListing } from '@/src/components/blogs/BlogListing';
-import base from '@/src/components/LandingPage.module.css';
-import { constructMetadata } from '@/src/lib/seo';
+import type { Metadata } from "next";
+import { getAllBlogs } from "@/src/content/blogs";
+import { LandingNavigation } from "@/src/components/LandingNavigation";
+import { DocsynecxFooter } from "@/src/components/DocsynecxFooter";
+import { BlogListing } from "@/src/components/blogs/BlogListing";
+import base from "@/src/components/LandingPage.module.css";
+import { constructMetadata } from "@/src/lib/seo";
 
-export const metadata: Metadata = constructMetadata('/blogs/');
+export const metadata: Metadata = constructMetadata("/blogs/");
 
 export default function BlogsPage() {
   const posts = getAllBlogs();
@@ -20,7 +20,7 @@ export default function BlogsPage() {
       <main id="main-content">
         <BlogListing initialPosts={posts} />
       </main>
-      <ShipsyFooter />
+      <DocsynecxFooter />
     </div>
   );
 }

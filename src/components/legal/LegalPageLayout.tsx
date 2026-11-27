@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { LandingNavigation } from '../LandingNavigation';
-import { ShipsyFooter } from '../ShipsyFooter';
-import s from './LegalPage.module.css';
+import React from "react";
+import { LandingNavigation } from "../LandingNavigation";
+import { DocsynecxFooter } from "../DocsynecxFooter";
+import s from "./LegalPage.module.css";
 
 export interface LegalPageLayoutProps {
   title: string;
@@ -18,13 +18,11 @@ export function LegalPageLayout({ title, children }: LegalPageLayoutProps) {
       <main className={s.mainContainer}>
         <div className={s.legalPage}>
           <h1 className={s.pageTitle}>{title}</h1>
-          <div className={s.contentFlow}>
-            {children}
-          </div>
+          <div className={s.contentFlow}>{children}</div>
         </div>
       </main>
 
-      <ShipsyFooter />
+      <DocsynecxFooter />
     </div>
   );
 }

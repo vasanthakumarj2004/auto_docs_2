@@ -1,18 +1,20 @@
-import React from 'react';
+import React from "react";
 
 export interface DocsynecxLogoProps {
   className?: string;
-  variant?: 'header' | 'footer';
+  variant?: "header" | "footer";
   alt?: string;
 }
 
 export const DocsynecxLogo: React.FC<DocsynecxLogoProps> = ({
-  className = 'h-8 sm:h-9 w-auto',
-  variant = 'header',
-  alt = 'Docsynecx Logo',
+  className = "h-8 sm:h-9 w-auto",
+  variant = "header",
+  alt = "Docsynecx Logo",
 }) => {
-  const isFooter = variant === 'footer';
-  const logoSrc = isFooter ? '/Docsynecx-Logo-footer.svg' : '/Docsynecx-Logo.svg';
+  const isFooter = variant === "footer";
+  const logoSrc = isFooter
+    ? "/Docsynecx-Logo-footer.svg"
+    : "/Docsynecx-Logo.svg";
 
   return (
     <img
@@ -27,5 +29,5 @@ export const DocsynecxLogo: React.FC<DocsynecxLogoProps> = ({
   );
 };
 
-export const AutoDocsLogo = DocsynecxLogo;
+export const docsynecxLogo = DocsynecxLogo;
 export default DocsynecxLogo;

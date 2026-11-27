@@ -12,7 +12,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { LandingNavigation } from "../LandingNavigation";
-import { ShipsyFooter } from "../ShipsyFooter";
+import { DocsynecxFooter } from "../DocsynecxFooter";
 import { FinanceClosingCta } from "../finance/FinanceClosingCta";
 import s from "./AboutPage.module.css";
 
@@ -238,7 +238,7 @@ export function AboutPage() {
                     Combining an engineering foundation with an MBA in Finance,
                     she brings a practical understanding of how businesses
                     operate and grow. At Docsynecx, she contributes to business
-                    strategy, operational development and growth  helping
+                    strategy, operational development and growth helping
                     translate customer needs into meaningful business solutions.
                   </p>
 
@@ -309,9 +309,9 @@ export function AboutPage() {
                 <span className={s.accent}>Building for everywhere.</span>
               </h2>
               <p className={s.officeDesc}>
-                Coimbatore is where our ideas take shape, our team
-                collaborates and we build technology for businesses with
-                ambitions beyond borders.
+                Coimbatore is where our ideas take shape, our team collaborates
+                and we build technology for businesses with ambitions beyond
+                borders.
               </p>
 
               <div className={s.officeLocationLine}>
@@ -331,7 +331,8 @@ export function AboutPage() {
           eyebrow="THE NEXT CHAPTER"
           title={
             <>
-              Let’s make business work<br />
+              Let’s make business work
+              <br />
               <span>better.</span>
             </>
           }
@@ -343,7 +344,7 @@ export function AboutPage() {
         />
       </main>
 
-      <ShipsyFooter />
+      <DocsynecxFooter />
     </div>
   );
 }

@@ -1,27 +1,27 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { LandingNavigation } from '../LandingNavigation';
-import { ShipsyFooter } from '../ShipsyFooter';
-import type { PersonaData } from '../../content/financePersonas';
-import layoutStyles from '../LandingPage.module.css';
-import s from './FinancePersonaPage.module.css';
-import { BusinessOwnersPage } from './BusinessOwnersPage';
-import { FinanceTeamsPage } from './FinanceTeamsPage';
-import { CaFirmsPage } from './CaFirmsPage';
-import { AccountsTeamsPage } from './AccountsTeamsPage';
+import React from "react";
+import { LandingNavigation } from "../LandingNavigation";
+import { DocsynecxFooter } from "../DocsynecxFooter";
+import type { PersonaData } from "../../content/financePersonas";
+import layoutStyles from "../LandingPage.module.css";
+import s from "./FinancePersonaPage.module.css";
+import { BusinessOwnersPage } from "./BusinessOwnersPage";
+import { FinanceTeamsPage } from "./FinanceTeamsPage";
+import { CaFirmsPage } from "./CaFirmsPage";
+import { AccountsTeamsPage } from "./AccountsTeamsPage";
 
 interface FinancePersonaPageProps {
-  persona: PersonaData['slug'];
+  persona: PersonaData["slug"];
 }
 
 export function FinancePersonaPage({ persona }: FinancePersonaPageProps) {
   let ContentComponent = BusinessOwnersPage;
-  if (persona === 'finance-teams') {
+  if (persona === "finance-teams") {
     ContentComponent = FinanceTeamsPage;
-  } else if (persona === 'ca-firms') {
+  } else if (persona === "ca-firms") {
     ContentComponent = CaFirmsPage;
-  } else if (persona === 'accounts-teams') {
+  } else if (persona === "accounts-teams") {
     ContentComponent = AccountsTeamsPage;
   } else {
     ContentComponent = BusinessOwnersPage;
@@ -38,7 +38,7 @@ export function FinancePersonaPage({ persona }: FinancePersonaPageProps) {
         <ContentComponent />
       </main>
 
-      <ShipsyFooter />
+      <DocsynecxFooter />
     </div>
   );
 }

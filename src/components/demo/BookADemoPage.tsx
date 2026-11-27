@@ -1,6 +1,11 @@
-'use client';
+"use client";
 
-import React, { useEffect, useState, type FormEvent, type ChangeEvent } from 'react';
+import React, {
+  useEffect,
+  useState,
+  type FormEvent,
+  type ChangeEvent,
+} from "react";
 import {
   Check,
   CheckCircle2,
@@ -9,69 +14,75 @@ import {
   Info,
   MapPin,
   RotateCcw,
-} from 'lucide-react';
-import { LandingNavigation } from '../LandingNavigation';
-import { ShipsyFooter } from '../ShipsyFooter';
-import { trackEvent } from '@/src/lib/analytics';
-import { EVENT_DEMO_REQUEST, EVENT_GENERATE_LEAD } from '@/src/lib/analytics-events';
-import { sendDemoEmail } from '@/src/lib/emailjs';
-import s from './BookADemoPage.module.css';
+} from "lucide-react";
+import { LandingNavigation } from "../LandingNavigation";
+import { DocsynecxFooter } from "../DocsynecxFooter";
+import { trackEvent } from "@/src/lib/analytics";
+import {
+  EVENT_DEMO_REQUEST,
+  EVENT_GENERATE_LEAD,
+} from "@/src/lib/analytics-events";
+import { sendDemoEmail } from "@/src/lib/emailjs";
+import s from "./BookADemoPage.module.css";
 
 interface FormData {
   name: string;
   company: string;
   email: string;
   phone: string;
-  platform: '' | 'logistics' | 'finance';
+  platform: "" | "logistics" | "finance";
   operationSoftware: string;
   moduleInterest: string;
   requirements: string;
 }
 
 const INITIAL_FORM: FormData = {
-  name: '',
-  company: '',
-  email: '',
-  phone: '',
-  platform: '',
-  operationSoftware: '',
-  moduleInterest: '',
-  requirements: '',
+  name: "",
+  company: "",
+  email: "",
+  phone: "",
+  platform: "",
+  operationSoftware: "",
+  moduleInterest: "",
+  requirements: "",
 };
 
 export function BookADemoPage() {
   const [formData, setFormData] = useState<FormData>(INITIAL_FORM);
-  const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>({});
+  const [errors, setErrors] = useState<Partial<Record<keyof FormData, string>>>(
+    {},
+  );
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   useEffect(() => {
     if (
-      (window.location.pathname === '/demo/' || window.location.pathname === '/demo') &&
-      window.location.hash === '#demo-form'
+      (window.location.pathname === "/demo/" ||
+        window.location.pathname === "/demo") &&
+      window.location.hash === "#demo-form"
     ) {
       window.location.replace(`/demo-form${window.location.search}`);
     }
   }, []);
 
   function handleChange(
-    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>,
   ) {
     const { name, value } = e.target;
 
     let finalValue = value;
-    if (name === 'phone') {
-      finalValue = value.replace(/[^\d+]/g, '').replace(/(?!^)\+/g, '');
+    if (name === "phone") {
+      finalValue = value.replace(/[^\d+]/g, "").replace(/(?!^)\+/g, "");
     }
 
     setFormData((prev) => {
       // If the user changes the platform, reset the conditional operationSoftware
-      if (name === 'platform') {
+      if (name === "platform") {
         return {
           ...prev,
-          platform: value as FormData['platform'],
-          operationSoftware: '',
+          platform: value as FormData["platform"],
+          operationSoftware: "",
         };
       }
       return {
@@ -92,23 +103,24 @@ export function BookADemoPage() {
     const newErrors: Partial<Record<keyof FormData, string>> = {};
 
     if (!formData.name.trim()) {
-      newErrors.name = 'Your name is required';
+      newErrors.name = "Your name is required";
     }
     if (!formData.company.trim()) {
-      newErrors.company = 'Company name is required';
+      newErrors.company = "Company name is required";
     }
     if (!formData.email.trim()) {
-      newErrors.email = 'Work email is required';
+      newErrors.email = "Work email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid work email address';
+      newErrors.email = "Please enter a valid work email address";
     }
     if (!formData.phone.trim()) {
-      newErrors.phone = 'Phone number is required';
+      newErrors.phone = "Phone number is required";
     } else if (!/^\+?[0-9]{7,15}$/.test(formData.phone.trim())) {
-      newErrors.phone = 'Phone number must only contain digits and optional leading +';
+      newErrors.phone =
+        "Phone number must only contain digits and optional leading +";
     }
     if (!formData.platform) {
-      newErrors.platform = 'Please select a platform';
+      newErrors.platform = "Please select a platform";
     }
 
     setErrors(newErrors);
@@ -120,7 +132,7 @@ export function BookADemoPage() {
     if (!validate()) return;
 
     setSubmitError(null);
-    trackEvent(EVENT_DEMO_REQUEST, { source: 'book_a_demo_page' });
+    trackEvent(EVENT_DEMO_REQUEST, { source: "book_a_demo_page" });
 
     setIsSubmitting(true);
 
@@ -139,15 +151,17 @@ export function BookADemoPage() {
       if (res.success) {
         setIsSubmitted(true);
         trackEvent(EVENT_GENERATE_LEAD, {
-          lead_source: 'book_a_demo_page',
-          form_name: 'book_a_demo',
+          lead_source: "book_a_demo_page",
+          form_name: "book_a_demo",
         });
       } else {
-        setSubmitError('Failed to send demo request. Please try again or reach out to us directly.');
+        setSubmitError(
+          "Failed to send demo request. Please try again or reach out to us directly.",
+        );
       }
     } catch (err) {
-      console.log('Demo request submission error:', err);
-      setSubmitError('Failed to send demo request. Please try again.');
+      console.log("Demo request submission error:", err);
+      setSubmitError("Failed to send demo request. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -177,14 +191,15 @@ export function BookADemoPage() {
 
               {/* H1 Headline */}
               <h1 className={s.headline}>
-                Let&apos;s make your workflow{' '}
+                Let&apos;s make your workflow{" "}
                 <span className={s.accent}>more intelligent.</span>
               </h1>
 
               {/* Intro Paragraph */}
               <p className={s.intro}>
-                Tell us a little about your business and the process you want to improve.
-                Our team will get in touch to understand your requirements.
+                Tell us a little about your business and the process you want to
+                improve. Our team will get in touch to understand your
+                requirements.
               </p>
 
               {/* Checklist */}
@@ -211,8 +226,14 @@ export function BookADemoPage() {
 
               {/* Company Credential Line */}
               <div className={s.companyLine}>
-                <MapPin size={15} className={s.companyIcon} aria-hidden="true" />
-                <span>SynecX AI Labs Private Limited · Coimbatore, Tamil Nadu, India</span>
+                <MapPin
+                  size={15}
+                  className={s.companyIcon}
+                  aria-hidden="true"
+                />
+                <span>
+                  SynecX AI Labs Private Limited · Coimbatore, Tamil Nadu, India
+                </span>
               </div>
             </div>
 
@@ -223,7 +244,8 @@ export function BookADemoPage() {
               <div className={s.formHeader}>
                 <h2 className={s.cardTitle}>Request a demo</h2>
                 <p className={s.cardSubtext}>
-                  Tell us what you're looking to automate. Our team will help you find the right solution.
+                  Tell us what you're looking to automate. Our team will help
+                  you find the right solution.
                 </p>
               </div>
 
@@ -233,18 +255,24 @@ export function BookADemoPage() {
                   <div className={s.successIconBadge}>
                     <CheckCircle2 size={36} strokeWidth={2.4} />
                   </div>
-                  <h3 className={s.successTitle}>Enquiry submitted successfully!</h3>
+                  <h3 className={s.successTitle}>
+                    Enquiry submitted successfully!
+                  </h3>
                   <p className={s.successMessage}>
-                    Thank you for reaching out, <strong>{formData.name}</strong>. Our solutions
-                    team will review your requirements for{' '}
+                    Thank you for reaching out, <strong>{formData.name}</strong>
+                    . Our solutions team will review your requirements for{" "}
                     <strong>
-                      {formData.platform === 'logistics'
-                        ? 'Docsynecx Logistics'
-                        : 'Docsynecx Finance'}
-                    </strong>{' '}
+                      {formData.platform === "logistics"
+                        ? "Docsynecx Logistics"
+                        : "Docsynecx Finance"}
+                    </strong>{" "}
                     and get in touch with you shortly.
                   </p>
-                  <button type="button" onClick={handleReset} className={s.resetBtn}>
+                  <button
+                    type="button"
+                    onClick={handleReset}
+                    className={s.resetBtn}
+                  >
                     <RotateCcw size={14} />
                     <span>Submit another enquiry</span>
                   </button>
@@ -265,11 +293,13 @@ export function BookADemoPage() {
                         value={formData.name}
                         onChange={handleChange}
                         placeholder="Your name"
-                        className={`${s.input} ${errors.name ? s.inputError : ''}`}
+                        className={`${s.input} ${errors.name ? s.inputError : ""}`}
                         aria-required="true"
                         aria-invalid={!!errors.name}
                       />
-                      {errors.name && <span className={s.errorMessage}>{errors.name}</span>}
+                      {errors.name && (
+                        <span className={s.errorMessage}>{errors.name}</span>
+                      )}
                     </div>
 
                     <div className={s.fieldGroup}>
@@ -283,7 +313,7 @@ export function BookADemoPage() {
                         value={formData.company}
                         onChange={handleChange}
                         placeholder="Company name"
-                        className={`${s.input} ${errors.company ? s.inputError : ''}`}
+                        className={`${s.input} ${errors.company ? s.inputError : ""}`}
                         aria-required="true"
                         aria-invalid={!!errors.company}
                       />
@@ -306,11 +336,13 @@ export function BookADemoPage() {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="Work email"
-                        className={`${s.input} ${errors.email ? s.inputError : ''}`}
+                        className={`${s.input} ${errors.email ? s.inputError : ""}`}
                         aria-required="true"
                         aria-invalid={!!errors.email}
                       />
-                      {errors.email && <span className={s.errorMessage}>{errors.email}</span>}
+                      {errors.email && (
+                        <span className={s.errorMessage}>{errors.email}</span>
+                      )}
                     </div>
 
                     <div className={s.fieldGroup}>
@@ -324,11 +356,13 @@ export function BookADemoPage() {
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder="Phone number"
-                        className={`${s.input} ${errors.phone ? s.inputError : ''}`}
+                        className={`${s.input} ${errors.phone ? s.inputError : ""}`}
                         aria-required="true"
                         aria-invalid={!!errors.phone}
                       />
-                      {errors.phone && <span className={s.errorMessage}>{errors.phone}</span>}
+                      {errors.phone && (
+                        <span className={s.errorMessage}>{errors.phone}</span>
+                      )}
                     </div>
                   </div>
 
@@ -343,7 +377,7 @@ export function BookADemoPage() {
                         name="platform"
                         value={formData.platform}
                         onChange={handleChange}
-                        className={`${s.select} ${errors.platform ? s.inputError : ''}`}
+                        className={`${s.select} ${errors.platform ? s.inputError : ""}`}
                         aria-required="true"
                         aria-invalid={!!errors.platform}
                       >
@@ -351,7 +385,11 @@ export function BookADemoPage() {
                         <option value="logistics">Docsynecx Logistics</option>
                         <option value="finance">Docsynecx Finance</option>
                       </select>
-                      <ChevronDown size={18} className={s.selectIcon} aria-hidden="true" />
+                      <ChevronDown
+                        size={18}
+                        className={s.selectIcon}
+                        aria-hidden="true"
+                      />
                     </div>
                     {errors.platform && (
                       <span className={s.errorMessage}>{errors.platform}</span>
@@ -365,13 +403,16 @@ export function BookADemoPage() {
                     <div className={s.conditionalFieldContainer}>
                       <div className={s.fieldGroup}>
                         <div className={s.conditionalHeader}>
-                          <label htmlFor="demo-operation-software" className={s.label}>
+                          <label
+                            htmlFor="demo-operation-software"
+                            className={s.label}
+                          >
                             What runs your operation today?
                           </label>
                           <span className={s.conditionalBadge}>
-                            {formData.platform === 'logistics'
-                              ? 'Logistics ERP'
-                              : 'Finance System'}
+                            {formData.platform === "logistics"
+                              ? "Logistics ERP"
+                              : "Finance System"}
                           </span>
                         </div>
 
@@ -384,23 +425,27 @@ export function BookADemoPage() {
                             className={`${s.select} ${s.conditionalSelect}`}
                           >
                             <option value="">
-                              {formData.platform === 'logistics'
-                                ? 'Select logistics system'
-                                : 'Select finance software'}
+                              {formData.platform === "logistics"
+                                ? "Select logistics system"
+                                : "Select finance software"}
                             </option>
 
-                            {formData.platform === 'logistics' ? (
+                            {formData.platform === "logistics" ? (
                               <>
                                 <option value="cargowise">CargoWise</option>
                                 <option value="logi-sys">Logi-Sys</option>
                                 <option value="shipsy">Shipsy</option>
-                                <option value="other">Other / Custom ERP</option>
+                                <option value="other">
+                                  Other / Custom ERP
+                                </option>
                               </>
                             ) : (
                               <>
                                 <option value="tally">Tally</option>
                                 <option value="zoho-books">Zoho Books</option>
-                                <option value="other">Other / Custom Software</option>
+                                <option value="other">
+                                  Other / Custom Software
+                                </option>
                               </>
                             )}
                           </select>
@@ -447,7 +492,10 @@ export function BookADemoPage() {
                   </div>
 
                   {submitError && (
-                    <div className={s.errorMessage} style={{ marginBottom: '1rem', display: 'block' }}>
+                    <div
+                      className={s.errorMessage}
+                      style={{ marginBottom: "1rem", display: "block" }}
+                    >
                       {submitError}
                     </div>
                   )}
@@ -459,15 +507,17 @@ export function BookADemoPage() {
                     disabled={isSubmitting}
                   >
                     <span>
-                      {isSubmitting ? 'Submitting enquiry...' : 'Submit Demo'}
+                      {isSubmitting ? "Submitting enquiry..." : "Submit Demo"}
                     </span>
-                    {!isSubmitting && <ArrowUpRight size={17} aria-hidden="true" />}
+                    {!isSubmitting && (
+                      <ArrowUpRight size={17} aria-hidden="true" />
+                    )}
                   </button>
 
                   {/* Privacy Policy Line */}
                   <p className={s.privacyLine}>
-                    Your information will be used to respond to this enquiry. Add your published
-                    privacy policy before launch.
+                    Your information will be used to respond to this enquiry.
+                    Add your published privacy policy before launch.
                   </p>
 
                   {/* Implementation Note Banner */}
@@ -486,7 +536,7 @@ export function BookADemoPage() {
       </main>
 
       {/* Global Dark Navy Footer */}
-      <ShipsyFooter />
+      <DocsynecxFooter />
     </div>
   );
 }

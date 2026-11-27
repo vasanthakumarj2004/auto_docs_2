@@ -1,32 +1,43 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import { ArrowDown, ArrowUpRight, Check, FileText, Mail, ShieldCheck, Sparkles, Workflow } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
-import styles from './LandingHero.module.css';
+import Link from "next/link";
+import {
+  ArrowDown,
+  ArrowUpRight,
+  Check,
+  FileText,
+  Mail,
+  ShieldCheck,
+  Sparkles,
+  Workflow,
+} from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import styles from "./LandingHero.module.css";
 
 const workflows = {
   finance: {
-    label: 'Finance Desk', title: 'From invoice to your books.',
+    label: "Finance Desk",
+    title: "From invoice to your books.",
     steps: [
-      { icon: FileText, title: 'Invoice', detail: 'Document intake' },
-      { icon: Sparkles, title: 'Read & check', detail: 'Invoice automation' },
-      { icon: ShieldCheck, title: 'Review', detail: 'Human approval' },
-      { icon: Check, title: 'Tally', detail: 'Validated posting' },
+      { icon: FileText, title: "Invoice", detail: "Document intake" },
+      { icon: Sparkles, title: "Read & check", detail: "Invoice automation" },
+      { icon: ShieldCheck, title: "Review", detail: "Human approval" },
+      { icon: Check, title: "Tally", detail: "Validated posting" },
     ],
-    systems: ['TallyPrime', 'Zoho Books', 'Custom ERP'],
-    capabilities: ['Invoice Automation', 'Bank Statement & Reconciliation'],
+    systems: ["TallyPrime", "Zoho Books", "Custom ERP"],
+    capabilities: ["Invoice Automation", "Bank Statement & Reconciliation"],
   },
   logistics: {
-    label: 'Logistics Desk', title: 'From email to CargoWise.',
+    label: "Logistics Desk",
+    title: "From email to CargoWise.",
     steps: [
-      { icon: Mail, title: 'Email', detail: 'Document intake' },
-      { icon: Sparkles, title: 'Read & check', detail: 'Document automation' },
-      { icon: ShieldCheck, title: 'Review', detail: 'Human approval' },
-      { icon: Check, title: 'CargoWise', detail: 'Connected workflows' },
+      { icon: Mail, title: "Email", detail: "Document intake" },
+      { icon: Sparkles, title: "Read & check", detail: "Document automation" },
+      { icon: ShieldCheck, title: "Review", detail: "Human approval" },
+      { icon: Check, title: "CargoWise", detail: "Connected workflows" },
     ],
-    systems: ['CargoWise', 'Custom ERP', 'Email workflows'],
-    capabilities: ['RFQ to Booking', 'Shipment Management'],
+    systems: ["CargoWise", "Custom ERP", "Email workflows"],
+    capabilities: ["RFQ to Booking", "Shipment Management"],
   },
 };
 
@@ -110,8 +121,8 @@ export function LandingHero() {
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+    if (typeof window === "undefined") return;
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
     if (isMobile) return;
 
     let triggered = false;
@@ -123,35 +134,55 @@ export function LandingHero() {
     };
 
     const cleanup = () => {
-      window.removeEventListener('scroll', triggerVideo);
-      window.removeEventListener('pointerdown', triggerVideo);
-      window.removeEventListener('touchstart', triggerVideo);
-      window.removeEventListener('keydown', triggerVideo);
+      window.removeEventListener("scroll", triggerVideo);
+      window.removeEventListener("pointerdown", triggerVideo);
+      window.removeEventListener("touchstart", triggerVideo);
+      window.removeEventListener("keydown", triggerVideo);
     };
 
-    window.addEventListener('scroll', triggerVideo, { passive: true, once: true });
-    window.addEventListener('pointerdown', triggerVideo, { passive: true, once: true });
-    window.addEventListener('touchstart', triggerVideo, { passive: true, once: true });
-    window.addEventListener('keydown', triggerVideo, { passive: true, once: true });
+    window.addEventListener("scroll", triggerVideo, {
+      passive: true,
+      once: true,
+    });
+    window.addEventListener("pointerdown", triggerVideo, {
+      passive: true,
+      once: true,
+    });
+    window.addEventListener("touchstart", triggerVideo, {
+      passive: true,
+      once: true,
+    });
+    window.addEventListener("keydown", triggerVideo, {
+      passive: true,
+      once: true,
+    });
 
     return cleanup;
   }, []);
   useEffect(() => {
     const frame = frameRef.current;
     if (!frame) return;
-    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let request = 0;
     const update = () => {
       request = 0;
-      const progress = motion.matches ? 1 : Math.min(1, Math.max(0, window.scrollY / 600));
-      frame.style.setProperty('--frame-tilt', `${18 * (1 - progress)}deg`);
-      frame.style.setProperty('--frame-scale', `${0.94 + 0.06 * progress}`);
+      const progress = motion.matches
+        ? 1
+        : Math.min(1, Math.max(0, window.scrollY / 600));
+      frame.style.setProperty("--frame-tilt", `${18 * (1 - progress)}deg`);
+      frame.style.setProperty("--frame-scale", `${0.94 + 0.06 * progress}`);
     };
-    const onScroll = () => { if (!request) request = window.requestAnimationFrame(update); };
+    const onScroll = () => {
+      if (!request) request = window.requestAnimationFrame(update);
+    };
     update();
-    window.addEventListener('scroll', onScroll, { passive: true });
-    motion.addEventListener('change', update);
-    return () => { window.removeEventListener('scroll', onScroll); motion.removeEventListener('change', update); window.cancelAnimationFrame(request); };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    motion.addEventListener("change", update);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      motion.removeEventListener("change", update);
+      window.cancelAnimationFrame(request);
+    };
   }, []);
   return (
     <section id="top" className={styles.hero} aria-labelledby="hero-title">
@@ -164,16 +195,28 @@ export function LandingHero() {
           loop
           playsInline
           preload="none"
-          poster="/videos/gemini-layout-two-poster.webp"
+          poster="/videos/main-layout-two-poster.webp"
         >
-          {shouldLoadVideo && <source src="/videos/main-layout-two.mp4" type="video/mp4" />}
+          {shouldLoadVideo && (
+            <source src="/videos/main-layout-two.mp4" type="video/mp4" />
+          )}
         </video>
         <div className={styles.videoOverlay} />
       </div>
       <div className={styles.copy}>
-        <p className={styles.eyebrow}><span /> One platform. Two desks.</p>
-        <h1 id="hero-title">Grow the business.<br /><span>Not the data-entry desk.</span></h1>
-        <p className={styles.description}>Bills and bank statements read, checked and ready in Tally. Freight emails turned into quotes and CargoWise jobs. Your team approves the work instead of typing it.</p>
+        <p className={styles.eyebrow}>
+          <span /> One platform. Two desks.
+        </p>
+        <h1 id="hero-title">
+          Grow the business.
+          <br />
+          <span>Not the data-entry desk.</span>
+        </h1>
+        <p className={styles.description}>
+          Bills and bank statements read, checked and ready in Tally. Freight
+          emails turned into quotes and CargoWise jobs. Your team approves the
+          work instead of typing it.
+        </p>
         <div className={styles.deskLinks}>
           <Link
             href="/finance-desk/"
@@ -192,7 +235,10 @@ export function LandingHero() {
             I run a logistics desk <ArrowUpRight size={17} aria-hidden="true" />
           </Link>
         </div>
-        <p className={styles.trust}>Works with <strong>TallyPrime, Zoho Books, CargoWise or your own ERP.</strong></p>
+        <p className={styles.trust}>
+          Works with{" "}
+          <strong>TallyPrime, Zoho Books, CargoWise or your own ERP.</strong>
+        </p>
       </div>
       <div className={styles.mediaArea}>
         {/* <div className={styles.mediaCaption}><span>[ WORKFLOW PREVIEW ]</span><span>Explore your workflow <ArrowDown size={12} aria-hidden="true" /></span></div> */}

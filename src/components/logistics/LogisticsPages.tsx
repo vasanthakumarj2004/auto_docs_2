@@ -15,7 +15,7 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { LandingNavigation } from "../LandingNavigation";
-import { ShipsyFooter } from "../ShipsyFooter";
+import { DocsynecxFooter } from "../DocsynecxFooter";
 import { SharedFaqAccordion } from "../SharedFaqAccordion";
 import { LandingClosingCta } from "../LandingClosingCta";
 import {
@@ -216,14 +216,11 @@ export function LogisticsPage({ slug }: LogisticsPageProps) {
           </div>
         </section>
 
-        <LandingClosingCta
-          primaryHref="/demo-form"
-          secondaryHref="/platform"
-        />
+        <LandingClosingCta primaryHref="/demo-form" secondaryHref="/platform" />
       </main>
 
       {/* Global Footer */}
-      <ShipsyFooter />
+      <DocsynecxFooter />
     </div>
   );
 }

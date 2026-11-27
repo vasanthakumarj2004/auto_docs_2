@@ -54,7 +54,7 @@ Docsynecx eliminates manual data entry by extracting, validating, reconciling, a
 - [AI-Driven Invoice Intelligence](https://docsynecx.com/blogs/ai-driven-invoice-intelligence-end-to-end-invoice-processing-docsynecx/): End-to-end document lifecycle automation explained.
 - [Measuring ROI From Document AI](https://docsynecx.com/blogs/measuring-roi-from-document-ai-transforming-document-workflows-strategic-advantage/): Frameworks for calculating financial ROI on intelligent document processing.
 - [OCR vs IDP Differences](https://docsynecx.com/blogs/ocr-vs-idp-differences-and-why-it-matters-for-your-business/): Why basic OCR fails and how Intelligent Document Processing succeeds.
-- [ERP Integration Best Practices](https://docsynecx.com/blogs/erp-integration-best-practices-sap-tally-and-beyond/): Connecting AI pipelines to SAP, TallyPrime, and Zoho Books securely.
+- [ERP Integration Best Practices](https://docsynecx.com/blogs/erp-integration-best-practices-sap-tally-and-beyond/): Connecting AI pipelines to TallyPrime, and Zoho Books securely.
 - [Future of OCR](https://docsynecx.com/blogs/future-of-ocr-ai-powered-document-processing-revolution/): Deep learning, vision-language models, and the next decade of document intelligence.
 - [Complete Guide to Invoice Processing Automation](https://docsynecx.com/blogs/complete-guide-to-invoice-processing-automation/): Definitive playbook for finance leaders.
 - [Intelligent Document Processing Future](https://docsynecx.com/blogs/intelligent-document-processing-future-of-automated-document-workflows/): Next-generation autonomous workflow design.

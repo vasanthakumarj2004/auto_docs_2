@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { ArrowDown, ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { LandingNavigation } from "../LandingNavigation";
-import { ShipsyFooter } from "../ShipsyFooter";
+import { DocsynecxFooter } from "../DocsynecxFooter";
 import { SharedFaqAccordion } from "../SharedFaqAccordion";
 import { DemoCta } from "../DemoCta";
 import { ConnectedFinanceWorkspace } from "./ConnectedFinanceWorkspace";
@@ -410,7 +410,7 @@ function Overview() {
           eyebrow="Start with invoices. Add the rest when you're ready."
           title={
             <>
-              Five tools,
+              Four tools,
               <br />
               <span>one finance desk.</span>
             </>
@@ -638,7 +638,7 @@ export function FinancePage({ page = "overview" }: { page?: PageKey }) {
         <main id="main-content">
           <InvoiceAutomationPage />
         </main>
-        <ShipsyFooter />
+        <DocsynecxFooter />
       </div>
     );
   }
@@ -653,7 +653,7 @@ export function FinancePage({ page = "overview" }: { page?: PageKey }) {
         <main id="main-content">
           <BankingReconciliationPage />
         </main>
-        <ShipsyFooter />
+        <DocsynecxFooter />
       </div>
     );
   }
@@ -668,7 +668,7 @@ export function FinancePage({ page = "overview" }: { page?: PageKey }) {
         <main id="main-content">
           <AccountsPayablePage />
         </main>
-        <ShipsyFooter />
+        <DocsynecxFooter />
       </div>
     );
   }
@@ -683,7 +683,7 @@ export function FinancePage({ page = "overview" }: { page?: PageKey }) {
         <main id="main-content">
           <PaymentRemindersPage />
         </main>
-        <ShipsyFooter />
+        <DocsynecxFooter />
       </div>
     );
   }
@@ -698,7 +698,7 @@ export function FinancePage({ page = "overview" }: { page?: PageKey }) {
         <main id="main-content">
           <DocsynecxIntelligencePage />
         </main>
-        <ShipsyFooter />
+        <DocsynecxFooter />
       </div>
     );
   }
@@ -713,7 +713,7 @@ export function FinancePage({ page = "overview" }: { page?: PageKey }) {
         <Hero page={page} />
         <Overview />
       </main>
-      <ShipsyFooter />
+      <DocsynecxFooter />
     </div>
   );
 }

@@ -15,7 +15,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  font-family: "JetBrains Mono", "IBM Plex Mono", monospace;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -25,7 +25,7 @@
 }
 
 .eyebrow::before {
-  content: '';
+  content: "";
   width: 20px;
   height: 2px;
   background: var(--color-brand, #18cb96);
@@ -85,7 +85,7 @@
 
 .step::before {
   position: absolute;
-  content: '';
+  content: "";
   top: 18px;
   bottom: 18px;
   left: 0;
@@ -95,14 +95,18 @@
   transition: all 220ms ease;
 }
 
-.step[aria-selected='true']::before {
+.step[aria-selected="true"]::before {
   background: var(--color-brand, #18cb96);
   box-shadow: 0 0 10px rgba(24, 203, 150, 0.6);
 }
 
-.step[aria-selected='true'] {
+.step[aria-selected="true"] {
   color: var(--landing-ink, #0f172a);
-  background: linear-gradient(90deg, rgba(24, 203, 150, 0.08) 0%, transparent 90%);
+  background: linear-gradient(
+    90deg,
+    rgba(24, 203, 150, 0.08) 0%,
+    transparent 90%
+  );
 }
 
 .step:hover {
@@ -111,7 +115,7 @@
 }
 
 .stepNumber {
-  font-family: 'JetBrains Mono', monospace, ui-monospace, SFMono-Regular;
+  font-family: "JetBrains Mono", monospace, ui-monospace, SFMono-Regular;
   font-size: 11px;
   font-weight: 700;
   color: var(--color-brand-text, #0d9466);
@@ -139,7 +143,7 @@
   margin-bottom: 6px;
 }
 
-.step[aria-selected='true'] .stepLabel {
+.step[aria-selected="true"] .stepLabel {
   color: var(--color-brand-text, #0d9466);
 }
 
@@ -167,7 +171,7 @@
   color: var(--color-brand, #18cb96);
 }
 
-.step[aria-selected='true'] .stepArrow {
+.step[aria-selected="true"] .stepArrow {
   opacity: 1;
   transform: translateX(0);
 }
@@ -209,7 +213,9 @@
   border: 1px solid #e2e8f0;
   border-radius: 18px;
   background: #ffffff;
-  box-shadow: 0 20px 48px -15px rgba(15, 23, 42, 0.08), 0 2px 6px rgba(15, 23, 42, 0.03);
+  box-shadow:
+    0 20px 48px -15px rgba(15, 23, 42, 0.08),
+    0 2px 6px rgba(15, 23, 42, 0.03);
   overflow: hidden;
   animation: previewEnter 400ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
@@ -477,7 +483,7 @@
   flex-shrink: 0;
 }
 
-/* RFQ-to-Booking uses the same dark canvas as ShipsyFooter. */
+/* RFQ-to-Booking uses the same dark canvas as DocsynecxFooter. */
 .darkTheme {
   --landing-ink: #ffffff;
   --landing-muted: #b8c2d1;
@@ -504,7 +510,7 @@
   background: rgba(255, 255, 255, 0.05);
 }
 
-.darkTheme .step[aria-selected='true'] {
+.darkTheme .step[aria-selected="true"] {
   background: linear-gradient(90deg, rgba(24, 203, 150, 0.16), transparent 90%);
 }
 

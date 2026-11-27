@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { ArrowDown, ArrowUpRight, Check, CheckCircle2 } from "lucide-react";
 import { LandingNavigation } from "../LandingNavigation";
-import { ShipsyFooter } from "../ShipsyFooter";
+import { DocsynecxFooter } from "../DocsynecxFooter";
 import { FinanceClosingCta } from "../finance/FinanceClosingCta";
 import { trackEvent } from "@/src/lib/analytics";
 import { EVENT_PRICING_VIEW } from "@/src/lib/analytics-events";
@@ -1114,7 +1114,7 @@ export function PricingPage() {
       </main>
 
       {/* Global Footer */}
-      <ShipsyFooter showCta={false} />
+      <DocsynecxFooter showCta={false} />
     </div>
   );
 }

@@ -643,7 +643,7 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
   const handleNextMonth = () => changeCalendarMonth(1);
 
   const buttonWobbleStyle: React.CSSProperties = {
-    background: '#C2410C',
+    background: 'var(--color-brand-text, #0d9466)',
     color: '#FFFFFF',
     textDecoration: 'none',
     fontWeight: 600,
@@ -671,7 +671,7 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
     <div
       style={{
         position: 'relative',
-        background: '#F4EFE4',
+        background: '#FFFFFF',
         color: '#2B2B2B',
         fontFamily: 'Inter, sans-serif',
         fontSize: '18px',
@@ -680,6 +680,18 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
         minHeight: '100vh',
       }}
     >
+      <style>{`
+        .iics-pilot-btn {
+          transition: all 0.2s ease !important;
+        }
+        .iics-pilot-btn:not(:disabled):hover {
+          background: #0b7a54 !important;
+          transform: translateY(-1px);
+        }
+        .iics-pilot-btn:not(:disabled):active {
+          transform: translateY(1px);
+        }
+      `}</style>
       {/* Background SVG texture filters */}
       <svg
         width="100%"
@@ -692,15 +704,10 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
             <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves={2} seed={4} result="n" />
             <feDisplacementMap in="SourceGraphic" in2="n" scale={3} />
           </filter>
-          <filter id="grain">
-            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves={2} seed={9} />
-            <feColorMatrix values="0 0 0 0 0.2  0 0 0 0 0.2  0 0 0 0 0.2  0 0 0 0.09 0" />
-          </filter>
           <pattern id="hatch" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(40)">
             <line x1="0" y1="0" x2="0" y2="9" stroke="#2B2B2B" strokeWidth="1.4" opacity=".35" />
           </pattern>
         </defs>
-        <rect width="100%" height="100%" filter="url(#grain)" />
       </svg>
 
       <div style={{ position: 'relative' }}>
@@ -731,9 +738,9 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
             <span style={{ fontFamily: 'Caveat, cursive', fontWeight: 700, fontSize: '28px', color: '#1F6B45' }}>
               IICS 2026 · Booth Q53
             </span>
-            <a href="#book" style={{ ...buttonWobbleStyle, padding: '12px 22px' }}>
-              Claim a pilot slot
-            </a>
+              <a href="#book" className="iics-pilot-btn" style={{ ...buttonWobbleStyle, padding: '12px 22px' }}>
+                Claim a pilot slot
+              </a>
           </div>
         </header>
 
@@ -770,19 +777,19 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                 margin: '22px 0 0',
               }}
             >
-              Quotes in 15 minutes, <span style={{ color: '#C2410C', whiteSpace: 'nowrap' }}>not 60+.</span>
+              Quotes in 15 minutes, <span style={{ color: 'var(--color-brand-text, #0d9466)', whiteSpace: 'nowrap' }}>not 60+.</span>
             </h1>
             <p style={{ fontSize: 'clamp(18px,1.6vw,22px)', maxWidth: '560px', margin: '22px 0 0' }}>
               Meet Docsynecx at Booth Q53 and start a one-month pilot the same day. Four modules take the retyping off
               a freight forwarder's desk, from enquiry to payment.
             </p>
             <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '18px 28px', marginTop: '30px' }}>
-              <a href="#book" style={{ ...buttonWobbleStyle, fontSize: '20px', padding: '15px 30px' }}>
-                Claim a pilot slot
-              </a>
-              <a href="#modules" style={{ fontWeight: 600, color: '#1F6B45' }}>
-                See the four modules
-              </a>
+                <a href="#book" className="iics-pilot-btn" style={{ ...buttonWobbleStyle, fontSize: '20px', padding: '15px 30px' }}>
+                  Claim a pilot slot
+                </a>
+                <a href="#modules" style={{ fontWeight: 600, color: '#1F6B45' }}>
+                  See the four modules
+                </a>
             </div>
             <p style={{ fontSize: '15px', margin: '16px 0 0' }}>Limited to 25 teams · IICS 2026 bookings only</p>
           </div>
@@ -828,31 +835,31 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                 <path d="M0,140 L330,140 M30,140 L30,126 M330,140 L330,200 M310,200 L350,200 L350,214 L310,214 Z" />
                 <path d="M10,404 Q60,388 110,404 T210,404 T310,404 T410,404 T510,404 T610,404" />
                 <path d="M40,430 Q90,416 140,430 T240,430 T340,430 T440,430 T540,430" strokeWidth="2" />
-                <path d="M520,236 C590,170 610,130 580,78" stroke="#C2410C" strokeDasharray="3 10" />
-                <circle cx="580" cy="62" r="18" stroke="#C2410C" fill="#F4EFE4" />
-                <path d="M580,80 L580,96" stroke="#C2410C" />
+                <path d="M520,236 C590,170 610,130 580,78" stroke="var(--color-brand-text, #0d9466)" strokeDasharray="3 10" />
+                <circle cx="580" cy="62" r="18" stroke="var(--color-brand-text, #0d9466)" fill="#FFFFFF" />
+                <path d="M580,80 L580,96" stroke="var(--color-brand-text, #0d9466)" />
               </g>
-              <g fontFamily="Caveat, cursive" fontWeight="700" fill="#C2410C" textAnchor="middle">
-                <text x="580" y="70" fontSize="20">Q53</text>
-              </g>
-              <g transform="translate(36,28) rotate(-6)">
-                <path
-                  d="M0,24 L24,0 L204,0 L204,78 L24,78 Z"
-                  fill="#F4EFE4"
-                  stroke="#2B2B2B"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  filter="url(#rough)"
-                />
-                <circle cx="26" cy="39" r="5" fill="none" stroke="#2B2B2B" strokeWidth="2" />
-                <text x="44" y="38" fontFamily="Caveat, cursive" fontWeight="700" fontSize="34" fill="#2B2B2B">
-                  Booth Q53
-                </text>
-                <text x="44" y="60" fontFamily="Inter, sans-serif" fontWeight="600" fontSize="13" fill="#2B2B2B">
-                  2–4 Dec · BKC, Mumbai
-                </text>
-              </g>
+                <g fontFamily="Caveat, cursive" fontWeight="700" fill="var(--color-brand-text, #0d9466)" textAnchor="middle">
+                  <text x="580" y="70" fontSize="20">Q53</text>
+                </g>
+                <g transform="translate(36,28) rotate(-6)">
+                  <path
+                    d="M0,24 L24,0 L204,0 L204,78 L24,78 Z"
+                    fill="#FFFFFF"
+                    stroke="#2B2B2B"
+                    strokeWidth="3"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    filter="url(#rough)"
+                  />
+                  <circle cx="26" cy="39" r="5" fill="none" stroke="#2B2B2B" strokeWidth="2" />
+                  <text x="44" y="38" fontFamily="Caveat, cursive" fontWeight="700" fontSize="34" fill="#2B2B2B">
+                    Booth Q53
+                  </text>
+                  <text x="44" y="60" fontFamily="Inter, sans-serif" fontWeight="600" fontSize="13" fill="#2B2B2B">
+                    2–4 Dec · BKC, Mumbai
+                  </text>
+                </g>
             </svg>
 
             {/* Circular Stamp Badge */}
@@ -878,7 +885,7 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                 style={{
                   position: 'absolute',
                   inset: '8px',
-                  border: '2px dashed #F4EFE4',
+                  border: '2px dashed #FFFFFF',
                   borderRadius: '50%',
                 }}
               />
@@ -1062,7 +1069,7 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                   <path d="M135,150 L175,150 M165,140 L177,150 L165,160" stroke="#1F6B45" />
                   <rect x="190" y="100" width="100" height="130" fill="url(#hatch)" />
                   <path d="M205,125 L275,125 M205,145 L275,145 M205,165 L255,165" />
-                  <circle cx="262" cy="205" r="22" fill="#F4EFE4" stroke="#1F6B45" />
+                  <circle cx="262" cy="205" r="22" fill="#FFFFFF" stroke="#1F6B45" />
                   <path d="M251,205 L259,213 L274,196" stroke="#1F6B45" />
                 </g>
               </svg>
@@ -1084,10 +1091,10 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
               <svg width="100%" height="150" viewBox="20 90 290 180" aria-hidden="true" style={{ display: 'block' }}>
                 <g fill="none" stroke="#2B2B2B" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" filter="url(#rough)">
                   <rect x="50" y="130" width="120" height="130" fill="url(#hatch)" />
-                  <rect x="70" y="112" width="120" height="130" fill="#F4EFE4" />
-                  <rect x="90" y="94" width="120" height="130" fill="#F4EFE4" />
+                  <rect x="70" y="112" width="120" height="130" fill="#FFFFFF" />
+                  <rect x="90" y="94" width="120" height="130" fill="#FFFFFF" />
                   <path d="M106,120 L190,120 M106,140 L190,140 M106,160 L170,160 M106,180 L186,180" />
-                  <circle cx="230" cy="215" r="28" fill="#F4EFE4" stroke="#1F6B45" />
+                  <circle cx="230" cy="215" r="28" fill="#FFFFFF" stroke="#1F6B45" />
                   <path d="M217,215 L227,225 L244,204" stroke="#1F6B45" />
                 </g>
               </svg>
@@ -1138,7 +1145,7 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
               <svg width="100%" height="150" viewBox="20 90 290 180" aria-hidden="true" style={{ display: 'block' }}>
                 <g fill="none" stroke="#2B2B2B" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" filter="url(#rough)">
                   <rect x="40" y="110" width="130" height="140" fill="url(#hatch)" />
-                  <rect x="52" y="122" width="106" height="116" fill="#F4EFE4" />
+                  <rect x="52" y="122" width="106" height="116" fill="#FFFFFF" />
                   <path d="M62,148 L148,148 M62,172 L148,172 M62,196 L148,196 M62,220 L148,220 M100,134 L100,230" />
                   <path d="M66,150 L72,158 L80,142" stroke="#1F6B45" />
                   <ellipse cx="245" cy="232" rx="38" ry="11" />
@@ -1176,7 +1183,7 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                 margin: 0,
               }}
             >
-              Claim your <span style={{ color: '#C2410C' }}>pilot slot.</span>
+              Claim your <span style={{ color: 'var(--color-brand-text, #0d9466)' }}>pilot slot.</span>
             </h2>
             <p style={{ margin: '18px 0 0', maxWidth: '460px' }}>
               Four short steps, about two minutes on your phone. You'll get a confirmation by email and WhatsApp straight away.
@@ -1195,7 +1202,7 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
               minWidth: 0,
               border: '2.5px solid #2B2B2B',
               borderRadius: '255px 12px 225px 12px/12px 225px 12px 255px',
-              background: 'rgba(255,255,255,.35)',
+              background: '#FFFFFF',
               padding: 'clamp(22px,3vw,36px)',
             }}
           >
@@ -1362,9 +1369,9 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                     {errors['f-phone'] && <div style={{ color: '#B42318', fontSize: '14px', marginTop: '2px' }}>{errors['f-phone']}</div>}
                   </div>
 
-                  <button type="submit" style={{ ...buttonWobbleStyle, fontSize: '19px', padding: '14px 24px' }}>
-                    Continue
-                  </button>
+                    <button type="submit" className="iics-pilot-btn" style={{ ...buttonWobbleStyle, fontSize: '19px', padding: '14px 24px' }}>
+                      Continue
+                    </button>
                 </form>
               </div>
             )}
@@ -1483,9 +1490,9 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                     <button type="button" onClick={() => setStep(1)} style={backButtonStyle}>
                       Back
                     </button>
-                    <button type="submit" style={{ ...buttonWobbleStyle, fontSize: '19px', padding: '14px 24px' }}>
-                      Continue to pick a slot
-                    </button>
+                      <button type="submit" className="iics-pilot-btn" style={{ ...buttonWobbleStyle, fontSize: '19px', padding: '14px 24px' }}>
+                        Continue to pick a slot
+                      </button>
                   </div>
                 </form>
               </div>
@@ -1739,14 +1746,14 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                                   fontWeight: 700,
                                   cursor:
                                     new Date().getDay() === 0 ||
-                                    new Date().getDay() === 6 ||
-                                    isUnavailableDate(getTodayIso())
+                                      new Date().getDay() === 6 ||
+                                      isUnavailableDate(getTodayIso())
                                       ? 'not-allowed'
                                       : 'pointer',
                                   opacity:
                                     new Date().getDay() === 0 ||
-                                    new Date().getDay() === 6 ||
-                                    isUnavailableDate(getTodayIso())
+                                      new Date().getDay() === 6 ||
+                                      isUnavailableDate(getTodayIso())
                                       ? 0.5
                                       : 1,
                                   padding: 0,
@@ -1795,9 +1802,8 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                               fontWeight: isCur && !isClosed ? 700 : 600,
                               padding: '9px 12px',
                               borderRadius: '8px',
-                              border: `2px ${isClosed ? 'dashed' : 'solid'} ${
-                                isCur && !isClosed ? '#1F6B45' : isClosed ? '#94A3B8' : '#2B2B2B'
-                              }`,
+                              border: `2px ${isClosed ? 'dashed' : 'solid'} ${isCur && !isClosed ? '#1F6B45' : isClosed ? '#94A3B8' : '#2B2B2B'
+                                }`,
                               cursor: isClosed ? 'not-allowed' : 'pointer',
                               background: isCur && !isClosed ? '#1F6B45' : isClosed ? '#F1F5F9' : 'transparent',
                               color: isCur && !isClosed ? '#FFFFFF' : isClosed ? '#64748B' : '#2B2B2B',
@@ -1930,11 +1936,12 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                     <button
                       type="submit"
                       disabled={!selectedSlot}
+                      className="iics-pilot-btn"
                       style={{
                         ...buttonWobbleStyle,
                         fontSize: '19px',
                         padding: '14px 24px',
-                        background: selectedSlot ? '#C2410C' : '#8A8A8A',
+                        background: selectedSlot ? 'var(--color-brand-text, #0d9466)' : '#8A8A8A',
                         cursor: selectedSlot ? 'pointer' : 'not-allowed',
                       }}
                     >
@@ -2009,6 +2016,7 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                     <button
                       type="submit"
                       disabled={isSubmitting}
+                      className="iics-pilot-btn"
                       style={{ ...buttonWobbleStyle, fontSize: '19px', padding: '14px 24px' }}
                     >
                       {isSubmitting ? (isRescheduling ? 'Updating slot…' : 'Confirming…') : (isRescheduling ? 'Confirm updated slot' : 'Confirm my slot')}
@@ -2091,6 +2099,7 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                 </p>
                 <button
                   type="button"
+                  className="iics-pilot-btn"
                   onClick={() => {
                     setSelectedSlot('');
                     setStep(3);
@@ -2134,6 +2143,7 @@ Location: Booth Q53, Jio World Convention Centre, Mumbai`,
                   <div>
                     <button
                       type="button"
+                      className="iics-pilot-btn"
                       onClick={() => setStep(3)}
                       style={{ ...buttonWobbleStyle, fontSize: '19px', padding: '14px 24px' }}
                     >

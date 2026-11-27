@@ -13,7 +13,7 @@ import {
 import { LandingHero } from "./LandingHero";
 import { LandingNavigation } from "./LandingNavigation";
 import { LandingAnnouncementBar } from "./LandingAnnouncementBar";
-import { ShipsyFooter } from "./ShipsyFooter";
+import { DocsynecxFooter } from "./DocsynecxFooter";
 import { IntelligenceLayer } from "./IntelligenceLayer";
 import { LandingClosingCta } from "./LandingClosingCta";
 import { CustomerReviewSliderFallback } from "./CustomerReviewSliderFallback";
@@ -74,7 +74,7 @@ const stories: CustomerStoryOutcome[] = [
     tag: "Logistics",
     name: "Freight Forwarders",
     metric: "60+ min → 15 min",
-    summary: "Email to CargoWise",
+    summary: "Email to Booking",
     copy: "Shipment intake that once took about an hour per shipment now takes less than fifteen minutes.",
     href: "/customers",
   },
@@ -107,16 +107,6 @@ const stories: CustomerStoryOutcome[] = [
     summary: "Supplier & Export Manifests",
     copy: "Complex supplier bills and export manifests reconciled in minutes instead of days.",
   },
-];
-const integrations = [
-  ["TallyPrime", "Finance integration"],
-  ["CargoWise", "Logistics integration"],
-  ["Email workflows", "Document intake"],
-  ["API connectivity", "Connected workflows"],
-  ["Zoho Books", "Finance integration"],
-  ["SAP", "Enterprise resource planning"],
-  ["Oracle ERP", "Cloud ERP & financial"],
-  ["Microsoft Dynamics", "Business applications"],
 ];
 
 function SectionHeading({
@@ -410,7 +400,7 @@ export function LandingPage() {
         </section>
         <LandingClosingCta />
       </main>
-      <ShipsyFooter />
+      <DocsynecxFooter />
     </div>
   );
 }

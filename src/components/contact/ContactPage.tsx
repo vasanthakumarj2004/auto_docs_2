@@ -19,7 +19,7 @@ import {
   Calendar,
 } from "lucide-react";
 import { LandingNavigation } from "../LandingNavigation";
-import { ShipsyFooter } from "../ShipsyFooter";
+import { DocsynecxFooter } from "../DocsynecxFooter";
 import { FinanceClosingCta } from "../finance/FinanceClosingCta";
 import { trackContactSubmit } from "@/src/lib/marketing-analytics";
 import s from "./ContactPage.module.css";
@@ -430,7 +430,7 @@ export function ContactPage() {
         primaryText="Book a demo"
       />
 
-      <ShipsyFooter />
+      <DocsynecxFooter />
     </div>
   );
 }

@@ -13,7 +13,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { LandingNavigation } from "../LandingNavigation";
-import { ShipsyFooter } from "../ShipsyFooter";
+import { DocsynecxFooter } from "../DocsynecxFooter";
 import { SharedFaqAccordion } from "../SharedFaqAccordion";
 import { LogisticsClosingCta } from "./LogisticsClosingCta";
 import { useAutoCycle } from "@/src/hooks/useAutoCycle";
@@ -183,7 +183,7 @@ const stepsData: IntelStep[] = [
   {
     num: 6,
     title: "Month-end management pack",
-    desc: "Ready on day one",
+    desc: "Ready on the first day of the month",
     panelBar: "6 · Management report · November",
     panelStatus: "Ready 1 Dec",
     statusType: "ok",
@@ -735,7 +735,7 @@ export function FreightIntelligencePage() {
       </main>
 
       {/* Global Footer */}
-      <ShipsyFooter />
+      <DocsynecxFooter />
     </div>
   );
 }

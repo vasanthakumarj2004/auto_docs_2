@@ -1,23 +1,34 @@
-import type { Metadata } from 'next';
-import { notFound } from 'next/navigation';
-import { getAllBlogs, getBlogBySlug, getRelatedBlogs } from '@/src/content/blogs';
-import { LandingNavigation } from '@/src/components/LandingNavigation';
-import { ShipsyFooter } from '@/src/components/ShipsyFooter';
-import { BlogPostView } from '@/src/components/blogs/BlogPostView';
-import base from '@/src/components/LandingPage.module.css';
-import { constructMetadata, getSeoData, articleSchema, jsonLd } from '@/src/lib/seo';
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import {
+  getAllBlogs,
+  getBlogBySlug,
+  getRelatedBlogs,
+} from "@/src/content/blogs";
+import { LandingNavigation } from "@/src/components/LandingNavigation";
+import { DocsynecxFooter } from "@/src/components/DocsynecxFooter";
+import { BlogPostView } from "@/src/components/blogs/BlogPostView";
+import base from "@/src/components/LandingPage.module.css";
+import {
+  constructMetadata,
+  getSeoData,
+  articleSchema,
+  jsonLd,
+} from "@/src/lib/seo";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const resolvedParams = await params;
   const post = getBlogBySlug(resolvedParams.slug);
 
   if (!post) {
     return {
-      title: 'Blog Not Found | Docsynecx Document AI',
+      title: "Blog Not Found | Docsynecx Document AI",
       robots: { index: false, follow: false },
     };
   }
@@ -42,7 +53,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const description = post.excerpt || post.subtitle || post.title;
 
-  return constructMetadata('/blogs/', {
+  return constructMetadata("/blogs/", {
     title: { absolute: `${post.title} | Docsynecx Blog` },
     description,
     alternates: {
@@ -97,7 +108,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       <main id="main-content">
         <BlogPostView post={post} related={related} />
       </main>
-      <ShipsyFooter />
+      <DocsynecxFooter />
     </div>
   );
 }

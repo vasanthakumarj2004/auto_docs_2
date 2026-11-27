@@ -12,7 +12,7 @@ import {
   BarChart3,
 } from "lucide-react";
 import { LandingNavigation } from "../LandingNavigation";
-import { ShipsyFooter } from "../ShipsyFooter";
+import { DocsynecxFooter } from "../DocsynecxFooter";
 import { SharedFaqAccordion } from "../SharedFaqAccordion";
 import { LogisticsHeroCollage } from "./LogisticsHeroCollage";
 import { LogisticsHeroVisual } from "./LogisticsHeroVisual";
@@ -394,7 +394,7 @@ export function LogisticsOverviewPage({
           <LandingClosingCta primaryHref={demoHref} secondaryHref="/platform" />
         )}
       </main>
-      <ShipsyFooter />
+      <DocsynecxFooter />
     </div>
   );
 }
